@@ -1,2 +1,2 @@
-# dzcode.io
+# dzCode.io
 dzCode website
