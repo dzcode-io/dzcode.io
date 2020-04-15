@@ -1,0 +1,28 @@
+{
+  "name": "dzcode.io",
+  "version": "0.1.0",
+  "description": "frontend firebase code for dzcode.io",
+  "scripts": {
+    "deploy": "firebase deploy --token \"$FIREBASE_TOKEN\""
+  },
+  "repository": {
+    "type": "git",
+    "repository": "https://github.com/dzcode-io/dzcode.io.git"
+  },
+  "author": {
+    "email": "contact@zakiii.com",
+    "name": "Zakaria Mansouri",
+    "url": "https://www.zakiii.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=10",
+    "yarn": "1"
+  },
+  "dependencies": {
+    "firebase-tools": "^7.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
