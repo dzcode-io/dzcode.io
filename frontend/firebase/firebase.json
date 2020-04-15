@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "public",
+    "site": "dzcode-io",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
