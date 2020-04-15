@@ -5,8 +5,8 @@ on:
     branches:
       - master
     paths:
-      - "frontend/**"
       - ".github/workflows/deploy-frontend.yml"
+      - "frontend/**"
 
 jobs:
   Build-Deploy:
