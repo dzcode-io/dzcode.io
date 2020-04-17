@@ -14,6 +14,7 @@ Please use one of the following resources for help:
 
 **Questions**
 
+- https://dzcode.slack.com/
 - https://twitter.com/dzcode_io
 - https://www.facebook.com/dzcode.io
 - https://www.facebook.com/groups/dzcode.io
