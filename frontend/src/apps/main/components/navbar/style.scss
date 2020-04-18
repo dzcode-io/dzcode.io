@@ -2,5 +2,6 @@
 
 .navbar {
   height: $navbar-height;
+  position: relative;
   background-color: darken($color: #fff, $amount: 20);
 }
