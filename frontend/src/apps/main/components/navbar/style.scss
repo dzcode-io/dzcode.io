@@ -1,0 +1,6 @@
+@import "../../../../common/style/variables";
+
+.navbar {
+  height: $navbar-height;
+  background-color: darken($color: #fff, $amount: 20);
+}
