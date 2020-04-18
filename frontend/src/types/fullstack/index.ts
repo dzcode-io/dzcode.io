@@ -1,1 +1,1 @@
-export type LoadingStatus = "loading" | "loaded" | "not-loaded";
+export * from "../../../../fullstack/src/types";
