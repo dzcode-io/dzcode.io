@@ -4,11 +4,13 @@ import "./style";
 import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import { LazyComponent } from "src/components/lazy-component";
 import { Loading } from "src/components/loading";
+import { Navbar } from "t9/apps/main/components/navbar";
+import { Footer } from "t9/apps/main/components/footer";
 
 export const App: React.SFC<{}> = () => {
   return (
     <BrowserRouter>
-      <div>Navbar</div>
+      <Navbar />
       <Switch>
         <Route
           path="/"
@@ -24,7 +26,7 @@ export const App: React.SFC<{}> = () => {
         />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
-      <div>Footer</div>
+      <Footer />
     </BrowserRouter>
   );
 };
