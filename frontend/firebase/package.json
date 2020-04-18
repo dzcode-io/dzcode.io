@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "frontend firebase code for dzcode.io",
   "scripts": {
-    "deploy": "firebase deploy --token \"$FIREBASE_TOKEN\""
+    "deploy": "firebase deploy --only hosting:dzcode.io  --token \"$FIREBASE_TOKEN\"",
+    "deploy:staging": "firebase deploy --only hosting:staging.dzcode.io --token \"$FIREBASE_TOKEN\""
   },
   "repository": {
     "type": "git",
