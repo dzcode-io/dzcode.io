@@ -27,6 +27,7 @@ const pushWebpackConfig = (app) => {
       host: "0.0.0.0",
       port,
       writeToDisk: true,
+      historyApiFallback: true,
     },
     // https://webpack.js.org/configuration/devtool/#development
     devtool: isProduction ? false : "eval-source-map",
