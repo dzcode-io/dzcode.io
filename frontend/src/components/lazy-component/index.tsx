@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LoadingStatus } from "t9/types/fullstack";
 
 export const LazyComponent = (props: LazyComponentProps) => {
