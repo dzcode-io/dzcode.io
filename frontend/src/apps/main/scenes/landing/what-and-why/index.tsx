@@ -21,8 +21,8 @@ const reasons = [
 
 export const WhatAndWhy = () => (
   <div className="what-and-why">
-    <div className="why">Why dzCode.io</div>
-    <div className="elaborate-why">A hub for Algerian open source projects</div>
+    <div className="title">Why dzCode.io</div>
+    <div className="sub-title">A hub for Algerian open source projects</div>
     <div className="reasons">
       {reasons.map((reason, index) => (
         <div className="reason" key={`reason-${index}`}>

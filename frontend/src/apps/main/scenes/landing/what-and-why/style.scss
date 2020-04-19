@@ -5,15 +5,15 @@
     background-color: $light;
     text-align: center;
 
-    .why {
+    > .title {
       color: lighten($color: $dark, $amount: 30);
       font-size: xx-large;
       font-weight: bold;
       padding: 3rem 1rem 1rem;
     }
-    .elaborate-why {
+    > .sub-title {
       color: lighten($color: $dark, $amount: 40);
-      padding: 0rem 1rem 3rem;
+      padding: 0 1rem 1rem;
     }
     .reasons {
       margin: 1rem;
