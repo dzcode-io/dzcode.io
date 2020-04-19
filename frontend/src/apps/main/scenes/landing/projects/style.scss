@@ -1,6 +1,60 @@
+@import "../../../../../common/style/variables";
+@import "../../../../../common/style/buttons";
+
 .landing {
   .projects {
-    height: 200px;
-    background-color: darken($color: #fff, $amount: 30);
+    background-color: $light;
+    text-align: center;
+
+    > .title {
+      color: lighten($color: $dark, $amount: 30);
+      font-size: xx-large;
+      font-weight: bold;
+      padding: 3rem 1rem 1rem;
+    }
+    > .sub-title {
+      color: lighten($color: $dark, $amount: 40);
+      padding: 0rem 1rem 1rem;
+    }
+    .projects {
+      margin: 1rem;
+      .project {
+        display: inline-block;
+        margin: 1rem 2rem;
+        padding: 1rem;
+        vertical-align: top;
+        min-height: 300px;
+        border: 1px solid lighten($color: $dark, $amount: 60);
+        border-radius: 4px;
+        box-shadow: 0 1px 1px 1px transparentize($dark, 0.9);
+        position: relative;
+
+        .image {
+          display: inline-block;
+          background-size: cover;
+          background-position: center;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+        }
+        .title {
+          font-size: x-large;
+          margin: 1rem;
+        }
+        .description {
+          margin: 1rem;
+          max-width: 260px;
+          text-align: justify;
+          font-size: small;
+          color: lighten($color: $dark, $amount: 40);
+        }
+        .explore {
+          @extend .btn;
+          position: absolute;
+          bottom: 2rem;
+          left: 2rem;
+        }
+      }
+    }
   }
 }
