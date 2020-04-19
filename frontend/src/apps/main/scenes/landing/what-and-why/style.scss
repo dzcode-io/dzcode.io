@@ -1,6 +1,38 @@
+@import "../../../../../common/style/variables";
+
 .landing {
   .what-and-why {
-    height: 200px;
-    background-color: darken($color: #fff, $amount: 50);
+    background-color: $light;
+    text-align: center;
+
+    .why {
+      color: lighten($color: $dark, $amount: 30);
+      font-size: xx-large;
+      font-weight: bold;
+      padding: 3rem 1rem 1rem;
+    }
+    .elaborate-why {
+      color: lighten($color: $dark, $amount: 40);
+      padding: 0rem 1rem 3rem;
+    }
+    .reasons {
+      margin: 1rem;
+      .reason {
+        display: inline-block;
+        margin: 1rem 2rem;
+        vertical-align: top;
+        min-height: 200px;
+
+        .title {
+          font-size: x-large;
+          margin: 1rem;
+        }
+        .description {
+          margin-top: 2rem;
+          max-width: 260px;
+          text-align: justify;
+        }
+      }
+    }
   }
 }
