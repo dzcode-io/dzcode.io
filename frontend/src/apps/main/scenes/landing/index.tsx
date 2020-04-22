@@ -19,6 +19,7 @@ export default () => {
       <JoinOrganization />
       <TransitionSection />
       <JoinClassrooms />
+      <TransitionSection />
       <Blogs />
     </div>
   );
