@@ -21,17 +21,21 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/fs-extra": "^8.1.0",
     "@types/node": "^10.17.13",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "fs-extra": "^9.0.0",
     "prettier": "^1.19.1",
     "source-map-support": "^0.5.16",
     "typescript": "~3.7.4"
   },
   "devDependencies": {
+    "@types/express": "^4.17.6",
+    "express": "^4.17.1",
     "nodemon": "^2.0.3"
   }
 }
