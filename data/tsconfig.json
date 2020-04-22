@@ -7,10 +7,7 @@
     "skipLibCheck": true,
     "strict": true,
     "incremental": true,
-    "lib": [
-      "es2018",
-      "esnext.asynciterable"
-    ],
+    "lib": ["es2018", "esnext.asynciterable"],
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -20,7 +17,5 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
