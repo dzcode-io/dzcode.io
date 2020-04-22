@@ -37,6 +37,9 @@
     "baseUrl": "." /* Base directory to resolve non-absolute module names. */,
     "paths": {
       "t9/apps/*": ["src/apps/*"],
+      "t9/types/*": [
+        "src/types/*" // frontend/fullstack level types
+      ],
       "t9/types/main": [
         "src/apps/main/types" // app level types
       ]

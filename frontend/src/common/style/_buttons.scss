@@ -1,0 +1,9 @@
+@import "./variables";
+
+.btn {
+  text-decoration: none;
+  background: $primary;
+  color: $light;
+  font-size: small;
+  padding: 0.6rem 1rem;
+}

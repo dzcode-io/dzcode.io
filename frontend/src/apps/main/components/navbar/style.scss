@@ -1,0 +1,21 @@
+@import "../../../../common/style/variables";
+
+.navbar {
+  height: $navbar-height;
+  position: relative;
+  background-color: $light;
+  .menu {
+    .item {
+      text-align: center;
+      display: inline-block;
+      width: 20%;
+      position: relative;
+      height: $navbar-height;
+      > * {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
