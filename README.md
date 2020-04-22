@@ -55,6 +55,8 @@ $ cd frontend/firebase && yarn && cd ../..
 $ cd frontend && yarn dev
 ```
 
+- Go to http://localhost:8080
+
 ## Contributing
 
 To get started see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/master/.github/CONTRIBUTING.md).

@@ -9,7 +9,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const t9config = require("./t9config.js");
 const isDevelopment = process.env.NODE_ENV === "development";
 const isProduction = process.env.NODE_ENV === "production";
-const port = process.env.DEV_SERVER_PORT || 4598;
+const port = process.env.DEV_SERVER_PORT || 8080;
 const webpackConfigArray = [];
 
 // pushWebpackConfig function
