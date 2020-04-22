@@ -1,0 +1,40 @@
+name: Deploy Staging Data
+
+on:
+  push:
+    branches:
+      - staging
+    paths:
+      - ".github/workflows/deploy-staging-data.yml"
+      - "data/**"
+
+jobs:
+  Build-Deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: "Data: install and build"
+        run: |
+          cd data
+          yarn install --production
+          yarn build
+      - name: "Frontend Firebase: install"
+        run: |
+          cd frontend/firebase
+          yarn install --production
+      - name: "Frontend Firebase: deploy"
+        run: |
+          cd frontend/firebase
+          yarn deploy:data:staging
+        env:
+          CI: true
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

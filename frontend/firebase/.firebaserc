@@ -10,6 +10,12 @@
         ],
         "staging.dzcode.io": [
           "staging-dzcode-io"
+        ],
+        "data.dzcode.io": [
+          "data-dzcode-io"
+        ],
+        "data.staging.dzcode.io": [
+          "data-staging-dzcode-io"
         ]
       }
     }

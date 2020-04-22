@@ -15,7 +15,7 @@
     {
       "target": "staging.dzcode.io",
       "public": "public",
-      "site": "staging.dzcode-io",
+      "site": "staging-dzcode-io",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -23,6 +23,18 @@
           "destination": "/index.html"
         }
       ]
+    },
+    {
+      "target": "data.dzcode.io",
+      "public": "data",
+      "site": "data-dzcode-io",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "target": "data.staging.dzcode.io",
+      "public": "data",
+      "site": "data-staging-dzcode-io",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
     }
   ]
 }
