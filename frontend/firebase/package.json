@@ -4,7 +4,9 @@
   "description": "frontend firebase code for dzcode.io",
   "scripts": {
     "deploy": "firebase deploy --only hosting:dzcode.io  --token \"$FIREBASE_TOKEN\"",
-    "deploy:staging": "firebase deploy --only hosting:staging.dzcode.io --token \"$FIREBASE_TOKEN\""
+    "deploy:staging": "firebase deploy --only hosting:staging.dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "deploy:data": "firebase deploy --only hosting:data.dzcode.io  --token \"$FIREBASE_TOKEN\"",
+    "deploy:data:staging": "firebase deploy --only hosting:data.staging.dzcode.io --token \"$FIREBASE_TOKEN\""
   },
   "repository": {
     "type": "git",
