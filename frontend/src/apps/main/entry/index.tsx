@@ -24,6 +24,17 @@ export const App: React.SFC<{}> = () => {
             />
           )}
         />
+        <Route
+          path="/Learn"
+          render={() => (
+            <LazyComponent
+              import={() =>
+                import(/* webpackChunkName: "learn" */ "../scenes/learn")
+              }
+              placeholder={Loading}
+            />
+          )}
+        />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
       <Footer />
