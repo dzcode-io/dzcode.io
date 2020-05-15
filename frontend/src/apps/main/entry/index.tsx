@@ -9,7 +9,7 @@ import { mainStore } from "t9/apps/main/redux";
 import { Provider } from "react-redux";
 
 const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
-const Blogs = lazy(() => import("t9/apps/main/scenes/blogs"));
+const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
 
 export const App: React.SFC<{}> = () => {
@@ -20,7 +20,7 @@ export const App: React.SFC<{}> = () => {
         <Switch>
           <Route path="/" exact={true} component={Landing} />
           <Route path="/Learn" component={Learn} />
-          <Route path="/Blogs" component={Blogs} />
+          <Route path="/Articles" component={Articles} />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       </Suspense>

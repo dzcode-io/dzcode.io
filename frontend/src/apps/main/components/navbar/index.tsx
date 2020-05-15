@@ -18,7 +18,7 @@ export const Navbar = () => (
         <Link to="/Learn/Git_Basics/Git_and_Github">Git and Github</Link>
       </div>
       <div className="item">
-        <Link to="/Blogs">Blogs</Link>
+        <Link to="/Articles">Articles</Link>
       </div>
     </div>
   </div>
