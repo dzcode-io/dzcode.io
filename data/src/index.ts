@@ -1,7 +1,16 @@
 import express from "express";
 import { getDataEntry, getDataCollection } from "./utils/data";
+import { fullstackConfig } from "./config";
+
 const app = express();
-const port = process.env.DATA_PORT || 9090;
+const port = fullstackConfig.data.port;
+
+// Apply headers and logger
+app.use((req, res, next) => {
+  console.log(req.url);
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 // Collections
 app.get("/:type/:collection(\\S+.json$)", (req, res) =>
