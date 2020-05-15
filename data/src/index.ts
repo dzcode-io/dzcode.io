@@ -13,13 +13,13 @@ app.use((req, res, next) => {
 });
 
 // Collections
-app.get("/:type/:collection(\\S+.json$)", (req, res) =>
+app.get("/:type/:collection(\\S+.c.json$)", (req, res) =>
   res.json(getDataCollection(req.params.type, req.params.collection)),
 );
 
 // Entries
-app.get("/:type/:entry([\\/\\S]+[^\\/]$)", (req, res) =>
-  res.json(getDataEntry(`${req.params.type}/${req.params.entry}`)),
+app.get("/:type/:entry([\\/\\S]+.json$)", (req, res) =>
+  res.json(getDataEntry(`${req.params.type}/${req.params.entry.slice(0, -5)}`)),
 );
 
 // Start the server

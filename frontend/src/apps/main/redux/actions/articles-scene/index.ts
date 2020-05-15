@@ -13,7 +13,7 @@ export const fetchArticlesList = () => async (
   getState: MainStoreStateInterface,
 ) => {
   try {
-    const response = await Axios.get(dataURL + "/articles/list.json");
+    const response = await Axios.get(dataURL + "/articles/list.c.json");
     dispatch({
       type: actionType.UPDATE_ARTICLES_SCENE,
       payload: { articlesList: response.data },
@@ -44,7 +44,9 @@ export const fetchCurrentArticle = () => async (
     });
   } else
     try {
-      const response = await Axios.get(dataURL + `/articles/${articleSlug}`);
+      const response = await Axios.get(
+        dataURL + `/articles/${articleSlug}.json`,
+      );
       const currentArticle = response.data;
       // update our scene state
       dispatch({

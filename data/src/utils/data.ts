@@ -48,6 +48,8 @@ export const getDataCollection = (
   collectionType: string,
   collectionName: string,
 ) => {
+  // add .c
+  collectionName = collectionName.replace(".c.json", ".json");
   // Collection doesn't exist
   const path = `${collectionType}/${collectionName}`;
   if (!fse.existsSync(path)) return 404;
