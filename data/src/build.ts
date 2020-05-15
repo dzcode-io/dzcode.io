@@ -10,7 +10,7 @@ fse.emptyDirSync(outputFolder);
 
 // Generate individual Entries:
 glob("**/info.json", {}, (err, files) => {
-  files.forEach((entryInfoPath) => {
+  files.forEach(entryInfoPath => {
     const path = entryInfoPath.slice(0, -"/info.json".length);
     const entry = getDataEntry(path);
     fse.ensureFileSync(`${outputFolder}/${path}.json`);
@@ -20,12 +20,16 @@ glob("**/info.json", {}, (err, files) => {
 
 // Generate Collections:
 glob("*/*.json", {}, (err, files) => {
-  files.forEach((collectionPath) => {
+  files.forEach(collectionPath => {
     const backslashIndex = collectionPath.indexOf("/");
     const collectionType = collectionPath.slice(0, backslashIndex);
     const collectionName = collectionPath.slice(backslashIndex + 1);
     const collection = getDataCollection(collectionType, collectionName);
-    fse.ensureFileSync(`${outputFolder}/${collectionPath}`);
-    fse.writeJSON(`${outputFolder}/${collectionPath}`, collection);
+    const collectionFilePath = `${outputFolder}/${collectionPath.slice(
+      0,
+      -5,
+    )}.c.json`;
+    fse.ensureFileSync(collectionFilePath);
+    fse.writeJSON(collectionFilePath, collection);
   });
 });

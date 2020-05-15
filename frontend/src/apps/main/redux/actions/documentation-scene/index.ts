@@ -13,7 +13,7 @@ export const fetchDocumentationList = () => async (
   getState: MainStoreStateInterface,
 ) => {
   try {
-    const response = await Axios.get(dataURL + "/documentation/list.json");
+    const response = await Axios.get(dataURL + "/documentation/list.c.json");
     dispatch({
       type: actionType.UPDATE_LEARN_SCENE,
       payload: { documentationList: response.data },
@@ -45,7 +45,7 @@ export const fetchCurrentDocument = () => async (
   } else
     try {
       const response = await Axios.get(
-        dataURL + `/documentation/${documentSlug}`,
+        dataURL + `/documentation/${documentSlug}.json`,
       );
       const currentDocument = response.data;
       // update our scene state
