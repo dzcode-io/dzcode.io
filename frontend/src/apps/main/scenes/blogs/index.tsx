@@ -1,8 +1,9 @@
 import React from "react";
 import { Sidebar } from "./sidebar";
 import { Content } from "./content";
+import { connect } from "react-redux";
 
-export default () => {
+export const BlogsScene = (props: any) => {
   return (
     <div className="blogs">
       <Sidebar />
@@ -10,3 +11,5 @@ export default () => {
     </div>
   );
 };
+
+export default connect()(BlogsScene);
