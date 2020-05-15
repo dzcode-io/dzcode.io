@@ -27,6 +27,7 @@ jobs:
           cd fullstack
           yarn install --production
           yarn build
+          yarn generate
       - name: "Data: install and build"
         run: |
           cd data
