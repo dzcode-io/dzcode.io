@@ -5,6 +5,8 @@ import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
 import { Loading } from "src/components/loading";
 import { Navbar } from "t9/apps/main/components/navbar";
 import { Footer } from "t9/apps/main/components/footer";
+import { mainStore } from "t9/apps/main/redux";
+import { Provider } from "react-redux";
 
 const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Blogs = lazy(() => import("t9/apps/main/scenes/blogs"));
@@ -27,4 +29,9 @@ export const App: React.SFC<{}> = () => {
   );
 };
 
-render(<App />, document.getElementById("app-container"));
+render(
+  <Provider store={mainStore}>
+    <App />
+  </Provider>,
+  document.getElementById("app-container"),
+);
