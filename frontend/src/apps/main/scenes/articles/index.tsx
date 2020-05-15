@@ -13,4 +13,9 @@ export const ArticlesScene = (props: any) => {
   );
 };
 
+export interface ArticlesSceneProps {
+  articlesList: Article[] | null;
+  currentArticle: Article | null;
+}
+
 export default connect()(ArticlesScene);
