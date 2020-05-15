@@ -1,0 +1,34 @@
+{
+  "name": "dzcode.io",
+  "version": "1.0.0",
+  "description": "dzCode.io fullstack code",
+  "main": "index.js",
+  "scripts": {
+    "lint:check": "eslint '*{,/**/*}.{js,ts}' --report-unused-disable-directives",
+    "lint:fix": "eslint '*{,/**/*}.{js,ts}' --quiet --fix",
+    "build": "tsc",
+    "build:watch": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "repository": "https://github.com/dzcode-io/dzcode.io.git"
+  },
+  "author": {
+    "email": "contact@zakiii.com",
+    "name": "Zakaria Mansouri",
+    "url": "https://www.zakiii.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^10.17.13",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "source-map-support": "^0.5.16",
+    "typescript": "~3.7.4"
+  },
+  "devDependencies": {}
+}
