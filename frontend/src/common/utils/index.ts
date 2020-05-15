@@ -1,5 +1,17 @@
 import { hasIn, mergeDeep } from "immutable";
 
+export const getEnv = () => {
+  switch (location.hostname) {
+    case "localhost":
+      return "development";
+    case "staging.dzcode.io":
+      return "staging";
+    case "www.dzcode.io":
+    default:
+      return "production";
+  }
+};
+
 /**
  * Update specific fields in specific items in a collection
  *

@@ -10,3 +10,5 @@ export interface Document {
   contributors?: string[];
   views?: number;
 }
+
+export type Environment = "development" | "staging" | "production";
