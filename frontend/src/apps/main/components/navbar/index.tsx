@@ -1,23 +1,24 @@
 import React from "react";
 import "./style";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => (
   <div className="navbar">
     <div className="menu">
       <div className="item">
-        <a href="#">Logo</a>
+        <Link to="/">Logo</Link>
       </div>
       <div className="item">
-        <a href="#">Projects</a>
+        <Link to="/Learn">Learn</Link>
       </div>
       <div className="item">
-        <a href="#">Blogs</a>
+        <Link to="/Learn/Getting_Started">Get Started</Link>
       </div>
       <div className="item">
-        <a href="#">Join</a>
+        <Link to="/Learn/Git_Basics/Git_and_Github">Git and Github</Link>
       </div>
       <div className="item">
-        <a href="#">Github</a>
+        <Link to="/Articles">Articles</Link>
       </div>
     </div>
   </div>

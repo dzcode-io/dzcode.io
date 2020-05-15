@@ -13,14 +13,17 @@ export const getDataEntry = (path: string, include?: string[]) => {
   let entry = {};
 
   // Read info.json
-  const info = fse.readJsonSync(`${path}/info.json`);
+  const info = {
+    ...fse.readJsonSync(`${path}/info.json`),
+    slug: path.substring(path.indexOf("/") + 1),
+  };
 
   // Filter properties
   if (!include) {
     entry = { ...info };
   } else {
     entry = Object.keys(info)
-      .filter((key) => include.includes(key))
+      .filter(key => include.includes(key))
       .reduce(
         (obj, key) => ({
           ...obj,
@@ -53,7 +56,7 @@ export const getDataCollection = (
   const collection: Collection = fse.readJsonSync(path);
 
   // Collect Entries
-  const entries = collection.items.map((slug) => {
+  const entries = collection.items.map(slug => {
     const entry = getDataEntry(`${collectionType}/${slug}`, collection.include);
     return {
       slug,

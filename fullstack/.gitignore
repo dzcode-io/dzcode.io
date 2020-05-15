@@ -1,0 +1,7 @@
+dist
+
+# logs
+**.tsbuildinfo
+
+# node
+**node_modules
