@@ -7,8 +7,9 @@ import { TransitionSection } from "./transition-section";
 import { JoinOrganization } from "./join-organization";
 import { JoinClassrooms } from "./join-classrooms";
 import { Blogs } from "./blogs";
+import { connect } from "react-redux";
 
-export default () => {
+export const LandingScene = () => {
   return (
     <div className="landing">
       <Header />
@@ -24,3 +25,5 @@ export default () => {
     </div>
   );
 };
+
+export default connect()(LandingScene);
