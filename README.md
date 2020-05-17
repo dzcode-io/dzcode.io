@@ -6,12 +6,15 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 
 ## Table of Content
 
-- [Table of Content](#table-of-content)
-- [Get Started](#get-started)
-  - [Perquisites](#perquisites)
-  - [Clone the repo and run it locally](#clone-the-repo-and-run-it-locally)
-- [Contributing](#contributing)
-- [License](#license)
+- [dzCode.io](#dzcodeio)
+  - [Table of Content](#table-of-content)
+  - [Get Started](#get-started)
+    - [Perquisites](#perquisites)
+    - [Clone the repo](#clone-the-repo)
+    - [Install dependencies](#install-dependencies)
+    - [Run it locally](#run-it-locally)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Get Started
 
@@ -23,7 +26,7 @@ Make sure you have:
 - [nodejs](https://nodejs.org/) 10 or higher
 - [yarn](https://yarnpkg.com/)
 
-### Clone the repo and run it locally
+### Clone the repo
 
 - open terminal and clone the repo:
 
@@ -37,6 +40,8 @@ $ git clone https://github.com/dzcode-io/dzcode.io.git
 $ cd dzcode.io
 ```
 
+### Install dependencies
+
 - Install frontend dependencies:
 
 ```shell
@@ -49,13 +54,39 @@ $ cd frontend && yarn && cd ..
 $ cd frontend/firebase && yarn && cd ../..
 ```
 
-- Run the website locally:
+- Install data dependencies:
+
+```shell
+$ cd data && yarn && cd ..
+```
+
+- Install fullstack dependencies:
+
+```shell
+$ cd fullstack && yarn && cd ..
+```
+
+### Run it locally
+
+- Build fullstack code:
+
+```shell
+$ cd fullstack && yarn build:watch
+```
+
+- Open new terminal and Run frontend server:
 
 ```shell
 $ cd frontend && yarn dev
 ```
 
-- Go to http://localhost:8080
+- Open new terminal and Run data server:
+
+```shell
+$ cd data && yarn build && yarn dev
+```
+
+- Now, Go to http://localhost:8080
 
 ## Contributing
 
