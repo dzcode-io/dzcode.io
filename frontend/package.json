@@ -4,7 +4,7 @@
   "description": "frontend code for dzcode.io",
   "scripts": {
     "clear": "rimraf ./firebase/public",
-    "dev": "yarn clear && NODE_ENV=development webpack-dev-server --config ./webpack.config.js -wd --hot",
+    "dev": "yarn clear && cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js -wd --hot",
     "lint:check": "eslint '*{,/**/*}.{js,ts,tsx}' --report-unused-disable-directives",
     "lint:fix": "eslint '*{,/**/*}.{js,ts,tsx}' --quiet --fix",
     "test": "echo 0",
@@ -93,6 +93,7 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "webpack-dev-server": "^3.10.3"
   }
 }
