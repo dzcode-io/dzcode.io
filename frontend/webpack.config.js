@@ -154,7 +154,7 @@ const pushWebpackConfig = (app) => {
         t9config.bundles.distFolder,
         t9config.bundles.publicPath,
       ),
-      publicPath: path.join(t9config.bundles.publicPath),
+      publicPath: t9config.bundles.publicPath,
     },
     plugins: [
       // https://webpack.js.org/plugins/hot-module-replacement-plugin/
