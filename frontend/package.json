@@ -8,7 +8,7 @@
     "lint:check": "eslint '*{,/**/*}.{js,ts,tsx}' --report-unused-disable-directives",
     "lint:fix": "eslint '*{,/**/*}.{js,ts,tsx}' --quiet --fix",
     "test": "echo 0",
-    "build": "yarn clear && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details"
+    "build": "yarn clear cross-env && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details"
   },
   "repository": {
     "type": "git",
@@ -60,6 +60,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-import": "^1.13.0",
     "base64-inline-loader": "^1.1.1",
+    "cross-env": "^7.0.2",
     "css-loader": "^3.5.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
@@ -93,7 +94,6 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
-    "cross-env": "^7.0.2",
     "webpack-dev-server": "^3.10.3"
   }
 }
