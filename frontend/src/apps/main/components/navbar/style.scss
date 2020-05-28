@@ -1,4 +1,4 @@
-@import "../../../../StylesGuide/variables.scss";
+@import "../../../../common/style/variables";
 
 .Navbar {
   width: 100%;
@@ -121,7 +121,7 @@
   }
 }
 
-@media screen and (min-width: $screen-lg) {
+@media screen and (min-width: $large) {
   .Navbar {
     width: 100%;
     padding: 10px 5%;
