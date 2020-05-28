@@ -12,10 +12,19 @@ const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
 
+// Temp data: Todo: replace with props from the store
+
+const navitems = [
+  { id: 1, to: "/learn", name: "Learn" },
+  { id: 2, to: "/getstarted", name: "Get Started" },
+  { id: 3, to: "/gitgithub", name: "Git & Github" },
+  { id: 4, to: "/articles", name: "Articles" },
+];
+
 export const App: React.SFC<{}> = () => {
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar navitems={navitems} />
       <Suspense fallback={Loading}>
         <Switch>
           <Route path="/" exact={true} component={Landing} />

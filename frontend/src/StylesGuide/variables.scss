@@ -1,0 +1,35 @@
+// Fonts
+$font-primary: Helvetica, Arial, sans-serif;
+
+// Colors
+$text-primary: #000000;
+$text-secondary: #ffffff;
+$bg-primary: #ffffff;
+$bg-secondary: #000000;
+
+// fluresent lights
+
+$blue-1: #006fff;
+$blue-2: #44fdd9;
+$green-1: #68ff00;
+$orange-1: #ffbf00;
+$yellow-1: #faff00;
+$pink-2: #ff005d;
+
+// MediaQueries
+$screen-sm: 600px;
+$screen-md: 768px;
+$screen-lg: 1200px;
+
+// animation
+$transition-speed: 600ms;
+
+// resets
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
