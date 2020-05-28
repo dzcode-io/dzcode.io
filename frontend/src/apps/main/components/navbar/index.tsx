@@ -1,25 +1,45 @@
-import React from "react";
-import "./style";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import "./style.scss";
+import { Link, NavLink } from "react-router-dom";
 
-export const Navbar = () => (
-  <div className="navbar">
-    <div className="menu">
-      <div className="item">
-        <Link to="/">Logo</Link>
+interface NavigationLink {
+  id: number;
+  name: string;
+  to: string;
+}
+
+interface Props {
+  navitems: NavigationLink[];
+}
+
+export const Navbar: React.FC<Props> = ({ navitems }) => {
+  const [isOpen, setOpen] = useState("open");
+  const navToggle = () => {
+    isOpen === "" ? setOpen("open") : setOpen("");
+  };
+
+  return (
+    <nav className="Navbar">
+      <Link className="brand" to="/">
+        Dzcode.io
+      </Link>
+      <div className="Navbar__burger" onClick={navToggle}>
+        <div className="burger__button" />
       </div>
-      <div className="item">
-        <Link to="/Learn">Learn</Link>
+      <div className={`Navbar__list ${isOpen}`}>
+        {navitems.map((navitem: NavigationLink) => {
+          return (
+            <NavLink
+              className="navLink"
+              activeClassName="Navbar__link--active"
+              key={navitem.id}
+              to={navitem.to}
+            >
+              {navitem.name}
+            </NavLink>
+          );
+        })}
       </div>
-      <div className="item">
-        <Link to="/Learn/Getting_Started">Get Started</Link>
-      </div>
-      <div className="item">
-        <Link to="/Learn/Git_Basics/Git_and_Github">Git and Github</Link>
-      </div>
-      <div className="item">
-        <Link to="/Articles">Articles</Link>
-      </div>
-    </div>
-  </div>
-);
+    </nav>
+  );
+};
