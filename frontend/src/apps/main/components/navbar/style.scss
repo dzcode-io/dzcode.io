@@ -11,7 +11,7 @@
   background-color: $bg-primary;
   font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
     "Helvetica Neue", sans-serif;
-
+  z-index: 999;
   position: fixed;
   top: 0;
   right: 0;
@@ -21,11 +21,12 @@
     font-weight: bolder;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
     padding: 15px 0;
     text-decoration: none;
     font-weight: bold;
     color: $text-primary;
+    width: 20vw;
   }
 
   .Navbar__burger {
