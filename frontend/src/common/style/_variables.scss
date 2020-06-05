@@ -1,13 +1,18 @@
-// TODO: update color palette
-// colors
+// Colors
 $primary: #1c8ad8;
 $secondary: #dc004e;
 $dark: #000;
 $light: #fff;
 $link: #1890ff;
 
-// TODO: update responsiveness range
-// responsiveness
+$text-primary: #000000;
+$text-secondary: #ffffff;
+$bg-primary: #ffffff;
+$bg-secondary: #000000;
+
+// MediaQueries
+$X-large: 1600px;
+$large: 1200px;
 $regular: 800px;
 $medium: 600px;
 $small: 420px;
@@ -15,3 +20,19 @@ $x-small: 330px;
 
 // others
 $navbar-height: 60px;
+
+// Fonts
+$font-primary: Helvetica, Arial, sans-serif;
+
+// animation
+$transition-speed: 600ms;
+
+// resets
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
