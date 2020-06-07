@@ -13,9 +13,9 @@ export const LandingScene = () => {
   return (
     <div className="landing">
       <Header />
-      <WhatAndWhy />
-      <Projects />
       <HowToContribute />
+      <Projects />
+      <WhatAndWhy />
       <TransitionSection />
       <JoinOrganization />
       <TransitionSection />

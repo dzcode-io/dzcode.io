@@ -2,7 +2,7 @@
 
 .Navbar {
   width: 100%;
-  padding: 2% 10%;
+  padding: 0 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,7 +16,7 @@
   top: 0;
   right: 0;
   .brand {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: text-primary;
     font-weight: bolder;
     display: flex;
@@ -98,8 +98,8 @@
       text-align: center;
       padding: 12px;
       position: relative;
-      font-size: 1rem;
-      font-weight: 500;
+      font-size: 0.8rem;
+      font-weight: 400;
 
       &::after {
         content: "";
