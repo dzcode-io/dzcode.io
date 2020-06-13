@@ -3,56 +3,132 @@
 
 .landing {
   .projects {
-    background-color: $light;
-    text-align: center;
+    min-height: 80vh;
+    width: 100%;
+    padding: 5% 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    > .title {
-      color: lighten($color: $dark, $amount: 30);
-      font-size: xx-large;
-      font-weight: bold;
-      padding: 3rem 1rem 1rem;
+    header {
+      height: 20%;
+      padding: 1rem;
+      text-align: center;
+      h1 {
+        font-size: calc(1.5rem + 1vw);
+      }
     }
-    > .sub-title {
-      color: lighten($color: $dark, $amount: 40);
-      padding: 0rem 1rem 1rem;
+
+    #buttons__2 {
+      margin: 4rem;
+      width: 300px;
+      text-align: center;
+      border-radius: 5px;
     }
-    .projects {
-      margin: 1rem;
+
+    .repositories {
+      min-height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: $light;
+      flex-wrap: wrap;
+
       .project {
-        display: inline-block;
-        margin: 1rem 2rem;
-        padding: 1rem;
-        vertical-align: top;
-        min-height: 300px;
-        border: 1px solid lighten($color: $dark, $amount: 60);
-        border-radius: 4px;
-        box-shadow: 0 1px 1px 1px transparentize($dark, 0.9);
-        position: relative;
+        width: 300px;
+        min-height: 450px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        margin: 1rem;
+        background-color: #202325;
+        border-radius: 10px;
+        -webkit-box-shadow: 10px 10px 45px -17px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 45px -17px rgba(0, 0, 0, 0.75);
+        box-shadow: 10px 10px 45px -17px rgba(0, 0, 0, 0.75);
+
+        .info {
+          text-align: center;
+
+          .info__header {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            padding: 0 2rem;
+          }
+          .title {
+            font-size: calc(1.4rem + 0.2vw);
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-transform: capitalize;
+          }
+          .contributers {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            .number {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 0.7rem;
+              font-weight: bold;
+              padding: 0.3rem 0.5rem;
+              width: 20px;
+              background-color: #fff;
+              border-radius: 2px;
+              color: #202325;
+              margin-left: 5px;
+              -webkit-box-shadow: inset 10px 10px 15px -17px rgba(0, 0, 0, 0.75);
+              -moz-box-shadow: inset 10px 10px 15px -17px rgba(0, 0, 0, 0.75);
+              box-shadow: inset 10px 10px 15px -17px rgba(0, 0, 0, 0.75);
+            }
+          }
+
+          img {
+            display: inline-block;
+            width: 18px;
+          }
+        }
 
         .image {
-          display: inline-block;
-          background-size: cover;
+          background-repeat: no-repeat;
           background-position: center;
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-        }
-        .title {
-          font-size: x-large;
+          object-fit: cover;
+          padding: 80px;
+          border-radius: 10px;
           margin: 1rem;
         }
+
         .description {
-          margin: 1rem;
-          max-width: 260px;
-          text-align: justify;
-          font-size: small;
-          color: lighten($color: $dark, $amount: 40);
+          padding: 1rem 2rem;
+          text-align: center;
         }
-        .explore {
-          @extend .btn;
-          position: absolute;
-          bottom: 2rem;
-          left: 2rem;
+        #buttons {
+          &__1 {
+            margin-bottom: 1rem;
+            width: 70%;
+            text-align: center;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $regular) {
+  .landing {
+    .projects {
+      .repositories {
+        flex-direction: row;
+        .project {
+          margin: 2rem;
         }
       }
     }
