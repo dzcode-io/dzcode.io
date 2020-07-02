@@ -2,8 +2,8 @@ name: Deploy Data
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'prd-*'
     paths:
       - ".github/workflows/deploy-data.yml"
       - "data/**"
