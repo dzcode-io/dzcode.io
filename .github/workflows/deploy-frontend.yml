@@ -2,8 +2,8 @@ name: Deploy Frontend
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'prd-*'
     paths:
       - ".github/workflows/deploy-frontend.yml"
       - "frontend/**"
