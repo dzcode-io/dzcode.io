@@ -2,8 +2,8 @@ name: Deploy Staging Data
 
 on:
   push:
-    branches:
-      - staging
+    tags:
+      - 'stg-*'
     paths:
       - ".github/workflows/deploy-staging-data.yml"
       - "data/**"
