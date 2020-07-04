@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { fetchDocumentationList } from "t9/apps/main/redux/actions/documentation-scene";
 import { fetchCurrentDocument } from "t9/apps/main/redux/actions/documentation-scene";
 import { Route, useRouteMatch } from "react-router-dom";
+import "./style";
 
 export const LearnScene = (props: LearnScenePropsReduxed) => {
   useEffect(() => {
