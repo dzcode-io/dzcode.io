@@ -14,17 +14,17 @@ const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
 
 // Temp data: Todo: replace with props from the store
 
-const navitems = [
-  { id: 1, to: "/learn", name: "Learn" },
-  { id: 2, to: "/getstarted", name: "Get Started" },
-  { id: 3, to: "/gitgithub", name: "Git & Github" },
+const navItems = [
+  { id: 1, to: "/Learn/Getting_Started", name: "Learn" },
+  { id: 2, to: "/", name: "Contribute" },
+  { id: 3, to: "/", name: "Projects" },
   { id: 4, to: "/articles", name: "Articles" },
 ];
 
 export const App: React.SFC<{}> = () => {
   return (
     <BrowserRouter>
-      <Navbar navitems={navitems} />
+      <Navbar navItems={navItems} />
       <Suspense fallback={Loading}>
         <Switch>
           <Route path="/" exact={true} component={Landing} />
