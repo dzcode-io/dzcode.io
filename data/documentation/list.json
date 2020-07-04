@@ -1,10 +1,12 @@
 {
   "items": [
     "Getting_Started",
+    "Git_Basics",
     "Git_Basics/Git_and_Github",
     "Git_Basics/Basic_Git_Commands",
     "Git_Basics/Managing_Conflict",
     "Git_Basics/Collaboration_Scenarios",
+    "Advanced_Git_Commands",
     "Advanced_Git_Commands/Git_Reflog",
     "Advanced_Git_Commands/Git_Clean",
     "Advanced_Git_Commands/Git_Rebase"
