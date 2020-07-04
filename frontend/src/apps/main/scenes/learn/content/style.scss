@@ -1,6 +1,36 @@
+@import "../../../../../common/style/variables";
+
 .learn {
+  background-color: rgb(194, 194, 194);
   .content {
-    height: 200px;
-    background-color: darken($color: #fff, $amount: 45);
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    align-self: center;
+    padding: 1rem;
+    @media screen and (min-width: $regular) {
+      width: 80%;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    .content {
+      width: 100%;
+    }
+
+    .actions {
+      width: 100%;
+      height: 100px;
+      background-color: blueviolet;
+    }
+    .comments {
+      width: 100%;
+      height: 100px;
+      background-color: yellowgreen;
+    }
   }
 }
