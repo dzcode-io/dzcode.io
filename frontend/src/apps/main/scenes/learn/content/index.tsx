@@ -24,6 +24,7 @@ export const Content = (props: ContentInterface) => {
           <h2 className="title">{currentDocument.title}</h2>
           {/* Description */}
           <small className="description">{currentDocument.description}</small>
+          <hr className="break" />
           {/* Content */}
           <Markdown className="content" source={currentDocument.content} />
           {/* Contact + Edit*/}
