@@ -1,13 +1,12 @@
 @import "../../../../../common/style/variables";
 
 .learn {
-  background-color: rgb(194, 194, 194);
   .content {
     display: inline-block;
     vertical-align: top;
     width: 100%;
     align-self: center;
-    padding: 1rem;
+
     @media screen and (min-width: $regular) {
       width: 80%;
     }
@@ -18,7 +17,21 @@
       object-fit: cover;
     }
 
+    .title {
+      font-size: 3rem;
+      margin: 1rem;
+    }
+
+    .description {
+      margin: 1rem;
+    }
+
+    .break {
+      margin: 1rem 1rem 0;
+    }
+
     .content {
+      margin: 0 1rem;
       width: 100%;
     }
 
