@@ -9,33 +9,33 @@ interface NavigationLink {
 }
 
 interface Props {
-  navitems: NavigationLink[];
+  navItems: NavigationLink[];
 }
 
-export const Navbar: React.FC<Props> = ({ navitems }) => {
-  const [isOpen, setOpen] = useState("open");
+export const Navbar: React.FC<Props> = ({ navItems }) => {
+  const [isOpen, setIsOpen] = useState(true);
   const navToggle = () => {
-    isOpen === "" ? setOpen("open") : setOpen("");
+    setIsOpen(!isOpen);
   };
 
   return (
     <nav className="Navbar">
       <Link className="brand" to="/">
-        Dzcode.io
+        dzCode.io
       </Link>
       <div className="Navbar__burger" onClick={navToggle}>
         <div className="burger__button" />
       </div>
-      <div className={`Navbar__list ${isOpen}`}>
-        {navitems.map((navitem: NavigationLink) => {
+      <div className={`Navbar__list ${isOpen && "open"}`}>
+        {navItems.map((navItem: NavigationLink) => {
           return (
             <NavLink
               className="navLink"
               activeClassName="Navbar__link--active"
-              key={navitem.id}
-              to={navitem.to}
+              key={navItem.id}
+              to={navItem.to}
             >
-              {navitem.name}
+              {navItem.name}
             </NavLink>
           );
         })}
