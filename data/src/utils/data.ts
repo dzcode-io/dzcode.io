@@ -34,7 +34,10 @@ export const getDataEntry = (path: string, include?: string[]) => {
   }
 
   // Read content.md
-  if (!include || include.includes("content"))
+  if (
+    (!include || include.includes("content")) &&
+    fse.existsSync(`${path}/content.md`)
+  )
     entry = {
       ...entry,
       content: String(fse.readFileSync(`${path}/content.md`)),
