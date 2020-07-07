@@ -38,12 +38,39 @@
     .actions {
       width: 100%;
       height: 100px;
-      background-color: blueviolet;
+      display: flex;
+      width: 60vw;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      .item {
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        width: 120px;
+        z-index: 5;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        a {
+          text-decoration: none;
+          color: $text-primary;
+        }
+      }
+
+      .icon {
+        width: calc(30px + 1vw);
+        height: calc(30px + 1vw);
+        margin-right: 20px;
+      }
     }
-    .comments {
-      width: 100%;
-      height: 100px;
-      background-color: yellowgreen;
+
+    .fb-comments {
     }
   }
 }

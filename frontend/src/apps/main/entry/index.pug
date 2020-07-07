@@ -22,6 +22,8 @@ head(lang="{|language code|}")
       s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', "#{fbpCode}");
       fbq('track', 'PageView');
+  //- Facebook Comments plugin
+  meta(property="fb:app_id" content=fbAppCode)
 
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible' content='IE=edge')
@@ -40,3 +42,5 @@ head(lang="{|language code|}")
 
 body
   div#app-container
+
+script(async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0")
