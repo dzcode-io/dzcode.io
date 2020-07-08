@@ -9,6 +9,7 @@ const appPath = app.basePath || app.name;
 const isDevelopment = process.env.NODE_ENV === "development";
 const fbpCode = app.analytics.facebook;
 const gaCode = app.analytics.google;
+const fbAppCode = app.plugins.fbAppCode;
 
 module.exports = () => [
   new HtmlWebpackPlugin({
@@ -18,6 +19,7 @@ module.exports = () => [
       isDev: isDevelopment,
       fbpCode,
       gaCode,
+      fbAppCode,
     },
   }),
 ];

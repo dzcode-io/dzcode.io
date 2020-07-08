@@ -4,10 +4,13 @@
   .header {
     height: 100vh;
     margin-top: $navbar-height;
-    padding-top: $navbar-height;
     box-sizing: border-box;
     z-index: 1;
-    background: $bg-primary;
+    background-image: radial-gradient(
+      70% 70% at 50% 100%,
+      #e8e8e8 0,
+      #fafafa 100%
+    );
     background-size: cover;
     position: relative;
 
