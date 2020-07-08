@@ -1,6 +1,20 @@
+@import "../../../../../common/style/variables";
+
 .articles {
   .sidebar {
-    height: 200px;
-    background-color: darken($color: #fff, $amount: 45);
+    padding: 1rem;
+    width: 100%;
+    display: inline-block;
+    .item {
+      display: block;
+      padding: 1rem;
+      cursor: pointer;
+    }
+    .item:hover {
+      background-color: wheat;
+    }
+    @media screen and (min-width: $regular) {
+      width: 20%;
+    }
   }
 }
