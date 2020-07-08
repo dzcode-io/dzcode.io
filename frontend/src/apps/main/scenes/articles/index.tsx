@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { fetchArticlesList } from "t9/apps/main/redux/actions/articles-scene";
 import { fetchCurrentArticle } from "t9/apps/main/redux/actions/articles-scene";
 import { Route, useRouteMatch } from "react-router-dom";
+import "./style";
 
 export const ArticlesScene = (props: ArticlesScenePropsReduxed) => {
   useEffect(() => {
