@@ -1,6 +1,6 @@
 # dzCode.io
 
-[![](https://github.com/dzcode-io/dzcode.io/workflows/Deploy%20Frontend/badge.svg)](https://github.com/dzcode-io/dzcode.io/actions?query=workflow%3A%22Deploy+Frontend%22)
+[<img src="http://img.shields.io/badge/Join%20us%20on%20Slack-@dzCode.io-yellow.svg?logo=slack">](https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ)
 
 The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source community.
 
