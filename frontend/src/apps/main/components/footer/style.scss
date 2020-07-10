@@ -1,4 +1,26 @@
-.footer {
-  height: 400px;
-  background-color: darken($color: #fff, $amount: 30);
+.footer-grid {
+  width: 100%;
+  min-height: 400px;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center;
+  align-items: center;
+
+  background-color: #202325;
+
+  h2 {
+    color: #fff;
+  }
+  &-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &-link {
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 15px;
+    color: #fff;
+  }
 }
