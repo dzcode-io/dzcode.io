@@ -1,105 +1,40 @@
 import React from "react";
 import "./style.scss";
 
-// Temp Data
-const Data = [
-  {
-    title: "Category",
-    links: [
-      {
-        href: "http://www.google.com",
+type link = {
+  href: string;
+  text: string;
+};
 
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
+type category = {
+  title: string;
+  links: link[];
+};
 
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
+interface Props {
+  data: category[];
+}
 
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
-
-        text: "click me",
-      },
-    ],
-  },
-  {
-    title: "Category",
-
-    links: [
-      {
-        href: "http://www.google.com",
-
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
-
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
-
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
-
-        text: "click me",
-      },
-    ],
-  },
-  {
-    title: "Category",
-
-    links: [
-      {
-        href: "http://www.google.com",
-
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
-
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
-
-        text: "click me",
-      },
-      {
-        href: "http://www.google.com",
-        text: "click me",
-      },
-    ],
-  },
-];
-
-interface Props {}
-
-export const Footer: React.FC<Props> = ({}) => {
+export const Footer: React.FC<Props> = ({ data }) => {
   return (
-    <footer className="footer-grid ">
-      {Data.map((gridElemnt, i) => {
-        return (
-          <div className="footer-grid-item" key={i}>
-            <h2>{gridElemnt.title}</h2>
-            {gridElemnt.links.map((link, i) => {
-              return (
-                <a className="footer-grid-link" href={link.href} key={i}>
-                  {link.text}
-                </a>
-              );
-            })}
-          </div>
-        );
-      })}
-    </footer>
+    <>
+      <footer className="footer-grid ">
+        {data.map((category, i) => {
+          return (
+            <div className="footer-grid-item" key={i}>
+              <h2>{category.title}</h2>
+              {category.links.map((link, i) => {
+                return (
+                  <a className="footer-grid-link" href={link.href} key={i}>
+                    {link.text}
+                  </a>
+                );
+              })}
+            </div>
+          );
+        })}
+      </footer>
+      <div className="copyright">Dzcode.io Algerian Open Source Community</div>
+    </>
   );
 };
