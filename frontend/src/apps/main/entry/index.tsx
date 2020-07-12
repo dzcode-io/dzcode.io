@@ -12,13 +12,63 @@ const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
 
-// Temp data: Todo: replace with props from the store
+// Temp data:
+
+// TODO: replace with props from the store
 
 const navItems = [
   { id: 1, to: "/Learn/Getting_Started", name: "Learn" },
   { id: 2, to: "/", name: "Contribute" },
   { id: 3, to: "/", name: "Projects" },
   { id: 4, to: "/articles", name: "Articles" },
+];
+
+// Temp Footer Data
+const data = [
+  {
+    title: "Recent Articles",
+    links: [
+      {
+        href: "https://staging.dzcode.io/Articles/Welcome_to_dzCode",
+        text: "Welcome To dzCode.io",
+      },
+      {
+        href: "https://staging.dzcode.io/Learn/Getting_Started",
+        text: "Getting Started dzCode.io",
+      },
+    ],
+  },
+  {
+    title: "Recent Projects",
+    links: [
+      {
+        href: "https://staging.dzcode.io/",
+        text: "Algerian Education Hierarchy",
+      },
+      {
+        href: "https://staging.dzcode.io/",
+        text: "Algerian Users",
+      },
+      {
+        href: "https://staging.dzcode.io/",
+        text: "Algerian Wilaya",
+      },
+    ],
+  },
+  {
+    title: "Social Media",
+    links: [
+      {
+        href: "www.facebook.com/dzcode.io",
+        text: "Facebook",
+      },
+      {
+        href:
+          "https://www.youtube.com/channel/UCqWze7IcHI-_2mvByYeGTJg?view_as=subscriber",
+        text: "Youtube",
+      },
+    ],
+  },
 ];
 
 export const App: React.SFC<{}> = () => {
@@ -33,7 +83,7 @@ export const App: React.SFC<{}> = () => {
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       </Suspense>
-      <Footer />
+      <Footer data={data} />
     </BrowserRouter>
   );
 };
