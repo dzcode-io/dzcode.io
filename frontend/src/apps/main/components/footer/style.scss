@@ -10,17 +10,29 @@
   background-color: #202325;
 
   h2 {
-    color: #fff;
+    color: rgba($color: #fff, $alpha: 0.9);
   }
   &-item {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+    height: 60%;
   }
   &-link {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-decoration: none;
     padding: 15px;
-    color: #fff;
+    color: rgba($color: #fff, $alpha: 0.8);
   }
+}
+.copyright {
+  background-color: #202325;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5rem;
 }
