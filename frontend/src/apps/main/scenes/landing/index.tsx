@@ -15,13 +15,6 @@ export const LandingScene = () => {
       <Header />
       <HowToContribute />
       <Projects />
-      <WhatAndWhy />
-      <TransitionSection />
-      <JoinOrganization />
-      <TransitionSection />
-      <JoinClassrooms />
-      <TransitionSection />
-      <Blogs />
     </div>
   );
 };
