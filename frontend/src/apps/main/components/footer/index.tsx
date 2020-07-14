@@ -34,7 +34,9 @@ export const Footer: React.FC<Props> = ({ data }) => {
           );
         })}
       </footer>
-      <div className="copyright">Dzcode.io Algerian Open Source Community</div>
+      <div className="copyright">
+        dzCode.io an Algerian Open Source Community
+      </div>
     </>
   );
 };
