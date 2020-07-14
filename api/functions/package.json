@@ -16,12 +16,14 @@
   "dependencies": {
     "@types/express": "^4.17.7",
     "@types/node": "^14.0.23",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.1",
     "xss": "^1.0.7"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.6",
     "firebase-functions-test": "^0.2.0",
     "typescript": "^3.8.0"
   },
