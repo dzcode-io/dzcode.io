@@ -1,12 +1,9 @@
 import React from "react";
 import { Header } from "./header";
 import { WhatAndWhy } from "./what-and-why";
-import { Projects } from "./projects";
+import { TopProjects } from "./top-projects";
 import { HowToContribute } from "./how-to-contribute";
-import { TransitionSection } from "./transition-section";
-import { JoinOrganization } from "./join-organization";
-import { JoinClassrooms } from "./join-classrooms";
-import { Blogs } from "./blogs";
+import { TopArticles } from "./top-articles";
 import { connect } from "react-redux";
 
 export const LandingScene = () => {
@@ -14,14 +11,9 @@ export const LandingScene = () => {
     <div className="landing">
       <Header />
       <HowToContribute />
-      <Projects />
+      <TopProjects />
       <WhatAndWhy />
-      <TransitionSection />
-      <JoinOrganization />
-      <TransitionSection />
-      <JoinClassrooms />
-      <TransitionSection />
-      <Blogs />
+      <TopArticles />
     </div>
   );
 };
