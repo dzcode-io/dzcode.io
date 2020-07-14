@@ -2,7 +2,7 @@
 @import "../../../../../common/style/buttons";
 
 .landing {
-  .projects {
+  .top-projects {
     min-height: 80vh;
     width: 100%;
     padding: 5% 10%;
@@ -49,15 +49,18 @@
         -moz-box-shadow: 10px 10px 45px -17px rgba(0, 0, 0, 0.75);
         box-shadow: 10px 10px 45px -17px rgba(0, 0, 0, 0.75);
 
+        .image {
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          padding: 80px;
+          border-radius: 10px;
+          margin: 1rem;
+        }
+
         .info {
           text-align: center;
 
-          .info__header {
-            display: flex;
-            justify-content: space-evenly;
-            width: 100%;
-            padding: 0 2rem;
-          }
           .title {
             font-size: calc(1.4rem + 0.2vw);
             font-weight: bold;
@@ -66,49 +69,15 @@
             align-items: center;
 
             text-transform: capitalize;
-          }
-          .contributers {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            .number {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-size: 0.7rem;
-              font-weight: bold;
-              padding: 0.3rem 0.5rem;
-              width: 20px;
-              background-color: #fff;
-              border-radius: 2px;
-              color: #202325;
-              margin-left: 5px;
-              -webkit-box-shadow: inset 10px 10px 15px -17px rgba(0, 0, 0, 0.75);
-              -moz-box-shadow: inset 10px 10px 15px -17px rgba(0, 0, 0, 0.75);
-              box-shadow: inset 10px 10px 15px -17px rgba(0, 0, 0, 0.75);
-            }
+            margin-bottom: 1rem;
           }
 
-          img {
-            display: inline-block;
-            width: 18px;
+          .description {
+            padding: 1rem 2rem;
+            text-align: center;
           }
         }
 
-        .image {
-          background-repeat: no-repeat;
-          background-position: center;
-          object-fit: cover;
-          padding: 80px;
-          border-radius: 10px;
-          margin: 1rem;
-        }
-
-        .description {
-          padding: 1rem 2rem;
-          text-align: center;
-        }
         #buttons {
           &__1 {
             margin-bottom: 1rem;
@@ -124,7 +93,7 @@
 
 @media screen and (min-width: $regular) {
   .landing {
-    .projects {
+    .top-projects {
       .repositories {
         flex-direction: row;
         .project {

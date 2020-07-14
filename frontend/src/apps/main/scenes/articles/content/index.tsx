@@ -3,10 +3,10 @@ import { Article } from "t9/types/fullstack";
 import Markdown from "react-markdown";
 import "./style";
 
-import programer from "../../landing/header/icons/programmer.png";
-import contact from "../../landing/header/icons/contact.png";
-import support from "../../landing/header/icons/support.png";
-import github from "../../landing/header/icons/github.png";
+import programer from "t9/apps/main/assets/png/programmer.png";
+import contact from "t9/apps/main/assets/png/contact.png";
+import github from "t9/apps/main/assets/png/github.png";
+import support from "t9/apps/main/assets/png/support.png";
 
 const socialMedia = [
   {
