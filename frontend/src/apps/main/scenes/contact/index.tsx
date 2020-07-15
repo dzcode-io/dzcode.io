@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import ContactForm from "./Form";
 
-const Contact = (props) => {
+const Contact = (props: any) => {
   return (
     <section className="contact">
       <div className="left">

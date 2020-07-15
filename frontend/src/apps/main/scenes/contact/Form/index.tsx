@@ -32,7 +32,7 @@ const sendMessage = async ({ name, email, subject, message }) => {
   }
 };
 
-const ContactForm = (props) => {
+const ContactForm = (props: any) => {
   const initialState = {
     name: "",
     email: "",
@@ -55,7 +55,7 @@ const ContactForm = (props) => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     const { name, email, subject, message } = state;
