@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
-const Articles = lazy(() => import("t9/apps/main/scenes/Articles"));
+const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
 const Contact = lazy(() => import("t9/apps/main/scenes/contact"));
 
