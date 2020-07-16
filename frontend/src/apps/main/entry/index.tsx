@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
+const Projects = lazy(() => import("t9/apps/main/scenes/projects"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
 const Contact = lazy(() => import("t9/apps/main/scenes/contact"));
 
@@ -86,6 +87,7 @@ export const App: React.SFC<{}> = () => {
           <Route path="/" exact={true} component={Landing} />
           <Route path="/Learn" component={Learn} />
           <Route path="/Articles" component={Articles} />
+          <Route path="/Projects" component={Projects} />
           <Route path="/Contact" component={Contact} />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
