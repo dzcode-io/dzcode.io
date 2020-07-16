@@ -100,7 +100,7 @@
       text-align: center;
       padding: 12px;
       position: relative;
-      font-size: 0.8rem;
+      font-size: calc(16px + 0.1vw);
       font-weight: 400;
 
       &::after {
