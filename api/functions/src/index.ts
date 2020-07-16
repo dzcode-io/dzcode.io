@@ -9,7 +9,7 @@ const app: Application = express();
 var allowedOrigins = [
   "https://www.dzcode.io/",
   "https://staging.dzcode.io/",
-  "http://localhost:3000",
+  "http://localhost:8080",
 ];
 
 app.use(
