@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { documentation } from "./documentation";
 import { learnScene } from "./learn-scene";
+import FaqScene from "./FAQ-scene";
 import { articles } from "./articles";
 import { articlesScene } from "./articles-scene";
 
@@ -9,4 +10,5 @@ export const mainReducer = combineReducers({
   learnScene,
   articles,
   articlesScene,
+  FaqScene,
 });

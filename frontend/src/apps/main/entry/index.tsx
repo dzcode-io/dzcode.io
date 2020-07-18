@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
+const Faq = lazy(() => import("t9/apps/main/scenes/Faq"));
 
 // Temp data:
 
@@ -21,6 +22,7 @@ const navItems = [
   { id: 2, to: "/", name: "Contribute" },
   { id: 3, to: "/", name: "Projects" },
   { id: 4, to: "/articles", name: "Articles" },
+  { id: 5, to: "/faq", name: "FAQ" },
 ];
 
 // Temp Footer Data
@@ -80,6 +82,7 @@ export const App: React.SFC<{}> = () => {
           <Route path="/" exact={true} component={Landing} />
           <Route path="/Learn" component={Learn} />
           <Route path="/Articles" component={Articles} />
+          <Route path="/faq" component={Faq} />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       </Suspense>
