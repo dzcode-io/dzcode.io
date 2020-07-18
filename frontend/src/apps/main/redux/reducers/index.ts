@@ -1,3 +1,4 @@
+import FaqScene from "./FAQ-scene";
 import { articles } from "./articles";
 import { articlesScene } from "./articles-scene";
 import { combineReducers } from "redux";
@@ -19,4 +20,5 @@ export const mainReducer = combineReducers({
   landingScene,
   settings,
   layout,
+  FaqScene,
 });
