@@ -1,0 +1,39 @@
+@import "../../../../common/style/variables";
+
+.faq {
+  height: auto;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .faq__banner {
+    width: 100%;
+    height: 250px;
+    background-color: $primary;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .faq__banner__title {
+      text-transform: capitalize;
+    }
+  }
+  .faq__items {
+    width: 70%;
+    padding: 2%;
+  }
+}
+
+@media screen and (max-width: $regular) {
+  .faq {
+    .faq__banner {
+      .faq__banner__title {
+        width: 90%;
+      }
+    }
+    .faq__items {
+      width: 100%;
+      padding: 2%;
+    }
+  }
+}
