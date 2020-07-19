@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import "./style.scss";
 import { Link, NavLink } from "react-router-dom";
+import React, { useState } from "react";
 
 interface NavigationLink {
   id: number;
@@ -12,7 +12,7 @@ interface Props {
   navItems: NavigationLink[];
 }
 
-export const Navbar: React.FC<Props> = ({ navItems }) => {
+export const Navbar = ({ navItems }: Props) => {
   const [isOpen, setIsOpen] = useState(true);
   const navToggle = () => {
     setIsOpen(!isOpen);

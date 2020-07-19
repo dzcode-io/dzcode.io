@@ -1,5 +1,5 @@
-import { actionType } from "t9/apps/main/redux/constants";
 import { Project } from "t9/types/fullstack";
+import { actionType } from "t9/apps/main/redux/constants";
 import { updateCollection } from "src/common/utils";
 
 export const projects = (

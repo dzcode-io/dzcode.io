@@ -30,5 +30,7 @@ module.exports = {
       },
     ],
     "unicorn/filename-case": "error",
+    "@typescript-eslint/explicit-function-return-type": 0,
+    camelcase: 1,
   },
 };

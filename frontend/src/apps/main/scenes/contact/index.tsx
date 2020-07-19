@@ -1,8 +1,8 @@
-import React from "react";
 import "./style.scss";
 import ContactForm from "./form";
+import React from "react";
 
-const Contact = (props: any) => {
+const Contact = () => {
   return (
     <section className="contact">
       <div className="left">
