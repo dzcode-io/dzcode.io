@@ -15,7 +15,7 @@ const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
 const Projects = lazy(() => import("t9/apps/main/scenes/projects"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
-const Faq = lazy(() => import("t9/apps/main/scenes/Faq"));
+const Faq = lazy(() => import("t9/apps/main/scenes/faq"));
 const Contact = lazy(() => import("t9/apps/main/scenes/contact"));
 
 // Temp data:
