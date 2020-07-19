@@ -31,6 +31,7 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-unicorn": "^21.0.0",
     "prettier": "^1.19.1",
     "source-map-support": "^0.5.16",
     "typescript": "~3.7.4"
