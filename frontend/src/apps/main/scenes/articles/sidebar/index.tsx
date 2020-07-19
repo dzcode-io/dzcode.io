@@ -1,7 +1,7 @@
-import React from "react";
 import "./style";
 import { Article } from "t9/types/fullstack";
 import { Link } from "react-router-dom";
+import React from "react";
 
 export const Sidebar = (props: { articlesList: Article[] | null }) => (
   <div className="sidebar">

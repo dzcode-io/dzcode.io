@@ -1,8 +1,7 @@
-import React from "react";
 import "./style";
-
-import projectPlaceholder from "t9/apps/main/assets/jpeg/project-placeholder.jpeg";
 import { LinkV2 } from "src/components/link-v2";
+import React from "react";
+import projectPlaceholder from "t9/apps/main/assets/jpeg/project-placeholder.jpeg";
 
 const projects = [
   {

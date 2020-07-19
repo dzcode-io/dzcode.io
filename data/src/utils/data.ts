@@ -1,5 +1,5 @@
-import fse from "fs-extra";
 import { Collection } from "../types";
+import fse from "fs-extra";
 
 export const getDataEntry = (path: string, include?: string[]) => {
   // Entry doesn't exist
