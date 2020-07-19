@@ -1,16 +1,17 @@
-import React from "react";
 import "./style.scss";
+import { LinkV2 } from "src/components/link-v2";
+import React from "react";
 
-export interface ButtonProps {
+interface ButtonProps {
   link: string;
   text: string;
-  className: string;
+  className: "primary" | "secondary";
 }
 
-export const Button: React.SFC<ButtonProps> = ({ className, link, text }) => {
+export const Button = ({ className, link, text }: ButtonProps) => {
   return (
-    <a href={link} className={`btn-btn ${className}`}>
+    <LinkV2 to={link} className={`btn-btn ${className}`}>
       {text}
-    </a>
+    </LinkV2>
   );
 };

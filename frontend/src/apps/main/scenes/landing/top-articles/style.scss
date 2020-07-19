@@ -1,0 +1,100 @@
+@import "../../../../../common/style/variables";
+@import "../../../../../common/style/buttons";
+
+.landing {
+  .top-articles {
+    min-height: 80vh;
+    width: 100%;
+    padding: 5% 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    header {
+      height: 20%;
+      padding: 1rem;
+      text-align: center;
+      h1 {
+        font-size: calc(1.5rem + 1vw);
+      }
+    }
+
+    #buttons__2 {
+      margin: 4rem;
+      width: 300px;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    .articles {
+      min-height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      // color: $light;
+      flex-wrap: wrap;
+
+      .article {
+        width: 300px;
+        min-height: 450px;
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        align-items: center;
+        flex-direction: column;
+        margin: 1rem;
+        border-radius: 10px;
+        box-shadow: 10px 10px 45px -17px rgba(0, 0, 0, 0.75);
+
+        .image {
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          height: 200px;
+          width: 100%;
+        }
+
+        .info {
+          .title {
+            font-size: calc(1.4rem + 0.2vw);
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-transform: capitalize;
+            margin: 1rem;
+          }
+
+          .description {
+            padding: 1rem;
+            text-align: justify;
+          }
+        }
+
+        #buttons {
+          &__1 {
+            margin-bottom: 1rem;
+            width: 70%;
+            text-align: center;
+            border-radius: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $regular) {
+  .landing {
+    .top-articles {
+      .articles {
+        flex-direction: row;
+        .article {
+          margin: 2rem;
+        }
+      }
+    }
+  }
+}

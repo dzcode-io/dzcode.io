@@ -1,16 +1,20 @@
 import "./style";
-import React, { lazy, Suspense } from "react";
-import { render } from "react-dom";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { Footer } from "t9/apps/main/components/footer";
 import { Loading } from "src/components/loading";
 import { Navbar } from "t9/apps/main/components/navbar";
-import { Footer } from "t9/apps/main/components/footer";
-import { mainStore } from "t9/apps/main/redux";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import { mainStore } from "t9/apps/main/redux";
+import { render } from "react-dom";
 
 const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
+const Projects = lazy(() => import("t9/apps/main/scenes/projects"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
+const Contact = lazy(() => import("t9/apps/main/scenes/contact"));
 
 // Temp data:
 
@@ -18,9 +22,10 @@ const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
 
 const navItems = [
   { id: 1, to: "/Learn/Getting_Started", name: "Learn" },
-  { id: 2, to: "/", name: "Contribute" },
-  { id: 3, to: "/", name: "Projects" },
+  { id: 2, to: "/contribute", name: "Contribute" },
+  { id: 3, to: "/projects", name: "Projects" },
   { id: 4, to: "/articles", name: "Articles" },
+  { id: 5, to: "/contact", name: "Contact" },
 ];
 
 // Temp Footer Data
@@ -75,11 +80,14 @@ export const App: React.SFC<{}> = () => {
   return (
     <BrowserRouter>
       <Navbar navItems={navItems} />
+      <ToastContainer />
       <Suspense fallback={Loading}>
         <Switch>
           <Route path="/" exact={true} component={Landing} />
           <Route path="/Learn" component={Learn} />
           <Route path="/Articles" component={Articles} />
+          <Route path="/Projects" component={Projects} />
+          <Route path="/Contact" component={Contact} />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       </Suspense>
