@@ -25,4 +25,4 @@ const mapStateToProps = (state: any) => ({
   faqData: state.FaqScene.faqData,
 });
 
-export const FaqSceneMapped = connect(mapStateToProps, null)(FaqScene);
+export const FaqSceneMapped = connect(mapStateToProps)(FaqScene);

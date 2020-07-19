@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { documentation } from "./documentation";
 import { learnScene } from "./learn-scene";
-import FaqScene from "./FAQ-scene";
+import FaqScene from "./faq-scene";
 import { articles } from "./articles";
 import { articlesScene } from "./articles-scene";
 import { projects } from "./projects";
