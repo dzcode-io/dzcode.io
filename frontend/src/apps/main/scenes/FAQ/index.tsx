@@ -1,5 +1,5 @@
-import { connect } from "t9/apps/main/scenes/faq/node_modules/react-redux";
-import React from "t9/apps/main/scenes/faq/node_modules/react";
+import { connect } from "react-redux";
+import React from "react";
 
 import { FaqItem } from "./faqitem/index";
 
@@ -25,4 +25,4 @@ const mapStateToProps = (state: any) => ({
   faqData: state.FaqScene.faqData,
 });
 
-export const FaqSceneMapped = connect(mapStateToProps, null)(FaQscene);
+export const FaqSceneMapped = connect(mapStateToProps, null)(FaqScene);

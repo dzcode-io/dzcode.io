@@ -1,6 +1,4 @@
-import React, {
-  useState,
-} from "t9/apps/main/scenes/faq/faqitem/node_modules/react";
+import React, { useState } from "react";
 import "./style.scss";
 
 export const FaqItem = ({ question, answer }: any) => {
