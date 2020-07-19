@@ -1,7 +1,7 @@
+import { Link, LinkProps } from "react-router-dom";
 import React from "react";
-import { LinkProps, Link } from "react-router-dom";
 
-interface LinkV2Props extends LinkProps {}
+type LinkV2Props = LinkProps;
 
 export const LinkV2 = (props: LinkV2Props) => {
   console.log(props.to, location.origin);

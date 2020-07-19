@@ -1,31 +1,36 @@
-import { connect } from "react-redux";
+import "./style";
+import { Route, useRouteMatch } from "react-router-dom";
+import { Article } from "t9/types/fullstack";
+import { Content } from "./content";
 import React from "react";
 import { Sidebar } from "./sidebar";
-import { Content } from "./content";
-import { Article } from "t9/types/fullstack";
-import { useEffect } from "react";
+import { connect } from "react-redux";
 import { fetchArticlesList } from "t9/apps/main/redux/actions/articles-scene";
 import { fetchCurrentArticle } from "t9/apps/main/redux/actions/articles-scene";
-import { Route, useRouteMatch } from "react-router-dom";
-import "./style";
+import { useEffect } from "react";
 
-export const ArticlesScene = (props: ArticlesScenePropsReduxed) => {
+export const ArticlesScene = ({
+  fetchArticlesList,
+  currentArticle,
+  articlesList,
+  fetchCurrentArticle,
+}: ArticlesSceneProps) => {
   useEffect(() => {
-    props.fetchArticlesList();
+    fetchArticlesList();
   }, []);
 
   const { path } = useRouteMatch();
 
   return (
     <div className="articles">
-      <Sidebar articlesList={props.articlesList} />
+      <Sidebar articlesList={articlesList} />
       <Route
         path={`${path}/:articleSlug`}
         render={() => (
           <Content
             key={location.pathname}
-            currentArticle={props.currentArticle}
-            fetchCurrentArticle={props.fetchCurrentArticle}
+            currentArticle={currentArticle}
+            fetchCurrentArticle={fetchCurrentArticle}
           />
         )}
       />
@@ -33,12 +38,14 @@ export const ArticlesScene = (props: ArticlesScenePropsReduxed) => {
   );
 };
 
-interface ArticlesScenePropsReduxed extends ArticlesSceneProps {
+interface ArticlesSceneProps {
   fetchArticlesList: () => void;
   fetchCurrentArticle: () => void;
+  articlesList: Article[] | null;
+  currentArticle: Article | null;
 }
 
-export interface ArticlesSceneProps {
+export interface ArticlesSceneInitialState {
   articlesList: Article[] | null;
   currentArticle: Article | null;
 }

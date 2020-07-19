@@ -1,15 +1,14 @@
 import "./style";
-import React, { lazy, Suspense } from "react";
-import { render } from "react-dom";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { Footer } from "t9/apps/main/components/footer";
 import { Loading } from "src/components/loading";
 import { Navbar } from "t9/apps/main/components/navbar";
-import { Footer } from "t9/apps/main/components/footer";
-import { mainStore } from "t9/apps/main/redux";
 import { Provider } from "react-redux";
-
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { mainStore } from "t9/apps/main/redux";
+import { render } from "react-dom";
 
 const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Articles = lazy(() => import("t9/apps/main/scenes/articles"));

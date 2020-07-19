@@ -1,9 +1,9 @@
-import React from "react";
 import { Header } from "./header";
-import { WhatAndWhy } from "./what-and-why";
-import { TopProjects } from "./top-projects";
 import { HowToContribute } from "./how-to-contribute";
+import React from "react";
 import { TopArticles } from "./top-articles";
+import { TopProjects } from "./top-projects";
+import { WhatAndWhy } from "./what-and-why";
 import { connect } from "react-redux";
 
 export const LandingScene = () => {

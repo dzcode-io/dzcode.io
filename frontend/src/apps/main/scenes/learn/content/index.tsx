@@ -1,11 +1,10 @@
+import "./style";
 import React, { useEffect } from "react";
 import { Document } from "t9/types/fullstack";
 import Markdown from "react-markdown";
-import "./style";
-
-import programer from "t9/apps/main/assets/png/programmer.png";
 import contact from "t9/apps/main/assets/png/contact.png";
 import github from "t9/apps/main/assets/png/github.png";
+import programer from "t9/apps/main/assets/png/programmer.png";
 import support from "t9/apps/main/assets/png/support.png";
 
 const socialMedia = [
