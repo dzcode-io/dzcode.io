@@ -1,7 +1,6 @@
 name: "Code Conformity check for fullstack folder"
 
 on:
-  push:
   pull_request:
     branches:
       - master
