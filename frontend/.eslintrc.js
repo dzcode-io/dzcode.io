@@ -18,6 +18,7 @@ module.exports = {
       },
     },
   },
+  plugins: ["unicorn"],
   rules: {
     "sort-imports": [
       "error",
@@ -28,5 +29,8 @@ module.exports = {
         memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
       },
     ],
+    "unicorn/filename-case": "error",
+    "@typescript-eslint/explicit-function-return-type": 0,
+    camelcase: 1,
   },
 };

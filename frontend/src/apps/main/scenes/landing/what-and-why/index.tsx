@@ -1,28 +1,30 @@
-import React from "react";
 import "./style";
+import React from "react";
 
 const reasons = [
   {
-    title: "Pre-Rendering",
+    title: "Bring your Code",
     description:
-      "Statically generated and server-rendered React applications have never been easier.",
+      "Bringing your project and open-sourcing it, brings attention and spotlight, thus more contributor, which will lead to an even better version of you library.",
   },
   {
-    title: "Static Exporting",
+    title: "Algerian Care",
     description:
-      "No need to learn a new framework. Exporting a static site with Next.js is as easy as a single command.",
+      "Centralizing the issues around Algerian problems brings care and commitment from across the country, and you are an example of that ☺️",
   },
   {
-    title: "CSS-in-JS",
+    title: "Backers",
     description:
-      "Next.js comes with styled-jsx included, but it also works with every CSS-in-JS solution you know and love.",
+      "Every project is used in production by Algerian websites, apps, and more",
   },
 ];
 
 export const WhatAndWhy = () => (
   <div className="what-and-why">
-    <div className="title">Why dzCode.io</div>
-    <div className="sub-title">A hub for Algerian open source projects</div>
+    <div className="title">What is dzCode.io and Why?</div>
+    <div className="sub-title">
+      dzCode.io is a hub for Algerian open source projects
+    </div>
     <div className="reasons">
       {reasons.map((reason, index) => (
         <div className="reason" key={`reason-${index}`}>

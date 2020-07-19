@@ -22,4 +22,15 @@ export interface Article {
   views?: number;
 }
 
+export interface Project {
+  slug: string;
+  image?: string;
+  title: string;
+  description?: string;
+  content?: string;
+  authors?: string[];
+  contributors?: string[];
+  views?: number;
+}
+
 export type Environment = "development" | "staging" | "production";

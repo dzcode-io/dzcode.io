@@ -4,6 +4,7 @@
   display: grid;
   gap: 15px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: minmax(250px, max-content);
   justify-content: center;
   align-items: center;
 
@@ -29,10 +30,11 @@
 .copyright {
   background-color: #202325;
   color: #fff;
-  font-size: 1.3rem;
+  font-size: calc(16px + 1vw);
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 5rem;
+  padding: calc(30px + 2vw);
+  text-align: center;
 }
