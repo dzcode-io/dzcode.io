@@ -1,0 +1,13 @@
+## Compiled JavaScript files
+**/*.js
+**/*.js.map
+
+lib
+serviceAccountKey.json
+
+src/secrets
+
+# Typescript v1 declaration files
+typings/
+
+node_modules/

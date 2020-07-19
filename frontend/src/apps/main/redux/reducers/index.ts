@@ -4,6 +4,8 @@ import { learnScene } from "./learn-scene";
 import FaqScene from "./FAQ-scene";
 import { articles } from "./articles";
 import { articlesScene } from "./articles-scene";
+import { projects } from "./projects";
+import { projectsScene } from "./projects-scene";
 
 export const mainReducer = combineReducers({
   documentation,
@@ -11,4 +13,6 @@ export const mainReducer = combineReducers({
   articles,
   articlesScene,
   FaqScene,
+  projects,
+  projectsScene,
 });

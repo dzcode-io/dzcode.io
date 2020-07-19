@@ -1,0 +1,13 @@
+@import "../../../../../common/style/variables";
+
+.form-error {
+  font-size: 0.8rem;
+  display: block;
+  color: $primary;
+  font-weight: 400;
+  margin: 0;
+}
+
+.form-error-field {
+  border: 1px solid $primary !important;
+}

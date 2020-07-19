@@ -1,23 +1,21 @@
 import React from "react";
 
 import "./style";
-import programer from "./icons/programmer.png";
-import contact from "./icons/contact.png";
-import support from "./icons/support.png";
-import github from "./icons/github.png";
+import programer from "t9/apps/main/assets/png/programmer.png";
+import contact from "t9/apps/main/assets/png/contact.png";
+import github from "t9/apps/main/assets/png/github.png";
 
-import { Button } from "../../../../../components/button";
+import { Button } from "src/components/button";
+import { LinkV2 } from "src/components/link-v2";
 
 const socialMedia = [
   {
-    id: 1,
-    name: "dzcode",
-    href: "https://github.com/dzcode-io/dzcode.io",
+    name: "dzCode.io",
+    to: "https://github.com/dzcode-io",
     icon: github,
   },
-  { id: 2, name: "Learn", href: "/learn", icon: programer },
-  { id: 3, name: "Contact", href: "/contact", icon: contact },
-  { id: 4, name: "Support", href: "/support", icon: support },
+  { name: "Learn", to: "/Learn/Getting_Started", icon: programer },
+  { name: "Contact", to: "/Contact-Us", icon: contact },
 ];
 
 export const Header = () => (
@@ -31,15 +29,15 @@ export const Header = () => (
     </div>
 
     <div className="actions">
-      <Button text="Contribute" link="#" className="primary" />
-      <Button text="Learn More" link="#" className="secondary" />
+      <Button text="Contribute" link="/Contribute" className="primary" />
+      <Button text="Learn More" link="/About" className="secondary" />
     </div>
     <div className="socialMedia">
-      {socialMedia.map((item) => {
+      {socialMedia.map((item, index) => {
         return (
-          <div key={item.id} className="item">
+          <div key={`header-link-${index}`} className="item">
             <img src={item.icon} alt={item.name} className="icon" />
-            <a href={item.href}>{item.name}</a>
+            <LinkV2 to={item.to}>{item.name}</LinkV2>
           </div>
         );
       })}
