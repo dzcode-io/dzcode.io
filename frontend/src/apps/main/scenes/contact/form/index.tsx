@@ -1,18 +1,30 @@
-import React, { useState } from "react";
 import "./style.scss";
+import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import { validateField } from "./validation/validateForm";
+import { validateField } from "./validation/validate-form";
 
-const sendMessage = async ({ name, email, subject, message }) => {
+interface SendMessageParams {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+const sendMessage = async ({
+  name,
+  email,
+  subject,
+  message,
+}: SendMessageParams) => {
   try {
     const headers = {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "https://dzcode.io",
     };
 
-    let res = await axios.post(
+    const res = await axios.post(
       "https://us-central1-dzcode-io.cloudfunctions.net/api/contact",
       { name, email, subject, message },
       { headers: headers },
@@ -41,14 +53,14 @@ const ContactForm = (props: any) => {
     errors: { name: "", email: "", subject: "", message: "" },
   };
 
-  const [state, setstate] = useState(initialState);
+  const [state, setState] = useState(initialState);
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
+  const handleChange = (event: { currentTarget: any }): void => {
     const target = event.currentTarget;
     const { name, value } = target;
 
-    let errors = validateField(name, value);
-    setstate({
+    const errors = validateField(name, value);
+    setState({
       ...state,
       [name]: value,
       errors: { ...state.errors, ...errors },
@@ -68,7 +80,7 @@ const ContactForm = (props: any) => {
 
     await sendMessage(form);
 
-    setstate(initialState);
+    setState(initialState);
     toast.success("⚡ Message Sent Successfully ⚡", {
       position: "top-right",
       autoClose: 2000,
@@ -149,8 +161,8 @@ const ContactForm = (props: any) => {
           autoComplete="off"
           name="message"
           id="message"
-          cols="25"
-          rows="8"
+          cols={25}
+          rows={8}
           value={state.message}
           onChange={handleChange}
           className={classnames.message}
