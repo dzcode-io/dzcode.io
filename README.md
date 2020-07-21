@@ -47,25 +47,33 @@ $ cd dzcode.io
 - Install frontend dependencies:
 
 ```shell
-$ cd frontend && yarn && cd ..
+cd frontend
+yarn
+cd ..
 ```
 
 - Install frontend Firebase dependencies:
 
 ```shell
-$ cd frontend/firebase && yarn && cd ../..
+cd frontend/firebase
+yarn
+cd ../..
 ```
 
 - Install data dependencies:
 
 ```shell
-$ cd data && yarn && cd ..
+cd data
+yarn
+cd ..
 ```
 
 - Install fullstack dependencies:
 
 ```shell
-$ cd fullstack && yarn && cd ..
+cd fullstack
+yarn
+cd ..
 ```
 
 ### Run it locally
@@ -73,19 +81,23 @@ $ cd fullstack && yarn && cd ..
 - Build fullstack code:
 
 ```shell
-$ cd fullstack && yarn build:watch
+cd fullstack
+yarn build:watch
 ```
 
 - Open new terminal and Run frontend server:
 
 ```shell
-$ cd frontend && yarn dev
+cd frontend
+yarn dev
 ```
 
 - Open new terminal and Run data server:
 
 ```shell
-$ cd data && yarn build && yarn dev
+cd data
+yarn build
+yarn dev
 ```
 
 - Now, Go to http://localhost:8080
