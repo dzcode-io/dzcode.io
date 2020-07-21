@@ -1,8 +1,10 @@
 import React from "react";
-import "./style.scss";
-import ContactForm from "./form";
+import { connect } from "react-redux";
 
-const Contact = (props: any) => {
+import "./style.scss";
+import { ContactForm } from "./form";
+
+export const Contact = (props: any) => {
   return (
     <section className="contact">
       <div className="left">
@@ -27,4 +29,4 @@ const Contact = (props: any) => {
   );
 };
 
-export default Contact;
+export default connect()(Contact);

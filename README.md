@@ -33,13 +33,13 @@ Make sure you have:
 - open terminal and clone the repo:
 
 ```shell
-$ git clone https://github.com/dzcode-io/dzcode.io.git
+ git clone https://github.com/dzcode-io/dzcode.io.git
 ```
 
 - Make **sure** you are in the project **root**:
 
 ```shell
-$ cd dzcode.io
+ cd dzcode.io
 ```
 
 ### Install dependencies
@@ -47,25 +47,25 @@ $ cd dzcode.io
 - Install frontend dependencies:
 
 ```shell
-$ cd frontend && yarn && cd ..
+ cd frontend && yarn && cd ..
 ```
 
 - Install frontend Firebase dependencies:
 
 ```shell
-$ cd frontend/firebase && yarn && cd ../..
+ cd frontend/firebase && yarn && cd ../..
 ```
 
 - Install data dependencies:
 
 ```shell
-$ cd data && yarn && cd ..
+ cd data && yarn && cd ..
 ```
 
 - Install fullstack dependencies:
 
 ```shell
-$ cd fullstack && yarn && cd ..
+ cd fullstack && yarn && cd ..
 ```
 
 ### Run it locally
@@ -73,22 +73,32 @@ $ cd fullstack && yarn && cd ..
 - Build fullstack code:
 
 ```shell
-$ cd fullstack && yarn build:watch
+ cd fullstack && yarn build:watch
 ```
 
 - Open new terminal and Run frontend server:
 
 ```shell
-$ cd frontend && yarn dev
+cd frontend && yarn dev
 ```
 
 - Open new terminal and Run data server:
 
 ```shell
-$ cd data && yarn build && yarn dev
+ cd data && yarn build && yarn dev
 ```
 
-- Now, Go to http://localhost:8080
+- Open new terminal and Run api emulators:
+
+```shell
+
+ cd api/functions && firebase emulators:start
+
+```
+
+- Now, Go to <http://localhost:8080>
+
+- All emulators View status and logs at <http://localhost:4000>
 
 ## Contributing
 
