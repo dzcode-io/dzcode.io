@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import "./style.scss";
 import axios from "axios";
+import "./style.scss";
 import { toast } from "react-toastify";
-
 import { validateField } from "./validation/validateForm";
+
+// TODO: change api endpoint to environment variables
+// API endpoint
+
+let API = "http://localhost:5001/dzcode-io/us-central1/api";
 
 const sendMessage = async ({ name, email, subject, message }) => {
   try {
@@ -12,15 +16,17 @@ const sendMessage = async ({ name, email, subject, message }) => {
       "Access-Control-Allow-Origin": "https://dzcode.io",
     };
 
-    let res = await axios.post(
-      "https://us-central1-dzcode-io.cloudfunctions.net/api/contact",
+    return await axios.post(
+      `${API}/contact`,
       { name, email, subject, message },
       { headers: headers },
     );
   } catch (error) {
     console.error(error);
 
-    toast.error("👻 Ops!, Something Went Wrong. 👻", {
+    let emoji = Math.random() * 10 > 5 ? "👀" : "💭";
+
+    toast.error(`${emoji} Ops!, Something Went Wrong.`, {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -32,7 +38,7 @@ const sendMessage = async ({ name, email, subject, message }) => {
   }
 };
 
-const ContactForm = (props: any) => {
+export const ContactForm = (props) => {
   const initialState = {
     name: "",
     email: "",
@@ -43,8 +49,8 @@ const ContactForm = (props: any) => {
 
   const [state, setstate] = useState(initialState);
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
-    const target = event.currentTarget;
+  const handleChange = (event) => {
+    const target = event.target;
     const { name, value } = target;
 
     let errors = validateField(name, value);
@@ -55,8 +61,18 @@ const ContactForm = (props: any) => {
     });
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    let emoji = Math.random() * 10 > 5 ? "✌" : "👍";
+    event.preventDefault();
+    toast.success(`${emoji} Message Sent Successfully!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
     const { name, email, subject, message } = state;
     const form = {
@@ -69,15 +85,6 @@ const ContactForm = (props: any) => {
     await sendMessage(form);
 
     setstate(initialState);
-    toast.success("⚡ Message Sent Successfully ⚡", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
   };
 
   const classnames = {
@@ -168,5 +175,3 @@ const ContactForm = (props: any) => {
     </form>
   );
 };
-
-export default ContactForm;
