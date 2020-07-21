@@ -1,32 +1,13 @@
 import "./style";
+import { Article } from "t9/types/fullstack";
 import { LinkV2 } from "src/components/link-v2";
 import React from "react";
-import articlePlaceholder from "t9/apps/main/assets/jpeg/project-placeholder.jpeg";
 
-const articles = [
-  {
-    image: articlePlaceholder,
-    title: "Welcome to dzCode",
-    description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-    slug: "Welcome_to_dzCode",
-  },
-  {
-    image: articlePlaceholder,
-    title: "Test Article",
-    description:
-      "Perspiciatis nisi molestias adipisci corporis ducimus, cupiditate officiis quod delectus aut.",
-    slug: "Test_Article",
-  },
-  {
-    image: articlePlaceholder,
-    title: "Test Article",
-    description:
-      "Nesciunt at repellendus iste quasi magni quidem, non maiores accusantium voluptatibus.",
-    slug: "Test_Article",
-  },
-];
+interface TopArticlesProps {
+  topArticles: Article[] | null;
+}
 
-export const TopArticles = () => (
+export const TopArticles = ({ topArticles }: TopArticlesProps) => (
   <section className="top-articles">
     <header>
       <h1 className="title">Read Community Articles</h1>
@@ -35,25 +16,29 @@ export const TopArticles = () => (
       </p>
     </header>
     <div className="articles">
-      {articles.map((article, index) => (
-        <div className="article" key={`article-${index}`}>
-          <div
-            className="image"
-            style={{ backgroundImage: `url(${article.image})` }}
-          />
-          <div className="info">
-            <div className="title">{article.title}</div>
-            <div className="description">{article.description}</div>
+      {topArticles ? (
+        topArticles.map((article, index) => (
+          <div className="article" key={`article-${index}`}>
+            <div
+              className="image"
+              style={{ backgroundImage: `url(${article.image})` }}
+            />
+            <div className="info">
+              <div className="title">{article.title}</div>
+              <div className="description">{article.description}</div>
+            </div>
+            <LinkV2
+              className="btn btn__primary"
+              id="buttons__1"
+              to={`/Articles/${article.slug}`}
+            >
+              Read Article
+            </LinkV2>
           </div>
-          <LinkV2
-            className="btn btn__primary"
-            id="buttons__1"
-            to={`/Articles/${article.slug}`}
-          >
-            Read Article
-          </LinkV2>
-        </div>
-      ))}
+        ))
+      ) : (
+        <div>Loading Top Articles ...</div>
+      )}
     </div>
     <LinkV2 className=" btn btn__secondary" id="buttons__2" to="/Articles">
       Explore More Articles

@@ -1,0 +1,4 @@
+{
+  "items": ["Algerian_Users"],
+  "include": ["title", "description", "image", "githubURI"]
+}
