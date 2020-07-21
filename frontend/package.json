@@ -5,8 +5,8 @@
   "scripts": {
     "clear": "rimraf ./firebase/public",
     "dev": "yarn clear && cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js -wd --hot",
-    "lint:check": "eslint '*{,/**/*}.{js,ts,tsx}' --report-unused-disable-directives",
-    "lint:fix": "eslint '*{,/**/*}.{js,ts,tsx}' --quiet --fix",
+    "lint:check": "eslint . --ext .tsx,.ts,.js,.json --report-unused-disable-directives",
+    "lint:fix": "eslint . --ext .tsx,.ts,.js,.json --quiet --fix",
     "test": "echo 0",
     "build": "yarn clear cross-env && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details"
   },
