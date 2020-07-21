@@ -1,15 +1,15 @@
-import { connect } from "react-redux";
-import React from "react";
-import { Sidebar } from "./sidebar";
+import "./style";
+import { Route, useRouteMatch } from "react-router-dom";
 import { Content } from "./content";
 import { Document } from "t9/types/fullstack";
-import { useEffect } from "react";
-import { fetchDocumentationList } from "t9/apps/main/redux/actions/documentation-scene";
+import React from "react";
+import { Sidebar } from "./sidebar";
+import { connect } from "react-redux";
 import { fetchCurrentDocument } from "t9/apps/main/redux/actions/documentation-scene";
-import { Route, useRouteMatch } from "react-router-dom";
-import "./style";
+import { fetchDocumentationList } from "t9/apps/main/redux/actions/documentation-scene";
+import { useEffect } from "react";
 
-export const LearnScene = (props: LearnScenePropsReduxed) => {
+export const LearnScene = (props: LearnSceneProps) => {
   useEffect(() => {
     props.fetchDocumentationList();
   }, []);
@@ -33,12 +33,14 @@ export const LearnScene = (props: LearnScenePropsReduxed) => {
   );
 };
 
-interface LearnScenePropsReduxed extends LearnSceneProps {
-  fetchDocumentationList: () => void;
-  fetchCurrentDocument: () => void;
+export interface LearnSceneInitialState {
+  documentationList: Document[] | null;
+  currentDocument: Document | null;
 }
 
-export interface LearnSceneProps {
+interface LearnSceneProps {
+  fetchDocumentationList: () => void;
+  fetchCurrentDocument: () => void;
   documentationList: Document[] | null;
   currentDocument: Document | null;
 }

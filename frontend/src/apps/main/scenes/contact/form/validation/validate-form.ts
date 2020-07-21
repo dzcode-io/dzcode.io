@@ -1,7 +1,7 @@
 import { isEmail, isEmpty } from "./validation";
 
-export const validateField = (name, value) => {
-  let errors = {
+export const validateField = (name: string, value: string) => {
+  const errors = {
     name: "",
     email: "",
     subject: "",

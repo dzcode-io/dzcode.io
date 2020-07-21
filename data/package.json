@@ -21,6 +21,11 @@
     "url": "https://www.zakiii.com"
   },
   "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:check"
+    }
+  },
   "dependencies": {
     "@types/express": "^4.17.6",
     "@types/fs-extra": "^8.1.0",
@@ -31,6 +36,7 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-unicorn": "^21.0.0",
     "express": "^4.17.1",
     "fs-extra": "^9.0.0",
     "glob": "^7.1.6",
@@ -39,6 +45,7 @@
     "typescript": "~3.7.4"
   },
   "devDependencies": {
+    "husky": "^4.2.5",
     "nodemon": "^2.0.3"
   }
 }
