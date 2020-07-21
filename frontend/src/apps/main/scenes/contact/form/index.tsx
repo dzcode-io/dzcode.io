@@ -1,13 +1,13 @@
 import "./style.scss";
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { validateField } from "./validation/validate-form";
 
 // TODO: change api endpoint to environment variables
 // API endpoint
 
-let API = "http://localhost:5001/dzcode-io/us-central1/api";
+const API = "http://localhost:5001/dzcode-io/us-central1/api";
 
 const sendMessage = async ({ name, email, subject, message }) => {
   try {
@@ -24,7 +24,7 @@ const sendMessage = async ({ name, email, subject, message }) => {
   } catch (error) {
     console.error(error);
 
-    let emoji = Math.random() * 10 > 5 ? "👀" : "💭";
+    const emoji = Math.random() * 10 > 5 ? "👀" : "💭";
 
     toast.error(`${emoji} Ops!, Something Went Wrong.`, {
       position: "top-right",
@@ -62,7 +62,7 @@ export const ContactForm = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    let emoji = Math.random() * 10 > 5 ? "✌" : "👍";
+    const emoji = Math.random() * 10 > 5 ? "✌" : "👍";
     event.preventDefault();
     toast.success(`${emoji} Message Sent Successfully!`, {
       position: "top-right",
