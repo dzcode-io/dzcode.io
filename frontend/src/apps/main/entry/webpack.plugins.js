@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === "production") {
   const data = require("../../../../../fullstack/dist/utils/data");
   [
     { file: "articles", slug: "Articles" },
-    { file: "documentation", slug: "Documentation" },
+    { file: "documentation", slug: "Learn" },
     { file: "projects", slug: "Projects" },
   ].forEach((collectionInfo) => {
     const collection = data.getDataCollection(collectionInfo.file, "ssr.json");
