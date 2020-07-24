@@ -96,6 +96,7 @@
     "redux-thunk": "^2.3.0",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
+    "sitemap": "^6.2.0",
     "source-map-loader": "^0.2.4",
     "terser-webpack-plugin": "^2.3.5",
     "typescript": "^3.8.3",
