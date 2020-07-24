@@ -3,10 +3,11 @@ name: Deploy Frontend
 on:
   push:
     tags:
-      - 'prd-*'
+      - "prd-*"
     paths:
       - ".github/workflows/deploy-frontend.yml"
       - "frontend/**"
+      - "data/*/ssr.json"
 
 jobs:
   Build-Deploy:

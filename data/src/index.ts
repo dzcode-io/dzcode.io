@@ -1,4 +1,7 @@
-import { getDataCollection, getDataEntry } from "./utils/data";
+import {
+  getDataCollection,
+  getDataEntry,
+} from "../../fullstack/dist/utils/data";
 import express from "express";
 import { fullstackConfig } from "./config";
 

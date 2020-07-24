@@ -1,4 +1,7 @@
-import { getDataCollection, getDataEntry } from "./utils/data";
+import {
+  getDataCollection,
+  getDataEntry,
+} from "../../fullstack/dist/utils/data";
 import fse from "fs-extra";
 import glob from "glob";
 

@@ -3,10 +3,11 @@ name: Deploy Staging Frontend
 on:
   push:
     tags:
-      - 'stg-*'
+      - "stg-*"
     paths:
       - ".github/workflows/deploy-staging-frontend.yml"
       - "frontend/**"
+      - "data/*/ssr.json"
 
 jobs:
   Build-Deploy:
