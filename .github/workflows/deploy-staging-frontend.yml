@@ -33,6 +33,7 @@ jobs:
           cd frontend
           yarn install --production
           yarn build
+          yarn generate:sitemap
       - name: "Frontend Firebase: install"
         run: |
           cd frontend/firebase
