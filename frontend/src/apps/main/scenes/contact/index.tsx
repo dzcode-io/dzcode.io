@@ -1,7 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
 import "./style.scss";
 import { ContactForm } from "./form";
+import React from "react";
+import { connect } from "react-redux";
 
 export const Contact = (props: any) => {
   return (
