@@ -1,8 +1,8 @@
+import "./style.scss";
 import React, { useState } from "react";
 import axios from "axios";
-import "./style.scss";
 import { toast } from "react-toastify";
-import { validateField } from "./validation/validateForm";
+import { validateField } from "./validation/validate-form";
 
 // TODO: change api endpoint to environment variables
 // API endpoint
@@ -47,14 +47,14 @@ export const ContactForm = (props) => {
     errors: { name: "", email: "", subject: "", message: "" },
   };
 
-  const [state, setstate] = useState(initialState);
+  const [state, setState] = useState(initialState);
 
   const handleChange = (event) => {
     const target = event.target;
     const { name, value } = target;
 
-    let errors = validateField(name, value);
-    setstate({
+    const errors = validateField(name, value);
+    setState({
       ...state,
       [name]: value,
       errors: { ...state.errors, ...errors },
@@ -84,7 +84,16 @@ export const ContactForm = (props) => {
 
     await sendMessage(form);
 
-    setstate(initialState);
+    setState(initialState);
+    toast.success("⚡ Message Sent Successfully ⚡", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const classnames = {
@@ -156,8 +165,8 @@ export const ContactForm = (props) => {
           autoComplete="off"
           name="message"
           id="message"
-          cols="25"
-          rows="8"
+          cols={25}
+          rows={8}
           value={state.message}
           onChange={handleChange}
           className={classnames.message}

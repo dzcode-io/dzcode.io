@@ -1,7 +1,13 @@
 import fse from "fs-extra";
-import { Collection } from "../types";
+import { join } from "path";
 
-export const getDataEntry = (path: string, include?: string[]) => {
+export interface Collection {
+  items: string[];
+  include: string[];
+}
+
+export const getDataEntry = (_path: string, include?: string[]) => {
+  const path = join(__dirname, "../../../data", _path);
   // Entry doesn't exist
   if (!fse.existsSync(path))
     return {
@@ -54,7 +60,7 @@ export const getDataCollection = (
   // add .c
   collectionName = collectionName.replace(".c.json", ".json");
   // Collection doesn't exist
-  const path = `${collectionType}/${collectionName}`;
+  const path = join(__dirname, "../../../data", collectionType, collectionName);
   if (!fse.existsSync(path)) return 404;
 
   // Read [collection].json

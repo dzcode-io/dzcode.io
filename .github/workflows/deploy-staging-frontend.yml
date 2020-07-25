@@ -3,10 +3,11 @@ name: Deploy Staging Frontend
 on:
   push:
     tags:
-      - 'stg-*'
+      - "stg-*"
     paths:
       - ".github/workflows/deploy-staging-frontend.yml"
       - "frontend/**"
+      - "data/*/ssr.json"
 
 jobs:
   Build-Deploy:
@@ -32,6 +33,7 @@ jobs:
           cd frontend
           yarn install --production
           yarn build
+          yarn generate:sitemap
       - name: "Frontend Firebase: install"
         run: |
           cd frontend/firebase

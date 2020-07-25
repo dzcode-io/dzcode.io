@@ -1,5 +1,5 @@
-import React from "react";
 import "./style.scss";
+import React from "react";
 
 type link = {
   href: string;
@@ -15,7 +15,7 @@ interface Props {
   data: category[];
 }
 
-export const Footer: React.FC<Props> = ({ data }) => {
+export const Footer = ({ data }: Props) => {
   return (
     <>
       <footer className="footer-grid ">
