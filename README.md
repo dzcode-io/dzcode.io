@@ -47,25 +47,33 @@ Make sure you have:
 - Install frontend dependencies:
 
 ```shell
- cd frontend && yarn && cd ..
+cd frontend
+yarn
+cd ..
 ```
 
 - Install frontend Firebase dependencies:
 
 ```shell
- cd frontend/firebase && yarn && cd ../..
+cd frontend/firebase
+yarn
+cd ../..
 ```
 
 - Install data dependencies:
 
 ```shell
- cd data && yarn && cd ..
+cd data
+yarn
+cd ..
 ```
 
 - Install fullstack dependencies:
 
 ```shell
- cd fullstack && yarn && cd ..
+cd fullstack
+yarn
+cd ..
 ```
 
 ### Run it locally
@@ -73,19 +81,23 @@ Make sure you have:
 - Build fullstack code:
 
 ```shell
- cd fullstack && yarn build:watch
+cd fullstack
+yarn build:watch
 ```
 
 - Open new terminal and Run frontend server:
 
 ```shell
-cd frontend && yarn dev
+cd frontend
+yarn dev
 ```
 
 - Open new terminal and Run data server:
 
 ```shell
- cd data && yarn build && yarn dev
+cd data
+yarn build
+yarn dev
 ```
 
 - Open new terminal and Run api emulators:
@@ -119,7 +131,8 @@ To add new article let's say "Awesome New Article", simply do the following:
   - `content.md` , a markdown file which contain your Article text, in form of [markdown](https://www.markdownguide.org/).
 - Lastly, to make you article visible, modify the content of [`data/articles/list.json`](https://github.com/dzcode-io/dzcode.io/blob/master/data/articles/list.json) and add your article's folder name `Awesome_New_Article` inside the `"items": []` array.
 
-To test and see your article locally, make sure to [you are all set](#get-started), after you run dzCode locally go to http://localhost:8080/Articles/Awesome_New_Article, you will see your article, and you can continue editing from there, once you are happy with the result, create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) against master branch, and we will be happy to merge it 😃.
+To test and see your article locally, make sure to [you are all set](#get-started), after you run dzCode locally go to <<http://localhost:8080/Articles/>
+Awesome_New_Article>, you will see your article, and you can continue editing from there, once you are happy with the result, create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) against master branch, and we will be happy to merge it 😃.
 
 ### Fix Typos, or Edit existing Article
 
