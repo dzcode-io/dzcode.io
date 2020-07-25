@@ -9,7 +9,14 @@ import { validateField } from "./validation/validate-form";
 
 const API = "http://localhost:5001/dzcode-io/us-central1/api";
 
-const sendMessage = async ({ name, email, subject, message }) => {
+type message = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+const sendMessage = async ({ name, email, subject, message }: message) => {
   try {
     const headers = {
       "Content-Type": "application/json",
@@ -38,7 +45,7 @@ const sendMessage = async ({ name, email, subject, message }) => {
   }
 };
 
-export const ContactForm = (props) => {
+export const ContactForm = () => {
   const initialState = {
     name: "",
     email: "",
@@ -49,8 +56,12 @@ export const ContactForm = (props) => {
 
   const [state, setState] = useState(initialState);
 
-  const handleChange = (event) => {
-    const target = event.target;
+  const handleChange = (
+    event:
+      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const target = event.currentTarget;
     const { name, value } = target;
 
     const errors = validateField(name, value);
@@ -61,7 +72,7 @@ export const ContactForm = (props) => {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     const emoji = Math.random() * 10 > 5 ? "✌" : "👍";
     event.preventDefault();
     toast.success(`${emoji} Message Sent Successfully!`, {
@@ -84,7 +95,7 @@ export const ContactForm = (props) => {
 
     await sendMessage(form);
 
-    setstate(initialState);
+    setState(initialState);
   };
 
   const classnames = {
