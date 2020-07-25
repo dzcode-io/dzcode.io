@@ -25,7 +25,7 @@ const navItems = [
   { id: 2, to: "/contribute", name: "Contribute" },
   { id: 3, to: "/projects", name: "Projects" },
   { id: 4, to: "/articles", name: "Articles" },
-  { id: 5, to: "/contact", name: "Contact" },
+  { id: 5, to: "/Contact-Us", name: "Contact" },
 ];
 
 // Temp Footer Data
@@ -87,7 +87,7 @@ export const App: React.SFC<{}> = () => {
           <Route path="/Learn" component={Learn} />
           <Route path="/Articles" component={Articles} />
           <Route path="/Projects" component={Projects} />
-          <Route path="/Contact" component={Contact} />
+          <Route path="/Contact-Us" component={Contact} />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
       </Suspense>
