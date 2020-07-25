@@ -15,7 +15,7 @@ const socialMedia = [
     icon: github,
   },
   { id: 2, name: "Learn", href: "/learn", icon: programer },
-  { id: 3, name: "Contact", href: "/contact", icon: contact },
+  { id: 3, name: "Contact", href: "/Contact-Us", icon: contact },
   { id: 4, name: "Support", href: "/support", icon: support },
 ];
 
