@@ -7,7 +7,7 @@ import cors from "cors";
 
 const app: Application = express();
 
-let allowedOrigins = ["https://dzcode.io"];
+let allowedOrigins = ["https://dzcode.io", "https://staging.dzcode.io/"];
 
 app.use(
   cors({
