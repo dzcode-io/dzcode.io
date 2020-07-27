@@ -8,10 +8,14 @@
       "port": 5001
     },
     "firestore": {
-      "port": 8080
+      "port": 5002
     },
     "ui": {
       "enabled": true
     }
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }

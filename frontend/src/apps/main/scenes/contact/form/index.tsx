@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import { validateField } from "./validation/validate-form";
-
 interface SendMessageParams {
   name: string;
   email: string;
@@ -20,7 +19,6 @@ const sendMessage = async ({
 }: SendMessageParams) => {
   try {
     const headers = {
-      "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "https://dzcode.io",
     };
 
@@ -32,7 +30,9 @@ const sendMessage = async ({
   } catch (error) {
     console.error(error);
 
-    toast.error("👻 Ops!, Something Went Wrong. 👻", {
+    const emoji = Math.random() * 10 > 5 ? "👀" : "💭";
+
+    toast.error(`${emoji} Ops!, Something Went Wrong.`, {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
@@ -44,7 +44,7 @@ const sendMessage = async ({
   }
 };
 
-const ContactForm = (props: any) => {
+export const ContactForm = (props: any) => {
   const initialState = {
     name: "",
     email: "",
@@ -67,8 +67,18 @@ const ContactForm = (props: any) => {
     });
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    const emoji = Math.random() * 10 > 5 ? "✌" : "👍";
+    event.preventDefault();
+    toast.success(`${emoji} Message Sent Successfully!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
     const { name, email, subject, message } = state;
     const form = {
@@ -180,5 +190,3 @@ const ContactForm = (props: any) => {
     </form>
   );
 };
-
-export default ContactForm;
