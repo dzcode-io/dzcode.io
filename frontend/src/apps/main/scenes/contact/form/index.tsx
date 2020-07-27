@@ -91,15 +91,6 @@ export const ContactForm = (props: any) => {
     await sendMessage(form);
 
     setState(initialState);
-    toast.success("⚡ Message Sent Successfully ⚡", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
   };
 
   const classnames = {
