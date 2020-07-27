@@ -1,6 +1,6 @@
-import React from "react";
 import "./style.scss";
 import { LinkV2 } from "src/components/link-v2";
+import React from "react";
 
 interface ButtonProps {
   link: string;
@@ -8,7 +8,7 @@ interface ButtonProps {
   className: "primary" | "secondary";
 }
 
-export const Button: React.SFC<ButtonProps> = ({ className, link, text }) => {
+export const Button = ({ className, link, text }: ButtonProps) => {
   return (
     <LinkV2 to={link} className={`btn-btn ${className}`}>
       {text}

@@ -1,7 +1,7 @@
-import React from "react";
 import "./style";
-import { Project } from "t9/types/fullstack";
 import { Link } from "react-router-dom";
+import { Project } from "t9/types/fullstack";
+import React from "react";
 
 export const Catalog = (props: { projectsList: Project[] | null }) => (
   <div className="catalog">

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // required modules
 const path = require("path");
 const webpack = require("webpack");

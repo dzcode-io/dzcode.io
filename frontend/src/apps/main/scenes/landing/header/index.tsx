@@ -1,12 +1,10 @@
-import React from "react";
-
 import "./style";
-import programer from "t9/apps/main/assets/png/programmer.png";
-import contact from "t9/apps/main/assets/png/contact.png";
-import github from "t9/apps/main/assets/png/github.png";
-
 import { Button } from "src/components/button";
 import { LinkV2 } from "src/components/link-v2";
+import React from "react";
+import contact from "t9/apps/main/assets/png/contact.png";
+import github from "t9/apps/main/assets/png/github.png";
+import programer from "t9/apps/main/assets/png/programmer.png";
 
 const socialMedia = [
   {

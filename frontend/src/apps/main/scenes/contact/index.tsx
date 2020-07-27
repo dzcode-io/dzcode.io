@@ -1,10 +1,9 @@
+import "./style.scss";
+import { ContactForm } from "./form";
 import React from "react";
 import { connect } from "react-redux";
 
-import "./style.scss";
-import { ContactForm } from "./form";
-
-export const Contact = (props: any) => {
+const Contact = () => {
   return (
     <section className="contact">
       <div className="left">
@@ -18,8 +17,8 @@ export const Contact = (props: any) => {
       </div>
 
       <header className="contact-info">
-        <h1>Dzcode.io</h1>
-        <h2>Dzcode, Algeria</h2>
+        <h1>dzCode.io</h1>
+        <h2>dzCode, Algeria</h2>
         <a href="tel:+21367-626-1157">+213 06-76-26-11-57</a>
         <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>
       </header>

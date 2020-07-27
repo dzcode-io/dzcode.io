@@ -1,10 +1,10 @@
-import { actionType } from "../../constants";
+import { Article } from "t9/types/fullstack";
+import Axios from "axios";
 import { Dispatch } from "react";
 import { MainStoreStateInterface } from "t9/types/main";
-import Axios from "axios";
-import { hasInCollection } from "src/common/utils";
-import { Article } from "t9/types/fullstack";
+import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
+import { hasInCollection } from "src/common/utils";
 
 const dataURL = fullstackConfig.data.url;
 

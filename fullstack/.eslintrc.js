@@ -9,6 +9,7 @@ module.exports = {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: "module", // Allows for the use of imports
   },
+  plugins: ["unicorn"],
   rules: {
     "sort-imports": [
       "error",
@@ -19,5 +20,8 @@ module.exports = {
         memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
       },
     ],
+    "unicorn/filename-case": "error",
+    "@typescript-eslint/explicit-function-return-type": 0,
+    camelcase: 1,
   },
 };

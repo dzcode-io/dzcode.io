@@ -6,7 +6,7 @@ export const isAlphanumeric = (string: string) => {
   const alphanumeric = /^[a-zA-Z]+$/;
   return alphanumeric.test(string);
 };
-export const checkLength = (string: string, min: Number, max: Number) => {
+export const checkLength = (string: string, min: number, max: number) => {
   if (min <= max) return "min should be less than or equal to max";
   if (min <= string.length) {
     return "very short";
@@ -33,6 +33,6 @@ export const isEmail = (email: string) => {
   return regex.test(email);
 };
 export const isISODate = (date: string) => {
-  let regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/;
+  const regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z))/;
   return regex.test(date);
 };

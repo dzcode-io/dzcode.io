@@ -5,10 +5,11 @@
   "scripts": {
     "clear": "rimraf ./firebase/public",
     "dev": "yarn clear && cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js -wd --hot",
-    "lint:check": "eslint '*{,/**/*}.{js,ts,tsx}' --report-unused-disable-directives",
-    "lint:fix": "eslint '*{,/**/*}.{js,ts,tsx}' --quiet --fix",
+    "lint:check": "eslint . --ext .tsx,.ts,.js,.json --report-unused-disable-directives",
+    "lint:fix": "eslint . --ext .tsx,.ts,.js,.json --quiet --fix",
     "test": "echo 0",
-    "build": "yarn clear cross-env && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details"
+    "build": "yarn clear cross-env && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details",
+    "generate:sitemap": "node src/build/sitemap.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,11 @@
   "engines": {
     "node": ">=10",
     "yarn": "1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:check"
+    }
   },
   "browserslist": {
     "production": [
@@ -67,6 +73,7 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-unicorn": "^21.0.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
     "immutable": "^4.0.0-rc.12",
@@ -90,6 +97,7 @@
     "redux-thunk": "^2.3.0",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
+    "sitemap": "^6.2.0",
     "source-map-loader": "^0.2.4",
     "terser-webpack-plugin": "^2.3.5",
     "typescript": "^3.8.3",
@@ -97,6 +105,7 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
+    "husky": "^4.2.5",
     "webpack-dev-server": "^3.10.3"
   }
 }

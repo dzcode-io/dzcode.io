@@ -1,14 +1,14 @@
-import { ProjectsSceneProps } from "t9/apps/main/scenes/projects";
+import { ProjectsSceneInitialState } from "t9/apps/main/scenes/projects";
 import { actionType } from "t9/apps/main/redux/constants";
 
 export const projectsScene = (
-  state: ProjectsSceneProps = {
+  state: ProjectsSceneInitialState = {
     projectsList: null,
     currentProject: null,
   },
   action: {
     type: string;
-    payload: ProjectsSceneProps;
+    payload: ProjectsSceneInitialState;
   },
 ) => {
   switch (action.type) {
