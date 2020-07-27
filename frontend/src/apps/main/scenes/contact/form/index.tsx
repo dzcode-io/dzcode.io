@@ -32,7 +32,7 @@ const sendMessage = async ({
   } catch (error) {
     console.error(error);
 
-    let emoji = Math.random() * 10 > 5 ? "👀" : "💭";
+    const emoji = Math.random() * 10 > 5 ? "👀" : "💭";
 
     toast.error(`${emoji} Ops!, Something Went Wrong.`, {
       position: "top-right",
@@ -70,7 +70,7 @@ export const ContactForm = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    let emoji = Math.random() * 10 > 5 ? "✌" : "👍";
+    const emoji = Math.random() * 10 > 5 ? "✌" : "👍";
     event.preventDefault();
     toast.success(`${emoji} Message Sent Successfully!`, {
       position: "top-right",
