@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import { validateField } from "./validation/validate-form";
-
 interface SendMessageParams {
   name: string;
   email: string;
@@ -20,7 +19,6 @@ const sendMessage = async ({
 }: SendMessageParams) => {
   try {
     const headers = {
-      "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "https://dzcode.io",
     };
 
@@ -46,7 +44,7 @@ const sendMessage = async ({
   }
 };
 
-export const ContactForm = (props) => {
+export const ContactForm = (props: any) => {
   const initialState = {
     name: "",
     email: "",
