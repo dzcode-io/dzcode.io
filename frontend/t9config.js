@@ -13,6 +13,7 @@ module.exports = {
       plugins: {
         fbAppCode: "1468143526724404",
       },
+      icon: "src/assets/ico/logo-square.ico",
     },
   },
 };
