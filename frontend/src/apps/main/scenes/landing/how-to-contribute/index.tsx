@@ -1,5 +1,5 @@
-import React from "react";
 import "./style";
+import React from "react";
 
 export const HowToContribute = () => (
   <section className="how_to_contribute">

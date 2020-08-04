@@ -1,5 +1,8 @@
+import {
+  getDataCollection,
+  getDataEntry,
+} from "../../fullstack/dist/utils/data";
 import express from "express";
-import { getDataEntry, getDataCollection } from "./utils/data";
 import { fullstackConfig } from "./config";
 
 const app = express();

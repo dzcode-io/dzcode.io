@@ -1,14 +1,14 @@
-import { ArticlesSceneProps } from "t9/apps/main/scenes/articles";
+import { ArticlesSceneInitialState } from "t9/apps/main/scenes/articles";
 import { actionType } from "t9/apps/main/redux/constants";
 
 export const articlesScene = (
-  state: ArticlesSceneProps = {
+  state: ArticlesSceneInitialState = {
     articlesList: null,
     currentArticle: null,
   },
   action: {
     type: string;
-    payload: ArticlesSceneProps;
+    payload: ArticlesSceneInitialState;
   },
 ) => {
   switch (action.type) {

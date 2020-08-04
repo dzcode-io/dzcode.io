@@ -1,11 +1,10 @@
+import "./style";
 import React, { useEffect } from "react";
 import { Document } from "t9/types/fullstack";
 import Markdown from "react-markdown";
-import "./style";
-
-import programer from "t9/apps/main/assets/png/programmer.png";
 import contact from "t9/apps/main/assets/png/contact.png";
 import github from "t9/apps/main/assets/png/github.png";
+import programer from "t9/apps/main/assets/png/programmer.png";
 import support from "t9/apps/main/assets/png/support.png";
 
 const socialMedia = [
@@ -16,7 +15,7 @@ const socialMedia = [
     icon: github,
   },
   { id: 2, name: "Learn", href: "/learn", icon: programer },
-  { id: 3, name: "Contact", href: "/contact", icon: contact },
+  { id: 3, name: "Contact", href: "/Contact-Us", icon: contact },
   { id: 4, name: "Support", href: "/support", icon: support },
 ];
 
