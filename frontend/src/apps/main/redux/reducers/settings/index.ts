@@ -3,7 +3,7 @@ import { actionType } from "t9/apps/main/redux/constants";
 
 export const settings = (
   state: MainSettings = {
-    darkMode: true,
+    darkMode: localStorage.getItem("darkMode") === "on",
   },
   action: {
     type: string;
@@ -12,6 +12,7 @@ export const settings = (
 ) => {
   switch (action.type) {
     case actionType.UPDATE_SETTINGS:
+      localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
       return { ...state, ...action.payload };
     default:
       return state;
