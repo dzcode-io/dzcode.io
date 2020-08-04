@@ -11,7 +11,6 @@ const isDevelopment = process.env.NODE_ENV === "development";
 const fbpCode = app.analytics.facebook;
 const gaCode = app.analytics.google;
 const fbAppCode = app.plugins.fbAppCode;
-const icon = app.icon;
 const plugins = [];
 
 // SSR --------------------------------|
@@ -87,8 +86,6 @@ pages.forEach((page) => {
         // SEO info
         keywords: "",
         lang: "en",
-        // icon
-        icon,
       },
     }),
   );
