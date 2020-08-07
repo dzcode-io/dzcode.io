@@ -1,25 +1,48 @@
-import "./style";
 import React, { useEffect } from "react";
+import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 import { Document } from "t9/types/fullstack";
-import Markdown from "react-markdown";
-import contact from "t9/apps/main/assets/png/contact.png";
-import github from "t9/apps/main/assets/png/github.png";
-import programer from "t9/apps/main/assets/png/programmer.png";
-import support from "t9/apps/main/assets/png/support.png";
+import EditIcon from "@material-ui/icons/Edit";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import { Markdown } from "t9/apps/main/components/markdown";
+import { SpeedDial } from "t9/apps/main/components/SpeedDial";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import Typography from "@material-ui/core/Typography";
 
-const socialMedia = [
-  {
-    id: 1,
-    name: "dzcode",
-    href: "https://github.com/dzcode-io/dzcode.io",
-    icon: github,
-  },
-  { id: 2, name: "Learn", href: "/learn", icon: programer },
-  { id: 3, name: "Contact", href: "/Contact-Us", icon: contact },
-  { id: 4, name: "Support", href: "/support", icon: support },
+const actions = [
+  { icon: <EditIcon />, name: "Edit This Article" },
+  { icon: <FileCopyIcon />, name: "Copy URL" },
+  { icon: <FacebookIcon />, name: "Share to Facebook" },
+  { icon: <TwitterIcon />, name: "Share to Twitter" },
+  { icon: <LinkedInIcon />, name: "Share to LinkedIn" },
+  { icon: <InstagramIcon />, name: "Share to Instagram" },
 ];
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    heroImage: {
+      width: "100%",
+      maxHeight: "400px",
+      objectFit: "cover",
+    },
+    speedDial: {
+      position: "fixed",
+      "&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft": {
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+      },
+      "&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight": {
+        top: theme.spacing(2),
+        left: theme.spacing(2),
+      },
+    },
+  }),
+);
+
 export const Content = (props: ContentInterface) => {
+  const classes = useStyles();
   useEffect(() => {
     props.fetchCurrentDocument();
     setTimeout(() => {
@@ -34,30 +57,28 @@ export const Content = (props: ContentInterface) => {
           {/* Image */}
           {currentDocument.image && (
             <img
-              className="hero-image"
+              className={classes.heroImage}
               src={currentDocument.image}
               alt={currentDocument.title}
             />
           )}
           {/* Title */}
-          <h2 className="title">{currentDocument.title}</h2>
+          <Typography variant="h2" component="h2" gutterBottom>
+            {currentDocument.title}
+          </Typography>
           {/* Description */}
-          <small className="description">{currentDocument.description}</small>
-          <hr className="break" />
+          <Typography variant="caption" display="block" gutterBottom>
+            {currentDocument.description}
+          </Typography>
+          <hr />
           {/* Content */}
-          <Markdown className="content" source={currentDocument.content} />
-          <hr className="break" />
-          {/* Contact + Edit*/}
-          <div className="actions">
-            {socialMedia.map((item) => {
-              return (
-                <div key={item.id} className="item">
-                  <img src={item.icon} alt={item.name} className="icon" />
-                  <a href={item.href}>{item.name}</a>
-                </div>
-              );
-            })}
-          </div>
+          <Markdown>{currentDocument.content + ""}</Markdown>
+          {/* Actions */}
+          <SpeedDial
+            className={classes.speedDial}
+            ariaLabel="Actions SpeedDial"
+            actions={actions}
+          />
           {/* Comments */}
           <div
             className="fb-comments"
