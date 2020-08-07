@@ -3,7 +3,8 @@ import { actionType } from "t9/apps/main/redux/constants";
 
 export const learnScene = (
   state: LearnSceneInitialState = {
-    documentationList: null,
+    sidebarTree: null,
+    expanded: [],
     currentDocument: null,
   },
   action: {

@@ -27,7 +27,7 @@ export const TopProjects = ({ topProjects }: TopProjectsProps) => (
             <div className="info">
               <div className="title">{project.title}</div>
 
-              <LinkV2 to={`https://github.com/${project.githubURI}`}>
+              <LinkV2 href={`https://github.com/${project.githubURI}`}>
                 <img
                   src={`https://img.shields.io/github/stars/${project.githubURI}?style=social`}
                 />
@@ -37,7 +37,7 @@ export const TopProjects = ({ topProjects }: TopProjectsProps) => (
             <LinkV2
               className="btn btn__primary"
               id="buttons__1"
-              to={`/Projects/${project.slug}`}
+              href={`/Projects/${project.slug}`}
             >
               Explore Project
             </LinkV2>

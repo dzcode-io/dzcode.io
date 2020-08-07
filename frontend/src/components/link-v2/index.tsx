@@ -1,16 +1,19 @@
-import { Link, LinkProps } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { LinkProps } from "@material-ui/core";
 import React from "react";
 
-type LinkV2Props = LinkProps;
-
-export const LinkV2 = (props: LinkV2Props) => {
-  console.log(props.to, location.origin);
+export const LinkV2 = (
+  props: React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >,
+) => {
   if (
-    (props.to as string).startsWith("/") ||
-    (props.to as string).startsWith(location.origin)
+    props.href &&
+    (props.href.startsWith("/") || props.href.startsWith(location.origin))
   ) {
-    return <Link {...props} />;
+    return <Link {...(props as LinkProps)} to={props.href} />;
   } else {
-    return <a {...props} href={props.to as string} />;
+    return <a {...props} />;
   }
 };
