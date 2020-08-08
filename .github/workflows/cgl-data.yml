@@ -10,7 +10,7 @@ on:
       - "data/**"
 
 jobs:
-  Build-Deploy:
+  Build-Check:
     runs-on: ubuntu-latest
 
     strategy:
