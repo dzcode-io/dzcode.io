@@ -63,7 +63,7 @@ export const Content = (props: ContentInterface) => {
             />
           )}
           {/* Title */}
-          <Typography variant="h2" component="h2" gutterBottom>
+          <Typography variant="h3" gutterBottom>
             {currentDocument.title}
           </Typography>
           {/* Description */}
