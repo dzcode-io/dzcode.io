@@ -59,7 +59,12 @@ export const fetchCurrentDocument = () => async (
       type: actionType.UPDATE_LEARN_SCENE,
       payload: { currentDocument: cashedDocument },
     });
-  } else
+  } else {
+    // BUG: cashing not working in local (slug related issue)
+    dispatch({
+      type: actionType.UPDATE_LEARN_SCENE,
+      payload: { currentDocument: null },
+    });
     try {
       const response = await Axios.get(
         dataURL + `/documentation/${documentSlug}.json`,
@@ -78,4 +83,5 @@ export const fetchCurrentDocument = () => async (
     } catch (error) {
       console.error(error);
     }
+  }
 };
