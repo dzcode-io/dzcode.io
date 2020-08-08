@@ -27,9 +27,9 @@ export const fetchCurrentArticle = () => async (
   dispatch: Dispatch<any>,
   getState: MainStoreStateInterface,
 ) => {
-  const articleSlug = location.pathname.substring(
-    location.pathname.indexOf("/", 1) + 1,
-  );
+  const articleSlug = location.pathname
+    .substring(location.pathname.indexOf("/", 1) + 1)
+    .replace("/", "");
   const cashedArticle = hasInCollection<Article>(
     getState().articles,
     "slug",
