@@ -2,10 +2,13 @@ import "./style";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import { Footer } from "t9/apps/main/components/footer";
 import { Loading } from "src/components/loading";
 import { Navbar } from "t9/apps/main/components/navbar";
 import { Provider } from "react-redux";
+import { Theme } from "t9/apps/main/components/theme";
 import { ToastContainer } from "react-toastify";
 import { mainStore } from "t9/apps/main/redux";
 import { render } from "react-dom";
@@ -76,23 +79,28 @@ const data = [
   },
 ];
 
-export const App: React.SFC<{}> = () => {
+export const App = () => {
   return (
-    <BrowserRouter>
-      <Navbar navItems={navItems} />
-      <ToastContainer />
-      <Suspense fallback={Loading}>
-        <Switch>
-          <Route path="/" exact={true} component={Landing} />
-          <Route path="/Learn" component={Learn} />
-          <Route path="/Articles" component={Articles} />
-          <Route path="/Projects" component={Projects} />
-          <Route path="/Contact-Us" component={Contact} />
-          <Route render={() => <Redirect to="/" />} />
-        </Switch>
-      </Suspense>
-      <Footer data={data} />
-    </BrowserRouter>
+    <Theme>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <BrowserRouter>
+          <Navbar navItems={navItems} />
+          <ToastContainer />
+          <Suspense fallback={Loading}>
+            <Switch>
+              <Route path="/" exact={true} component={Landing} />
+              <Route path="/Learn" component={Learn} />
+              <Route path="/Articles" component={Articles} />
+              <Route path="/Projects" component={Projects} />
+              <Route path="/Contact-Us" component={Contact} />
+              <Route render={() => <Redirect to="/" />} />
+            </Switch>
+          </Suspense>
+          <Footer data={data} />
+        </BrowserRouter>
+      </Container>
+    </Theme>
   );
 };
 

@@ -1,7 +1,7 @@
 import "./style";
 import React, { useEffect } from "react";
 import { Article } from "t9/types/fullstack";
-import Markdown from "react-markdown";
+// import Markdown from "react-markdown";
 import contact from "t9/apps/main/assets/png/contact.png";
 import github from "t9/apps/main/assets/png/github.png";
 import programer from "t9/apps/main/assets/png/programmer.png";
@@ -45,7 +45,7 @@ export const Content = (props: ContentInterface) => {
           <small className="description">{currentArticle.description}</small>
           <hr className="break" />
           {/* Content */}
-          <Markdown className="content" source={currentArticle.content} />
+          {/* <Markdown className="content" source={currentArticle.content} /> */}
           <hr className="break" />
           {/* Contact + Edit*/}
           <div className="actions">

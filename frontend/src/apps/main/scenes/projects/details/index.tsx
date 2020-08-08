@@ -1,6 +1,6 @@
 import "./style";
 import React, { useEffect } from "react";
-import Markdown from "react-markdown";
+// import Markdown from "react-markdown";
 import { Project } from "t9/types/fullstack";
 import contact from "t9/apps/main/assets/png/contact.png";
 import github from "t9/apps/main/assets/png/github.png";
@@ -45,7 +45,7 @@ export const Details = (props: DetailsInterface) => {
           <small className="description">{currentProject.description}</small>
           <hr className="break" />
           {/* Details */}
-          <Markdown className="details" source={currentProject.content} />
+          {/* <Markdown className="details" source={currentProject.content} /> */}
           <hr className="break" />
           {/* Contact + Edit*/}
           <div className="actions">
