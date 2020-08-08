@@ -7,6 +7,7 @@ import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { Markdown } from "t9/apps/main/components/markdown";
+import Skeleton from "@material-ui/lab/Skeleton";
 import { SpeedDial } from "t9/apps/main/components/SpeedDial";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Typography from "@material-ui/core/Typography";
@@ -38,18 +39,41 @@ const useStyles = makeStyles((theme: Theme) =>
         left: theme.spacing(2),
       },
     },
+    ContentSkeleton: {},
   }),
 );
 
 export const Content = (props: ContentInterface) => {
-  const classes = useStyles();
   useEffect(() => {
     props.fetchCurrentDocument();
     setTimeout(() => {
       window.FB && window.FB.XFBML.parse();
     }, 3000);
   }, []);
+
+  const classes = useStyles();
   const { currentDocument } = props;
+
+  const ContentSkeleton = (
+    <>
+      <Skeleton variant="rect" width="100%">
+        <div style={{ paddingTop: "57%" }} />
+      </Skeleton>
+      <Typography variant="h3" gutterBottom>
+        <Skeleton />
+      </Typography>
+
+      {[80, 70, 40, 80, 80, 10].map((width, index) => (
+        <Skeleton
+          key={`ss-${index}`}
+          className={classes.ContentSkeleton}
+          animation={index % 2 ? "pulse" : "wave"}
+          width={`${width}%`}
+        />
+      ))}
+    </>
+  );
+
   return (
     <div className="content">
       {currentDocument ? (
@@ -88,7 +112,7 @@ export const Content = (props: ContentInterface) => {
           />
         </div>
       ) : (
-        "Loading Document..."
+        ContentSkeleton
       )}
     </div>
   );

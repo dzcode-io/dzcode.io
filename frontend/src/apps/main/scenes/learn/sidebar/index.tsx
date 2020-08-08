@@ -57,11 +57,12 @@ export const Sidebar = (props: {
 
   const SidebarSkeleton = (
     <>
-      {[1, 2, 3, 4, 5, 6].map((index) => (
+      {[50, 40, 70, 60, 65, 40].map((width, index) => (
         <Skeleton
           key={`ss-${index}`}
           className={classes.SidebarSkeleton}
           animation={index % 2 ? "pulse" : "wave"}
+          width={`${width}%`}
         />
       ))}
     </>
