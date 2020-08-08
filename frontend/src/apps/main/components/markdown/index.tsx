@@ -21,10 +21,11 @@ const options = {
       component: Typography,
       props: { gutterBottom: true, variant: "caption", paragraph: true },
     },
-    p: { component: Typography, props: { paragraph: true } },
+    p: { component: Typography, props: { paragraph: true, align: "justify" } },
     a: { component: LinkV2 },
+    pre: { props: { style: { overflowX: "auto" } } },
   },
 };
 export const Markdown = (props: MarkdownProps) => {
-  return <ReactMarkdown {...props} options={options} />;
+  return <ReactMarkdown {...props} options={options as any} />;
 };
