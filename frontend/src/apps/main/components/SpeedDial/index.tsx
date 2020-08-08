@@ -25,11 +25,11 @@ export const SpeedDial = (props: SpeedDialProps) => {
 
   return (
     <SpeedDialMUI
-      {...props}
       icon={<SpeedDialIcon />}
       onClose={handleClose}
       onOpen={handleOpen}
       open={open}
+      {...props}
     >
       {props.actions.map((action) => (
         <SpeedDialAction
