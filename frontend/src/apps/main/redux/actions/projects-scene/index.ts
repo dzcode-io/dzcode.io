@@ -29,7 +29,7 @@ export const fetchCurrentProject = () => async (
 ) => {
   const projectSlug = location.pathname
     .substring(location.pathname.indexOf("/", 1) + 1)
-    .replace("/", "");
+    .replace(/\/$/, "");
 
   const cashedProject = hasInCollection<Project>(
     getState().projects,
