@@ -29,7 +29,7 @@ export const fetchCurrentArticle = () => async (
 ) => {
   const articleSlug = location.pathname
     .substring(location.pathname.indexOf("/", 1) + 1)
-    .replace("/", "");
+    .replace(/\/$/, "");
   const cashedArticle = hasInCollection<Article>(
     getState().articles,
     "slug",
