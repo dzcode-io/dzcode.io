@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Sidebar = (props: {
   tree: SidebarTreeItem[] | null;
   expanded: string[];
+  selected: string;
 }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -98,7 +99,7 @@ export const Sidebar = (props: {
 
   if (md) {
     return (
-      <TreeView expanded={props.expanded}>
+      <TreeView expanded={props.expanded} selected={props.selected}>
         {props.tree
           ? props.tree.map((tree) => renderTree(tree))
           : SidebarSkeleton}
@@ -117,7 +118,11 @@ export const Sidebar = (props: {
           onClick={handleOpen}
         />
         <Drawer anchor="bottom" onClose={handleClose} open={open}>
-          <TreeView expanded={props.expanded} onClick={handleClose}>
+          <TreeView
+            expanded={props.expanded}
+            selected={props.selected}
+            onClick={handleClose}
+          >
             {props.tree
               ? props.tree.map((tree) => renderTree(tree))
               : SidebarSkeleton}

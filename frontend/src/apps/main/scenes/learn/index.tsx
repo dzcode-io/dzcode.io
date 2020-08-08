@@ -22,7 +22,11 @@ export const LearnScene = (props: LearnSceneProps) => {
     <Grid container className="learn">
       {/* Sidebar */}
       <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
-        <Sidebar tree={props.sidebarTree} expanded={props.expanded} />
+        <Sidebar
+          tree={props.sidebarTree}
+          expanded={props.expanded}
+          selected={props.currentDocument ? props.currentDocument.slug : ""}
+        />
       </Grid>
       {/* Content */}
       <Grid item xs>
