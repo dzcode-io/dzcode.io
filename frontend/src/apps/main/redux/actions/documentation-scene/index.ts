@@ -44,9 +44,9 @@ export const fetchCurrentDocument = () => async (
   dispatch: Dispatch<any>,
   getState: MainStoreStateInterface,
 ) => {
-  const documentSlug = location.pathname.substring(
-    location.pathname.indexOf("/", 1) + 1,
-  );
+  const documentSlug = location.pathname
+    .substring(location.pathname.indexOf("/", 1) + 1)
+    .replace("/", "");
   const cashedDocument = hasInCollection<Document>(
     getState().documentation,
     "slug",
