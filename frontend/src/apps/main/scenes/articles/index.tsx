@@ -30,7 +30,7 @@ export const ArticlesScene = (props: ArticlesSceneProps) => {
       </Grid>
       {/* Content */}
       <Grid item xs>
-        {/* <Route
+        <Route
           path={`${path}/:articleSlug`}
           render={() => (
             <Content
@@ -39,12 +39,12 @@ export const ArticlesScene = (props: ArticlesSceneProps) => {
               fetchCurrentArticle={props.fetchCurrentArticle}
             />
           )}
-        /> */}
+        />
       </Grid>
       {/* Headers */}
-      {/* <Grid item xs={false} lg={2}>
+      <Grid item xs={false} lg={2}>
         <div style={{ height: "200px", background: "translate" }} />
-      </Grid> */}
+      </Grid>
     </Grid>
   );
 };
