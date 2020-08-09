@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const Navbar = ({ navItems }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const navToggle = () => {
     setIsOpen(!isOpen);
   };
