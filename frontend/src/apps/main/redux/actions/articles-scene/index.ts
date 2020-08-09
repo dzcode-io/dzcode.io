@@ -1,10 +1,11 @@
+import { MainStoreStateInterface, SidebarTreeItem } from "t9/types/main";
 import { Article } from "t9/types/fullstack";
 import Axios from "axios";
 import { Dispatch } from "react";
-import { MainStoreStateInterface } from "t9/types/main";
 import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
 import { hasInCollection } from "src/common/utils";
+import { listToTree } from "src/common/utils/list-to-tree";
 
 const dataURL = fullstackConfig.data.url;
 
@@ -14,9 +15,25 @@ export const fetchArticlesList = () => async (
 ) => {
   try {
     const response = await Axios.get(dataURL + "/articles/list.c.json");
+    const articlesList = response.data;
+    // convert list into tree
+    const { tree, ids } = listToTree<Article, SidebarTreeItem>(
+      articlesList,
+      (item) => item.slug,
+      (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
+      "children",
+      (item) => {
+        return {
+          content: item.title,
+          id: item.slug,
+          link: "/Articles/" + item.slug,
+        };
+      },
+    );
+
     dispatch({
       type: actionType.UPDATE_ARTICLES_SCENE,
-      payload: { articlesList: response.data },
+      payload: { sidebarTree: tree, expanded: ids },
     });
   } catch (error) {
     console.error(error);
@@ -42,7 +59,12 @@ export const fetchCurrentArticle = () => async (
       type: actionType.UPDATE_ARTICLES_SCENE,
       payload: { currentArticle: cashedArticle },
     });
-  } else
+  } else {
+    // BUG: cashing not working in local (slug related issue)
+    dispatch({
+      type: actionType.UPDATE_ARTICLES_SCENE,
+      payload: { currentArticle: null },
+    });
     try {
       const response = await Axios.get(
         dataURL + `/articles/${articleSlug}.json`,
@@ -61,4 +83,5 @@ export const fetchCurrentArticle = () => async (
     } catch (error) {
       console.error(error);
     }
+  }
 };
