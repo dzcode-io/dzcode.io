@@ -2,7 +2,7 @@ import * as React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
+import { LinkV2 as Link } from "../../../../components/link-v2";
 import { ReduxState } from "../../types";
 import Typography from "@material-ui/core/Typography";
 import { useSelector } from "react-redux";
@@ -28,12 +28,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: "30px",
   },
   copyright: {
-    color: theme.palette.common.white,
     fontSize: "14px",
   },
   link: {
     textDecoration: "none",
-    color: theme.palette.grey[200],
     "&:hover": {
       color: theme.palette.primary.light,
       textDecoration: "none",
@@ -44,7 +42,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   categoryTitle: {
     paddingBottom: "12px",
-    color: theme.palette.grey[400],
   },
 }));
 
