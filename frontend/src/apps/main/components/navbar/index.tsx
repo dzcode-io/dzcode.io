@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
     },
     toolbarSecondary: {
-      background: theme.palette.background.default,
+      background: theme.palette.background.paper,
       borderBottom: `1px solid ${theme.palette.background.paper}`,
     },
     toolbarTitle: {

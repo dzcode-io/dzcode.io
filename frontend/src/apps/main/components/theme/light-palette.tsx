@@ -40,6 +40,6 @@ export default {
   },
   background: {
     default: colors.common.white,
-    paper: colors.grey[300],
+    paper: colors.grey[100],
   },
 };

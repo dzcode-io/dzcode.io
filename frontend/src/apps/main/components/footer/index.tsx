@@ -24,7 +24,7 @@ export interface FooterInitialState {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: "100%",
-    background: theme.palette.background.default,
+    background: theme.palette.background.paper,
     borderTop: `1px solid ${theme.palette.background.paper}`,
     padding: "30px",
   },
