@@ -1,45 +1,152 @@
-import "./style.scss";
-import { Link, NavLink } from "react-router-dom";
-import React, { useState } from "react";
+import * as React from "react";
+import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
+import Link from "@material-ui/core/Link";
+import { ReduxState } from "../../types";
+import SearchIcon from "@material-ui/icons/Search";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import logo from "./logo.png";
 
-interface NavigationLink {
-  id: number;
-  name: string;
-  to: string;
+import { useSelector } from "react-redux";
+
+type Section = { title: string; url: string };
+
+export interface NavbarInitialState {
+  sections: Section[] | null;
 }
 
-interface Props {
-  navItems: NavigationLink[];
-}
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      maxWidth: "100%",
+      overflowX: "hidden",
+    },
+    icon: {
+      color: theme.palette.grey[100],
+    },
+    button: {
+      color: theme.palette.grey[100],
+    },
+    toolbar: {
+      borderBottom: `1px solid ${theme.palette.divider}`,
+      background: theme.palette.background.paper,
+    },
+    toolbarContainer: {
+      maxWidth: theme.breakpoints.values.lg,
+      margin: "auto",
+      justifyContent: "space-between",
+    },
+    toolbarSecondary: {
+      background: theme.palette.primary.contrastText,
+    },
+    toolbarTitle: {
+      flex: 1,
+    },
+    toolbarLink: {
+      color: theme.palette.common.white,
+      padding: theme.spacing(1),
+      flexShrink: 0,
+      textDecoration: "none",
+      "&:hover": {
+        color: theme.palette.primary.light,
+        textDecoration: "none",
+      },
+    },
+    logo: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "100%",
+    },
+    logoImg: {
+      maxWidth: "120px",
+    },
+    subscribe: {
+      color: theme.palette.common.white,
 
-export const Navbar = ({ navItems }: Props) => {
-  const [isOpen, setIsOpen] = useState(true);
-  const navToggle = () => {
-    setIsOpen(!isOpen);
-  };
+      "&:hover": {
+        color: theme.palette.primary.light,
+      },
+    },
+    search: {
+      color: theme.palette.common.white,
+      "&:hover": {
+        color: theme.palette.primary.light,
+      },
+    },
+  }),
+);
+
+export const Navbar: React.FC = () => {
+  const classes = useStyles();
+  const sections = useSelector(
+    (state: ReduxState) => state.layout.navbarInitialState.sections,
+  );
 
   return (
-    <nav className="Navbar">
-      <Link className="brand" to="/">
-        dzCode.io
-      </Link>
-      <div className="Navbar__burger" onClick={navToggle}>
-        <div className="burger__button" />
-      </div>
-      <div className={`Navbar__list ${isOpen && "open"}`}>
-        {navItems.map((navItem: NavigationLink) => {
-          return (
-            <NavLink
-              className="navLink"
-              activeClassName="Navbar__link--active"
-              key={navItem.id}
-              to={navItem.to}
-            >
-              {navItem.name}
-            </NavLink>
-          );
-        })}
-      </div>
-    </nav>
+    <header className={classes.root}>
+      <Toolbar className={classes.toolbar}>
+        <Grid
+          container
+          item
+          xs={12}
+          lg={10}
+          className={classes.toolbarContainer}
+        >
+          <Button size="small" className={classes.subscribe}>
+            Subscribe
+          </Button>
+          <Typography
+            component="h2"
+            variant="h5"
+            color="inherit"
+            align="center"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            <Link href="/" className={classes.logo}>
+              <img src={logo} alt="logo" className={classes.logoImg} />
+            </Link>
+          </Typography>
+          <IconButton>
+            <SearchIcon className={classes.search} />
+          </IconButton>
+        </Grid>
+      </Toolbar>
+
+      <Toolbar
+        component="nav"
+        variant="dense"
+        className={classes.toolbarSecondary}
+      >
+        <Grid
+          container
+          xs={12}
+          item
+          lg={10}
+          className={classes.toolbarContainer}
+        >
+          {sections
+            ? sections.map((section) => (
+                <Link
+                  color="inherit"
+                  noWrap
+                  key={section.title}
+                  variant="body2"
+                  href={section.url}
+                  className={classes.toolbarLink}
+                >
+                  {section.title}
+                </Link>
+              ))
+            : null}
+        </Grid>
+      </Toolbar>
+    </header>
   );
 };
+
+export default Navbar;

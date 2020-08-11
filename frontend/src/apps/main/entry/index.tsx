@@ -19,77 +19,16 @@ const Projects = lazy(() => import("t9/apps/main/scenes/projects"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
 const Contact = lazy(() => import("t9/apps/main/scenes/contact"));
 
-// Temp data:
-
-// TODO: replace with props from the store
-
-const navItems = [
-  { id: 1, to: "/Learn/Getting_Started", name: "Learn" },
-  { id: 2, to: "/contribute", name: "Contribute" },
-  { id: 3, to: "/projects", name: "Projects" },
-  { id: 4, to: "/articles", name: "Articles" },
-  { id: 5, to: "/Contact-Us", name: "Contact" },
-];
-
-// Temp Footer Data
-const data = [
-  {
-    title: "Recent Articles",
-    links: [
-      {
-        href: "https://staging.dzcode.io/Articles/Welcome_to_dzCode",
-        text: "Welcome To dzCode.io",
-      },
-      {
-        href: "https://staging.dzcode.io/Learn/Getting_Started",
-        text: "Getting Started dzCode.io",
-      },
-    ],
-  },
-  {
-    title: "Recent Projects",
-    links: [
-      {
-        href: "https://staging.dzcode.io/",
-        text: "Algerian Education Hierarchy",
-      },
-      {
-        href: "https://staging.dzcode.io/",
-        text: "Algerian Users",
-      },
-      {
-        href: "https://staging.dzcode.io/",
-        text: "Algerian Wilaya",
-      },
-    ],
-  },
-  {
-    title: "Social Media",
-    links: [
-      {
-        href: "www.facebook.com/dzcode.io",
-        text: "Facebook",
-      },
-      {
-        href:
-          "https://www.youtube.com/channel/UCqWze7IcHI-_2mvByYeGTJg?view_as=subscriber",
-        text: "Youtube",
-      },
-    ],
-  },
-];
-
 export const App = () => {
   return (
     <Theme>
-      <CssBaseline />
-      <Container maxWidth="lg">
-        <BrowserRouter>
-          <Navbar navItems={navItems} />
+      <BrowserRouter>
+        <Navbar />
+        <Container maxWidth="lg">
           <ToastContainer />
           <Suspense fallback={Loading}>
             <Switch>
-              <Route path="/" exact={true} component={Landing} />
+              <Route path="/" exact component={Landing} />
               <Route path="/Learn" component={Learn} />
               <Route path="/Articles" component={Articles} />
               <Route path="/Projects" component={Projects} />
@@ -97,9 +36,10 @@ export const App = () => {
               <Route render={() => <Redirect to="/" />} />
             </Switch>
           </Suspense>
-          <Footer data={data} />
-        </BrowserRouter>
-      </Container>
+        </Container>
+        <Footer />
+      </BrowserRouter>
+      <CssBaseline />
     </Theme>
   );
 };
