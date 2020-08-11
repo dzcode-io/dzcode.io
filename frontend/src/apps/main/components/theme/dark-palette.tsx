@@ -39,7 +39,7 @@ export default {
     link: colors.blue[600],
   },
   background: {
-    default: colors.grey[100],
-    paper: "#20232a",
+    default: colors.common.black,
+    paper: "#000",
   },
 };

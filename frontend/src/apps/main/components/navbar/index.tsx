@@ -1,16 +1,18 @@
 import * as React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
-import Link from "@material-ui/core/Link";
+import IosSwitch from "./ios-switch";
+import { LinkV2 as Link } from "../../../../components/link-v2";
 import { ReduxState } from "../../types";
 import SearchIcon from "@material-ui/icons/Search";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import { actionType } from "../../redux/constants";
 import logo from "./logo.png";
-
-import { useSelector } from "react-redux";
 
 type Section = { title: string; url: string };
 
@@ -51,7 +53,6 @@ const useStyles = makeStyles((theme: Theme) =>
       flexShrink: 0,
       textDecoration: "none",
       "&:hover": {
-        color: theme.palette.primary.light,
         textDecoration: "none",
       },
     },
@@ -62,17 +63,14 @@ const useStyles = makeStyles((theme: Theme) =>
       height: "100%",
     },
     logoImg: {
-      maxWidth: "120px",
+      maxWidth: "100px",
     },
     subscribe: {
-      color: theme.palette.common.white,
-
       "&:hover": {
         color: theme.palette.primary.light,
       },
     },
     search: {
-      color: theme.palette.common.white,
       "&:hover": {
         color: theme.palette.primary.light,
       },
@@ -81,6 +79,16 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Navbar: React.FC = () => {
+  const dispatch = useDispatch();
+  const darkMode = useSelector((state: ReduxState) => state.settings.darkMode);
+  const toggleDarkMode = () => {
+    dispatch({
+      type: actionType.UPDATE_SETTINGS,
+      payload: { darkMode: !darkMode },
+    });
+    window.localStorage.setItem("darkMode", darkMode ? "off" : "on");
+  };
+
   const classes = useStyles();
   const sections = useSelector(
     (state: ReduxState) => state.layout.navbarInitialState.sections,
@@ -114,6 +122,16 @@ export const Navbar: React.FC = () => {
           <IconButton>
             <SearchIcon className={classes.search} />
           </IconButton>
+          <FormControlLabel
+            control={
+              <IosSwitch
+                checked={darkMode ? true : false}
+                onChange={toggleDarkMode}
+                name="darkMode"
+              />
+            }
+            label={darkMode ? "🌙" : "🌞"}
+          />
         </Grid>
       </Toolbar>
 
@@ -133,9 +151,7 @@ export const Navbar: React.FC = () => {
             ? sections.map((section) => (
                 <Link
                   color="inherit"
-                  noWrap
                   key={section.title}
-                  variant="body2"
                   href={section.url}
                   className={classes.toolbarLink}
                 >

@@ -16,4 +16,5 @@ export interface SidebarTreeItem {
 
 export interface ReduxState {
   layout: LayoutInitialState;
+  settings: MainSettings;
 }

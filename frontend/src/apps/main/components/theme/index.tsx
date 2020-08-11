@@ -2,10 +2,11 @@ import React, { PropsWithChildren } from "react";
 import { MainSettings } from "t9/types/main";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import { connect } from "react-redux";
-import { createMuiTheme } from "@material-ui/core/styles";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
+// import darkPallet from "./dark-palette";
+// import lightPallet from "./light-palette";
 import overrides from "./overrides";
-import palette from "./palette";
 import typography from "./typography";
 
 const ThemeNoRedux = ({
@@ -13,9 +14,9 @@ const ThemeNoRedux = ({
   children,
 }: PropsWithChildren<MainSettings>) => {
   const theme = createMuiTheme({
-    palette: { ...palette, type: darkMode ? "dark" : "light" },
-    overrides,
+    palette: { type: darkMode ? "dark" : "light" },
     typography,
+    overrides,
   });
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
