@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flex: 1,
     },
     toolbarLink: {
-      color: theme.palette.text.secondary,
+      color: theme.palette.text.primary,
       padding: theme.spacing(1),
       flexShrink: 0,
       textDecoration: "none",

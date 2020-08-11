@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
     treeItem: {
       padding: theme.spacing(1),
       margin: theme.spacing(0),
+      "&:hover": {
+        background: theme.palette.background.paper,
+      },
     },
     speedDial: {
       position: "fixed",
