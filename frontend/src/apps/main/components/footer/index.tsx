@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: "8px",
   },
   categoryTitle: {
+    color: theme.palette.text.secondary,
     paddingBottom: "12px",
   },
 }));
