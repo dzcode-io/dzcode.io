@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.grey[100],
     },
     toolbar: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-      background: theme.palette.background.paper,
+      borderBottom: `1px solid ${theme.palette.background.paper}`,
+      background: theme.palette.background.default,
     },
     toolbarContainer: {
       maxWidth: theme.breakpoints.values.lg,
@@ -42,18 +42,20 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
     },
     toolbarSecondary: {
-      background: theme.palette.primary.contrastText,
+      background: theme.palette.background.default,
+      borderBottom: `1px solid ${theme.palette.background.paper}`,
     },
     toolbarTitle: {
       flex: 1,
     },
     toolbarLink: {
-      color: theme.palette.common.white,
+      color: theme.palette.text.secondary,
       padding: theme.spacing(1),
       flexShrink: 0,
       textDecoration: "none",
       "&:hover": {
         textDecoration: "none",
+        color: theme.palette.primary.main,
       },
     },
     logo: {
@@ -71,6 +73,8 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     search: {
+      color: theme.palette.text.primary,
+
       "&:hover": {
         color: theme.palette.primary.light,
       },
