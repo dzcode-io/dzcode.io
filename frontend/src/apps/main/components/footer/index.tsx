@@ -24,7 +24,8 @@ export interface FooterInitialState {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: "100%",
-    background: theme.palette.background.paper,
+    background: theme.palette.background.default,
+    borderTop: `1px solid ${theme.palette.background.paper}`,
     padding: "30px",
   },
   copyright: {
@@ -32,6 +33,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   link: {
     textDecoration: "none",
+    color: theme.palette.text.primary,
+
     "&:hover": {
       color: theme.palette.primary.light,
       textDecoration: "none",
