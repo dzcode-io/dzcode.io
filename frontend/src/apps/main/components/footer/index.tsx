@@ -1,42 +1,102 @@
-import "./style.scss";
-import React from "react";
+import * as React from "react";
+import { Theme, makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import { LinkV2 } from "src/components/link-v2";
+import { StateInterface } from "t9/types/main";
+import Typography from "@material-ui/core/Typography";
+import { useSelector } from "react-redux";
 
-type link = {
-  href: string;
-  text: string;
-};
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    width: "100%",
+    background: theme.palette.background.paper,
+    borderTop: `1px solid ${theme.palette.background.paper}`,
+    padding: "30px",
+  },
+  copyright: {
+    fontSize: "14px",
+  },
+  link: {
+    textDecoration: "none",
+    color: theme.palette.text.primary,
 
-type category = {
-  title: string;
-  links: link[];
-};
+    "&:hover": {
+      color: theme.palette.primary.light,
+      textDecoration: "none",
+    },
+  },
+  linkText: {
+    paddingBottom: "8px",
+  },
+  categoryTitle: {
+    color: theme.palette.text.secondary,
+    paddingBottom: "12px",
+  },
+}));
 
-interface Props {
-  data: category[];
-}
+export const Footer: React.FC = () => {
+  const classes = useStyles();
 
-export const Footer = ({ data }: Props) => {
+  const data = useSelector(
+    (state: StateInterface) => state.layout.footerInitialState.data,
+  );
+
   return (
-    <>
-      <footer className="footer-grid ">
-        {data.map((category, i) => {
-          return (
-            <div className="footer-grid-item" key={i}>
-              <h2>{category.title}</h2>
-              {category.links.map((link, i) => {
-                return (
-                  <a className="footer-grid-link" href={link.href} key={i}>
-                    {link.text}
-                  </a>
-                );
-              })}
-            </div>
-          );
-        })}
-      </footer>
-      <div className="copyright">
-        dzCode.io an Algerian Open Source Community
-      </div>
-    </>
+    <footer className={classes.root}>
+      <Container maxWidth="lg">
+        <Grid
+          container
+          direction="row"
+          justify="space-between"
+          alignItems="flex-start"
+          alignContent="stretch"
+        >
+          <Grid container item xs={12} md={9} spacing={6}>
+            {data
+              ? data.map((category, i) => (
+                  <Grid
+                    direction="column"
+                    container
+                    item
+                    xs={12}
+                    md={6}
+                    key={i}
+                  >
+                    <Typography variant="h6" className={classes.categoryTitle}>
+                      {category.title}
+                    </Typography>
+                    {category.links.map((link, i) => {
+                      return (
+                        <Typography
+                          key={i}
+                          variant="subtitle2"
+                          color="initial"
+                          className={classes.linkText}
+                        >
+                          <LinkV2 href={link.href} className={classes.link}>
+                            {link.text}
+                          </LinkV2>
+                        </Typography>
+                      );
+                    })}
+                  </Grid>
+                ))
+              : null}
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Typography variant="h6" className={classes.copyright}>
+              Copyright © 2020{" "}
+              <LinkV2
+                className={classes.link}
+                href="https://twitter.com/dzcode_io"
+              >
+                @dzCode.io
+              </LinkV2>
+            </Typography>
+          </Grid>
+        </Grid>
+      </Container>
+    </footer>
   );
 };

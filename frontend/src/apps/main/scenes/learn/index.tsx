@@ -1,4 +1,3 @@
-import "./style";
 import { Route, useRouteMatch } from "react-router-dom";
 import { Content } from "./content";
 import { Document } from "t9/types/fullstack";
