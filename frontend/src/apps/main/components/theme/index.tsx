@@ -13,7 +13,7 @@ const ThemeNoRedux = ({
   darkMode,
   children,
 }: PropsWithChildren<MainSettings>) => {
-  const palette = darkMode ? lightPallet : darkPallet;
+  const palette = darkMode ? darkPallet : lightPallet;
   const theme = createMuiTheme({
     palette: { ...palette, type: darkMode ? "dark" : "light" },
     typography,

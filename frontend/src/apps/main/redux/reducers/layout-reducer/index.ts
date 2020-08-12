@@ -1,7 +1,24 @@
-import { FooterInitialState } from "t9/apps/main/components/footer";
-import { NavbarInitialState } from "t9/apps/main/components/navbar";
 import { actionType } from "t9/apps/main/redux/constants";
 
+type link = {
+  href: string;
+  text: string;
+};
+
+type category = {
+  title: string;
+  links: link[];
+};
+
+export interface FooterInitialState {
+  data: category[];
+}
+
+type Section = { title: string; url: string };
+
+export interface NavbarInitialState {
+  sections: Section[] | null;
+}
 const sections = [
   { url: "/Learn/Getting_Started", title: "Learn" },
   { url: "/Contribute", title: "Contribute" },
@@ -15,11 +32,11 @@ const data = [
     title: "Recent Articles",
     links: [
       {
-        href: "https://staging.dzcode.io/Articles/Welcome_to_dzCode",
+        href: "/Articles/Welcome_to_dzCode",
         text: "Welcome To dzCode.io",
       },
       {
-        href: "https://staging.dzcode.io/Learn/Getting_Started",
+        href: "/Learn/Getting_Started",
         text: "Getting Started dzCode.io",
       },
     ],
@@ -28,15 +45,15 @@ const data = [
     title: "Recent Projects",
     links: [
       {
-        href: "https://staging.dzcode.io/",
+        href: "/",
         text: "Algerian Education Hierarchy",
       },
       {
-        href: "https://staging.dzcode.io/",
+        href: "/",
         text: "Algerian Users",
       },
       {
-        href: "https://staging.dzcode.io/",
+        href: "/",
         text: "Algerian Wilaya",
       },
     ],
@@ -49,9 +66,8 @@ const data = [
         text: "Facebook",
       },
       {
-        href:
-          "https://www.youtube.com/channel/UCqWze7IcHI-_2mvByYeGTJg?view_as=subscriber",
-        text: "Youtube",
+        href: "https://www.youtube.com/channel/UC_tLjuQaYotzERtaAo8Y4SQ",
+        text: "YouTube",
       },
     ],
   },
@@ -73,7 +89,7 @@ export const layout = (
   },
 ) => {
   switch (action.type) {
-    case actionType.UPDATE_LANDING_LAYOUT:
+    case actionType.UPDATE_LAYOUT:
       return { ...state, ...action.payload };
     default:
       return state;
