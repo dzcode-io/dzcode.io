@@ -2,24 +2,10 @@ import * as React from "react";
 import { Theme, makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import { LinkV2 as Link } from "../../../../components/link-v2";
-import { ReduxState } from "../../types";
+import { LinkV2 } from "src/components/link-v2";
+import { StateInterface } from "t9/types/main";
 import Typography from "@material-ui/core/Typography";
 import { useSelector } from "react-redux";
-
-type link = {
-  href: string;
-  text: string;
-};
-
-type category = {
-  title: string;
-  links: link[];
-};
-
-export interface FooterInitialState {
-  data: category[];
-}
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -53,8 +39,9 @@ export const Footer: React.FC = () => {
   const classes = useStyles();
 
   const data = useSelector(
-    (state: ReduxState) => state.layout.footerInitialState.data,
+    (state: StateInterface) => state.layout.footerInitialState.data,
   );
+
   return (
     <footer className={classes.root}>
       <Container maxWidth="lg">
@@ -87,9 +74,9 @@ export const Footer: React.FC = () => {
                           color="initial"
                           className={classes.linkText}
                         >
-                          <Link href={link.href} className={classes.link}>
+                          <LinkV2 href={link.href} className={classes.link}>
                             {link.text}
-                          </Link>
+                          </LinkV2>
                         </Typography>
                       );
                     })}
@@ -99,7 +86,13 @@ export const Footer: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <Typography variant="h6" className={classes.copyright}>
-              Copyright © 2020 dzCode inc
+              Copyright © 2020{" "}
+              <LinkV2
+                className={classes.link}
+                href="https://twitter.com/dzcode_io"
+              >
+                @dzCode.io
+              </LinkV2>
             </Typography>
           </Grid>
         </Grid>

@@ -2,26 +2,19 @@ import * as React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 import { animated, useSpring } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
-import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import IosSwitch from "./ios-switch";
-import { LinkV2 as Link } from "../../../../components/link-v2";
-import { ReduxState } from "../../types";
+import { LinkV2 } from "src/components/link-v2";
 import SearchIcon from "@material-ui/icons/Search";
+import { StateInterface } from "t9/types/main";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { actionType } from "../../redux/constants";
-import logo from "./logo.png";
+import { actionType } from "t9/apps/main/redux/constants";
+import logo from "t9/apps/main/assets/png/logo.png";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { useState } from "react";
-
-type Section = { title: string; url: string };
-
-export interface NavbarInitialState {
-  sections: Section[] | null;
-}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -98,10 +91,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Navbar: React.FC = () => {
-  // INIT
   const dispatch = useDispatch();
   // DARK MODE
-  const darkMode = useSelector((state: ReduxState) => state.settings.darkMode);
+  const darkMode = useSelector(
+    (state: StateInterface) => state.settings.darkMode,
+  );
   const toggleDarkMode = () => {
     dispatch({
       type: actionType.UPDATE_SETTINGS,
@@ -112,7 +106,7 @@ export const Navbar: React.FC = () => {
 
   // DATA FETCH
   const sections = useSelector(
-    (state: ReduxState) => state.layout.navbarInitialState.sections,
+    (state: StateInterface) => state.layout.navbarInitialState.sections,
   );
 
   // STYLES
@@ -120,7 +114,7 @@ export const Navbar: React.FC = () => {
   const [visible, setVisible] = useState(true);
 
   useScrollPosition(({ prevPos, currPos }) => {
-    const isVisible = currPos.y > prevPos.y;
+    const isVisible = currPos.y <= -120 ? currPos.y > prevPos.y : true;
     setVisible(isVisible);
   });
 
@@ -138,9 +132,9 @@ export const Navbar: React.FC = () => {
           lg={10}
           className={classes.toolbarContainer}
         >
-          <Button size="small" className={classes.subscribe}>
-            Subscribe
-          </Button>
+          <IconButton>
+            <SearchIcon className={classes.search} />
+          </IconButton>
           <Typography
             component="h2"
             variant="h5"
@@ -149,13 +143,10 @@ export const Navbar: React.FC = () => {
             noWrap
             className={classes.toolbarTitle}
           >
-            <Link href="/" className={classes.logo}>
+            <LinkV2 href="/" className={classes.logo}>
               <img src={logo} alt="logo" className={classes.logoImg} />
-            </Link>
+            </LinkV2>
           </Typography>
-          <IconButton>
-            <SearchIcon className={classes.search} />
-          </IconButton>
           <FormControlLabel
             control={
               <IosSwitch
@@ -180,17 +171,18 @@ export const Navbar: React.FC = () => {
           item
           lg={10}
           className={classes.toolbarContainer}
+          style={{ flexFlow: "nowrap", overflowX: "auto" }}
         >
           {sections
             ? sections.map((section) => (
-                <Link
+                <LinkV2
                   color="inherit"
                   key={section.title}
                   href={section.url}
                   className={classes.toolbarLink}
                 >
                   {section.title}
-                </Link>
+                </LinkV2>
               ))
             : null}
         </Grid>

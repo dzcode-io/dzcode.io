@@ -14,7 +14,7 @@ interface Props extends SwitchProps {
 const IOSSwitch = withStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: 34,
+      width: 36,
       height: 21,
       padding: 0,
       margin: theme.spacing(1),
