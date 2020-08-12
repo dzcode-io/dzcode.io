@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import { animated, useSpring } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -13,6 +14,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { actionType } from "../../redux/constants";
 import logo from "./logo.png";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { useState } from "react";
 
 type Section = { title: string; url: string };
 
@@ -25,7 +28,13 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       maxWidth: "100%",
       overflowX: "hidden",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      zIndex: 100,
+      width: "100%",
     },
+
     icon: {
       color: theme.palette.grey[100],
     },
@@ -79,11 +88,19 @@ const useStyles = makeStyles((theme: Theme) =>
         color: theme.palette.primary.light,
       },
     },
+    red: {
+      background: "#FF0000",
+    },
+    blue: {
+      background: "#0000FF",
+    },
   }),
 );
 
 export const Navbar: React.FC = () => {
+  // INIT
   const dispatch = useDispatch();
+  // DARK MODE
   const darkMode = useSelector((state: ReduxState) => state.settings.darkMode);
   const toggleDarkMode = () => {
     dispatch({
@@ -93,13 +110,26 @@ export const Navbar: React.FC = () => {
     window.localStorage.setItem("darkMode", darkMode ? "off" : "on");
   };
 
-  const classes = useStyles();
+  // DATA FETCH
   const sections = useSelector(
     (state: ReduxState) => state.layout.navbarInitialState.sections,
   );
 
+  // STYLES
+  const classes = useStyles();
+  const [visible, setVisible] = useState(true);
+
+  useScrollPosition(({ prevPos, currPos }) => {
+    const isVisible = currPos.y > prevPos.y;
+    setVisible(isVisible);
+  });
+
+  const props = useSpring({
+    transform: visible ? "translate(0, 0%)" : "translate(0, -100%)",
+  });
+
   return (
-    <header className={classes.root}>
+    <animated.header className={classes.root} style={props}>
       <Toolbar className={classes.toolbar}>
         <Grid
           container
@@ -165,7 +195,7 @@ export const Navbar: React.FC = () => {
             : null}
         </Grid>
       </Toolbar>
-    </header>
+    </animated.header>
   );
 };
 
