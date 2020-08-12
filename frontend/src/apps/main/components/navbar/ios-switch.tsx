@@ -1,6 +1,7 @@
+import { SwitchClassKey, SwitchProps } from "@material-ui/core/Switch";
+import { Theme, createStyles, withStyles } from "@material-ui/core/styles";
 import React from "react";
-import { withStyles, Theme, createStyles } from "@material-ui/core/styles";
-import Switch, { SwitchClassKey, SwitchProps } from "@material-ui/core/Switch";
+import Switch from "@material-ui/core/Switch";
 
 interface Styles extends Partial<Record<SwitchClassKey, string>> {
   focusVisible?: string;
