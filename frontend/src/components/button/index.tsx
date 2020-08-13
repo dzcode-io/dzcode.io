@@ -10,7 +10,7 @@ interface ButtonProps {
 
 export const Button = ({ className, link, text }: ButtonProps) => {
   return (
-    <LinkV2 to={link} className={`btn-btn ${className}`}>
+    <LinkV2 href={link} className={`btn-btn ${className}`}>
       {text}
     </LinkV2>
   );

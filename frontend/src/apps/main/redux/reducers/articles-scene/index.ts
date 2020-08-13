@@ -3,7 +3,8 @@ import { actionType } from "t9/apps/main/redux/constants";
 
 export const articlesScene = (
   state: ArticlesSceneInitialState = {
-    articlesList: null,
+    sidebarTree: null,
+    expanded: [],
     currentArticle: null,
   },
   action: {

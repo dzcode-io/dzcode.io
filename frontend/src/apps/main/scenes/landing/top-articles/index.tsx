@@ -30,7 +30,7 @@ export const TopArticles = ({ topArticles }: TopArticlesProps) => (
             <LinkV2
               className="btn btn__primary"
               id="buttons__1"
-              to={`/Articles/${article.slug}`}
+              href={`/Articles/${article.slug}`}
             >
               Read Article
             </LinkV2>

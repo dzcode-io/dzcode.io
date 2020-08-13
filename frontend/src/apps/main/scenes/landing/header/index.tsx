@@ -35,7 +35,7 @@ export const Header = () => (
         return (
           <div key={`header-link-${index}`} className="item">
             <img src={item.icon} alt={item.name} className="icon" />
-            <LinkV2 to={item.to}>{item.name}</LinkV2>
+            <LinkV2 href={item.to}>{item.name}</LinkV2>
           </div>
         );
       })}
