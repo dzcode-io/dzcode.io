@@ -1,9 +1,12 @@
 const serviceAccount = require("./secrets/serviceAccountKey.json");
+import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+
+const databaseURL = functions.config().firebase_admin.databaseURL;
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://dzcode-io.firebaseio.com",
+  databaseURL,
 });
 
 export const db = admin.firestore();

@@ -33,13 +33,13 @@ Make sure you have:
 - open terminal and clone the repo:
 
 ```shell
-$ git clone https://github.com/dzcode-io/dzcode.io.git
+ git clone https://github.com/dzcode-io/dzcode.io.git
 ```
 
 - Make **sure** you are in the project **root**:
 
 ```shell
-$ cd dzcode.io
+ cd dzcode.io
 ```
 
 ### Install dependencies
@@ -100,7 +100,17 @@ yarn build
 yarn dev
 ```
 
-- Now, Go to http://localhost:8080
+- Open new terminal and Run api emulators:
+
+```shell
+
+ cd api/functions && firebase emulators:start
+
+```
+
+- Now, Go to <http://localhost:8080>
+
+- All emulators View status and logs at <http://localhost:4000>
 
 ## Contributing
 

@@ -27,9 +27,10 @@ export const fetchCurrentProject = () => async (
   dispatch: Dispatch<any>,
   getState: MainStoreStateInterface,
 ) => {
-  const projectSlug = location.pathname.substring(
-    location.pathname.indexOf("/", 1) + 1,
-  );
+  const projectSlug = location.pathname
+    .substring(location.pathname.indexOf("/", 1) + 1)
+    .replace(/\/$/, "");
+
   const cashedProject = hasInCollection<Project>(
     getState().projects,
     "slug",

@@ -1,9 +1,10 @@
-import "./style";
 import { Route, useRouteMatch } from "react-router-dom";
 import { Content } from "./content";
 import { Document } from "t9/types/fullstack";
+import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { Sidebar } from "./sidebar";
+import { SidebarTreeItem } from "t9/types/main";
 import { connect } from "react-redux";
 import { fetchCurrentDocument } from "t9/apps/main/redux/actions/documentation-scene";
 import { fetchDocumentationList } from "t9/apps/main/redux/actions/documentation-scene";
@@ -17,31 +18,47 @@ export const LearnScene = (props: LearnSceneProps) => {
   const { path } = useRouteMatch();
 
   return (
-    <div className="learn">
-      <Sidebar documentationList={props.documentationList} />
-      <Route
-        path={`${path}/:documentSlug`}
-        render={() => (
-          <Content
-            key={location.pathname}
-            currentDocument={props.currentDocument}
-            fetchCurrentDocument={props.fetchCurrentDocument}
-          />
-        )}
-      />
-    </div>
+    <Grid container className="learn">
+      {/* Sidebar */}
+      <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
+        <Sidebar
+          tree={props.sidebarTree}
+          expanded={props.expanded}
+          selected={props.currentDocument ? props.currentDocument.slug : ""}
+        />
+      </Grid>
+      {/* Content */}
+      <Grid item xs>
+        <Route
+          path={`${path}/:documentSlug`}
+          render={() => (
+            <Content
+              key={location.pathname}
+              currentDocument={props.currentDocument}
+              fetchCurrentDocument={props.fetchCurrentDocument}
+            />
+          )}
+        />
+      </Grid>
+      {/* Headers */}
+      <Grid item xs={false} lg={2}>
+        <div style={{ height: "200px", background: "translate" }} />
+      </Grid>
+    </Grid>
   );
 };
 
 export interface LearnSceneInitialState {
-  documentationList: Document[] | null;
+  sidebarTree: SidebarTreeItem[] | null;
+  expanded: string[];
   currentDocument: Document | null;
 }
 
 interface LearnSceneProps {
   fetchDocumentationList: () => void;
   fetchCurrentDocument: () => void;
-  documentationList: Document[] | null;
+  sidebarTree: SidebarTreeItem[] | null;
+  expanded: string[];
   currentDocument: Document | null;
 }
 
