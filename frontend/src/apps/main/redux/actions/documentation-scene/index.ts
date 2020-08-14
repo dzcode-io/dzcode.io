@@ -5,7 +5,7 @@ import { Document } from "t9/types/fullstack";
 import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
 import { hasInCollection } from "src/common/utils";
-import { listToTree } from "src/common/utils/list-to-tree";
+import { listToTree } from "l2t";
 
 const dataURL = fullstackConfig.data.url;
 
