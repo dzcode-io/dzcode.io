@@ -2,6 +2,7 @@ import { articles } from "./articles";
 import { articlesScene } from "./articles-scene";
 import { combineReducers } from "redux";
 import { documentation } from "./documentation";
+import { faqScene } from "./faq-scene";
 import { landingScene } from "./landing-scene";
 import { layout } from "./layout-reducer";
 import { learnScene } from "./learn-scene";
@@ -19,4 +20,5 @@ export const mainReducer = combineReducers({
   landingScene,
   settings,
   layout,
+  faqScene,
 });
