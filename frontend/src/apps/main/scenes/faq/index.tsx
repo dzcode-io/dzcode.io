@@ -20,7 +20,7 @@ export const FaqScene = ({ faqData }: any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  faqData: state.FaqScene.faqData,
+  faqData: state.faqScene.faqData,
 });
 
 export default connect(mapStateToProps, null)(FaqScene);
