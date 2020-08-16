@@ -17,7 +17,7 @@ const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
 const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
 const Projects = lazy(() => import("t9/apps/main/scenes/projects"));
 const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
-const Faq = lazy(() => import("t9/apps/main/scenes/Faq"));
+const Faq = lazy(() => import("t9/apps/main/scenes/faqs"));
 
 const Contact = lazy(() => import("t9/apps/main/scenes/contact"));
 
@@ -35,7 +35,7 @@ export const App = () => {
               <Route path="/Articles" component={Articles} />
               <Route path="/Projects" component={Projects} />
               <Route path="/Contact-Us" component={Contact} />
-              <Route path="/faq" component={Faq} />
+              <Route path="/FAQ" component={Faq} />
               <Route render={() => <Redirect to="/" />} />
             </Switch>
           </Suspense>
