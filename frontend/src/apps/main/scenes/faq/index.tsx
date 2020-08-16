@@ -7,7 +7,7 @@ export const FaqScene = ({ faqData }: any) => {
   return (
     <div className="faq">
       <header className="faq__banner">
-        <h1 className="faq__banner__title">Freqently asked questions</h1>
+        <h1 className="faq__banner__title">Frequently asked questions</h1>
       </header>
 
       <div className="faq__items">
