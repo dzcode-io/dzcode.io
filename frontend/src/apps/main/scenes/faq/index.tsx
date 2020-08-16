@@ -1,5 +1,5 @@
 import "./style";
-import FaqItem from "t9/apps/main/components/faq-Item";
+import { FaqItem } from "./faq-Item";
 import React from "react";
 import { connect } from "react-redux";
 

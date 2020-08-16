@@ -18,5 +18,3 @@ export const FaqItem = ({ question, answer }: any) => {
     </div>
   );
 };
-
-export default FaqItem;
