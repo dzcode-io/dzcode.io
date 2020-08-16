@@ -1,5 +1,3 @@
-// import { actionType } from "t9/apps/main/redux/constants";
-
 const INITIAL_STATE = {
   faqData: [
     {
@@ -58,11 +56,9 @@ const INITIAL_STATE = {
   ],
 };
 
-const FaqScene = (state = INITIAL_STATE, action: any) => {
+export const faqScene = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     default:
       return state;
   }
 };
-
-export default FaqScene;
