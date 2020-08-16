@@ -1,4 +1,4 @@
-import FaqScene from "./FAQ-scene";
+import FaqScene from "./faqs-scene";
 import { articles } from "./articles";
 import { articlesScene } from "./articles-scene";
 import { combineReducers } from "redux";
