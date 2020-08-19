@@ -16,13 +16,15 @@ export const fetchDocumentationList = () => async (
   try {
     const response = await Axios.get(dataURL + "/documentation/list.c.json");
     const documentationList = response.data;
+    const ids: string[] = [];
     // convert list into tree
-    const { tree, ids } = listToTree<Document, SidebarTreeItem>(
+    const tree = listToTree<Document, SidebarTreeItem>(
       documentationList,
       (item) => item.slug,
       (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
       "children",
       (item) => {
+        ids.push(item.slug);
         return {
           content: item.title,
           id: item.slug,
