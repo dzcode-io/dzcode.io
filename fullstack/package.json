@@ -1,5 +1,5 @@
 {
-  "name": "dzcode.io",
+  "name": "dzcode.io-fullstack",
   "version": "1.0.0",
   "description": "dzCode.io fullstack code",
   "main": "index.js",
@@ -19,11 +19,6 @@
     "url": "https://www.zakiii.com"
   },
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:check"
-    }
-  },
   "dependencies": {
     "@types/fs-extra": "^9.0.1",
     "@types/node": "^10.17.13",

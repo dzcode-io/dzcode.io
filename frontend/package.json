@@ -1,5 +1,5 @@
 {
-  "name": "dzcode.io",
+  "name": "dzcode.io-frontend",
   "version": "0.1.0",
   "description": "frontend code for dzcode.io",
   "scripts": {
@@ -21,14 +21,10 @@
     "url": "https://www.zakiii.com"
   },
   "license": "MIT",
+  "private": "true",
   "engines": {
     "node": ">=10",
     "yarn": "1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:check"
-    }
   },
   "browserslist": {
     "production": [

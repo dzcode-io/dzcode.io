@@ -29,7 +29,7 @@ export const getDataEntry = (_path: string, include?: string[]) => {
     entry = { ...info };
   } else {
     entry = Object.keys(info)
-      .filter(key => include.includes(key))
+      .filter((key) => include.includes(key))
       .reduce(
         (obj, key) => ({
           ...obj,
@@ -67,7 +67,7 @@ export const getDataCollection = (
   const collection: Collection = fse.readJsonSync(path);
 
   // Collect Entries
-  const entries = collection.items.map(slug => {
+  const entries = collection.items.map((slug) => {
     const entry = getDataEntry(`${collectionType}/${slug}`, collection.include);
     return {
       slug,

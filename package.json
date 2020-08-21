@@ -1,0 +1,32 @@
+{
+  "name": "dzcode.io-root",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "frontend/firebase",
+    "data",
+    "fullstack",
+    "api/functions"
+  ],
+  "scripts": {
+    "start": "concurrently \"cd fullstack && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd frontend && yarn dev\"",
+    "start:api": "concurrently \"cd fullstack && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd frontend && yarn dev\" \"cd api/functions && firebase emulators:start\"",
+    "lint:check": "concurrently \"cd fullstack && yarn lint:check\" \"cd data && yarn lint:check\" \"cd frontend && yarn lint:check\"",
+    "lint:fix": "concurrently \"cd fullstack && yarn lint:fix\" \"cd data && yarn lint:fix\" \"cd frontend && yarn lint:fix\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:check"
+    }
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.9.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-unicorn": "^21.0.0",
+    "prettier": "^2.0.5"
+  }
+}
