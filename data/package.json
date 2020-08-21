@@ -1,5 +1,5 @@
 {
-  "name": "dzcode.io",
+  "name": "dzcode.io-data",
   "version": "1.0.0",
   "description": "dzCode.io data code",
   "scripts": {
@@ -21,11 +21,7 @@
     "url": "https://www.zakiii.com"
   },
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:check"
-    }
-  },
+  "private": "true",
   "dependencies": {
     "@types/express": "^4.17.6",
     "@types/fs-extra": "^8.1.0",
