@@ -4,14 +4,20 @@
 
 The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source community.
 
+## Meta
+
+| env \ Project  | Frontend (browser)        | Data (static backend)          |
+| :------------- | :------------------------ | :----------------------------- |
+| **Production** | https://dzcode.io         | https://data.dzcode.io         |
+| **Staging**    | https://staging.dzcode.io | https://data.staging.dzcode.io |
+
 ## Table of Content
 
 - [dzCode.io](#dzcodeio)
+  - [Meta](#meta)
   - [Table of Content](#table-of-content)
   - [Get Started](#get-started)
     - [Perquisites](#perquisites)
-    - [Clone the repo](#clone-the-repo)
-    - [Install dependencies](#install-dependencies)
     - [Run it locally](#run-it-locally)
   - [Contributing](#contributing)
     - [Add Your Own Article](#add-your-own-article)
@@ -24,93 +30,45 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 
 Make sure you have:
 
-- [git](https://git-scm.com/)
-- [nodejs](https://nodejs.org/) 10 or higher
-- [yarn](https://yarnpkg.com/)
+- [Git](https://git-scm.com/)
+- [Nodejs](https://nodejs.org/) version 10 or higher
+- [Yarn](https://yarnpkg.com/) version 1 or higher
 
-### Clone the repo
+### Run it locally
 
-- open terminal and clone the repo:
+- Open terminal and clone the repo:
 
-```shell
+```sh
  git clone https://github.com/dzcode-io/dzcode.io.git
 ```
 
 - Make **sure** you are in the project **root**:
 
-```shell
+```sh
  cd dzcode.io
 ```
 
-### Install dependencies
+- Install dependencies:
 
-- Install frontend dependencies:
-
-```shell
-cd frontend
+```sh
 yarn
-cd ..
 ```
 
-- Install frontend Firebase dependencies:
+- Run it locally
 
-```shell
-cd frontend/firebase
-yarn
-cd ../..
+```sh
+yarn start
 ```
 
-- Install data dependencies:
+or with the api server (optional)
 
-```shell
-cd data
-yarn
-cd ..
-```
-
-- Install fullstack dependencies:
-
-```shell
-cd fullstack
-yarn
-cd ..
-```
-
-### Run it locally
-
-- Build fullstack code:
-
-```shell
-cd fullstack
-yarn build:watch
-```
-
-- Open new terminal and Run frontend server:
-
-```shell
-cd frontend
-yarn dev
-```
-
-- Open new terminal and Run data server:
-
-```shell
-cd data
-yarn build
-yarn dev
-```
-
-- Open new terminal and Run api emulators:
-
-```shell
-
- cd api/functions && firebase emulators:start
-
+```sh
+yarn start:api
 ```
 
 - Now, Go to <http://localhost:8080>
 
-- All emulators View status and logs at <http://localhost:4000>
+- For api server, all emulators view status and logs at <http://localhost:4000>
 
 ## Contributing
 
@@ -129,7 +87,7 @@ To add new article let's say "Awesome New Article", simply do the following:
 - Add two files:
   - `info.json` , a json file containing info about your article, like **title**, **description** etc..., see [this file](https://github.com/dzcode-io/dzcode.io/blob/master/data/articles/Welcome_to_dzCode/info.json) as an example.
   - `content.md` , a markdown file which contain your Article text, in form of [markdown](https://www.markdownguide.org/).
-- Lastly, to make you article visible, modify the content of [`data/articles/list.json`](https://github.com/dzcode-io/dzcode.io/blob/master/data/articles/list.json) and add your article's folder name `Awesome_New_Article` inside the `"items": []` array.
+- Lastly, to make your article visible, modify the content of [`data/articles/list.json`](https://github.com/dzcode-io/dzcode.io/blob/master/data/articles/list.json) and add your article's folder name `Awesome_New_Article` inside the `"items": []` array.
 
 To test and see your article locally, make sure to [you are all set](#get-started), after you run dzCode locally go to http://localhost:8080/Articles/Awesome_New_Article, you will see your article, and you can continue editing from there, once you are happy with the result, create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) against master branch, and we will be happy to merge it 😃.
 
