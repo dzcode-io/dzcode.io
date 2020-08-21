@@ -1,5 +1,5 @@
 {
-  "name": "functions",
+  "name": "dzcode.io-api",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
@@ -28,5 +28,6 @@
     "firebase-functions-test": "^0.2.0",
     "typescript": "^3.8.0"
   },
+  "license": "MIT",
   "private": true
 }
