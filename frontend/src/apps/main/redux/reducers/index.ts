@@ -6,7 +6,6 @@ import { faqScene } from "./faq-scene";
 import { landingScene } from "./landing-scene";
 import { layout } from "./layout-reducer";
 import { learnScene } from "./learn-scene";
-import { projects } from "./projects";
 import { projectsScene } from "./projects-scene";
 import { settings } from "./settings";
 
@@ -15,7 +14,6 @@ export const mainReducer = combineReducers({
   learnScene,
   articles,
   articlesScene,
-  projects,
   projectsScene,
   landingScene,
   settings,
