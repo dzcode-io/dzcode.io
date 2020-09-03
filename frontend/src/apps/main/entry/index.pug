@@ -10,7 +10,6 @@ head(lang=lang)
         m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
       })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
       ga('create', "#{gaCode}", 'auto');
-      ga('send', 'pageview');
     //- Facebook Pixel Code
     script.
       !function(f,b,e,v,n,t,s)
@@ -21,7 +20,6 @@ head(lang=lang)
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', "#{fbpCode}");
-      fbq('track', 'PageView');
   //- Facebook Comments plugin
   meta(property="fb:app_id" content=fbAppCode)
 
