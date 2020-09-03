@@ -4,7 +4,6 @@ import { actionType } from "t9/apps/main/redux/constants";
 export const projectsScene = (
   state: ProjectsSceneInitialState = {
     projectsList: null,
-    currentProject: null,
   },
   action: {
     type: string;
