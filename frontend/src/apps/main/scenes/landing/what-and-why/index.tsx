@@ -1,37 +1,100 @@
-import "./style";
 import React from "react";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 const reasons = [
   {
-    title: "Bring your Code",
+    title: "Algerian Open Source Projects",
     description:
-      "Bringing your project and open-sourcing it, brings attention and spotlight, thus more contributor, which will lead to an even better version of you library.",
+      "Centralizing the issues around Algerian problems brings care and commitment from all , and you are an example of that",
   },
   {
-    title: "Algerian Care",
+    title: "Local Contributions",
     description:
-      "Centralizing the issues around Algerian problems brings care and commitment from across the country, and you are an example of that ☺️",
+      "Bringing your project to spotlight and let local collaborators find you, which will lead to an even better version of you library.",
   },
   {
-    title: "Backers",
+    title: "Showcase Talent",
     description:
-      "Every project is used in production by Algerian websites, apps, and more",
+      "Get your software job today!. Help companies find you by contributing to projects used in production Algerian websites, apps, and more!",
   },
 ];
 
-export const WhatAndWhy = () => (
-  <div className="what-and-why">
-    <div className="title">What is dzCode.io and Why?</div>
-    <div className="sub-title">
-      dzCode.io is a hub for Algerian open source projects
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginBottom: `10vh`,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    [theme.breakpoints.up("lg")]: {
+      minHeight: "40vh",
+      margin: `5vh 0`,
+    },
+  },
+  header: {
+    flex: 3,
+    color: theme.palette.text.secondary,
+    marginBottom: "20px",
+  },
+  header2: {
+    flex: 3,
+    marginBottom: "20px",
+  },
+  reasonCards: {
+    flex: 6,
+    marginTop: "20px",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  reasonCard: {
+    flex: "0 1 300px",
+    margin: "20px",
+    fontWeight: 400,
+  },
+  title: {
+    marginBottom: "20px",
+    color: theme.palette.text.secondary,
+  },
+  description: {},
+}));
+
+interface ReasonCardProps {
+  title: string;
+  description: string;
+}
+
+const ReasonCard = ({ title, description }: ReasonCardProps) => {
+  const classes = useStyles();
+  return (
+    <div className={classes.reasonCard}>
+      <Typography variant="h4" className={classes.title}>
+        {title}
+      </Typography>
+      <Typography variant="body1" className={classes.description}>
+        {description}
+      </Typography>
     </div>
-    <div className="reasons">
-      {reasons.map((reason, index) => (
-        <div className="reason" key={`reason-${index}`}>
-          <div className="title">{reason.title}</div>
-          <div className="description">{reason.description}</div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
+
+export const WhatAndWhy = () => {
+  const classes = useStyles();
+  return (
+    <section className={classes.root}>
+      <Typography variant="h2" className={classes.header}>
+        What is dzCode.io and Why?
+      </Typography>
+      <Typography variant="h4" className={classes.header2}>
+        dzCode.io is a hub for Algerian open source projects
+      </Typography>
+      <div className={classes.reasonCards}>
+        {reasons.map((reason, index) => (
+          <ReasonCard key={index} {...reason} />
+        ))}
+      </div>
+    </section>
+  );
+};

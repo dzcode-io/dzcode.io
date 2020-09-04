@@ -5,7 +5,6 @@ import {
   fetchTopProjects,
 } from "t9/apps/main/redux/actions/landing-scene";
 import { Header } from "./header";
-import { HowToContribute } from "./how-to-contribute";
 import { TopArticles } from "./top-articles";
 import { TopProjects } from "./top-projects";
 import { WhatAndWhy } from "./what-and-why";
@@ -23,13 +22,12 @@ export const LandingScene = ({
   }, []);
 
   return (
-    <div className="landing">
+    <>
       <Header />
-      <HowToContribute />
-      <TopProjects topProjects={topProjects} />
       <WhatAndWhy />
+      <TopProjects topProjects={topProjects} />
       <TopArticles topArticles={topArticles} />
-    </div>
+    </>
   );
 };
 

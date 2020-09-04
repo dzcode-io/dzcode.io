@@ -1,44 +1,108 @@
-import "./style";
-import { Button } from "src/components/button";
-import { LinkV2 } from "src/components/link-v2";
+import Button from "@material-ui/core/Button";
+import FreeBreakfastIcon from "@material-ui/icons/FreeBreakfast";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import React from "react";
-import contact from "t9/apps/main/assets/png/contact.png";
-import github from "t9/apps/main/assets/png/github.png";
-import programer from "t9/apps/main/assets/png/programmer.png";
+import SchoolIcon from "@material-ui/icons/School";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 const socialMedia = [
   {
-    name: "dzCode.io",
-    to: "https://github.com/dzcode-io",
-    icon: github,
+    name: "How To Open Source",
+    href: "/Learn/Getting_Started",
+    icon: <SchoolIcon />,
   },
-  { name: "Learn", to: "/Learn/Getting_Started", icon: programer },
-  { name: "Contact", to: "/Contact-Us", icon: contact },
+  {
+    name: "Frequently Asked Questions",
+    href: "/FAQ",
+    icon: <QuestionAnswerIcon />,
+  },
+  { name: "Contact", href: "/Contact-Us", icon: <FreeBreakfastIcon /> },
+  {
+    name: "dzCode.io",
+    href: "https://github.com/dzcode-io",
+    icon: <GitHubIcon />,
+  },
 ];
 
-export const Header = () => (
-  <div className="header">
-    <div className="shade" />
-    <div className="text">
-      <div className="title">Algerian Open Source Community</div>
-      <div className="description">
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    flexDirection: "column",
+    [theme.breakpoints.up("md")]: {
+      padding: theme.spacing(6),
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: "80vh",
+    },
+  },
+  buttons: {
+    padding: theme.spacing(4),
+  },
+  header: {
+    padding: theme.spacing(2),
+  },
+  socialMedia: {
+    padding: theme.spacing(2),
+  },
+}));
+
+export const Header = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <div className={classes.header}>
+        <Typography variant="h1" color="inherit">
+          Algerian Open Source Community
+        </Typography>
+      </div>
+      <Typography variant="h4" color="inherit">
         We make it easier to build better apps in Algeria for Algeria.
+      </Typography>
+      <div className={classes.buttons}>
+        <Button
+          href="https://github.com/dzcode-io/dzcode.io"
+          color="primary"
+          variant="contained"
+          disableRipple
+          disableFocusRipple
+          size="large"
+        >
+          Make a Contribution
+        </Button>
+        <Button
+          href="/Contact-Us"
+          disableRipple
+          disableFocusRipple
+          color="primary"
+          variant="text"
+          size="large"
+        >
+          How can i help ?
+        </Button>
+      </div>
+      <div className={classes.socialMedia}>
+        {socialMedia.map((item, i) => {
+          return (
+            <Button
+              disableRipple
+              disableFocusRipple
+              variant="text"
+              color="default"
+              href={item.href}
+              size="large"
+              startIcon={item.icon}
+              key={i}
+            >
+              {item.name}
+            </Button>
+          );
+        })}
       </div>
     </div>
-
-    <div className="actions">
-      <Button text="Contribute" link="/Contribute" className="primary" />
-      <Button text="Learn More" link="/About" className="secondary" />
-    </div>
-    <div className="socialMedia">
-      {socialMedia.map((item, index) => {
-        return (
-          <div key={`header-link-${index}`} className="item">
-            <img src={item.icon} alt={item.name} className="icon" />
-            <LinkV2 href={item.to}>{item.name}</LinkV2>
-          </div>
-        );
-      })}
-    </div>
-  </div>
-);
+  );
+};
