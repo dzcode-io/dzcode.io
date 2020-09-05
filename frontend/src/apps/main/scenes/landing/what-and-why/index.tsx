@@ -1,5 +1,7 @@
 import "./style";
 import React from "react";
+import typography from "t9/apps/main/components/theme/typography";
+import { Typography } from "@material-ui/core";
 
 const reasons = [
   {
@@ -21,15 +23,21 @@ const reasons = [
 
 export const WhatAndWhy = () => (
   <div className="what-and-why">
-    <div className="title">What is dzCode.io and Why?</div>
+    <Typography variant="h1" className="title">
+      What is dzCode.io and Why?
+    </Typography>
     <div className="sub-title">
       dzCode.io is a hub for Algerian open source projects
     </div>
     <div className="reasons">
       {reasons.map((reason, index) => (
         <div className="reason" key={`reason-${index}`}>
-          <div className="title">{reason.title}</div>
-          <div className="description">{reason.description}</div>
+          <Typography className="title" variant="h2">
+            {reason.title}
+          </Typography>
+          <Typography className="description" variant="body2">
+            {reason.description}
+          </Typography>
         </div>
       ))}
     </div>

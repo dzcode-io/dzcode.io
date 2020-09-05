@@ -5,6 +5,7 @@ import React from "react";
 import contact from "t9/apps/main/assets/png/contact.png";
 import github from "t9/apps/main/assets/png/github.png";
 import programer from "t9/apps/main/assets/png/programmer.png";
+import { Typography } from "@material-ui/core";
 
 const socialMedia = [
   {
@@ -20,10 +21,12 @@ export const Header = () => (
   <div className="header">
     <div className="shade" />
     <div className="text">
-      <div className="title">Algerian Open Source Community</div>
-      <div className="description">
+      <Typography variant="h1" className="title">
+        Algerian Open Source Community
+      </Typography>
+      <Typography variant="subtitle1" className="description">
         We make it easier to build better apps in Algeria for Algeria.
-      </div>
+      </Typography>
     </div>
 
     <div className="actions">

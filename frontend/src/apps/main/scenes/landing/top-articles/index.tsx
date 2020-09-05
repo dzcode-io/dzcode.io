@@ -2,6 +2,7 @@ import "./style";
 import { Article } from "t9/types/fullstack";
 import { LinkV2 } from "src/components/link-v2";
 import React from "react";
+import { Typography } from "@material-ui/core";
 
 interface TopArticlesProps {
   topArticles: Article[] | null;
@@ -10,7 +11,9 @@ interface TopArticlesProps {
 export const TopArticles = ({ topArticles }: TopArticlesProps) => (
   <section className="top-articles">
     <header>
-      <h1 className="title">Read Community Articles</h1>
+      <Typography variant="h1" className="title">
+        Read Community Articles
+      </Typography>
       <p className="sub-title">
         Read awesome articles, written by <strong>Algerian Developers</strong>
       </p>

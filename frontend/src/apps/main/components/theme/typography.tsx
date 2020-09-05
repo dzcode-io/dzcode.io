@@ -4,6 +4,7 @@ export default {
     fontSize: "35px",
     letterSpacing: "-0.24px",
     lineHeight: "40px",
+    textAlign: "center",
   },
   h2: {
     fontWeight: 500,
