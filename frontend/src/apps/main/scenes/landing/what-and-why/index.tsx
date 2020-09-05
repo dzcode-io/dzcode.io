@@ -1,3 +1,4 @@
+import Paper from "@material-ui/core/Paper";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,26 +24,29 @@ const reasons = [
 const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: `10vh`,
+  },
+  paper: {
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    [theme.breakpoints.up("lg")]: {
-      minHeight: "40vh",
-      margin: `5vh 0`,
+    padding: "5% 0",
+
+    [theme.breakpoints.up("md")]: {
+      padding: "10vh 0",
     },
   },
   header: {
-    flex: 3,
     color: theme.palette.text.secondary,
     marginBottom: "20px",
+    textAlign: "center",
   },
   header2: {
-    flex: 3,
     marginBottom: "20px",
+    textAlign: "center",
   },
   reasonCards: {
-    flex: 6,
     marginTop: "20px",
     display: "flex",
     flexWrap: "wrap",
@@ -84,17 +88,19 @@ export const WhatAndWhy = () => {
   const classes = useStyles();
   return (
     <section className={classes.root}>
-      <Typography variant="h2" className={classes.header}>
-        What is dzCode.io and Why?
-      </Typography>
-      <Typography variant="h4" className={classes.header2}>
-        dzCode.io is a hub for Algerian open source projects
-      </Typography>
-      <div className={classes.reasonCards}>
-        {reasons.map((reason, index) => (
-          <ReasonCard key={index} {...reason} />
-        ))}
-      </div>
+      <Paper className={classes.paper} elevation={6}>
+        <Typography variant="h2" className={classes.header}>
+          What is dzCode.io and Why?
+        </Typography>
+        <Typography variant="h4" className={classes.header2}>
+          dzCode.io is a hub for Algerian open source projects
+        </Typography>
+        <div className={classes.reasonCards}>
+          {reasons.map((reason, index) => (
+            <ReasonCard key={index} {...reason} />
+          ))}
+        </div>
+      </Paper>
     </section>
   );
 };
