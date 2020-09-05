@@ -29,6 +29,23 @@ const Contact = lazy(() => import("t9/apps/main/scenes/contact"));
 
 const env = getEnv();
 
+const Main = () => (
+  <Container maxWidth="lg">
+    <ToastContainer />
+    <Suspense fallback={Loading}>
+      <Switch>
+        <Route path="/" exact component={Landing} />
+        <Route path="/Learn" component={Learn} />
+        <Route path="/Articles" component={Articles} />
+        <Route path="/Projects" component={Projects} />
+        <Route path="/Contact-Us" component={Contact} />
+        <Route path="/FAQ" component={Faq} />
+        <Route render={() => <Redirect to="/" />} />
+      </Switch>
+    </Suspense>
+  </Container>
+);
+
 export const App = () => {
   const location = useLocation();
   React.useEffect(() => {
@@ -41,23 +58,14 @@ export const App = () => {
 
   return (
     <Theme>
-      <Navbar />
-      <Container maxWidth="lg">
-        <ToastContainer />
-        <Suspense fallback={Loading}>
-          <Switch>
-            <Route path="/" exact component={Landing} />
-            <Route path="/Learn" component={Learn} />
-            <Route path="/Articles" component={Articles} />
-            <Route path="/Projects" component={Projects} />
-            <Route path="/Contact-Us" component={Contact} />
-            <Route path="/FAQ" component={Faq} />
-            <Route render={() => <Redirect to="/" />} />
-          </Switch>
-        </Suspense>
-      </Container>
-      <Footer />
-      <CssBaseline />
+      <div
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
+        <Navbar />
+        <Main />
+        <Footer />
+        <CssBaseline />
+      </div>
     </Theme>
   );
 };

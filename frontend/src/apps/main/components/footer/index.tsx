@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: theme.palette.background.paper,
     borderTop: `1px solid ${theme.palette.background.paper}`,
     padding: "30px",
+    marginTop: "auto",
   },
   copyright: {
     fontSize: "14px",
