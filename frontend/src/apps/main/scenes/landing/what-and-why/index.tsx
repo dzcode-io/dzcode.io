@@ -88,7 +88,7 @@ export const WhatAndWhy = () => {
   const classes = useStyles();
   return (
     <section className={classes.root}>
-      <Paper className={classes.paper} elevation={6}>
+      <Paper className={classes.paper} elevation={3}>
         <Typography variant="h2" className={classes.header}>
           What is dzCode.io and Why?
         </Typography>
