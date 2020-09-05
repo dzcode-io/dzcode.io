@@ -10,7 +10,7 @@ import { TopProjects } from "./top-projects";
 import { WhatAndWhy } from "./what-and-why";
 import { connect } from "react-redux";
 import { fetchProjectsList } from "t9/apps/main/redux/actions/projects-scene";
-
+import { HowToContribute } from "./how-to-contribute";
 export const LandingScene = ({
   topProjects,
   topArticles,
@@ -27,6 +27,7 @@ export const LandingScene = ({
       <Header />
       <WhatAndWhy />
       <TopProjects topProjects={topProjects} />
+      <HowToContribute />
       <TopArticles topArticles={topArticles} />
     </>
   );
