@@ -33,11 +33,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     textAlign: "center",
     flexDirection: "column",
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(6),
-    },
+    minHeight: "90vh",
+
     [theme.breakpoints.down("sm")]: {
-      height: "80vh",
+      height: "85vh",
     },
   },
   buttons: {
@@ -45,9 +44,10 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
   },
   socialMedia: {
-    padding: theme.spacing(2),
+    padding: "48px 29px",
   },
 }));
 

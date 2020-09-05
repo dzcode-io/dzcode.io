@@ -9,6 +9,7 @@ import { TopArticles } from "./top-articles";
 import { TopProjects } from "./top-projects";
 import { WhatAndWhy } from "./what-and-why";
 import { connect } from "react-redux";
+import { fetchProjectsList } from "t9/apps/main/redux/actions/projects-scene";
 
 export const LandingScene = ({
   topProjects,
