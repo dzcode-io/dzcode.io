@@ -1,22 +1,22 @@
 import { articles } from "./articles";
-import { articlesScene } from "./articles-scene";
+import { articlesPage } from "./articles-page";
 import { combineReducers } from "redux";
 import { documentation } from "./documentation";
-import { faqScene } from "./faq-scene";
-import { landingScene } from "./landing-scene";
+import { faqPage } from "./faq-page";
+import { landingPage } from "./landing-page";
 import { layout } from "./layout-reducer";
-import { learnScene } from "./learn-scene";
-import { projectsScene } from "./projects-scene";
+import { learnPage } from "./learn-page";
+import { projectsPage } from "./projects-page";
 import { settings } from "./settings";
 
 export const mainReducer = combineReducers({
   documentation,
-  learnScene,
+  learnPage,
   articles,
-  articlesScene,
-  projectsScene,
-  landingScene,
+  articlesPage,
+  projectsPage,
+  landingPage,
   settings,
   layout,
-  faqScene,
+  faqPage,
 });

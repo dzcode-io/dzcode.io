@@ -1,7 +1,7 @@
 import { MainStoreStateInterface, SidebarTreeItem } from "t9/types/main";
+import { Article } from "t9/types/fullstack";
 import Axios from "axios";
 import { Dispatch } from "react";
-import { Document } from "t9/types/fullstack";
 import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
 import { hasInCollection } from "src/common/utils";
@@ -9,17 +9,17 @@ import { listToTree } from "l2t";
 
 const dataURL = fullstackConfig.data.url;
 
-export const fetchDocumentationList = () => async (
+export const fetchArticlesList = () => async (
   dispatch: Dispatch<any>,
   getState: MainStoreStateInterface,
 ) => {
   try {
-    const response = await Axios.get(dataURL + "/documentation/list.c.json");
-    const documentationList = response.data;
+    const response = await Axios.get(dataURL + "/articles/list.c.json");
+    const articlesList = response.data;
     const ids: string[] = [];
     // convert list into tree
-    const tree = listToTree<Document, SidebarTreeItem>(
-      documentationList,
+    const tree = listToTree<Article, SidebarTreeItem>(
+      articlesList,
       (item) => item.slug,
       (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
       "children",
@@ -28,13 +28,13 @@ export const fetchDocumentationList = () => async (
         return {
           content: item.title,
           id: item.slug,
-          link: "/Learn/" + item.slug,
+          link: "/Articles/" + item.slug,
         };
       },
     );
 
     dispatch({
-      type: actionType.UPDATE_LEARN_SCENE,
+      type: actionType.UPDATE_ARTICLES_PAGE,
       payload: { sidebarTree: tree, expanded: ids },
     });
   } catch (error) {
@@ -42,45 +42,45 @@ export const fetchDocumentationList = () => async (
   }
 };
 
-export const fetchCurrentDocument = () => async (
+export const fetchCurrentArticle = () => async (
   dispatch: Dispatch<any>,
   getState: MainStoreStateInterface,
 ) => {
-  const documentSlug = location.pathname
+  const articleSlug = location.pathname
     .substring(location.pathname.indexOf("/", 1) + 1)
     .replace(/\/$/, "");
-  const cashedDocument = hasInCollection<Document>(
-    getState().documentation,
+  const cashedArticle = hasInCollection<Article>(
+    getState().articles,
     "slug",
-    documentSlug,
+    articleSlug,
     [["content"]],
   );
-  if (cashedDocument) {
-    // update our scene state
+  if (cashedArticle) {
+    // update our page state
     dispatch({
-      type: actionType.UPDATE_LEARN_SCENE,
-      payload: { currentDocument: cashedDocument },
+      type: actionType.UPDATE_ARTICLES_PAGE,
+      payload: { currentArticle: cashedArticle },
     });
   } else {
     // BUG: cashing not working in local (slug related issue)
     dispatch({
-      type: actionType.UPDATE_LEARN_SCENE,
-      payload: { currentDocument: null },
+      type: actionType.UPDATE_ARTICLES_PAGE,
+      payload: { currentArticle: null },
     });
     try {
       const response = await Axios.get(
-        dataURL + `/documentation/${documentSlug}.json`,
+        dataURL + `/articles/${articleSlug}.json`,
       );
-      const currentDocument = response.data;
-      // update our scene state
+      const currentArticle = response.data;
+      // update our page state
       dispatch({
-        type: actionType.UPDATE_LEARN_SCENE,
-        payload: { currentDocument },
+        type: actionType.UPDATE_ARTICLES_PAGE,
+        payload: { currentArticle },
       });
       // update our cache state
       dispatch({
-        type: actionType.UPDATE_DOCUMENTATION,
-        payload: [currentDocument],
+        type: actionType.UPDATE_ARTICLES,
+        payload: [currentArticle],
       });
     } catch (error) {
       console.error(error);

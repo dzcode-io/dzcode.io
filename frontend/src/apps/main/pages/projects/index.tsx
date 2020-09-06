@@ -2,13 +2,13 @@ import { Catalog } from "./catalog";
 import { Project } from "t9/types/fullstack";
 import React from "react";
 import { connect } from "react-redux";
-import { fetchProjectsList } from "t9/apps/main/redux/actions/projects-scene";
+import { fetchProjectsList } from "t9/apps/main/redux/actions/projects-page";
 import { useEffect } from "react";
 
-export const ProjectsScene = ({
+export const ProjectsPage = ({
   fetchProjectsList,
   projectsList,
-}: ProjectsSceneProps) => {
+}: ProjectsPageProps) => {
   useEffect(() => {
     fetchProjectsList();
   }, []);
@@ -20,20 +20,20 @@ export const ProjectsScene = ({
   );
 };
 
-export interface ProjectsSceneInitialState {
+export interface ProjectsPageInitialState {
   projectsList: Project[] | null;
 }
 
-interface ProjectsSceneProps {
+interface ProjectsPageProps {
   fetchProjectsList: () => void;
   projectsList: Project[] | null;
 }
 
 export default connect(
-  (state: { projectsScene: ProjectsSceneProps }) => ({
-    ...state.projectsScene,
+  (state: { projectsPage: ProjectsPageProps }) => ({
+    ...state.projectsPage,
   }),
   (dispatch: any) => ({
     fetchProjectsList: () => dispatch(fetchProjectsList()),
   }),
-)(ProjectsScene);
+)(ProjectsPage);
