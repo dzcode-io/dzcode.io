@@ -28,11 +28,11 @@ import React from "react";
 import { Sidebar } from "./sidebar";
 import { SidebarTreeItem } from "t9/types/main";
 import { connect } from "react-redux";
-import { fetchArticlesList } from "t9/apps/main/redux/actions/articles-scene";
-import { fetchCurrentArticle } from "t9/apps/main/redux/actions/articles-scene";
+import { fetchArticlesList } from "t9/apps/main/redux/actions/articles-page";
+import { fetchCurrentArticle } from "t9/apps/main/redux/actions/articles-page";
 import { useEffect } from "react";
 
-export const ArticlesScene = (props: ArticlesSceneProps) => {
+export const ArticlesPage = (props: ArticlesPageProps) => {
   useEffect(() => {
     props.fetchArticlesList();
   }, []);
@@ -70,13 +70,13 @@ export const ArticlesScene = (props: ArticlesSceneProps) => {
   );
 };
 
-export interface ArticlesSceneInitialState {
+export interface ArticlesPageInitialState {
   sidebarTree: SidebarTreeItem[] | null;
   expanded: string[];
   currentArticle: Article | null;
 }
 
-interface ArticlesSceneProps {
+interface ArticlesPageProps {
   fetchArticlesList: () => void;
   fetchCurrentArticle: () => void;
   sidebarTree: SidebarTreeItem[] | null;
@@ -85,12 +85,12 @@ interface ArticlesSceneProps {
 }
 
 export default connect(
-  (state: { articlesScene: ArticlesSceneProps }) => ({
-    ...state.articlesScene,
+  (state: { articlesPage: ArticlesPageProps }) => ({
+    ...state.articlesPage,
   }),
   (dispatch: any) => ({
     fetchArticlesList: () => dispatch(fetchArticlesList()),
     fetchCurrentArticle: () => dispatch(fetchCurrentArticle()),
   }),
-)(ArticlesScene);
+)(ArticlesPage);
 ```

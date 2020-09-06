@@ -3,19 +3,19 @@ import React, { useEffect } from "react";
 import {
   fetchTopArticles,
   fetchTopProjects,
-} from "t9/apps/main/redux/actions/landing-scene";
+} from "t9/apps/main/redux/actions/landing-page";
 import { Header } from "./header";
 import { HowToContribute } from "./how-to-contribute";
 import { TopArticles } from "./top-articles";
 import { TopProjects } from "./top-projects";
 import { WhatAndWhy } from "./what-and-why";
 import { connect } from "react-redux";
-export const LandingScene = ({
+export const LandingPage = ({
   topProjects,
   topArticles,
   fetchTopProjects,
   fetchTopArticles,
-}: LandingSceneProps) => {
+}: LandingPageProps) => {
   useEffect(() => {
     fetchTopProjects();
     fetchTopArticles();
@@ -32,12 +32,12 @@ export const LandingScene = ({
   );
 };
 
-export interface LandingSceneInitialState {
+export interface LandingPageInitialState {
   topProjects: Project[] | null;
   topArticles: Article[] | null;
 }
 
-interface LandingSceneProps {
+interface LandingPageProps {
   fetchTopProjects: () => void;
   fetchTopArticles: () => void;
   topProjects: Project[] | null;
@@ -45,11 +45,11 @@ interface LandingSceneProps {
 }
 
 export default connect(
-  (state: { landingScene: LandingSceneProps }) => ({
-    ...state.landingScene,
+  (state: { landingPage: LandingPageProps }) => ({
+    ...state.landingPage,
   }),
   (dispatch: any) => ({
     fetchTopProjects: () => dispatch(fetchTopProjects()),
     fetchTopArticles: () => dispatch(fetchTopArticles()),
   }),
-)(LandingScene);
+)(LandingPage);

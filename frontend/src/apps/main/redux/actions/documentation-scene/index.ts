@@ -34,7 +34,7 @@ export const fetchDocumentationList = () => async (
     );
 
     dispatch({
-      type: actionType.UPDATE_LEARN_SCENE,
+      type: actionType.UPDATE_LEARN_PAGE,
       payload: { sidebarTree: tree, expanded: ids },
     });
   } catch (error) {
@@ -56,15 +56,15 @@ export const fetchCurrentDocument = () => async (
     [["content"]],
   );
   if (cashedDocument) {
-    // update our scene state
+    // update our page state
     dispatch({
-      type: actionType.UPDATE_LEARN_SCENE,
+      type: actionType.UPDATE_LEARN_PAGE,
       payload: { currentDocument: cashedDocument },
     });
   } else {
     // BUG: cashing not working in local (slug related issue)
     dispatch({
-      type: actionType.UPDATE_LEARN_SCENE,
+      type: actionType.UPDATE_LEARN_PAGE,
       payload: { currentDocument: null },
     });
     try {
@@ -72,9 +72,9 @@ export const fetchCurrentDocument = () => async (
         dataURL + `/documentation/${documentSlug}.json`,
       );
       const currentDocument = response.data;
-      // update our scene state
+      // update our page state
       dispatch({
-        type: actionType.UPDATE_LEARN_SCENE,
+        type: actionType.UPDATE_LEARN_PAGE,
         payload: { currentDocument },
       });
       // update our cache state

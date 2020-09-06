@@ -34,7 +34,7 @@ export const fetchArticlesList = () => async (
     );
 
     dispatch({
-      type: actionType.UPDATE_ARTICLES_SCENE,
+      type: actionType.UPDATE_ARTICLES_PAGE,
       payload: { sidebarTree: tree, expanded: ids },
     });
   } catch (error) {
@@ -56,15 +56,15 @@ export const fetchCurrentArticle = () => async (
     [["content"]],
   );
   if (cashedArticle) {
-    // update our scene state
+    // update our page state
     dispatch({
-      type: actionType.UPDATE_ARTICLES_SCENE,
+      type: actionType.UPDATE_ARTICLES_PAGE,
       payload: { currentArticle: cashedArticle },
     });
   } else {
     // BUG: cashing not working in local (slug related issue)
     dispatch({
-      type: actionType.UPDATE_ARTICLES_SCENE,
+      type: actionType.UPDATE_ARTICLES_PAGE,
       payload: { currentArticle: null },
     });
     try {
@@ -72,9 +72,9 @@ export const fetchCurrentArticle = () => async (
         dataURL + `/articles/${articleSlug}.json`,
       );
       const currentArticle = response.data;
-      // update our scene state
+      // update our page state
       dispatch({
-        type: actionType.UPDATE_ARTICLES_SCENE,
+        type: actionType.UPDATE_ARTICLES_PAGE,
         payload: { currentArticle },
       });
       // update our cache state

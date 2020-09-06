@@ -13,7 +13,7 @@ export const fetchProjectsList = () => async (
   try {
     const response = await Axios.get(dataURL + "/projects/list.c.json");
     dispatch({
-      type: actionType.UPDATE_PROJECTS_SCENE,
+      type: actionType.UPDATE_PROJECTS_PAGE,
       payload: { projectsList: response.data },
     });
   } catch (error) {
