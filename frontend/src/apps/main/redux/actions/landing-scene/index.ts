@@ -13,7 +13,7 @@ export const fetchTopProjects = () => async (
   try {
     const response = await Axios.get(dataURL + "/projects/top-projects.c.json");
     dispatch({
-      type: actionType.UPDATE_LANDING_SCENE,
+      type: actionType.UPDATE_LANDING_PAGE,
       payload: { topProjects: response.data },
     });
   } catch (error) {
@@ -28,7 +28,7 @@ export const fetchTopArticles = () => async (
   try {
     const response = await Axios.get(dataURL + "/articles/top-articles.c.json");
     dispatch({
-      type: actionType.UPDATE_LANDING_SCENE,
+      type: actionType.UPDATE_LANDING_PAGE,
       payload: { topArticles: response.data },
     });
   } catch (error) {

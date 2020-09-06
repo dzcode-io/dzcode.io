@@ -1,17 +1,17 @@
-import { ProjectsSceneInitialState } from "t9/apps/main/scenes/projects";
+import { ProjectsPageInitialState } from "t9/apps/main/pages/projects";
 import { actionType } from "t9/apps/main/redux/constants";
 
-export const projectsScene = (
-  state: ProjectsSceneInitialState = {
+export const projectsPage = (
+  state: ProjectsPageInitialState = {
     projectsList: null,
   },
   action: {
     type: string;
-    payload: ProjectsSceneInitialState;
+    payload: ProjectsPageInitialState;
   },
 ) => {
   switch (action.type) {
-    case actionType.UPDATE_PROJECTS_SCENE:
+    case actionType.UPDATE_PROJECTS_PAGE:
       return { ...state, ...action.payload };
     default:
       return state;
