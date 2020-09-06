@@ -22,6 +22,7 @@
     margin: 0;
   }
   a {
+    
     font-size: 1rem;
     display: block;
     color: #000;
@@ -69,14 +70,17 @@
         color: rgba($color: #000, $alpha: 0.9);
         padding: 0.9rem;
         margin: 0.5rem 0;
-        background-color: rgba($color: #000, $alpha: 0.05);
-        border: none;
+        background-color: rgba($color: #fff, $alpha: 0.9);
+        border: 1px solid #1d1d1d;
         margin-top: 0.6rem;
 
         &:focus {
-          background-color: rgba($color: #000, $alpha: 0.2);
+          background-color: rgba($color:white, $alpha: 0.9);
+          border: 1px solid #1d1d1d;
+          border-left: 2px solid red;
+          
 
-          border: none;
+          
           color: #000;
           outline: none;
         }
@@ -95,6 +99,7 @@
       &:hover {
         background-color: rgba($color: $primary, $alpha: 1);
         color: #fff;
+        transition: .5s;
       }
     }
   }
@@ -104,41 +109,17 @@
   .contact {
     flex-direction: row;
     justify-content: center;
-    padding: 5% 0;
+    padding: 5% 3px;
+    background-color: rgba($color: #fff, $alpha: 0.1);
+    margin-bottom: 5%;
+    
+    
 
     header {
       display: block;
     }
 
-    .contact-info {
-      background-color: rgba($color: #000, $alpha: 0.1);
-      padding: 1rem;
-      padding-left: 2rem;
-      width: 300px;
-      margin: 1rem 0;
-      position: absolute;
-      top: 5%;
-      right: 1%;
-
-      h1 {
-        font-size: 1rem;
-        margin: 0.4rem 0;
-      }
-      h2 {
-        font-size: 1.3rem;
-        margin: 0.4rem 0;
-        font-weight: bold;
-      }
-      a {
-        font-size: 1.3rem;
-        display: block;
-        color: #1d1d1d;
-        margin: 0.4rem 0;
-        font-weight: bold;
-
-        text-decoration: none;
-      }
-    }
+    
 
     .left {
       max-width: 40%;
@@ -161,9 +142,11 @@
 
         input,
         textarea {
+          
           padding: 0.8rem;
         }
       }
     }
   }
 }
+
