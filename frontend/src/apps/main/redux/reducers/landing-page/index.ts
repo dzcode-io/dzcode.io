@@ -1,18 +1,18 @@
-import { LandingSceneInitialState } from "t9/apps/main/scenes/landing";
+import { LandingPageInitialState } from "t9/apps/main/pages/landing";
 import { actionType } from "t9/apps/main/redux/constants";
 
-export const landingScene = (
-  state: LandingSceneInitialState = {
+export const landingPage = (
+  state: LandingPageInitialState = {
     topProjects: null,
     topArticles: null,
   },
   action: {
     type: string;
-    payload: LandingSceneInitialState;
+    payload: LandingPageInitialState;
   },
 ) => {
   switch (action.type) {
-    case actionType.UPDATE_LANDING_SCENE:
+    case actionType.UPDATE_LANDING_PAGE:
       return { ...state, ...action.payload };
     default:
       return state;

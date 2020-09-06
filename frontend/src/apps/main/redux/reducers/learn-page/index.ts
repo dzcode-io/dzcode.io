@@ -1,19 +1,19 @@
-import { ArticlesSceneInitialState } from "t9/apps/main/scenes/articles";
+import { LearnPageInitialState } from "t9/apps/main/pages/learn";
 import { actionType } from "t9/apps/main/redux/constants";
 
-export const articlesScene = (
-  state: ArticlesSceneInitialState = {
+export const learnPage = (
+  state: LearnPageInitialState = {
     sidebarTree: null,
     expanded: [],
-    currentArticle: null,
+    currentDocument: null,
   },
   action: {
     type: string;
-    payload: ArticlesSceneInitialState;
+    payload: LearnPageInitialState;
   },
 ) => {
   switch (action.type) {
-    case actionType.UPDATE_ARTICLES_SCENE:
+    case actionType.UPDATE_LEARN_PAGE:
       return { ...state, ...action.payload };
     default:
       return state;

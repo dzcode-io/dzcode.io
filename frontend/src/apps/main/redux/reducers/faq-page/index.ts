@@ -56,7 +56,7 @@ const INITIAL_STATE = {
   ],
 };
 
-export const faqScene = (state = INITIAL_STATE, action: any) => {
+export const faqPage = (state = INITIAL_STATE, action: any) => {
   switch (action.type) {
     default:
       return state;

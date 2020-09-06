@@ -6,11 +6,11 @@ import React from "react";
 import { Sidebar } from "./sidebar";
 import { SidebarTreeItem } from "t9/types/main";
 import { connect } from "react-redux";
-import { fetchCurrentDocument } from "t9/apps/main/redux/actions/documentation-scene";
-import { fetchDocumentationList } from "t9/apps/main/redux/actions/documentation-scene";
+import { fetchCurrentDocument } from "t9/apps/main/redux/actions/documentation-page";
+import { fetchDocumentationList } from "t9/apps/main/redux/actions/documentation-page";
 import { useEffect } from "react";
 
-export const LearnScene = (props: LearnSceneProps) => {
+export const LearnPage = (props: LearnPageProps) => {
   useEffect(() => {
     props.fetchDocumentationList();
   }, []);
@@ -48,13 +48,13 @@ export const LearnScene = (props: LearnSceneProps) => {
   );
 };
 
-export interface LearnSceneInitialState {
+export interface LearnPageInitialState {
   sidebarTree: SidebarTreeItem[] | null;
   expanded: string[];
   currentDocument: Document | null;
 }
 
-interface LearnSceneProps {
+interface LearnPageProps {
   fetchDocumentationList: () => void;
   fetchCurrentDocument: () => void;
   sidebarTree: SidebarTreeItem[] | null;
@@ -63,11 +63,11 @@ interface LearnSceneProps {
 }
 
 export default connect(
-  (state: { learnScene: LearnSceneProps }) => ({
-    ...state.learnScene,
+  (state: { learnPage: LearnPageProps }) => ({
+    ...state.learnPage,
   }),
   (dispatch: any) => ({
     fetchDocumentationList: () => dispatch(fetchDocumentationList()),
     fetchCurrentDocument: () => dispatch(fetchCurrentDocument()),
   }),
-)(LearnScene);
+)(LearnPage);

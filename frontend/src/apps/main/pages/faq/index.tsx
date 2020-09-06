@@ -3,7 +3,7 @@ import { FaqItem } from "./faq-Item";
 import React from "react";
 import { connect } from "react-redux";
 
-export const FaqScene = ({ faqData }: any) => {
+export const FaqPage = ({ faqData }: any) => {
   return (
     <div className="faq">
       <header className="faq__banner">
@@ -20,7 +20,7 @@ export const FaqScene = ({ faqData }: any) => {
 };
 
 const mapStateToProps = (state: any) => ({
-  faqData: state.faqScene.faqData,
+  faqData: state.faqPage.faqData,
 });
 
-export default connect(mapStateToProps, null)(FaqScene);
+export default connect(mapStateToProps, null)(FaqPage);
