@@ -36,6 +36,7 @@ export const Markdown = (props: MarkdownProps) => {
           },
           p: { component: Typography, props: { paragraph: true } },
           a: { component: LinkV2 },
+          img: { props: { style: { maxWidth: "100%" } } } as any,
           pre: {
             component({ children: { props } }: any) {
               return (
