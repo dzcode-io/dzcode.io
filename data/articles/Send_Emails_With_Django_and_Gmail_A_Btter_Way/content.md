@@ -107,5 +107,11 @@ DEFAULT_FROM_EMAIL = 'default from email'
 
 ## For further exploration
 
-you can use  SendGrid, Mailgun, Sendinblue... for your apps too
+You can use  SendGrid, Mailgun, Sendinblue... for your apps too
 don't forget to put your key in a .env file.
+
+[An Introduction to Environment Variables and How to Use Them](https://medium.com/chingu/an-introduction-to-environment-variables-and-how-to-use-them-f602f66d15fa)
+
+## Social footer
+
+By Toumi abderrahmane [twitter](https://twitter.com/Abderrahmaneend) .  [github](https://github.com/abderrahmaneMustapha)
