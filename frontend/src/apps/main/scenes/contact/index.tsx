@@ -15,15 +15,6 @@ const Contact = () => {
         </p>
         <ContactForm />
       </div>
-
-      <header className="contact-info">
-        <h1>dzCode.io</h1>
-        <h2>dzCode, Algeria</h2>
-        <a href="tel:+21367-626-1157">+213 06-76-26-11-57</a>
-        <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>
-      </header>
-
-      <div className="right"></div>
     </section>
   );
 };
