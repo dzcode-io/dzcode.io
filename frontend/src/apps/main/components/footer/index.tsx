@@ -85,11 +85,17 @@ export const Footer: React.FC = () => {
               : null}
           </Grid>
           <Grid item xs={12} md={3}>
-            <Typography variant="h6" className={classes.copyright}>
+            <Grid item>
               <h1>dzCode.io</h1>
               <h5>dzCode, Algeria</h5>
-              <a href="tel:+21367-626-1157">+213 06-76-26-11-57</a><br/>
-              <a href="mailto:contact@dzcode.io">contact@dzcode.io</a><br/>
+              <Grid item>
+                <a href="tel:+21367-626-1157">+213 06-76-26-11-57</a>
+              </Grid>
+              <Grid item>
+                <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>
+              </Grid>
+            </Grid>
+            <Typography variant="h6" className={classes.copyright}>
               Copyright © 2020{" "}
               <LinkV2
                 className={classes.link}
