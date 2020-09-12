@@ -112,15 +112,6 @@
   "devDependencies": {
     "husky": "^4.2.5",
     "webpack-dev-server": "^3.10.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]}
+  }
+ 
 }
