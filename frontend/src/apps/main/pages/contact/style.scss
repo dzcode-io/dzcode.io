@@ -1,14 +1,12 @@
 @import "../../../../common/style/variables";
 
 .contact {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 30% 20% 0%;
-  header {
-    display: none;
-  }
 
   button {
     cursor: pointer;
@@ -22,35 +20,10 @@
     margin: 0;
   }
   a {
+    text-decoration: none;
     font-size: 1rem;
     display: block;
-    color: #000;
     margin: 0;
-
-    text-decoration: none;
-  }
-
-  h1 {
-    font-size: calc(1.4rem + 1vw);
-    color: $primary;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: calc(1rem + 0.3vw);
-  }
-  .left {
-    margin: 0 1rem;
-  }
-
-  .right {
-    width: 100%;
-    margin: 2rem 2rem 4rem;
-
-    .map {
-      height: 300px;
-      width: 100%;
-    }
   }
 
   form {
@@ -110,49 +83,9 @@
       display: block;
     }
 
-    .contact-info {
-      background-color: rgba($color: #000, $alpha: 0.1);
-      padding: 1rem;
-      padding-left: 2rem;
-      width: 300px;
-      margin: 1rem 0;
-      position: absolute;
-      top: 5%;
-      right: 1%;
-
-      h1 {
-        font-size: 1rem;
-        margin: 0.4rem 0;
-      }
-      h2 {
-        font-size: 1.3rem;
-        margin: 0.4rem 0;
-        font-weight: bold;
-      }
-      a {
-        font-size: 1.3rem;
-        display: block;
-        color: #1d1d1d;
-        margin: 0.4rem 0;
-        font-weight: bold;
-
-        text-decoration: none;
-      }
-    }
-
     .left {
       max-width: 40%;
       margin: 0 6rem;
-    }
-
-    .right {
-      width: 20%;
-      margin: 0;
-
-      .map {
-        height: 500px;
-        width: 100%;
-      }
     }
 
     form {
