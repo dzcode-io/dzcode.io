@@ -32,7 +32,7 @@ const env = getEnv();
 const Main = () => (
   <Container maxWidth="lg">
     <ToastContainer />
-    <Suspense fallback={Loading}>
+    <Suspense fallback={<Loading />}>
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/Learn" component={Learn} />
