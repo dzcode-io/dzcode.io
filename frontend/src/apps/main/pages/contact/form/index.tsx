@@ -1,9 +1,24 @@
-import "./style.scss";
 import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
+
 import { toast } from "react-toastify";
 import { validateField } from "./validation/validate-form";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  input: {
+    margin: "10px 0 ",
+  },
+  button: {
+    color: theme.palette.getContrastText(theme.palette.primary.main),
+  },
+}));
 
 interface SendMessageParams {
   name: string;
@@ -56,9 +71,8 @@ export const ContactForm = (props: any) => {
 
   const [state, setState] = useState(initialState);
 
-  const handleChange = (event: { currentTarget: any }): void => {
-    const target = event.currentTarget;
-    const { name, value } = target;
+  const handleChange = (event: any): void => {
+    const { name, value } = event.currentTarget;
 
     const errors = validateField(name, value);
     setState({
@@ -68,7 +82,7 @@ export const ContactForm = (props: any) => {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     const emoji = Math.random() * 10 > 5 ? "✌" : "👍";
     event.preventDefault();
     toast.success(`${emoji} Message Sent Successfully!`, {
@@ -93,92 +107,91 @@ export const ContactForm = (props: any) => {
 
     setState(initialState);
   };
-
-  const classnames = {
-    name: state.errors.name ? "form-error-field" : "",
-    email: state.errors.email ? "form-error-field" : "",
-    subject: state.errors.subject ? "form-error-field" : "",
-    message: state.errors.message ? "form-error-field" : "",
-  };
-
+  const classes = useStyles();
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">
-        Name
-        <input
-          type="text"
-          autoComplete="off"
-          id="name"
-          name="name"
-          value={state.name}
-          onChange={handleChange}
-          className={classnames.name}
-          required
-        />
-      </label>
-      {state.errors.name ? (
-        <div className="form-error">{state.errors.name}</div>
-      ) : (
-        <div></div>
-      )}
-      <label htmlFor="name">
-        Email
-        <input
-          name="email"
-          type="email"
-          autoComplete="off"
-          id="email"
-          value={state.email}
-          onChange={handleChange}
-          className={classnames.email}
-          required
-        />
-        {state.errors.email ? (
-          <div className="form-error">{state.errors.email}</div>
-        ) : (
-          <div></div>
-        )}
-      </label>
-      <label htmlFor="subject">
-        Subject
-        <input
-          autoComplete="off"
-          type="text"
-          id="subject"
-          name="subject"
-          value={state.subject}
-          onChange={handleChange}
-          className={classnames.subject}
-          required
-        />
-        {state.errors.subject ? (
-          <div className="form-error">{state.errors.subject}</div>
-        ) : (
-          <div></div>
-        )}
-      </label>
-      <label htmlFor="name">
-        Message
-        <textarea
-          autoComplete="off"
-          name="message"
-          id="message"
-          cols={25}
-          rows={8}
-          value={state.message}
-          onChange={handleChange}
-          className={classnames.message}
-          required
-        ></textarea>
-        {state.errors.message ? (
-          <div className="form-error">{state.errors.message}</div>
-        ) : (
-          <div></div>
-        )}
-      </label>
-      <button type="submit" value="SEND">
-        SEND
-      </button>
+    <form onSubmit={handleSubmit} className={classes.root}>
+      <TextField
+        className={classes.input}
+        id="name"
+        label="Name"
+        name="name"
+        autoComplete="off"
+        type="text"
+        variant="outlined"
+        value={state.name}
+        onChange={handleChange}
+        error={!!state.errors.name}
+        helperText={state.errors.name}
+        required
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+
+      <TextField
+        className={classes.input}
+        id="email"
+        label="Email"
+        name="email"
+        autoComplete="off"
+        type="email"
+        variant="outlined"
+        value={state.email}
+        onChange={handleChange}
+        error={!!state.errors.email}
+        helperText={state.errors.email}
+        required
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+
+      <TextField
+        className={classes.input}
+        id="subject"
+        label="Subject"
+        name="subject"
+        autoComplete="off"
+        type="text"
+        variant="outlined"
+        value={state.subject}
+        onChange={handleChange}
+        error={!!state.errors.subject}
+        helperText={state.errors.subject}
+        required
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+
+      <TextField
+        className={classes.input}
+        id="message"
+        label="Message"
+        name="message"
+        autoComplete="off"
+        type="text"
+        variant="outlined"
+        value={state.message}
+        onChange={handleChange}
+        error={!!state.errors.message}
+        helperText={state.errors.message}
+        multiline={true}
+        rows={8}
+        required
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      <Button
+        className={classes.button}
+        variant="contained"
+        color="primary"
+        type="submit"
+        disableElevation
+      >
+        Send Message
+      </Button>
     </form>
   );
 };
