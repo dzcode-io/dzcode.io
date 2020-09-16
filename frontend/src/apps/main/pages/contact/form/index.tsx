@@ -71,9 +71,8 @@ export const ContactForm = (props: any) => {
 
   const [state, setState] = useState(initialState);
 
-  const handleChange = (event: { currentTarget: any }): void => {
-    const target = event.currentTarget;
-    const { name, value } = target;
+  const handleChange = (event: any): void => {
+    const { name, value } = event.currentTarget;
 
     const errors = validateField(name, value);
     setState({
