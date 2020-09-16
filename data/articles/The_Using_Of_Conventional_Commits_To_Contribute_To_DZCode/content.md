@@ -27,9 +27,10 @@ Another definition from the ['official conventional commits website'](https://ww
 ~~~
 
 ### Types
+
 * API relevant changes
-    * __feat__ Commits, that adds a new feature
-    * __fix__ Commits, that fixes a bug
+  * __feat__ Commits, that adds a new feature
+  * __fix__ Commits, that fixes a bug
 * __refactor__ Commits, that rewrite/restructure your code, however does not change any behaviour
 * __perf__ Commits are refactor commit, that improves performance
 * __style__ Commits, that do not affect the meaning (white-space, formatting, missing semi-colons, etc)
@@ -71,15 +72,16 @@ The __footer__ should contain any information about Breaking Changes and is also
 optionally reference an issue by its id.
 * Breaking Changes should start with the word __BREAKING CHANGES:__ followed by space or two newlines. The rest of the commit message is then used for this
 
-## For further exploration 
+## For further exploration
 
 * [conventional commit messages by
 qoomon](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
-* [Conventional Commits website ](https://www.conventionalcommits.org/en/v1.0.0/)
+* [Conventional Commits website](https://www.conventionalcommits.org/en/v1.0.0/)
 * [Alvaro Torres Carrasco article](https://dev.to/alvarotorresc/conventional-commits-1an9)
 * [A Case For Conventional Commits in Git by Tom Feron](https://medium.com/better-programming/a-case-for-conventional-commits-in-git-d70c65245009
 )
 * [feat(conventional_commits): signal breaking changes in commit titles by apereo community](https://apereo.github.io/2018/07/07/indicate-breaks-in-conventional-commit-titles/)
+
 ## Social footer
 
 By Toumi abderrahmane [twitter](https://twitter.com/Abderrahmaneend) .  [github](https://github.com/abderrahmaneMustapha)
