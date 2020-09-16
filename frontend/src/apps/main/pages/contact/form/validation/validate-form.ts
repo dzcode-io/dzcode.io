@@ -1,11 +1,7 @@
 import { isEmail, isEmpty } from "./validation";
 
 export const validateField = (name: string, value: string) => {
-  const errors = {
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+  const errors: any = {
     valid: true,
   };
   switch (name) {
@@ -13,12 +9,16 @@ export const validateField = (name: string, value: string) => {
       if (isEmpty(value)) {
         errors.name = "Please add your name";
         errors.valid = false;
+      } else {
+        errors.name = "";
       }
       break;
     case "email":
       if (!isEmail(value)) {
         errors.email = "Please add a valid email";
         errors.valid = false;
+      } else {
+        errors.email = "";
       }
       break;
 
@@ -26,6 +26,8 @@ export const validateField = (name: string, value: string) => {
       if (isEmpty(value)) {
         errors.subject = "Please add a subject";
         errors.valid = false;
+      } else {
+        errors.subject = "";
       }
 
       break;
@@ -33,6 +35,8 @@ export const validateField = (name: string, value: string) => {
       if (isEmpty(value)) {
         errors.message = "Please add a message";
         errors.valid = false;
+      } else {
+        errors.message = "";
       }
       break;
 
