@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     padding: "20px 10px",
     textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
   title: {
     fonts: "calc(1.4rem + 1vw)",

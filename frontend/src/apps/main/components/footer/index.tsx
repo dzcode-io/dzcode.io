@@ -86,6 +86,19 @@ export const Footer: React.FC = () => {
               : null}
           </Grid>
           <Grid item xs={12} md={3}>
+            <Grid item>
+              <Grid item>
+                <a href="tel:+21367-626-1157">
+                  <Typography variant="h6">+213 06-76-26-11-57</Typography>
+                </a>
+              </Grid>
+              <Grid item>
+                <a href="mailto:contact@dzcode.io">
+                  <Typography variant="h6">contact@dzcode.io</Typography>
+                </a>
+              </Grid>
+              <Typography variant="h6">Algeria</Typography>
+            </Grid>
             <Typography variant="h6" className={classes.copyright}>
               Copyright © 2020{" "}
               <LinkV2
