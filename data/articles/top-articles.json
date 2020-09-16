@@ -1,4 +1,4 @@
 {
-  "items": ["Welcome_to_dzCode", "Test_Article"],
+  "items": ["Welcome_to_dzCode", "Test_Article", "The_Using_Of_Conventional_Commits_To_Contribute_To_DZCode"],
   "include": ["title", "description", "image"]
 }
