@@ -20,19 +20,19 @@ import { getEnv } from "src/common/utils";
 import { mainStore } from "t9/apps/main/redux";
 import { render } from "react-dom";
 
-const Landing = lazy(() => import("t9/apps/main/scenes/landing"));
-const Articles = lazy(() => import("t9/apps/main/scenes/articles"));
-const Projects = lazy(() => import("t9/apps/main/scenes/projects"));
-const Learn = lazy(() => import("t9/apps/main/scenes/learn"));
-const Faq = lazy(() => import("t9/apps/main/scenes/faq"));
-const Contact = lazy(() => import("t9/apps/main/scenes/contact"));
+const Landing = lazy(() => import("t9/apps/main/pages/landing"));
+const Articles = lazy(() => import("t9/apps/main/pages/articles"));
+const Projects = lazy(() => import("t9/apps/main/pages/projects"));
+const Learn = lazy(() => import("t9/apps/main/pages/learn"));
+const Faq = lazy(() => import("t9/apps/main/pages/faq"));
+const Contact = lazy(() => import("t9/apps/main/pages/contact"));
 
 const env = getEnv();
 
 const Main = () => (
   <Container maxWidth="lg">
     <ToastContainer />
-    <Suspense fallback={Loading}>
+    <Suspense fallback={<Loading />}>
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/Learn" component={Learn} />
