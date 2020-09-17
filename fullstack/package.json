@@ -6,8 +6,8 @@
   "scripts": {
     "eslint:check": "eslint . --ext .tsx,.ts,.js,.json --report-unused-disable-directives",
     "eslint:fix": "eslint . --ext .tsx,.ts,.js,.json --quiet --fix",
-    "prettier:check": "prettier {*/**/,}*.* --check --ignore-path ./eslint.eslintignore",
-    "prettier:fix": "prettier {*/**/,}*.* --write --ignore-path ./eslint.eslintignore",
+    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.eslintignore",
+    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.eslintignore",
     "build": "tsc",
     "build:watch": "tsc --watch"
   },

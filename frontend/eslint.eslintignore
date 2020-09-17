@@ -1,6 +1,13 @@
 firebase
 node_modules/
 dist
+.*
+# images
+*.jpeg
+*.png
+*.ico
+
+
 *.eslintignore
 *.tsbuildinfo
 *.tsx
