@@ -43,7 +43,6 @@
     "typescript": "~3.7.4"
   },
   "devDependencies": {
-    "husky": "^4.2.5",
     "nodemon": "^2.0.3"
   }
 }
