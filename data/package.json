@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "dzCode.io data code",
   "scripts": {
-    "lint:check": "eslint . --ext .tsx,.ts,.js,.json --report-unused-disable-directives",
-    "lint:fix": "eslint . --ext .tsx,.ts,.js,.json --quiet --fix",
+    "eslint:check": "eslint . --ext .tsx,.ts,.js,.json --report-unused-disable-directives",
+    "eslint:fix": "eslint . --ext .tsx,.ts,.js,.json --quiet --fix",
+    "prettier:check": "prettier {*/**/,}*.* --check --ignore-path ./eslint.eslintignore",
+    "prettier:fix": "prettier {*/**/,}*.* --write --ignore-path ./eslint.eslintignore",
     "build": "tsc",
     "generate": "node dist/build.js",
     "build:watch": "tsc --watch",

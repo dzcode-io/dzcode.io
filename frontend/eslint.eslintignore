@@ -3,3 +3,7 @@ node_modules/
 dist
 *.eslintignore
 *.tsbuildinfo
+*.tsx
+*.ts
+*.js
+*.json

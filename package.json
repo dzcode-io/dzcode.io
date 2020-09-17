@@ -11,8 +11,8 @@
   "scripts": {
     "start": "concurrently \"cd fullstack && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd frontend && yarn dev\"",
     "start:api": "concurrently \"cd fullstack && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd frontend && yarn dev\" \"cd api/functions && firebase emulators:start\"",
-    "lint:check": "concurrently \"cd fullstack && yarn lint:check\" \"cd data && yarn lint:check\" \"cd frontend && yarn lint:check\"",
-    "lint:fix": "concurrently \"cd fullstack && yarn lint:fix\" \"cd data && yarn lint:fix\" \"cd frontend && yarn lint:fix\""
+    "lint:check": "concurrently \"cd fullstack && yarn eslint:check && yarn prettier:check\" \"cd data && yarn eslint:check && yarn prettier:check\" \"cd frontend && yarn eslint:check && yarn prettier:check\"",
+    "lint:fix": "concurrently \"cd fullstack && yarn eslint:fix && yarn prettier:fix\" \"cd data && yarn eslint:fix && yarn prettier:fix\" \"cd frontend && yarn eslint:fix && yarn prettier:fix\""
   },
   "husky": {
     "hooks": {
