@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: theme.palette.background.paper,
     borderTop: `1px solid ${theme.palette.background.paper}`,
     padding: "30px",
+    marginTop: "auto",
   },
   copyright: {
     fontSize: "14px",
@@ -86,14 +87,17 @@ export const Footer: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <Grid item>
-              <h1>dzCode.io</h1>
-              <h5>dzCode, Algeria</h5>
               <Grid item>
-                <a href="tel:+21367-626-1157">+213 06-76-26-11-57</a>
+                <a href="tel:+21367-626-1157">
+                  <Typography variant="h6">+213 06-76-26-11-57</Typography>
+                </a>
               </Grid>
               <Grid item>
-                <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>
+                <a href="mailto:contact@dzcode.io">
+                  <Typography variant="h6">contact@dzcode.io</Typography>
+                </a>
               </Grid>
+              <Typography variant="h6">Algeria</Typography>
             </Grid>
             <Typography variant="h6" className={classes.copyright}>
               Copyright © 2020{" "}

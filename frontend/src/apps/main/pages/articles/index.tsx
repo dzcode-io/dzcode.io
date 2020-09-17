@@ -1,25 +1,3 @@
-## Terminal Command
-
-```
-node --version
-```
-
-## Style File
-
-```scss
-@import "../../../../common/style/variables";
-
-.articles {
-  padding-top: $navbar-height;
-}
-```
-
-## Complex React Component
-
-The code below is a snippet of JSX code
-
-```jsx
-import "./style";
 import { Route, useRouteMatch } from "react-router-dom";
 import { Article } from "t9/types/fullstack";
 import { Content } from "./content";
@@ -93,4 +71,3 @@ export default connect(
     fetchCurrentArticle: () => dispatch(fetchCurrentArticle()),
   }),
 )(ArticlesPage);
-```
