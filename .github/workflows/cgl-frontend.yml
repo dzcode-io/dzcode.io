@@ -27,7 +27,8 @@ jobs:
         run: |
           cd frontend
           yarn
-          yarn lint:check
+          yarn eslint:check --quiet
+          yarn prettier:check
 
         env:
           CI: true

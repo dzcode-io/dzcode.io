@@ -1,6 +1,6 @@
 doctype html
 head(lang=lang)
-  if(!isDev)
+  if (!isDev)
     //- Google Analytics
     script.
       (function (i, s, o, g, r, a, m) {
@@ -21,23 +21,28 @@ head(lang=lang)
       s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', "#{fbpCode}");
   //- Facebook Comments plugin
-  meta(property="fb:app_id" content=fbAppCode)
+  meta(property="fb:app_id", content=fbAppCode)
 
-  meta(charset='utf-8')
-  meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  meta(name='viewport' content='width=device-width, initial-scale=1')
+  meta(charset="utf-8")
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
+  meta(name="viewport", content="width=device-width, initial-scale=1")
 
-  title=title
-  link(rel="icon" href=require("src/assets/ico/logo-square.ico").default)
-  meta(name='description' content=description)
-  meta(name='keywords' content=keywords)
-  meta(property="og:image" content=ogImage)
-  meta(name="theme-color" content= themeColor)
+  title= title
+  link(rel="icon", href=require('src/assets/ico/logo-square.ico').default)
+  meta(name="description", content=description)
+  meta(name="keywords", content=keywords)
+  meta(property="og:image", content=ogImage)
+  meta(name="theme-color", content=themeColor)
 
   style.
     body { margin: 0; padding: 0; }
 
 body
-  div#app-container
+  #app-container
 
-script(async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0")
+script(
+  async,
+  defer,
+  crossorigin="anonymous",
+  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0"
+)

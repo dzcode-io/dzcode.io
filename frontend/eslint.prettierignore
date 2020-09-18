@@ -1,0 +1,18 @@
+firebase
+node_modules/
+dist
+.*
+# images
+*.jpeg
+*.png
+*.svg
+*.ico
+
+
+*.prettierignore
+*.tsbuildinfo
+*.tsx
+*.ts
+*.js
+*.json
+

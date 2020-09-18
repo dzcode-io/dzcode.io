@@ -1,0 +1,10 @@
+node_modules/
+dist
+.*
+*.prettierignore
+*.tsbuildinfo
+*.tsx
+*.ts
+*.js
+*.json
+*.svg
