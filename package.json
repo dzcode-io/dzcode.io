@@ -16,11 +16,22 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:fix && lint-staged"
+      "pre-commit": "lint-staged --debug --relative"
     }
   },
   "lint-staged": {
-    "*": "echo 0"
+    "data/**/*.*": [
+      "eslint --quiet --fix --ignore-path data/.eslintignore",
+      "prettier --write --ignore-path ./data/eslint.eslintignore"
+    ],
+    "frontend/**/*.*": [
+      "eslint --quiet --fix --ignore-path frontend/.eslintignore",
+      "prettier --write --ignore-path ./frontend/eslint.eslintignore"
+    ],
+    "fullstack/**/*.*": [
+      "eslint --quiet --fix --ignore-path fullstack/.eslintignore",
+      "prettier --write --ignore-path ./fullstack/eslint.eslintignore"
+    ]
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.9.1",
