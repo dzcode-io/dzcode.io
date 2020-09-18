@@ -4,8 +4,10 @@
   "description": "dzCode.io fullstack code",
   "main": "index.js",
   "scripts": {
-    "lint:check": "eslint . --ext .tsx,.ts,.js,.json --report-unused-disable-directives",
-    "lint:fix": "eslint . --ext .tsx,.ts,.js,.json --quiet --fix",
+    "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
+    "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
+    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.eslintignore",
+    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.eslintignore",
     "build": "tsc",
     "build:watch": "tsc --watch"
   },
@@ -33,7 +35,5 @@
     "source-map-support": "^0.5.16",
     "typescript": "~3.7.4"
   },
-  "devDependencies": {
-    "husky": "^4.2.5"
-  }
+  "devDependencies": {}
 }

@@ -27,7 +27,8 @@ jobs:
         run: |
           cd data
           yarn
-          yarn lint:check
+          yarn eslint:check
+          yarn prettier:check
 
         env:
           CI: true

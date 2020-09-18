@@ -5,8 +5,10 @@
   "scripts": {
     "clear": "rimraf ./firebase/public",
     "dev": "yarn clear && cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js -wd --hot",
-    "lint:check": "eslint . --ext .tsx,.ts,.js,.json --report-unused-disable-directives",
-    "lint:fix": "eslint . --ext .tsx,.ts,.js,.json --quiet --fix",
+    "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
+    "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
+    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.eslintignore",
+    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.eslintignore",
     "test": "echo 0",
     "build": "yarn clear cross-env && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details",
     "generate:sitemap": "node src/build/sitemap.js"
@@ -52,6 +54,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@n8tb1t/use-scroll-position": "^1.0.43",
+    "@prettier/plugin-pug": "^1.5.1",
     "@types/axios": "^0.14.0",
     "@types/markdown-to-jsx": "^6.11.1",
     "@types/react": "^16.9.34",
@@ -110,7 +113,6 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
-    "husky": "^4.2.5",
     "webpack-dev-server": "^3.10.3"
   }
 }
