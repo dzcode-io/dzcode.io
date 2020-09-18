@@ -5,12 +5,14 @@ dist
 # images
 *.jpeg
 *.png
+*.svg
 *.ico
 
 
-*.eslintignore
+*.prettierignore
 *.tsbuildinfo
 *.tsx
 *.ts
 *.js
 *.json
+

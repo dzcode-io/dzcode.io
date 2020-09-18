@@ -1,9 +1,10 @@
 node_modules/
 dist
 .*
-*.eslintignore
+*.prettierignore
 *.tsbuildinfo
 *.tsx
 *.ts
 *.js
 *.json
+*.svg
