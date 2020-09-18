@@ -23,7 +23,7 @@ const reasons = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: `10vh`,
+    margin: `10vh 0`,
   },
   paper: {
     height: "100%",

@@ -5,3 +5,4 @@ firebase
 !*.ts
 !*.js
 !*.json
+*.svg

@@ -16,21 +16,21 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged --debug --relative"
+      "pre-commit": "lint-staged --relative"
     }
   },
   "lint-staged": {
     "data/**/*.*": [
       "eslint --quiet --fix --ignore-path data/.eslintignore",
-      "prettier --write --ignore-path ./data/eslint.eslintignore"
+      "prettier --write --ignore-path ./data/eslint.prettierignore"
     ],
     "frontend/**/*.*": [
       "eslint --quiet --fix --ignore-path frontend/.eslintignore",
-      "prettier --write --ignore-path ./frontend/eslint.eslintignore"
+      "prettier --write --ignore-path ./frontend/eslint.prettierignore"
     ],
     "fullstack/**/*.*": [
       "eslint --quiet --fix --ignore-path fullstack/.eslintignore",
-      "prettier --write --ignore-path ./fullstack/eslint.eslintignore"
+      "prettier --write --ignore-path ./fullstack/eslint.prettierignore"
     ]
   },
   "devDependencies": {
