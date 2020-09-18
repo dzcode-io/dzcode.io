@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import IosSwitch from "./ios-switch";
 import { LinkV2 } from "src/components/link-v2";
-import SearchIcon from "@material-ui/icons/Search";
 import { StateInterface } from "t9/types/main";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -35,26 +34,18 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.grey[100],
     },
     toolbar: {
-      borderBottom: `1px solid ${theme.palette.background.paper}`,
-      background: theme.palette.background.default,
-    },
-    toolbarContainer: {
-      maxWidth: theme.breakpoints.values.lg,
-      margin: "auto",
-      justifyContent: "space-between",
-    },
-    toolbarSecondary: {
       background: theme.palette.background.paper,
       borderBottom: `1px solid ${theme.palette.background.paper}`,
     },
-    toolbarTitle: {
-      flex: 1,
+    toolbarContainer: {
+      maxWidth: theme.breakpoints.values.lg,
+      padding: theme.spacing(3),
     },
     toolbarLink: {
       color: theme.palette.text.primary,
-      padding: theme.spacing(1),
-      flexShrink: 0,
       textDecoration: "none",
+      fontWeight: 300,
+      fontSize: "16px",
       "&:hover": {
         textDecoration: "none",
         color: theme.palette.primary.main,
@@ -63,23 +54,11 @@ const useStyles = makeStyles((theme: Theme) =>
     logo: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: "start",
       height: "100%",
     },
     logoImg: {
       maxWidth: "100px",
-    },
-    subscribe: {
-      "&:hover": {
-        color: theme.palette.primary.light,
-      },
-    },
-    search: {
-      color: theme.palette.text.primary,
-
-      "&:hover": {
-        color: theme.palette.primary.light,
-      },
     },
     red: {
       background: "#FF0000",
@@ -127,14 +106,12 @@ export const Navbar: React.FC = () => {
       <Toolbar className={classes.toolbar}>
         <Grid
           container
-          item
-          xs={12}
-          lg={10}
+          justify="flex-start"
+          xs={4}
+          lg={4}
           className={classes.toolbarContainer}
         >
-          <IconButton>
-            <SearchIcon className={classes.search} />
-          </IconButton>
+          {/* LOGO */}
           <Typography
             component="h2"
             variant="h5"
@@ -147,32 +124,15 @@ export const Navbar: React.FC = () => {
               <img src={logo} alt="logo" className={classes.logoImg} />
             </LinkV2>
           </Typography>
-          <FormControlLabel
-            control={
-              <IosSwitch
-                checked={darkMode ? true : false}
-                onChange={toggleDarkMode}
-                name="darkMode"
-              />
-            }
-            label={darkMode ? "🌙" : "🌞"}
-          />
         </Grid>
-      </Toolbar>
-
-      <Toolbar
-        component="nav"
-        variant="dense"
-        className={classes.toolbarSecondary}
-      >
         <Grid
           container
-          xs={12}
-          item
-          lg={10}
+          justify="space-between"
+          xs={6}
+          lg={6}
           className={classes.toolbarContainer}
-          style={{ flexFlow: "nowrap", overflowX: "auto" }}
         >
+          {/* THREE MAIN SECTIONS */}
           {sections
             ? sections.map((section) => (
                 <LinkV2
@@ -185,6 +145,25 @@ export const Navbar: React.FC = () => {
                 </LinkV2>
               ))
             : null}
+        </Grid>
+        <Grid
+          container
+          justify="flex-end"
+          xs={2}
+          lg={2}
+          className={classes.toolbarContainer}
+        >
+          {/* DARK MODE SWITCH */}
+          <FormControlLabel
+            control={
+              <IosSwitch
+                checked={darkMode ? true : false}
+                onChange={toggleDarkMode}
+                name="darkMode"
+              />
+            }
+            label={darkMode ? "🌙" : "🌞"}
+          />
         </Grid>
       </Toolbar>
     </animated.header>
