@@ -6,8 +6,8 @@
   "scripts": {
     "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
     "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
-    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.eslintignore",
-    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.eslintignore",
+    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.prettierignore",
+    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.prettierignore",
     "build": "tsc",
     "build:watch": "tsc --watch"
   },

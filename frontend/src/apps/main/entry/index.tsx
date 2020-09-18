@@ -18,6 +18,7 @@ import { Theme } from "t9/apps/main/components/theme";
 import { ToastContainer } from "react-toastify";
 import { getEnv } from "src/common/utils";
 import { mainStore } from "t9/apps/main/redux";
+import { makeStyles } from "@material-ui/core/styles";
 import { render } from "react-dom";
 
 const Landing = lazy(() => import("t9/apps/main/pages/landing"));
@@ -29,22 +30,34 @@ const Contact = lazy(() => import("t9/apps/main/pages/contact"));
 
 const env = getEnv();
 
-const Main = () => (
-  <Container maxWidth="lg">
-    <ToastContainer />
-    <Suspense fallback={<Loading />}>
-      <Switch>
-        <Route path="/" exact component={Landing} />
-        <Route path="/Learn" component={Learn} />
-        <Route path="/Articles" component={Articles} />
-        <Route path="/Projects" component={Projects} />
-        <Route path="/Contact-Us" component={Contact} />
-        <Route path="/FAQ" component={Faq} />
-        <Route render={() => <Redirect to="/" />} />
-      </Switch>
-    </Suspense>
-  </Container>
-);
+const useStyles = makeStyles({
+  main: {
+    paddingTop: "130px",
+  },
+});
+
+const Main = () => {
+  const classes = useStyles();
+
+  return (
+    <main className={classes.main}>
+      <Container maxWidth="lg">
+        <ToastContainer />
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/Learn" component={Learn} />
+            <Route path="/Articles" component={Articles} />
+            <Route path="/Projects" component={Projects} />
+            <Route path="/Contact-Us" component={Contact} />
+            <Route path="/FAQ" component={Faq} />
+            <Route render={() => <Redirect to="/" />} />
+          </Switch>
+        </Suspense>
+      </Container>
+    </main>
+  );
+};
 
 export const App = () => {
   const location = useLocation();
