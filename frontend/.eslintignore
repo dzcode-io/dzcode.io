@@ -1,2 +1,8 @@
 node_modules/
 firebase
+*.*
+!*.tsx
+!*.ts
+!*.js
+!*.json
+*.svg

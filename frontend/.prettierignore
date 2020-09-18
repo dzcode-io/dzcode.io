@@ -1,2 +1,5 @@
 firebase
-*.json
+node_modules/
+dist
+*.prettierignore
+*.tsbuildinfo
