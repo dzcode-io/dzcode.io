@@ -98,15 +98,16 @@ export const Header = () => {
           >
             Algerian <span className={classes.highlight}>Open Source</span>{" "}
             Community
-          </Typography>
-          <Typography
-            variant="h4"
-            color="inherit"
-            className={classes.description}
-          >
-            We make it easier to build better apps in Algeria for Algeria.
-          </Typography>
-
+          </Typography>{" "}
+          <Hidden smDown>
+            <Typography
+              variant="h4"
+              color="inherit"
+              className={classes.description}
+            >
+              We make it easier to build better apps in Algeria for Algeria.
+            </Typography>
+          </Hidden>
           <div className={classes.buttons}>
             <Button
               href="https://github.com/dzcode-io/dzcode.io"
