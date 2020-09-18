@@ -4,6 +4,7 @@ import { animated, useSpring } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import IosSwitch from "./ios-switch";
 import { LinkV2 } from "src/components/link-v2";
@@ -27,16 +28,26 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: 100,
       width: "100%",
     },
+    TopBar: {
+      background: theme.palette.background.default,
+      borderBottom: `1px solid ${theme.palette.background.paper}`,
+      margin: 0,
+      padding: " 5px 0",
 
+      display: "flex",
+      justifyContent: "flex-end",
+      [theme.breakpoints.down("sm")]: {
+        padding: " 0 20px",
+      },
+    },
+    switch: {
+      marginLeft: "auto",
+    },
     icon: {
       color: theme.palette.grey[100],
     },
     button: {
       color: theme.palette.grey[100],
-    },
-    toolbar: {
-      borderBottom: `1px solid ${theme.palette.background.paper}`,
-      background: theme.palette.background.default,
     },
     toolbarContainer: {
       maxWidth: theme.breakpoints.values.lg,
@@ -48,16 +59,26 @@ const useStyles = makeStyles((theme: Theme) =>
       borderBottom: `1px solid ${theme.palette.background.paper}`,
     },
     toolbarTitle: {
-      flex: 1,
+      marginRight: "auto",
     },
     toolbarLink: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       color: theme.palette.text.primary,
-      padding: theme.spacing(1),
+      fontSize: "16px",
+      fontWeight: "revert",
+      padding: theme.spacing(4),
+      paddingTop: 0,
+      paddingBottom: 0,
       flexShrink: 0,
       textDecoration: "none",
       "&:hover": {
         textDecoration: "none",
         color: theme.palette.primary.main,
+      },
+      [theme.breakpoints.down("sm")]: {
+        padding: "5px",
       },
     },
     logo: {
@@ -124,17 +145,8 @@ export const Navbar: React.FC = () => {
 
   return (
     <animated.header className={classes.root} style={props}>
-      <Toolbar className={classes.toolbar}>
-        <Grid
-          container
-          item
-          xs={12}
-          lg={10}
-          className={classes.toolbarContainer}
-        >
-          <IconButton>
-            <SearchIcon className={classes.search} />
-          </IconButton>
+      <div className={`${classes.toolbarContainer} ${classes.TopBar} `}>
+        <Hidden mdUp>
           <Typography
             component="h2"
             variant="h5"
@@ -147,19 +159,19 @@ export const Navbar: React.FC = () => {
               <img src={logo} alt="logo" className={classes.logoImg} />
             </LinkV2>
           </Typography>
-          <FormControlLabel
-            control={
-              <IosSwitch
-                checked={darkMode ? true : false}
-                onChange={toggleDarkMode}
-                name="darkMode"
-              />
-            }
-            label={darkMode ? "🌙" : "🌞"}
-          />
-        </Grid>
-      </Toolbar>
-
+        </Hidden>
+        <FormControlLabel
+          className={classes.switch}
+          control={
+            <IosSwitch
+              checked={darkMode ? true : false}
+              onChange={toggleDarkMode}
+              name="darkMode"
+            />
+          }
+          label={darkMode ? "🌙" : "🌞"}
+        />
+      </div>
       <Toolbar
         component="nav"
         variant="dense"
@@ -173,6 +185,21 @@ export const Navbar: React.FC = () => {
           className={classes.toolbarContainer}
           style={{ flexFlow: "nowrap", overflowX: "auto" }}
         >
+          <Hidden smDown>
+            <Typography
+              component="h2"
+              variant="h5"
+              color="inherit"
+              align="center"
+              noWrap
+              className={classes.toolbarTitle}
+            >
+              <LinkV2 href="/" className={classes.logo}>
+                <img src={logo} alt="logo" className={classes.logoImg} />
+              </LinkV2>
+            </Typography>
+          </Hidden>
+
           {sections
             ? sections.map((section) => (
                 <LinkV2
@@ -185,6 +212,10 @@ export const Navbar: React.FC = () => {
                 </LinkV2>
               ))
             : null}
+
+          <IconButton>
+            <SearchIcon className={classes.search} />
+          </IconButton>
         </Grid>
       </Toolbar>
     </animated.header>
