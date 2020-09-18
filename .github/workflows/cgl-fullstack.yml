@@ -27,7 +27,7 @@ jobs:
         run: |
           cd fullstack
           yarn
-          yarn eslint:check
+          yarn eslint:check --quiet
           yarn prettier:check
 
         env:
