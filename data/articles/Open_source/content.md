@@ -69,4 +69,4 @@ The open-source development model consists of 5 main steps:
 
 &nbsp;
 
-By Nour Tine
+By Nour Tine (tinenourelhouda@gmail.com)
