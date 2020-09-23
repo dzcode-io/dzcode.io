@@ -4,7 +4,8 @@
     "Test_Article",
     "Add_Your_Own_Article",
     "Send_Emails_With_Django_and_Gmail_A_Btter_Way",
-    "The_Using_Of_Conventional_Commits_To_Contribute_To_DZCode"
+    "The_Using_Of_Conventional_Commits_To_Contribute_To_DZCode",
+    "Open_source"
   ],
   "include": ["title"]
 }
