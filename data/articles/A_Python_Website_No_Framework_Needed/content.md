@@ -7,7 +7,7 @@ Why would you want to build a website using python with no framework here is som
 3. you like to build things from scratch
 
 writing a simple python website without a framework is easy if you just want some basics features,
-but if you want more advanced features  like routing,  database connection,  validate forms, and add your own  template engine then things will become difficult bit by bit
+but if you want more advanced features like routing, database connection, validate forms, and add your own template engine then things will become difficult bit by bit
 
 ## Requirements
 
@@ -15,18 +15,20 @@ requirements or what you need to know before you can start doing this
 
 1. a basic knowledge about http protocol, this is some resources if you want to learn more about how http work :
 
-    [MDN Basics of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP)
+   [MDN Basics of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP)
 
-    [W3School HTTP Request Methods](https://www.w3schools.com/tags/ref_httpmethods.asp)
+   [W3School HTTP Request Methods](https://www.w3schools.com/tags/ref_httpmethods.asp)
+
 2. what WSGI is? , some resources if you want to know :
-    [An Introduction to the Python Web Server Gateway Interface](http://ivory.idyll.org/articles/wsgi-intro/what-is-wsgi.html)
+   [An Introduction to the Python Web Server Gateway Interface](http://ivory.idyll.org/articles/wsgi-intro/what-is-wsgi.html)
 
-    [What is WSGI](https://wsgi.readthedocs.io/en/latest/what.html)
-3. how to serve a python web app using something  like [gunicorn](https://python-gevent.readthedocs.io/intro.html) , [gevent](https://python-gevent.readthedocs.io/intro.html)
+   [What is WSGI](https://wsgi.readthedocs.io/en/latest/what.html)
+
+3. how to serve a python web app using something like [gunicorn](https://python-gevent.readthedocs.io/intro.html) , [gevent](https://python-gevent.readthedocs.io/intro.html)
 
 ## A simple hello World
 
-here a simple example of  a hello web python application
+here a simple example of a hello web python application
 
 ```python
 def app(environ, start_fn):
@@ -34,9 +36,9 @@ def app(environ, start_fn):
     return ["Hello World!\n"]
 ```
 
-but how to run this ? , first we need to install  gunicorn or gevent or something similar,  for me i choose gevent because gunicorn will not work with windows.
+but how to run this ? , first we need to install gunicorn or gevent or something similar, for me i choose gevent because gunicorn will not work with windows.
 
-### Installing genvent  
+### Installing genvent
 
 ```shell
 pip install gevent
@@ -60,7 +62,7 @@ want to know why we use
 if __name__ == '__main__':
 ```
 
-check this [stackoverflow  answer](https://stackoverflow.com/questions/419163/what-does-if-name-main-do) by [Jack](https://stackoverflow.com/users/8932910/jack)
+check this [stackoverflow answer](https://stackoverflow.com/questions/419163/what-does-if-name-main-do) by [Jack](https://stackoverflow.com/users/8932910/jack)
 
 our code will look like this now
 
@@ -85,7 +87,7 @@ now you can go to your terminal and run
 python app.py
 ```
 
-check [localhost:8000](http://localhost:8000/) and you will see a hello web message in your favorite  web browser
+check [localhost:8000](http://localhost:8000/) and you will see a hello web message in your favorite web browser
 
 in the next part, we will write a code to render an html file, create multiple pages, and navigate between them.
 
