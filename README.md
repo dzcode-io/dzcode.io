@@ -75,8 +75,8 @@ yarn start:api
 
 To get started see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/master/.github/CONTRIBUTING.md).
 
-**Unit test** :
-Unit test are written in [Jest](https://jestjs.io/). Please add a unit test for every new feature or bug fix. `yarn test` to run the test suite.
+**Before You Create a Pull Request** :
+Please make sure your code follows the style guideline defined in this repo, for that simply run `yarn lint:fix` to ensure the conformity. This process should happen automatically whenever you commit your changes, but you can always do it manually when your Pull Request checks are failing due to linting errors.
 
 ### Add Your Own Article
 
