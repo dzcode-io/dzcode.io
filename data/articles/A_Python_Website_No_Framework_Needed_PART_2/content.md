@@ -3,7 +3,7 @@
 Its the second and the last part of how you can make website with python using no framework
 , the purpose of this two articles is to show to the new developers that its possible to create a website with python without using a framework or any other pypi package
 
-## Show time
+## Show the code
 
 First we need to separate the views , templates , and the logic ,
 we will have the following folder structure :
