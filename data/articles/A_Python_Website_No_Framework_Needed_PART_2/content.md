@@ -1,11 +1,12 @@
 # A python website no framework needed part 2
+# A python website no framework needed part 2
 
-Its the second and the last part of how you can make website with python using no framework
-, the purpose of this two articles is to show to the new developers that its possible to create a website with python without using a framework or any other pypi package
+Its the second and the last part of how you can make a website with python using no framework
+, the purpose of these two articles is to show to the new developers that its possible to create a website with python without using a framework or any other PyPI package
 
 ## Show the code
 
-First we need to separate the views , templates , and the logic ,
+First, we need to separate the views, templates, and logic,
 we will have the following folder structure :
 
 ```shell
@@ -21,7 +22,7 @@ we will have the following folder structure :
 ------ render.py
 ```
 
-lets start with the render.py file where we are going to write the code to render the html templates
+let's start with the render.py file where we are going to write the code to render the HTML templates
 
 ```python
 # mainFolder/utils/render.py
@@ -38,7 +39,7 @@ import the render method in the **init**.py
  from .render import render
 ```
 
-now lets move to the the html template add this code to it
+now let's move to the HTML template add this code to it
 
 ```html
 <!--  mainFolder/templates/index.html -->
@@ -69,7 +70,7 @@ now lets move to the the html template add this code to it
 </html>
 ```
 
-lets add a view now
+let's add a view now
 
 ```python
 # mainFolder/views/index.py
@@ -85,7 +86,7 @@ import the index in **init**.py file of the views folder
 from .index import index
 ```
 
-last step lets move the our main file app.py to where im going to send responses to the client side and handle post requests
+last step lets move our main file app.py to where im going to send responses to the client-side and handle post requests
 
 ```python
 from views import index
@@ -112,7 +113,7 @@ you can run
 python app.py
 ```
 
-you will see an html template with a header , input form and a submit button
+you will see an HTML template with a header, input form, and a submit button
 
 add a text to the input hit the submit button and check the console you will see your text
 
