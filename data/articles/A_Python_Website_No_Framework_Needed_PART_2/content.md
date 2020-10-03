@@ -1,5 +1,5 @@
 # A python website no framework needed part 2
-# A python website no framework needed part 2
+
 
 Its the second and the last part of how you can make a website with python using no framework
 , the purpose of these two articles is to show to the new developers that its possible to create a website with python without using a framework or any other PyPI package
