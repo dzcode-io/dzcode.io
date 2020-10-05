@@ -22,6 +22,7 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
   - [Contributing](#contributing)
     - [Add Your Own Article](#add-your-own-article)
     - [Fix Typos, or Edit existing Article](#fix-typos-or-edit-existing-article)
+    - [Add Your Own Project](#add-your-own-project)
   - [License](#license)
 
 ## Get Started
@@ -74,8 +75,8 @@ yarn start:api
 
 To get started see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/master/.github/CONTRIBUTING.md).
 
-**Unit test** :
-Unit test are written in [Jest](https://jestjs.io/). Please add a unit test for every new feature or bug fix. `yarn test` to run the test suite.
+**Before You Create a Pull Request** :
+Please make sure your code follows the style guideline defined in this repo, for that simply run `yarn lint:fix` to ensure the conformity. This process should happen automatically whenever you commit your changes, but you can always do it manually when your Pull Request checks are failing due to linting errors.
 
 ### Add Your Own Article
 
@@ -94,6 +95,18 @@ To test and see your article locally, make sure to [you are all set](#get-starte
 ### Fix Typos, or Edit existing Article
 
 If you find a typo in any Article, or you find something that needs to be edited, please let us know, by applying the necessary modification, then create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) against master branch, and we will review it along with the article's author, then merge it.
+
+### Add Your Own Project
+
+Projects on dzCode.io are found under the folder [`data/projects`](https://github.com/dzcode-io/dzcode.io/tree/master/data/projects).
+
+To add new project let's say "Awesome New Project", simply do the following:
+
+- Create a new folder `Awesome_New_Project` under `data/projects`
+- Add `info.json` , a json file containing info about your project, like **title**, **description** etc..., see [this file](https://github.com/dzcode-io/dzcode.io/tree/master/data/projects/Project_1/info.json) as an example.
+- Lastly, to make your project visible, modify the content of [`data/projects/list.json`](https://github.com/dzcode-io/dzcode.io/blob/master/data/projects/list.json) and add your project's folder name `Awesome_New_Project` inside the `"items": []` array.
+
+To test and see your project locally, make sure to [you are all set](#get-started), after you run dzCode locally go to http://localhost:8080/Projects/Awesome_New_Project, you will see your project, and you can continue editing from there, once you are happy with the result, create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) against master branch, and we will be happy to merge it 😃.
 
 ## License
 
