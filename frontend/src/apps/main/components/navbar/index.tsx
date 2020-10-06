@@ -5,10 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
 import IosSwitch from "./ios-switch";
 import { LinkV2 } from "src/components/link-v2";
-import SearchIcon from "@material-ui/icons/Search";
 import { StateInterface } from "t9/types/main";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -94,19 +92,6 @@ const useStyles = makeStyles((theme: Theme) =>
       "&:hover": {
         color: theme.palette.primary.light,
       },
-    },
-    search: {
-      color: theme.palette.text.primary,
-
-      "&:hover": {
-        color: theme.palette.primary.light,
-      },
-    },
-    red: {
-      background: "#FF0000",
-    },
-    blue: {
-      background: "#0000FF",
     },
   }),
 );
@@ -212,10 +197,6 @@ export const Navbar: React.FC = () => {
                 </LinkV2>
               ))
             : null}
-
-          <IconButton>
-            <SearchIcon className={classes.search} />
-          </IconButton>
         </Grid>
       </Toolbar>
     </animated.header>
