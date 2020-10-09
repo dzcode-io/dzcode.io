@@ -1,8 +1,8 @@
 import "./style.scss";
 import React, { useState } from "react";
 
-export const FaqItem = ({ question, answer }: any) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const FaqItem = ({ question, answer, Open }: any) => {
+  const [isOpen, setIsOpen] = useState(Open);
   const openAnswer = () => {
     setIsOpen(!isOpen);
   };
