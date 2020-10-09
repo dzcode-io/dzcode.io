@@ -27,7 +27,7 @@ To add new project simply do the following:
 
 - Fork the repo **[Fork](https://github.com/dzcode-io/dzcode.io/fork)**. and Clone it to your workspace or machine.
 
-  ![cloning](https://i.imgur.com/iNV3Uo5.png)
+  ![cloning](https://user-images.githubusercontent.com/54677068/95619105-f6970880-0a65-11eb-8a78-58c7de2f114a.PNG)
 
 - Create a new folder using upper snake case `My_New_Project` under `data/projects`
 
