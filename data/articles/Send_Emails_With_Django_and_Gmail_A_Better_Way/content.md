@@ -7,7 +7,7 @@ you must have heard of [python](https://www.python.org/), The thing you don't kn
 
 and the most popular python web framework according to the trends is Django
 
-feel free to check the [official django docummentation](https://www.djangoproject.com/) and [this artcile](https://www.geeksforgeeks.org/top-10-django-apps-and-why-companies-are-using-it/) to know more about django , the companies and the websites companies that use django.
+feel free to check the [official django documentation](https://www.djangoproject.com/) and [this article](https://www.geeksforgeeks.org/top-10-django-apps-and-why-companies-are-using-it/) to know more about django , the companies and the websites companies that use django.
 
 ## What i really want talk about
 
@@ -19,7 +19,7 @@ EMAIL_HOST_PASSWORD = 'email password'
 ...
 ```
 
-this will not work , when your wesbite is live u will get alot of errors.
+this will not work , when your website is live u will get a lot of errors.
 
 ## Setup Django 💚
 
@@ -82,7 +82,7 @@ you have to type your password again
 
 ![Confirm your password](https://lh3.googleusercontent.com/pw/ACtC-3cZoCDwQJf3T5897PHpWQFkzaKVEGdNdP-rw9TcTS_qxjIpfmWmV0CZq0jw6Iex5gK4brcpqjpnNxKBx-_tjL-sOidspulBoySmJkrTJFUbuBz2dy64DuCVrO9q4ICEcFPtPem0Sw1CLf7lQKZIGNfl=w1894-h856-no?authuser=0)
 
-click on select app choose **_other (Custome Name)_** and give a name to you app
+click on select app choose **_other (Custom Name)_** and give a name to you app
 
 ![Create a new app](https://lh3.googleusercontent.com/pw/ACtC-3c-yMkJ2aq5EER9h7BEuN5-TpwPN1OlNKppFhP0uyOjRfcNMtLX0-MflzIKxkbG0-DCnGF7mWMBeVLjni1y9k_KWyLBYexHiriP3rAxol2Q_tu5Zv5ZVfG1sOkxViQOCr9UlNZf__1p73TiYhBGCi_-=w1916-h866-no?authuser=0)
 

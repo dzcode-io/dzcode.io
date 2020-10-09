@@ -1,11 +1,9 @@
 {
   "items": [
     "Welcome_to_dzCode",
-    "Test_Article",
-    "Add_Your_Own_Article",
-    "Send_Emails_With_Django_and_Gmail_A_Btter_Way",
-    "The_Using_Of_Conventional_Commits_To_Contribute_To_DZCode",
-    "Open_source",
+    "Send_Emails_With_Django_and_Gmail_A_Better_Way",
+    "Use_Conventional_Commits_To_Contribute_To_DZCode",
+    "Open_Source",
     "A_Python_Website_No_Framework_Needed",
     "A_Python_Website_No_Framework_Needed_PART_2"
   ],
