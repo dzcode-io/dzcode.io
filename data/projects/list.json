@@ -1,12 +1,4 @@
 {
-  "items": [
-    "React-project-builder",
-    "Project_1",
-    "Project_2",
-    "Project_3",
-    "Project_4",
-    "Project_5",
-    "Project_6"
-  ],
+  "items": ["DzCode", "Leblad", "Kuliya", "React_Project_Builder"],
   "include": ["title", "description", "image", "githubURI"]
 }
