@@ -1,6 +1,8 @@
 {
   "items": [
     "Welcome_to_dzCode",
+    "How_To_Add_Your_Article_To_DzCode",
+    "How_To_Add_Your_Project_To_DzCode",
     "Test_Article",
     "Send_Emails_With_Django_and_Gmail_A_Btter_Way",
     "The_Using_Of_Conventional_Commits_To_Contribute_To_DZCode",
