@@ -12,7 +12,12 @@ export const FaqPage = ({ faqData }: any) => {
 
       <div className="faq__items">
         {faqData.map(({ question, answer }: any, index: any) => (
-          <FaqItem key={index} question={question} answer={answer} />
+          <FaqItem
+            key={index}
+            Open={index === 0 ? true : false}
+            question={question}
+            answer={answer}
+          />
         ))}
       </div>
     </div>
