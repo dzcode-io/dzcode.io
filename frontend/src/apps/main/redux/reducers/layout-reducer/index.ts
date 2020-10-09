@@ -31,12 +31,18 @@ const data = [
     title: "Recent Articles",
     links: [
       {
-        href: "/Articles/Welcome_to_dzCode",
-        text: "Welcome To dzCode.io",
+        href: "/Articles/Open_source",
+        text:
+          "Open source: What is it? How it works? And why we should contribute to it?",
       },
       {
-        href: "/Learn/Getting_Started",
-        text: "Getting Started dzCode.io",
+        href:
+          "/Articles/The_Using_Of_Conventional_Commits_To_Contribute_To_DZCode",
+        text: "Use conventional commits to contribute to dzcode",
+      },
+      {
+        href: "/Articles/Send_Emails_With_Django_and_Gmail_A_Btter_Way",
+        text: "Send emails with Django and Gmail, a better way",
       },
     ],
   },
@@ -44,16 +50,16 @@ const data = [
     title: "Recent Projects",
     links: [
       {
-        href: "/",
-        text: "Algerian Education Hierarchy",
+        text: "Le'Blad",
+        href: "https://github.com/dzcode-io/leblad",
       },
       {
-        href: "/",
-        text: "Algerian Users",
+        href: "https://github.com/dzcode-io/kuliya",
+        text: "Kuliya",
       },
       {
-        href: "/",
-        text: "Algerian Wilaya",
+        href: "https://github.com/dzcode-io/dzcode.io",
+        text: "dzCode Website",
       },
     ],
   },
@@ -62,11 +68,15 @@ const data = [
     links: [
       {
         href: "www.facebook.com/dzcode.io",
-        text: "Facebook",
+        text: "On Facebook",
       },
       {
         href: "https://www.youtube.com/channel/UC_tLjuQaYotzERtaAo8Y4SQ",
-        text: "YouTube",
+        text: "On YouTube",
+      },
+      {
+        href: "https://twitter.com/dzcode_io",
+        text: "On Twitter",
       },
     ],
   },
