@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.secondary,
     paddingBottom: "12px",
   },
+  contactDetails: {
+    [theme.breakpoints.down("md")]: {
+      paddingTop: theme.spacing(6),
+    },
+  },
 }));
 
 export const Footer: React.FC = () => {
@@ -85,20 +90,20 @@ export const Footer: React.FC = () => {
                 ))
               : null}
           </Grid>
-          <Grid item xs={12} md={3}>
-            <Grid item>
-              <Grid item>
-                <a href="tel:+21367-626-1157">
-                  <Typography variant="h6">+213 06-76-26-11-57</Typography>
-                </a>
-              </Grid>
-              <Grid item>
-                <a href="mailto:contact@dzcode.io">
-                  <Typography variant="h6">contact@dzcode.io</Typography>
-                </a>
-              </Grid>
-              <Typography variant="h6">Algeria</Typography>
-            </Grid>
+          <Grid item xs={12} md={3} className={classes.contactDetails}>
+            <Typography variant="h6" className={classes.categoryTitle}>
+              Contact Information
+            </Typography>
+            <a href="tel:+21367-626-1157">
+              <Typography className={classes.linkText} variant="h6">
+                +213 06-76-26-11-57
+              </Typography>
+            </a>
+            <a href="mailto:contact@dzcode.io">
+              <Typography className={classes.linkText} variant="h6">
+                contact@dzcode.io
+              </Typography>
+            </a>
             <Typography variant="h6" className={classes.copyright}>
               Copyright © 2020{" "}
               <LinkV2
