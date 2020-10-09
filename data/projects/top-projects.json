@@ -1,4 +1,4 @@
 {
-  "items": ["Algerian_Users"],
+  "items": ["DzCode", "Leblad", "Kuliya", "React_Project_Builder"],
   "include": ["title", "description", "image", "githubURI"]
 }
