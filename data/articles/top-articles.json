@@ -1,4 +1,9 @@
 {
-  "items": ["Welcome_to_dzCode", "Test_Article"],
+  "items": [
+    "Welcome_to_dzCode",
+    "Test_Article",
+    "How_To_Add_Your_Article_To_DzCode",
+    "How_To_Add_Your_Project_To_DzCode"
+  ],
   "include": ["title", "description", "image"]
 }
