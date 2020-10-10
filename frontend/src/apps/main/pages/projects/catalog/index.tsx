@@ -10,7 +10,6 @@ import { GridSpacing } from "@material-ui/core";
 import { Project } from "t9/types/fullstack";
 import React from "react";
 import Skeleton from "@material-ui/lab/Skeleton/Skeleton";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,14 +18,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       paddingBottom: theme.spacing(4),
     },
-    searchRoot: {
-      paddingTop: 100,
-      width: "90%",
-      maxWidth: 300,
-      "& > *": {
-        width: "100%",
-        height: 200,
-      },
+    header: {
+      padding: theme.spacing(2),
+      paddingBottom: theme.spacing(6),
+      textAlign: "center",
     },
     cardRoot: {
       maxWidth: 300,
@@ -44,9 +39,9 @@ export const Catalog = (props: { projectsList: Project[] | null }) => {
 
   return (
     <Grid container justify="center" className={classes.root} spacing={spacing}>
-      <form className={classes.searchRoot} noValidate autoComplete="off">
-        <TextField label="Search Projects" />
-      </form>
+      <Typography variant="h1" className={classes.header}>
+        Open Source Projects
+      </Typography>
       <Grid item xs={12}>
         <Grid container justify="center" spacing={spacing}>
           {props.projectsList
@@ -73,11 +68,12 @@ export const Catalog = (props: { projectsList: Project[] | null }) => {
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
-                      <Button size="small" color="primary">
-                        Share
-                      </Button>
-                      <Button size="small" color="primary">
-                        Learn More
+                      <Button
+                        size="small"
+                        color="primary"
+                        href={`https://github.com/${project.githubURI}`}
+                      >
+                        Github Repository
                       </Button>
                     </CardActions>
                   </Card>
