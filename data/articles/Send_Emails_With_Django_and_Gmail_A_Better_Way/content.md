@@ -7,7 +7,7 @@ you must have heard of [python](https://www.python.org/), The thing you don't kn
 
 and the most popular python web framework according to the trends is Django
 
-feel free to check the [official django documentation](https://www.djangoproject.com/) and [this article](https://www.geeksforgeeks.org/top-10-django-apps-and-why-companies-are-using-it/) to know more about django , the companies and the websites companies that use django.
+feel free to check the [official django documentation](https://www.djangoproject.com/) and [this article](https://www.geeksforgeeks.org/top-10-django-apps-and-why-companies-are-using-it/) to know more about django, the companies and the websites companies that use django.
 
 ## What i really want talk about
 
@@ -19,7 +19,7 @@ EMAIL_HOST_PASSWORD = 'email password'
 ...
 ```
 
-this will not work , when your website is live u will get a lot of errors.
+This will not work, if your website is live you will get a lot of errors.
 
 ## Setup Django 💚
 
