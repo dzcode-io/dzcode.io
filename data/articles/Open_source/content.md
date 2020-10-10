@@ -1,8 +1,6 @@
-<br>
+# What is open source?
 
-## What is open source?
-
-&nbsp;  
+&nbsp;
 According to opensource.com :
 
 The term open source refers to something people can modify and share because its design is publicly accessible.
@@ -36,7 +34,7 @@ To increase revenues, a general trend began to no longer distribute source code,
 
 ## How do open-source works?
 
-&nbsp;  
+&nbsp;
 An open-source project is created, developed, and maintained by a community of volunteers. This community uses an open-source development model to manage and produce finished artifacts. The produced software is then released under an open-source license.
 
 Because there more then one person working on the code, many OSS projects use a distributed version control system to manage all the changes; with the principle repository hosted on a remote server. Generally, most OSS projects are hosted on GitHub. These projects range from full-fledged software like Linux, Ansible, and Kubernetes.
