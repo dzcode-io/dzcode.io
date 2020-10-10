@@ -31,7 +31,7 @@ export interface Project {
   authors?: string[];
   contributors?: string[];
   views?: number;
-  githubURI?: number;
+  githubURI?: string;
 }
 
 export type Environment = "development" | "staging" | "production";
