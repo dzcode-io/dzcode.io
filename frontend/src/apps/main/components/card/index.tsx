@@ -35,17 +35,15 @@ export const Card = ({ image, title, description, githubURI, slug }: Props) => {
   const classes = useStyles();
   return (
     <MuiCard>
-      <CardActionArea>
-        <CardMedia className={classes.media} image={image} title={title} />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardMedia className={classes.media} image={image} title={title} />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {description}
+        </Typography>
+      </CardContent>
       <CardActions>
         {githubURI && (
           <Button
