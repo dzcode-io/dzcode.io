@@ -20,7 +20,6 @@ export interface NavbarInitialState {
   sections: Section[] | null;
 }
 const sections = [
-  { url: "/Learn/Getting_Started", title: "Learn" },
   { url: "/Projects", title: "Projects" },
   { url: "/Articles", title: "Articles" },
   { url: "/FAQ", title: "FAQ" },
