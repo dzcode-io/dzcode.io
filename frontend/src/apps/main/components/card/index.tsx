@@ -3,6 +3,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import { LinkV2 } from "src/components/link-v2";
 import MuiCard from "@material-ui/core/Card";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
@@ -13,10 +14,10 @@ interface Props {
   title?: string;
   description?: string;
   githubURI?: string;
+  slug?: string;
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
   header: {
     padding: theme.spacing(2),
     paddingBottom: theme.spacing(6),
@@ -25,11 +26,13 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 300,
   },
+  link: {
+    color: theme.palette.primary.dark,
+  },
 }));
 
-export const Card = ({ image, title, description, githubURI }: Props) => {
+export const Card = ({ image, title, description, githubURI, slug }: Props) => {
   const classes = useStyles();
-
   return (
     <MuiCard>
       <CardActionArea>
@@ -44,13 +47,22 @@ export const Card = ({ image, title, description, githubURI }: Props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          href={`https://github.com/${githubURI}`}
-        >
-          Github Repository
-        </Button>
+        {githubURI && (
+          <Button
+            size="small"
+            color="primary"
+            href={`https://github.com/${githubURI}`}
+          >
+            Github Repository
+          </Button>
+        )}
+        {!githubURI && slug && (
+          <Button size="small" color="primary">
+            <LinkV2 href={`/Articles/${slug}`} className={classes.link}>
+              Read Article
+            </LinkV2>
+          </Button>
+        )}
       </CardActions>
     </MuiCard>
   );
