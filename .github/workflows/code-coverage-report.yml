@@ -3,7 +3,7 @@ name: "Tests"
 on:
   push:
     branches:
-      - testcov
+      - master
 
 jobs:
   Tests-Upload-Coverage:
