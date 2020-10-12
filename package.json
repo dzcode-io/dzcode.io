@@ -12,7 +12,12 @@
     "start": "concurrently \"cd fullstack && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd frontend && yarn dev\"",
     "start:api": "concurrently \"cd fullstack && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd frontend && yarn dev\" \"cd api/functions && firebase emulators:start\"",
     "lint:check": "concurrently \"cd fullstack && yarn eslint:check && yarn prettier:check\" \"cd data && yarn eslint:check && yarn prettier:check\" \"cd frontend && yarn eslint:check && yarn prettier:check\"",
-    "lint:fix": "concurrently \"cd fullstack && yarn eslint:fix && yarn prettier:fix\" \"cd data && yarn eslint:fix && yarn prettier:fix\" \"cd frontend && yarn eslint:fix && yarn prettier:fix\""
+    "lint:fix": "concurrently \"cd fullstack && yarn eslint:fix && yarn prettier:fix\" \"cd data && yarn eslint:fix && yarn prettier:fix\" \"cd frontend && yarn eslint:fix && yarn prettier:fix\"",
+    "build:fs": "cd fullstack && yarn build && cd ..",
+    "test": "yarn build:fs && concurrently \"cd fullstack && yarn test\" \"cd data && yarn test\" \"cd frontend && yarn test\"",
+    "test:watch": "yarn build:fs && concurrently \"cd fullstack && yarn test --watch\" \"cd data && yarn test --watch\" \"cd frontend && yarn test --watch\"",
+    "test:update": "yarn build:fs && concurrently \"cd fullstack && yarn test -u\" \"cd data && yarn test -u\" \"cd frontend && yarn test -u\"",
+    "test:cover": "yarn build:fs && concurrently \"cd fullstack && yarn test --coverage\" \"cd data && yarn test --coverage\" \"cd frontend && yarn test --coverage\""
   },
   "husky": {
     "hooks": {
