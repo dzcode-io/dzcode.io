@@ -6,6 +6,7 @@
   "scripts": {
     "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
     "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
+    "test": "jest src",
     "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.prettierignore",
     "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.prettierignore",
     "build": "tsc",
@@ -35,5 +36,9 @@
     "source-map-support": "^0.5.16",
     "typescript": "~3.7.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "jest": "^26.5.3",
+    "ts-jest": "^26.4.1"
+  }
 }
