@@ -10,7 +10,7 @@ interface SpeedDialProps extends SpeedDialPropsMUI {
     icon: ReactNode;
     name: string;
   }>;
-  open?: boolean;
+  open: boolean;
 }
 export const SpeedDial = (props: SpeedDialProps) => {
   const [open, setOpen] = React.useState(false);
@@ -28,8 +28,8 @@ export const SpeedDial = (props: SpeedDialProps) => {
       icon={<SpeedDialIcon />}
       onClose={handleClose}
       onOpen={handleOpen}
-      open={open}
       {...props}
+      open={open}
     >
       {props.actions.map((action) => (
         <SpeedDialAction
