@@ -25,18 +25,18 @@ jobs:
       - name: "Fullstack: install and build"
         run: |
           cd fullstack
-          yarn install --production
+          yarn
           yarn build
       - name: "Data: install and build"
         run: |
           cd data
-          yarn install --production
+          yarn
           yarn build
           yarn generate
       - name: "Frontend Firebase: install"
         run: |
           cd frontend/firebase
-          yarn install --production
+          yarn
       - name: "Frontend Firebase: deploy"
         run: |
           cd frontend/firebase
