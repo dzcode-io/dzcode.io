@@ -27,6 +27,7 @@ const Projects = lazy(() => import("t9/apps/main/pages/projects"));
 const Learn = lazy(() => import("t9/apps/main/pages/learn"));
 const Faq = lazy(() => import("t9/apps/main/pages/faq"));
 const Contact = lazy(() => import("t9/apps/main/pages/contact"));
+const NotFound = lazy(() => import("t9/apps/main/pages/not_found"));
 
 const env = getEnv();
 
@@ -51,7 +52,7 @@ const Main = () => {
             <Route path="/Projects" component={Projects} />
             <Route path="/Contact-Us" component={Contact} />
             <Route path="/FAQ" component={Faq} />
-            <Route render={() => <Redirect to="/" />} />
+            <Route component={NotFound} />
           </Switch>
         </Suspense>
       </Container>
