@@ -5,7 +5,7 @@
     "React_Project_Builder",
     "Kuliya",
     "DzCode",
-    "AlgerianAdministrativeDivision"
+    "Algerian_Administrative_Division"
   ],
   "include": ["title", "description", "image", "githubURI"]
 }
