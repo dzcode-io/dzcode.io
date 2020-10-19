@@ -72,7 +72,7 @@ const data = [
       {
         href: "https://www.instagram.com/dzcode.io",
         text: "On Instagram",
-      },     
+      },
       {
         href: "https://www.youtube.com/channel/UC_tLjuQaYotzERtaAo8Y4SQ",
         text: "On YouTube",
@@ -80,11 +80,11 @@ const data = [
       {
         href: "https://twitter.com/dzcode_io",
         text: "On Twitter",
-      },    
+      },
       {
-        href: "https://www.linkedin.com/company/dzcode",
+        href: "https://www.linkedin.com/groups/8924363",
         text: "On LinkedIn",
-      },    
+      },
     ],
   },
 ];
