@@ -66,9 +66,13 @@ const data = [
     title: "Social Media",
     links: [
       {
-        href: "www.facebook.com/dzcode.io",
+        href: "https://www.facebook.com/dzcode.io",
         text: "On Facebook",
       },
+      {
+        href: "https://www.instagram.com/dzcode.io",
+        text: "On Instagram",
+      },     
       {
         href: "https://www.youtube.com/channel/UC_tLjuQaYotzERtaAo8Y4SQ",
         text: "On YouTube",
@@ -76,7 +80,11 @@ const data = [
       {
         href: "https://twitter.com/dzcode_io",
         text: "On Twitter",
-      },
+      },    
+      {
+        href: "https://www.linkedin.com/company/dzcode",
+        text: "On LinkedIn",
+      },    
     ],
   },
 ];
