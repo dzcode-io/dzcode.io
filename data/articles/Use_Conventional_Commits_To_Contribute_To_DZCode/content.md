@@ -17,7 +17,7 @@ Another definition from the ['official conventional commits website'](https://ww
 
 > The Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with semver.org , by describing the features, fixes, and breaking changes made in commit messages.....
 
-## Conventional commits structor
+## Conventional commits structure
 
 ```markdown
 <type>[optional scope]: <description>
@@ -32,7 +32,7 @@ Another definition from the ['official conventional commits website'](https://ww
 - API relevant changes
   - **feat** Commits, that adds a new feature
   - **fix** Commits, that fixes a bug
-- **refactor** Commits, that rewrite/restructure your code, however does not change any behaviour
+- **refactor** Commits, that rewrite/restructure your code, however does not change any behavior
 - **perf** Commits are refactor commit, that improves performance
 - **style** Commits, that do not affect the meaning (white-space, formatting, missing semi-colons, etc)
 - **test** Commits, that add missing tests or correcting existing tests

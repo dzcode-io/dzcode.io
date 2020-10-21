@@ -9,7 +9,7 @@
     "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
     "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.prettierignore",
     "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.prettierignore",
-    "test": "echo 0",
+    "test": "jest src",
     "build": "yarn clear cross-env && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details",
     "generate:sitemap": "node src/build/sitemap.js"
   },
@@ -113,6 +113,9 @@
     "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "jest": "^26.5.3",
+    "ts-jest": "^26.4.1",
     "webpack-dev-server": "^3.10.3"
   }
 }

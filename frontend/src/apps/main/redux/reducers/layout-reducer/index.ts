@@ -20,7 +20,6 @@ export interface NavbarInitialState {
   sections: Section[] | null;
 }
 const sections = [
-  { url: "/Learn/Getting_Started", title: "Learn" },
   { url: "/Projects", title: "Projects" },
   { url: "/Articles", title: "Articles" },
   { url: "/FAQ", title: "FAQ" },
@@ -67,8 +66,12 @@ const data = [
     title: "Social Media",
     links: [
       {
-        href: "www.facebook.com/dzcode.io",
+        href: "https://www.facebook.com/dzcode.io",
         text: "On Facebook",
+      },
+      {
+        href: "https://www.instagram.com/dzcode.io",
+        text: "On Instagram",
       },
       {
         href: "https://www.youtube.com/channel/UC_tLjuQaYotzERtaAo8Y4SQ",
@@ -77,6 +80,10 @@ const data = [
       {
         href: "https://twitter.com/dzcode_io",
         text: "On Twitter",
+      },
+      {
+        href: "https://www.linkedin.com/groups/8924363",
+        text: "On LinkedIn",
       },
     ],
   },
