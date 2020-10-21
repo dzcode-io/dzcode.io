@@ -76,9 +76,7 @@ export const fetchCurrentArticle = () => async (
         dataURL + `/articles/${articleSlug}.json`,
       );
 
-      console.log(response.data);
       if (response.data.hasOwnProperty("error")) {
-        console.log("1");
         throw Error("article_not_found");
       }
 

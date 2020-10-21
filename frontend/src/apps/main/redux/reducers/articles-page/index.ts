@@ -12,8 +12,6 @@ export const articlesPage = (
     payload: ArticlesPageInitialState;
   },
 ) => {
-  console.log(state);
-
   switch (action.type) {
     case actionType.UPDATE_ARTICLES_PAGE:
       return { ...state, ...action.payload };
