@@ -5,6 +5,7 @@ import { Dispatch } from "react";
 import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
 import { hasInCollection } from "src/common/utils";
+import { history } from "src/common/utils/history";
 import { listToTree } from "l2t";
 
 const dataURL = fullstackConfig.data.url;
@@ -94,10 +95,7 @@ export const fetchCurrentArticle = () => async (
       });
     } catch (error) {
       if (error.message == "article_not_found") {
-        dispatch({
-          type: actionType.UPDATE_ARTICLES_PAGE,
-          payload: null,
-        });
+        history.push("/Articles");
       }
     }
   }

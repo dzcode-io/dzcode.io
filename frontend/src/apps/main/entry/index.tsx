@@ -1,13 +1,7 @@
 import "./style";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-  useLocation,
-} from "react-router-dom";
 import React, { Suspense, lazy } from "react";
+import { Route, Router, Switch, useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Footer } from "t9/apps/main/components/footer";
@@ -17,6 +11,7 @@ import { Provider } from "react-redux";
 import { Theme } from "t9/apps/main/components/theme";
 import { ToastContainer } from "react-toastify";
 import { getEnv } from "src/common/utils";
+import { history } from "src/common/utils/history";
 import { mainStore } from "t9/apps/main/redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { render } from "react-dom";
@@ -86,9 +81,9 @@ export const App = () => {
 
 render(
   <Provider store={mainStore}>
-    <BrowserRouter>
+    <Router history={history}>
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById("app-container"),
 );
