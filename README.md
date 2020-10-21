@@ -6,10 +6,14 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 
 ## Meta
 
-| env \ Project  | Frontend (browser)        | Data (static backend)          |
-| :------------- | :------------------------ | :----------------------------- |
-| **Production** | https://dzcode.io         | https://data.dzcode.io         |
-| **Staging**    | https://staging.dzcode.io | https://data.staging.dzcode.io |
+You can find more about each folder by clicking on the folder name
+
+| Folder                   | Production URL         | Staging URL                    | Coverage                                                                                                                          |
+| :----------------------- | :--------------------- | :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| [frontend](./frontend)   | https://www.dzcode.io  | https://staging.dzcode.io      | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=frontend)](https://codecov.io/gh/dzcode-io/dzcode.io)  |
+| [data](./data)           | https://data.dzcode.io | https://data.staging.dzcode.io | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)      |
+| [fullstack](./fullstack) | N/A                    | N/A                            | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=fullstack)](https://codecov.io/gh/dzcode-io/dzcode.io) |
+| [api](./api)             | WIP                    | WIP                            | WIP                                                                                                                               |
 
 ## Table of Content
 

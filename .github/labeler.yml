@@ -1,0 +1,15 @@
+# Add 'api' to any changes within 'api' folder or any subfolders
+api:
+  - api/**/*
+
+  # Add 'data' to any changes within 'data' folder or any subfolders
+data:
+  - data/**/*
+
+# Add 'frontend' to any changes within 'frontend' folder or any subfolders
+frontend:
+  - frontend/**/*
+
+# Add 'fullstack' to any changes within 'fullstack' folder or any subfolders
+fullstack:
+  - fullstack/**/*
