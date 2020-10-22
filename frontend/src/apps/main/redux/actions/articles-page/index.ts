@@ -5,6 +5,7 @@ import { Dispatch } from "react";
 import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
 import { hasInCollection } from "src/common/utils";
+import { history } from "src/common/utils/history";
 import { listToTree } from "l2t";
 
 const dataURL = fullstackConfig.data.url;
@@ -49,6 +50,7 @@ export const fetchCurrentArticle = () => async (
   const articleSlug = location.pathname
     .substring(location.pathname.indexOf("/", 1) + 1)
     .replace(/\/$/, "");
+
   const cashedArticle = hasInCollection<Article>(
     getState().articles,
     "slug",
@@ -63,14 +65,21 @@ export const fetchCurrentArticle = () => async (
     });
   } else {
     // BUG: cashing not working in local (slug related issue)
+
     dispatch({
       type: actionType.UPDATE_ARTICLES_PAGE,
       payload: { currentArticle: null },
     });
+
     try {
       const response = await Axios.get(
         dataURL + `/articles/${articleSlug}.json`,
       );
+
+      if (response.data.hasOwnProperty("error")) {
+        throw Error("article_not_found");
+      }
+
       const currentArticle = response.data;
       // update our page state
       dispatch({
@@ -83,7 +92,9 @@ export const fetchCurrentArticle = () => async (
         payload: [currentArticle],
       });
     } catch (error) {
-      console.error(error);
+      if (error.message == "article_not_found") {
+        history.push("/Articles");
+      }
     }
   }
 };
