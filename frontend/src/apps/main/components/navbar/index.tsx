@@ -1,19 +1,19 @@
-import * as React from "react";
-import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import { animated, useSpring } from "react-spring";
-import { useDispatch, useSelector } from "react-redux";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-import IosSwitch from "./ios-switch";
-import { LinkV2 } from "src/components/link-v2";
-import { StateInterface } from "t9/types/main";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { actionType } from "t9/apps/main/redux/constants";
-import logo from "t9/apps/main/assets/png/logo.png";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import { useState } from "react";
+import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { animated, useSpring } from "react-spring";
+import { LinkV2 } from "src/components/link-v2";
+import logo from "t9/apps/main/assets/png/logo.png";
+import AppSearch from "t9/apps/main/components/navbar/app-search/index";
+import { actionType } from "t9/apps/main/redux/constants";
+import { StateInterface } from "t9/types/main";
+import IosSwitch from "./ios-switch";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -93,6 +93,24 @@ const useStyles = makeStyles((theme: Theme) =>
         color: theme.palette.primary.light,
       },
     },
+    searchBar: {
+      fontFamily: theme.typography.fontFamily,
+      width: 120,
+      borderColor: theme.palette.primary.light,
+      borderRadius: theme.shape.borderRadius,
+      "&:hover": {
+        transition: theme.transitions.create("width"),
+        width: 200,
+      },
+      "&:focus": {
+        transition: theme.transitions.create("width"),
+        width: 200,
+      },
+      "& $inputInput": {
+        transition: theme.transitions.create("width"),
+        width: 200,
+      },
+    },
   }),
 );
 
@@ -117,7 +135,7 @@ export const Navbar: React.FC = () => {
 
   // STYLES
   const classes = useStyles();
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = React.useState(true);
 
   useScrollPosition(({ prevPos, currPos }) => {
     const isVisible = currPos.y <= -120 ? currPos.y > prevPos.y : true;
@@ -157,6 +175,7 @@ export const Navbar: React.FC = () => {
           label={darkMode ? "🌙" : "🌞"}
         />
       </div>
+
       <Toolbar
         component="nav"
         variant="dense"
@@ -184,7 +203,7 @@ export const Navbar: React.FC = () => {
               </LinkV2>
             </Typography>
           </Hidden>
-
+          <AppSearch />
           {sections
             ? sections.map((section) => (
                 <LinkV2
