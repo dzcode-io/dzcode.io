@@ -6,3 +6,5 @@ coverage
 
 # node
 **node_modules
+
+.idea/
