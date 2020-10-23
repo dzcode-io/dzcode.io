@@ -1,11 +1,20 @@
 import { Environment } from "../types";
 
+const apiPort = 9091;
 const dataPort = 9090;
 const frontendPort = 8080;
 
 export const fsConfig = (env: Environment) => {
   const e = ["development", "staging", "production"].indexOf(env);
   return {
+    api: {
+      port: apiPort,
+      url: [
+        `http://localhost:${apiPort}`,
+        "https://api.staging.dzcode.io",
+        "https://api.dzcode.io",
+      ][e],
+    },
     data: {
       port: dataPort,
       url: [
