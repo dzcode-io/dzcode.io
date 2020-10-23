@@ -1,4 +1,3 @@
-import { getDataCollection } from "dzcode.io-fullstack/dist/utils/data";
 import express, { Application } from "express";
 import * as bodyParser from "body-parser";
 import morgan from "morgan";
@@ -13,8 +12,6 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 app.use(routes);
-
-app.get("/health", (req, res) => res.json({ ok: "ok" }));
 
 // Start the server
 app.listen(port, () =>
