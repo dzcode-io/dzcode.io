@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 
-import { health } from "../../controllers/helloWorld";
+import { health } from "../../../controllers/helloWorld";
 
 const router: Router = express.Router();
 
