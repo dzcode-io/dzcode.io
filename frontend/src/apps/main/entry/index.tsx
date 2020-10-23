@@ -22,7 +22,7 @@ const Projects = lazy(() => import("t9/apps/main/pages/projects"));
 const Learn = lazy(() => import("t9/apps/main/pages/learn"));
 const Faq = lazy(() => import("t9/apps/main/pages/faq"));
 const Contact = lazy(() => import("t9/apps/main/pages/contact"));
-const NotFound = lazy(() => import("t9/apps/main/pages/not_found"));
+const NotFound = lazy(() => import("t9/apps/main/pages/not-found"));
 
 const env = getEnv();
 
