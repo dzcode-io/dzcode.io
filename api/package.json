@@ -1,0 +1,42 @@
+{
+  "name": "dzcode.io-api",
+  "version": "1.0.0",
+  "description": "dzCode.io api code",
+  "scripts": {
+    "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
+    "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
+    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.prettierignore",
+    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.prettierignore",
+    "test": "jest src",
+    "build": "tsc",
+    "generate": "node dist/build.js",
+    "build:watch": "tsc --watch",
+    "dev": "NODE_PATH=./src nodemon src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "repository": "https://github.com/dzcode-io/dzcode.io.git"
+  },
+  "author": {
+    "email": "contact@zakiii.com",
+    "name": "Zakaria Mansouri",
+    "url": "https://www.zakiii.com"
+  },
+  "license": "MIT",
+  "private": "true",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.8",
+    "@types/morgan": "^1.9.1",
+    "@types/node": "^14.14.2",
+    "nodemon": "^2.0.6",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
