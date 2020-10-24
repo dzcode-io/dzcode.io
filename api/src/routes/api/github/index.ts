@@ -2,12 +2,12 @@ import express, { Router } from "express";
 
 import {
   listRepositories,
-  listPullRequestsByRepo,
+  listPullRequestsByRepository,
 } from "../../../controllers/github";
 
 const router: Router = express.Router();
 
 router.get("/repositories", listRepositories);
-router.get("/pull-requests", listPullRequestsByRepo);
+router.get("/pull-requests", listPullRequestsByRepository);
 
 export default router;
