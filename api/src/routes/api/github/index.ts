@@ -1,9 +1,9 @@
 import express, { Router } from "express";
 
-import { health } from "../../../controllers/helloWorld";
+import { listRepositories } from "../../../controllers/github";
 
 const router: Router = express.Router();
 
-router.get("/health", health);
+router.get("/repositories", listRepositories);
 
 export default router;
