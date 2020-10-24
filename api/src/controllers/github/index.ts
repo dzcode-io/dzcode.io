@@ -15,7 +15,10 @@ export const listRepositories = async (req: Request, res: Response) => {
   }
 };
 
-export const listPullRequestsByRepo = async (req: Request, res: Response) => {
+export const listPullRequestsByRepository = async (
+  req: Request,
+  res: Response,
+) => {
   try {
     const pullRequests = await Github.listPullRequests({
       owner: "dzcode-io",
