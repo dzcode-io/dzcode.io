@@ -1,9 +1,9 @@
 import express, { Router } from "express";
 
-import helloWorld from "./helloWorld";
+import github from "./github";
 
 const router: Router = express.Router();
 
-router.use("/helloWorld", helloWorld);
+router.use("/github", github);
 
 export default router;
