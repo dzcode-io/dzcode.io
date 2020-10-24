@@ -27,6 +27,7 @@ export const listPullRequests = async ({
   try {
     const response = await axios.get(
       `https://api.github.com/repos/${owner}/${repo}/pulls`,
+      { params: { state: "all", per_page: 10 } },
     );
 
     return response.data;
