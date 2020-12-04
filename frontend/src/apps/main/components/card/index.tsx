@@ -11,8 +11,6 @@ import { Project } from "t9/types/fullstack";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 
-interface Props extends Project {}
-
 const useStyles = makeStyles((theme) => ({
   header: {
     padding: theme.spacing(2),
@@ -34,7 +32,7 @@ export const Card = ({
   githubURI,
   slug,
   graphData,
-}: Props) => {
+}: Project) => {
   const classes = useStyles();
   const theme = useTheme();
 
