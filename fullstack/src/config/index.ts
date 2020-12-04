@@ -15,6 +15,7 @@ export const fsConfig = (env: Environment) => {
         "https://api.dzcode.io",
       ][e],
     },
+    github: { url: "https://api.github.com" },
     data: {
       port: dataPort,
       url: [

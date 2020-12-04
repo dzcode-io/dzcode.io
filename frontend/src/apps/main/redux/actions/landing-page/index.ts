@@ -2,6 +2,7 @@ import Axios from "axios";
 import { Dispatch } from "react";
 import { MainStoreStateInterface } from "t9/types/main";
 import { actionType } from "../../constants";
+import { fetchProjectsGraphs } from "../projects-page";
 import { fullstackConfig } from "src/config";
 
 const dataURL = fullstackConfig.data.url;
@@ -16,6 +17,7 @@ export const fetchTopProjects = () => async (
       type: actionType.UPDATE_LANDING_PAGE,
       payload: { topProjects: response.data },
     });
+    dispatch(fetchProjectsGraphs());
   } catch (error) {
     console.error(error);
   }

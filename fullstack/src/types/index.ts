@@ -32,6 +32,10 @@ export interface Project {
   contributors?: string[];
   views?: number;
   githubURI?: string;
+  graphData?: {
+    xAxe: string[];
+    yAxe: number[];
+  };
 }
 
 export type Environment = "development" | "staging" | "production";

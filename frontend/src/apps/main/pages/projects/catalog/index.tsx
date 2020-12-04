@@ -1,4 +1,5 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
+
 import { Card } from "t9/apps/main/components/card";
 import { EmptyCard } from "t9/apps/main/components/empty-card";
 import Grid from "@material-ui/core/Grid";
@@ -30,12 +31,7 @@ export const Catalog = (props: { projectsList: Project[] | null }) => {
         {props.projectsList
           ? props.projectsList.map((project: Project) => (
               <Grid key={`project-${project.slug}`} item xs={12} md={6} lg={4}>
-                <Card
-                  title={project.title}
-                  image={project.image}
-                  githubURI={project.githubURI}
-                  description={project.description}
-                />
+                <Card {...project} />
               </Grid>
             ))
           : [1, 2, 3].map((id) => (
