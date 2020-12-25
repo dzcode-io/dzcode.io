@@ -11,7 +11,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "target": "es2017",
+    "target": "ESNext",
     "sourceMap": true,
     "declaration": true,
     "outDir": "dist",

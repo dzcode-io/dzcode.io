@@ -10,10 +10,9 @@ since the version os dzcode.io website is still v0.x.x things are still unstable
 
 ### Tasks (Open for changes)
 
-- [ ] change folder names, frontend to web, fullstack to common.
+- [x] change folder names, frontend to web, fullstack to common.
 - [ ] Move husky to sub-folders.
-- [ ] Use learna
-- [ ] Use package names as aliases
+- [x] Use package names as aliases
 - [ ] Update CI/CD
 - [ ] Check Licence issues
 - [ ] Update Packages to use the latest major versions
@@ -84,18 +83,12 @@ yarn
 - Run it locally
 
 ```sh
-yarn start
-```
-
-or with the api server (optional)
-
-```sh
-yarn start:api
+yarn dev
 ```
 
 - Now, Go to <http://localhost:8080>
-
-- For api server, all emulators view status and logs at <http://localhost:4000>
+- For data server go to <http://localhost:9090>
+- For api server go to <http://localhost:7070>
 
 ## Contributing
 

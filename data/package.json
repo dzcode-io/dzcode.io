@@ -1,5 +1,5 @@
 {
-  "name": "dzcode.io-data",
+  "name": "@dzcode.io/data",
   "version": "1.0.0",
   "description": "dzCode.io data code",
   "scripts": {
@@ -26,6 +26,7 @@
   "license": "MIT",
   "private": "true",
   "dependencies": {
+    "@dzcode.io/common": "1.0.0",
     "@types/express": "^4.17.6",
     "@types/fs-extra": "^8.1.0",
     "@types/glob": "^7.1.1",
