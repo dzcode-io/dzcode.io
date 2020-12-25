@@ -1,8 +1,7 @@
 import express, { Router } from "express";
-
 import {
-  listRepositories,
   listPullRequestsByRepository,
+  listRepositories,
 } from "../../../controllers/github";
 
 const router: Router = express.Router();

@@ -1,8 +1,9 @@
-import express, { Application } from "express";
 import * as bodyParser from "body-parser";
-import morgan from "morgan";
+
+import express, { Application } from "express";
 
 import { fullstackConfig } from "./config";
+import morgan from "morgan";
 import routes from "./routes";
 
 const app: Application = express();

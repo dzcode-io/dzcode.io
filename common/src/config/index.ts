@@ -1,6 +1,6 @@
 import { Environment } from "../types";
 
-const apiPort = 9091;
+const apiPort = 7070;
 const dataPort = 9090;
 const frontendPort = 8080;
 

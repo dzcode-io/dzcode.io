@@ -2,5 +2,10 @@ firebase
 node_modules/
 coverage
 dist
-*.prettierignore
+
+.*
 *.tsbuildinfo
+*.svg
+*.jpeg
+*.png
+*.ico

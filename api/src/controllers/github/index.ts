@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-
 import * as Github from "../../services/github";
+
+import { Request, Response } from "express";
 
 export const listRepositories = async (req: Request, res: Response) => {
   try {
