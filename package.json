@@ -8,9 +8,17 @@
     "web"
   ],
   "scripts": {
-    "dev": "concurrently \"cd api && yarn build:watch\" \"cd api && yarn dev\" \"cd common && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd web && yarn dev\""
+    "dev": "concurrently \"cd api && yarn build:watch\" \"cd api && yarn dev\" \"cd common && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd web && yarn dev\"",
+    "lint:check": "concurrently \"cd api && yarn lint:check\" \"cd common && yarn lint:check\" \"cd data && yarn lint:check\" \"cd web && yarn lint:check\"",
+    "lint:fix": "concurrently \"cd api && yarn lint:fix\" \"cd common && yarn lint:fix\" \"cd data && yarn lint:fix\" \"cd web && yarn lint:fix\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "cd api && lint-staged && cd ../common && lint-staged && cd ../data && lint-staged && cd ../web && lint-staged"
+    }
   },
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^5.3.0",
+    "husky": "^4.3.6"
   }
 }

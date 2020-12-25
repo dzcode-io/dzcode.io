@@ -11,9 +11,11 @@ since the version os dzcode.io website is still v0.x.x things are still unstable
 ### Tasks (Open for changes)
 
 - [x] change folder names, frontend to web, fullstack to common.
-- [ ] Move husky to sub-folders.
+- [x] Move husky to sub-folders.
 - [x] Use package names as aliases
+- [ ] clean dev deps
 - [ ] Update CI/CD
+- [ ] Use Redux Hooks
 - [ ] Check Licence issues
 - [ ] Update Packages to use the latest major versions
 - [ ] Change default branch to main
