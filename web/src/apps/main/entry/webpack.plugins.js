@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === "production") {
     ],
   );
   // Dynamic URLs ----
-  const data = require("../../../../../fullstack/dist/utils/data");
+  const data = require("@dzcode.io/dist/utils/data");
   [
     { file: "articles", slug: "Articles" },
     { file: "documentation", slug: "Learn" },

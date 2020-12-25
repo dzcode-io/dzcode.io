@@ -8,7 +8,7 @@ const { join } = require("path");
 const urls = ["/", "/Contact-Us"];
 
 // Dynamic URLs
-const data = require("../../../fullstack/dist/utils/data");
+const data = require("@dzcode.io/common/dist/utils/data");
 [
   { file: "articles", slug: "Articles" },
   { file: "documentation", slug: "Learn" },

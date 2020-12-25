@@ -1,5 +1,5 @@
 {
-  "name": "dzcode.io-frontend",
+  "name": "@dzcode.io/web",
   "version": "0.1.0",
   "description": "frontend code for dzcode.io",
   "scripts": {
@@ -10,6 +10,9 @@
     "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.prettierignore",
     "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.prettierignore",
     "test": "jest src",
+    "test:watch": "jest src --watchAll",
+    "test:cov": "jest src --coverage",
+    "test:cov:watch": "jest src --coverage --watchAll",
     "build": "yarn clear cross-env && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details",
     "generate:sitemap": "node src/build/sitemap.js"
   },
@@ -41,6 +44,7 @@
     ]
   },
   "dependencies": {
+    "@dzcode.io/common": "1.0.0",
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-class-properties": "^7.8.3",

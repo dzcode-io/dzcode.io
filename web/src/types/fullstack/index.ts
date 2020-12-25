@@ -1,1 +1,1 @@
-export * from "../../../../fullstack/src/types";
+export * from "@dzcode.io/common/dist/types";

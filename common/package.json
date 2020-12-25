@@ -1,14 +1,16 @@
 {
-  "name": "dzcode.io-fullstack",
+  "name": "@dzcode.io/common",
   "version": "1.0.0",
-  "description": "dzCode.io fullstack code",
-  "main": "index.js",
+  "description": "dzCode.io common code",
   "scripts": {
     "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
     "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
-    "test": "jest src",
     "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./eslint.prettierignore",
     "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./eslint.prettierignore",
+    "test": "jest src",
+    "test:watch": "jest src --watchAll",
+    "test:cov": "jest src --coverage",
+    "test:cov:watch": "jest src --coverage --watchAll",
     "build": "tsc",
     "build:watch": "tsc --watch"
   },
