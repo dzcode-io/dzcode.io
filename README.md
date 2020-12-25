@@ -4,6 +4,27 @@
 
 The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source community.
 
+🚧 This branch contains breaking changes 🚧
+
+since the version os dzcode.io website is still v0.x.x things are still unstable, the goal of this new version v1.x.x is to stabilize the code, and make it easy to chip new features
+
+### Tasks (Open for changes)
+
+- [ ] change folder names, frontend to web, fullstack to common.
+- [ ] Move husky to sub-folders.
+- [ ] Use learna
+- [ ] Use package names as aliases
+- [ ] Update CI/CD
+- [ ] Check Licence issues
+- [ ] Update Packages to use the latest major versions
+- [ ] Change default branch to main
+- [ ] Clean stale branches, and old PRs
+- [ ] Clean the issue board ( possibly remove ZenHub)
+- [ ] Try to use Github discussion
+- [ ] Try yo use Github Codespaces
+- [ ] Update In-Repo Documentation
+- [ ] Setup proper Github releases
+
 ## Meta
 
 You can find more about each folder by clicking on the folder name
@@ -18,6 +39,7 @@ You can find more about each folder by clicking on the folder name
 ## Table of Content
 
 - [dzCode.io](#dzcodeio)
+    - [Tasks (Open for changes)](#tasks-open-for-changes)
   - [Meta](#meta)
   - [Table of Content](#table-of-content)
   - [Get Started](#get-started)
