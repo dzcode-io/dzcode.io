@@ -5,7 +5,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { LinkV2 } from "src/components/link-v2";
-import { StateInterface } from "src/types/main";
+import { StateInterface } from "src/apps/main/types";
 import Typography from "@material-ui/core/Typography";
 import { useSelector } from "react-redux";
 

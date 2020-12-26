@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 import { animated, useSpring } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import IosSwitch from "./ios-switch";
 import { LinkV2 } from "src/components/link-v2";
-import { StateInterface } from "src/types/main";
+import { StateInterface } from "src/apps/main/types";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { actionType } from "src/apps/main/redux/constants";

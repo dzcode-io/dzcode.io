@@ -1,7 +1,6 @@
 import { ContactForm } from "./form";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
-import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";

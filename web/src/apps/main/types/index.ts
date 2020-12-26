@@ -9,7 +9,6 @@ export type StateInterface = typeof state;
 export interface MainSettings {
   darkMode: boolean;
 }
-
 export interface SidebarTreeItem {
   id: string;
   content: string;

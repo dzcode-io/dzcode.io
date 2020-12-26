@@ -1,5 +1,4 @@
 import { Container, Theme, makeStyles } from "@material-ui/core";
-import React from "react";
 import svg from "src/assets/svg/404.svg";
 
 const useStyles = makeStyles((theme: Theme) => ({

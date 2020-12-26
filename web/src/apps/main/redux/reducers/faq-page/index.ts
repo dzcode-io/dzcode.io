@@ -105,7 +105,10 @@ const INITIAL_STATE = {
   ],
 };
 
-export const faqPage = (state = INITIAL_STATE, action: any) => {
+export const faqPage = (
+  state = INITIAL_STATE,
+  action: Record<string, unknown>,
+) => {
   switch (action.type) {
     default:
       return state;

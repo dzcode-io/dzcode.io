@@ -3,7 +3,6 @@ import FreeBreakfastIcon from "@material-ui/icons/FreeBreakfast";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import Hidden from "@material-ui/core/Hidden";
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
-import React from "react";
 import SchoolIcon from "@material-ui/icons/School";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";

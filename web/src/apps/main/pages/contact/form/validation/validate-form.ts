@@ -1,7 +1,7 @@
 import { isEmail, isEmpty } from "./validation";
 
 export const validateField = (name: string, value: string) => {
-  const errors: any = {
+  const errors: Record<string, unknown> = {
     valid: true,
   };
   switch (name) {

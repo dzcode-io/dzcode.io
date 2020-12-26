@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { useState } from "react";
 
 const useStyles = makeStyles({
   root: {

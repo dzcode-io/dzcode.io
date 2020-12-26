@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-
 import { toast } from "react-toastify";
+import { useState } from "react";
 import { validateField } from "./validation/validate-form";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +37,7 @@ const sendMessage = async ({
       "Access-Control-Allow-Origin": "https://dzcode.io",
     };
 
-    const res = await axios.post(
+    await axios.post(
       "https://us-central1-dzcode-io.cloudfunctions.net/api/contact",
       { name, email, subject, message },
       { headers: headers },
@@ -60,7 +59,7 @@ const sendMessage = async ({
   }
 };
 
-export const ContactForm = (props: any) => {
+export const ContactForm = () => {
   const initialState = {
     name: "",
     email: "",

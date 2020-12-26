@@ -1,4 +1,4 @@
-import { MainSettings } from "src/types/main";
+import { MainSettings } from "src/apps/main/types";
 import { actionType } from "src/apps/main/redux/constants";
 
 export const settings = (

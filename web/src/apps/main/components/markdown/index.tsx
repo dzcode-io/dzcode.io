@@ -1,13 +1,19 @@
-import ReactMarkdown, { MarkdownProps } from "markdown-to-jsx";
+import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
+
 import { LinkV2 } from "src/components/link-v2";
-import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import Typography from "@material-ui/core/Typography";
 import prism from "react-syntax-highlighter/dist/esm/styles/prism/prism";
 import tomorrow from "react-syntax-highlighter/dist/esm/styles/prism/tomorrow";
 import { useTheme } from "@material-ui/core/styles";
 
-export const Markdown = (props: MarkdownProps) => {
+interface ReactMarkdown {
+  [key: string]: unknown;
+  children: string;
+  options?: MarkdownToJSX.Options;
+}
+
+export const Markdown = (props: ReactMarkdown) => {
   const theme = useTheme();
 
   return (
@@ -36,7 +42,7 @@ export const Markdown = (props: MarkdownProps) => {
           },
           p: { component: Typography, props: { paragraph: true } },
           a: { component: LinkV2 },
-          img: { props: { style: { maxWidth: "100%" } } } as any,
+          img: { props: { style: { maxWidth: "100%" } } },
           pre: {
             component({ children: { props } }: any) {
               return (

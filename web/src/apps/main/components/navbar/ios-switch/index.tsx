@@ -1,6 +1,5 @@
 import { SwitchClassKey, SwitchProps } from "@material-ui/core/Switch";
 import { Theme, createStyles, withStyles } from "@material-ui/core/styles";
-import React from "react";
 import Switch from "@material-ui/core/Switch";
 
 interface Styles extends Partial<Record<SwitchClassKey, string>> {

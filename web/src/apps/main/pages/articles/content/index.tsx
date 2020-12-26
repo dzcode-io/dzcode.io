@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
 
 import { Article } from "src/types/fullstack";
@@ -12,6 +11,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { SpeedDial } from "src/apps/main/components/SpeedDial";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Typography from "@material-ui/core/Typography";
+import { useEffect } from "react";
 
 const actions = [
   { icon: <EditIcon />, name: "Edit This Article" },

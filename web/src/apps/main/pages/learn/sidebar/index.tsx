@@ -1,3 +1,4 @@
+import { Fragment, useState } from "react";
 import {
   Theme,
   createStyles,
@@ -9,7 +10,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import Drawer from "@material-ui/core/Drawer";
 import { LinkV2 } from "src/components/link-v2";
 import MenuIcon from "@material-ui/icons/Menu";
-import React from "react";
 import { SidebarTreeItem } from "src/apps/main/types";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { SpeedDial } from "src/apps/main/components/SpeedDial";
@@ -50,7 +50,7 @@ export const Sidebar = (props: {
   const classes = useStyles();
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -111,7 +111,7 @@ export const Sidebar = (props: {
     );
   } else {
     return (
-      <React.Fragment>
+      <Fragment>
         <SpeedDial
           className={classes.speedDial}
           ariaLabel="Actions SpeedDial"
@@ -132,7 +132,7 @@ export const Sidebar = (props: {
               : SidebarSkeleton}
           </TreeView>
         </Drawer>
-      </React.Fragment>
+      </Fragment>
     );
   }
 };

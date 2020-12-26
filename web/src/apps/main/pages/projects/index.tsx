@@ -1,6 +1,5 @@
 import { Catalog } from "./catalog";
 import { Project } from "src/types/fullstack";
-import React from "react";
 import { connect } from "react-redux";
 import { fetchProjectsList } from "src/apps/main/redux/actions/projects-page";
 import { useEffect } from "react";

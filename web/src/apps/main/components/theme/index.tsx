@@ -1,6 +1,5 @@
-import React, { PropsWithChildren } from "react";
-
-import { MainSettings } from "src/types/main";
+import { MainSettings } from "src/apps/main/types";
+import { PropsWithChildren } from "react";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import { connect } from "react-redux";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";

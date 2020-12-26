@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+
 // required modules
-// const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // setting up project configurations and some env variables
