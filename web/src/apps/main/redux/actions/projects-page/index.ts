@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { Dispatch } from "react";
-import { MainStoreStateInterface } from "t9/types/main";
+import { MainStoreStateInterface } from "src/types/main";
 import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
 

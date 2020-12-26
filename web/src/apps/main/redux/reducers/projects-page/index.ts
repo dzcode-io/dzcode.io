@@ -1,5 +1,5 @@
-import { ProjectsPageInitialState } from "t9/apps/main/pages/projects";
-import { actionType } from "t9/apps/main/redux/constants";
+import { ProjectsPageInitialState } from "src/apps/main/pages/projects";
+import { actionType } from "src/apps/main/redux/constants";
 
 export const projectsPage = (
   state: ProjectsPageInitialState = {

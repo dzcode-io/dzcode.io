@@ -1,10 +1,10 @@
-firebase
 node_modules/
 coverage
 dist
 
 .*
 *.tsbuildinfo
+*.log
 *.svg
 *.jpeg
 *.png

@@ -30,7 +30,7 @@ export const listPullRequests = async ({
       {
         params: {
           state: "all",
-          // eslint-disable-next-line @typescript-eslint/camelcase, camelcase
+          // eslint-disable-next-line camelcase
           per_page: 10,
         },
       },

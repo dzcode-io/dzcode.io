@@ -1,8 +1,9 @@
 import { Theme, makeStyles } from "@material-ui/core/styles";
-import { Card } from "t9/apps/main/components/card";
-import { EmptyCard } from "t9/apps/main/components/empty-card";
+
+import { Card } from "src/apps/main/components/card";
+import { EmptyCard } from "src/apps/main/components/empty-card";
 import Grid from "@material-ui/core/Grid";
-import { Project } from "t9/types/fullstack";
+import { Project } from "src/types/fullstack";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 

@@ -1,5 +1,5 @@
-import { MainSettings } from "t9/types/main";
-import { actionType } from "t9/apps/main/redux/constants";
+import { MainSettings } from "src/types/main";
+import { actionType } from "src/apps/main/redux/constants";
 
 export const settings = (
   state: MainSettings = {

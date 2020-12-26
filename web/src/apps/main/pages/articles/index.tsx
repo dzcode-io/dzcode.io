@@ -1,13 +1,14 @@
 import { Route, useRouteMatch } from "react-router-dom";
-import { Article } from "t9/types/fullstack";
+
+import { Article } from "src/types/fullstack";
 import { Content } from "./content";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { Sidebar } from "./sidebar";
-import { SidebarTreeItem } from "t9/types/main";
+import { SidebarTreeItem } from "src/types/main";
 import { connect } from "react-redux";
-import { fetchArticlesList } from "t9/apps/main/redux/actions/articles-page";
-import { fetchCurrentArticle } from "t9/apps/main/redux/actions/articles-page";
+import { fetchArticlesList } from "src/apps/main/redux/actions/articles-page";
+import { fetchCurrentArticle } from "src/apps/main/redux/actions/articles-page";
 import { useEffect } from "react";
 
 export const ArticlesPage = (props: ArticlesPageProps) => {

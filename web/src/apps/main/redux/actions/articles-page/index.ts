@@ -1,5 +1,6 @@
-import { MainStoreStateInterface, SidebarTreeItem } from "t9/types/main";
-import { Article } from "t9/types/fullstack";
+import { MainStoreStateInterface, SidebarTreeItem } from "src/types/main";
+
+import { Article } from "src/types/fullstack";
 import Axios from "axios";
 import { Dispatch } from "react";
 import { actionType } from "../../constants";

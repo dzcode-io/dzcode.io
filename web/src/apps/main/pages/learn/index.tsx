@@ -1,13 +1,14 @@
 import { Route, useRouteMatch } from "react-router-dom";
+
 import { Content } from "./content";
-import { Document } from "t9/types/fullstack";
+import { Document } from "src/types/fullstack";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import { Sidebar } from "./sidebar";
-import { SidebarTreeItem } from "t9/types/main";
+import { SidebarTreeItem } from "src/types/main";
 import { connect } from "react-redux";
-import { fetchCurrentDocument } from "t9/apps/main/redux/actions/documentation-page";
-import { fetchDocumentationList } from "t9/apps/main/redux/actions/documentation-page";
+import { fetchCurrentDocument } from "src/apps/main/redux/actions/documentation-page";
+import { fetchDocumentationList } from "src/apps/main/redux/actions/documentation-page";
 import { useEffect } from "react";
 
 export const LearnPage = (props: LearnPageProps) => {

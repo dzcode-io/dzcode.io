@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from "react";
-import { MainSettings } from "t9/types/main";
+
+import { MainSettings } from "src/types/main";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import { connect } from "react-redux";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-
 import darkPallet from "./dark-palette";
 import lightPallet from "./light-palette";
 import overrides from "./overrides";
