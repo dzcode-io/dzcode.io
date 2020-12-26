@@ -1,4 +1,4 @@
-import { actionType } from "t9/apps/main/redux/constants";
+import { actionType } from "src/apps/main/redux/constants";
 
 type link = {
   href: string;

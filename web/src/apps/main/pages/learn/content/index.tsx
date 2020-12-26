@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import { Document } from "t9/types/fullstack";
+
+import { Document } from "src/types/fullstack";
 import EditIcon from "@material-ui/icons/Edit";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import { Markdown } from "t9/apps/main/components/markdown";
+import { Markdown } from "src/apps/main/components/markdown";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { SpeedDial } from "t9/apps/main/components/SpeedDial";
+import { SpeedDial } from "src/apps/main/components/SpeedDial";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Typography from "@material-ui/core/Typography";
 

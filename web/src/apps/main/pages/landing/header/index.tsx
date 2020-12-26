@@ -7,7 +7,7 @@ import React from "react";
 import SchoolIcon from "@material-ui/icons/School";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import scrumBoard from "t9/apps/main/assets/svg/scrum-board.svg";
+import scrumBoard from "src/apps/main/assets/svg/scrum-board.svg";
 
 const socialMedia = [
   {

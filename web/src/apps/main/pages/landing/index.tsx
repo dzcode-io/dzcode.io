@@ -1,9 +1,10 @@
-import { Article, Project } from "t9/types/fullstack";
+import { Article, Project } from "src/types/fullstack";
 import React, { useEffect } from "react";
 import {
   fetchTopArticles,
   fetchTopProjects,
-} from "t9/apps/main/redux/actions/landing-page";
+} from "src/apps/main/redux/actions/landing-page";
+
 import { Header } from "./header";
 import { HowToContribute } from "./how-to-contribute";
 import { TopArticles } from "./top-articles";

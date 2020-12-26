@@ -4,14 +4,15 @@ import {
   makeStyles,
   useTheme,
 } from "@material-ui/core/styles";
+
 import CloseIcon from "@material-ui/icons/Close";
 import Drawer from "@material-ui/core/Drawer";
 import { LinkV2 } from "src/components/link-v2";
 import MenuIcon from "@material-ui/icons/Menu";
 import React from "react";
-import { SidebarTreeItem } from "t9/apps/main/types";
+import { SidebarTreeItem } from "src/apps/main/types";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { SpeedDial } from "t9/apps/main/components/SpeedDial";
+import { SpeedDial } from "src/apps/main/components/SpeedDial";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import TreeItem from "@material-ui/lab/TreeItem";
 import TreeView from "@material-ui/lab/TreeView";

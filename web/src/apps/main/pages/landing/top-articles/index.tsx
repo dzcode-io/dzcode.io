@@ -1,7 +1,8 @@
 import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
-import { Article } from "t9/types/fullstack";
-import { Card } from "t9/apps/main/components/card";
-import { EmptyCard } from "t9/apps/main/components/empty-card";
+
+import { Article } from "src/types/fullstack";
+import { Card } from "src/apps/main/components/card";
+import { EmptyCard } from "src/apps/main/components/empty-card";
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 import Typography from "@material-ui/core/Typography";

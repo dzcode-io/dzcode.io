@@ -1,8 +1,8 @@
 import { Catalog } from "./catalog";
-import { Project } from "t9/types/fullstack";
+import { Project } from "src/types/fullstack";
 import React from "react";
 import { connect } from "react-redux";
-import { fetchProjectsList } from "t9/apps/main/redux/actions/projects-page";
+import { fetchProjectsList } from "src/apps/main/redux/actions/projects-page";
 import { useEffect } from "react";
 
 export const ProjectsPage = ({

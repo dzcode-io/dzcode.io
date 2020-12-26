@@ -1,5 +1,5 @@
-import { LearnPageInitialState } from "t9/apps/main/pages/learn";
-import { actionType } from "t9/apps/main/redux/constants";
+import { LearnPageInitialState } from "src/apps/main/pages/learn";
+import { actionType } from "src/apps/main/redux/constants";
 
 export const learnPage = (
   state: LearnPageInitialState = {

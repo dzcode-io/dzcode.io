@@ -1,5 +1,5 @@
-import { LandingPageInitialState } from "t9/apps/main/pages/landing";
-import { actionType } from "t9/apps/main/redux/constants";
+import { LandingPageInitialState } from "src/apps/main/pages/landing";
+import { actionType } from "src/apps/main/redux/constants";
 
 export const landingPage = (
   state: LandingPageInitialState = {

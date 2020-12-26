@@ -13,11 +13,17 @@ since the version os dzcode.io website is still v0.x.x things are still unstable
 - [x] change folder names, frontend to web, fullstack to common.
 - [x] Move husky to sub-folders.
 - [x] Use package names as aliases
-- [ ] clean dev deps
-- [ ] Update CI/CD
+- [x] Update Packages to use the latest major versions
+- [x] clean dev deps
+- [x] Remove t9config
+- [ ] remove default react import
+- [ ] Add leblad app
 - [ ] Use Redux Hooks
+- [ ] Fix MUI Theme
+- [ ] Add example test cases
+- [ ] Deploy each stack separately
+- [ ] Update CI/CD
 - [ ] Check Licence issues
-- [ ] Update Packages to use the latest major versions
 - [ ] Change default branch to main
 - [ ] Clean stale branches, and old PRs
 - [ ] Clean the issue board ( possibly remove ZenHub)

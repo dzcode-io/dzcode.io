@@ -1,8 +1,8 @@
-import { MainStoreStateInterface, SidebarTreeItem } from "t9/types/main";
+import { MainStoreStateInterface, SidebarTreeItem } from "src/types/main";
 
 import Axios from "axios";
 import { Dispatch } from "react";
-import { Document } from "t9/types/fullstack";
+import { Document } from "src/types/fullstack";
 import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
 import { hasInCollection } from "src/common/utils";
