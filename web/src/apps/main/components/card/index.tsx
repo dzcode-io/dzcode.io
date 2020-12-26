@@ -4,7 +4,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import { LinkV2 } from "src/components/link-v2";
 import MuiCard from "@material-ui/core/Card";
-import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 

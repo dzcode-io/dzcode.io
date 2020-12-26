@@ -1,7 +1,8 @@
-import React, { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import SpeedDialMUI, {
   SpeedDialProps as SpeedDialPropsMUI,
 } from "@material-ui/lab/SpeedDial";
+
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 
@@ -13,7 +14,7 @@ interface SpeedDialProps extends SpeedDialPropsMUI {
   open: boolean;
 }
 export const SpeedDial = (props: SpeedDialProps) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);

@@ -16,7 +16,11 @@ since the version os dzcode.io website is still v0.x.x things are still unstable
 - [x] Update Packages to use the latest major versions
 - [x] clean dev deps
 - [x] Remove t9config
-- [ ] remove default react import
+- [ ] Make it work locally on other devices
+- [ ] proper loading component
+- [ ] splash screen
+- [ ] run only a specific app
+- [x] remove default react import
 - [ ] Add leblad app
 - [ ] Use Redux Hooks
 - [ ] Fix MUI Theme

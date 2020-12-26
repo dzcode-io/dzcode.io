@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { SitemapStream } = require("sitemap");
 const { createWriteStream } = require("fs");
-const t9config = require("../../t9config");
+const distFolder = "./dist";
 const { join } = require("path");
 
 // Static URLs
@@ -25,7 +25,7 @@ const sitemap = new SitemapStream({
   hostname: "https://www.dzCode.io/",
   cacheTime: 600000,
 });
-const path = join(t9config.bundles.distFolder, "w/main/sitemap.xml");
+const path = join(distFolder, "w/main/sitemap.xml");
 const writeStream = createWriteStream(path);
 sitemap.pipe(writeStream);
 urls.forEach((url) => {

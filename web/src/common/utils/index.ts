@@ -37,8 +37,8 @@ export const updateCollection = <T>(
         const update = updatesCollection[updateIndex];
         // found similar update:
         if (
-          (update as any)[identifierField] ===
-          (original as any)[identifierField]
+          (update as Record<string, unknown>)[identifierField] ===
+          (original as Record<string, unknown>)[identifierField]
         ) {
           // deep merge original with update to updated
           updated = mergeDeep(original, update);
@@ -86,7 +86,7 @@ export const hasInCollection = <T>(
 ) => {
   for (const item of collection) {
     // found the item we're looking for
-    if ((item as any)[identifierField] === idValue) {
+    if ((item as Record<string, unknown>)[identifierField] === idValue) {
       for (const path of paths) {
         if (!hasIn(item, path)) {
           return false; // item found, but one of the fields is missing FALSE

@@ -1,5 +1,4 @@
 import Paper from "@material-ui/core/Paper";
-import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -46,11 +45,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
 }));
-
-interface ReasonCardProps {
-  title: string;
-  description: string;
-}
 
 export const HowToContribute = () => {
   const classes = useStyles();

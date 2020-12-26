@@ -1,5 +1,4 @@
 import { Article, Project } from "src/types/fullstack";
-import React, { useEffect } from "react";
 import {
   fetchTopArticles,
   fetchTopProjects,
@@ -11,6 +10,8 @@ import { TopArticles } from "./top-articles";
 import { TopProjects } from "./top-projects";
 import { WhatAndWhy } from "./what-and-why";
 import { connect } from "react-redux";
+import { useEffect } from "react";
+
 export const LandingPage = ({
   topProjects,
   topArticles,

@@ -1,14 +1,12 @@
 import Axios from "axios";
 import { Dispatch } from "react";
-import { MainStoreStateInterface } from "src/types/main";
 import { actionType } from "../../constants";
 import { fullstackConfig } from "src/config";
 
 const dataURL = fullstackConfig.data.url;
 
 export const fetchTopProjects = () => async (
-  dispatch: Dispatch<any>,
-  getState: MainStoreStateInterface,
+  dispatch: Dispatch<Record<string, unknown>>,
 ) => {
   try {
     const response = await Axios.get(dataURL + "/projects/top-projects.c.json");
@@ -22,8 +20,7 @@ export const fetchTopProjects = () => async (
 };
 
 export const fetchTopArticles = () => async (
-  dispatch: Dispatch<any>,
-  getState: MainStoreStateInterface,
+  dispatch: Dispatch<Record<string, unknown>>,
 ) => {
   try {
     const response = await Axios.get(dataURL + "/articles/top-articles.c.json");

@@ -1,8 +1,8 @@
 import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
 
-import React, { Suspense, lazy } from "react";
 import { Route, Router, Switch, useLocation } from "react-router-dom";
+import { Suspense, lazy, useEffect } from "react";
 
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -59,7 +59,7 @@ const Main = () => {
 
 export const App = () => {
   const location = useLocation();
-  React.useEffect(() => {
+  useEffect(() => {
     if (env !== "development") {
       window.ga("set", "page", location.pathname);
       window.ga("send", "pageview");

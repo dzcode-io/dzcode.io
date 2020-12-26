@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { LinkProps } from "@material-ui/core";
-import React from "react";
 
 export const LinkV2 = (
   props: React.DetailedHTMLProps<

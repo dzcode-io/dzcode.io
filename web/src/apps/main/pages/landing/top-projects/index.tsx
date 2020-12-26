@@ -3,9 +3,7 @@ import { Theme, makeStyles } from "@material-ui/core/styles";
 import { Card } from "src/apps/main/components/card";
 import { EmptyCard } from "src/apps/main/components/empty-card";
 import Grid from "@material-ui/core/Grid";
-import { GridSpacing } from "@material-ui/core";
 import { Project } from "src/types/fullstack";
-import React from "react";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme: Theme) => ({

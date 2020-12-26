@@ -1,4 +1,4 @@
-import { MainStoreStateInterface, SidebarTreeItem } from "src/types/main";
+import { MainStoreStateInterface, SidebarTreeItem } from "src/apps/main/types";
 
 import Axios from "axios";
 import { Dispatch } from "react";
@@ -12,8 +12,7 @@ import { listToTree } from "l2t";
 const dataURL = fullstackConfig.data.url;
 
 export const fetchDocumentationList = () => async (
-  dispatch: Dispatch<any>,
-  getState: MainStoreStateInterface,
+  dispatch: Dispatch<Record<string, unknown>>,
 ) => {
   try {
     const response = await Axios.get(dataURL + "/documentation/list.c.json");
@@ -45,7 +44,7 @@ export const fetchDocumentationList = () => async (
 };
 
 export const fetchCurrentDocument = () => async (
-  dispatch: Dispatch<any>,
+  dispatch: Dispatch<Record<string, unknown>>,
   getState: MainStoreStateInterface,
 ) => {
   const documentSlug = location.pathname
