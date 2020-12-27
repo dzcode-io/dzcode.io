@@ -7,12 +7,13 @@ const reasons = [
   {
     title: "Algerian Open Source Projects",
     description:
-      "Centralizing the issues around Algerian problems brings care and commitment from all , and you are an example of that",
+      "Centralizing the issues around Algerian problems brings care and commitment from all, and you are an example of that.",
   },
   {
     title: "Local Contributions",
     description:
-      "Bringing your project to spotlight and let local collaborators find you, which will lead to an even better version of you library.",
+      /* This still does not make sense to me, what do you mean by "library"? */
+      "Bringing your project to the spotlight and letting local collaborators find you, which will lead to an even better version of your library.",
   },
   {
     title: "Showcase Talent",
