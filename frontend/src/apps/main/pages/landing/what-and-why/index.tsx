@@ -12,8 +12,7 @@ const reasons = [
   {
     title: "Local Contributions",
     description:
-      /* This still does not make sense to me, what do you mean by "library"? */
-      "Bringing your project to the spotlight and letting local collaborators find you, which will lead to an even better version of your library.",
+      "Bringing your project to the spotlight and letting local collaborators find you, which will lead to an even better version of your software.",
   },
   {
     title: "Showcase Talent",
