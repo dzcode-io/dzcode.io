@@ -3,9 +3,10 @@ import { articlesPage } from "./articles-page";
 import { combineReducers } from "redux";
 import { documentation } from "./documentation";
 import { faqPage } from "./faq-page";
+import { footerComponent } from "./footer-component";
 import { landingPage } from "./landing-page";
-import { layout } from "./layout-reducer";
 import { learnPage } from "./learn-page";
+import { navbarComponent } from "./navbar-component";
 import { projectsPage } from "./projects-page";
 import { settings } from "./settings";
 
@@ -17,6 +18,7 @@ export const mainReducer = combineReducers({
   projectsPage,
   landingPage,
   settings,
-  layout,
   faqPage,
+  navbarComponent,
+  footerComponent,
 });

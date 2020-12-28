@@ -1,5 +1,7 @@
-import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { FC, useState } from "react";
 import { animated, useSpring } from "react-spring";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -7,15 +9,13 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import IosSwitch from "./ios-switch";
 import { LinkV2 } from "src/components/link-v2";
-import { StateInterface } from "src/apps/main/types";
+import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { actionType } from "src/apps/main/redux/constants";
 import logo from "src/apps/main/assets/png/logo.png";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import { useState } from "react";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth: "100%",
@@ -96,40 +96,24 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const Navbar: React.FC = () => {
-  const dispatch = useDispatch();
-  // DARK MODE
-  const darkMode = useSelector(
-    (state: StateInterface) => state.settings.darkMode,
-  );
-  const toggleDarkMode = () => {
-    dispatch({
-      type: actionType.UPDATE_SETTINGS,
-      payload: { darkMode: !darkMode },
-    });
-    window.localStorage.setItem("darkMode", darkMode ? "off" : "on");
-  };
-
-  // DATA FETCH
-  const sections = useSelector(
-    (state: StateInterface) => state.layout.navbarInitialState.sections,
-  );
-
-  // STYLES
+export const Navbar: FC = () => {
+  const { settings, navbarComponent } = useSelector<
+    StateInterface,
+    StateInterface
+  >((state) => state);
+  const dispatch = useDispatch<Dispatch<SettingsState>>();
   const classes = useStyles();
   const [visible, setVisible] = useState(true);
-
   useScrollPosition(({ prevPos, currPos }) => {
     const isVisible = currPos.y <= -120 ? currPos.y > prevPos.y : true;
     setVisible(isVisible);
   });
-
-  const props = useSpring({
+  const springStyle = useSpring({
     transform: visible ? "translate(0, 0%)" : "translate(0, -100%)",
   });
 
   return (
-    <animated.header className={classes.root} style={props}>
+    <animated.header className={classes.root} style={springStyle}>
       <div className={`${classes.toolbarContainer} ${classes.TopBar} `}>
         <Hidden mdUp>
           <Typography
@@ -149,12 +133,17 @@ export const Navbar: React.FC = () => {
           className={classes.switch}
           control={
             <IosSwitch
-              checked={darkMode ? true : false}
-              onChange={toggleDarkMode}
+              checked={settings.darkMode ? true : false}
+              onChange={() => {
+                dispatch({
+                  type: "UPDATE_SETTINGS",
+                  payload: { darkMode: !settings.darkMode },
+                });
+              }}
               name="darkMode"
             />
           }
-          label={darkMode ? "🌙" : "🌞"}
+          label={settings.darkMode ? "🌙" : "🌞"}
         />
       </div>
       <Toolbar
@@ -185,8 +174,8 @@ export const Navbar: React.FC = () => {
             </Typography>
           </Hidden>
 
-          {sections
-            ? sections.map((section) => (
+          {navbarComponent.sections
+            ? navbarComponent.sections.map((section) => (
                 <LinkV2
                   color="inherit"
                   key={section.title}
@@ -202,5 +191,3 @@ export const Navbar: React.FC = () => {
     </animated.header>
   );
 };
-
-export default Navbar;

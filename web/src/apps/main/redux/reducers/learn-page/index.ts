@@ -1,19 +1,23 @@
-import { LearnPageInitialState } from "src/apps/main/pages/learn";
-import { actionType } from "src/apps/main/redux/constants";
+import { Action } from "src/apps/main/redux";
+import { Document } from "@dzcode.io/common/dist/types";
+import { SidebarTreeItem } from "src/apps/main/types";
+
+export interface LearnPageState {
+  sidebarTree: SidebarTreeItem[] | null;
+  expanded: string[];
+  currentDocument: Document | null;
+}
 
 export const learnPage = (
-  state: LearnPageInitialState = {
+  state: LearnPageState = {
     sidebarTree: null,
     expanded: [],
     currentDocument: null,
   },
-  action: {
-    type: string;
-    payload: LearnPageInitialState;
-  },
+  action: Action<LearnPageState>,
 ) => {
   switch (action.type) {
-    case actionType.UPDATE_LEARN_PAGE:
+    case "UPDATE_LEARN_PAGE":
       return { ...state, ...action.payload };
     default:
       return state;

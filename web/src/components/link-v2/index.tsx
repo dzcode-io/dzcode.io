@@ -1,12 +1,7 @@
-import { Link } from "react-router-dom";
-import { LinkProps } from "@material-ui/core";
+import { FC, HTMLProps } from "react";
+import { Link, LinkProps } from "react-router-dom";
 
-export const LinkV2 = (
-  props: React.DetailedHTMLProps<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    HTMLAnchorElement
-  >,
-) => {
+export const LinkV2: FC<HTMLProps<HTMLAnchorElement>> = (props) => {
   if (
     props.href &&
     (props.href.startsWith("/") || props.href.startsWith(location.origin))

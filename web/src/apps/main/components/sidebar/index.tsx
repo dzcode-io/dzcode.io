@@ -1,10 +1,5 @@
-import { Fragment, useState } from "react";
-import {
-  Theme,
-  createStyles,
-  makeStyles,
-  useTheme,
-} from "@material-ui/core/styles";
+import { FC, Fragment, useState } from "react";
+import { createStyles, makeStyles, useTheme } from "@material-ui/core/styles";
 
 import CloseIcon from "@material-ui/icons/Close";
 import Drawer from "@material-ui/core/Drawer";
@@ -18,7 +13,7 @@ import TreeItem from "@material-ui/lab/TreeItem";
 import TreeView from "@material-ui/lab/TreeView";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     heroImage: {
       width: "100%",
@@ -42,23 +37,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const Sidebar = (props: {
+export const Sidebar: FC<{
   tree: SidebarTreeItem[] | null;
   expanded: string[];
   selected: string;
-}) => {
+}> = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
   const [open, setOpen] = useState(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
 
   const SidebarSkeleton = (
     <>

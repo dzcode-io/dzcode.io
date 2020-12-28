@@ -1,17 +1,27 @@
-import { Document } from "src/types/fullstack";
-import { actionType } from "src/apps/main/redux/constants";
+import { Action } from "src/apps/main/redux";
+import { Document } from "@dzcode.io/common/dist/types";
 import { updateCollection } from "src/common/utils";
 
+export interface DocumentationState {
+  list: Document[];
+}
+
 export const documentation = (
-  state: Document[] = [],
-  action: {
-    type: string;
-    payload: Document[];
+  state: DocumentationState = {
+    list: [],
   },
+  action: Action<DocumentationState>,
 ) => {
   switch (action.type) {
-    case actionType.UPDATE_DOCUMENTATION:
-      return updateCollection<Document>(state, action.payload, "slug");
+    case "UPDATE_DOCUMENTATION":
+      return {
+        ...state,
+        list: updateCollection<Document>(
+          state.list,
+          action.payload.list || [],
+          "slug",
+        ),
+      };
     default:
       return state;
   }

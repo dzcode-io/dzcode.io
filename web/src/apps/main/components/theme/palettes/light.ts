@@ -1,17 +1,19 @@
+import { PaletteOptions } from "@material-ui/core/styles/createPalette";
 import { colors } from "@material-ui/core";
 const contrast = "#282c34";
-export default {
+export const lightPalette: PaletteOptions = {
+  mode: "light",
   primary: {
     contrastText: contrast,
-    dark: colors.green[900],
-    main: colors.green[600],
-    light: colors.green[400],
+    dark: "#2B9348",
+    main: "#55A630",
+    light: "#80B918",
   },
   secondary: {
     contrastText: contrast,
-    dark: "#e5a913",
-    light: "#f1c453",
-    main: "#edb424",
+    dark: "#EFEA5A",
+    light: "#EFEA5A",
+    main: "#F1C453",
   },
   success: {
     dark: colors.green[900],
@@ -34,12 +36,12 @@ export default {
     light: colors.red[400],
   },
   text: {
-    primary: colors.grey[100],
-    secondary: colors.grey[600],
+    primary: colors.blueGrey[900],
+    secondary: colors.blueGrey[600],
     link: "#80B918",
   },
   background: {
-    default: "#282c34",
-    paper: "#1d1d1d",
+    default: colors.common.white,
+    paper: colors.grey[100],
   },
 };

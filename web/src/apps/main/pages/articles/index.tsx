@@ -1,18 +1,23 @@
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { FC, useEffect } from "react";
 import { Route, useRouteMatch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Article } from "src/types/fullstack";
+import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { Content } from "./content";
 import Grid from "@material-ui/core/Grid";
-import { Sidebar } from "./sidebar";
-import { SidebarTreeItem } from "src/apps/main/types";
-import { connect } from "react-redux";
+import { Sidebar } from "src/apps/main/components/sidebar";
 import { fetchArticlesList } from "src/apps/main/redux/actions/articles-page";
-import { fetchCurrentArticle } from "src/apps/main/redux/actions/articles-page";
-import { useEffect } from "react";
 
-export const ArticlesPage = (props: ArticlesPageProps) => {
+export const ArticlesPage: FC = () => {
+  const { currentArticle, expanded, sidebarTree } = useSelector<
+    StateInterface,
+    ArticlesPageState
+  >((state) => state.articlesPage);
+  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+
   useEffect(() => {
-    props.fetchArticlesList();
+    dispatch(fetchArticlesList());
   }, []);
 
   const { path } = useRouteMatch();
@@ -22,22 +27,16 @@ export const ArticlesPage = (props: ArticlesPageProps) => {
       {/* Sidebar */}
       <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
         <Sidebar
-          tree={props.sidebarTree}
-          expanded={props.expanded}
-          selected={props.currentArticle ? props.currentArticle.slug : ""}
+          tree={sidebarTree}
+          expanded={expanded}
+          selected={currentArticle ? currentArticle.slug : ""}
         />
       </Grid>
       {/* Content */}
-      <Grid item xs>
+      <Grid item xs md={7}>
         <Route
           path={`${path}/:articleSlug`}
-          render={() => (
-            <Content
-              key={location.pathname}
-              currentArticle={props.currentArticle}
-              fetchCurrentArticle={props.fetchCurrentArticle}
-            />
-          )}
+          render={() => <Content key={location.pathname} />}
         />
       </Grid>
       {/* Headers */}
@@ -48,26 +47,4 @@ export const ArticlesPage = (props: ArticlesPageProps) => {
   );
 };
 
-export interface ArticlesPageInitialState {
-  sidebarTree: SidebarTreeItem[] | null;
-  expanded: string[];
-  currentArticle: Article | null;
-}
-
-interface ArticlesPageProps {
-  fetchArticlesList: () => void;
-  fetchCurrentArticle: () => void;
-  sidebarTree: SidebarTreeItem[] | null;
-  expanded: string[];
-  currentArticle: Article | null;
-}
-
-export default connect(
-  (state: { articlesPage: ArticlesPageProps }) => ({
-    ...state.articlesPage,
-  }),
-  (dispatch: any) => ({
-    fetchArticlesList: () => dispatch(fetchArticlesList()),
-    fetchCurrentArticle: () => dispatch(fetchCurrentArticle()),
-  }),
-)(ArticlesPage);
+export default ArticlesPage;

@@ -1,9 +1,9 @@
-import { MainStoreStateInterface, SidebarTreeItem } from "src/apps/main/types";
-
 import Axios from "axios";
-import { Dispatch } from "react";
-import { Document } from "src/types/fullstack";
-import { actionType } from "../../constants";
+import { Document } from "@dzcode.io/common/dist/types";
+import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
+import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
+import { SidebarTreeItem } from "src/apps/main/types";
+import { ThunkResult } from "src/apps/main/redux";
 import { fullstackConfig } from "src/config";
 import { hasInCollection } from "src/common/utils";
 import { history } from "src/common/utils/history";
@@ -11,11 +11,16 @@ import { listToTree } from "l2t";
 
 const dataURL = fullstackConfig.data.url;
 
-export const fetchDocumentationList = () => async (
-  dispatch: Dispatch<Record<string, unknown>>,
+/**
+ * Fetches the list of documents for the sidebar
+ */
+export const fetchDocumentationList = (): ThunkResult<LearnPageState> => async (
+  dispatch,
 ) => {
   try {
-    const response = await Axios.get(dataURL + "/documentation/list.c.json");
+    const response = await Axios.get<Document[]>(
+      dataURL + "/documentation/list.c.json",
+    );
     const documentationList = response.data;
     const ids: string[] = [];
     // convert list into tree
@@ -35,7 +40,7 @@ export const fetchDocumentationList = () => async (
     );
 
     dispatch({
-      type: actionType.UPDATE_LEARN_PAGE,
+      type: "UPDATE_LEARN_PAGE",
       payload: { sidebarTree: tree, expanded: ids },
     });
   } catch (error) {
@@ -43,15 +48,17 @@ export const fetchDocumentationList = () => async (
   }
 };
 
-export const fetchCurrentDocument = () => async (
-  dispatch: Dispatch<Record<string, unknown>>,
-  getState: MainStoreStateInterface,
-) => {
+/**
+ * Fetches the content of the current document
+ */
+export const fetchCurrentDocument = (): ThunkResult<
+  LearnPageState | DocumentationState
+> => async (dispatch, getState) => {
   const documentSlug = location.pathname
     .substring(location.pathname.indexOf("/", 1) + 1)
     .replace(/\/$/, "");
   const cashedDocument = hasInCollection<Document>(
-    getState().documentation,
+    getState().documentation.list,
     "slug",
     documentSlug,
     [["content"]],
@@ -59,13 +66,13 @@ export const fetchCurrentDocument = () => async (
   if (cashedDocument) {
     // update our page state
     dispatch({
-      type: actionType.UPDATE_LEARN_PAGE,
+      type: "UPDATE_LEARN_PAGE",
       payload: { currentDocument: cashedDocument },
     });
   } else {
     // BUG: cashing not working in local (slug related issue)
     dispatch({
-      type: actionType.UPDATE_LEARN_PAGE,
+      type: "UPDATE_LEARN_PAGE",
       payload: { currentDocument: null },
     });
     try {
@@ -80,13 +87,13 @@ export const fetchCurrentDocument = () => async (
       const currentDocument = response.data;
       // update our page state
       dispatch({
-        type: actionType.UPDATE_LEARN_PAGE,
+        type: "UPDATE_LEARN_PAGE",
         payload: { currentDocument },
       });
       // update our cache state
       dispatch({
-        type: actionType.UPDATE_DOCUMENTATION,
-        payload: [currentDocument],
+        type: "UPDATE_DOCUMENTATION",
+        payload: { list: [currentDocument] },
       });
     } catch (error) {
       if (error.message == "learn_not_found") {

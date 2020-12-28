@@ -1,18 +1,21 @@
-import { LandingPageInitialState } from "src/apps/main/pages/landing";
-import { actionType } from "src/apps/main/redux/constants";
+import { Article, Project } from "@dzcode.io/common/dist/types";
+
+import { Action } from "src/apps/main/redux";
+
+export interface LandingPageState {
+  topProjects: Project[] | null;
+  topArticles: Article[] | null;
+}
 
 export const landingPage = (
-  state: LandingPageInitialState = {
+  state: LandingPageState = {
     topProjects: null,
     topArticles: null,
   },
-  action: {
-    type: string;
-    payload: LandingPageInitialState;
-  },
+  action: Action<LandingPageState>,
 ) => {
   switch (action.type) {
-    case actionType.UPDATE_LANDING_PAGE:
+    case "UPDATE_LANDING_PAGE":
       return { ...state, ...action.payload };
     default:
       return state;

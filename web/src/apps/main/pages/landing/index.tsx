@@ -1,57 +1,67 @@
-import { Article, Project } from "src/types/fullstack";
+import { FC, useEffect } from "react";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import {
   fetchTopArticles,
   fetchTopProjects,
 } from "src/apps/main/redux/actions/landing-page";
 
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import Button from "@material-ui/core/Button";
+import { Dispatch } from "src/apps/main/redux";
 import { Header } from "./header";
-import { HowToContribute } from "./how-to-contribute";
+import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
+import { LinkV2 } from "src/components/link-v2";
 import { TopArticles } from "./top-articles";
 import { TopProjects } from "./top-projects";
-import { WhatAndWhy } from "./what-and-why";
-import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-export const LandingPage = ({
-  topProjects,
-  topArticles,
-  fetchTopProjects,
-  fetchTopArticles,
-}: LandingPageProps) => {
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    hr: {
+      maxWidth: "300px",
+      width: "90%",
+      marginBottom: theme.spacing(0),
+      marginTop: theme.spacing(0),
+    },
+    button: {
+      marginBottom: theme.spacing(4),
+      display: "inline-block",
+    },
+  }),
+);
+
+export const LandingPage: FC = () => {
+  const classes = useStyles();
+  const dispatch = useDispatch<Dispatch<LandingPageState>>();
+
   useEffect(() => {
-    fetchTopProjects();
-    fetchTopArticles();
+    dispatch(fetchTopProjects());
+    dispatch(fetchTopArticles());
   }, []);
 
   return (
     <>
       <Header />
-      <WhatAndWhy />
-      <TopProjects topProjects={topProjects} />
-      <HowToContribute />
-      <TopArticles topArticles={topArticles} />
+      {/* <WhatAndWhy /> */}
+      <TopProjects />
+      <div style={{ textAlign: "center" }}>
+        <LinkV2 className={classes.button} href="/Projects">
+          <Button endIcon={<ArrowForwardIcon />} size="large">
+            See More Projects
+          </Button>
+        </LinkV2>
+        <hr className={classes.hr} />
+      </div>
+      <TopArticles />
+      <div style={{ textAlign: "center" }}>
+        <LinkV2 className={classes.button} href="/Articles">
+          <Button endIcon={<ArrowForwardIcon />} size="large">
+            Explore More Articles
+          </Button>
+        </LinkV2>
+      </div>
     </>
   );
 };
 
-export interface LandingPageInitialState {
-  topProjects: Project[] | null;
-  topArticles: Article[] | null;
-}
-
-interface LandingPageProps {
-  fetchTopProjects: () => void;
-  fetchTopArticles: () => void;
-  topProjects: Project[] | null;
-  topArticles: Article[] | null;
-}
-
-export default connect(
-  (state: { landingPage: LandingPageProps }) => ({
-    ...state.landingPage,
-  }),
-  (dispatch: any) => ({
-    fetchTopProjects: () => dispatch(fetchTopProjects()),
-    fetchTopArticles: () => dispatch(fetchTopArticles()),
-  }),
-)(LandingPage);
+export default LandingPage;
