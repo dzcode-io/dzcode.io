@@ -1,5 +1,6 @@
 import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
 
+import { FC } from "react";
 import { LinkV2 } from "src/components/link-v2";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import Typography from "@material-ui/core/Typography";
@@ -7,18 +8,12 @@ import prism from "react-syntax-highlighter/dist/esm/styles/prism/prism";
 import tomorrow from "react-syntax-highlighter/dist/esm/styles/prism/tomorrow";
 import { useTheme } from "@material-ui/core/styles";
 
-interface ReactMarkdown {
-  [key: string]: unknown;
-  children: string;
-  options?: MarkdownToJSX.Options;
-}
-
-export const Markdown = (props: ReactMarkdown) => {
+export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
   const theme = useTheme();
 
   return (
     <ReactMarkdown
-      {...props}
+      {...markdownProps}
       options={{
         overrides: {
           h1: {
@@ -44,23 +39,35 @@ export const Markdown = (props: ReactMarkdown) => {
           a: { component: LinkV2 },
           img: { props: { style: { maxWidth: "100%" } } },
           pre: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             component({ children: { props } }: any) {
               return (
                 <SyntaxHighlighter
+                  customStyle={{
+                    borderRadius: "8px",
+                    borderWidth: 1,
+                    borderStyle: "solid",
+                    borderColor: theme.palette.divider,
+                  }}
                   {...props}
                   language={
                     props.className
                       ? props.className.replace("lang-", "")
                       : null
                   }
-                  style={theme.palette.type === "dark" ? tomorrow : prism}
+                  style={theme.palette.mode === "dark" ? tomorrow : prism}
                 />
               );
             },
-            props: { style: { overflowX: "auto" } },
           },
         },
       }}
     />
   );
 };
+
+interface ReactMarkdown {
+  [key: string]: unknown;
+  children: string;
+  options?: MarkdownToJSX.Options;
+}

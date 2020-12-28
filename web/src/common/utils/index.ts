@@ -2,13 +2,13 @@ import { hasIn, mergeDeep } from "immutable";
 
 export const getEnv = () => {
   switch (location.hostname) {
-    case "localhost":
-      return "development";
+    case "www.dzcode.io":
+    case "dzcode.io":
+      return "production";
     case "staging.dzcode.io":
       return "staging";
-    case "www.dzcode.io":
     default:
-      return "production";
+      return "development";
   }
 };
 

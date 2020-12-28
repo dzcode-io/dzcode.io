@@ -1,15 +1,19 @@
-import { Catalog } from "./catalog";
-import { Project } from "src/types/fullstack";
-import { connect } from "react-redux";
-import { fetchProjectsList } from "src/apps/main/redux/actions/projects-page";
-import { useEffect } from "react";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export const ProjectsPage = ({
-  fetchProjectsList,
-  projectsList,
-}: ProjectsPageProps) => {
+import { Catalog } from "./catalog";
+import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
+import { fetchProjectsList } from "src/apps/main/redux/actions/projects-page";
+
+export const ProjectsPage: FC = () => {
+  const { projectsList } = useSelector<StateInterface, ProjectsPageState>(
+    (state) => state.projectsPage,
+  );
+  const dispatch = useDispatch<Dispatch<ProjectsPageState>>();
+
   useEffect(() => {
-    fetchProjectsList();
+    dispatch(fetchProjectsList());
   }, []);
 
   return (
@@ -18,21 +22,4 @@ export const ProjectsPage = ({
     </div>
   );
 };
-
-export interface ProjectsPageInitialState {
-  projectsList: Project[] | null;
-}
-
-interface ProjectsPageProps {
-  fetchProjectsList: () => void;
-  projectsList: Project[] | null;
-}
-
-export default connect(
-  (state: { projectsPage: ProjectsPageProps }) => ({
-    ...state.projectsPage,
-  }),
-  (dispatch: any) => ({
-    fetchProjectsList: () => dispatch(fetchProjectsList()),
-  }),
-)(ProjectsPage);
+export default ProjectsPage;

@@ -1,12 +1,12 @@
-import { Theme, makeStyles } from "@material-ui/core/styles";
-
 import { Card } from "src/apps/main/components/card";
-import { EmptyCard } from "src/apps/main/components/empty-card";
+import { FC } from "react";
 import Grid from "@material-ui/core/Grid";
-import { Project } from "src/types/fullstack";
+import { Project } from "@dzcode.io/common/dist/types";
+import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     paddingBottom: theme.spacing(4),
@@ -18,32 +18,43 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const Catalog = (props: { projectsList: Project[] | null }) => {
+interface CatalogProps {
+  projectsList: Project[] | null;
+}
+
+export const Catalog: FC<CatalogProps> = ({ projectsList }) => {
   const classes = useStyles();
 
   return (
     <>
-      <Typography variant="h2" component="h1" className={classes.header}>
+      <Typography variant="h4" className={classes.header}>
         Open Source Projects
       </Typography>
       <Grid container className={classes.root} spacing={4}>
-        {props.projectsList
-          ? props.projectsList.map((project: Project) => (
+        {projectsList
+          ? projectsList.map((project: Project) => (
               <Grid key={`project-${project.slug}`} item xs={12} md={6} lg={4}>
                 <Card
-                  title={project.title}
-                  image={project.image}
-                  githubURI={project.githubURI}
-                  description={project.description}
+                  info={{
+                    image: project.image || "",
+                    title: project.title || "",
+                    description: project.description || "",
+                    link: `https://www.github.com/${project.githubURI}`,
+                    actionLabel: "Go To Code",
+                  }}
                 />
               </Grid>
             ))
           : [1, 2, 3].map((id) => (
               <Grid key={`project-${id}`} item>
-                <EmptyCard />
+                <Card />
               </Grid>
             ))}
       </Grid>
     </>
   );
+};
+
+Catalog.propTypes = {
+  projectsList: PropTypes.array.isRequired,
 };

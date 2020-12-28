@@ -16,14 +16,22 @@ since the version os dzcode.io website is still v0.x.x things are still unstable
 - [x] Update Packages to use the latest major versions
 - [x] clean dev deps
 - [x] Remove t9config
-- [ ] Make it work locally on other devices
+- [x] Use Redux Hooks
+- [x] update footer
+- [ ] split index.tsx from app.tsx
+- [x] use rm instead of px
+- [x] Fix styles
+- [x] remove WhatAndWhy section
+- [x] Use FC interfaces on all React components (prop-types)
+- [ ] /Contribute (list all open issues, discussion, ideas)
+- [x] remove /Contact-Us
+- [x] Make it work locally on other devices
 - [ ] proper loading component
 - [ ] splash screen
-- [ ] run only a specific app
 - [x] remove default react import
 - [ ] Add leblad app
-- [ ] Use Redux Hooks
-- [ ] Fix MUI Theme
+- [ ] ability to run only a specific app
+- [x] Fix MUI Theme
 - [ ] Add example test cases
 - [ ] Deploy each stack separately
 - [ ] Update CI/CD
@@ -33,8 +41,9 @@ since the version os dzcode.io website is still v0.x.x things are still unstable
 - [ ] Clean the issue board ( possibly remove ZenHub)
 - [ ] Try to use Github discussion
 - [ ] Try yo use Github Codespaces
-- [ ] Update In-Repo Documentation
+- [ ] Update In-Repo Documentation (add readme for each sub-folder)
 - [ ] Setup proper Github releases
+- [ ] Fix test coverage badges
 
 ## Meta
 

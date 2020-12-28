@@ -1,11 +1,10 @@
 import "./style.scss";
 import "react-toastify/dist/ReactToastify.css";
 
+import { FC, Suspense, lazy, useEffect } from "react";
 import { Route, Router, Switch, useLocation } from "react-router-dom";
-import { Suspense, lazy, useEffect } from "react";
 
 import Container from "@material-ui/core/Container";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { Footer } from "src/apps/main/components/footer";
 import { Loading } from "src/components/loading";
 import { Navbar } from "src/apps/main/components/navbar";
@@ -23,7 +22,6 @@ const Articles = lazy(() => import("src/apps/main/pages/articles"));
 const Projects = lazy(() => import("src/apps/main/pages/projects"));
 const Learn = lazy(() => import("src/apps/main/pages/learn"));
 const Faq = lazy(() => import("src/apps/main/pages/faq"));
-const Contact = lazy(() => import("src/apps/main/pages/contact"));
 const NotFound = lazy(() => import("src/apps/main/pages/not-found"));
 
 const env = getEnv();
@@ -47,7 +45,6 @@ const Main = () => {
             <Route path="/Learn" component={Learn} />
             <Route path="/Articles" component={Articles} />
             <Route path="/Projects" component={Projects} />
-            <Route path="/Contact-Us" component={Contact} />
             <Route path="/FAQ" component={Faq} />
             <Route component={NotFound} />
           </Switch>
@@ -57,15 +54,17 @@ const Main = () => {
   );
 };
 
-export const App = () => {
-  const location = useLocation();
-  useEffect(() => {
-    if (env !== "development") {
-      window.ga("set", "page", location.pathname);
-      window.ga("send", "pageview");
-      window.fbq("track", "PageView");
-    }
-  }, [location]);
+export const App: FC = () => {
+  if (env !== "development") {
+    const location = useLocation();
+    useEffect(() => {
+      if (window.ga) {
+        window.ga("set", "page", location.pathname);
+        window.ga("send", "pageview");
+        window.fbq("track", "PageView");
+      }
+    }, [location]);
+  }
 
   return (
     <Theme>
@@ -75,7 +74,6 @@ export const App = () => {
         <Navbar />
         <Main />
         <Footer />
-        <CssBaseline />
       </div>
     </Theme>
   );

@@ -1,9 +1,9 @@
-import { MainStoreStateInterface, SidebarTreeItem } from "src/apps/main/types";
-
-import { Article } from "src/types/fullstack";
+import { Article } from "@dzcode.io/common/dist/types";
+import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
+import { ArticlesState } from "src/apps/main/redux/reducers/articles";
 import Axios from "axios";
-import { Dispatch } from "react";
-import { actionType } from "../../constants";
+import { SidebarTreeItem } from "src/apps/main/types";
+import { ThunkResult } from "src/apps/main/redux";
 import { fullstackConfig } from "src/config";
 import { hasInCollection } from "src/common/utils";
 import { history } from "src/common/utils/history";
@@ -11,13 +11,19 @@ import { listToTree } from "l2t";
 
 const dataURL = fullstackConfig.data.url;
 
-export const fetchArticlesList = () => async (
-  dispatch: Dispatch<Record<string, unknown>>,
+/**
+ * Fetches the list of articles for the sidebar
+ */
+export const fetchArticlesList = (): ThunkResult<ArticlesPageState> => async (
+  dispatch,
 ) => {
   try {
-    const response = await Axios.get(dataURL + "/articles/list.c.json");
+    const response = await Axios.get<Article[]>(
+      dataURL + "/articles/list.c.json",
+    );
     const articlesList = response.data;
     const ids: string[] = [];
+
     // convert list into tree
     const tree = listToTree<Article, SidebarTreeItem>(
       articlesList,
@@ -35,7 +41,7 @@ export const fetchArticlesList = () => async (
     );
 
     dispatch({
-      type: actionType.UPDATE_ARTICLES_PAGE,
+      type: "UPDATE_ARTICLES_PAGE",
       payload: { sidebarTree: tree, expanded: ids },
     });
   } catch (error) {
@@ -43,16 +49,18 @@ export const fetchArticlesList = () => async (
   }
 };
 
-export const fetchCurrentArticle = () => async (
-  dispatch: Dispatch<Record<string, unknown>>,
-  getState: MainStoreStateInterface,
-) => {
+/**
+ * Fetches the content of the current article
+ */
+export const fetchCurrentArticle = (): ThunkResult<
+  ArticlesPageState | ArticlesState
+> => async (dispatch, getState) => {
   const articleSlug = location.pathname
     .substring(location.pathname.indexOf("/", 1) + 1)
     .replace(/\/$/, "");
 
   const cashedArticle = hasInCollection<Article>(
-    getState().articles,
+    getState().articles.list,
     "slug",
     articleSlug,
     [["content"]],
@@ -60,19 +68,19 @@ export const fetchCurrentArticle = () => async (
   if (cashedArticle) {
     // update our page state
     dispatch({
-      type: actionType.UPDATE_ARTICLES_PAGE,
+      type: "UPDATE_ARTICLES_PAGE",
       payload: { currentArticle: cashedArticle },
     });
   } else {
     // BUG: cashing not working in local (slug related issue)
 
     dispatch({
-      type: actionType.UPDATE_ARTICLES_PAGE,
+      type: "UPDATE_ARTICLES_PAGE",
       payload: { currentArticle: null },
     });
 
     try {
-      const response = await Axios.get(
+      const response = await Axios.get<Article>(
         dataURL + `/articles/${articleSlug}.json`,
       );
 
@@ -83,13 +91,13 @@ export const fetchCurrentArticle = () => async (
       const currentArticle = response.data;
       // update our page state
       dispatch({
-        type: actionType.UPDATE_ARTICLES_PAGE,
+        type: "UPDATE_ARTICLES_PAGE",
         payload: { currentArticle },
       });
       // update our cache state
       dispatch({
-        type: actionType.UPDATE_ARTICLES,
-        payload: [currentArticle],
+        type: "UPDATE_ARTICLES",
+        payload: { list: [currentArticle] },
       });
     } catch (error) {
       if (error.message == "article_not_found") {

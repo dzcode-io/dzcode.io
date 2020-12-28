@@ -1,15 +1,14 @@
-import * as React from "react";
-
-import { Theme, makeStyles } from "@material-ui/core/styles";
-
 import Container from "@material-ui/core/Container";
+import { FC } from "react";
+import { FooterComponentState } from "src/apps/main/redux/reducers/footer-component";
 import Grid from "@material-ui/core/Grid";
 import { LinkV2 } from "src/components/link-v2";
-import { StateInterface } from "src/apps/main/types";
+import { StateInterface } from "src/apps/main/redux";
 import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     background: theme.palette.background.paper,
@@ -17,23 +16,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: "30px",
     marginTop: "auto",
   },
-  copyright: {
-    fontSize: "14px",
-  },
-  link: {
-    textDecoration: "none",
-    color: theme.palette.text.primary,
-
-    "&:hover": {
-      color: theme.palette.primary.light,
-      textDecoration: "none",
-    },
-  },
   linkText: {
     paddingBottom: "8px",
+    color: theme.palette.text.secondary,
   },
   categoryTitle: {
-    color: theme.palette.text.secondary,
     paddingBottom: "12px",
   },
   contactDetails: {
@@ -43,11 +30,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const Footer: React.FC = () => {
+export const Footer: FC = () => {
   const classes = useStyles();
 
-  const data = useSelector(
-    (state: StateInterface) => state.layout.footerInitialState.data,
+  const { sections } = useSelector<StateInterface, FooterComponentState>(
+    (state: StateInterface) => state.footerComponent,
   );
 
   return (
@@ -56,13 +43,12 @@ export const Footer: React.FC = () => {
         <Grid
           container
           direction="row"
-          justify="space-between"
           alignItems="flex-start"
           alignContent="stretch"
         >
           <Grid container item xs={12} md={9} spacing={6}>
-            {data
-              ? data.map((category, i) => (
+            {sections
+              ? sections.map((category, i) => (
                   <Grid
                     direction="column"
                     container
@@ -76,16 +62,14 @@ export const Footer: React.FC = () => {
                     </Typography>
                     {category.links.map((link, i) => {
                       return (
-                        <Typography
-                          key={i}
-                          variant="subtitle2"
-                          color="initial"
-                          className={classes.linkText}
-                        >
-                          <LinkV2 href={link.href} className={classes.link}>
+                        <LinkV2 key={i} href={link.href}>
+                          <Typography
+                            variant="subtitle2"
+                            className={classes.linkText}
+                          >
                             {link.text}
-                          </LinkV2>
-                        </Typography>
+                          </Typography>
+                        </LinkV2>
                       );
                     })}
                   </Grid>
@@ -97,23 +81,18 @@ export const Footer: React.FC = () => {
               Contact Information
             </Typography>
             <a href="tel:+21367-626-1157">
-              <Typography className={classes.linkText} variant="h6">
+              <Typography className={classes.linkText}>
                 +213 06-76-26-11-57
               </Typography>
             </a>
             <a href="mailto:contact@dzcode.io">
-              <Typography className={classes.linkText} variant="h6">
+              <Typography className={classes.linkText}>
                 contact@dzcode.io
               </Typography>
             </a>
-            <Typography variant="h6" className={classes.copyright}>
+            <Typography className={classes.linkText}>
               Copyright © 2020{" "}
-              <LinkV2
-                className={classes.link}
-                href="https://twitter.com/dzcode_io"
-              >
-                @dzCode.io
-              </LinkV2>
+              <LinkV2 href="https://twitter.com/dzcode_io">@dzCode_io</LinkV2>
             </Typography>
           </Grid>
         </Grid>

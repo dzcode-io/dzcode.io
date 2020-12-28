@@ -1,31 +1,10 @@
 import Button from "@material-ui/core/Button";
-import FreeBreakfastIcon from "@material-ui/icons/FreeBreakfast";
-import GitHubIcon from "@material-ui/icons/GitHub";
+import { FC } from "react";
 import Hidden from "@material-ui/core/Hidden";
-import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
-import SchoolIcon from "@material-ui/icons/School";
+import { LinkV2 } from "src/components/link-v2";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import scrumBoard from "src/apps/main/assets/svg/scrum-board.svg";
-
-const socialMedia = [
-  {
-    name: "How To Open Source",
-    href: "/Learn/Getting_Started",
-    icon: <SchoolIcon />,
-  },
-  {
-    name: "Frequently Asked Questions",
-    href: "/FAQ",
-    icon: <QuestionAnswerIcon />,
-  },
-  { name: "Contact", href: "/Contact-Us", icon: <FreeBreakfastIcon /> },
-  {
-    name: "dzCode.io",
-    href: "https://github.com/dzcode-io",
-    icon: <GitHubIcon />,
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,12 +45,10 @@ const useStyles = makeStyles((theme) => ({
   },
   mainButton: {
     color: theme.palette.getContrastText(theme.palette.primary.main),
+    marginRight: theme.spacing(1),
   },
   mainTitle: {
     paddingBottom: theme.spacing(1),
-  },
-  description: {
-    color: theme.palette.text.secondary,
   },
   socialMedia: {
     marginTop: "auto",
@@ -84,51 +61,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Header = () => {
+export const Header: FC = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <div className={classes.topHeader}>
         <div className={classes.text}>
-          <Typography
-            variant="h1"
-            color="inherit"
-            className={classes.mainTitle}
-          >
+          <Typography variant="h4" className={classes.mainTitle}>
             Algerian <span className={classes.highlight}>Open Source</span>{" "}
             Community
           </Typography>{" "}
           <Hidden smDown>
-            <Typography
-              variant="h4"
-              color="inherit"
-              className={classes.description}
-            >
-              We make it easier to build better apps in Algeria for Algeria.
+            <Typography variant="h6" color="textSecondary">
+              Find and contribute to softwares that help in solving Algerian
+              problems.
             </Typography>
           </Hidden>
           <div className={classes.buttons}>
-            <Button
-              href="https://github.com/dzcode-io/dzcode.io"
-              color="primary"
-              variant="contained"
-              disableRipple
-              disableFocusRipple
-              size="large"
-              className={classes.mainButton}
-            >
-              Make a Contribution
-            </Button>
-            <Button
-              href="/Contact-Us"
-              disableRipple
-              disableFocusRipple
-              color="primary"
-              variant="text"
-              size="large"
-            >
-              How can i help ?
-            </Button>
+            <LinkV2 href="/Contribute" className={classes.mainButton}>
+              <Button
+                color="primary"
+                variant="contained"
+                disableRipple
+                disableFocusRipple
+                size="large"
+              >
+                Make a Contribution
+              </Button>
+            </LinkV2>
+            <LinkV2 href="/FAQ">
+              <Button
+                disableRipple
+                disableFocusRipple
+                color="primary"
+                variant="text"
+                size="large"
+              >
+                Have a question ?
+              </Button>
+            </LinkV2>
           </div>
         </div>
         <Hidden smDown>
@@ -136,25 +107,6 @@ export const Header = () => {
             <img src={scrumBoard} alt="scrum board" className={classes.image} />
           </div>
         </Hidden>
-      </div>
-
-      <div className={classes.socialMedia}>
-        {socialMedia.map((item, i) => {
-          return (
-            <Button
-              disableRipple
-              disableFocusRipple
-              variant="text"
-              color="default"
-              href={item.href}
-              size="large"
-              startIcon={item.icon}
-              key={i}
-            >
-              {item.name}
-            </Button>
-          );
-        })}
       </div>
     </div>
   );

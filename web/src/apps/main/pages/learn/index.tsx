@@ -1,18 +1,23 @@
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { FC, useEffect } from "react";
 import { Route, useRouteMatch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Content } from "./content";
-import { Document } from "src/types/fullstack";
 import Grid from "@material-ui/core/Grid";
-import { Sidebar } from "./sidebar";
-import { SidebarTreeItem } from "src/apps/main/types";
-import { connect } from "react-redux";
-import { fetchCurrentDocument } from "src/apps/main/redux/actions/documentation-page";
+import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
+import { Sidebar } from "src/apps/main/components/sidebar";
 import { fetchDocumentationList } from "src/apps/main/redux/actions/documentation-page";
-import { useEffect } from "react";
 
-export const LearnPage = (props: LearnPageProps) => {
+export const LearnPage: FC = () => {
+  const { currentDocument, expanded, sidebarTree } = useSelector<
+    StateInterface,
+    LearnPageState
+  >((state) => state.learnPage);
+  const dispatch = useDispatch<Dispatch<LearnPageState>>();
+
   useEffect(() => {
-    props.fetchDocumentationList();
+    dispatch(fetchDocumentationList());
   }, []);
 
   const { path } = useRouteMatch();
@@ -22,22 +27,16 @@ export const LearnPage = (props: LearnPageProps) => {
       {/* Sidebar */}
       <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
         <Sidebar
-          tree={props.sidebarTree}
-          expanded={props.expanded}
-          selected={props.currentDocument ? props.currentDocument.slug : ""}
+          tree={sidebarTree}
+          expanded={expanded}
+          selected={currentDocument ? currentDocument.slug : ""}
         />
       </Grid>
       {/* Content */}
-      <Grid item xs>
+      <Grid item xs md={7}>
         <Route
           path={`${path}/:documentSlug`}
-          render={() => (
-            <Content
-              key={location.pathname}
-              currentDocument={props.currentDocument}
-              fetchCurrentDocument={props.fetchCurrentDocument}
-            />
-          )}
+          render={() => <Content key={location.pathname} />}
         />
       </Grid>
       {/* Headers */}
@@ -48,26 +47,4 @@ export const LearnPage = (props: LearnPageProps) => {
   );
 };
 
-export interface LearnPageInitialState {
-  sidebarTree: SidebarTreeItem[] | null;
-  expanded: string[];
-  currentDocument: Document | null;
-}
-
-interface LearnPageProps {
-  fetchDocumentationList: () => void;
-  fetchCurrentDocument: () => void;
-  sidebarTree: SidebarTreeItem[] | null;
-  expanded: string[];
-  currentDocument: Document | null;
-}
-
-export default connect(
-  (state: { learnPage: LearnPageProps }) => ({
-    ...state.learnPage,
-  }),
-  (dispatch: any) => ({
-    fetchDocumentationList: () => dispatch(fetchDocumentationList()),
-    fetchCurrentDocument: () => dispatch(fetchCurrentDocument()),
-  }),
-)(LearnPage);
+export default LearnPage;

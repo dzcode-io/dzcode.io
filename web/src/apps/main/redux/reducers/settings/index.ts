@@ -1,17 +1,18 @@
-import { MainSettings } from "src/apps/main/types";
-import { actionType } from "src/apps/main/redux/constants";
+export interface SettingsState {
+  darkMode: boolean;
+}
 
 export const settings = (
-  state: MainSettings = {
+  state: SettingsState = {
     darkMode: localStorage.getItem("darkMode") === "on",
   },
   action: {
     type: string;
-    payload: MainSettings;
+    payload: SettingsState;
   },
 ) => {
   switch (action.type) {
-    case actionType.UPDATE_SETTINGS:
+    case "UPDATE_SETTINGS":
       localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
       return { ...state, ...action.payload };
     default:

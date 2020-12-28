@@ -1,6 +1,12 @@
-import { Theme, createStyles, makeStyles } from "@material-ui/core/styles";
+import "./style.scss";
 
-import { Article } from "src/types/fullstack";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { FC, useEffect } from "react";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from "react-redux";
+
+import { Article } from "@dzcode.io/common/dist/types";
+import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import EditIcon from "@material-ui/icons/Edit";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
@@ -11,7 +17,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { SpeedDial } from "src/apps/main/components/SpeedDial";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Typography from "@material-ui/core/Typography";
-import { useEffect } from "react";
+import { fetchCurrentArticle } from "src/apps/main/redux/actions/articles-page";
 
 const actions = [
   { icon: <EditIcon />, name: "Edit This Article" },
@@ -22,7 +28,7 @@ const actions = [
   { icon: <InstagramIcon />, name: "Share to Instagram" },
 ];
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     heroImage: {
       width: "100%",
@@ -40,20 +46,24 @@ const useStyles = makeStyles((theme: Theme) =>
         left: theme.spacing(2),
       },
     },
-    ContentSkeleton: {},
+    spacing: {
+      marginBottom: theme.spacing(6),
+    },
   }),
 );
 
-export const Content = (props: ContentInterface) => {
+export const Content: FC = () => {
+  const { currentArticle } = useSelector<StateInterface, ArticlesPageState>(
+    (state) => state.articlesPage,
+  );
+  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+
   useEffect(() => {
-    props.fetchCurrentArticle();
-    setTimeout(() => {
-      window.FB && window.FB.XFBML.parse();
-    }, 3000);
+    dispatch(fetchCurrentArticle());
+    setTimeout(() => window.FB && window.FB.XFBML.parse(), 3000);
   }, []);
 
   const classes = useStyles();
-  const { currentArticle } = props;
 
   const ContentSkeleton = (
     <>
@@ -67,7 +77,6 @@ export const Content = (props: ContentInterface) => {
       {[80, 70, 40, 80, 80, 10].map((width, index) => (
         <Skeleton
           key={`ss-${index}`}
-          className={classes.ContentSkeleton}
           animation={index % 2 ? "pulse" : "wave"}
           width={`${width}%`}
         />
@@ -76,9 +85,9 @@ export const Content = (props: ContentInterface) => {
   );
 
   return (
-    <div className="content">
+    <>
       {currentArticle ? (
-        <div>
+        <>
           {/* Image */}
           {currentArticle.image && (
             <img
@@ -88,7 +97,7 @@ export const Content = (props: ContentInterface) => {
             />
           )}
           {/* Title */}
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h4" gutterBottom>
             {currentArticle.title}
           </Typography>
           {/* Description */}
@@ -103,7 +112,9 @@ export const Content = (props: ContentInterface) => {
             className={classes.speedDial}
             ariaLabel="Actions SpeedDial"
             actions={actions}
+            open
           />
+          <div className={classes.spacing} />
           {/* Comments */}
           <div
             className="fb-comments"
@@ -111,15 +122,11 @@ export const Content = (props: ContentInterface) => {
             data-width="100%"
             data-numposts="5"
           />
-        </div>
+          <div className={classes.spacing} />
+        </>
       ) : (
         ContentSkeleton
       )}
-    </div>
+    </>
   );
 };
-
-export interface ContentInterface {
-  fetchCurrentArticle: () => void;
-  currentArticle: Article | null;
-}

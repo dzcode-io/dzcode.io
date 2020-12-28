@@ -1,17 +1,21 @@
+import { Article, Project } from "@dzcode.io/common/dist/types";
+
 import Axios from "axios";
-import { Dispatch } from "react";
-import { actionType } from "../../constants";
+import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
+import { ThunkResult } from "src/apps/main/redux";
 import { fullstackConfig } from "src/config";
 
 const dataURL = fullstackConfig.data.url;
 
-export const fetchTopProjects = () => async (
-  dispatch: Dispatch<Record<string, unknown>>,
+export const fetchTopProjects = (): ThunkResult<LandingPageState> => async (
+  dispatch,
 ) => {
   try {
-    const response = await Axios.get(dataURL + "/projects/top-projects.c.json");
+    const response = await Axios.get<Project[]>(
+      dataURL + "/projects/top-projects.c.json",
+    );
     dispatch({
-      type: actionType.UPDATE_LANDING_PAGE,
+      type: "UPDATE_LANDING_PAGE",
       payload: { topProjects: response.data },
     });
   } catch (error) {
@@ -19,13 +23,15 @@ export const fetchTopProjects = () => async (
   }
 };
 
-export const fetchTopArticles = () => async (
-  dispatch: Dispatch<Record<string, unknown>>,
+export const fetchTopArticles = (): ThunkResult<LandingPageState> => async (
+  dispatch,
 ) => {
   try {
-    const response = await Axios.get(dataURL + "/articles/top-articles.c.json");
+    const response = await Axios.get<Article[]>(
+      dataURL + "/articles/top-articles.c.json",
+    );
     dispatch({
-      type: actionType.UPDATE_LANDING_PAGE,
+      type: "UPDATE_LANDING_PAGE",
       payload: { topArticles: response.data },
     });
   } catch (error) {

@@ -1,49 +1,73 @@
-import { FaqItem } from "./faq-Item";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { FC } from "react";
+import { FaqPageState } from "src/apps/main/redux/reducers/faq-page";
+import { Markdown } from "../../components/markdown";
+import { StateInterface } from "src/apps/main/redux";
 import Typography from "@material-ui/core/Typography";
-import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
 
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
+const useStyles = makeStyles((theme) => ({
   title: {
+    padding: theme.spacing(2),
+    paddingBottom: theme.spacing(4),
     textAlign: "center",
-    textTransform: "capitalize",
-    marginBottom: "50px",
   },
-  items: {
-    width: "100%",
-    wordWrap: "break-word",
+  header: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
   },
-});
+  spacing: {
+    marginBottom: theme.spacing(4),
+  },
+}));
 
-export const FaqPage = ({ faqData }: any) => {
+export const FaqPage: FC = () => {
   const classes = useStyles();
+  const { faqData } = useSelector<StateInterface, FaqPageState>(
+    (state) => state.faqPage,
+  );
+
   return (
     <>
-      <Typography variant="h2" component="h1" className={classes.title}>
-        Frequently asked questions
+      <Typography variant="h4" className={classes.title}>
+        Frequently Asked Questions
       </Typography>
 
-      <div className={classes.items}>
-        {faqData.map(({ question, answer }: any, index: number) => (
-          <FaqItem
-            key={index}
-            Open={index === 0}
-            question={question}
-            answer={answer}
-          />
-        ))}
-      </div>
+      {faqData.map(({ title, questions }, index) => (
+        <div key={`category-${index}`}>
+          <Typography variant="h5" className={classes.header}>
+            {title}
+          </Typography>
+          <div>
+            {questions.map(({ question, answer }, index) => (
+              <Accordion
+                key={`faq-${index}`}
+                variant="outlined"
+                style={{ marginBottom: -1 }}
+              >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography>{question}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Markdown>{answer}</Markdown>
+                </AccordionDetails>
+              </Accordion>
+            ))}
+          </div>
+        </div>
+      ))}
+      <div className={classes.spacing} />
+      <Typography className={classes.title}>
+        Still need help? send us an email at{" "}
+        <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>
+      </Typography>
     </>
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  faqData: state.faqPage.faqData,
-});
-
-export default connect(mapStateToProps, null)(FaqPage);
+export default FaqPage;

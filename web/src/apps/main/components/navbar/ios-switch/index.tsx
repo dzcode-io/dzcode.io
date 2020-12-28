@@ -1,5 +1,6 @@
 import { SwitchClassKey, SwitchProps } from "@material-ui/core/Switch";
 import { Theme, createStyles, withStyles } from "@material-ui/core/styles";
+
 import Switch from "@material-ui/core/Switch";
 
 interface Styles extends Partial<Record<SwitchClassKey, string>> {
@@ -10,7 +11,7 @@ interface Props extends SwitchProps {
   classes: Styles;
 }
 
-const IOSSwitch = withStyles((theme: Theme) =>
+const IOSSwitch = withStyles((theme) =>
   createStyles({
     root: {
       width: 36,
