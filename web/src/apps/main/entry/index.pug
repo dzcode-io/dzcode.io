@@ -55,9 +55,39 @@ head(lang=lang)
       margin: 0;
       padding: 0;
     }
+    #splash-screen {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background: #282c34;
+    }
+    #splash-screen::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    
+      width: 80%;
+      height: 80%;
+    
+      background-image: url("#{require('!!base64-inline-loader!../../../assets/svg/logo-wide.svg')}");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      max-width: 600px;
+    }
+    body > #splash-screen {
+      z-index: 1000;
+    }
+    * {
+      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    }
   
 body
+  #splash-screen
   #app-container
+    #splash-screen
 
 script(
   async,

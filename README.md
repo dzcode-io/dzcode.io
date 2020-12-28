@@ -27,7 +27,7 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] remove /Contact-Us
 - [x] Make it work locally on other devices
 - [x] proper loading component
-- [ ] splash screen
+- [x] splash screen
 - [x] remove default react import
 - [ ] Add leblad app
 - [ ] ability to run only a specific app

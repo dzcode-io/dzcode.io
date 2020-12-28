@@ -1,5 +1,3 @@
-@import "./variables";
-
 blockquote {
   border-left: 10px solid #ccc;
   margin: 1.5em 10px;
@@ -17,6 +15,6 @@ blockquote:before {
 }
 
 a {
-  color: $link;
+  color: #1890ff;
   text-decoration: none;
 }
