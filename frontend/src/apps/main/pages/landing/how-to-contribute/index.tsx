@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 const steps = [
-  "1. Chose a project that you like.",
+  "1. Choose a project that you like.",
   "2. Clone the repository.",
   "3. Start coding!.",
 ];
@@ -58,7 +58,7 @@ export const HowToContribute = () => {
     <section className={classes.root}>
       <Paper className={classes.paper} elevation={3}>
         <Typography variant="h3" className={classes.header}>
-          How To Contribute to dzCode.io ?
+          How to Contribute to dzCode.io?
         </Typography>
 
         <div className={classes.steps}>
