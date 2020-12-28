@@ -1,1 +1,5 @@
 @import "src/common/style/index";
+// hide the splash screen when css load
+body > #splash-screen {
+  display: none;
+}
