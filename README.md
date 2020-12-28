@@ -6,7 +6,7 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 
 🚧 This branch contains breaking changes 🚧
 
-since the version os dzcode.io website is still v0.x.x things are still unstable, the goal of this new version v1.x.x is to stabilize the code, and make it easy to chip new features
+since the version of dzcode.io website is still v0.x.x things are still unstable, the goal of this new version v1.x.x is to stabilize the code, and make it easy to chip new features
 
 ### Tasks (Open for changes)
 
@@ -26,7 +26,7 @@ since the version os dzcode.io website is still v0.x.x things are still unstable
 - [ ] /Contribute (list all open issues, discussion, ideas)
 - [x] remove /Contact-Us
 - [x] Make it work locally on other devices
-- [ ] proper loading component
+- [x] proper loading component
 - [ ] splash screen
 - [x] remove default react import
 - [ ] Add leblad app
