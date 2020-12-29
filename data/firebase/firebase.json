@@ -1,0 +1,36 @@
+{
+  "hosting": [
+    {
+      "target": "data.dzcode.io",
+      "public": "public",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "headers": [
+        {
+          "source": "**/*",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "https://www.dzcode.io"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "data.staging.dzcode.io",
+      "public": "public",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "headers": [
+        {
+          "source": "**/*",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "https://staging.dzcode.io"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

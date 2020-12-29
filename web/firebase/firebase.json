@@ -3,7 +3,6 @@
     {
       "target": "dzcode.io",
       "public": "public",
-      "site": "dzcode-io",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
@@ -15,46 +14,11 @@
     {
       "target": "staging.dzcode.io",
       "public": "public",
-      "site": "staging-dzcode-io",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
           "source": "**",
           "destination": "/index.html"
-        }
-      ]
-    },
-    {
-      "target": "data.dzcode.io",
-      "public": "data",
-      "site": "data-dzcode-io",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "headers": [
-        {
-          "source": "**/*",
-          "headers": [
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "https://www.dzcode.io"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "target": "data.staging.dzcode.io",
-      "public": "data",
-      "site": "data-staging-dzcode-io",
-      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-      "headers": [
-        {
-          "source": "**/*",
-          "headers": [
-            {
-              "key": "Access-Control-Allow-Origin",
-              "value": "https://staging.dzcode.io"
-            }
-          ]
         }
       ]
     }

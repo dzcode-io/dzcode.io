@@ -1,5 +1,3 @@
-# Why you want to sync your repository to the original (upstream) repository?
-
 It's a common situation in open-source where you figure out a fix for a bug and you want to push the changes you made to the original repo, but you find out that you already forked the repository, and your forked repository is serval commits behind 😕, in this case, you most likely are going to have conflicts, and that is annoying to deal with.
 
 In such situation, you have to first sync your repository before you make a Pull Request to the original repository, likely the process is very simple if you follow it step by step.

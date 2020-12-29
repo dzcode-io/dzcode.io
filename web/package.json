@@ -15,8 +15,10 @@
     "test:watch": "jest src --watchAll",
     "test:cov": "jest src --coverage",
     "test:cov:watch": "jest src --coverage --watchAll",
-    "build": "yarn clear cross-env && NODE_ENV=production webpack --config ./webpack.config.js --display-error-details",
-    "generate:sitemap": "node src/build/sitemap.js"
+    "build": "yarn clear && cross-env NODE_ENV=production webpack --config ./webpack.config.js",
+    "generate:sitemap": "node src/build/sitemap.js",
+    "deploy": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "deploy:stg": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:staging.dzcode.io --token \"$FIREBASE_TOKEN\""
   },
   "repository": {
     "type": "git",
@@ -87,6 +89,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-import": "^1.13.3",
     "base64-inline-loader": "^1.1.1",
+    "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "eslint": "^7.16.0",
@@ -94,6 +97,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-unicorn": "^24.0.0",
     "file-loader": "^6.2.0",
+    "firebase-tools": "^9.1.0",
     "fontsource-roboto": "^4.0.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^4.5.0",

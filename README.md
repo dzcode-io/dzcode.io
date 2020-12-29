@@ -32,6 +32,9 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [ ] Add leblad app
 - [ ] ability to run only a specific app
 - [x] Fix MUI Theme
+- [ ] move data/[model] to data/models/[model]
+- [ ] fix the common and main components
+- [ ] Update sitemap url on google search console
 - [ ] Add example test cases
 - [ ] Deploy each stack separately
 - [ ] Update CI/CD

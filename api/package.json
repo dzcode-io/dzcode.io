@@ -10,8 +10,10 @@
     "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
     "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
     "test": "jest src",
+    "test:watch": "jest src --watchAll",
+    "test:cov": "jest src --coverage",
+    "test:cov:watch": "jest src --coverage --watchAll",
     "build": "tsc",
-    "generate": "node dist/build.js",
     "build:watch": "tsc --watch",
     "dev": "nodemon dist/index.js",
     "start": "node dist/index.js"
