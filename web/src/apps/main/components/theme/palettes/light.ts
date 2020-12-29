@@ -38,7 +38,6 @@ export const lightPalette: PaletteOptions = {
   text: {
     primary: colors.blueGrey[900],
     secondary: colors.blueGrey[600],
-    link: "#80B918",
   },
   background: {
     default: colors.common.white,
