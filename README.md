@@ -22,6 +22,8 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] use rm instead of px
 - [x] Fix styles
 - [x] remove WhatAndWhy section
+- [x] Landing pages for /[Model]
+- [x] fix Logo responsiveness on navbar
 - [x] Use FC interfaces on all React components (prop-types)
 - [x] remove /Contact-Us
 - [x] Make it work locally on other devices
@@ -33,6 +35,7 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] fix the common and main components
 - [x] Deploy each stack separately
 - [x] Update CI/CD
+- [ ] cherry-pick recent commits to master
 - [ ] /Contribute (list all open issues, discussion, ideas)
 - [ ] Add leblad app
 - [ ] ability to run only a specific app

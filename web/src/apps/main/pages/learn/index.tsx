@@ -1,10 +1,11 @@
 import { Dispatch, StateInterface } from "src/apps/main/redux";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Route, useRouteMatch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Content } from "./content";
 import Grid from "@material-ui/core/Grid";
+import { Landing } from "./landing";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import { Sidebar } from "src/apps/main/components/sidebar";
 import { fetchDocumentationList } from "src/apps/main/redux/actions/documentation-page";
@@ -15,6 +16,7 @@ export const LearnPage: FC = () => {
     LearnPageState
   >((state) => state.learnPage);
   const dispatch = useDispatch<Dispatch<LearnPageState>>();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchDocumentationList());
@@ -30,10 +32,17 @@ export const LearnPage: FC = () => {
           tree={sidebarTree}
           expanded={expanded}
           selected={currentDocument ? currentDocument.slug : ""}
+          isOpen={open}
+          onChange={(isOpen) => setOpen(isOpen)}
         />
       </Grid>
       {/* Content */}
       <Grid item xs md={7}>
+        <Route
+          exact
+          path={`${path}`}
+          render={() => <Landing onShowSidebar={() => setOpen(true)} />}
+        />
         <Route
           path={`${path}/:documentSlug`}
           render={() => <Content key={location.pathname} />}

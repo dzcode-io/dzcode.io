@@ -1,11 +1,12 @@
 import { Dispatch, StateInterface } from "src/apps/main/redux";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Route, useRouteMatch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { Content } from "./content";
 import Grid from "@material-ui/core/Grid";
+import { Landing } from "./landing";
 import { Sidebar } from "src/apps/main/components/sidebar";
 import { fetchArticlesList } from "src/apps/main/redux/actions/articles-page";
 
@@ -15,6 +16,7 @@ export const ArticlesPage: FC = () => {
     ArticlesPageState
   >((state) => state.articlesPage);
   const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchArticlesList());
@@ -30,10 +32,17 @@ export const ArticlesPage: FC = () => {
           tree={sidebarTree}
           expanded={expanded}
           selected={currentArticle ? currentArticle.slug : ""}
+          isOpen={open}
+          onChange={(isOpen) => setOpen(isOpen)}
         />
       </Grid>
       {/* Content */}
       <Grid item xs md={7}>
+        <Route
+          exact
+          path={`${path}`}
+          render={() => <Landing onShowSidebar={() => setOpen(true)} />}
+        />
         <Route
           path={`${path}/:articleSlug`}
           render={() => <Content key={location.pathname} />}

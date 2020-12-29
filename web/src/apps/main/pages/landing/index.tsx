@@ -42,7 +42,6 @@ export const LandingPage: FC = () => {
   return (
     <>
       <Header />
-      {/* <WhatAndWhy /> */}
       <TopProjects />
       <div style={{ textAlign: "center" }}>
         <LinkV2 className={classes.button} href="/Projects">

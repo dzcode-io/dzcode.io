@@ -37,18 +37,21 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-export const Sidebar: FC<{
+interface SidebarProps {
   tree: SidebarTreeItem[] | null;
   expanded: string[];
   selected: string;
-}> = (props) => {
+  isOpen: boolean;
+  onChange: (isOpen: boolean) => void;
+}
+
+export const Sidebar: FC<SidebarProps> = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
-  const [open, setOpen] = useState(false);
 
-  const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
+  const handleClose = () => props.onChange(false);
+  const handleOpen = () => props.onChange(true);
 
   const SidebarSkeleton = (
     <>
@@ -111,7 +114,7 @@ export const Sidebar: FC<{
           open={false}
           onClick={handleOpen}
         />
-        <Drawer anchor="bottom" onClose={handleClose} open={open}>
+        <Drawer anchor="bottom" onClose={handleClose} open={props.isOpen}>
           <TreeView
             expanded={props.expanded}
             selected={props.selected}

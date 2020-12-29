@@ -46,7 +46,8 @@ const useStyles = makeStyles((theme) =>
       },
     },
     spacing: {
-      marginBottom: theme.spacing(6),
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
     },
   }),
 );
@@ -69,7 +70,7 @@ export const Content: FC = () => {
       <Skeleton variant="rect" width="100%">
         <div style={{ paddingTop: "57%" }} />
       </Skeleton>
-      <Typography variant="h3" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         <Skeleton />
       </Typography>
 
@@ -103,7 +104,7 @@ export const Content: FC = () => {
           <Typography variant="caption" display="block" gutterBottom>
             {currentDocument.description}
           </Typography>
-          <hr />
+          <hr className={classes.spacing} />
           {/* Content */}
           <Markdown>{currentDocument.content + ""}</Markdown>
           {/* Actions */}

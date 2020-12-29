@@ -88,11 +88,6 @@ const useStyles = makeStyles((theme) =>
     logoImg: {
       maxWidth: "100px",
     },
-    subscribe: {
-      "&:hover": {
-        color: theme.palette.primary.light,
-      },
-    },
   }),
 );
 
@@ -115,7 +110,7 @@ export const Navbar: FC = () => {
   return (
     <animated.header className={classes.root} style={springStyle}>
       <div className={`${classes.toolbarContainer} ${classes.TopBar} `}>
-        <Hidden mdUp>
+        <Hidden smUp>
           <Typography
             component="h2"
             variant="h5"
