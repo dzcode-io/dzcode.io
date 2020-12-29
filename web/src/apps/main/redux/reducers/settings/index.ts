@@ -4,7 +4,7 @@ export interface SettingsState {
 
 export const settings = (
   state: SettingsState = {
-    darkMode: localStorage.getItem("darkMode") === "on",
+    darkMode: localStorage.getItem("darkMode") !== "off",
   },
   action: {
     type: string;
