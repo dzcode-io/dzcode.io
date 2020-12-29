@@ -1,0 +1,67 @@
+name: "Coverage Report"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Coverage-Upload:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: "Install workspace dependencies"
+        run: |
+          yarn
+      - name: "Build common directory"
+        run: |
+          cd common
+          yarn build
+      - name: "Running tests with coverage report"
+        run: |
+          yarn test:cov
+      - name: Upload common directory coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: common
+          name: codecov-common
+          directory: ./common
+          fail_ci_if_error: true
+        env:
+          CI: true
+      - name: Upload api directory coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: api
+          name: codecov-api
+          directory: ./api
+          fail_ci_if_error: true
+        env:
+          CI: true
+      - name: Upload data directory coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: data
+          name: codecov-data
+          directory: ./data
+          fail_ci_if_error: true
+        env:
+          CI: true
+      - name: Upload web directory coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: web
+          name: codecov-web
+          directory: ./web
+          fail_ci_if_error: true
+        env:
+          CI: true
