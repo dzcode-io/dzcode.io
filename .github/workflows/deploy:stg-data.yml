@@ -1,15 +1,15 @@
-name: Deploy Data
+name: Deploy Staging Data
 
 on:
   push:
     tags:
-      - "v*"
+      - "stg-v*"
     paths:
-      - ".github/workflows/deploy-data.yml"
+      - ".github/workflows/deploy:stg-data.yml"
       - "data/**"
 
 jobs:
-  Deploy-Data:
+  Deploy-Stg-Data:
     runs-on: ubuntu-latest
 
     strategy:
@@ -32,7 +32,7 @@ jobs:
       - name: "Deploy data"
         run: |
           cd data
-          yarn deploy
+          yarn deploy:stg
 
         env:
           CI: true

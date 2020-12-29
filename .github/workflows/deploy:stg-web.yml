@@ -1,15 +1,16 @@
-name: Deploy Data
+name: Deploy Staging Web
 
 on:
   push:
     tags:
-      - "v*"
+      - "stg-v*"
     paths:
-      - ".github/workflows/deploy-data.yml"
-      - "data/**"
+      - ".github/workflows/deploy:stg-web.yml"
+      - "web/**"
+      - "data/*/ssr.json"
 
 jobs:
-  Deploy-Data:
+  Deploy-Stg-Web:
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,10 +30,10 @@ jobs:
         run: |
           cd common
           yarn build
-      - name: "Deploy data"
+      - name: "Deploy web"
         run: |
-          cd data
-          yarn deploy
+          cd web
+          yarn deploy:stg
 
         env:
           CI: true
