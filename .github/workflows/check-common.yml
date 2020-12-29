@@ -1,21 +1,18 @@
-name: "Code Conformity check for data folder"
+name: "Common Checks"
 
 on:
   pull_request:
-    branches:
-      - master
-      - development
     paths:
-      - ".github/workflows/cgl-data.yml"
-      - "data/**"
+      - ".github/workflows/check-common.yml"
+      - "common/**"
 
 jobs:
-  Build-Check:
+  Common-Check:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -23,12 +20,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: "Checking Code Conformity with Style Guidelines"
+      - name: "Install workspace dependencies"
         run: |
-          cd data
           yarn
-          yarn eslint:check --quiet
-          yarn prettier:check
+      - name: "checking script in common directory"
+        run: |
+          cd common
+          yarn lint:check
+          yarn test:cov
+          yarn build
 
         env:
           CI: true
