@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-import IosSwitch from "./ios-switch";
+import { IOSSwitch } from "./ios-switch";
 import { LinkV2 } from "src/components/link-v2";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -132,7 +132,7 @@ export const Navbar: FC = () => {
         <FormControlLabel
           className={classes.switch}
           control={
-            <IosSwitch
+            <IOSSwitch
               checked={settings.darkMode ? true : false}
               onChange={() => {
                 dispatch({

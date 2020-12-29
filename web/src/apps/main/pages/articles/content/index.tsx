@@ -5,7 +5,6 @@ import { FC, useEffect } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Article } from "@dzcode.io/common/dist/types";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import EditIcon from "@material-ui/icons/Edit";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -14,7 +13,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { Markdown } from "src/apps/main/components/markdown";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { SpeedDial } from "src/apps/main/components/SpeedDial";
+import { SpeedDial } from "src/apps/main/components/speed-dial";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Typography from "@material-ui/core/Typography";
 import { fetchCurrentArticle } from "src/apps/main/redux/actions/articles-page";

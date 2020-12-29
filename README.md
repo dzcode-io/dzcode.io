@@ -23,30 +23,30 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] Fix styles
 - [x] remove WhatAndWhy section
 - [x] Use FC interfaces on all React components (prop-types)
-- [ ] /Contribute (list all open issues, discussion, ideas)
 - [x] remove /Contact-Us
 - [x] Make it work locally on other devices
 - [x] proper loading component
 - [x] splash screen
 - [x] remove default react import
-- [ ] Add leblad app
-- [ ] ability to run only a specific app
 - [x] Fix MUI Theme
 - [x] move data/[model] to data/models/[model]
-- [ ] fix the common and main components
-- [ ] Update sitemap url on google search console
-- [ ] Add example test cases
+- [x] fix the common and main components
 - [x] Deploy each stack separately
 - [x] Update CI/CD
-- [ ] Check Licence issues
+- [ ] /Contribute (list all open issues, discussion, ideas)
+- [ ] Add leblad app
+- [ ] ability to run only a specific app
+- [ ] Add example test cases
+- [ ] Update In-Repo Documentation (add readme for each sub-folder)
+- [ ] Fix test coverage badges
 - [ ] Change default branch to main
+- [ ] Setup proper Github releases
+- [ ] Update sitemap url on google search console
+- [ ] Check Licence issues
 - [ ] Clean stale branches, and old PRs
 - [ ] Clean the issue board ( possibly remove ZenHub)
 - [ ] Try to use Github discussion
 - [ ] Try yo use Github Codespaces
-- [ ] Update In-Repo Documentation (add readme for each sub-folder)
-- [ ] Setup proper Github releases
-- [ ] Fix test coverage badges
 
 ## Meta
 

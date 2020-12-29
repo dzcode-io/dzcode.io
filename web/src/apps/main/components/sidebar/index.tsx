@@ -7,7 +7,7 @@ import { LinkV2 } from "src/components/link-v2";
 import MenuIcon from "@material-ui/icons/Menu";
 import { SidebarTreeItem } from "src/apps/main/types";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { SpeedDial } from "src/apps/main/components/SpeedDial";
+import { SpeedDial } from "src/apps/main/components/speed-dial";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import TreeItem from "@material-ui/lab/TreeItem";
 import TreeView from "@material-ui/lab/TreeView";
