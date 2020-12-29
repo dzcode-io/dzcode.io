@@ -1,15 +1,16 @@
-name: Deploy Data
+name: Deploy Web
 
 on:
   push:
     tags:
       - "v*"
     paths:
-      - ".github/workflows/deploy-data.yml"
-      - "data/**"
+      - ".github/workflows/deploy-web.yml"
+      - "web/**"
+      - "data/*/ssr.json"
 
 jobs:
-  Deploy-Data:
+  Deploy-Web:
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,9 +30,9 @@ jobs:
         run: |
           cd common
           yarn build
-      - name: "Deploy data"
+      - name: "Deploy web"
         run: |
-          cd data
+          cd web
           yarn deploy
 
         env:
