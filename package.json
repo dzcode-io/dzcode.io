@@ -10,7 +10,9 @@
   "scripts": {
     "dev": "concurrently \"cd api && yarn build:watch\" \"cd api && yarn dev\" \"cd common && yarn build:watch\" \"cd data && yarn build:watch\" \"cd data && yarn dev\" \"cd web && yarn dev\"",
     "lint:check": "concurrently \"cd api && yarn lint:check\" \"cd common && yarn lint:check\" \"cd data && yarn lint:check\" \"cd web && yarn lint:check\"",
-    "lint:fix": "concurrently \"cd api && yarn lint:fix\" \"cd common && yarn lint:fix\" \"cd data && yarn lint:fix\" \"cd web && yarn lint:fix\""
+    "lint:fix": "concurrently \"cd api && yarn lint:fix\" \"cd common && yarn lint:fix\" \"cd data && yarn lint:fix\" \"cd web && yarn lint:fix\"",
+    "test": "concurrently \"cd api && yarn test\" \"cd common && yarn test\" \"cd data && yarn test\" \"cd web && yarn test\"",
+    "test:cov": "concurrently \"cd api && yarn test:cov\" \"cd common && yarn test:cov\" \"cd data && yarn test:cov\" \"cd web && yarn test:cov\""
   },
   "husky": {
     "hooks": {

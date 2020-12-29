@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "dzCode.io data code",
   "scripts": {
+    "clear": "rimraf ./dist",
     "lint:check": "yarn prettier:check && yarn eslint:check",
     "lint:fix": "yarn prettier:fix && yarn eslint:fix",
     "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
@@ -10,11 +11,16 @@
     "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
     "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
     "test": "jest src",
+    "test:watch": "jest src --watchAll",
+    "test:cov": "jest src --coverage",
+    "test:cov:watch": "jest src --coverage --watchAll",
     "build": "tsc",
-    "generate": "node dist/build.js",
+    "generate:data": "node dist/build.js",
     "build:watch": "tsc --watch",
     "dev": "nodemon dist/index.js",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "deploy": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "deploy:stg": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.staging.dzcode.io --token \"$FIREBASE_TOKEN\""
   },
   "repository": {
     "type": "git",
@@ -47,9 +53,11 @@
     "@types/node": "^14.14.16",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
+    "cpx": "^1.5.0",
     "eslint": "^7.16.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-unicorn": "^24.0.0",
+    "firebase-tools": "^9.1.0",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.3",
     "nodemon": "^2.0.6",

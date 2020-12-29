@@ -6,15 +6,16 @@ import {
 import fse from "fs-extra";
 import glob from "glob";
 
-const outputFolder = "../frontend/firebase/data";
+const outputFolder = "./dist/_data";
 
 // Empty output folder
 fse.ensureDirSync(outputFolder);
 fse.emptyDirSync(outputFolder);
 
 // Generate individual Entries:
-glob("**/info.json", {}, (err, files) => {
-  files.forEach((entryInfoPath) => {
+glob("models/**/info.json", {}, (err, files) => {
+  files.forEach((filePath) => {
+    const entryInfoPath = filePath.substr(7);
     const path = entryInfoPath.slice(0, -"/info.json".length);
     const entry = getDataEntry(path);
     fse.ensureFileSync(`${outputFolder}/${path}.json`);
@@ -23,11 +24,14 @@ glob("**/info.json", {}, (err, files) => {
 });
 
 // Generate Collections:
-glob("*/*.json", {}, (err, files) => {
-  files.forEach((collectionPath) => {
+glob("models/*/*.json", {}, (err, files) => {
+  files.forEach((filePath) => {
+    const collectionPath = filePath.substr(7);
     const backslashIndex = collectionPath.indexOf("/");
     const collectionType = collectionPath.slice(0, backslashIndex);
     const collectionName = collectionPath.slice(backslashIndex + 1);
+    console.log(collectionType, collectionName);
+
     const collection = getDataCollection(collectionType, collectionName);
     const collectionFilePath = `${outputFolder}/${collectionPath.slice(
       0,

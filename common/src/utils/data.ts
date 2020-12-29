@@ -7,7 +7,7 @@ export interface Collection {
 }
 
 export const getDataEntry = (_path: string, include?: string[]) => {
-  const path = join(__dirname, "../../../data", _path);
+  const path = join(__dirname, "../../../data/models", _path);
   // Entry doesn't exist
   if (!fse.existsSync(path))
     return {
@@ -60,7 +60,12 @@ export const getDataCollection = (
   // add .c
   collectionName = collectionName.replace(".c.json", ".json");
   // Collection doesn't exist
-  const path = join(__dirname, "../../../data", collectionType, collectionName);
+  const path = join(
+    __dirname,
+    "../../../data/models",
+    collectionType,
+    collectionName,
+  );
   if (!fse.existsSync(path)) return 404;
 
   // Read [collection].json
