@@ -38,7 +38,6 @@ export const darkPalette: PaletteOptions = {
   text: {
     primary: colors.grey[100],
     secondary: colors.grey[600],
-    link: "#80B918",
   },
   background: {
     default: "#282c34",
