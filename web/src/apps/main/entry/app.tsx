@@ -1,61 +1,48 @@
 import "./style.scss";
-import "react-toastify/dist/ReactToastify.css";
 
-import { FC, Suspense, lazy, useEffect } from "react";
-import { Route, Router, Switch, useLocation } from "react-router-dom";
+import { ComponentType, FC, Suspense, lazy, useEffect } from "react";
+import { Route, RouteProps, Switch, useLocation } from "react-router-dom";
 
 import Container from "@material-ui/core/Container";
 import { Footer } from "src/apps/main/components/footer";
 import { Loading } from "src/components/loading";
 import { Navbar } from "src/apps/main/components/navbar";
-import { Provider } from "react-redux";
 import { Theme } from "src/apps/main/components/theme";
-import { ToastContainer } from "react-toastify";
 import { getEnv } from "src/common/utils";
-import { history } from "src/common/utils/history";
-import { mainStore } from "src/apps/main/redux";
-import { makeStyles } from "@material-ui/core/styles";
-import { render } from "react-dom";
 
-const Landing = lazy(() => import("src/apps/main/pages/landing"));
-const Articles = lazy(() => import("src/apps/main/pages/articles"));
-const Projects = lazy(() => import("src/apps/main/pages/projects"));
-const Learn = lazy(() => import("src/apps/main/pages/learn"));
-const Faq = lazy(() => import("src/apps/main/pages/faq"));
-const NotFound = lazy(() => import("src/apps/main/pages/not-found"));
+interface RouteInterface extends RouteProps {
+  import: Promise<{ default: ComponentType }>;
+}
 
-const env = getEnv();
-
-const useStyles = makeStyles({
-  main: {
-    paddingTop: "130px",
+const routes: RouteInterface[] = [
+  {
+    import: import("src/apps/main/pages/landing"),
+    path: "/",
+    exact: true,
   },
-});
-
-const Main = () => {
-  const classes = useStyles();
-
-  return (
-    <main className={classes.main}>
-      <Container maxWidth="lg">
-        <ToastContainer />
-        <Suspense fallback={<Loading />}>
-          <Switch>
-            <Route path="/" exact component={Landing} />
-            <Route path="/Learn" component={Learn} />
-            <Route path="/Articles" component={Articles} />
-            <Route path="/Projects" component={Projects} />
-            <Route path="/FAQ" component={Faq} />
-            <Route component={NotFound} />
-          </Switch>
-        </Suspense>
-      </Container>
-    </main>
-  );
-};
+  {
+    import: import("src/apps/main/pages/learn"),
+    path: "/Learn",
+  },
+  {
+    import: import("src/apps/main/pages/projects"),
+    path: "/Projects",
+  },
+  {
+    import: import("src/apps/main/pages/articles"),
+    path: "/Articles",
+  },
+  {
+    import: import("src/apps/main/pages/faq"),
+    path: "/FAQ",
+  },
+  {
+    import: import("src/apps/main/pages/not-found"),
+  },
+];
 
 export const App: FC = () => {
-  if (env !== "development") {
+  if (getEnv() !== "development") {
     const location = useLocation();
     useEffect(() => {
       if (window.ga) {
@@ -72,18 +59,21 @@ export const App: FC = () => {
         style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
         <Navbar />
-        <Main />
+        <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              {routes.map((route, index) => (
+                <Route
+                  {...route}
+                  key={`route-${index}`}
+                  component={lazy(() => route.import)}
+                />
+              ))}
+            </Switch>
+          </Suspense>
+        </Container>
         <Footer />
       </div>
     </Theme>
   );
 };
-
-render(
-  <Provider store={mainStore}>
-    <Router history={history}>
-      <App />
-    </Router>
-  </Provider>,
-  document.getElementById("app-container"),
-);
