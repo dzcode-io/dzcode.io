@@ -18,7 +18,7 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] Remove t9config
 - [x] Use Redux Hooks
 - [x] update footer
-- [ ] split index.tsx from app.tsx
+- [x] split index.tsx from app.tsx
 - [x] use rm instead of px
 - [x] Fix styles
 - [x] remove WhatAndWhy section
@@ -32,12 +32,12 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [ ] Add leblad app
 - [ ] ability to run only a specific app
 - [x] Fix MUI Theme
-- [ ] move data/[model] to data/models/[model]
+- [x] move data/[model] to data/models/[model]
 - [ ] fix the common and main components
 - [ ] Update sitemap url on google search console
 - [ ] Add example test cases
-- [ ] Deploy each stack separately
-- [ ] Update CI/CD
+- [x] Deploy each stack separately
+- [x] Update CI/CD
 - [ ] Check Licence issues
 - [ ] Change default branch to main
 - [ ] Clean stale branches, and old PRs
