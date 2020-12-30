@@ -41,7 +41,7 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] Update In-Repo Documentation (Readme)
 - [x] update labeler ci
 - [x] Change default branch to main
-- [ ] Deploy 1.0.0 to production
+- [x] Deploy 1.0.0 to production
 - [ ] Fix test coverage badges
 - [ ] Check Licence issues
 
