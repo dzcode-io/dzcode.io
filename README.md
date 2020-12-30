@@ -37,20 +37,17 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] Update CI/CD
 - [x] cherry-pick recent commits to master
 - [x] Clean /Learn data
+- [x] Setup proper Github releases
+- [x] Update In-Repo Documentation (Readme)
+- [x] update labeler ci
+- [x] Change default branch to main
+- [ ] Deploy 1.0.0 to production
+- [ ] Fix test coverage badges
+- [ ] Check Licence issues
+
 - [ ] /Contribute (list all open issues, discussion, ideas)
 - [ ] Add leblad app
 - [ ] ability to run only a specific app
-- [ ] Add example test cases
-- [ ] Update In-Repo Documentation (add readme for each sub-folder)
-- [ ] Fix test coverage badges
-- [ ] Change default branch to main
-- [ ] Setup proper Github releases
-- [ ] Update sitemap url on google search console
-- [ ] Check Licence issues
-- [ ] Clean stale branches, and old PRs
-- [ ] Clean the issue board ( possibly remove ZenHub)
-- [ ] Try to use Github discussion
-- [ ] Try yo use Github Codespaces
 
 ## Meta
 
@@ -59,7 +56,7 @@ You can find more about each folder by clicking on the folder name
 | Folder             | Production URL         | Staging URL                    | Coverage                                                                                                                       |
 | :----------------- | :--------------------- | :----------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
 | [common](./common) | N/A                    | N/A                            | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |
-| [api](./api)       | N/A                    | N/A                            | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    |
+| [api](./api)       | WIP                    | WIP                            | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    |
 | [web](./web)       | https://www.dzcode.io  | https://staging.dzcode.io      | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |
 | [data](./data)     | https://data.dzcode.io | https://data.staging.dzcode.io | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |
 
@@ -73,9 +70,7 @@ You can find more about each folder by clicking on the folder name
     - [Perquisites](#perquisites)
     - [Run it locally](#run-it-locally)
   - [Contributing](#contributing)
-    - [Add Your Own Article](#add-your-own-article)
-    - [Fix Typos, or Edit existing Article](#fix-typos-or-edit-existing-article)
-    - [Add Your Own Project](#add-your-own-project)
+    - [List Your Project or Add/Edit Article](#list-your-project-or-addedit-article)
   - [License](#license)
 
 ## Get Started
@@ -125,35 +120,10 @@ To get started see [the contributing guidelines](https://github.com/dzcode-io/dz
 **Before You Create a Pull Request** :
 Please make sure your code follows the style guideline defined in this repo, for that simply run `yarn lint:fix` to ensure the conformity. This process should happen automatically whenever you commit your changes, but you can always do it manually when your Pull Request checks are failing due to linting errors.
 
-### Add Your Own Article
+### List Your Project or Add/Edit Article
 
-Articles on dzCode.io are found under the folder [`data/articles`](https://github.com/dzcode-io/dzcode.io/tree/master/data/articles).
-
-To add new article let's say "Awesome New Article", simply do the following:
-
-- Create a new folder `Awesome_New_Article` under `data/articles`
-- Add two files:
-  - `info.json` , a json file containing info about your article, like **title**, **description** etc..., see [this file](https://github.com/dzcode-io/dzcode.io/blob/master/data/articles/Welcome_to_dzCode/info.json) as an example.
-  - `content.md` , a markdown file which contain your Article text, in form of [markdown](https://www.markdownguide.org/).
-- Lastly, to make your article visible, modify the content of [`data/articles/list.json`](https://github.com/dzcode-io/dzcode.io/blob/master/data/articles/list.json) and add your article's folder name `Awesome_New_Article` inside the `"items": []` array.
-
-To test and see your article locally, make sure to [you are all set](#get-started), after you run dzCode locally go to http://localhost:8080/Articles/Awesome_New_Article, you will see your article, and you can continue editing from there, once you are happy with the result, create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) against master branch, and we will be happy to merge it 😃.
-
-### Fix Typos, or Edit existing Article
-
-If you find a typo in any Article, or you find something that needs to be edited, please let us know, by applying the necessary modification, then create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) against master branch, and we will review it along with the article's author, then merge it.
-
-### Add Your Own Project
-
-Projects on dzCode.io are found under the folder [`data/projects`](https://github.com/dzcode-io/dzcode.io/tree/master/data/projects).
-
-To add new project let's say "Awesome New Project", simply do the following:
-
-- Create a new folder `Awesome_New_Project` under `data/projects`
-- Add `info.json` , a json file containing info about your project, like **title**, **description** etc..., see [this file](https://github.com/dzcode-io/dzcode.io/tree/master/data/projects/Project_1/info.json) as an example.
-- Lastly, to make your project visible, modify the content of [`data/projects/list.json`](https://github.com/dzcode-io/dzcode.io/blob/master/data/projects/list.json) and add your project's folder name `Awesome_New_Project` inside the `"items": []` array.
-
-To test and see your project locally, make sure to [you are all set](#get-started), after you run dzCode locally go to http://localhost:8080/Projects/Awesome_New_Project, you will see your project, and you can continue editing from there, once you are happy with the result, create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) against master branch, and we will be happy to merge it 😃.
+- To list your project on dzcode.io, see [this tutorial](/Articles/How_To_Add_Your_Project_To_DzCode)
+- To add an article, see [this tutorial](/Articles/How_To_Add_Your_Article_To_DzCode)
 
 ## License
 
