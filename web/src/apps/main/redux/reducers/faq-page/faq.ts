@@ -11,7 +11,6 @@ export const faqData: FAQData = [
       {
         question: "What are the Goals of DzCode i/o ?",
         answer: `
-- Create a dz open-source community by algerian developers, no organization or any political party is involved, only us dz developers.
 - Share our experiences (in form of [Articles](/Articles)), there are many algerian developers that accumulated lots experiences, dzcode.io gives them the chance to share it with the right audience.
 - Guide new developers to build their career (with detailed [documentation](/Learn)), and understand the software market, instead of wasting their time on other useless resources.
 - Fix some common algerian software problems, in form of ready to use open-source [softwares](/Projects) (packages, libraries ...etc).`,
@@ -23,6 +22,15 @@ export const faqData: FAQData = [
 - You will meet other algerian developers, experienced and juniors, where you can grow your network!
 - You'll get to experience a professional environment, which is completely different than the one you used to in school.
 - Your contribution will be shown on your Github profile, and that is a big plus in your professional career!
+`,
+      },
+      {
+        question: "dzcode, dzcode.io or DzCode i/o ?",
+        answer: `You may get confused with the different terms, so here's the official breakdown:
+
+- **DzCode i/o** (with capital C) is the official name of the community.
+- **dzcode.io** is the website of the DzCode i/o, this has been voted for [here](https://www.facebook.com/groups/dzdevs/permalink/3052880478141052/).
+- **dzcode** is a short name, not official, but it's usually used to refer DzCode i/o.
 `,
       },
     ],
@@ -82,14 +90,10 @@ export const faqData: FAQData = [
           "It has to solve an Algerian problem, or, to be written by an Algerian Developer.",
       },
       {
-        question: "Can I write about anything ?",
-        answer: "As long as its IT related yes you can write about anything.",
-      },
-      {
         question: "Why should i add my project to dzcode.io ?",
         answer: `
 - Your project will potentially get noticed by more algerian developers.
-- You will get pontifical contribution from other DZ developers, and eventually better shape your piece of software.
+- You will get potential contribution from other DZ developers, and eventually better shape your piece of software.
 `,
       },
     ],
