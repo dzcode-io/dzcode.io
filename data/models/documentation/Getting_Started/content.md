@@ -1,151 +1,31 @@
-This blog post shows a few different types of content that are supported and styled with
-Material styles. Basic typography, images, and code are all supported.
-You can extend these by modifying `Markdown.js`.
+The learning section of dzcode.io aims to give you small pieces of information, that is easy to memories and to refer back to, we believe these information will help you as a beginner to jump start your professional career.
 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
-Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+If you have any suggestions, feel fee to add, edit or delete any part of the learning section.
 
-Curabitur blandit tempus porttitor. **Nullam quis risus eget urna mollis** ornare vel eu leo.
-Nullam id dolor id nibh ultricies vehicula ut id elit.
+If you think you can write learning content about a specific material, please do so, and share your knowledge with Algerian developers. Keep in mind that all the content including yours, are editable, this help improve and shape the knowledge base by the time.
 
-Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum.
-Aenean lacinia bibendum nulla sed consectetur.
+Also, if you know any Algerian who can share his/her learning materials, please spread the news, so everyone can benefit!
 
-```jsx
-import Markdown from "markdown-to-jsx";
-import React from "react";
-import { render } from "react-dom";
+## Want to change something?
 
-// surprise, it's a div instead!
-const MyParagraph = ({ children, ...props }) => (
-  <div {...props}>{children}</div>
-);
+You found an inaccurate statement? cool, [fork](/Learn/Git_Basics/What_The_Fork) and clone [dzcode.io repository](https://github.com/dzcode-io/dzcode.io), make the needed changes, [create a Pull Request (aka Merge Request)](/Learn/Git_Basics/Pull_Merge_Request), the maintainers will happily review, approve, merge and [deploy](https://github.com/dzcode-io/dzcode.io/releases) your changes!
 
-render(
-  <Markdown
-    options={{
-      overrides: {
-        h1: {
-          component: MyParagraph,
-          props: {
-            className: "foo",
-          },
-        },
-      },
-    }}
-  >
-    # Hello world!
-  </Markdown>,
-  document.body,
-);
+One your changes are merged, your will be added as a Contributor to the specific document you changed 😀.
 
-/*
-    renders:
+## Want to add your own materials?
 
-    <div class="foo">
-        Hello World
-    </div>
- */
-```
+So, you already master or have enough knowledge about a specific topic in IT? your expertise are very much needed by Algerian Developers, you can add your own documentation materials, simply [fork](/Learn/Git_Basics/What_The_Fork) and clone [dzcode.io repository](https://github.com/dzcode-io/dzcode.io), add your materials following the same structure as the existing ones, [create a Pull Request (aka Merge Request)](/Learn/Git_Basics/Pull_Merge_Request), the maintainers will happily review, approve, merge and [deploy](https://github.com/dzcode-io/dzcode.io/releases) your additions!
 
-## Heading
+**Notes**
 
-Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+- if the materials you are trying to teach already exist in dzcode.io, instead of duplicating them, you should instead modify the existing ones and insert your knowledge, and of course you will be added as a contributor to each of the documents you modified.
+- Keep in mind that the audience is mainly **Algerians**, so please try to target them with things they can relate to.
+- All of your materials should accept changes, the main goal is to shape the knowledge overtime, so even you as the teacher can learn on the way 😀.
 
-### Sub-heading
+## Have Other general suggestions?
 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+Feel free to reach out to [contact@dzcode.io](mailto:contact@dzcode.io) or create an issue in [dzcode.io repository](https://github.com/dzcode-io/dzcode.io), or chat with the community members on [Slack workspace](https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ).
 
-### Sub-heading
+You can also add a comment on the facebook comment section bellow 👇
 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.
-Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
-sit amet risus.
-
-- Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-- Donec id elit non mi porta gravida at eget metus.
-- Nulla vitae elit libero, a pharetra augue.
-
-Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
-
-1.  Vestibulum id ligula porta felis euismod semper.
-2.  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-3.  Maecenas sed diam eget risus varius blandit sit amet non magna.
-
-Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
-
-## Set up Git
-
-To use Git on the command line, you'll need to download, install, and configure Git on your computer.
-
-If you want to work with Git locally, but don't want to use the command line, you can instead download and install the GitHub Desktop client. For more information, see "Getting started with GitHub Desktop."
-
-## Create a repo
-
-You can store a variety of projects in GitHub repositories, including open source projects. With open source projects, you can share code to make better, more reliable software.
-
-## Commit your first change
-
-A commit is like a snapshot of all the files in your project at a particular point in time.
-
-When you created your new repository, you initialized it with a README file. README files are a great place to describe your project in more detail, or add some documentation such as how to install or use your project. The contents of your README file are automatically shown on the front page of your repository.
-
-### Installation
-
-| Hi    | There     | how | are       | you  |
-| ----- | --------- | --- | --------- | ---- |
-| doing | this      | is  | github    | and  |
-| git   | tutorials | by  | dzcodeio  | your |
-| open  | source    | dz  | community | .    |
-
-Reason comes by default in [BuckleScript](https://bucklescript.github.io/), a compiler that turns Reason code into JavaScript code.
-
-**Prerequisite**: either NPM (comes with [node](https://nodejs.org/en/)) or [Yarn](https://yarnpkg.com/en/).
-
-To install BuckleScript & Reason globally:
-
-```sh
-yarn global add bs-platform
-```
-
-(or `npm install -g bs-platform` for npm).
-
-## New Project
-
-The global installation comes with a simple project generator. Try:
-
-```sh
-bsb -init my-new-project -theme basic-reason
-```
-
-To compile & run the project you just created:
-
-```sh
-cd my-new-project
-yarn build # or npm run build, for npm
-node src/Demo.bs.js
-```
-
-That uses BuckleScript to compile Reason to JavaScript, then uses NodeJS to run the JavaScript. Feel free to use the generated JS files in whichever way you'd like, as if they're hand-written by you.
-
-During development, instead of running `npm run build` each time to compile, run `npm run start` to start a watcher that recompiles automatically after file changes.
-
-By default, the `basic-reason` theme configures BuckleScript to output the generated JS files alongside the Reason files they were produced from. [There's a reason why this is helpful](https://bucklescript.github.io/docs/en/build-overview#tips-tricks). If you prefer to keep the generated files somewhere else, edit `bsconfig.json` to set `in-source` to `false`; the JS files will then be output to the `lib/js` directory instead.
-
-Alternatively, **to start a [ReasonReact](https://reasonml.github.io/reason-react/docs/en/installation.html) app**, follow the instructions [here](https://reasonml.github.io/reason-react/docs/en/installation).
-
-## Existing Project
-
-You can install the toolchain locally to an existing project, through the familiar command:
-
-```sh
-yarn add --dev bs-platform
-```
-
-(or `npm install --save-dev bs-platform` for npm).
-
-The rest is the same as above.
+Have fun!

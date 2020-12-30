@@ -35,7 +35,8 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] fix the common and main components
 - [x] Deploy each stack separately
 - [x] Update CI/CD
-- [ ] cherry-pick recent commits to master
+- [x] cherry-pick recent commits to master
+- [x] Clean /Learn data
 - [ ] /Contribute (list all open issues, discussion, ideas)
 - [ ] Add leblad app
 - [ ] ability to run only a specific app
