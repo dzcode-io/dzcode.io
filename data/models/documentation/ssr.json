@@ -3,16 +3,9 @@
     "Getting_Started",
 
     "Git_Basics",
-    "Git_Basics/Git_and_Github",
-    "Git_Basics/Basic_Git_Commands",
-    "Git_Basics/Managing_Conflict",
+    "Git_Basics/What_The_Fork",
     "Git_Basics/Syncing_An_Old_Forked_Repository_With_Upstream",
-    "Git_Basics/Collaboration_Scenarios",
-
-    "Advanced_Git_Commands",
-    "Advanced_Git_Commands/Git_Reflog",
-    "Advanced_Git_Commands/Git_Clean",
-    "Advanced_Git_Commands/Git_Rebase"
+    "Git_Basics/Pull_Merge_Request"
   ],
   "include": ["title", "description", "image"]
 }
