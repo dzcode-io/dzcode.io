@@ -55,10 +55,10 @@ You can find more about each folder by clicking on the folder name
 
 | Folder             | Production URL         | Staging URL                    | Coverage                                                                                                                       |
 | :----------------- | :--------------------- | :----------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| [common](./common) | N/A                    | N/A                            | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |
-| [api](./api)       | WIP                    | WIP                            | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    |
 | [web](./web)       | https://www.dzcode.io  | https://staging.dzcode.io      | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |
 | [data](./data)     | https://data.dzcode.io | https://data.staging.dzcode.io | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |
+| [api](./api)       | WIP                    | WIP                            | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    |
+| [common](./common) | N/A                    | N/A                            | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |
 
 ## Table of Content
 
@@ -122,8 +122,8 @@ Please make sure your code follows the style guideline defined in this repo, for
 
 ### List Your Project or Add/Edit Article
 
-- To list your project on dzcode.io, see [this tutorial](/Articles/How_To_Add_Your_Project_To_DzCode)
-- To add an article, see [this tutorial](/Articles/How_To_Add_Your_Article_To_DzCode)
+- To list your project on dzcode.io, see [this tutorial](https://dzcode.io/Articles/How_To_Add_Your_Project_To_DzCode)
+- To add an article, see [this tutorial](https://dzcode.io/Articles/How_To_Add_Your_Article_To_DzCode)
 
 ## License
 
