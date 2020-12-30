@@ -5,7 +5,7 @@ on:
     tags:
       - "stg-v*"
     paths:
-      - ".github/workflows/deploy:stg-web.yml"
+      - ".github/workflows/deploy-stg-web.yml"
       - "web/**"
       - "data/*/ssr.json"
 

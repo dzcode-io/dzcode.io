@@ -5,7 +5,7 @@ on:
     tags:
       - "stg-v*"
     paths:
-      - ".github/workflows/deploy:stg-data.yml"
+      - ".github/workflows/deploy-stg-data.yml"
       - "data/**"
 
 jobs:
