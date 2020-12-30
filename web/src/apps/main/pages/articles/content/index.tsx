@@ -114,7 +114,7 @@ export const Content: FC = () => {
             actions={actions}
             open
           />
-          <div className={classes.spacing} />
+          <hr className={classes.spacing} />
           {/* Comments */}
           <div
             className="fb-comments"
