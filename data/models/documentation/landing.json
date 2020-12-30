@@ -1,8 +1,0 @@
-{
-  "items": [
-    "Getting_Started",
-    "Git_Basics/Git_and_Github",
-    "Git_Basics/Basic_Git_Commands"
-  ],
-  "include": ["title", "description", "image"]
-}

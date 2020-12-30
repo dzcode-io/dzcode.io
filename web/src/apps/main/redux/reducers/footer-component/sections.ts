@@ -13,6 +13,11 @@ export const sections = [
     title: "Social Media",
     links: [
       { text: "Github", href: "https://www.github.com/dzcode-io" },
+      {
+        text: "Slack",
+        href:
+          "https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ",
+      },
       { text: "Facebook", href: "https://www.facebook.com/dzcode.io" },
       { text: "Instagram", href: "https://www.instagram.com/dzcode.io" },
       {
