@@ -71,7 +71,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       key={node.id}
       nodeId={node.id}
       label={
-        node.link && node.children && node.children.length === 0 ? (
+        node.link && node.children ? (
           <LinkV2
             className={classes.treeItem}
             href={node.link}
