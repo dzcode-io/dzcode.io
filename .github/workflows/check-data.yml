@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/check-data.yml"
+      - "common/**"
       - "data/**"
 
 jobs:

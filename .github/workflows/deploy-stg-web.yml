@@ -6,6 +6,7 @@ on:
       - "stg-v*"
     paths:
       - ".github/workflows/deploy-stg-web.yml"
+      - "common/**"
       - "web/**"
       - "data/*/ssr.json"
 
