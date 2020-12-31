@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/check-web.yml"
+      - "common/**"
       - "web/**"
 
 jobs:
