@@ -6,6 +6,8 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
+import { Contributors } from "src/apps/main/components/contributors";
+import { Divider } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
@@ -104,7 +106,7 @@ export const Content: FC = () => {
           <Typography variant="caption" display="block" gutterBottom>
             {currentArticle.description}
           </Typography>
-          <hr className={classes.spacing} />
+          <Divider className={classes.spacing} />
           {/* Content */}
           <Markdown>{currentArticle.content + ""}</Markdown>
           {/* Actions */}
@@ -114,7 +116,10 @@ export const Content: FC = () => {
             actions={actions}
             open
           />
-          <hr className={classes.spacing} />
+          <Divider className={classes.spacing} />
+          {/* Contributors */}
+          <Contributors contributors={currentArticle.contributors} />
+          <Divider className={classes.spacing} />
           {/* Comments */}
           <div
             className="fb-comments"

@@ -1,4 +1,5 @@
-import { Article } from "@dzcode.io/common/dist/types";
+import { Article, GithubUser } from "@dzcode.io/common/dist/types";
+
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { ArticlesState } from "src/apps/main/redux/reducers/articles";
 import Axios from "axios";
@@ -10,6 +11,7 @@ import { history } from "src/common/utils/history";
 import { listToTree } from "l2t";
 
 const dataURL = fullstackConfig.data.url;
+const apiURL = fullstackConfig.api.url;
 
 /**
  * Fetches the list of articles for the sidebar
@@ -50,6 +52,36 @@ export const fetchArticlesList = (): ThunkResult<ArticlesPageState> => async (
 };
 
 /**
+ * Fetches the contributors of the an current article
+ */
+export const fetchCurrentArticleContributors = (): ThunkResult<
+  ArticlesPageState | ArticlesState
+> => async (dispatch, getState) => {
+  const { currentArticle } = getState().articlesPage;
+  if (currentArticle && !currentArticle.contributors) {
+    const response = await Axios.get<GithubUser[]>(
+      apiURL + `/contributors?articleSlug=${currentArticle.slug}`,
+    );
+
+    if (response.data.hasOwnProperty("error")) {
+      throw Error("error_fetching_contributors");
+    }
+
+    const contributors = response.data;
+    // update our page state
+    dispatch({
+      type: "UPDATE_ARTICLES_PAGE",
+      payload: { currentArticle: { ...currentArticle, contributors } },
+    });
+    // update our cache state
+    dispatch({
+      type: "UPDATE_ARTICLES",
+      payload: { list: [{ ...currentArticle, contributors }] },
+    });
+  }
+};
+
+/**
  * Fetches the content of the current article
  */
 export const fetchCurrentArticle = (): ThunkResult<
@@ -71,9 +103,10 @@ export const fetchCurrentArticle = (): ThunkResult<
       type: "UPDATE_ARTICLES_PAGE",
       payload: { currentArticle: cashedArticle },
     });
+    // Fetch contributors
+    dispatch(fetchCurrentArticleContributors());
   } else {
     // BUG: cashing not working in local (slug related issue)
-
     dispatch({
       type: "UPDATE_ARTICLES_PAGE",
       payload: { currentArticle: null },
@@ -99,6 +132,8 @@ export const fetchCurrentArticle = (): ThunkResult<
         type: "UPDATE_ARTICLES",
         payload: { list: [currentArticle] },
       });
+      // Fetch contributors
+      dispatch(fetchCurrentArticleContributors());
     } catch (error) {
       if (error.message == "article_not_found") {
         history.push("/Articles");
