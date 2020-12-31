@@ -104,7 +104,6 @@ export const fetchCurrentDocument = (): ThunkResult<
     // Fetch contributors
     dispatch(fetchCurrentDocumentContributors());
   } else {
-    // BUG: cashing not working in local (slug related issue)
     dispatch({
       type: "UPDATE_LEARN_PAGE",
       payload: { currentDocument: null },
