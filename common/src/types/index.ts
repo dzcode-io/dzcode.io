@@ -7,7 +7,7 @@ export interface Document {
   description?: string;
   content?: string;
   authors?: string[];
-  contributors?: string[];
+  contributors?: GithubUser[];
   views?: number;
 }
 
@@ -18,7 +18,7 @@ export interface Article {
   description?: string;
   content?: string;
   authors?: string[];
-  contributors?: string[];
+  contributors?: GithubUser[];
   views?: number;
 }
 
@@ -35,3 +35,13 @@ export interface Project {
 }
 
 export type Environment = "development" | "staging" | "production";
+
+export interface GithubUser {
+  login: string;
+  id: string;
+  // eslint-disable-next-line camelcase
+  avatar_url: string;
+  // eslint-disable-next-line camelcase
+  html_url: string;
+  type: string;
+}

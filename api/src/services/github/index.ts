@@ -1,3 +1,4 @@
+import { ListContributorsResponse } from "./types";
 import axios from "axios";
 
 export const listOrganizationRepositories = async ({
@@ -39,6 +40,40 @@ export const listPullRequests = async ({
     return response.data;
   } catch (error) {
     console.log("listPullRequests ERROR =>", error.response.data);
+    return null;
+  }
+};
+
+export const listContributors = async ({
+  owner,
+  repo,
+  path,
+}: {
+  owner: string;
+  repo: string;
+  path: string;
+}) => {
+  try {
+    const response = await axios.get<ListContributorsResponse>(
+      `https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`,
+      {
+        // eslint-disable-next-line camelcase
+        params: { state: "all", per_page: 10 },
+      },
+    );
+    const contributors = response.data.map(
+      ({ committer: { login, avatar_url, html_url, type, id } }) => ({
+        id,
+        login,
+        avatar_url,
+        html_url,
+        type,
+      }),
+    );
+
+    return contributors;
+  } catch (error) {
+    console.log("listContributors ERROR =>", error.response.data);
     return null;
   }
 };
