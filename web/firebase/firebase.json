@@ -12,7 +12,7 @@
       ]
     },
     {
-      "target": "staging.dzcode.io",
+      "target": "stage.dzcode.io",
       "public": "public",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
