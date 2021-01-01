@@ -8,7 +8,7 @@
         "data.dzcode.io": [
           "data-dzcode-io"
         ],
-        "data.staging.dzcode.io": [
+        "data.stage.dzcode.io": [
           "data-staging-dzcode-io"
         ]
       }

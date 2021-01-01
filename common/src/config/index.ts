@@ -12,7 +12,7 @@ export const fsConfig = (env: Environment, extra?: Record<string, unknown>) => {
       port: apiPort,
       url: [
         `http://${hostname}:${apiPort}`,
-        "https://api.staging.dzcode.io",
+        "https://api_stage.dzcode.io",
         "https://api.dzcode.io",
       ][e],
     },
@@ -20,7 +20,7 @@ export const fsConfig = (env: Environment, extra?: Record<string, unknown>) => {
       port: dataPort,
       url: [
         `http://${hostname}:${dataPort}`,
-        "https://data.staging.dzcode.io",
+        "https://data.stage.dzcode.io",
         "https://data.dzcode.io",
       ][e],
     },
@@ -28,7 +28,7 @@ export const fsConfig = (env: Environment, extra?: Record<string, unknown>) => {
       port: frontendPort,
       url: [
         `http://${hostname}:${frontendPort}`,
-        "https://www.staging.dzcode.io",
+        "https://stage.dzcode.io",
         "https://www.dzcode.io",
       ][e],
     },

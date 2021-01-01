@@ -1,5 +1,6 @@
+import { Document, GithubUser } from "@dzcode.io/common/dist/types";
+
 import Axios from "axios";
-import { Document } from "@dzcode.io/common/dist/types";
 import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import { SidebarTreeItem } from "src/apps/main/types";
@@ -10,6 +11,7 @@ import { history } from "src/common/utils/history";
 import { listToTree } from "l2t";
 
 const dataURL = fullstackConfig.data.url;
+const apiURL = fullstackConfig.api.url;
 
 /**
  * Fetches the list of documents for the sidebar
@@ -49,6 +51,36 @@ export const fetchDocumentationList = (): ThunkResult<LearnPageState> => async (
 };
 
 /**
+ * Fetches the contributors of the an current document
+ */
+export const fetchCurrentDocumentContributors = (): ThunkResult<
+  LearnPageState | DocumentationState
+> => async (dispatch, getState) => {
+  const { currentDocument } = getState().learnPage;
+  if (currentDocument && !currentDocument.contributors) {
+    const response = await Axios.get<GithubUser[]>(
+      apiURL + `/contributors?documentSlug=${currentDocument.slug}`,
+    );
+
+    if (response.data.hasOwnProperty("error")) {
+      throw Error("error_fetching_contributors");
+    }
+
+    const contributors = response.data;
+    // update our page state
+    dispatch({
+      type: "UPDATE_LEARN_PAGE",
+      payload: { currentDocument: { ...currentDocument, contributors } },
+    });
+    // update our cache state
+    dispatch({
+      type: "UPDATE_DOCUMENTATION",
+      payload: { list: [{ ...currentDocument, contributors }] },
+    });
+  }
+};
+
+/**
  * Fetches the content of the current document
  */
 export const fetchCurrentDocument = (): ThunkResult<
@@ -69,8 +101,9 @@ export const fetchCurrentDocument = (): ThunkResult<
       type: "UPDATE_LEARN_PAGE",
       payload: { currentDocument: cashedDocument },
     });
+    // Fetch contributors
+    dispatch(fetchCurrentDocumentContributors());
   } else {
-    // BUG: cashing not working in local (slug related issue)
     dispatch({
       type: "UPDATE_LEARN_PAGE",
       payload: { currentDocument: null },
@@ -95,6 +128,8 @@ export const fetchCurrentDocument = (): ThunkResult<
         type: "UPDATE_DOCUMENTATION",
         payload: { list: [currentDocument] },
       });
+      // Fetch contributors
+      dispatch(fetchCurrentDocumentContributors());
     } catch (error) {
       if (error.message == "learn_not_found") {
         history.push("/Learn");

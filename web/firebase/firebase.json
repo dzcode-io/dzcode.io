@@ -9,16 +9,28 @@
           "source": "**",
           "destination": "/index.html"
         }
+      ],
+      "headers": [
+        {
+          "source": "**/*",
+          "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+        }
       ]
     },
     {
-      "target": "staging.dzcode.io",
+      "target": "stage.dzcode.io",
       "public": "public",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
           "source": "**",
           "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**/*",
+          "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
         }
       ]
     }

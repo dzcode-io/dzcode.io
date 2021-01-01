@@ -1,16 +1,16 @@
-name: Deploy Data
+name: Deploy Api
 
 on:
   push:
     tags:
       - "v*"
     paths:
-      - ".github/workflows/deploy-data.yml"
+      - ".github/workflows/deploy-api.yml"
       - "common/**"
-      - "data/**"
+      - "api/**"
 
 jobs:
-  Deploy-Data:
+  Deploy-Api:
     runs-on: ubuntu-latest
 
     strategy:
@@ -19,6 +19,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -30,11 +35,13 @@ jobs:
         run: |
           cd common
           yarn build
-      - name: "Deploy data"
+      - name: "Deploy api"
         run: |
-          cd data
+          cd api
           yarn deploy
 
         env:
           CI: true
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          SSH_ADDRESS_PRD: ${{ secrets.SSH_ADDRESS_PRD }}

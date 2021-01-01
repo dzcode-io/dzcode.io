@@ -8,7 +8,7 @@
         "dzcode.io": [
           "dzcode-io"
         ],
-        "staging.dzcode.io": [
+        "stage.dzcode.io": [
           "staging-dzcode-io"
         ]
       }

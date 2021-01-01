@@ -1,16 +1,16 @@
-name: Deploy Data
+name: Deploy Staging Api
 
 on:
   push:
     tags:
-      - "v*"
+      - "stg-v*"
     paths:
-      - ".github/workflows/deploy-data.yml"
+      - ".github/workflows/deploy-stg-api.yml"
       - "common/**"
-      - "data/**"
+      - "api/**"
 
 jobs:
-  Deploy-Data:
+  Deploy-Stg-Api:
     runs-on: ubuntu-latest
 
     strategy:
@@ -19,6 +19,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -30,11 +35,13 @@ jobs:
         run: |
           cd common
           yarn build
-      - name: "Deploy data"
+      - name: "Deploy api"
         run: |
-          cd data
-          yarn deploy
+          cd api
+          yarn deploy:stg
 
         env:
           CI: true
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}

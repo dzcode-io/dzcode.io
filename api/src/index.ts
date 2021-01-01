@@ -1,14 +1,23 @@
 import * as bodyParser from "body-parser";
 
-import express, { Application } from "express";
-
+import cors from "cors";
+import express from "express";
 import { fullstackConfig } from "./config";
 import morgan from "morgan";
 import routes from "./routes";
 
-const app: Application = express();
-const port: number = fullstackConfig.api.port;
+const app = express();
+const port = process.env.PORT || fullstackConfig.api.port;
 
+app.use(
+  cors({
+    allowedHeaders:
+      process.env.NODE_ENV === "development"
+        ? ["http://localhost:8080"]
+        : ["https://www.dzcode.io", "https://stage.dzcode.io"],
+    origin: true,
+  }),
+);
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
