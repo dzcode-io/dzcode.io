@@ -1,0 +1,47 @@
+name: Deploy Staging Api
+
+on:
+  push:
+    tags:
+      - "stg-v*"
+    paths:
+      - ".github/workflows/deploy-stg-api.yml"
+      - "common/**"
+      - "api/**"
+
+jobs:
+  Deploy-Stg-Api:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: "Install workspace dependencies"
+        run: |
+          yarn
+      - name: "Build common directory"
+        run: |
+          cd common
+          yarn build
+      - name: "Deploy api"
+        run: |
+          cd api
+          yarn deploy:stg
+
+        env:
+          CI: true
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
