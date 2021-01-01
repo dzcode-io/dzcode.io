@@ -5,7 +5,7 @@ export const getEnv = () => {
     case "www.dzcode.io":
     case "dzcode.io":
       return "production";
-    case "staging.dzcode.io":
+    case "stage.dzcode.io":
       return "staging";
     default:
       return "development";

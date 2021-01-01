@@ -17,7 +17,7 @@
       ]
     },
     {
-      "target": "data.staging.dzcode.io",
+      "target": "data.stage.dzcode.io",
       "public": "public",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "headers": [
@@ -26,7 +26,7 @@
           "headers": [
             {
               "key": "Access-Control-Allow-Origin",
-              "value": "https://staging.dzcode.io"
+              "value": "https://stage.dzcode.io"
             }
           ]
         }
