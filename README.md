@@ -42,6 +42,9 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] update labeler ci
 - [x] Change default branch to main
 - [x] Deploy 1.0.0 to production
+- [x] Deploy API server
+- [ ] Clean tutorial Articles and move it to /Learn under dzcode.io section
+- [ ] BUG: Material-UI: The `fade` color utility was renamed to `alpha` to better describe its functionality.
 - [ ] Fix test coverage badges
 - [ ] Check Licence issues
 
@@ -63,7 +66,7 @@ You can find more about each folder by clicking on the folder name
 ## Table of Content
 
 - [dzCode.io](#dzcodeio)
-    - [Tasks (Open for changes)](#tasks-open-for-changes)
+  - [Tasks (Open for changes)](#tasks-open-for-changes)
   - [Meta](#meta)
   - [Table of Content](#table-of-content)
   - [Get Started](#get-started)

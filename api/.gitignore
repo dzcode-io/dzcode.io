@@ -1,5 +1,6 @@
 dist
 coverage
+vultr/build
 
 # logs
 **.tsbuildinfo
