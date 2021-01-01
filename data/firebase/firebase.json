@@ -11,7 +11,8 @@
             {
               "key": "Access-Control-Allow-Origin",
               "value": "https://www.dzcode.io"
-            }
+            },
+            { "key": "Cache-Control", "value": "no-cache" }
           ]
         }
       ]
@@ -27,7 +28,8 @@
             {
               "key": "Access-Control-Allow-Origin",
               "value": "https://stage.dzcode.io"
-            }
+            },
+            { "key": "Cache-Control", "value": "no-cache" }
           ]
         }
       ]
