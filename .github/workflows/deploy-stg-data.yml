@@ -6,6 +6,7 @@ on:
       - "stg-v*"
     paths:
       - ".github/workflows/deploy-stg-data.yml"
+      - "common/**"
       - "data/**"
 
 jobs:

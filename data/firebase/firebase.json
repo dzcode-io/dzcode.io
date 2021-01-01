@@ -11,13 +11,14 @@
             {
               "key": "Access-Control-Allow-Origin",
               "value": "https://www.dzcode.io"
-            }
+            },
+            { "key": "Cache-Control", "value": "no-cache" }
           ]
         }
       ]
     },
     {
-      "target": "data.staging.dzcode.io",
+      "target": "data.stage.dzcode.io",
       "public": "public",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "headers": [
@@ -26,8 +27,9 @@
           "headers": [
             {
               "key": "Access-Control-Allow-Origin",
-              "value": "https://staging.dzcode.io"
-            }
+              "value": "https://stage.dzcode.io"
+            },
+            { "key": "Cache-Control", "value": "no-cache" }
           ]
         }
       ]

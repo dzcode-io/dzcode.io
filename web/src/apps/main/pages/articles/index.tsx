@@ -48,10 +48,6 @@ export const ArticlesPage: FC = () => {
           render={() => <Content key={location.pathname} />}
         />
       </Grid>
-      {/* Headers */}
-      <Grid item xs={false} lg={2}>
-        <div style={{ height: "200px", background: "translate" }} />
-      </Grid>
     </Grid>
   );
 };

@@ -21,7 +21,7 @@ export const getDataEntry = (_path: string, include?: string[]) => {
   // Read info.json
   const info = {
     ...fse.readJsonSync(`${path}/info.json`),
-    slug: path.substring(path.indexOf("/") + 1),
+    slug: _path.substring(_path.indexOf("/") + 1),
   };
 
   // Filter properties

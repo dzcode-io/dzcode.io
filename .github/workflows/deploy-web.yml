@@ -6,6 +6,7 @@ on:
       - "v*"
     paths:
       - ".github/workflows/deploy-web.yml"
+      - "common/**"
       - "web/**"
       - "data/*/ssr.json"
 
