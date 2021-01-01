@@ -1,0 +1,9 @@
+version: "3"
+services:
+  api:
+    build: "."
+    # restart: always
+    ports:
+      - "80:7070"
+    environment:
+      NODE_ENV: production
