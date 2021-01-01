@@ -12,7 +12,7 @@ export const fsConfig = (env: Environment, extra?: Record<string, unknown>) => {
       port: apiPort,
       url: [
         `http://${hostname}:${apiPort}`,
-        "https://api.staging.dzcode.io",
+        "https://api_staging.dzcode.io",
         "https://api.dzcode.io",
       ][e],
     },
