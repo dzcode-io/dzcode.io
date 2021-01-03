@@ -43,7 +43,7 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 - [x] Change default branch to main
 - [x] Deploy 1.0.0 to production
 - [x] Deploy API server
-- [ ] Clean tutorial Articles and move it to /Learn under dzcode.io section
+- [x] Clean tutorial Articles and move it to /Learn under dzcode.io section
 - [ ] BUG: Material-UI: The `fade` color utility was renamed to `alpha` to better describe its functionality.
 - [ ] Fix test coverage badges
 - [ ] Check Licence issues
@@ -56,17 +56,17 @@ since the version of dzcode.io website is still v0.x.x things are still unstable
 
 You can find more about each folder by clicking on the folder name
 
-| Folder             | Production URL         | Staging URL                  | Coverage                                                                                                                       |
-| :----------------- | :--------------------- | :--------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| [web](./web)       | https://dzcode.io      | https://stage.dzcode.io      | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |
-| [data](./data)     | https://data.dzcode.io | https://data.stage.dzcode.io | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |
-| [api](./api)       | https://api.dzcode.io  | https://api_stage.dzcode.io  | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    |
-| [common](./common) | N/A                    | N/A                          | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |
+| Folder               | Coverage                                                                                                                       | Production URL |          Staging URL |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------- | -------------: | -------------------: |
+| [./web](./web)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |      dzcode.io |      stage.dzcode.io |
+| [./data](./data)     | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   | data.dzcode.io | data.stage.dzcode.io |
+| [./api](./api)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    |  api.dzcode.io |  api_stage.dzcode.io |
+| [./common](./common) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |                |                      |
 
 ## Table of Content
 
 - [dzCode.io](#dzcodeio)
-    - [Tasks (Open for changes)](#tasks-open-for-changes)
+  - [Tasks (Open for changes)](#tasks-open-for-changes)
   - [Meta](#meta)
   - [Table of Content](#table-of-content)
   - [Get Started](#get-started)
