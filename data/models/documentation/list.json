@@ -5,7 +5,12 @@
     "Git_Basics",
     "Git_Basics/What_The_Fork",
     "Git_Basics/Syncing_An_Old_Forked_Repository_With_Upstream",
-    "Git_Basics/Pull_Merge_Request"
+    "Git_Basics/Pull_Merge_Request",
+
+    "About_dzcode_io",
+    "About_dzcode_io/What_Is_dzcode_io_Built_With",
+    "About_dzcode_io/Add_Your_Article_To_dzcode_io",
+    "About_dzcode_io/Add_Your_Project_To_dzcode_io"
   ],
   "include": ["title"]
 }

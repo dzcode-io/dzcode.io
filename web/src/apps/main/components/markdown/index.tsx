@@ -38,6 +38,15 @@ export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
           p: { component: Typography, props: { paragraph: true } },
           a: { component: LinkV2 },
           img: { props: { style: { maxWidth: "100%" } } },
+          code: {
+            props: {
+              style: {
+                borderRadius: "6px",
+                background: "#8882",
+                padding: ".2rem .3rem",
+              },
+            },
+          },
           pre: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             component({ children: { props } }: any) {

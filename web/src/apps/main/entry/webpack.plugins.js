@@ -27,7 +27,7 @@ const pages = [
   },
 ];
 // Other URLs
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV !== "development") {
   // Static URLs ----
   pages.push(
     ...[
