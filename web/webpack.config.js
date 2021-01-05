@@ -125,7 +125,7 @@ module.exports = {
     disableHostCheck: true,
     host: "0.0.0.0",
     port,
-    writeToDisk: true,
+    writeToDisk: false,
     historyApiFallback: true,
   },
   // https://webpack.js.org/configuration/target/
