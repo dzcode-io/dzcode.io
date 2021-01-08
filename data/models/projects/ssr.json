@@ -5,7 +5,8 @@
     "React_Project_Builder",
     "Kuliya",
     "DzCode",
-    "Algerian_Administrative_Division"
+    "Algerian_Administrative_Division",
+    "Algeria_Covid19_Tracker"
   ],
   "include": ["title", "description", "image"]
 }
