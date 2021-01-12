@@ -77,3 +77,52 @@ export const listContributors = async ({
     return null;
   }
 };
+
+// from merouane
+export const listStars = async ({
+  owner,
+  repo,
+}: {
+  owner: string;
+  repo: string;
+}) => {
+  try {
+    const response = await axios.get(
+      ` https://api.github.com/repos/${owner}/${repo}`,
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log("countOfStarsonRepo ERROR =>", error.response.data);
+    return null;
+  }
+};
+
+export const listStargazers = async ({
+  owner,
+  repo,
+  page,
+}: {
+  owner: string;
+  repo: string;
+  page: number;
+}) => {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/repos/${owner}/${repo}/stargazers`,
+      {
+        params: {
+          state: "all",
+          // eslint-disable-next-line camelcase
+          per_page: 100,
+          page: page,
+        },
+      },
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log("countOfStarsonRepo ERROR =>", error.response.data);
+    return null;
+  }
+};
