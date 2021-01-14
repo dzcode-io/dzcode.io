@@ -78,7 +78,6 @@ export const listContributors = async ({
   }
 };
 
-// from merouane
 export const listStars = async ({
   owner,
   repo,
@@ -93,7 +92,7 @@ export const listStars = async ({
 
     return response.data;
   } catch (error) {
-    console.log("countOfStarsonRepo ERROR =>", error.response.data);
+    console.log("listStars ERROR =>", error.response.data);
     return null;
   }
 };
@@ -122,7 +121,60 @@ export const listStargazers = async ({
 
     return response.data;
   } catch (error) {
-    console.log("countOfStarsonRepo ERROR =>", error.response.data);
+    console.log("listStargazers ERROR =>", error.response.data);
+    return null;
+  }
+};
+
+export const listBranches = async ({
+  owner,
+  repo,
+}: {
+  owner: string;
+  repo: string;
+}) => {
+  try {
+    const response = await axios.get(
+      `  https://api.github.com/repos/${owner}/${repo}/branches`,
+    );
+    return response.data;
+  } catch (error) {
+    console.log("listBranches ERROR =>", error.response.data);
+    return null;
+  }
+};
+export const listCommits = async ({
+  owner,
+  repo,
+}: {
+  owner: string;
+  repo: string;
+}) => {
+  try {
+    const response = await axios.get(
+      `  https://api.github.com/repos/${owner}/${repo}/commits`,
+    );
+    return response.data;
+  } catch (error) {
+    console.log("listCommits ERROR =>", error.response.data);
+    return null;
+  }
+};
+
+export const listForks = async ({
+  owner,
+  repo,
+}: {
+  owner: string;
+  repo: string;
+}) => {
+  try {
+    const response = await axios.get(
+      ` https://api.github.com/repos/${owner}/${repo}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.log("listForks =>", error.response.data);
     return null;
   }
 };
