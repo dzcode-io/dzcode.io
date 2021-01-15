@@ -28,7 +28,7 @@ jobs:
         run: |
           cd common
           yarn build
-      - name: "checking script in api directory"
+      - name: "checking script in data directory"
         run: |
           cd data
           yarn lint:check
