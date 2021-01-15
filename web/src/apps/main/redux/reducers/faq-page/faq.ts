@@ -53,8 +53,8 @@ export const faqData: FAQData = [
           "I like the idea, what are the different ways i can contribute to DzCode i/o ?",
         answer: `Apart from checking out the [/Contribute](/Contribute) page, you can also contribute to DzCode i/o by:
 
-- Adding your open-source projects to dzcode.io website, you can do that [here](/Articles/How_To_Add_Your_Project_To_DzCode).
-- Writing about your experience in form of articles, it's as easy as following the steps [here](/Articles/How_To_Add_Your_Article_To_DzCode).
+- Adding your open-source projects to dzcode.io website, you can do that [here](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).
+- Writing about your experience in form of articles, it's as easy as following the steps [here](/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io).
 `,
       },
     ],
@@ -64,7 +64,7 @@ export const faqData: FAQData = [
     questions: [
       {
         question: "How to write an article in dzcode.io",
-        answer: `See this tutorial [article](/Articles/How_To_Add_Your_Article_To_DzCode).`,
+        answer: `See this [tutorial](/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io).`,
       },
       {
         question: "The Articles should they be in English ?",
@@ -82,7 +82,7 @@ export const faqData: FAQData = [
     questions: [
       {
         question: "How to add my open-source project to dzcode.io",
-        answer: `See this tutorial [article](/Articles/How_To_Add_Your_Project_To_DzCode).`,
+        answer: `See this [tutorial](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).`,
       },
       {
         question: "What makes my project eligible to be added to dzcode.io",

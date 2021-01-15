@@ -66,7 +66,7 @@ You can find more about each folder by clicking on the folder name
 ## Table of Content
 
 - [dzCode.io](#dzcodeio)
-  - [Tasks (Open for changes)](#tasks-open-for-changes)
+    - [Tasks (Open for changes)](#tasks-open-for-changes)
   - [Meta](#meta)
   - [Table of Content](#table-of-content)
   - [Get Started](#get-started)
@@ -125,8 +125,8 @@ Please make sure your code follows the style guideline defined in this repo, for
 
 ### List Your Project or Add/Edit Article
 
-- To list your project on dzcode.io, see [this tutorial](https://dzcode.io/Articles/How_To_Add_Your_Project_To_DzCode)
-- To add an article, see [this tutorial](https://dzcode.io/Articles/How_To_Add_Your_Article_To_DzCode)
+- To list your project on dzcode.io, see [this tutorial](https://dzcode.io/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io)
+- To add an article, see [this tutorial](https://dzcode.io/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io)
 
 ## License
 
