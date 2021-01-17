@@ -1,6 +1,7 @@
 import * as Github from "../../services/github";
 
 import { Request, Response } from "express";
+import { report } from "process";
 
 export const listRepositories = async (req: Request, res: Response) => {
   try {
@@ -32,7 +33,6 @@ export const listPullRequestsByRepository = async (
   }
 };
 
-// from merouane
 export const listStarsByRepository = async (req: Request, res: Response) => {
   try {
     const countStarts = await Github.listStars({
@@ -58,6 +58,45 @@ export const listStargazersByRepository = async (
       page: Number(req.params.page),
     });
     return res.status(200).json(Stargazers);
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(400);
+  }
+};
+
+export const listBranchesByRepository = async (req: Request, res: Response) => {
+  try {
+    const Branches = await Github.listBranches({
+      owner: "dzcode-io",
+      repo: req.params.repo,
+    });
+    return res.status(200).json(Branches);
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(400);
+  }
+};
+export const listCommitsByRepository = async (req: Request, res: Response) => {
+  try {
+    const Commits = await Github.listCommits({
+      owner: "dzcode-io",
+      repo: req.params.repo,
+    });
+    return res.status(200).json(Commits);
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(400);
+  }
+};
+
+export const listForksByRepository = async (req: Request, res: Response) => {
+  try {
+    const countForks = await Github.listForks({
+      owner: "dzcode-io",
+      repo: req.params.repo,
+    });
+    const { forks_count } = countForks;
+    return res.status(200).json({ forks_count });
   } catch (e) {
     console.log(e);
     return res.sendStatus(400);
