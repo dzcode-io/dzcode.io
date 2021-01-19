@@ -178,3 +178,37 @@ export const listForks = async ({
     return null;
   }
 };
+export const listIssues = async ({
+  owner,
+  repo,
+}: {
+  owner: string;
+  repo: string;
+}) => {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/repos/${owner}/${repo}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.log("listIssues =>", error.response.data);
+    return null;
+  }
+};
+export const listWatchers = async ({
+  owner,
+  repo,
+}: {
+  owner: string;
+  repo: string;
+}) => {
+  try {
+    const response = await axios.get(
+      `https://api.github.com/repos/${owner}/${repo}`,
+    );
+    return response.data;
+  } catch (error) {
+    console.log("listWatchers =>", error.response.data);
+    return null;
+  }
+};
