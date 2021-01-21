@@ -102,3 +102,29 @@ export const listForksByRepository = async (req: Request, res: Response) => {
     return res.sendStatus(400);
   }
 };
+export const listIssuesByRepository = async (req: Request, res: Response) => {
+  try {
+    const countIssues = await Github.listIssues({
+      owner: "dzcode-io",
+      repo: req.params.repo,
+    });
+    const { open_issues } = countIssues;
+    return res.status(200).json({ open_issues });
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(400);
+  }
+};
+export const listWatchersByRepository = async (req: Request, res: Response) => {
+  try {
+    const countWatchers = await Github.listWatchers({
+      owner: "dzcode-io",
+      repo: req.params.repo,
+    });
+    const { watchers_count } = countWatchers;
+    return res.status(200).json({ watchers_count });
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(400);
+  }
+};
