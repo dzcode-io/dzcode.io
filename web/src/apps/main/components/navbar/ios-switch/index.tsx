@@ -13,9 +13,11 @@ const useStyles = makeStyles((theme) =>
       margin: theme.spacing(1),
     },
     switchBase: {
-      padding: 1,
+      padding: "1px !important",
+      position: "absolute !important" as "absolute",
+      color: `${theme.palette.common.white} !important`,
       "&$checked": {
-        transform: "translateX(16px)",
+        transform: "translateX(15px)",
         color: theme.palette.common.white,
         "& + $track": {
           backgroundColor: "#52d869",
@@ -24,7 +26,7 @@ const useStyles = makeStyles((theme) =>
         },
       },
       "&$focusVisible $thumb": {
-        color: "#52d869",
+        color: "#52d869 !important",
         border: "6px solid #fff",
       },
     },
