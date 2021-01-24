@@ -7,7 +7,8 @@
     "DzCode",
     "Algerian_Administrative_Division",
     "Flutter_Reaction_Button",
-    "Algeria_Covid19_Tracker"
+    "Algeria_Covid19_Tracker",
+    "React_Native_Currency_Converter"
   ],
   "include": ["title", "description", "image", "githubURI"]
 }
