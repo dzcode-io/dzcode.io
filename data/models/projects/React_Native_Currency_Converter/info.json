@@ -1,7 +1,7 @@
 {
   "title": "Currency Converter React Native",
   "description": "Currency converters with real-time information on bank exchange rates with more than 35 country.",
-  "githubURI": "ilies-space/currency_converter_rn",
+  "githubURI": "https://github.com/ilies-space/currency_converter_rn",
   "slug": "Currency_Converter_React_Native",
   "image": "https://github.com/ilies-space/currency_converter_rn/blob/main/screenShots/ui_vision.jpg"
 }
