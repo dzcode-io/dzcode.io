@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
+  question: {
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+  },
   spacing: {
     marginBottom: theme.spacing(4),
   },
@@ -51,7 +55,9 @@ export const FaqPage: FC = () => {
                 style={{ marginBottom: -1 }}
               >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography>{question}</Typography>
+                  <Typography className={classes.question}>
+                    {question}
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Markdown>{answer}</Markdown>
