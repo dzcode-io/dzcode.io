@@ -126,7 +126,9 @@ module.exports = {
     host: "0.0.0.0",
     port,
     writeToDisk: false,
-    historyApiFallback: true,
+    historyApiFallback: {
+      disableDotRule: true,
+    },
   },
   // https://webpack.js.org/configuration/target/
   target: "web",
