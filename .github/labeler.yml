@@ -2,9 +2,21 @@
 api:
   - api/**/*
 
-  # Add 'data' to any changes within 'data' folder or any subfolders
+# Add 'data' to any changes within 'data' folder or any subfolders
 data:
   - data/**/*
+
+# Add 'project' to any changes within 'data/models/projects' folder or any subfolders
+project:
+  - data/models/projects/**/*
+
+# Add 'article' to any changes within 'data/models/articles' folder or any subfolders
+article:
+  - data/models/articles/**/*
+
+# Add 'documentation' to any changes within 'data/models/documentations' folder or any subfolders
+documentation:
+  - data/models/documentations/**/*
 
 # Add 'web' to any changes within 'web' folder or any subfolders
 web:
