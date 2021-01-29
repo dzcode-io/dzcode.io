@@ -82,6 +82,46 @@ export const fetchCurrentArticleContributors = (): ThunkResult<
 };
 
 /**
+ * Fetches the authors of the an current article
+ */
+export const fetchCurrentArticleAuthors = (): ThunkResult<
+  ArticlesPageState | ArticlesState
+> => async (dispatch, getState) => {
+  const { currentArticle } = getState().articlesPage;
+  const responses: GithubUser[] = [];
+
+  if (currentArticle) {
+    currentArticle.authors?.forEach(async (author) => {
+      const response = await Axios.get<GithubUser>(
+        apiURL + `/github/user/${author}`,
+      );
+
+      if (response.data.hasOwnProperty("error")) {
+        throw Error("error_fetching_contributors");
+      }
+
+      await responses.push(response.data);
+    });
+
+    console.log(responses);
+
+    const authorsDetails = responses;
+
+    // update our page state
+
+    dispatch({
+      type: "UPDATE_ARTICLES_PAGE",
+      payload: { currentArticle: { ...currentArticle, authorsDetails } },
+    });
+    // update our cache state
+    dispatch({
+      type: "UPDATE_ARTICLES",
+      payload: { list: [{ ...currentArticle, authorsDetails }] },
+    });
+  }
+};
+
+/**
  * Fetches the content of the current article
  */
 export const fetchCurrentArticle = (): ThunkResult<

@@ -3,9 +3,14 @@ import "./style.scss";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { FC, useEffect } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
+import {
+  fetchCurrentArticle,
+  fetchCurrentArticleAuthors,
+} from "src/apps/main/redux/actions/articles-page";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
+import { Authors } from "src/apps/main/components/authors";
 import { Contributors } from "src/apps/main/components/contributors";
 import { Divider } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
@@ -18,7 +23,6 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { SpeedDial } from "src/apps/main/components/speed-dial";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Typography from "@material-ui/core/Typography";
-import { fetchCurrentArticle } from "src/apps/main/redux/actions/articles-page";
 
 const actions = [
   { icon: <EditIcon />, name: "Edit This Article" },
@@ -60,9 +64,12 @@ export const Content: FC = () => {
   );
   const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
 
-  useEffect(() => {
-    dispatch(fetchCurrentArticle());
+  useEffect(async () => {
+    await dispatch(fetchCurrentArticle());
+
     setTimeout(() => window.FB && window.FB.XFBML.parse(), 3000);
+
+    dispatch(fetchCurrentArticleAuthors());
   }, []);
 
   const classes = useStyles();
@@ -116,6 +123,11 @@ export const Content: FC = () => {
             actions={actions}
             open
           />
+          <Divider className={classes.spacing} />
+          {/* Contributors */}
+          <Authors authorsDetails={currentArticle.authorsDetails} />
+          <Divider className={classes.spacing} />
+
           <Divider className={classes.spacing} />
           {/* Contributors */}
           <Contributors contributors={currentArticle.contributors} />
