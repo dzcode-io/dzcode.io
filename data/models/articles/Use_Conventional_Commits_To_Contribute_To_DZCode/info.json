@@ -1,5 +1,6 @@
 {
   "title": "Use conventional commits to contribute to dzcode",
   "description": "Conventional commits is a new standard to write a readable commit message for your next project and contribution.",
-  "image": "https://images8.alphacoders.com/430/thumb-1920-430944.jpg"
+  "image": "https://images8.alphacoders.com/430/thumb-1920-430944.jpg",
+  "authors": ["abderrahmaneMustapha"]
 }
