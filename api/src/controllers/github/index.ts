@@ -134,10 +134,15 @@ export const getGithubUserByUsername = async (req: Request, res: Response) => {
     const githubUser = await Github.getUser({
       username: req.params.username,
     });
-    const { name, avatar_url, login } = githubUser;
+    const { name, avatar_url, login, html_url } = githubUser;
     return res
       .status(200)
-      .json({ name: name, avatar: avatar_url, username: login });
+      .json({
+        name: name,
+        avatar_url: avatar_url,
+        login: login,
+        html_url: html_url,
+      });
   } catch (e) {
     console.log(e);
     return res.sendStatus(400);
