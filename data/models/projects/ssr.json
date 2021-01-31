@@ -10,7 +10,8 @@
     "Algeria_Covid19_Tracker",
     "React_Native_Currency_Converter",
     "Python_Complex",
-    "List_to_Tree_aka_l2t"
+    "List_to_Tree_aka_l2t",
+    "Voice_Translator_React_Native"
   ],
   "include": ["title", "description", "image"]
 }
