@@ -1,5 +1,6 @@
 {
   "title": "A python website no framework needed part 2",
   "description": "In this article i will show you how you can render html templates and handle POST requests.",
-  "image": "https://i.ibb.co/YcLQ5Pz/city-1487891-1920.jpg"
+  "image": "https://i.ibb.co/YcLQ5Pz/city-1487891-1920.jpg",
+  "authors": ["abderrahmaneMustapha"]
 }
