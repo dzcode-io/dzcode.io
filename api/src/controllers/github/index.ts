@@ -128,3 +128,21 @@ export const listWatchersByRepository = async (req: Request, res: Response) => {
     return res.sendStatus(400);
   }
 };
+
+export const getGithubUserByUsername = async (req: Request, res: Response) => {
+  try {
+    const githubUser = await Github.getUser({
+      username: req.params.username,
+    });
+    const { name, avatar_url, login, html_url } = githubUser;
+    return res.status(200).json({
+      name: name,
+      avatar_url: avatar_url,
+      login: login,
+      html_url: html_url,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.sendStatus(400);
+  }
+};

@@ -1,5 +1,6 @@
 {
   "title": "A python website no framework needed part 1",
   "description": "How you can create a website with python so you can understand how frameworks like flask django and more.",
-  "image": "https://i.ibb.co/YcLQ5Pz/city-1487891-1920.jpg"
+  "image": "https://i.ibb.co/YcLQ5Pz/city-1487891-1920.jpg",
+  "authors": ["abderrahmaneMustapha"]
 }
