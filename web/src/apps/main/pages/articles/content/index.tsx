@@ -64,12 +64,10 @@ export const Content: FC = () => {
   );
   const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
 
-  useEffect(async () => {
-    await dispatch(fetchCurrentArticle());
+  useEffect(() => {
+    dispatch(fetchCurrentArticle());
 
     setTimeout(() => window.FB && window.FB.XFBML.parse(), 3000);
-
-    dispatch(fetchCurrentArticleAuthors());
   }, []);
 
   const classes = useStyles();
@@ -124,9 +122,8 @@ export const Content: FC = () => {
             open
           />
           <Divider className={classes.spacing} />
-          {/* Contributors */}
-          <Authors authorsDetails={currentArticle.authorsDetails} />
-          <Divider className={classes.spacing} />
+          {/* AUhtors */}
+          <Authors githubAuthors={currentArticle.githubAuthors} />
 
           <Divider className={classes.spacing} />
           {/* Contributors */}

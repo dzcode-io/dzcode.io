@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface AuthorsProps {
-  authorsDetails?: GithubUser[];
+  githubAuthors?: GithubUser[];
 }
 
-export const Authors: FC<AuthorsProps> = ({ authorsDetails }) => {
+export const Authors: FC<AuthorsProps> = ({ githubAuthors }) => {
   const classes = useStyles();
 
   return (
@@ -32,8 +32,8 @@ export const Authors: FC<AuthorsProps> = ({ authorsDetails }) => {
         Authors
       </Typography>
       <div className={classes.avatarsContainer}>
-        {authorsDetails
-          ? authorsDetails.map((author, index) => (
+        {githubAuthors
+          ? githubAuthors.map((author, index) => (
               <LinkV2
                 key={`author-${index}`}
                 className={classes.avatar}
@@ -59,5 +59,5 @@ export const Authors: FC<AuthorsProps> = ({ authorsDetails }) => {
 };
 
 Authors.propTypes = {
-  authorsDetails: PropTypes.array,
+  githubAuthors: PropTypes.array,
 };
