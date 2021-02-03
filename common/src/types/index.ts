@@ -18,6 +18,7 @@ export interface Article {
   description?: string;
   content?: string;
   authors?: string[];
+  githubAuthors?: GithubUser[];
   contributors?: GithubUser[];
   views?: number;
 }
