@@ -126,7 +126,3 @@ inputs -----------------  b'text=azaze'
 [Do it your self framework](https://paste.readthedocs.io/en/latest/do-it-yourself-framework.html)
 
 [WSGI handle post request](http://wsgi.tutorial.codepoint.net/parsing-the-request-post)
-
-## Social footer
-
-By Toumi abderrahmane [twitter](https://twitter.com/Abderrahmaneend) . [github](https://github.com/abderrahmaneMustapha)
