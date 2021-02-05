@@ -102,7 +102,3 @@ in the next part, we will write a code to render an html file, create multiple p
 [The u wsgi project](https://uwsgi-docs.readthedocs.io/en/latest/)
 
 [Simple Python Framework from Scratch](https://mattscodecave.com/posts/simple-python-framework-from-scratch.html)
-
-## Social footer
-
-By Toumi abderrahmane [twitter](https://twitter.com/Abderrahmaneend) . [github](https://github.com/abderrahmaneMustapha)
