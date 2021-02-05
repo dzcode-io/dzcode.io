@@ -81,7 +81,3 @@ The **footer** should contain any information about Breaking Changes and is also
 - [Alvaro Torres Carrasco article](https://dev.to/alvarotorresc/conventional-commits-1an9)
 - [A Case For Conventional Commits in Git by Tom Feron](https://medium.com/better-programming/a-case-for-conventional-commits-in-git-d70c65245009)
 - [feat(conventional_commits): signal breaking changes in commit titles by apereo community](https://apereo.github.io/2018/07/07/indicate-breaks-in-conventional-commit-titles/)
-
-## Social footer
-
-By Toumi abderrahmane [twitter](https://twitter.com/Abderrahmaneend) . [github](https://github.com/abderrahmaneMustapha)

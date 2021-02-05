@@ -64,7 +64,3 @@ The open-source development model consists of 5 main steps:
 - Exposure: Active open-source contributions emphasize your expertise and knowledge more than certificates alone will ever do. By contributing to OSS you set skills out to notice by potential employers. Don’t tell them that you can do the job. Show them.
 
 - Networking: Because working on OSS involves interacting with others. Contributing to OSS will allow you to meet new interesting people, exchange ideas, and grow as a developer. Setting aside time to work on OSS can spark plenty of quality discussions, even end up in friendships, or finding a mentor.
-
-&nbsp;
-
-By Nour Tine (tinenourelhouda@gmail.com)
