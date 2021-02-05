@@ -67,15 +67,18 @@ export const fetchCurrentDocumentContributors = (): ThunkResult<
     }
 
     const contributors = response.data;
+
+    const mrCurrentDocument =
+    getState().learnPage.currentDocument || currentDocument;
     // update our page state
     dispatch({
       type: "UPDATE_LEARN_PAGE",
-      payload: { currentDocument: { ...currentDocument, contributors } },
+      payload: { currentDocument: { ...mrCurrentDocument, contributors } },
     });
     // update our cache state
     dispatch({
       type: "UPDATE_DOCUMENTATION",
-      payload: { list: [{ ...currentDocument, contributors }] },
+      payload: { list: [{ ...mrCurrentDocument, contributors }] },
     });
   }
 };
@@ -100,19 +103,19 @@ LearnPageState | DocumentationState
     });
 
     //  getting the  most recent  current article
-    const mrCurrentDpcument =
+    const mrCurrentDocument =
       getState().learnPage.currentDocument || currentDocument;
 
     // update our page state
 
     dispatch({
       type: "UPDATE_LEARN_PAGE",
-      payload: { currentDocument: { ...mrCurrentDpcument, githubAuthors } },
+      payload: { currentDocument: { ...mrCurrentDocument, githubAuthors } },
     });
     // update our cache state
     dispatch({
       type: "UPDATE_DOCUMENTATION",
-      payload: { list: [{ ...mrCurrentDpcument, githubAuthors }] },
+      payload: { list: [{ ...mrCurrentDocument, githubAuthors }] },
     });
   }
 };
