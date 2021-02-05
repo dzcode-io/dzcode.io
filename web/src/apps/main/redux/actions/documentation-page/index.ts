@@ -69,7 +69,7 @@ export const fetchCurrentDocumentContributors = (): ThunkResult<
     const contributors = response.data;
 
     const mrCurrentDocument =
-    getState().learnPage.currentDocument || currentDocument;
+      getState().learnPage.currentDocument || currentDocument;
     // update our page state
     dispatch({
       type: "UPDATE_LEARN_PAGE",
@@ -87,7 +87,7 @@ export const fetchCurrentDocumentContributors = (): ThunkResult<
  * Fetches the authors of the an current document
  */
 export const fetchCurrentArticleAuthors = (): ThunkResult<
-LearnPageState | DocumentationState
+  LearnPageState | DocumentationState
 > => async (dispatch, getState) => {
   const { currentDocument } = getState().learnPage;
 
@@ -142,7 +142,7 @@ export const fetchCurrentDocument = (): ThunkResult<
       payload: { currentDocument: cashedDocument },
     });
     // Fetch authors
-    dispatch(fetchCurrentArticleAuthors);
+    dispatch(fetchCurrentArticleAuthors());
     // Fetch contributors
     dispatch(fetchCurrentDocumentContributors());
   } else {
@@ -171,7 +171,7 @@ export const fetchCurrentDocument = (): ThunkResult<
         payload: { list: [currentDocument] },
       });
       // Fetch authors
-      dispatch(fetchCurrentArticleAuthors);
+      dispatch(fetchCurrentArticleAuthors());
       // Fetch contributors
       dispatch(fetchCurrentDocumentContributors());
     } catch (error) {
