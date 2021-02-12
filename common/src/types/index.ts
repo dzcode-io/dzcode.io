@@ -8,6 +8,7 @@ export interface Document {
   content?: string;
   authors?: string[];
   contributors?: GithubUser[];
+  githubAuthors?: GithubUser[];
   views?: number;
 }
 
