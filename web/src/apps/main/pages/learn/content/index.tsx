@@ -5,7 +5,7 @@ import { FC, useEffect } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 
-import {Authors} from "src/apps/main/components/authors"
+import { Authors } from "src/apps/main/components/authors";
 import { Contributors } from "src/apps/main/components/contributors";
 import { Divider } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
