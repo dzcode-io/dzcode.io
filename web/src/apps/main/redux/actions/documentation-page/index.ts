@@ -67,15 +67,55 @@ export const fetchCurrentDocumentContributors = (): ThunkResult<
     }
 
     const contributors = response.data;
+
+    const mrCurrentDocument =
+      getState().learnPage.currentDocument || currentDocument;
     // update our page state
     dispatch({
       type: "UPDATE_LEARN_PAGE",
-      payload: { currentDocument: { ...currentDocument, contributors } },
+      payload: { currentDocument: { ...mrCurrentDocument, contributors } },
     });
     // update our cache state
     dispatch({
       type: "UPDATE_DOCUMENTATION",
-      payload: { list: [{ ...currentDocument, contributors }] },
+      payload: { list: [{ ...mrCurrentDocument, contributors }] },
+    });
+  }
+};
+
+/**
+ * Fetches the authors of the an current document
+ */
+export const fetchCurrentArticleAuthors = (): ThunkResult<
+  LearnPageState | DocumentationState
+> => async (dispatch, getState) => {
+  const { currentDocument } = getState().learnPage;
+
+  if (currentDocument) {
+    const githubAuthors = (
+      await Promise.all(
+        currentDocument.authors?.map((author) => {
+          return Axios.get<GithubUser>(apiURL + `/github/user/${author}`);
+        }) || [],
+      )
+    ).map((response) => {
+      return response.data;
+    });
+
+    //  getting the  most recent  current article
+    const mrCurrentDocument =
+      getState().learnPage.currentDocument || currentDocument;
+
+    // update our page state
+
+    dispatch({
+      type: "UPDATE_LEARN_PAGE",
+      payload: { currentDocument: { ...mrCurrentDocument, githubAuthors } },
+    });
+    // update our cache state
+    dispatch({
+      type: "UPDATE_DOCUMENTATION",
+      payload: { list: [{ ...mrCurrentDocument, githubAuthors }] },
     });
   }
 };
@@ -101,6 +141,8 @@ export const fetchCurrentDocument = (): ThunkResult<
       type: "UPDATE_LEARN_PAGE",
       payload: { currentDocument: cashedDocument },
     });
+    // Fetch authors
+    dispatch(fetchCurrentArticleAuthors());
     // Fetch contributors
     dispatch(fetchCurrentDocumentContributors());
   } else {
@@ -128,6 +170,8 @@ export const fetchCurrentDocument = (): ThunkResult<
         type: "UPDATE_DOCUMENTATION",
         payload: { list: [currentDocument] },
       });
+      // Fetch authors
+      dispatch(fetchCurrentArticleAuthors());
       // Fetch contributors
       dispatch(fetchCurrentDocumentContributors());
     } catch (error) {
