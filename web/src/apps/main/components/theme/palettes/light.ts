@@ -2,7 +2,6 @@ import { PaletteOptions } from "@material-ui/core/styles/createPalette";
 import { colors } from "@material-ui/core";
 const contrast = "#282c34";
 export const lightPalette: PaletteOptions = {
-  mode: "light",
   primary: {
     contrastText: contrast,
     dark: "#2B9348",
