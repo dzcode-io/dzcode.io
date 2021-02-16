@@ -2,14 +2,19 @@ import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
 
 import { FC } from "react";
 import { LinkV2 } from "src/components/link-v2";
+import { StateInterface } from "src/apps/main/redux";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import Typography from "@material-ui/core/Typography";
 import prism from "react-syntax-highlighter/dist/esm/styles/prism/prism";
 import tomorrow from "react-syntax-highlighter/dist/esm/styles/prism/tomorrow";
+import { useSelector } from "react-redux";
 import { useTheme } from "@material-ui/core/styles";
 
 export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
   const theme = useTheme();
+  const darkMode = useSelector<StateInterface, boolean>(
+    (state) => state.settings.darkMode,
+  );
 
   return (
     <ReactMarkdown
@@ -64,7 +69,7 @@ export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
                       ? props.className.replace("lang-", "")
                       : null
                   }
-                  style={theme.palette.mode === "dark" ? tomorrow : prism}
+                  style={darkMode ? tomorrow : prism}
                 />
               );
             },
