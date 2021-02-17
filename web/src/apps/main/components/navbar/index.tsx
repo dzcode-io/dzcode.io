@@ -5,6 +5,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import Divider from "@material-ui/core/Divider";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import { IOSSwitch } from "./ios-switch";
@@ -183,8 +184,13 @@ export const Navbar: FC = () => {
                   {index > 0 && (
                     <Divider className={classes.divider} orientation="vertical" flexItem />
                   )}
-                  <LinkV2 color="inherit" href={section.url} className={classes.toolbarLink}>
-                    {section.title}
+                  <LinkV2
+                    color="inherit"
+                    key={section.title}
+                    href={section.url}
+                    className={classes.toolbarLink}
+                  >
+                    <FormattedMessage id={section.title} />
                   </LinkV2>
                 </Fragment>
               ))
