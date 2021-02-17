@@ -1,17 +1,63 @@
+/* eslint sort-imports:off */
 import { FC, useState } from "react";
-
-import Button from "@material-ui/core/Button";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { SettingsState } from "src/apps/main/redux/reducers/settings";
+//Mui
+import { Button } from "@material-ui/core";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
-export const LanguageSwitch: FC = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+const useStyles = makeStyles(() =>
+  createStyles({
+    mu: {
+      "& .MuiMenu-list": {
+        padding: "3px 10px",
+      },
+    },
+  }),
+);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+export const LanguageSwitch: FC = () => {
+  const { settings } = useSelector<StateInterface, StateInterface>(
+    (state) => state,
+  );
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const dispatch = useDispatch<Dispatch<SettingsState>>();
+  const classes = useStyles();
+
+  // List of availble lang flags
+  const flags: { [key: string]: string } = { en: "🇺🇸", fr: "🇫🇷 ", ar: "🇩🇿 " };
+
+  // Show the list and languages
+  const showMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  // Render the list all supported language except
+  const langMenu = (): any[] => {
+    const list: any[] = [];
+    Object.keys(flags).forEach((key) => {
+      if (key !== settings.lang)
+        list.push(
+          <>
+            <MenuItem id={key} onClick={selectLang}>
+              {flags[key] + " " + key.toUpperCase()}
+            </MenuItem>
+            <br />
+          </>,
+        );
+    });
+    return list;
+  };
+
+  const selectLang = (e: any) => {
+    if (e.currentTarget.id)
+      dispatch({
+        type: "UPDATE_LANGUAGE",
+        payload: { lang: e.currentTarget.id },
+      });
     setAnchorEl(null);
   };
   return (
@@ -20,26 +66,20 @@ export const LanguageSwitch: FC = () => {
         id="btnAnchor"
         aria-controls="simple-menu"
         aria-haspopup="true"
-        onClick={handleClick}
+        onClick={showMenu}
       >
-        🇺🇸 EN
+        {flags[settings.lang] + " " + settings.lang}
       </Button>
       <Menu
-        id="simple-menu"
-        // anchorEl={anchorEl}
+        className={classes.mu}
         anchorEl={document.getElementById("btnAnchor")}
         getContentAnchorEl={null}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={handleClose}
+        onClose={selectLang}
       >
-        <MenuItem onClick={handleClose}>🇫🇷 FR</MenuItem>
-        <br />
-        <MenuItem onClick={handleClose}>🇩🇿 AR</MenuItem>
+        {langMenu()}
       </Menu>
     </div>
   );
