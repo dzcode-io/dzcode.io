@@ -5,6 +5,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import { IOSSwitch } from "./ios-switch";
@@ -186,7 +187,8 @@ export const Navbar: FC = () => {
                   href={section.url}
                   className={classes.toolbarLink}
                 >
-                  {section.title}
+                  <FormattedMessage id={section.title} />
+                  {/* {section.title} */}
                 </LinkV2>
               ))
             : null}
