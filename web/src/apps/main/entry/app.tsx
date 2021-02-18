@@ -6,6 +6,7 @@ import { Route, RouteProps, Switch, useLocation } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import { Footer } from "src/apps/main/components/footer";
 import { Loading } from "src/components/loading";
+import Localization from "src/localization";
 import { Navbar } from "src/apps/main/components/navbar";
 import { Theme } from "src/apps/main/components/theme";
 import { getEnv } from "src/common/utils";
@@ -58,21 +59,23 @@ export const App: FC = () => {
       <div
         style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
       >
-        <Navbar />
-        <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
-          <Suspense fallback={<Loading />}>
-            <Switch>
-              {routes.map((route, index) => (
-                <Route
-                  {...route}
-                  key={`route-${index}`}
-                  component={lazy(() => route.import)}
-                />
-              ))}
-            </Switch>
-          </Suspense>
-        </Container>
-        <Footer />
+        <Localization>
+          <Navbar />
+          <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
+            <Suspense fallback={<Loading />}>
+              <Switch>
+                {routes.map((route, index) => (
+                  <Route
+                    {...route}
+                    key={`route-${index}`}
+                    component={lazy(() => route.import)}
+                  />
+                ))}
+              </Switch>
+            </Suspense>
+          </Container>
+          <Footer />
+        </Localization>
       </div>
     </Theme>
   );

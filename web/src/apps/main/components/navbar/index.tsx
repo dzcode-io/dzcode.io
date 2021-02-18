@@ -5,9 +5,11 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import { IOSSwitch } from "./ios-switch";
+import { LanguageSwitch } from "./lang-switch";
 import { LinkV2 } from "src/components/link-v2";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -29,14 +31,19 @@ const useStyles = makeStyles((theme) =>
     TopBar: {
       background: theme.palette.background.default,
       borderBottom: `1px solid ${theme.palette.background.paper}`,
-      margin: 0,
       padding: " 5px 0",
-
       display: "flex",
       justifyContent: "flex-end",
       [theme.breakpoints.down("sm")]: {
         padding: " 0 20px",
+        justifyContent: "space-between",
       },
+      maxWidth: theme.breakpoints.values.lg,
+      margin: "auto",
+    },
+    langAndTheme: {
+      display: "flex",
+      justifyContent: "flex-end",
     },
     switch: {
       marginLeft: "auto",
@@ -109,7 +116,7 @@ export const Navbar: FC = () => {
 
   return (
     <animated.header className={classes.root} style={springStyle}>
-      <div className={`${classes.toolbarContainer} ${classes.TopBar} `}>
+      <div className={`${classes.TopBar} `}>
         <Hidden smUp>
           <Typography
             component="h2"
@@ -124,22 +131,25 @@ export const Navbar: FC = () => {
             </LinkV2>
           </Typography>
         </Hidden>
-        <FormControlLabel
-          className={classes.switch}
-          control={
-            <IOSSwitch
-              checked={settings.darkMode ? true : false}
-              onChange={() => {
-                dispatch({
-                  type: "UPDATE_SETTINGS",
-                  payload: { darkMode: !settings.darkMode },
-                });
-              }}
-              name="darkMode"
-            />
-          }
-          label={settings.darkMode ? "🌙" : "🌞"}
-        />
+        <div className={`${classes.langAndTheme} `}>
+          <LanguageSwitch />
+          <FormControlLabel
+            className={classes.switch}
+            control={
+              <IOSSwitch
+                checked={settings.darkMode ? true : false}
+                onChange={() => {
+                  dispatch({
+                    type: "UPDATE_SETTINGS",
+                    payload: { darkMode: !settings.darkMode },
+                  });
+                }}
+                name="darkMode"
+              />
+            }
+            label={settings.darkMode ? "🌙" : "🌞"}
+          />
+        </div>
       </div>
       <Toolbar
         component="nav"
@@ -177,7 +187,8 @@ export const Navbar: FC = () => {
                   href={section.url}
                   className={classes.toolbarLink}
                 >
-                  {section.title}
+                  <FormattedMessage id={section.title} />
+                  {/* {section.title} */}
                 </LinkV2>
               ))
             : null}

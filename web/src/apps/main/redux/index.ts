@@ -33,7 +33,8 @@ export type ActionType =
   | "UPDATE_PROJECTS"
   | "UPDATE_PROJECTS_PAGE"
   | "UPDATE_LANDING_PAGE"
-  | "UPDATE_SETTINGS";
+  | "UPDATE_SETTINGS"
+  | "UPDATE_LANGUAGE";
 
 export interface Action<T> {
   type: ActionType;
