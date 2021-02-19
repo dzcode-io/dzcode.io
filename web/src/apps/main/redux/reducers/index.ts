@@ -1,6 +1,7 @@
 import { articles } from "./articles";
 import { articlesPage } from "./articles-page";
 import { combineReducers } from "redux";
+import { contributors } from "./contributors";
 import { documentation } from "./documentation";
 import { faqPage } from "./faq-page";
 import { footerComponent } from "./footer-component";
@@ -21,4 +22,5 @@ export const mainReducer = combineReducers({
   faqPage,
   navbarComponent,
   footerComponent,
+  contributors,
 });
