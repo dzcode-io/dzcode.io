@@ -171,3 +171,5 @@ export class ContributorEntity {
   @Type(() => RepositoryEntity)
   repositories!: RepositoryEntity[];
 }
+
+export type Language = "en" | "ar" | "fr";
