@@ -47,3 +47,5 @@ export interface GithubUser {
   html_url: string;
   type: string;
 }
+
+export type Language = "en" | "ar" | "fr";
