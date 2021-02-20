@@ -1,10 +1,11 @@
+import { FC, useState } from "react";
+import Button from "@material-ui/core/Button";
 import { Card } from "src/apps/main/components/card";
-import { FC } from "react";
 import { GithubUser } from "@dzcode.io/common/dist/types";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
+import { SimpleDialog } from "src/apps/main/components/dialog";
 import Typography from "@material-ui/core/Typography";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,12 +25,17 @@ interface CatalogProps {
 }
 
 export const Catalog: FC<CatalogProps> = ({ contributorsList }) => {
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   return (
     <>
       <Typography variant="h4" className={classes.header}>
-        Our Contributors
+        Our Team
       </Typography>
       <Grid container className={classes.root} spacing={4}>
         {contributorsList
@@ -46,9 +52,21 @@ export const Catalog: FC<CatalogProps> = ({ contributorsList }) => {
                     image: contributor.avatar_url || "",
                     title: contributor.login || "",
                     description: "",
-                    link: `https://www.github.com/${contributor.html_url}`,
-                    actionLabel: "Go To Code",
+                    button: (
+                      <Button
+                        variant="outlined"
+                        color="primary"
+                        onClick={handleClick}
+                      >
+                        Contributions
+                      </Button>
+                    ),
                   }}
+                />
+                <SimpleDialog
+                  projects={contributor.dzcode_projects}
+                  open={open}
+                  onClose={handleClick}
                 />
               </Grid>
             ))
