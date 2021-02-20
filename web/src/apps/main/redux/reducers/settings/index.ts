@@ -1,12 +1,14 @@
+import { Language } from "@dzcode.io/common/dist/types";
+
 export interface SettingsState {
   darkMode: boolean;
-  lang: string;
+  lang: Language;
 }
 
 export const settings = (
   state: SettingsState = {
     darkMode: localStorage.getItem("darkMode") !== "off",
-    lang: localStorage.getItem("lang") || "en",
+    lang: (localStorage.getItem("lang") as Language) || "en",
   },
   action: {
     type: string;
