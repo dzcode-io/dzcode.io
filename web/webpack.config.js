@@ -39,15 +39,15 @@ module.exports = {
     new Map(
       apps.map((app) => [
         app,
-        path.join(__dirname, "src/apps/", app, "/entry/index.tsx"),
+        __dirname + "/src/apps/" + "/" + app + "/" + "/entry/index.tsx",
       ]),
     ),
   ),
   // https://webpack.js.org/concepts/output/#multiple-entry-points
   output: {
-    chunkFilename: path.join(publicResourcesPath, "chunk.[contenthash].js"),
-    filename: path.join(publicResourcesPath, "bundle.[name].[contenthash].js"),
-    path: path.join(__dirname, distFolder, publicPath),
+    chunkFilename: publicResourcesPath + "/chunk.[contenthash].js",
+    filename: publicResourcesPath + "/bundle.[name].[contenthash].js",
+    path: __dirname + "/" + distFolder + "/" + publicPath,
     publicPath: publicPath,
   },
   module: {
@@ -86,7 +86,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              outputPath: path.join(publicResourcesPath, "assets"),
+              outputPath: publicResourcesPath + "/assets",
             },
           },
         ],
@@ -98,8 +98,8 @@ module.exports = {
     isDevelopment ? new webpack.HotModuleReplacementPlugin() : () => null,
     // https://webpack.js.org/plugins/mini-css-extract-plugin
     new MiniCssExtractPlugin({
-      filename: path.join(publicResourcesPath, "bundle.[contenthash].css"),
-      chunkFilename: path.join(publicResourcesPath, "chunk.[contenthash].css"),
+      filename: publicResourcesPath + "/bundle.[contenthash].css",
+      chunkFilename: publicResourcesPath + "/chunk.[contenthash].css",
     }),
     ...apps.reduce(
       (pV, app) => [
