@@ -17,7 +17,7 @@ interface CardInfo {
   title: string;
   description: string;
   link?: string;
-  button?: FC;
+  button?: Element;
   actionLabel?: string;
 }
 
