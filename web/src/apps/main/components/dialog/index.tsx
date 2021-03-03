@@ -41,7 +41,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
       open={open}
     >
       <DialogTitle id="simple-dialog-title">Contributions : </DialogTitle>
-      <List>
+      <List style={{ margin: "1em" }}>
         {projects
           ? projects.map((project) => (
               <ListItem button key={`contributors-project-${project.slug}`}>
