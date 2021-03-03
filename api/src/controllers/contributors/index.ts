@@ -1,7 +1,28 @@
 import * as Github from "../../services/github";
+import { GithubUser, Project } from "@dzcode.io/common/dist/types";
+import { RequestHandler, Response } from "express";
+import axios from "axios";
+import { fullstackConfig } from "../../config/index";
 
-import { GithubUser } from "@dzcode.io/common/dist/types";
-import { RequestHandler } from "express";
+export const listProjectsContributors: RequestHandler = async (req, res) => {
+  const response = await axios.get<Project[]>(
+    fullstackConfig.data + "/projects/list.c.json",
+  );
+  const owner_repo_list = response.data.map((element) => {
+    const info = element.githubURI?.split("/");
+    return { owner: info?.[0], repo: info?.[1] };
+  }, []);
+
+  const contributors = owner_repo_list.map(async (element) => {
+    return await Github.listContributors({
+      owner: element?.owner || "",
+      repo: element?.repo || "",
+      path: "",
+    });
+  }, []);
+
+  return res.status(200).json(contributors);
+};
 
 export const listContributors: RequestHandler = async (req, res) => {
   const slug = req.query.articleSlug || req.query.documentSlug;
