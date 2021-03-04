@@ -1,9 +1,9 @@
 import { Action } from "src/apps/main/redux";
-import { GithubUser } from "@dzcode.io/common/dist/types";
+
 import { updateCollection } from "src/common/utils";
 
 export interface ContributorsState {
-  contributorsList: GithubUser[];
+  contributorsList: { login: string; avatar_url: string; projects: string[] }[];
 }
 
 export const contributors = (
@@ -16,7 +16,11 @@ export const contributors = (
     case "UPDATE_CONTRIBUTORS":
       return {
         ...state,
-        contributorsList: updateCollection<GithubUser>(
+        contributorsList: updateCollection<{
+          login: string;
+          avatar_url: string;
+          projects: string[];
+        }>(
           state.contributorsList,
           action.payload.contributorsList || [],
           "name",

@@ -46,5 +46,5 @@ export interface GithubUser {
   // eslint-disable-next-line camelcase
   html_url: string;
   type: string;
-  dzcode_projects?: Project[];
+  projects?: string[];
 }

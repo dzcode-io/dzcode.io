@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 export interface SimpleDialogProps {
   open: boolean;
-  projects?: Project[];
+  projects?: string[];
   onClose: () => void;
 }
 
@@ -44,13 +44,13 @@ export function SimpleDialog(props: SimpleDialogProps) {
       <List style={{ margin: "1em" }}>
         {projects
           ? projects.map((project) => (
-              <ListItem button key={`contributors-project-${project.slug}`}>
+              <ListItem button key={`contributors-project-${project}`}>
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>
                     <PersonIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary={project.title} />
+                <ListItemText primary={project} />
               </ListItem>
             ))
           : "Nothing to show here"}

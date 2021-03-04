@@ -21,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface CatalogProps {
-  contributorsList: GithubUser[] | null;
+  contributorsList:
+    | { login: string; avatar_url: string; projects: string[] }[]
+    | null;
 }
 
 export const Catalog: FC<CatalogProps> = ({ contributorsList }) => {
@@ -39,37 +41,43 @@ export const Catalog: FC<CatalogProps> = ({ contributorsList }) => {
       </Typography>
       <Grid container className={classes.root} spacing={4}>
         {contributorsList
-          ? contributorsList.map((contributor: GithubUser) => (
-              <Grid
-                key={`project-${contributor.login}`}
-                item
-                xs={12}
-                md={6}
-                lg={4}
-              >
-                <Card
-                  info={{
-                    image: contributor.avatar_url || "",
-                    title: contributor.login || "",
-                    description: "",
-                    button: (
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        onClick={handleClick}
-                      >
-                        Contributions
-                      </Button>
-                    ),
-                  }}
-                />
-                <SimpleDialog
-                  projects={contributor.dzcode_projects}
-                  open={open}
-                  onClose={handleClick}
-                />
-              </Grid>
-            ))
+          ? contributorsList.map(
+              (contributor: {
+                login: string;
+                avatar_url: string;
+                projects: string[];
+              }) => (
+                <Grid
+                  key={`project-${contributor.login}`}
+                  item
+                  xs={12}
+                  md={6}
+                  lg={4}
+                >
+                  <Card
+                    info={{
+                      image: contributor.avatar_url || "",
+                      title: contributor.login || "",
+                      description: "",
+                      button: (
+                        <Button
+                          variant="outlined"
+                          color="primary"
+                          onClick={handleClick}
+                        >
+                          Contributions
+                        </Button>
+                      ),
+                    }}
+                  />
+                  <SimpleDialog
+                    projects={contributor.projects}
+                    open={open}
+                    onClose={handleClick}
+                  />
+                </Grid>
+              ),
+            )
           : [1, 2, 3].map((id) => (
               <Grid key={`project-${id}`} item>
                 <Card />
