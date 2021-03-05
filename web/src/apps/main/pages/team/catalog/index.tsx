@@ -1,10 +1,8 @@
 import { FC, useState } from "react";
-import Button from "@material-ui/core/Button";
-import { Card } from "src/apps/main/components/card";
-import { GithubUser } from "@dzcode.io/common/dist/types";
+import Card from "@material-ui/core/Card";
+import { Contributors } from "src/apps/main/components/contributors";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
-import { SimpleDialog } from "src/apps/main/components/dialog";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -27,12 +25,7 @@ interface CatalogProps {
 }
 
 export const Catalog: FC<CatalogProps> = ({ contributorsList }) => {
-  const [open, setOpen] = useState(false);
   const classes = useStyles();
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
 
   return (
     <>
@@ -54,27 +47,7 @@ export const Catalog: FC<CatalogProps> = ({ contributorsList }) => {
                   md={6}
                   lg={4}
                 >
-                  <Card
-                    info={{
-                      image: contributor.avatar_url || "",
-                      title: contributor.login || "",
-                      description: "",
-                      button: (
-                        <Button
-                          variant="outlined"
-                          color="primary"
-                          onClick={handleClick}
-                        >
-                          Contributions
-                        </Button>
-                      ),
-                    }}
-                  />
-                  <SimpleDialog
-                    projects={contributor.projects}
-                    open={open}
-                    onClose={handleClick}
-                  />
+                  <Contributors contributor={contributor}></Contributors>
                 </Grid>
               ),
             )

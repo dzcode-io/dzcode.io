@@ -1,11 +1,9 @@
-import Avatar from "@material-ui/core/Avatar";
-import { FC } from "react";
-import { GithubUser } from "@dzcode.io/common/dist/types";
-import { LinkV2 } from "src/components/link-v2";
+import { FC, useState } from "react";
+import { Card } from "src/apps/main/components/card";
+import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Tooltip from "@material-ui/core/Tooltip";
-import Typography from "@material-ui/core/Typography";
+import { SimpleDialog } from "src/apps/main/components/dialog";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,47 +18,44 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface ContributorsProps {
-  contributors?: GithubUser[];
+  contributor: { login: string; avatar_url: string; projects: string[] };
 }
 
-export const Contributors: FC<ContributorsProps> = ({ contributors }) => {
+export const Contributors: FC<ContributorsProps> = ({ contributor }) => {
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div>
-      <Typography variant="h6" color="textSecondary">
-        Contributors
-      </Typography>
-      <div className={classes.avatarsContainer}>
-        {contributors
-          ? contributors.map((contributor, index) => (
-              <LinkV2
-                key={`contributor-${index}`}
-                className={classes.avatar}
-                href={contributor.html_url}
-              >
-                <Tooltip
-                  title={contributor.login}
-                  aria-label={contributor.login}
-                >
-                  <Avatar src={contributor.avatar_url} />
-                </Tooltip>
-              </LinkV2>
-            ))
-          : [1, 2, 3].map((item, index) => (
-              <Skeleton
-                key={`contributor-${index}`}
-                className={classes.avatar}
-                variant="circle"
-                width={40}
-                height={40}
-              />
-            ))}
-      </div>
-    </div>
+    <>
+      <Card
+        info={{
+          image: contributor.avatar_url || "",
+          title: contributor.login || "",
+          description: "",
+          actionLabel: "Contributions",
+          handleOpen: handleOpen,
+        }}
+      />
+
+      {open && (
+        <SimpleDialog
+          projects={contributor.projects}
+          open={open}
+          onClose={handleClose}
+        />
+      )}
+    </>
   );
 };
 
 Contributors.propTypes = {
-  contributors: PropTypes.array,
+  contributor: PropTypes.any,
 };

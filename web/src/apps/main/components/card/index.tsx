@@ -17,7 +17,7 @@ interface CardInfo {
   title: string;
   description: string;
   link?: string;
-  button?: Element;
+  handleOpen: () => void;
   actionLabel?: string;
 }
 
@@ -63,8 +63,10 @@ export const Card: FC<CardProps> = ({ info }) => {
             </Typography>
           </CardContent>
           <CardActions>
-            {info.button ? (
-              <>{info.button}</>
+            {!info.link ? (
+              <Button onClick={info.handleOpen} size="small" color="primary">
+                {info.actionLabel}
+              </Button>
             ) : (
               <LinkV2 href={info.link}>
                 <Button size="small" color="primary">
@@ -104,6 +106,6 @@ Card.propTypes = {
     description: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
     actionLabel: PropTypes.string.isRequired,
-    button: PropTypes.any.isRequired,
+    handleOpen: PropTypes.any.isRequired,
   }),
 };

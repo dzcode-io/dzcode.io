@@ -53,9 +53,9 @@ export const listContributors = async ({
   repo: string;
   path: string;
 }) => {
-  const url = `https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`;
+  let url = `https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`;
   if (path == "") {
-    const url = `https://api.github.com/repos/${owner}/${repo}/contributors`;
+    url = `https://api.github.com/repos/${owner}/${repo}/contributors`;
   }
 
   try {
