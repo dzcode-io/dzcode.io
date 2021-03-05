@@ -60,9 +60,6 @@ export const listContributors = async ({
 
   try {
     const response = await axios.get<GithubUser[]>(url, {
-      headers: {
-        authorization: "token d926bcb4c816ddcbe72422ff41d99176f35dd497",
-      },
       // eslint-disable-next-line camelcase
       params: { state: "all", per_page: 50 },
     });
