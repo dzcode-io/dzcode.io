@@ -10,6 +10,7 @@ export const navbarComponent = (
       { url: "/Learn", title: "Learn" },
       { url: "/Projects", title: "Projects" },
       { url: "/Articles", title: "Articles" },
+      { url: "/Team", title: "Team" },
       { url: "/FAQ", title: "FAQ" },
     ],
   },
