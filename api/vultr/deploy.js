@@ -22,7 +22,7 @@ let logs;
 const sshServer = isProduction
   ? process.env.SSH_ADDRESS_PRD
   : process.env.SSH_ADDRESS_STG;
-const appPath = "/root/app";
+const appPath = "~/app";
 const sshPrefix = "ssh -o StrictHostKeyChecking=no " + sshServer + " ";
 
 // Check for existing containers
