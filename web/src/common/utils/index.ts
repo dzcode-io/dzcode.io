@@ -1,4 +1,4 @@
-import { hasIn, mergeDeep } from "immutable";
+import { hasIn } from "immutable";
 
 export const getEnv = () => {
   switch (location.hostname) {
@@ -24,26 +24,24 @@ export const updateCollection = <T>(
   updatesCollection: T[],
   identifierField: string,
 ) => {
-  // BUG: mergeDeep adds fields to arrays instead of overwriting them!!
+  const clonedUC: T[] = Object.assign([], updatesCollection);
+
   const arrayToReturn: T[] = [];
   for (const original of originalCollection) {
     let updated: T | null = null;
-    for (const updateIndex in updatesCollection) {
+    for (const updateIndex in clonedUC) {
       // check if it's there and it's not undefined as well
-      if (
-        updatesCollection.hasOwnProperty(updateIndex) &&
-        updatesCollection[updateIndex]
-      ) {
-        const update = updatesCollection[updateIndex];
+      if (clonedUC.hasOwnProperty(updateIndex) && clonedUC[updateIndex]) {
+        const update = clonedUC[updateIndex];
         // found similar update:
         if (
           (update as Record<string, unknown>)[identifierField] ===
           (original as Record<string, unknown>)[identifierField]
         ) {
           // deep merge original with update to updated
-          updated = mergeDeep(original, update);
-          // delete update from updatesCollection
-          delete updatesCollection[updateIndex];
+          updated = Object.assign({}, original, update);
+          // delete update from clonedUpdatesCollection
+          delete clonedUC[updateIndex];
           break;
         }
       }
@@ -51,19 +49,16 @@ export const updateCollection = <T>(
     // no similar update found:
     if (updated === null) {
       // deep merge original with {} to updated; basically converting to JS object without mutation
-      updated = mergeDeep(original, {});
+      updated = Object.assign({}, original);
     }
     // add updated to arrayToReturn
     arrayToReturn.push(updated);
   }
   // add the new updates to arrayToReturn
-  for (const updateIndex in updatesCollection) {
+  for (const updateIndex in clonedUC) {
     // check if it's there and it's not undefined as well
-    if (
-      updatesCollection.hasOwnProperty(updateIndex) &&
-      updatesCollection[updateIndex]
-    ) {
-      const updated = mergeDeep(updatesCollection[updateIndex], {});
+    if (clonedUC.hasOwnProperty(updateIndex) && clonedUC[updateIndex]) {
+      const updated = Object.assign({}, clonedUC[updateIndex]);
       // add update to arrayToReturn
       arrayToReturn.push(updated);
     }
