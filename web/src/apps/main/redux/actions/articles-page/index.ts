@@ -58,68 +58,68 @@ export const fetchCurrentArticleContributors = (): ThunkResult<
   ArticlesPageState | ArticlesState
 > => async (dispatch, getState) => {
   const { currentArticle } = getState().articlesPage;
-  if (currentArticle && !currentArticle.contributors) {
-    const response = await Axios.get<GithubUser[]>(
-      apiURL + `/contributors?articleSlug=${currentArticle.slug}`,
-    );
+  if (!currentArticle || Array.isArray(currentArticle.contributors)) return;
 
-    if (response.data.hasOwnProperty("error")) {
-      throw Error("error_fetching_contributors");
-    }
+  const response = await Axios.get<GithubUser[]>(
+    apiURL + `/contributors?articleSlug=${currentArticle.slug}`,
+  );
 
-    const contributors = response.data;
-
-    //  getting the  most recent  current article
-    const mrCurrentArticle =
-      getState().articlesPage.currentArticle || currentArticle;
-    // update our page state
-    dispatch({
-      type: "UPDATE_ARTICLES_PAGE",
-      payload: { currentArticle: { ...mrCurrentArticle, contributors } },
-    });
-    // update our cache state
-    dispatch({
-      type: "UPDATE_ARTICLES",
-      payload: { list: [{ ...mrCurrentArticle, contributors }] },
-    });
+  if (response.data.hasOwnProperty("error")) {
+    throw Error("error_fetching_contributors");
   }
+
+  const contributors = response.data;
+
+  //  getting the  most recent  current article
+  const mrCurrentArticle =
+    getState().articlesPage.currentArticle || currentArticle;
+  // update our page state
+  dispatch({
+    type: "UPDATE_ARTICLES_PAGE",
+    payload: { currentArticle: { ...mrCurrentArticle, contributors } },
+  });
+  // update our cache state
+  dispatch({
+    type: "UPDATE_ARTICLES",
+    payload: { list: [{ ...mrCurrentArticle, contributors }] },
+  });
 };
 
 /**
  * Fetches the authors of the an current article
  */
-export const fetchCurrentArticleAuthors = (): ThunkResult<
+const fetchCurrentArticleAuthors = (): ThunkResult<
   ArticlesPageState | ArticlesState
 > => async (dispatch, getState) => {
   const { currentArticle } = getState().articlesPage;
 
-  if (currentArticle) {
-    const githubAuthors = (
-      await Promise.all(
-        currentArticle.authors?.map((author) => {
-          return Axios.get<GithubUser>(apiURL + `/github/user/${author}`);
-        }) || [],
-      )
-    ).map((response) => {
-      return response.data;
-    });
+  if (!currentArticle || Array.isArray(currentArticle.githubAuthors)) return;
 
-    //  getting the  most recent  current article
-    const mrCurrentArticle =
-      getState().articlesPage.currentArticle || currentArticle;
+  const githubAuthors = (
+    await Promise.all(
+      currentArticle.authors?.map((author) => {
+        return Axios.get<GithubUser>(apiURL + `/github/user/${author}`);
+      }) || [],
+    )
+  ).map((response) => {
+    return response.data;
+  });
 
-    // update our page state
+  //  getting the  most recent  current article
+  const mrCurrentArticle =
+    getState().articlesPage.currentArticle || currentArticle;
 
-    dispatch({
-      type: "UPDATE_ARTICLES_PAGE",
-      payload: { currentArticle: { ...mrCurrentArticle, githubAuthors } },
-    });
-    // update our cache state
-    dispatch({
-      type: "UPDATE_ARTICLES",
-      payload: { list: [{ ...mrCurrentArticle, githubAuthors }] },
-    });
-  }
+  // update our page state
+
+  dispatch({
+    type: "UPDATE_ARTICLES_PAGE",
+    payload: { currentArticle: { ...mrCurrentArticle, githubAuthors } },
+  });
+  // update our cache state
+  dispatch({
+    type: "UPDATE_ARTICLES",
+    payload: { list: [{ ...mrCurrentArticle, githubAuthors }] },
+  });
 };
 
 /**

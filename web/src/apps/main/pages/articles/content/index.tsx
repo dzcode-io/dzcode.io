@@ -3,10 +3,6 @@ import "./style.scss";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { FC, useEffect } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import {
-  fetchCurrentArticle,
-  fetchCurrentArticleAuthors,
-} from "src/apps/main/redux/actions/articles-page";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
@@ -23,6 +19,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { SpeedDial } from "src/apps/main/components/speed-dial";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Typography from "@material-ui/core/Typography";
+import { fetchCurrentArticle } from "src/apps/main/redux/actions/articles-page";
 
 const actions = [
   { icon: <EditIcon />, name: "Edit This Article" },
