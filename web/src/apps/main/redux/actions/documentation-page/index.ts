@@ -53,34 +53,35 @@ export const fetchDocumentationList = (): ThunkResult<LearnPageState> => async (
 /**
  * Fetches the contributors of the an current document
  */
-export const fetchCurrentDocumentContributors = (): ThunkResult<
+const fetchCurrentDocumentContributors = (): ThunkResult<
   LearnPageState | DocumentationState
 > => async (dispatch, getState) => {
   const { currentDocument } = getState().learnPage;
-  if (currentDocument && !currentDocument.contributors) {
-    const response = await Axios.get<GithubUser[]>(
-      apiURL + `/contributors?documentSlug=${currentDocument.slug}`,
-    );
 
-    if (response.data.hasOwnProperty("error")) {
-      throw Error("error_fetching_contributors");
-    }
+  if (!currentDocument || Array.isArray(currentDocument.contributors)) return;
 
-    const contributors = response.data;
+  const response = await Axios.get<GithubUser[]>(
+    apiURL + `/contributors?documentSlug=${currentDocument.slug}`,
+  );
 
-    const mrCurrentDocument =
-      getState().learnPage.currentDocument || currentDocument;
-    // update our page state
-    dispatch({
-      type: "UPDATE_LEARN_PAGE",
-      payload: { currentDocument: { ...mrCurrentDocument, contributors } },
-    });
-    // update our cache state
-    dispatch({
-      type: "UPDATE_DOCUMENTATION",
-      payload: { list: [{ ...mrCurrentDocument, contributors }] },
-    });
+  if (response.data.hasOwnProperty("error")) {
+    throw Error("error_fetching_contributors");
   }
+
+  const contributors = response.data;
+
+  const mrCurrentDocument =
+    getState().learnPage.currentDocument || currentDocument;
+  // update our page state
+  dispatch({
+    type: "UPDATE_LEARN_PAGE",
+    payload: { currentDocument: { ...mrCurrentDocument, contributors } },
+  });
+  // update our cache state
+  dispatch({
+    type: "UPDATE_DOCUMENTATION",
+    payload: { list: [{ ...mrCurrentDocument, contributors }] },
+  });
 };
 
 /**
