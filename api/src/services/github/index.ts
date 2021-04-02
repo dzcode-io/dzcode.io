@@ -1,4 +1,4 @@
-import { ListContributorsResponse } from "./types";
+import { GithubUser } from "@dzcode.io/common/dist/types";
 import axios from "axios";
 
 export const listOrganizationRepositories = async ({
@@ -53,27 +53,23 @@ export const listContributors = async ({
   repo: string;
   path: string;
 }) => {
+  let url = `https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`;
+  if (path == "") {
+    url = `https://api.github.com/repos/${owner}/${repo}/contributors`;
+  }
+
   try {
-    const response = await axios.get<ListContributorsResponse>(
-      `https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`,
-      {
-        // eslint-disable-next-line camelcase
-        params: { state: "all", per_page: 10 },
-      },
-    );
-    const contributors = response.data.map(
-      ({ committer: { login, avatar_url, html_url, type, id } }) => ({
-        id,
-        login,
-        avatar_url,
-        html_url,
-        type,
-      }),
-    );
+    const response = await axios.get<GithubUser[]>(url, {
+      // eslint-disable-next-line camelcase
+      params: { state: "all", per_page: 50 },
+    });
+    const contributors = await response.data.map((element: any) => {
+      return { login: element.login, avatar_url: element.avatar_url };
+    }, {});
 
     return contributors;
   } catch (error) {
-    console.log("listContributors ERROR =>", error.response.data);
+    console.log("listContributors ERROR =>", error);
     return null;
   }
 };

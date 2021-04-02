@@ -33,9 +33,14 @@ const routes: RouteInterface[] = [
     path: "/Articles",
   },
   {
+    import: import("src/apps/main/pages/team"),
+    path: "/Team",
+  },
+  {
     import: import("src/apps/main/pages/faq"),
     path: "/FAQ",
   },
+
   {
     import: import("src/apps/main/pages/not-found"),
   },
