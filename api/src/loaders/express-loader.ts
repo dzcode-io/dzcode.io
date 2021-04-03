@@ -3,11 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import morgan from "morgan";
 
-export default async function expressLoader({
-  app,
-}: {
-  app: Application;
-}): Promise<void> {
+export default function expressLoader({ app }: { app: Application }): void {
   app.use(
     cors({
       allowedHeaders:
