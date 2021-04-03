@@ -1,7 +1,7 @@
 import express from "express";
 import { fullstackConfig } from "./config";
-import routes from "./routes";
 import loader from "./loaders";
+import routes from "./routes";
 
 const app = express();
 const port = process.env.PORT || fullstackConfig.api.port;
