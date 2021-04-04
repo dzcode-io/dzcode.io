@@ -1,4 +1,4 @@
-import { ConfigService } from "../config/service";
+import { ConfigService } from "../../config/service";
 import { Container } from "typedi";
 import { Loader } from ".";
 import cors from "cors";
