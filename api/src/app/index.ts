@@ -1,19 +1,23 @@
 import "reflect-metadata";
 
+import { createExpressServer, useContainer } from "routing-controllers";
+
+import { Application } from "express";
 import { ConfigService } from "../config/service";
-import { Container } from "typedi";
-import express from "express";
-import { rootLoader } from "./loaders";
+import Container from "typedi";
+import { ContributorController } from "../contributor/controller";
 
-// create express app
-const app = express();
+// Use typedi container
+useContainer(Container);
 
-// add loaders
-rootLoader({ app });
+// Create the app
+const app: Application = createExpressServer({
+  controllers: [ContributorController],
+});
 
-// start the app
 const port = Container.get(ConfigService).env().PORT;
 
-app.listen(port, () =>
-  console.log(`Api server listening at http://localhost:${port}`),
-);
+// Start it
+app.listen(port, () => {
+  console.log("Server listening on port: " + port);
+});
