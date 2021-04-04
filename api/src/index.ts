@@ -1,16 +1,19 @@
+import "reflect-metadata";
+
+import { ConfigService } from "./config/service";
+import { Container } from "typedi";
 import express from "express";
-import { fullstackConfig } from "./config";
-import loader from "./loaders";
-import routes from "./routes";
+import { rootLoader } from "./loaders";
 
+// create express app
 const app = express();
-const port = process.env.PORT || fullstackConfig.api.port;
 
-loader.init({ app });
+// add loaders
+rootLoader({ app });
 
-app.use(routes);
+// start the app
+const port = Container.get(ConfigService).env().PORT;
 
-// Start the server
 app.listen(port, () =>
   console.log(`Api server listening at http://localhost:${port}`),
 );
