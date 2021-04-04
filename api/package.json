@@ -15,8 +15,8 @@
     "test:cov:watch": "jest src --coverage --watchAll",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "dev": "nodemon dist/index.js",
-    "start": "node dist/index.js",
+    "dev": "nodemon dist/app/index.js",
+    "start": "node dist/app/index.js",
     "deploy": "yarn build && rimraf ./vultr/build && node vultr/deploy.js production",
     "deploy:stg": "yarn build && rimraf ./vultr/build && node vultr/deploy.js staging"
   },

@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { ConfigService } from "./config/service";
+import { ConfigService } from "../config/service";
 import { Container } from "typedi";
 import express from "express";
 import { rootLoader } from "./loaders";
