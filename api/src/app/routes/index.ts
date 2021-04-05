@@ -1,8 +1,11 @@
 import { Request, Response, Router } from "express";
 
 import api from "./api";
+import { rootLoader } from "../loaders";
 
 const router: Router = Router();
+
+rootLoader({ app: router });
 
 // API routes
 router.use("/", api);

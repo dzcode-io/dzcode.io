@@ -1,12 +1,8 @@
-import { Application } from "express";
-import { loggerLoader } from "./logger";
+import { Router } from "express";
 import { parserLoader } from "./parser";
-import { securityLoader } from "./security";
 
 export const rootLoader: Loader = (params) => {
-  loggerLoader(params);
-  securityLoader(params);
   parserLoader(params);
 };
 
-export type Loader = (params: { app: Application }) => void;
+export type Loader = (params: { app: Router }) => void;
