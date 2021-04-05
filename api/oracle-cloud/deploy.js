@@ -5,13 +5,19 @@ const cp = require("child_process");
 
 // Coping files
 console.log("⚙️  Preparing files ...");
-fse.copySync("../package.json", "./vultr/build/package.json");
-fse.copySync("../common/package.json", "./vultr/build/common/package.json");
-fse.copySync("../common/dist", "./vultr/build/common/dist");
-fse.copySync("./package.json", "./vultr/build/api/package.json");
-fse.copySync("./dist", "./vultr/build/api/dist");
-fse.copySync("./vultr/docker-compose.yml", "./vultr/build/docker-compose.yml");
-fse.copySync("./vultr/Dockerfile", "./vultr/build/Dockerfile");
+fse.copySync("../package.json", "./oracle-cloud/build/package.json");
+fse.copySync(
+  "../common/package.json",
+  "./oracle-cloud/build/common/package.json",
+);
+fse.copySync("../common/dist", "./oracle-cloud/build/common/dist");
+fse.copySync("./package.json", "./oracle-cloud/build/api/package.json");
+fse.copySync("./dist", "./oracle-cloud/build/api/dist");
+fse.copySync(
+  "./oracle-cloud/docker-compose.yml",
+  "./oracle-cloud/build/docker-compose.yml",
+);
+fse.copySync("./oracle-cloud/Dockerfile", "./oracle-cloud/build/Dockerfile");
 console.log("✅ files copied\n");
 
 // Deploying with ssh
@@ -48,7 +54,9 @@ logs = cp.execSync(sshPrefix + '"rm -f -r ' + appPath + '"');
 logs = cp.execSync(sshPrefix + '"mkdir ' + appPath + '"');
 
 console.log("⤴️  Uploading new code ...");
-logs = cp.execSync("rsync -r vultr/build/* " + sshServer + ":" + appPath);
+logs = cp.execSync(
+  "rsync -r oracle-cloud/build/* " + sshServer + ":" + appPath,
+);
 console.log("✅ New code uploaded.");
 
 console.log("\n⚙️  Starting up the app");

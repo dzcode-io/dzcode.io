@@ -17,8 +17,8 @@
     "build:watch": "tsc --watch",
     "dev": "nodemon dist/app/index.js",
     "start": "node dist/app/index.js",
-    "deploy": "yarn build && rimraf ./vultr/build && node vultr/deploy.js production",
-    "deploy:stg": "yarn build && rimraf ./vultr/build && node vultr/deploy.js staging"
+    "deploy": "yarn build && rimraf ./oracle-cloud/build && node oracle-cloud/deploy.js production",
+    "deploy:stg": "yarn build && rimraf ./oracle-cloud/build && node oracle-cloud/deploy.js staging"
   },
   "repository": {
     "type": "git",
