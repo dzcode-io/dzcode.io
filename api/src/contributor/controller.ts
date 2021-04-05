@@ -31,7 +31,7 @@ export class ContributorController {
 
     // filter and sort contributors:
     const uniqUsernames: Record<string, number> = {};
-    const contributors = [...(responses[0] || []), ...(responses[1] || [])]
+    const contributors = [...responses[0], ...responses[1]]
       .reduce<GithubUser[]>((pV, cV) => {
         if (uniqUsernames[cV.login]) {
           uniqUsernames[cV.login]++;
