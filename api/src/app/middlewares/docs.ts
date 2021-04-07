@@ -17,7 +17,7 @@ export class DocsMiddleware implements ExpressMiddlewareInterface {
     // Parse class-validator classes into JSON Schema:
     const schemas = validationMetadatasToSchemas({
       refPointerPrefix: "#/components/schemas/",
-      classTransformerMetadataStorage: defaultMetadataStorage
+      classTransformerMetadataStorage: defaultMetadataStorage,
     });
     // Parse routing-controllers classes into OpenAPI spec:
     const storage = getMetadataArgsStorage();
