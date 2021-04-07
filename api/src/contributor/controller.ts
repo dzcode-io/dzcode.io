@@ -1,8 +1,8 @@
 import { Controller, Get, QueryParam } from "routing-controllers";
-
-import { GetContributorsResponse } from "./type";
+import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
+import { GetContributorsResponseDto } from "./types";
 import { GithubService } from "../github/service";
-import { GithubUser } from "@dzcode.io/common/dist/types";
+import { GithubUserDto } from "../github/dto";
 import { Service } from "typedi";
 
 @Service()
@@ -11,9 +11,11 @@ export class ContributorController {
   constructor(private readonly githubService: GithubService) {}
 
   @Get("/")
+  @OpenAPI({ summary: "Return a list of github users that contributed to data/[path] directory" })
+  @ResponseSchema(GetContributorsResponseDto)
   public async getContributor(
     @QueryParam("path") path: string,
-  ): Promise<GetContributorsResponse> {
+  ): Promise<GetContributorsResponseDto> {
     const responses = await Promise.all([
       // current place for data:
       this.githubService.listContributors({
@@ -32,7 +34,7 @@ export class ContributorController {
     // filter and sort contributors:
     const uniqUsernames: Record<string, number> = {};
     const contributors = [...responses[0], ...responses[1]]
-      .reduce<GithubUser[]>((pV, cV) => {
+      .reduce<GithubUserDto[]>((pV, cV) => {
         if (uniqUsernames[cV.login]) {
           uniqUsernames[cV.login]++;
           return pV;

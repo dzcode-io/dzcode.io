@@ -5,7 +5,7 @@ import {
 } from "../../test/mocks";
 
 import { ContributorController } from "./controller";
-import { GetContributorsResponse } from "./type";
+import { GetContributorsResponseDto } from "./types";
 import { GithubService } from "../github/service";
 import { mock } from "jest-mock-extended";
 
@@ -45,7 +45,7 @@ describe("ContributorController", () => {
 
     const contributors = await contributorController.getContributor("/");
 
-    expect(contributors).toMatchObject<GetContributorsResponse>({
+    expect(contributors).toMatchObject<GetContributorsResponseDto>({
       contributors: contributorsMock,
     });
   });
