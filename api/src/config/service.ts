@@ -1,10 +1,10 @@
-import { ENV } from "./dto";
+import { ENVDto } from "./dto";
 import { Service } from "typedi";
 import { config } from "dotenv";
 import { plainToClass } from "class-transformer";
 import { validateSync } from "class-validator";
 
-let _env: ENV;
+let _env: ENVDto;
 
 @Service()
 export class ConfigService {
@@ -16,7 +16,7 @@ export class ConfigService {
 
   private generateConfig = () => {
     const _config = config();
-    const output = plainToClass(ENV, {
+    const output = plainToClass(ENVDto, {
       ...process.env,
       ...(_config.parsed || {}),
     });
