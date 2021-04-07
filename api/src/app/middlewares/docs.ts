@@ -3,6 +3,8 @@ import { RequestHandler, Router } from "express";
 import { serve, setup } from "swagger-ui-express";
 
 import { Service } from "typedi";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { defaultMetadataStorage } = require("class-transformer/cjs/storage");
 import { getMetadataArgsStorage } from "routing-controllers";
 import { routingControllersOptions } from "..";
 import { routingControllersToSpec } from "routing-controllers-openapi";
@@ -15,6 +17,7 @@ export class DocsMiddleware implements ExpressMiddlewareInterface {
     // Parse class-validator classes into JSON Schema:
     const schemas = validationMetadatasToSchemas({
       refPointerPrefix: "#/components/schemas/",
+      classTransformerMetadataStorage: defaultMetadataStorage
     });
     // Parse routing-controllers classes into OpenAPI spec:
     const storage = getMetadataArgsStorage();
