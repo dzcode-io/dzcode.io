@@ -11,7 +11,10 @@ export class ContributorController {
   constructor(private readonly githubService: GithubService) {}
 
   @Get("/")
-  @OpenAPI({ summary: "Return a list of github users that contributed to data/[path] directory" })
+  @OpenAPI({
+    summary:
+      "Return a list of github users that contributed to data/[path] directory",
+  })
   @ResponseSchema(GetContributorsResponseDto)
   public async getContributor(
     @QueryParam("path") path: string,

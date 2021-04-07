@@ -5,3 +5,8 @@ oracle-cloud/build
 
 .*
 *.tsbuildinfo
+*.log
+*.svg
+*.jpeg
+*.png
+*.ico
