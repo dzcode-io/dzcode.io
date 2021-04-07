@@ -3,7 +3,7 @@ import { Matches } from "class-validator";
 
 const environment: Environment[] = ["development", "staging", "production"];
 
-export class ENV {
+export class ENVDto {
   PORT = 7070;
 
   @Matches("(" + environment.join(")|(") + ")")

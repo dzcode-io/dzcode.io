@@ -4,13 +4,13 @@ import {
 } from "routing-controllers";
 
 import { ErrorRequestHandler } from "express";
-import { GeneralResponse } from "../types";
+import { GeneralResponseDto } from "../types";
 import { Service } from "typedi";
 
 @Service()
 @Middleware({ type: "after" })
 export class ErrorMiddleware implements ExpressErrorMiddlewareInterface {
-  error: ErrorRequestHandler<never, GeneralResponse, unknown> = (
+  error: ErrorRequestHandler<never, GeneralResponseDto, unknown> = (
     err,
     req,
     res,
