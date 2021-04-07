@@ -15,8 +15,6 @@ export class ConfigService {
   public env = () => _env;
 
   private generateConfig = () => {
-    if (_env) return;
-
     const _config = config();
     const output = plainToClass(ENV, {
       ...process.env,
