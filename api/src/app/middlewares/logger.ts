@@ -1,23 +1,19 @@
 import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
-
+import { LogLevel, LoggerService } from "../../logger/service";
+import { RequestHandler } from "express";
 import { Service } from "typedi";
-import expressWinston from "express-winston";
-import winston from "winston";
 
 @Service()
-@Middleware({ type: "before" })
+@Middleware({ type: "after" })
 export class LoggerMiddleware implements ExpressMiddlewareInterface {
-  use = expressWinston.logger({
-    transports: [new winston.transports.Console()],
-    format: winston.format.combine(
-      winston.format.colorize(),
-      winston.format.json(),
-    ),
-    meta: true, // optional: control whether you want to log the meta data about the request (default to true)
-    msg: "HTTP {{req.method}} {{req.url}}", // optional: customize the default logging message. E.g. "{{res.statusCode}} {{req.method}} {{res.responseTime}}ms {{req.url}}"
-    expressFormat: true, // Use the default Express/morgan request formatting. Enabling this will override any msg if true. Will only output colors with colorize set to true
-    ignoreRoute: () => {
-      return false;
-    }, // optional: allows to skip some log messages based on request and/or response
-  });
+  constructor(private loggerService: LoggerService) { }
+
+  use: RequestHandler = (req, res, next) => {
+    let logLevel: LogLevel = "info";
+    const { statusCode } = res;
+    if (statusCode < 100 && statusCode >= 400) { logLevel = "error" }
+
+    this.loggerService.log(logLevel, { message: `${res.statusCode} ${req.method} ${req.url}` })
+    next();
+  }
 }
