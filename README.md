@@ -8,12 +8,12 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 
 You can find more about each folder by clicking on the folder name
 
-| Folder               | Coverage                                                                                                                       |                               Production URL |                                              Staging URL |                                     Local URL |
-| :------------------- | :----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------: | -------------------------------------------------------: | --------------------------------------------: |
-| [./web](./web)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |               [dzcode.io](https://dzcode.io) |               [stage.dzcode.io](https://stage.dzcode.io) |       [localhost:8080](http://localhost:8080) |
-| [./data](./data)     | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |     [data.dzcode.io](https://data.dzcode.io) |     [data.stage.dzcode.io](https://data.stage.dzcode.io) |       [localhost:9090](http://localhost:9090) |
-| [./api](./api)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    | [api.dzcode.io/v2](https://api.dzcode.io/v2) | [api_stage.dzcode.io/v2](https://api_stage.dzcode.io/v2) | [localhost:7070/v2](http://localhost:7070/v2) |
-| [./common](./common) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                              |                                                          |                                               |
+| Folder               | Coverage                                                                                                                       |                                         Production URL |                                                        Staging URL |                                               Local URL |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------------: | -----------------------------------------------------------------: | ------------------------------------------------------: |
+| [./web](./web)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |                         [dzcode.io](https://dzcode.io) |                         [stage.dzcode.io](https://stage.dzcode.io) |                 [localhost:8080](http://localhost:8080) |
+| [./data](./data)     | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |               [data.dzcode.io](https://data.dzcode.io) |               [data.stage.dzcode.io](https://data.stage.dzcode.io) |                 [localhost:9090](http://localhost:9090) |
+| [./api](./api)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    | [api.dzcode.io/v2/docs](https://api.dzcode.io/v2/docs) | [api_stage.dzcode.io/v2/docs](https://api_stage.dzcode.io/v2/docs) | [localhost:7070/v2/docs](http://localhost:7070/v2/docs) |
+| [./common](./common) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                        |                                                                    |                                                         |
 
 ## Table of Content
 
@@ -66,7 +66,7 @@ yarn dev
 
 - For web server to <http://localhost:8080>
 - For data server go to <http://localhost:9090>
-- For api server go to <http://localhost:7070/v2>
+- For api server go to <http://localhost:7070/v2/docs>
 
 ## Contributing
 

@@ -30,7 +30,7 @@ export class DocsMiddleware implements ExpressMiddlewareInterface {
       },
     });
 
-    this.router.use("/v2", serve, setup(spec));
+    this.router.use("/v2/docs", serve, setup(spec));
   }
 
   private router = Router();
