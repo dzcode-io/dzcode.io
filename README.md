@@ -15,19 +15,6 @@ You can find more about each folder by clicking on the folder name
 | [./api](./api)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    | [api.dzcode.io/v2/docs](https://api.dzcode.io/v2/docs) | [api_stage.dzcode.io/v2/docs](https://api_stage.dzcode.io/v2/docs) | [localhost:7070/v2/docs](http://localhost:7070/v2/docs) |
 | [./common](./common) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                        |                                                                    |                                                         |
 
-## Table of Content
-
-- [dzCode.io](#dzcodeio)
-  - [Meta](#meta)
-  - [Table of Content](#table-of-content)
-  - [Get Started](#get-started)
-    - [Perquisites](#perquisites)
-    - [Run it locally](#run-it-locally)
-  - [Contributing](#contributing)
-    - [Before You Create a Pull Request](#before-you-create-a-pull-request)
-    - [List Your Project or Add/Edit Article](#list-your-project-or-addedit-article)
-  - [License](#license)
-
 ## Get Started
 
 ### Perquisites
@@ -64,7 +51,7 @@ yarn
 yarn dev
 ```
 
-- For web server to <http://localhost:8080>
+- For web server go to <http://localhost:8080>
 - For data server go to <http://localhost:9090>
 - For api server go to <http://localhost:7070/v2/docs>
 
