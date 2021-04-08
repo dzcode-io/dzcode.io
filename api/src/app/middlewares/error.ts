@@ -10,7 +10,7 @@ import { Service } from "typedi";
 @Service()
 @Middleware({ type: "after" })
 export class ErrorMiddleware implements ExpressErrorMiddlewareInterface {
-  constructor(private loggerService: LoggerService) { }
+  constructor(private loggerService: LoggerService) {}
 
   error: ErrorRequestHandler<never, GeneralResponseDto, unknown> = (
     err,
@@ -19,7 +19,10 @@ export class ErrorMiddleware implements ExpressErrorMiddlewareInterface {
     next,
   ) => {
     // Logs error
-    this.loggerService.error({ message: "Internal Server Error", error: err?.message })
+    this.loggerService.error({
+      message: "Internal Server Error",
+      error: err?.message,
+    });
 
     // Skip if headers are already sent
     if (res.headersSent) {
