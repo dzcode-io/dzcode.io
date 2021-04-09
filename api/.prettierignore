@@ -1,7 +1,12 @@
 node_modules/
 coverage
 dist
-vultr/build
+oracle-cloud/build
 
 .*
 *.tsbuildinfo
+*.log
+*.svg
+*.jpeg
+*.png
+*.ico

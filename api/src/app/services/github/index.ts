@@ -1,4 +1,4 @@
-import { ListContributorsResponse } from "./types";
+import { ListContributorsResponse } from "../../../github/types";
 import axios from "axios";
 
 export const listOrganizationRepositories = async ({

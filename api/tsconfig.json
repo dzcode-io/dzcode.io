@@ -14,8 +14,8 @@
     "target": "es2017",
     "sourceMap": true,
     "declaration": true,
-    "outDir": "dist",
-    "rootDir": "src"
+    "outDir": "dist"
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
+  "exclude": ["**/*.spec.ts"]
 }
