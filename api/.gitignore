@@ -1,6 +1,6 @@
 dist
 coverage
-vultr/build
+oracle-cloud/build
 
 # logs
 **.tsbuildinfo
