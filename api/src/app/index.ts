@@ -7,6 +7,7 @@ import Container from "typedi";
 import { ContributorController } from "../contributor/controller";
 import { DocsMiddleware } from "./middlewares/docs";
 import { ErrorMiddleware } from "./middlewares/error";
+import { GitHubController } from "../github/controller";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
@@ -18,7 +19,7 @@ useContainer(Container);
 
 // Create the app:
 export const routingControllersOptions = {
-  controllers: [ContributorController],
+  controllers: [ContributorController, GitHubController],
   middlewares: [
     // middlewares:
     SecurityMiddleware,
