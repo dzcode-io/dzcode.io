@@ -1,17 +1,9 @@
 import {} from "module";
 import { GeneralResponseDto } from "../app/types";
-import { GithubUserDto } from "../github/dto";
-import { Type } from "class-transformer";
+import { GitHubUserApiResponse } from "../github/types";
 import { ValidateNested } from "class-validator";
-
-export class GetContributorsResponseDto extends GeneralResponseDto {
-  @ValidateNested({ each: true })
-  @Type(() => GithubUserDto)
-  contributors?: GithubUserDto[];
-}
 
 export class GetUserResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
-  @Type(() => GithubUserDto)
-  user?: GithubUserDto;
+  user?: GitHubUserApiResponse;
 }

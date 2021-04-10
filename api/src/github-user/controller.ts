@@ -2,9 +2,7 @@ import { Controller, Get, Param } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { GetUserResponseDto } from "./types";
 import { GithubService } from "../github/service";
-import { GithubUserDto } from "../github/dto";
 import { Service } from "typedi";
-import { plainToClass } from "class-transformer";
 
 @Service()
 @Controller("/GithubUsers")
@@ -19,11 +17,8 @@ export class GithubUserController {
   public async getUserByUsername(
     @Param("username") username: string,
   ): Promise<GetUserResponseDto> {
-    const githubUser = await this.githubService.getUser({
+    const user = await this.githubService.getUser({
       username,
-    });
-    const user = plainToClass(GithubUserDto, {
-      ...githubUser,
     });
 
     return {
