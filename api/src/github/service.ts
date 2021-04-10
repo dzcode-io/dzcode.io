@@ -1,4 +1,9 @@
-import { GeneralGithubQuery, ListContributorsResponse } from "./types";
+import {
+  GeneralGithubQuery,
+  GetUserInput,
+  GitHubUserApiResponse,
+  ListContributorsResponse,
+} from "./types";
 
 import { Service } from "typedi";
 import axios from "axios";
@@ -26,6 +31,15 @@ export class GithubService {
       }),
     );
     return contributors;
+  };
+
+  public getUser = async ({
+    username,
+  }: GetUserInput): Promise<GitHubUserApiResponse> => {
+    const response = await axios.get<GitHubUserApiResponse>(
+      `https://api.github.com/users/${username}`,
+    );
+    return response.data;
   };
 
   private apiURL = "https://api.github.com";
