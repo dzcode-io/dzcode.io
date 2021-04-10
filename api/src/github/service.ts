@@ -37,7 +37,7 @@ export class GithubService {
     username,
   }: GetUserInput): Promise<GitHubUserApiResponse> => {
     const response = await axios.get<GitHubUserApiResponse>(
-      `https://api.github.com/users/${username}`,
+      `${this.apiURL}/users/${username}`,
     );
     return response.data;
   };
