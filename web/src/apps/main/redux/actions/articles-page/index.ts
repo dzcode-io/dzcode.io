@@ -98,7 +98,7 @@ const fetchCurrentArticleAuthors = (): ThunkResult<
   const githubAuthors = (
     await Promise.all(
       currentArticle.authors?.map((author) => {
-        return Axios.get<GithubUser>(apiURL + `/github/user/${author}`);
+        return Axios.get<GithubUser>(apiURL + `/v2/GithubUsers/${author}`);
       }) || [],
     )
   ).map((response) => {
