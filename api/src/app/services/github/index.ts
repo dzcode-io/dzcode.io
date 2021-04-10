@@ -212,15 +212,3 @@ export const listWatchers = async ({
     return null;
   }
 };
-
-export const getUser = async ({ username }: { username: string }) => {
-  try {
-    const response = await axios.get(
-      `https://api.github.com/users/${username}`,
-    );
-    return response.data;
-  } catch (error) {
-    console.log("getUser =>", error.response.data);
-    return null;
-  }
-};
