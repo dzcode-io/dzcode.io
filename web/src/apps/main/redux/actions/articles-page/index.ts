@@ -61,7 +61,7 @@ export const fetchCurrentArticleContributors = (): ThunkResult<
   if (!currentArticle || Array.isArray(currentArticle.contributors)) return;
 
   const response = await Axios.get<GithubUser[]>(
-    apiURL + `/v2/contributors?articleSlug=${currentArticle.slug}`,
+    apiURL + `/v2/contributors?path=articles/${currentArticle.slug}`,
   );
 
   if (response.data.hasOwnProperty("error")) {
