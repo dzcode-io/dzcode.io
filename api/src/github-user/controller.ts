@@ -1,4 +1,4 @@
-import { Controller, Get, QueryParam } from "routing-controllers";
+import { Controller, Get, Param } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { GetUserResponseDto } from "./types";
 import { GithubService } from "../github/service";
@@ -11,13 +11,13 @@ import { plainToClass } from "class-transformer";
 export class GithubUserController {
   constructor(private readonly githubService: GithubService) {}
 
-  @Get("/")
+  @Get("/:username")
   @OpenAPI({
     summary: "Return a github user with publicly available information",
   })
   @ResponseSchema(GetUserResponseDto)
   public async getUserByUsername(
-    @QueryParam("username") username: string,
+    @Param("username") username: string,
   ): Promise<GetUserResponseDto> {
     const githubUser = await this.githubService.getUser({
       username,
