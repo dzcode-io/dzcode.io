@@ -5,7 +5,7 @@ import { GithubService } from "../github/service";
 import { Service } from "typedi";
 
 @Service()
-@Controller("/GitHub")
+@Controller("/Github")
 export class GitHubController {
   constructor(private readonly githubService: GithubService) {}
   @Get("/Repositories")
@@ -13,7 +13,7 @@ export class GitHubController {
     summary: "Return a list of repositories for dzcode-id",
   })
   @ResponseSchema(GetRepositoriesResponseDto)
-  public async getContributor(): Promise<GetRepositoriesResponseDto> {
+  public async getRepositories(): Promise<GetRepositoriesResponseDto> {
     const repositories = await this.githubService.listOrganizationRepositories({
       org: "dzcode-io",
     });

@@ -1,7 +1,8 @@
 import {
   GeneralGithubQuery,
+  GitHubRepositoriesApiReponse,
   ListContributorsResponse,
-  ListRepositoriesReponse,
+  ListOrganizationRepositoriesInput,
 } from "./types";
 
 import { Service } from "typedi";
@@ -9,6 +10,8 @@ import axios from "axios";
 
 @Service()
 export class GithubService {
+  private apiURL = "https://api.github.com";
+
   public listContributors = async ({
     owner,
     repo,
@@ -32,17 +35,12 @@ export class GithubService {
     return contributors;
   };
 
-  public listOrganizationRepositories = async ({ org }: { org: string }) => {
-    try {
-      const response = await axios.get<ListRepositoriesReponse>(
-        `https://api.github.com/orgs/${org}/repos`,
-      );
-
-      return response.data;
-    } catch (error) {
-      console.log("listOrganizationRepositories ERROR =>", error.response.data);
-      return null;
-    }
+  public listOrganizationRepositories = async ({
+    org,
+  }: ListOrganizationRepositoriesInput) => {
+    const response = await axios.get<GitHubRepositoriesApiReponse>(
+      `https://api.github.com/orgs/${org}/repos`,
+    );
+    return response.data;
   };
-  private apiURL = "https://api.github.com";
 }
