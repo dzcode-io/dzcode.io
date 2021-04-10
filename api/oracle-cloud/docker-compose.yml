@@ -5,5 +5,5 @@ services:
     # restart: always
     ports:
       - "80:7070"
-    environment:
-      NODE_ENV: production
+    env_file:
+      - ~/api-env/api.env
