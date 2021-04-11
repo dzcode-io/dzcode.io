@@ -1,6 +1,5 @@
 import express, { Router } from "express";
 import {
-  getGithubUserByUsername,
   listBranchesByRepository,
   listCommitsByRepository,
   listForksByRepository,
@@ -23,6 +22,5 @@ router.get("/issues/:repo", listIssuesByRepository);
 router.get("/count-starts/:repo", listStarsByRepository);
 router.get("/stargazers/:repo/:page", listStargazersByRepository);
 router.get("/watchers/:repo", listWatchersByRepository);
-router.get("/user/:username", getGithubUserByUsername);
 
 export default router;
