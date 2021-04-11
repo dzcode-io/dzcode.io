@@ -1,5 +1,8 @@
-import { Article, GithubUser } from "@dzcode.io/common/dist/types";
-
+import {
+  GetContributorsResponseDto,
+  GetUserResponseDto,
+} from "@dzcode.io/common/dist/types/api-responses";
+import { Article } from "@dzcode.io/common/dist/types";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { ArticlesState } from "src/apps/main/redux/reducers/articles";
 import Axios from "axios";
@@ -60,7 +63,7 @@ export const fetchCurrentArticleContributors = (): ThunkResult<
   const { currentArticle } = getState().articlesPage;
   if (!currentArticle || Array.isArray(currentArticle.contributors)) return;
 
-  const response = await Axios.get<GithubUser[]>(
+  const response = await Axios.get<GetContributorsResponseDto>(
     apiURL + `/v2/contributors?path=articles/${currentArticle.slug}`,
   );
 
@@ -68,7 +71,7 @@ export const fetchCurrentArticleContributors = (): ThunkResult<
     throw Error("error_fetching_contributors");
   }
 
-  const contributors = response.data;
+  const { contributors } = response.data;
 
   //  getting the  most recent  current article
   const mrCurrentArticle =
@@ -98,11 +101,13 @@ const fetchCurrentArticleAuthors = (): ThunkResult<
   const githubAuthors = (
     await Promise.all(
       currentArticle.authors?.map((author) => {
-        return Axios.get<GithubUser>(apiURL + `/v2/GithubUsers/${author}`);
+        return Axios.get<GetUserResponseDto>(
+          apiURL + `/v2/GithubUsers/${author}`,
+        );
       }) || [],
     )
   ).map((response) => {
-    return response.data;
+    return response.data.user;
   });
 
   //  getting the  most recent  current article
