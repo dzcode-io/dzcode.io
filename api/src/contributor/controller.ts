@@ -1,8 +1,10 @@
 import { Controller, Get, QueryParam } from "routing-controllers";
+import {
+  GetContributorsResponseDto,
+  GithubUserDto,
+} from "@dzcode.io/common/dist/types/api-responses";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
-import { GetContributorsResponseDto } from "./types";
 import { GithubService } from "../github/service";
-import { GithubUserDto } from "../github/dto";
 import { Service } from "typedi";
 
 @Service()

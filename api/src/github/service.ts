@@ -4,7 +4,6 @@ import {
   GitHubUserApiResponse,
   ListContributorsResponse,
 } from "./types";
-
 import { Service } from "typedi";
 import axios from "axios";
 

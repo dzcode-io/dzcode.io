@@ -1,6 +1,9 @@
-import { Document, GithubUser } from "@dzcode.io/common/dist/types";
-
+import {
+  GetContributorsResponseDto,
+  GetUserResponseDto,
+} from "@dzcode.io/common/dist/types/api-responses";
 import Axios from "axios";
+import { Document } from "@dzcode.io/common/dist/types";
 import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import { SidebarTreeItem } from "src/apps/main/types";
@@ -60,7 +63,7 @@ const fetchCurrentDocumentContributors = (): ThunkResult<
 
   if (!currentDocument || Array.isArray(currentDocument.contributors)) return;
 
-  const response = await Axios.get<GithubUser[]>(
+  const response = await Axios.get<GetContributorsResponseDto>(
     apiURL + `/v2/contributors?path=documentation/${currentDocument.slug}`,
   );
 
@@ -68,7 +71,7 @@ const fetchCurrentDocumentContributors = (): ThunkResult<
     throw Error("error_fetching_contributors");
   }
 
-  const contributors = response.data;
+  const { contributors } = response.data;
 
   const mrCurrentDocument =
     getState().learnPage.currentDocument || currentDocument;
@@ -97,11 +100,13 @@ const fetchCurrentDocumentAuthors = (): ThunkResult<
   const githubAuthors = (
     await Promise.all(
       currentDocument.authors?.map((author) => {
-        return Axios.get<GithubUser>(apiURL + `/v2/GithubUsers/${author}`);
+        return Axios.get<GetUserResponseDto>(
+          apiURL + `/v2/GithubUsers/${author}`,
+        );
       }) || [],
     )
   ).map((response) => {
-    return response.data;
+    return response.data.user;
   });
 
   //  getting the  most recent  current article
