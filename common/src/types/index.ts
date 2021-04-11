@@ -40,7 +40,7 @@ export type Environment = "development" | "staging" | "production";
 
 export interface GithubUser {
   login: string;
-  id: string;
+  id: number;
   // eslint-disable-next-line camelcase
   avatar_url: string;
   // eslint-disable-next-line camelcase
