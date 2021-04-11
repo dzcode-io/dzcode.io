@@ -4,5 +4,5 @@ import { ValidateNested } from "class-validator";
 
 export class GetUserResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
-  user?: GitHubUserApiResponse;
+  user?: GithubUserDto;
 }
