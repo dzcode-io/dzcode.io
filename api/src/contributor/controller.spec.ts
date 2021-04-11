@@ -5,7 +5,7 @@ import {
 } from "../../test/mocks";
 
 import { ContributorController } from "./controller";
-import { GetContributorsResponseDto } from "./types";
+import { GetContributorsResponseDto } from "@dzcode.io/common/dist/types/api-responses";
 import { GithubService } from "../github/service";
 import { mock } from "jest-mock-extended";
 

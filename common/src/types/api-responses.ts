@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { IsNumber, IsObject, IsOptional, IsString } from "class-validator";
 import { GithubUser } from ".";
 import { Type } from "class-transformer";
@@ -33,10 +34,10 @@ export class GithubUserDto implements GithubUser {
 export class GetContributorsResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
   @Type(() => GithubUserDto)
-  contributors?: GithubUserDto[];
+  contributors!: GithubUserDto[];
 }
 
 export class GetUserResponseDto extends GeneralResponseDto {
   @ValidateNested()
-  user?: GithubUserDto;
+  user!: GithubUserDto;
 }
