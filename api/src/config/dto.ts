@@ -7,5 +7,5 @@ export class ENVDto {
   PORT = 7070;
 
   @Matches("(" + environment.join(")|(") + ")")
-  ENV: Environment = "development";
+  NODE_ENV: Environment = "development";
 }
