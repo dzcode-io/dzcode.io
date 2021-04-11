@@ -3,7 +3,7 @@ import {
   Middleware,
 } from "routing-controllers";
 import { ErrorRequestHandler } from "express";
-import { GeneralResponseDto } from "../types";
+import { GeneralResponseDto } from "@dzcode.io/common/dist/types/api-responses";
 import { LoggerService } from "../../logger/service";
 import { Service } from "typedi";
 
