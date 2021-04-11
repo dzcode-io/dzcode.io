@@ -36,11 +36,11 @@ const app: Application = createExpressServer(routingControllersOptions);
 // Load old code to the app, temporarily until we migrate all endpoints
 app.use("/", router);
 
-const { ENV, PORT } = Container.get(ConfigService).env();
+const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 const logger = Container.get(LoggerService);
 
 // Start it
 app.listen(PORT, () => {
-  const commonConfig = fsConfig(ENV);
+  const commonConfig = fsConfig(NODE_ENV);
   logger.info({ message: `API Server up on: ${commonConfig.api.url}/v2/docs` });
 });

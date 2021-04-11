@@ -10,7 +10,7 @@ import rateLimit from "express-rate-limit";
 @Middleware({ type: "before" })
 export class SecurityMiddleware implements ExpressMiddlewareInterface {
   constructor(private configService: ConfigService) {
-    const env = this.configService.env().ENV;
+    const env = this.configService.env().NODE_ENV;
     this.whitelist =
       env === "development"
         ? ["http://localhost:8080"]
@@ -41,7 +41,7 @@ export class SecurityMiddleware implements ExpressMiddlewareInterface {
         if (!origin || this.whitelist.indexOf(origin) !== -1) {
           callback(null, true);
         } else {
-          callback(new Error("Not allowed by CORS"));
+          callback(new Error(`Origin ${origin} not allowed by CORS`));
         }
       },
     };
