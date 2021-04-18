@@ -47,34 +47,26 @@ export const Footer: FC = () => {
           alignContent="stretch"
         >
           <Grid container item xs={12} md={9} spacing={6}>
-            {sections
-              ? sections.map((category, i) => (
-                  <Grid
-                    direction="column"
-                    container
-                    item
-                    xs={12}
-                    md={6}
-                    key={i}
-                  >
-                    <Typography variant="h6" className={classes.categoryTitle}>
-                      {category.title}
-                    </Typography>
-                    {category.links.map((link, i) => {
-                      return (
-                        <LinkV2 key={i} href={link.href}>
-                          <Typography
-                            variant="subtitle2"
-                            className={classes.linkText}
-                          >
-                            {link.text}
-                          </Typography>
-                        </LinkV2>
-                      );
-                    })}
-                  </Grid>
-                ))
-              : null}
+            {sections &&
+              sections.map((category, i) => (
+                <Grid direction="column" container item xs={12} md={6} key={i}>
+                  <Typography variant="h6" className={classes.categoryTitle}>
+                    {category.title}
+                  </Typography>
+                  {category.links.map((link, i) => {
+                    return (
+                      <LinkV2 key={i} href={link.href}>
+                        <Typography
+                          variant="subtitle2"
+                          className={classes.linkText}
+                        >
+                          {link.text}
+                        </Typography>
+                      </LinkV2>
+                    );
+                  })}
+                </Grid>
+              ))}
           </Grid>
           <Grid item xs={12} md={3} className={classes.contactDetails}>
             <Typography variant="h6" className={classes.categoryTitle}>
