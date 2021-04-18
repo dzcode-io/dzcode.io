@@ -44,7 +44,11 @@ export const FaqPage: FC = () => {
 
       {faqData.map(({ title, questions }, index) => (
         <div key={`category-${index}`}>
-          <Typography variant="h5" className={classes.header}>
+          <Typography
+            data-testid={`faq-title-${index}`}
+            variant="h5"
+            className={classes.header}
+          >
             {title}
           </Typography>
           <div>
