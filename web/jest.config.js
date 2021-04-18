@@ -10,7 +10,9 @@ module.exports = {
   //   },
   // },
   transform: {
-    "^.+\\.(ts|tsx)?$": "ts-jest",
+    "^.+\\.(ts|tsx|js|jsx)?$": "ts-jest",
   },
+  transformIgnorePatterns: ["node_modules/(?!react-syntax-highlighter)"],
   coveragePathIgnorePatterns: ["node_modules", "dist"],
+  modulePaths: ["<rootDir>"],
 };
