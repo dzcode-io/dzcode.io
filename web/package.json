@@ -71,6 +71,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@prettier/plugin-pug": "^1.13.1",
+    "@testing-library/react": "^11.2.6",
     "@types/jest": "^26.0.19",
     "@types/markdown-to-jsx": "^6.11.3",
     "@types/react": "^17.0.0",
@@ -136,5 +137,6 @@
     "webpack": "^5.11.0",
     "webpack-cli": "^4.3.0",
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "dependencies": {}
 }
