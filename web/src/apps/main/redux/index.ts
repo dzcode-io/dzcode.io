@@ -1,7 +1,6 @@
-import { compose, createStore } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
 
-import { applyMiddleware } from "redux";
 import { mainReducer } from "./reducers";
 
 const composeEnhancers =
