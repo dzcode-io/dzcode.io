@@ -4,7 +4,7 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const precss = require("precss");
 const glob = require("glob");
@@ -129,7 +129,10 @@ module.exports = {
     historyApiFallback: {
       disableDotRule: true,
     },
+    stats: "minimal",
   },
+  // https://webpack.js.org/configuration/stats/
+  stats: "minimal",
   // https://webpack.js.org/configuration/target/
   target: "web",
   // https://webpack.js.org/configuration/devtool/#development
@@ -138,6 +141,6 @@ module.exports = {
   mode: isProduction ? "production" : isDevelopment ? "development" : "none",
   // https://webpack.js.org/configuration/optimization/#optimizationminimizer
   optimization: {
-    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    minimizer: [new TerserJSPlugin({}), new CssMinimizerPlugin({})],
   },
 };

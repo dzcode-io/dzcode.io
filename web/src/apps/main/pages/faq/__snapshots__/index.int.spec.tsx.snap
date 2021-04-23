@@ -3,26 +3,26 @@
 exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
 <div>
   <h4
-    class="MuiTypography-root MuiTypography-h4 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-title-1 css-5lbw0b-MuiTypography-root"
+    class="MuiTypography-root makeStyles-title-1 MuiTypography-h4"
   >
     Frequently Asked Questions
   </h4>
   <div>
     <h5
-      class="MuiTypography-root MuiTypography-h5 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-header-2 css-ag7rrr-MuiTypography-root"
+      class="MuiTypography-root makeStyles-header-2 MuiTypography-h5"
       data-testid="faq-title-0"
     >
       General
     </h5>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -30,29 +30,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               What exactly is DzCode i/o ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -62,7 +70,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -78,13 +85,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -92,29 +99,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               What are the Goals of DzCode i/o ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -124,7 +139,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -166,13 +180,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -180,29 +194,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               What benefit will i get from it ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -212,7 +234,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -220,7 +241,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 >
                   <div>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial MuiTypography-paragraph css-z2eky3-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
                     >
                       There are couple of benefits, to name few:
                     </p>
@@ -243,13 +264,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -257,29 +278,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               dzcode, dzcode.io or DzCode i/o ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -289,7 +318,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -297,7 +325,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 >
                   <div>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial MuiTypography-paragraph css-z2eky3-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
                     >
                       You may get confused with the different terms, so here's the official breakdown:
                     </p>
@@ -338,20 +366,20 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
   </div>
   <div>
     <h5
-      class="MuiTypography-root MuiTypography-h5 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-header-2 css-ag7rrr-MuiTypography-root"
+      class="MuiTypography-root makeStyles-header-2 MuiTypography-h5"
       data-testid="faq-title-1"
     >
       Participation
     </h5>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -359,29 +387,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               How to join DzCode i/o ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -391,7 +427,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -413,13 +448,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -427,29 +462,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               I want to code, where should I start ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -459,7 +502,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -467,7 +509,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 >
                   <div>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial MuiTypography-paragraph css-z2eky3-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
                     >
                       Go to 
                       <a
@@ -478,7 +520,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                        page, you will see list projects with their open tasks, pick whatever you like and start coding 🔥.
                     </p>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial MuiTypography-paragraph css-z2eky3-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
                     >
                       <strong>
                         Note
@@ -493,13 +535,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -507,29 +549,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               I like the idea, what are the different ways i can contribute to DzCode i/o ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -539,7 +589,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -547,7 +596,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 >
                   <div>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial MuiTypography-paragraph css-z2eky3-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
                     >
                       Apart from checking out the 
                       <a
@@ -588,20 +637,20 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
   </div>
   <div>
     <h5
-      class="MuiTypography-root MuiTypography-h5 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-header-2 css-ag7rrr-MuiTypography-root"
+      class="MuiTypography-root makeStyles-header-2 MuiTypography-h5"
       data-testid="faq-title-2"
     >
       Articles
     </h5>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -609,29 +658,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               How to write an article in dzcode.io
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -641,7 +698,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -663,13 +719,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -677,29 +733,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               The Articles should they be in English ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -709,7 +773,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -725,13 +788,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -739,29 +802,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               Can I write about anything ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -771,7 +842,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -790,20 +860,20 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
   </div>
   <div>
     <h5
-      class="MuiTypography-root MuiTypography-h5 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-header-2 css-ag7rrr-MuiTypography-root"
+      class="MuiTypography-root makeStyles-header-2 MuiTypography-h5"
       data-testid="faq-title-3"
     >
       Projects
     </h5>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -811,29 +881,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               How to add my open-source project to dzcode.io
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -843,7 +921,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -865,13 +942,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -879,29 +956,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               What makes my project eligible to be added to dzcode.io
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -911,7 +996,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -927,13 +1011,13 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         </div>
       </div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded css-172kgz0-MuiPaper-root"
+        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
         style="margin-bottom: -1px;"
       >
         <div
           aria-disabled="false"
           aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root css-10d1a0h-MuiButtonBase-root"
+          class="MuiButtonBase-root MuiAccordionSummary-root"
           role="button"
           tabindex="0"
         >
@@ -941,29 +1025,37 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             class="MuiAccordionSummary-content"
           >
             <p
-              class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-question-3 css-ahj2mt-MuiTypography-root"
+              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
             >
               Why should i add my project to dzcode.io ?
             </p>
           </div>
           <div
-            class="MuiAccordionSummary-expandIconWrapper"
+            aria-disabled="false"
+            aria-hidden="true"
+            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root"
-              data-testid="ExpandMoreIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <span
+              class="MuiIconButton-label"
             >
-              <path
-                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-              />
-            </svg>
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
           </div>
         </div>
         <div
-          class="MuiCollapse-root MuiCollapse-hidden"
+          class="MuiCollapse-container MuiCollapse-hidden"
           style="min-height: 0px;"
         >
           <div
@@ -973,7 +1065,6 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               class="MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiAccordion-region"
                 role="region"
               >
                 <div
@@ -999,7 +1090,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
     class="makeStyles-spacing-4"
   />
   <p
-    class="MuiTypography-root MuiTypography-body1 MuiTypography-colorInitial MuiTypography-alignInherit MuiTypography-displayInitial makeStyles-title-1 css-ahj2mt-MuiTypography-root"
+    class="MuiTypography-root makeStyles-title-1 MuiTypography-body1"
   >
     Still need help? send us an email at
      
