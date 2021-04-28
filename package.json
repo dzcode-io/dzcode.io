@@ -13,7 +13,7 @@
     "lint:fix": "concurrently \"cd api && yarn lint:fix\" \"cd common && yarn lint:fix\" \"cd data && yarn lint:fix\" \"cd web && yarn lint:fix\"",
     "test": "concurrently \"cd api && yarn test\" \"cd common && yarn test\" \"cd data && yarn test\" \"cd web && yarn test\"",
     "test:cov": "concurrently \"cd api && yarn test:cov\" \"cd common && yarn test:cov\" \"cd data && yarn test:cov\" \"cd web && yarn test:cov\"",
-    "postinstall": "husky install && husky set .husky/pre-commit \"cd api && yarn lint-staged && cd ../common && yarn lint-staged && cd ../data && yarn lint-staged && cd ../web && yarn lint-staged\""
+    "postinstall": "(husky install && husky set .husky/pre-commit \"cd api && yarn lint-staged && cd ../common && yarn lint-staged && cd ../data && yarn lint-staged && cd ../web && yarn lint-staged\") || exit 0"
   },
   "devDependencies": {
     "concurrently": "^6.0.2",
