@@ -1,7 +1,7 @@
-import * as Github from "../../services/github";
+/* eslint-disable camelcase */
 
+import * as Github from "../../services/github";
 import { Request, Response } from "express";
-import { report } from "process";
 
 export const listRepositories = async (req: Request, res: Response) => {
   try {

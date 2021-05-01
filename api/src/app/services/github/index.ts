@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import { ListContributorsResponse } from "../../../github/types";
 import axios from "axios";
 
@@ -31,7 +33,6 @@ export const listPullRequests = async ({
       {
         params: {
           state: "all",
-          // eslint-disable-next-line camelcase
           per_page: 10,
         },
       },
@@ -57,7 +58,6 @@ export const listContributors = async ({
     const response = await axios.get<ListContributorsResponse>(
       `https://api.github.com/repos/${owner}/${repo}/commits?path=${path}`,
       {
-        // eslint-disable-next-line camelcase
         params: { state: "all", per_page: 10 },
       },
     );
@@ -112,7 +112,6 @@ export const listStargazers = async ({
       {
         params: {
           state: "all",
-          // eslint-disable-next-line camelcase
           per_page: 100,
           page: page,
         },

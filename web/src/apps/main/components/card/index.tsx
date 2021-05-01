@@ -8,7 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import { LinkV2 } from "src/components/link-v2";
 import MuiCard from "@material-ui/core/Card";
 import PropTypes from "prop-types";
-import Skeleton from "@material-ui/core/Skeleton";
+import Skeleton from "@material-ui/lab/Skeleton";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -73,7 +73,7 @@ export const Card: FC<CardProps> = ({ info }) => {
         <CardActionArea>
           <Skeleton
             animation="wave"
-            variant="rectangular"
+            variant="circle"
             className={classes.media}
           />
           <CardContent>
