@@ -109,7 +109,7 @@ export const Navbar: FC = () => {
 
   return (
     <animated.header className={classes.root} style={springStyle}>
-      <div className={`${classes.toolbarContainer} ${classes.TopBar} `}>
+      <div className={`${classes.TopBar} `}>
         <Hidden smUp>
           <Typography
             component="h2"
