@@ -12,11 +12,7 @@
 </a>
 
 A website for <a href="https://melyon.tech/">Melyon theme</a> of vscode, It's dark theme which contains colors for better coding on nighttime ❤✨
-# Installation
-Install all the dependencies needed for run melyon website :
-```
-yarn && cd ./web && yarn && cd ../api && yarn
-```
+
 # Usage
 
 For run the both `web` and `api` :
