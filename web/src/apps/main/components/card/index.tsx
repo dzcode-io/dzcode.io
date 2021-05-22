@@ -71,11 +71,7 @@ export const Card: FC<CardProps> = ({ info }) => {
         </>
       ) : (
         <CardActionArea>
-          <Skeleton
-            animation="wave"
-            variant="circle"
-            className={classes.media}
-          />
+          <Skeleton animation="wave" variant="rect" className={classes.media} />
           <CardContent>
             <>
               <Skeleton
