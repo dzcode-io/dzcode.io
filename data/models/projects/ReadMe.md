@@ -21,7 +21,7 @@ All you need is a **_Good Project_**.
 
 ## Adding Your project To Dzcode
 
-Projects on **[dzCode.io](https://dzcode.io)** are found under the folder `data/projects` of our **[dzcode.io Github repo](https://github.com/dzcode-io/dzcode.io/tree/master/data/projects)**.
+Projects on **[dzCode.io](https://dzcode.io)** are found under the folder `data/projects` of our **[dzcode.io Github repo](https://github.com/dzcode-io/dzcode.io/tree/main/data/projects)**.
 
 To add new project simply do the following:
 

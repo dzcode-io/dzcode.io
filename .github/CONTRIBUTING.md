@@ -1,9 +1,9 @@
 # Contributing to dzcode.io
 
 Contributions are always welcome. Before contributing please read the
-[code of conduct](https://github.com/dzcode-io/dzcode.io/blob/master/.github/CODE_OF_CONDUCT.md) &
+[code of conduct](https://github.com/dzcode-io/dzcode.io/blob/main/.github/CODE_OF_CONDUCT.md) &
 [search the issue tracker](https://github.com/dzcode-io/dzcode.io/issues); your issue
-may have already been discussed or fixed in `master`. To contribute,
+may have already been discussed or fixed in `main`. To contribute,
 [fork](https://help.github.com/articles/fork-a-repo/) dzcode.io, commit your changes,
 & [send a pull request](https://help.github.com/articles/using-pull-requests/).
 
@@ -49,4 +49,4 @@ established in the code.
   [JSDoc-style](http://www.2ality.com/2011/08/jsdoc-intro.html) comments for
   functions.
 
-Guidelines are following the [.editorconfig](https://github.com/dzcode-io/dzcode.io/blob/master/.editorconfig) file.
+Guidelines are following the [.editorconfig](https://github.com/dzcode-io/dzcode.io/blob/main/.editorconfig) file.
