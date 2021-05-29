@@ -7,6 +7,7 @@ export interface NavbarComponentState {
 export const navbarComponent = (
   state: NavbarComponentState = {
     sections: [
+      { url: "/Contribute", title: "Contribute" },
       { url: "/Learn", title: "Learn" },
       { url: "/Projects", title: "Projects" },
       { url: "/Articles", title: "Articles" },
