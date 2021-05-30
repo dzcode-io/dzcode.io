@@ -37,6 +37,10 @@ const routes: RouteInterface[] = [
     path: "/FAQ",
   },
   {
+    import: import("src/apps/main/pages/contribute"),
+    path: "/Contribute",
+  },
+  {
     import: import("src/apps/main/pages/not-found"),
   },
 ];
