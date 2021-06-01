@@ -9,6 +9,7 @@ import { FC } from "react";
 import Grid from "@material-ui/core/Grid";
 import { LinkV2 } from "src/components/link-v2";
 import MuiCard from "@material-ui/core/Card";
+import Skeleton from "@material-ui/lab/Skeleton";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -121,7 +122,28 @@ export const Contributions: FC = () => {
                 </Grid>
               ),
             )
-          : "Fetching"}
+          : [1, 2, 3].map((id) => (
+              <Grid key={`loading-${id}`} item xs={12} md={6} lg={4}>
+                <MuiCard className={classes.card} variant="outlined">
+                  <CardContent className={classes.content}>
+                    <Skeleton animation="wave" variant="text" />
+                    <Skeleton
+                      animation="wave"
+                      variant="text"
+                      style={{ width: "30%" }}
+                    />
+                    <Skeleton animation="wave" variant="text" />
+                  </CardContent>
+                  <CardActions>
+                    <Skeleton
+                      animation="wave"
+                      variant="text"
+                      style={{ width: "30%" }}
+                    />
+                  </CardActions>
+                </MuiCard>
+              </Grid>
+            ))}
       </Grid>
     </>
   );
