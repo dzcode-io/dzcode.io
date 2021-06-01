@@ -41,7 +41,11 @@ export const Filters: FC = () => {
   const renderFilters = () =>
     filters.map(
       ({ name: filterName, label: filterLabel, options }, filterIndex) => (
-        <Accordion key={`filter-${filterIndex}`}>
+        <Accordion
+          key={`filter-${filterIndex}`}
+          variant="outlined"
+          style={{ marginBottom: -1 }}
+        >
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             {filterLabel}
           </AccordionSummary>
