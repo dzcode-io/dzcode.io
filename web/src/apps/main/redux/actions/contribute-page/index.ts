@@ -32,7 +32,10 @@ export const fetchContributions = (): ThunkResult<ContributePageState> => async 
 
   ![image](https://user-images.githubusercontent.com/48713070/119314037-26e58d00-bc6c-11eb-87b7-c35850cdef9f.png)
   `,
-              projectId: "github/dzcode-io/dzcode.io",
+              project: {
+                id: "github/dzcode-io/dzcode.io",
+                name: "dzcode-io/dzcode.io",
+              },
               url: "https://github.com/dzcode-io/dzcode.io/issues/308",
               languages: [
                 "TypeScript",
@@ -74,7 +77,10 @@ export const fetchContributions = (): ThunkResult<ContributePageState> => async 
   - Cache Backend-to-data source requests/queries
   - Consider SSR
   - Do more work on the backend (for example fetching contributors lists and returning their avatars).`,
-              projectId: "github/dzcode-io/dzcode.io",
+              project: {
+                id: "github/dzcode-io/dzcode.io",
+                name: "dzcode-io/dzcode.io",
+              },
               url: "https://github.com/dzcode-io/dzcode.io/issues/306",
               languages: [
                 "TypeScript",
@@ -97,7 +103,10 @@ export const fetchContributions = (): ThunkResult<ContributePageState> => async 
   **Resources/Links**
   - http://maven.apache.org/plugin-developers/index.html
   `,
-              projectId: "github/dzcode-io/kuliya",
+              project: {
+                id: "github/dzcode-io/kuliya",
+                name: "dzcode-io/kuliya",
+              },
               url: "https://github.com/dzcode-io/kuliya/issues/13",
               languages: [
                 "TypeScript",
@@ -117,7 +126,10 @@ export const fetchContributions = (): ThunkResult<ContributePageState> => async 
 
   ![image](https://user-images.githubusercontent.com/48713070/119314037-26e58d00-bc6c-11eb-87b7-c35850cdef9f.png)
   `,
-              projectId: "github/dzcode-io/dzcode.io",
+              project: {
+                id: "github/dzcode-io/dzcode.io",
+                name: "dzcode-io/dzcode.io",
+              },
               url: "https://github.com/dzcode-io/dzcode.io/issues/308",
               languages: [
                 "TypeScript",
@@ -159,7 +171,10 @@ export const fetchContributions = (): ThunkResult<ContributePageState> => async 
   - Cache Backend-to-data source requests/queries
   - Consider SSR
   - Do more work on the backend (for example fetching contributors lists and returning their avatars).`,
-              projectId: "github/dzcode-io/dzcode.io",
+              project: {
+                id: "github/dzcode-io/dzcode.io",
+                name: "dzcode-io/dzcode.io",
+              },
               url: "https://github.com/dzcode-io/dzcode.io/issues/306",
               languages: [
                 "TypeScript",
@@ -182,7 +197,10 @@ export const fetchContributions = (): ThunkResult<ContributePageState> => async 
   **Resources/Links**
   - http://maven.apache.org/plugin-developers/index.html
   `,
-              projectId: "github/dzcode-io/kuliya",
+              project: {
+                id: "github/dzcode-io/kuliya",
+                name: "dzcode-io/kuliya",
+              },
               url: "https://github.com/dzcode-io/kuliya/issues/13",
               languages: [
                 "TypeScript",
