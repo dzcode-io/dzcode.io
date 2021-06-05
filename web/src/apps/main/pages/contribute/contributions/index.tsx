@@ -53,10 +53,7 @@ export const Contributions: FC = () => {
       >
         {contributions
           ? contributions.map(
-              (
-                { id, projectId, title, languages, labels, url: link },
-                index,
-              ) => (
+              ({ projectId, title, languages, labels, url: link }, index) => (
                 <Grid key={`contribution-${index}-`} item xs={12} md={6} lg={4}>
                   <MuiCard className={classes.card} variant="outlined">
                     <CardContent className={classes.content}>
@@ -93,11 +90,6 @@ export const Contributions: FC = () => {
                       <LinkV2 href={link}>
                         <Button size="small" color="primary">
                           Contribute
-                        </Button>
-                      </LinkV2>
-                      <LinkV2 href={`/Contribute/${projectId}/${id}`}>
-                        <Button size="small" color="primary">
-                          More Details
                         </Button>
                       </LinkV2>
                     </CardActions>
