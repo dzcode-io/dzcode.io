@@ -20,13 +20,16 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   card: {
-    minWidth: 300,
     height: "100%",
     display: "flex",
     flexDirection: "column",
   },
+  title: {},
+  project: { flex: "1" },
   content: {
     flex: "1",
+    display: "flex",
+    flexDirection: "column",
   },
   chip: {
     flex: "1",
@@ -53,38 +56,45 @@ export const Contributions: FC = () => {
       >
         {contributions
           ? contributions.map(
-              ({ projectId, title, languages, labels, url: link }, index) => (
+              ({ project, title, languages, labels, url: link }, index) => (
                 <Grid key={`contribution-${index}-`} item xs={12} md={6} lg={4}>
                   <MuiCard className={classes.card} variant="outlined">
                     <CardContent className={classes.content}>
-                      <Typography gutterBottom variant="h6">
+                      <Typography className={classes.title} variant="h6">
                         {title}
                       </Typography>
-                      <div className={classes.content} />
-                      {[
-                        { filterName: "languages", options: languages },
-                        { filterName: "labels", options: labels },
-                      ].map(({ filterName, options }) =>
-                        options.map((optionName) => (
-                          <Chip
-                            className={classes.chip}
-                            key={`${filterName}-${optionName}`}
-                            label={optionName}
-                            size="small"
-                            variant="default"
-                            onClick={() => {
-                              dispatch(
-                                updateFilterValue(
-                                  filterName,
-                                  optionName,
-                                  true,
-                                  true,
-                                ),
-                              );
-                            }}
-                          />
-                        )),
-                      )}
+                      <Typography
+                        className={classes.project}
+                        color="textSecondary"
+                      >
+                        {project.name}
+                      </Typography>
+                      <div>
+                        {[
+                          { filterName: "languages", options: languages },
+                          { filterName: "labels", options: labels },
+                        ].map(({ filterName, options }) =>
+                          options.map((optionName) => (
+                            <Chip
+                              className={classes.chip}
+                              key={`${filterName}-${optionName}`}
+                              label={optionName}
+                              size="small"
+                              variant="default"
+                              onClick={() => {
+                                dispatch(
+                                  updateFilterValue(
+                                    filterName,
+                                    optionName,
+                                    true,
+                                    true,
+                                  ),
+                                );
+                              }}
+                            />
+                          )),
+                        )}
+                      </div>
                     </CardContent>
                     <CardActions>
                       <LinkV2 href={link}>

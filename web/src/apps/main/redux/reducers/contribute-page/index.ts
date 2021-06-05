@@ -10,11 +10,16 @@ interface Filter {
   }>;
 }
 
+interface Project {
+  id: string;
+  name: string;
+}
+
 export interface Contribution {
   id: string;
   title: string;
   description: string;
-  projectId: string;
+  project: Project;
   url: string;
   languages: string[];
   labels: string[];
