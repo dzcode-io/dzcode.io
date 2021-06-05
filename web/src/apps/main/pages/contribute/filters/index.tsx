@@ -14,6 +14,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import MenuIcon from "@material-ui/icons/Menu";
 import { SpeedDial } from "src/apps/main/components/speed-dial";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
+import { updateFilterValue } from "src/apps/main/redux/actions/contribute-page";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
@@ -61,28 +62,9 @@ export const Filters: FC = () => {
                   label={optionLabel}
                   className={classes.option}
                   onChange={(e, checked) => {
-                    const newFilters = filters.map((filter) => {
-                      if (filter.name !== filterName) {
-                        return filter;
-                      } else {
-                        return {
-                          ...filter,
-                          options: filter.options.map((option) => {
-                            if (option.name !== optionName) {
-                              return option;
-                            } else {
-                              return { ...option, checked };
-                            }
-                          }),
-                        };
-                      }
-                    });
-                    dispatch({
-                      type: "UPDATE_CONTRIBUTE_PAGE",
-                      payload: {
-                        filters: newFilters,
-                      },
-                    });
+                    dispatch(
+                      updateFilterValue(filterName, optionName, checked),
+                    );
                   }}
                 />
               ),
