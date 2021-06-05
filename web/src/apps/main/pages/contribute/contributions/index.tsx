@@ -12,6 +12,7 @@ import MuiCard from "@material-ui/core/Card";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { updateFilterValue } from "src/apps/main/redux/actions/contribute-page";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,10 +38,9 @@ const useStyles = makeStyles((theme) => ({
 
 export const Contributions: FC = () => {
   const classes = useStyles();
-  const { contributions, filters } = useSelector<
-    StateInterface,
-    ContributePageState
-  >((state) => state.contributePage);
+  const { contributions } = useSelector<StateInterface, ContributePageState>(
+    (state) => state.contributePage,
+  );
   const dispatch = useDispatch<Dispatch<ContributePageState>>();
 
   return (
@@ -53,14 +53,11 @@ export const Contributions: FC = () => {
       >
         {contributions
           ? contributions.map(
-              ({ id, projectId, title, languages, labels, url: link }) => (
-                <Grid
-                  key={`contribution-${projectId}-`}
-                  item
-                  xs={12}
-                  md={6}
-                  lg={4}
-                >
+              (
+                { id, projectId, title, languages, labels, url: link },
+                index,
+              ) => (
+                <Grid key={`contribution-${index}-`} item xs={12} md={6} lg={4}>
                   <MuiCard className={classes.card} variant="outlined">
                     <CardContent className={classes.content}>
                       <Typography gutterBottom variant="h6">
@@ -79,28 +76,14 @@ export const Contributions: FC = () => {
                             size="small"
                             variant="default"
                             onClick={() => {
-                              const newFilters = filters.map((filter) => {
-                                if (filter.name !== filterName) {
-                                  return filter;
-                                } else {
-                                  return {
-                                    ...filter,
-                                    options: filter.options.map((option) => {
-                                      if (option.name !== optionName) {
-                                        return option;
-                                      } else {
-                                        return { ...option, checked: true };
-                                      }
-                                    }),
-                                  };
-                                }
-                              });
-                              dispatch({
-                                type: "UPDATE_CONTRIBUTE_PAGE",
-                                payload: {
-                                  filters: newFilters,
-                                },
-                              });
+                              dispatch(
+                                updateFilterValue(
+                                  filterName,
+                                  optionName,
+                                  true,
+                                  true,
+                                ),
+                              );
                             }}
                           />
                         )),
