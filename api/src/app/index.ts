@@ -4,6 +4,7 @@ import { createExpressServer, useContainer } from "routing-controllers";
 import { Application } from "express";
 import { ConfigService } from "../config/service";
 import Container from "typedi";
+import { ContributionController } from "../contribution/controller";
 import { ContributorController } from "../contributor/controller";
 import { DocsMiddleware } from "./middlewares/docs";
 import { ErrorMiddleware } from "./middlewares/error";
@@ -19,7 +20,11 @@ useContainer(Container);
 
 // Create the app:
 export const routingControllersOptions = {
-  controllers: [ContributorController, GithubUserController],
+  controllers: [
+    ContributionController,
+    ContributorController,
+    GithubUserController,
+  ],
   middlewares: [
     // middlewares:
     SecurityMiddleware,
