@@ -1,84 +1,14 @@
+import { ContributionEntity, FilterEntity } from "@dzcode.io/common/dist/types";
 import { Action } from "src/apps/main/redux";
 
-interface Filter {
-  label: string;
-  name: string;
-  options: Array<{
-    label: string;
-    name: string;
-    checked: boolean;
-  }>;
-}
-
-interface Project {
-  id: string;
-  name: string;
-}
-
-export interface Contribution {
-  id: string;
-  title: string;
-  description: string;
-  project: Project;
-  url: string;
-  languages: string[];
-  labels: string[];
-}
-
 export interface ContributePageState {
-  filters: Filter[];
-  contributions: Contribution[] | null;
+  filters: FilterEntity[];
+  contributions: ContributionEntity[] | null;
 }
 
 export const contributePage = (
   state: ContributePageState = {
-    filters: [
-      {
-        label: "Project",
-        name: "projects",
-        options: [
-          { checked: false, label: "leblad", name: "leblad" },
-          { checked: false, label: "leblad-py", name: "leblad-py" },
-          { checked: false, label: "kuliya", name: "kuliya" },
-          { checked: false, label: "dzcode.io", name: "dzcode.io" },
-          { checked: false, label: "phanos", name: "phanos" },
-        ],
-      },
-      {
-        label: "Type",
-        name: "types",
-        options: [
-          { checked: false, label: "issue", name: "Issue" },
-          { checked: false, label: "pr", name: "Pull/Merge Request" },
-        ],
-      },
-      {
-        label: "Label",
-        name: "labels",
-        options: [
-          { checked: false, label: "bug", name: "bug" },
-          { checked: false, label: "enhancement", name: "enhancement" },
-          { checked: false, label: "ui/ux", name: "ui/ux" },
-          {
-            checked: false,
-            label: "good first issue",
-            name: "good first issue",
-          },
-        ],
-      },
-      {
-        label: "Language",
-        name: "languages",
-        options: [
-          { checked: false, label: "JavaScript", name: "JavaScript" },
-          { checked: false, label: "Pug", name: "Pug" },
-          { checked: false, label: "TypeScript", name: "TypeScript" },
-          { checked: false, label: "SCSS", name: "SCSS" },
-          { checked: false, label: "Dockerfile", name: "Dockerfile" },
-          { checked: false, label: "Java", name: "Java" },
-        ],
-      },
-    ],
+    filters: [],
     contributions: null,
   },
   action: Action<ContributePageState>,

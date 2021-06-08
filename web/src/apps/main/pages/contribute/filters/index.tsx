@@ -40,39 +40,30 @@ export const Filters: FC = () => {
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
   const renderFilters = () =>
-    filters.map(
-      ({ name: filterName, label: filterLabel, options }, filterIndex) => (
-        <Accordion
-          key={`filter-${filterIndex}`}
-          variant="outlined"
-          style={{ marginBottom: -1 }}
-        >
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            {filterLabel}
-          </AccordionSummary>
-          <AccordionDetails className={classes.filter}>
-            {options.map(
-              (
-                { label: optionLabel, name: optionName, checked },
-                optionIndex,
-              ) => (
-                <FormControlLabel
-                  key={`filter-${filterIndex}-${optionIndex}`}
-                  control={<Checkbox checked={checked} />}
-                  label={optionLabel}
-                  className={classes.option}
-                  onChange={(e, checked) => {
-                    dispatch(
-                      updateFilterValue(filterName, optionName, checked),
-                    );
-                  }}
-                />
-              ),
-            )}
-          </AccordionDetails>
-        </Accordion>
-      ),
-    );
+    filters.map(({ name: filterName, label: filterLabel, options }) => (
+      <Accordion
+        key={`filter-${filterName}`}
+        variant="outlined"
+        style={{ marginBottom: -1 }}
+      >
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          {filterLabel}
+        </AccordionSummary>
+        <AccordionDetails className={classes.filter}>
+          {options.map(({ label: optionLabel, name: optionName, checked }) => (
+            <FormControlLabel
+              key={`filter-${filterName}-${optionName}`}
+              control={<Checkbox checked={checked} />}
+              label={optionLabel}
+              className={classes.option}
+              onChange={(e, checked) => {
+                dispatch(updateFilterValue(filterName, optionName, checked));
+              }}
+            />
+          ))}
+        </AccordionDetails>
+      </Accordion>
+    ));
 
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
