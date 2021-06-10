@@ -1,14 +1,18 @@
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { useDispatch, useSelector } from "react-redux";
+import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { FC } from "react";
 import Grid from "@material-ui/core/Grid";
 import { LinkV2 } from "src/components/link-v2";
+import MergeTypeIcon from "@material-ui/icons/MergeType";
 import MuiCard from "@material-ui/core/Card";
+import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -37,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
+  contribute: {
+    marginRight: "auto",
+  },
 }));
 
 export const Contributions: FC = () => {
@@ -56,7 +63,18 @@ export const Contributions: FC = () => {
       >
         {contributions
           ? contributions.map(
-              ({ project, title, languages, labels, url: link }, index) => (
+              (
+                {
+                  project,
+                  title,
+                  languages,
+                  labels,
+                  url: link,
+                  type,
+                  commentsCount,
+                },
+                index,
+              ) => (
                 <Grid key={`contribution-${index}-`} item xs={12} md={6} lg={4}>
                   <MuiCard className={classes.card} variant="outlined">
                     <CardContent className={classes.content}>
@@ -71,8 +89,8 @@ export const Contributions: FC = () => {
                       </Typography>
                       <div>
                         {[
-                          { filterName: "languages", options: languages },
                           { filterName: "labels", options: labels },
+                          { filterName: "languages", options: languages },
                         ].map(({ filterName, options }) =>
                           options.map((optionName) => (
                             <Chip
@@ -97,11 +115,21 @@ export const Contributions: FC = () => {
                       </div>
                     </CardContent>
                     <CardActions>
-                      <LinkV2 href={link}>
+                      <LinkV2 href={link} className={classes.contribute}>
                         <Button size="small" color="primary">
                           Contribute
                         </Button>
                       </LinkV2>
+                      {commentsCount > 0 && (
+                        <Badge badgeContent={commentsCount}>
+                          <QuestionAnswerIcon />
+                        </Badge>
+                      )}
+                      {type === "issue" ? (
+                        <ErrorOutlineIcon />
+                      ) : (
+                        <MergeTypeIcon />
+                      )}
                     </CardActions>
                   </MuiCard>
                 </Grid>
