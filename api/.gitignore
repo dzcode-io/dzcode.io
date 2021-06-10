@@ -1,6 +1,7 @@
 dist
 coverage
 oracle-cloud/build
+fetch_cache
 
 # logs
 **.tsbuildinfo
