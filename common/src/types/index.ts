@@ -49,11 +49,40 @@ export type Environment = "development" | "staging" | "production";
 export interface GithubUser {
   login: string;
   id: number;
-  // eslint-disable-next-line camelcase
   avatar_url: string;
-  // eslint-disable-next-line camelcase
   html_url: string;
   type: string;
+}
+
+export interface GithubIssue {
+  html_url: string;
+  number: number;
+  title: string;
+  user: GithubUser;
+  body: string;
+  labels: Array<{
+    name: string;
+  }>;
+  state: "closed" | "open";
+  assignees: GithubUser[];
+  comments: number;
+  created_at: string;
+  updated_at: string;
+  closed_at: string | null;
+  pull_request?: {
+    html_url: "https://github.com/ZibanPirate/l2t/pull/9";
+  };
+}
+
+export class RepositoryEntity {
+  @IsString()
+  provider!: "github" | "gitlab";
+
+  @IsString()
+  owner!: string;
+
+  @IsString()
+  repository!: string;
 }
 
 export class ProjectEntity {
