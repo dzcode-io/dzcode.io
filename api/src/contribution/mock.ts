@@ -17,7 +17,11 @@ export const generateContributionMock = (index: number): ContributionEntity => {
       name: projectName,
     },
     title: lorem.sentence(),
+    type: index % 2 ? "pullRequest" : "issue",
     url: `https://github.com/${projectName}/issues/${index}`,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    commentsCount: Math.round(Math.random() * 50),
   };
 };
 

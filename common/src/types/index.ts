@@ -1,5 +1,9 @@
+/* eslint-disable camelcase */
+
 import {
   IsBoolean,
+  IsDateString,
+  IsNumber,
   IsOptional,
   IsString,
   ValidateNested,
@@ -90,6 +94,10 @@ export class ProjectEntity {
   id!: string;
   @IsString()
   name!: string;
+
+  @ValidateNested({ each: true })
+  @Type(() => RepositoryEntity)
+  repositories!: RepositoryEntity[];
 }
 
 export class ContributionEntity {
@@ -100,7 +108,11 @@ export class ContributionEntity {
   title!: string;
 
   @ValidateNested()
-  project!: ProjectEntity;
+  @Type(() => OptionEntity)
+  project!: Pick<ProjectEntity, "id" | "name">;
+
+  @IsString()
+  type!: "issue" | "pullRequest";
 
   @IsString()
   url!: string;
@@ -110,6 +122,15 @@ export class ContributionEntity {
 
   @IsString()
   labels!: string[];
+
+  @IsDateString()
+  createdAt!: string;
+
+  @IsDateString()
+  updatedAt!: string;
+
+  @IsNumber()
+  commentsCount!: number;
 }
 
 export class OptionEntity {
