@@ -116,10 +116,19 @@ export const Contributions: FC = () => {
                         )}
                       </div>
                     </CardContent>
-                    <CardActions>
+                    <CardActions
+                      style={{
+                        color: type === "issue" ? "#56d364" : "#a371f7",
+                      }}
+                    >
                       <LinkV2 href={link} className={classes.contribute}>
-                        <Button size="small" color="primary">
-                          Contribute
+                        <Button
+                          size="small"
+                          style={{
+                            color: type === "issue" ? "#56d364" : "#a371f7",
+                          }}
+                        >
+                          {type === "issue" ? "Read Issue" : "Review Changes"}
                         </Button>
                       </LinkV2>
                       <Typography variant="caption">
@@ -131,9 +140,9 @@ export const Contributions: FC = () => {
                         </Badge>
                       )}
                       {type === "issue" ? (
-                        <ErrorOutlineIcon />
+                        <ErrorOutlineIcon style={{ color: "#56d364" }} />
                       ) : (
-                        <MergeTypeIcon />
+                        <MergeTypeIcon style={{ color: "#a371f7" }} />
                       )}
                     </CardActions>
                   </MuiCard>
