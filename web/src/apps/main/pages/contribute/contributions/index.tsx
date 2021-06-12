@@ -15,6 +15,7 @@ import MuiCard from "@material-ui/core/Card";
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Typography from "@material-ui/core/Typography";
+import { elapsedTime } from "src/common/utils/elapsed-time";
 import { makeStyles } from "@material-ui/core/styles";
 import { updateFilterValue } from "src/apps/main/redux/actions/contribute-page";
 
@@ -72,6 +73,7 @@ export const Contributions: FC = () => {
                   url: link,
                   type,
                   commentsCount,
+                  updatedAt,
                 },
                 index,
               ) => (
@@ -120,6 +122,9 @@ export const Contributions: FC = () => {
                           Contribute
                         </Button>
                       </LinkV2>
+                      <Typography variant="caption">
+                        {elapsedTime(updatedAt)}
+                      </Typography>
                       {commentsCount > 0 && (
                         <Badge badgeContent={commentsCount}>
                           <QuestionAnswerIcon />
