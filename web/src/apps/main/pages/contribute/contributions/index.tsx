@@ -108,6 +108,7 @@ export const Contributions: FC = () => {
                                     optionName,
                                     true,
                                     true,
+                                    true,
                                   ),
                                 );
                               }}
