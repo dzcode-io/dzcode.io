@@ -79,17 +79,28 @@ export const updateFilterValue = (
   optionName: string,
   value: boolean,
   updateImmediately = false,
+  overwrite = false,
 ): ThunkResult<ContributePageState> => async (dispatch, getState) => {
   const { filters } = getState().contributePage;
   const newFilters = filters.map((filter) => {
     if (filter.name !== filterName) {
-      return filter;
+      return {
+        ...filter,
+        options: !overwrite
+          ? filter.options
+          : filter.options.map((option) => {
+              return {
+                ...option,
+                checked: false,
+              };
+            }),
+      };
     } else {
       return {
         ...filter,
         options: filter.options.map((option) => {
           if (option.name !== optionName) {
-            return option;
+            return overwrite ? { ...option, checked: false } : option;
           } else {
             return { ...option, checked: value };
           }
