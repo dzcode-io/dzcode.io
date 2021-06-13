@@ -12,21 +12,57 @@ const apiURL = fullstackConfig.api.url;
  */
 export const fetchContributions = (): ThunkResult<ContributePageState> => async (
   dispatch,
+  getState,
 ) => {
   dispatch({
     type: "UPDATE_CONTRIBUTE_PAGE",
     payload: { contributions: null },
   });
   try {
+    const { contributePage } = getState();
+    const query = contributePage.filters.reduce(
+      (query, filter) =>
+        `${query}${filter.name}=${filter.options
+          .filter(({ checked }) => checked)
+          .reduce(
+            (filterQuery, option) => `${filterQuery}${option.name},`,
+            "",
+          )}&`,
+      "?",
+    );
     const {
       data: { contributions, filters },
     } = await Axios.get<GetContributionsResponseDto>(
-      apiURL + "/v2/Contributions",
+      apiURL + "/v2/Contributions" + query,
     );
-    // const contributions = await new Promise<Contribution[]>((res) => { /**/ });
+    // restore filters states:
+    const checkedFilters: Array<{
+      filterName: string;
+      optionName: string;
+    }> = [];
+    contributePage.filters.forEach((filter) => {
+      filter.options.forEach((option) => {
+        if (option.checked) {
+          checkedFilters.push({
+            filterName: filter.name,
+            optionName: option.name,
+          });
+        }
+      });
+    });
+    const newFilters = filters.map((filter) => ({
+      ...filter,
+      options: filter.options.map((option) => ({
+        ...option,
+        checked: checkedFilters.some(
+          ({ filterName, optionName }) =>
+            filterName === filter.name && optionName === option.name,
+        ),
+      })),
+    }));
     dispatch({
       type: "UPDATE_CONTRIBUTE_PAGE",
-      payload: { contributions, filters },
+      payload: { contributions, filters: newFilters },
     });
   } catch (error) {
     console.error(error);
