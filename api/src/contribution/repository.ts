@@ -14,13 +14,17 @@ export class ContributionRepository {
 
   private projects = projectsList;
 
-  public async find(): Promise<
-    Pick<GetContributionsResponseDto, "contributions" | "filters">
-  > {
-    const contributions = (
+  public async find(
+    filterFn?: (
+      value: ContributionEntity,
+      index: number,
+      array: ContributionEntity[],
+    ) => boolean,
+  ): Promise<Pick<GetContributionsResponseDto, "contributions" | "filters">> {
+    let contributions = (
       await Promise.all(
         this.projects.reduce<Promise<ContributionEntity[]>[]>(
-          (pV, { repositories, name }) => [
+          (pV, { repositories, name, id }) => [
             ...pV,
             ...repositories
               .filter(({ provider }) => provider === "github")
@@ -51,7 +55,7 @@ export class ContributionRepository {
                     labels: gLabels.map(({ name }) => name),
                     languages,
                     project: {
-                      id: `github/${owner}/${repo}`,
+                      id,
                       name,
                     },
                     title,
@@ -68,12 +72,14 @@ export class ContributionRepository {
           [],
         ),
       )
-    )
-      .reduce((pV, cV) => [...pV, ...cV], [])
-      .sort(
-        (a, b) =>
-          new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
-      );
+    ).reduce((pV, cV) => [...pV, ...cV], []);
+    if (filterFn) {
+      contributions = contributions.filter(filterFn);
+    }
+    contributions = contributions.sort(
+      (a, b) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+    );
 
     const filters: FilterEntity[] = [
       { label: "Project", name: "projects", options: [] },
