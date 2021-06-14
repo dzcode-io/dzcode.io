@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import {
   GeneralGithubQuery,
   GetUserInput,
@@ -9,7 +10,6 @@ import {
 import { FetchService } from "../fetch/service";
 import { GithubIssue } from "@dzcode.io/common/dist/types";
 import { Service } from "typedi";
-import axios from "axios";
 
 @Service()
 export class GithubService {
@@ -20,18 +20,20 @@ export class GithubService {
     repo,
     path,
   }: GeneralGithubQuery) => {
-    const response = await axios.get<ListContributorsResponse>(
-      `${this.apiURL}/repos/${owner}/${repo}/commits?path=${path}`,
-      // eslint-disable-next-line camelcase
-      { params: { state: "all", per_page: 10 } },
+    const commits = await this.fetchService.get<ListContributorsResponse>(
+      `${this.apiURL}/repos/${owner}/${repo}/commits`,
+      {
+        path,
+        state: "all",
+        per_page: 100,
+      },
     );
-    const contributors = response.data.map(
-      // eslint-disable-next-line camelcase
+    const contributors = commits.map(
       ({ committer: { login, avatar_url, html_url, type, id } }) => ({
         id,
         login,
-        avatar_url, // eslint-disable-line camelcase
-        html_url, // eslint-disable-line camelcase
+        avatar_url,
+        html_url,
         type,
       }),
     );
@@ -41,10 +43,10 @@ export class GithubService {
   public getUser = async ({
     username,
   }: GetUserInput): Promise<GitHubUserApiResponse> => {
-    const response = await axios.get<GitHubUserApiResponse>(
+    const user = await this.fetchService.get<GitHubUserApiResponse>(
       `${this.apiURL}/users/${username}`,
     );
-    return response.data;
+    return user;
   };
 
   public listRepositoryIssues = async ({
@@ -55,7 +57,7 @@ export class GithubService {
       `${this.apiURL}/repos/${owner}/${repo}/issues`,
       {
         sort: "updated",
-        per_page: 100, // eslint-disable-line camelcase
+        per_page: 100,
       },
     );
     return issues;
