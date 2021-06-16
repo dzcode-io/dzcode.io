@@ -6,7 +6,7 @@ const { join } = require("path");
 
 // Static URLs
 console.log("Getting Static URLs ...");
-const urls = ["/", "/Contact-Us"];
+const urls = ["/", "/Contribute", "/Learn", "/Projects", "/Articles", "/FAQ"];
 console.log("✅", urls.length, "URLs Found");
 
 // Dynamic URLs

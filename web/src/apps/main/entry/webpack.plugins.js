@@ -32,13 +32,56 @@ if (process.env.NODE_ENV !== "development") {
   pages.push(
     ...[
       {
-        uri: "/Contact-Us",
-        title: "Contact-Us",
-        description: "Reach Out or Send Us Feedback",
+        uri: "/Contribute",
+        title: "Contribute to algerian open-source projects | DzCode i/o",
+        description: "Contribute to algerian open-source projects",
         ogImage:
-          "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&h=627&q=80",
+          "https://images.unsplash.com/photo-1532618500676-2e0cbf7ba8b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=627&q=80",
         themeColor: "#000",
-        keywords: "",
+        keywords: "contribute, open-source, algeria, dzcode",
+      },
+      {
+        uri: "/Learn",
+        title:
+          "Learn about software development through open-source | DzCode i/o",
+        description:
+          "Learn, edit and share the knowledge between all Algerian developers!",
+        ogImage:
+          "https://images.unsplash.com/photo-1519670107408-15dc1b3ecb1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=627&q=80",
+        themeColor: "#000",
+        keywords: "learn, open-source, algeria, dzcode",
+      },
+      {
+        uri: "/Projects",
+        title:
+          "Browse a growing list of algerian open-source projects | DzCode i/o",
+        description:
+          "Browse a growing list of algerian open-source projects and be up-to-date with the state of dz open-source, or Add your own project to the list!",
+        ogImage:
+          "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=627&q=80",
+        themeColor: "#000",
+        keywords: "projects, open-source, algeria, dzcode",
+      },
+      {
+        uri: "/Articles",
+        title:
+          "Read and discuss articles written by algerian developers | DzCode i/o",
+        description:
+          "Browse, read, modify a growing list of articles written by algerian developers, or Add your own article to the list!",
+        ogImage:
+          "https://images.unsplash.com/photo-1585241936939-be4099591252?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=627&q=80",
+        themeColor: "#000",
+        keywords: "articles, open-source, algeria, dzcode",
+      },
+      {
+        uri: "/FAQ",
+        title:
+          "Understand what exactly is DzCode i/o, get answers to the frequently asked questions | DzCode i/o",
+        description: "Frequently asked questions about DzCode i/o",
+        ogImage:
+          "https://images.unsplash.com/photo-1516246843873-9d12356b6fab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8https://images.unsplash.com/photo-1516246843873-9d12356b6fab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80&auto=format&fit=crop&w=1200&h=627&q=80",
+        themeColor: "#000",
+        keywords: "faq, open-source, algeria, dzcode",
       },
     ],
   );
