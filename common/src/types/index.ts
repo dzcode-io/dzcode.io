@@ -91,7 +91,7 @@ export class RepositoryEntity {
 
 export class ProjectEntity {
   @IsString()
-  id!: string;
+  slug!: string;
   @IsString()
   name!: string;
 
@@ -109,7 +109,7 @@ export class ContributionEntity {
 
   @ValidateNested()
   @Type(() => OptionEntity)
-  project!: Pick<ProjectEntity, "id" | "name">;
+  project!: Pick<ProjectEntity, "slug" | "name">;
 
   @IsString()
   type!: "issue" | "pullRequest";

@@ -33,7 +33,7 @@ export class ContributionController {
           )) &&
         (projects.length === 0 ||
           projects.some((project) => {
-            return contribution.project.id === project;
+            return contribution.project.slug === project;
           })),
     );
     return {

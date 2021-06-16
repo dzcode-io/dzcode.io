@@ -1,12 +1,16 @@
 import fse from "fs-extra";
+import glob from "glob";
 import { join } from "path";
 
 export interface Collection {
-  items: string[];
+  items: string[] | "all";
   include: string[];
 }
 
-export const getDataEntry = (_path: string, include?: string[]) => {
+export const getDataEntry = <T = Record<string, unknown>>(
+  _path: string,
+  include?: string[],
+) => {
   const path = join(__dirname, "../../../data/models", _path);
   // Entry doesn't exist
   if (!fse.existsSync(path))
@@ -50,10 +54,10 @@ export const getDataEntry = (_path: string, include?: string[]) => {
     };
 
   // Return the Entry
-  return entry;
+  return entry as T;
 };
 
-export const getDataCollection = (
+export const getDataCollection = <T = Record<string, unknown>>(
   collectionType: string,
   collectionName: string,
 ) => {
@@ -70,10 +74,29 @@ export const getDataCollection = (
 
   // Read [collection].json
   const collection: Collection = fse.readJsonSync(path);
+  let items: string[] = [];
+
+  if (collection.items === "all") {
+    const files = glob.sync(
+      join(__dirname, `../../../data/models/${collectionType}/**/info.json`),
+    );
+    const dPath = `data/models/${collectionType}/`;
+    items = files.map((filePath) => {
+      return filePath.substring(
+        filePath.lastIndexOf(dPath) + dPath.length,
+        filePath.lastIndexOf("/info.json"),
+      );
+    });
+  } else {
+    items = collection.items;
+  }
 
   // Collect Entries
-  const entries = collection.items.map((slug) => {
-    const entry = getDataEntry(`${collectionType}/${slug}`, collection.include);
+  const entries = items.map((slug) => {
+    const entry = getDataEntry<T>(
+      `${collectionType}/${slug}`,
+      collection.include,
+    );
     return {
       slug,
       ...entry,
@@ -81,5 +104,5 @@ export const getDataCollection = (
   });
 
   // Return matched Entries of the Collection
-  return entries;
+  return entries as T[];
 };
