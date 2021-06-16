@@ -13,7 +13,7 @@ export const generateContributionMock = (index: number): ContributionEntity => {
     labels: lorem.sentence().split(" "),
     languages: lorem.sentence().split(" "),
     project: {
-      id: `github/${projectName}`,
+      slug: `github/${projectName}`,
       name: projectName,
     },
     title: lorem.sentence(),
@@ -49,7 +49,7 @@ export const bulkGenerateContributionMock = (from: number, to: number) => {
     pushUniqueOption(
       [
         {
-          name: contributionMock.project.id,
+          name: contributionMock.project.slug,
           label: contributionMock.project.name,
         },
       ],

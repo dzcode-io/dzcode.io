@@ -2,17 +2,25 @@ import {
   ContributionEntity,
   FilterEntity,
   OptionEntity,
+  ProjectEntity,
 } from "@dzcode.io/common/dist/types";
 import { GetContributionsResponseDto } from "@dzcode.io/common/dist/types/api-responses";
 import { GithubService } from "../github/service";
 import { Service } from "typedi";
-import { projectsList } from "./projects-list";
+import { getDataCollection } from "@dzcode.io/common/dist/utils/data";
 
 @Service()
 export class ContributionRepository {
-  constructor(private readonly githubService: GithubService) {}
+  constructor(private readonly githubService: GithubService) {
+    const projects = getDataCollection<ProjectEntity>(
+      "projects-v2",
+      "list.json",
+    );
+    this.projects = projects !== 404 ? projects : [];
+    console.log({ projects });
+  }
 
-  private projects = projectsList;
+  private projects: ProjectEntity[];
 
   public async find(
     filterFn?: (
@@ -24,7 +32,7 @@ export class ContributionRepository {
     let contributions = (
       await Promise.all(
         this.projects.reduce<Promise<ContributionEntity[]>[]>(
-          (pV, { repositories, name, id }) => [
+          (pV, { repositories, name, slug }) => [
             ...pV,
             ...repositories
               .filter(({ provider }) => provider === "github")
@@ -55,7 +63,7 @@ export class ContributionRepository {
                     labels: gLabels.map(({ name }) => name),
                     languages,
                     project: {
-                      id,
+                      slug,
                       name,
                     },
                     title,
@@ -89,7 +97,7 @@ export class ContributionRepository {
 
     contributions.forEach(({ project, languages, labels }) => {
       this.pushUniqueOption(
-        [{ name: project.id, label: project.name }],
+        [{ name: project.slug, label: project.name }],
         filters[0].options,
       );
 

@@ -1,0 +1,10 @@
+{
+  "name": "Kuliya",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "dzcode-io",
+      "repository": "kuliya"
+    }
+  ]
+}

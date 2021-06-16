@@ -1,0 +1,10 @@
+{
+  "name": "Python Complex",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "Omar-Belghaouti",
+      "repository": "PythonComplex"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ReactNative Currency Converter",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "ilies-space",
+      "repository": "currency_converter_rn"
+    }
+  ]
+}

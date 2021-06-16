@@ -1,0 +1,10 @@
+{
+  "name": "Melyon",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "CA1R7",
+      "repository": "melyon"
+    }
+  ]
+}
