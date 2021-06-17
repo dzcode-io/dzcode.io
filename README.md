@@ -57,7 +57,7 @@ yarn dev
 
 ## Contributing
 
-To get started see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/master/.github/CONTRIBUTING.md).
+To get started see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/main/.github/CONTRIBUTING.md).
 
 ### Before You Create a Pull Request
 
