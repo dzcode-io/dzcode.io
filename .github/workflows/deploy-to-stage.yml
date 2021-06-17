@@ -89,6 +89,10 @@ jobs:
         run: |
           cd common
           yarn build
+      - name: "Build data directory"
+        run: |
+          cd data
+          yarn build
       - name: "Deploy api"
         run: |
           cd api
