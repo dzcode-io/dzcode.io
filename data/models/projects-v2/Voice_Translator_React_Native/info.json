@@ -1,0 +1,10 @@
+{
+  "name": "ReactNative Voice Translator",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "ilies-space",
+      "repository": "voiceTranslator-reactNative"
+    }
+  ]
+}

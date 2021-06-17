@@ -1,0 +1,10 @@
+{
+  "name": "React Project Builder",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "AmineVolk",
+      "repository": "react-project-builder"
+    }
+  ]
+}

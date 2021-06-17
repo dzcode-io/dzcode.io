@@ -8,4 +8,6 @@ export class ENVDto {
 
   @Matches("(" + environment.join(")|(") + ")")
   NODE_ENV: Environment = "development";
+
+  FETCH_CACHE_PATH = "./fetch_cache";
 }

@@ -1,0 +1,10 @@
+{
+  "name": "List to Tree",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "ZibanPirate",
+      "repository": "l2t"
+    }
+  ]
+}

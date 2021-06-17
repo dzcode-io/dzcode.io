@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import { GithubUser } from "@dzcode.io/common/dist/types";
 
 export type ListContributorsResponse = Array<{
@@ -15,7 +17,6 @@ export interface GetUserInput {
   username: string;
 }
 
-/* eslint-disable camelcase */
 export interface GitHubUserApiResponse {
   login: string;
   id: number;
@@ -50,3 +51,10 @@ export interface GitHubUserApiResponse {
   created_at: string;
   updated_at: string;
 }
+
+export interface GitHubListRepositoryIssuesInput {
+  owner: string;
+  repo: string;
+}
+
+export type GitHubListRepositoryLanguagesInput = GitHubListRepositoryIssuesInput;

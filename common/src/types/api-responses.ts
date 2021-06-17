@@ -1,7 +1,7 @@
 import "reflect-metadata";
+import { ContributionEntity, FilterEntity, GithubUser } from ".";
 import { IsNumber, IsObject, IsOptional, IsString } from "class-validator";
-import { GithubUser } from ".";
-import { Type } from "class-transformer";
+import { Transform, TransformFnParams, Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
 
 export class GeneralResponseDto {
@@ -40,4 +40,39 @@ export class GetContributorsResponseDto extends GeneralResponseDto {
 export class GetUserResponseDto extends GeneralResponseDto {
   @ValidateNested()
   user!: GithubUserDto;
+}
+
+export class GetContributionsResponseDto extends GeneralResponseDto {
+  @ValidateNested({ each: true })
+  @Type(() => ContributionEntity)
+  contributions!: ContributionEntity[];
+
+  @ValidateNested({ each: true })
+  @Type(() => FilterEntity)
+  filters!: FilterEntity[];
+}
+
+const transformFilterOptions = ({ value }: TransformFnParams) => {
+  let filterOptions: string[] = [];
+  if (typeof value === "string" && value.length > 0) {
+    filterOptions = value.split(",");
+  }
+  if (Array.isArray(value)) {
+    filterOptions = value;
+  }
+  return filterOptions;
+};
+
+export class GetContributionsQueryDto {
+  @Transform(transformFilterOptions)
+  @Reflect.metadata("design:type", { name: "string" })
+  projects: string[] = [];
+
+  @Transform(transformFilterOptions)
+  @Reflect.metadata("design:type", { name: "string" })
+  languages: string[] = [];
+
+  @Transform(transformFilterOptions)
+  @Reflect.metadata("design:type", { name: "string" })
+  labels: string[] = [];
 }
