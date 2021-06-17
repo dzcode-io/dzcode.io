@@ -14,7 +14,8 @@
     "List_to_Tree_aka_l2t",
     "Voice_Translator_React_Native",
     "React_Native_Help_Create",
-    "Melyon_Theme"
+    "Melyon_Theme",
+    "AiPalettes"
   ],
   "include": ["title", "description", "image", "githubURI"]
 }
