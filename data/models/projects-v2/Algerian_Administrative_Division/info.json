@@ -1,0 +1,10 @@
+{
+  "name": "Algerian Administrative Division",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "mohsenuss91",
+      "repository": "AlgerianAdministrativeDivision"
+    }
+  ]
+}

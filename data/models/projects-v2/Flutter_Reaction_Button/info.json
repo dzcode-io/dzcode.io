@@ -1,0 +1,10 @@
+{
+  "name": "Flutter Reaction Button",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "geekabdelouahed",
+      "repository": "flutter-reaction-button"
+    }
+  ]
+}

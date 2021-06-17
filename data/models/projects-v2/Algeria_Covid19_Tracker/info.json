@@ -1,0 +1,10 @@
+{
+  "name": "dz-covid19.com",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "DGLcsGaming",
+      "repository": "dz-covid19.com"
+    }
+  ]
+}
