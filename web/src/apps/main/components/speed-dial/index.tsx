@@ -1,7 +1,5 @@
 import { FC, ReactNode, useState } from "react";
-import SpeedDialMUI, {
-  SpeedDialProps as SpeedDialPropsMUI,
-} from "@material-ui/lab/SpeedDial";
+import SpeedDialMUI, { SpeedDialProps as SpeedDialPropsMUI } from "@material-ui/lab/SpeedDial";
 
 import PropTypes from "prop-types";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";

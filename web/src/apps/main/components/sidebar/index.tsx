@@ -88,18 +88,14 @@ export const Sidebar: FC<SidebarProps> = (props) => {
         )
       }
     >
-      {node.children
-        ? node.children.map((treeItem) => renderTree(treeItem))
-        : null}
+      {node.children ? node.children.map((treeItem) => renderTree(treeItem)) : null}
     </TreeItem>
   );
 
   if (md) {
     return (
       <TreeView expanded={props.expanded} selected={props.selected}>
-        {props.tree
-          ? props.tree.map((tree) => renderTree(tree))
-          : SidebarSkeleton}
+        {props.tree ? props.tree.map((tree) => renderTree(tree)) : SidebarSkeleton}
       </TreeView>
     );
   } else {
@@ -115,14 +111,8 @@ export const Sidebar: FC<SidebarProps> = (props) => {
           onClick={handleOpen}
         />
         <Drawer anchor="bottom" onClose={handleClose} open={props.isOpen}>
-          <TreeView
-            expanded={props.expanded}
-            selected={props.selected}
-            onClick={handleClose}
-          >
-            {props.tree
-              ? props.tree.map((tree) => renderTree(tree))
-              : SidebarSkeleton}
+          <TreeView expanded={props.expanded} selected={props.selected} onClick={handleClose}>
+            {props.tree ? props.tree.map((tree) => renderTree(tree)) : SidebarSkeleton}
           </TreeView>
         </Drawer>
       </Fragment>

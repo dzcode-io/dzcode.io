@@ -16,17 +16,7 @@ const port = process.env.DEV_SERVER_PORT || 8080;
 const distFolder = "./dist";
 const publicResourcesPath = "w/";
 const publicPath = "/";
-const nonCodeFiles = [
-  "png",
-  "jpg",
-  "jpeg",
-  "gif",
-  "svg",
-  "ico",
-  "ttf",
-  "woff",
-  "woff2",
-];
+const nonCodeFiles = ["png", "jpg", "jpeg", "gif", "svg", "ico", "ttf", "woff", "woff2"];
 
 const apps = glob
   .sync("src/apps/*/entry/app-config.js")
@@ -37,10 +27,7 @@ module.exports = {
   // https://webpack.js.org/configuration/entry-context/
   entry: Object.fromEntries(
     new Map(
-      apps.map((app) => [
-        app,
-        __dirname + "/src/apps/" + "/" + app + "/" + "/entry/index.tsx",
-      ]),
+      apps.map((app) => [app, __dirname + "/src/apps/" + "/" + app + "/" + "/entry/index.tsx"]),
     ),
   ),
   // https://webpack.js.org/concepts/output/#multiple-entry-points
@@ -101,13 +88,7 @@ module.exports = {
       filename: publicResourcesPath + "/bundle.[contenthash].css",
       chunkFilename: publicResourcesPath + "/chunk.[contenthash].css",
     }),
-    ...apps.reduce(
-      (pV, app) => [
-        ...pV,
-        ...require(`./src/apps/${app}/entry/webpack.plugins`),
-      ],
-      [],
-    ),
+    ...apps.reduce((pV, app) => [...pV, ...require(`./src/apps/${app}/entry/webpack.plugins`)], []),
   ],
   resolve: {
     // https://webpack.js.org/configuration/resolve/#resolvealias

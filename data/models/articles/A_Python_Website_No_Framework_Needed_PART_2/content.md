@@ -56,9 +56,9 @@ now let's move to the HTML template add this code to it
     </header>
     <main>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut
-        pellentesque sapien. Donec id pellentesque sem. Praesent vel urna vitae
-        odio hendrerit malesuada et nec enim. Nulla risus dui,
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut pellentesque sapien. Donec
+        id pellentesque sem. Praesent vel urna vitae odio hendrerit malesuada et nec enim. Nulla
+        risus dui,
       </p>
       <form action="/" method="POST">
         <input type="text" name="text" value="azaze" />

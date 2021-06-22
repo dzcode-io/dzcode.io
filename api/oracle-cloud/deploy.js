@@ -8,10 +8,7 @@ console.log("⚙️  Preparing files ...");
 // root
 fse.copySync("../package.json", "./oracle-cloud/build/package.json");
 // common
-fse.copySync(
-  "../common/package.json",
-  "./oracle-cloud/build/common/package.json",
-);
+fse.copySync("../common/package.json", "./oracle-cloud/build/common/package.json");
 fse.copySync("../common/dist", "./oracle-cloud/build/common/dist");
 // data
 fse.copySync("../data/package.json", "./oracle-cloud/build/data/package.json");
@@ -20,10 +17,7 @@ fse.copySync("../data/models", "./oracle-cloud/build/data/models");
 // api
 fse.copySync("./package.json", "./oracle-cloud/build/api/package.json");
 fse.copySync("./dist", "./oracle-cloud/build/api/dist");
-fse.copySync(
-  "./oracle-cloud/docker-compose.yml",
-  "./oracle-cloud/build/docker-compose.yml",
-);
+fse.copySync("./oracle-cloud/docker-compose.yml", "./oracle-cloud/build/docker-compose.yml");
 fse.copySync("./oracle-cloud/Dockerfile", "./oracle-cloud/build/Dockerfile");
 console.log("✅ files copied\n");
 
@@ -32,9 +26,7 @@ const isProduction = process.argv.includes("production");
 console.log("⚙️  Deploying to", isProduction ? "Production" : "Staging", "...");
 
 let logs;
-const sshServer = isProduction
-  ? process.env.SSH_ADDRESS_PRD
-  : process.env.SSH_ADDRESS_STG;
+const sshServer = isProduction ? process.env.SSH_ADDRESS_PRD : process.env.SSH_ADDRESS_STG;
 const appPath = "~/app";
 const sshPrefix = "ssh -o StrictHostKeyChecking=no " + sshServer + " ";
 
@@ -61,17 +53,12 @@ logs = cp.execSync(sshPrefix + '"rm -f -r ' + appPath + '"');
 logs = cp.execSync(sshPrefix + '"mkdir ' + appPath + '"');
 
 console.log("⤴️  Uploading new code ...");
-logs = cp.execSync(
-  "rsync -r oracle-cloud/build/* " + sshServer + ":" + appPath,
-);
+logs = cp.execSync("rsync -r oracle-cloud/build/* " + sshServer + ":" + appPath);
 console.log("✅ New code uploaded.");
 
 console.log("\n⚙️  Starting up the app");
 logs = cp.execSync(
-  sshPrefix +
-    '"docker-compose -f ' +
-    appPath +
-    '/docker-compose.yml up -d --build"',
+  sshPrefix + '"docker-compose -f ' + appPath + '/docker-compose.yml up -d --build"',
 );
 console.log(String(logs));
 console.log("✅ Deployment successful.");

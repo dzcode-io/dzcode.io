@@ -19,13 +19,9 @@ const apiURL = fullstackConfig.api.url;
 /**
  * Fetches the list of documents for the sidebar
  */
-export const fetchDocumentationList = (): ThunkResult<LearnPageState> => async (
-  dispatch,
-) => {
+export const fetchDocumentationList = (): ThunkResult<LearnPageState> => async (dispatch) => {
   try {
-    const response = await Axios.get<Document[]>(
-      dataURL + "/documentation/list.c.json",
-    );
+    const response = await Axios.get<Document[]>(dataURL + "/documentation/list.c.json");
     const documentationList = response.data;
     const ids: string[] = [];
     // convert list into tree
@@ -73,8 +69,7 @@ const fetchCurrentDocumentContributors = (): ThunkResult<
 
   const { contributors } = response.data;
 
-  const mrCurrentDocument =
-    getState().learnPage.currentDocument || currentDocument;
+  const mrCurrentDocument = getState().learnPage.currentDocument || currentDocument;
   // update our page state
   dispatch({
     type: "UPDATE_LEARN_PAGE",
@@ -90,9 +85,10 @@ const fetchCurrentDocumentContributors = (): ThunkResult<
 /**
  * Fetches the authors of the an current document
  */
-const fetchCurrentDocumentAuthors = (): ThunkResult<
-  LearnPageState | DocumentationState
-> => async (dispatch, getState) => {
+const fetchCurrentDocumentAuthors = (): ThunkResult<LearnPageState | DocumentationState> => async (
+  dispatch,
+  getState,
+) => {
   const { currentDocument } = getState().learnPage;
 
   if (!currentDocument || Array.isArray(currentDocument.githubAuthors)) return;
@@ -100,9 +96,7 @@ const fetchCurrentDocumentAuthors = (): ThunkResult<
   const githubAuthors = (
     await Promise.all(
       currentDocument.authors?.map((author) => {
-        return Axios.get<GetUserResponseDto>(
-          apiURL + `/v2/GithubUsers/${author}`,
-        );
+        return Axios.get<GetUserResponseDto>(apiURL + `/v2/GithubUsers/${author}`);
       }) || [],
     )
   ).map((response) => {
@@ -110,8 +104,7 @@ const fetchCurrentDocumentAuthors = (): ThunkResult<
   });
 
   //  getting the  most recent  current article
-  const mrCurrentDocument =
-    getState().learnPage.currentDocument || currentDocument;
+  const mrCurrentDocument = getState().learnPage.currentDocument || currentDocument;
 
   // update our page state
 
@@ -129,9 +122,10 @@ const fetchCurrentDocumentAuthors = (): ThunkResult<
 /**
  * Fetches the content of the current document
  */
-export const fetchCurrentDocument = (): ThunkResult<
-  LearnPageState | DocumentationState
-> => async (dispatch, getState) => {
+export const fetchCurrentDocument = (): ThunkResult<LearnPageState | DocumentationState> => async (
+  dispatch,
+  getState,
+) => {
   const documentSlug = location.pathname
     .substring(location.pathname.indexOf("/", 1) + 1)
     .replace(/\/$/, "");
@@ -157,9 +151,7 @@ export const fetchCurrentDocument = (): ThunkResult<
       payload: { currentDocument: null },
     });
     try {
-      const response = await Axios.get(
-        dataURL + `/documentation/${documentSlug}.json`,
-      );
+      const response = await Axios.get(dataURL + `/documentation/${documentSlug}.json`);
 
       if (response.data.hasOwnProperty("error")) {
         throw Error("learn_not_found");

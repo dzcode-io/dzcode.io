@@ -3,15 +3,9 @@
 import { ListContributorsResponse } from "../../../github/types";
 import axios from "axios";
 
-export const listOrganizationRepositories = async ({
-  org,
-}: {
-  org: string;
-}) => {
+export const listOrganizationRepositories = async ({ org }: { org: string }) => {
   try {
-    const response = await axios.get(
-      `https://api.github.com/orgs/${org}/repos`,
-    );
+    const response = await axios.get(`https://api.github.com/orgs/${org}/repos`);
 
     return response.data;
   } catch (error) {
@@ -20,23 +14,14 @@ export const listOrganizationRepositories = async ({
   }
 };
 
-export const listPullRequests = async ({
-  owner,
-  repo,
-}: {
-  owner: string;
-  repo: string;
-}) => {
+export const listPullRequests = async ({ owner, repo }: { owner: string; repo: string }) => {
   try {
-    const response = await axios.get(
-      `https://api.github.com/repos/${owner}/${repo}/pulls`,
-      {
-        params: {
-          state: "all",
-          per_page: 10,
-        },
+    const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}/pulls`, {
+      params: {
+        state: "all",
+        per_page: 10,
       },
-    );
+    });
 
     return response.data;
   } catch (error) {
@@ -78,17 +63,9 @@ export const listContributors = async ({
   }
 };
 
-export const listStars = async ({
-  owner,
-  repo,
-}: {
-  owner: string;
-  repo: string;
-}) => {
+export const listStars = async ({ owner, repo }: { owner: string; repo: string }) => {
   try {
-    const response = await axios.get(
-      ` https://api.github.com/repos/${owner}/${repo}`,
-    );
+    const response = await axios.get(` https://api.github.com/repos/${owner}/${repo}`);
 
     return response.data;
   } catch (error) {
@@ -107,16 +84,13 @@ export const listStargazers = async ({
   page: number;
 }) => {
   try {
-    const response = await axios.get(
-      `https://api.github.com/repos/${owner}/${repo}/stargazers`,
-      {
-        params: {
-          state: "all",
-          per_page: 100,
-          page: page,
-        },
+    const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}/stargazers`, {
+      params: {
+        state: "all",
+        per_page: 100,
+        page: page,
       },
-    );
+    });
 
     return response.data;
   } catch (error) {
@@ -125,34 +99,18 @@ export const listStargazers = async ({
   }
 };
 
-export const listBranches = async ({
-  owner,
-  repo,
-}: {
-  owner: string;
-  repo: string;
-}) => {
+export const listBranches = async ({ owner, repo }: { owner: string; repo: string }) => {
   try {
-    const response = await axios.get(
-      `  https://api.github.com/repos/${owner}/${repo}/branches`,
-    );
+    const response = await axios.get(`  https://api.github.com/repos/${owner}/${repo}/branches`);
     return response.data;
   } catch (error) {
     console.log("listBranches ERROR =>", error.response.data);
     return null;
   }
 };
-export const listCommits = async ({
-  owner,
-  repo,
-}: {
-  owner: string;
-  repo: string;
-}) => {
+export const listCommits = async ({ owner, repo }: { owner: string; repo: string }) => {
   try {
-    const response = await axios.get(
-      `  https://api.github.com/repos/${owner}/${repo}/commits`,
-    );
+    const response = await axios.get(`  https://api.github.com/repos/${owner}/${repo}/commits`);
     return response.data;
   } catch (error) {
     console.log("listCommits ERROR =>", error.response.data);
@@ -160,51 +118,27 @@ export const listCommits = async ({
   }
 };
 
-export const listForks = async ({
-  owner,
-  repo,
-}: {
-  owner: string;
-  repo: string;
-}) => {
+export const listForks = async ({ owner, repo }: { owner: string; repo: string }) => {
   try {
-    const response = await axios.get(
-      ` https://api.github.com/repos/${owner}/${repo}`,
-    );
+    const response = await axios.get(` https://api.github.com/repos/${owner}/${repo}`);
     return response.data;
   } catch (error) {
     console.log("listForks =>", error.response.data);
     return null;
   }
 };
-export const listIssues = async ({
-  owner,
-  repo,
-}: {
-  owner: string;
-  repo: string;
-}) => {
+export const listIssues = async ({ owner, repo }: { owner: string; repo: string }) => {
   try {
-    const response = await axios.get(
-      `https://api.github.com/repos/${owner}/${repo}`,
-    );
+    const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}`);
     return response.data;
   } catch (error) {
     console.log("listIssues =>", error.response.data);
     return null;
   }
 };
-export const listWatchers = async ({
-  owner,
-  repo,
-}: {
-  owner: string;
-  repo: string;
-}) => {
+export const listWatchers = async ({ owner, repo }: { owner: string; repo: string }) => {
   try {
-    const response = await axios.get(
-      `https://api.github.com/repos/${owner}/${repo}`,
-    );
+    const response = await axios.get(`https://api.github.com/repos/${owner}/${repo}`);
     return response.data;
   } catch (error) {
     console.log("listWatchers =>", error.response.data);

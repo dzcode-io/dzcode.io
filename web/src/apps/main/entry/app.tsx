@@ -59,19 +59,13 @@ export const App: FC = () => {
 
   return (
     <Theme>
-      <div
-        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-      >
+      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <Navbar />
         <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
           <Suspense fallback={<Loading />}>
             <Switch>
               {routes.map((route, index) => (
-                <Route
-                  {...route}
-                  key={`route-${index}`}
-                  component={lazy(() => route.import)}
-                />
+                <Route {...route} key={`route-${index}`} component={lazy(() => route.import)} />
               ))}
             </Switch>
           </Suspense>

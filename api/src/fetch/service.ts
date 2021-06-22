@@ -15,9 +15,7 @@ export class FetchService {
     params: Record<string, string | number | boolean> = {},
   ) => {
     const _url = new URL(url);
-    Object.keys(params).forEach((key) =>
-      _url.searchParams.append(key, String(params[key])),
-    );
+    Object.keys(params).forEach((key) => _url.searchParams.append(key, String(params[key])));
     const response = await this.fetch(_url.toString());
     return (await response.json()) as T;
   };

@@ -1,8 +1,4 @@
-import {
-  ContributionEntity,
-  FilterEntity,
-  OptionEntity,
-} from "@dzcode.io/common/dist/types";
+import { ContributionEntity, FilterEntity, OptionEntity } from "@dzcode.io/common/dist/types";
 import { lorem } from "faker";
 
 export const generateContributionMock = (index: number): ContributionEntity => {
@@ -33,10 +29,7 @@ export const bulkGenerateContributionMock = (from: number, to: number) => {
     { label: "Label", name: "labels", options: [] },
   ];
 
-  const pushUniqueOption = (
-    options: OptionEntity[],
-    filterOptions: OptionEntity[],
-  ) => {
+  const pushUniqueOption = (options: OptionEntity[], filterOptions: OptionEntity[]) => {
     const uniqueOptions = options.filter(
       (_option) => !filterOptions.some(({ name }) => _option.name === name),
     );

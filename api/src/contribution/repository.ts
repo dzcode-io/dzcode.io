@@ -12,22 +12,14 @@ import { getDataCollection } from "@dzcode.io/common/dist/utils/data";
 @Service()
 export class ContributionRepository {
   constructor(private readonly githubService: GithubService) {
-    const projects = getDataCollection<ProjectEntity>(
-      "projects-v2",
-      "list.json",
-    );
+    const projects = getDataCollection<ProjectEntity>("projects-v2", "list.json");
     this.projects = projects !== 404 ? projects : [];
-    console.log({ projects });
   }
 
   private projects: ProjectEntity[];
 
   public async find(
-    filterFn?: (
-      value: ContributionEntity,
-      index: number,
-      array: ContributionEntity[],
-    ) => boolean,
+    filterFn?: (value: ContributionEntity, index: number, array: ContributionEntity[]) => boolean,
   ): Promise<Pick<GetContributionsResponseDto, "contributions" | "filters">> {
     let contributions = (
       await Promise.all(
@@ -37,16 +29,15 @@ export class ContributionRepository {
             ...repositories
               .filter(({ provider }) => provider === "github")
               .map(async ({ owner, repository: repo }) => {
-                const issuesIncludingPRs = await this.githubService.listRepositoryIssues(
-                  { owner, repo },
-                );
+                const issuesIncludingPRs = await this.githubService.listRepositoryIssues({
+                  owner,
+                  repo,
+                });
 
-                const languages = await this.githubService.listRepositoryLanguages(
-                  {
-                    owner,
-                    repo,
-                  },
-                );
+                const languages = await this.githubService.listRepositoryLanguages({
+                  owner,
+                  repo,
+                });
                 return issuesIncludingPRs.map<ContributionEntity>(
                   /* eslint-disable camelcase */
                   ({
@@ -85,8 +76,7 @@ export class ContributionRepository {
       contributions = contributions.filter(filterFn);
     }
     contributions = contributions.sort(
-      (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+      (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
     );
 
     const filters: FilterEntity[] = [
@@ -96,10 +86,7 @@ export class ContributionRepository {
     ];
 
     contributions.forEach(({ project, languages, labels }) => {
-      this.pushUniqueOption(
-        [{ name: project.slug, label: project.name }],
-        filters[0].options,
-      );
+      this.pushUniqueOption([{ name: project.slug, label: project.name }], filters[0].options);
 
       this.pushUniqueOption(
         languages.map((language) => ({ name: language, label: language })),
@@ -118,10 +105,7 @@ export class ContributionRepository {
     };
   }
 
-  private pushUniqueOption = (
-    options: OptionEntity[],
-    filterOptions: OptionEntity[],
-  ) => {
+  private pushUniqueOption = (options: OptionEntity[], filterOptions: OptionEntity[]) => {
     const uniqueOptions = options.filter(
       (_option) => !filterOptions.some(({ name }) => _option.name === name),
     );

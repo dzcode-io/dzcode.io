@@ -19,13 +19,9 @@ const apiURL = fullstackConfig.api.url;
 /**
  * Fetches the list of articles for the sidebar
  */
-export const fetchArticlesList = (): ThunkResult<ArticlesPageState> => async (
-  dispatch,
-) => {
+export const fetchArticlesList = (): ThunkResult<ArticlesPageState> => async (dispatch) => {
   try {
-    const response = await Axios.get<Article[]>(
-      dataURL + "/articles/list.c.json",
-    );
+    const response = await Axios.get<Article[]>(dataURL + "/articles/list.c.json");
     const articlesList = response.data;
     const ids: string[] = [];
 
@@ -74,8 +70,7 @@ export const fetchCurrentArticleContributors = (): ThunkResult<
   const { contributors } = response.data;
 
   //  getting the  most recent  current article
-  const mrCurrentArticle =
-    getState().articlesPage.currentArticle || currentArticle;
+  const mrCurrentArticle = getState().articlesPage.currentArticle || currentArticle;
   // update our page state
   dispatch({
     type: "UPDATE_ARTICLES_PAGE",
@@ -91,9 +86,10 @@ export const fetchCurrentArticleContributors = (): ThunkResult<
 /**
  * Fetches the authors of the an current article
  */
-const fetchCurrentArticleAuthors = (): ThunkResult<
-  ArticlesPageState | ArticlesState
-> => async (dispatch, getState) => {
+const fetchCurrentArticleAuthors = (): ThunkResult<ArticlesPageState | ArticlesState> => async (
+  dispatch,
+  getState,
+) => {
   const { currentArticle } = getState().articlesPage;
 
   if (!currentArticle || Array.isArray(currentArticle.githubAuthors)) return;
@@ -101,9 +97,7 @@ const fetchCurrentArticleAuthors = (): ThunkResult<
   const githubAuthors = (
     await Promise.all(
       currentArticle.authors?.map((author) => {
-        return Axios.get<GetUserResponseDto>(
-          apiURL + `/v2/GithubUsers/${author}`,
-        );
+        return Axios.get<GetUserResponseDto>(apiURL + `/v2/GithubUsers/${author}`);
       }) || [],
     )
   ).map((response) => {
@@ -111,8 +105,7 @@ const fetchCurrentArticleAuthors = (): ThunkResult<
   });
 
   //  getting the  most recent  current article
-  const mrCurrentArticle =
-    getState().articlesPage.currentArticle || currentArticle;
+  const mrCurrentArticle = getState().articlesPage.currentArticle || currentArticle;
 
   // update our page state
 
@@ -130,19 +123,17 @@ const fetchCurrentArticleAuthors = (): ThunkResult<
 /**
  * Fetches the content of the current article
  */
-export const fetchCurrentArticle = (): ThunkResult<
-  ArticlesPageState | ArticlesState
-> => async (dispatch, getState) => {
+export const fetchCurrentArticle = (): ThunkResult<ArticlesPageState | ArticlesState> => async (
+  dispatch,
+  getState,
+) => {
   const articleSlug = location.pathname
     .substring(location.pathname.indexOf("/", 1) + 1)
     .replace(/\/$/, "");
 
-  const cashedArticle = hasInCollection<Article>(
-    getState().articles.list,
-    "slug",
-    articleSlug,
-    [["content"]],
-  );
+  const cashedArticle = hasInCollection<Article>(getState().articles.list, "slug", articleSlug, [
+    ["content"],
+  ]);
   if (cashedArticle) {
     // update our page state
     dispatch({
@@ -161,9 +152,7 @@ export const fetchCurrentArticle = (): ThunkResult<
     });
 
     try {
-      const response = await Axios.get<Article>(
-        dataURL + `/articles/${articleSlug}.json`,
-      );
+      const response = await Axios.get<Article>(dataURL + `/articles/${articleSlug}.json`);
 
       if (response.data.hasOwnProperty("error")) {
         throw Error("article_not_found");

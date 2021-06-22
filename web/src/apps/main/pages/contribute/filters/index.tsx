@@ -41,14 +41,8 @@ export const Filters: FC = () => {
   const md = useMediaQuery(theme.breakpoints.up("md"));
   const renderFilters = () =>
     filters.map(({ name: filterName, label: filterLabel, options }) => (
-      <Accordion
-        key={`filter-${filterName}`}
-        variant="outlined"
-        style={{ marginBottom: -1 }}
-      >
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          {filterLabel}
-        </AccordionSummary>
+      <Accordion key={`filter-${filterName}`} variant="outlined" style={{ marginBottom: -1 }}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>{filterLabel}</AccordionSummary>
         <AccordionDetails className={classes.filter}>
           {options.map(({ label: optionLabel, name: optionName, checked }) => (
             <FormControlLabel

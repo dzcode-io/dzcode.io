@@ -15,9 +15,7 @@ import { lightPalette } from "./palettes/light";
 import { useSelector } from "react-redux";
 
 export const Theme: FC = (props) => {
-  const { darkMode } = useSelector<StateInterface, SettingsState>(
-    (state) => state.settings,
-  );
+  const { darkMode } = useSelector<StateInterface, SettingsState>((state) => state.settings);
 
   const theme = createMuiTheme({
     palette: darkMode ? darkPalette : lightPalette,

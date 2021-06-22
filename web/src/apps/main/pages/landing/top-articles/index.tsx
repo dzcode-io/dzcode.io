@@ -41,11 +41,7 @@ export const TopArticles: FC = () => {
       <Typography className={classes.title} variant="h4">
         Read Community Articles
       </Typography>
-      <Typography
-        className={classes.subTitle}
-        variant="h6"
-        color="textSecondary"
-      >
+      <Typography className={classes.subTitle} variant="h6" color="textSecondary">
         Read awesome articles, written by Algerian Developers
       </Typography>
       <Grid container className={classes.topArticles} spacing={4}>
