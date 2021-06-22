@@ -1,7 +1,4 @@
-import {
-  getDataCollection,
-  getDataEntry,
-} from "@dzcode.io/common/dist/utils/data";
+import { getDataCollection, getDataEntry } from "@dzcode.io/common/dist/utils/data";
 
 import express from "express";
 import { fullstackConfig } from "./config";
@@ -27,6 +24,4 @@ app.get("/:type/:entry([\\/\\S]+.json$)", (req, res) =>
 );
 
 // Start the server
-app.listen(port, () =>
-  console.log(`Data server listening at http://localhost:${port}`),
-);
+app.listen(port, () => console.log(`Data server listening at http://localhost:${port}`));

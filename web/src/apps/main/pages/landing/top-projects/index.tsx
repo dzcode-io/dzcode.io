@@ -41,11 +41,7 @@ export const TopProjects: FC = () => {
       <Typography className={classes.title} variant="h4">
         Top Community Projects
       </Typography>
-      <Typography
-        className={classes.subTitle}
-        variant="h6"
-        color="textSecondary"
-      >
+      <Typography className={classes.subTitle} variant="h6" color="textSecondary">
         Find, Use and Improve solutions written by Algerians for Algerians
       </Typography>
       <Grid container className={classes.topProjects} spacing={4}>

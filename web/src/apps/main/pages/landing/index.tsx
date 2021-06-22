@@ -1,9 +1,6 @@
 import { FC, useEffect } from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import {
-  fetchTopArticles,
-  fetchTopProjects,
-} from "src/apps/main/redux/actions/landing-page";
+import { fetchTopArticles, fetchTopProjects } from "src/apps/main/redux/actions/landing-page";
 
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Button from "@material-ui/core/Button";

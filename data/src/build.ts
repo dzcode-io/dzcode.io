@@ -1,7 +1,4 @@
-import {
-  getDataCollection,
-  getDataEntry,
-} from "@dzcode.io/common/dist/utils/data";
+import { getDataCollection, getDataEntry } from "@dzcode.io/common/dist/utils/data";
 
 import fse from "fs-extra";
 import glob from "glob";
@@ -33,10 +30,7 @@ glob("models/*/*.json", {}, (err, files) => {
     console.log(collectionType, collectionName);
 
     const collection = getDataCollection(collectionType, collectionName);
-    const collectionFilePath = `${outputFolder}/${collectionPath.slice(
-      0,
-      -5,
-    )}.c.json`;
+    const collectionFilePath = `${outputFolder}/${collectionPath.slice(0, -5)}.c.json`;
     fse.ensureFileSync(collectionFilePath);
     fse.writeJSON(collectionFilePath, collection);
   });

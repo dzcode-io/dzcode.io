@@ -92,10 +92,9 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const Navbar: FC = () => {
-  const { settings, navbarComponent } = useSelector<
-    StateInterface,
-    StateInterface
-  >((state) => state);
+  const { settings, navbarComponent } = useSelector<StateInterface, StateInterface>(
+    (state) => state,
+  );
   const dispatch = useDispatch<Dispatch<SettingsState>>();
   const classes = useStyles();
   const [visible, setVisible] = useState(true);
@@ -141,11 +140,7 @@ export const Navbar: FC = () => {
           label={settings.darkMode ? "🌙" : "🌞"}
         />
       </div>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        className={classes.toolbarSecondary}
-      >
+      <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
         <Grid
           container
           xs={12}

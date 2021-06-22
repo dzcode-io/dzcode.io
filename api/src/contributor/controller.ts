@@ -14,8 +14,7 @@ export class ContributorController {
 
   @Get("/")
   @OpenAPI({
-    summary:
-      "Return a list of github users that contributed to data/[path] directory",
+    summary: "Return a list of github users that contributed to data/[path] directory",
   })
   @ResponseSchema(GetContributorsResponseDto)
   public async getContributor(

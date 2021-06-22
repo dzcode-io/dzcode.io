@@ -11,10 +11,9 @@ import { Sidebar } from "src/apps/main/components/sidebar";
 import { fetchDocumentationList } from "src/apps/main/redux/actions/documentation-page";
 
 export const LearnPage: FC = () => {
-  const { currentDocument, expanded, sidebarTree } = useSelector<
-    StateInterface,
-    LearnPageState
-  >((state) => state.learnPage);
+  const { currentDocument, expanded, sidebarTree } = useSelector<StateInterface, LearnPageState>(
+    (state) => state.learnPage,
+  );
   const dispatch = useDispatch<Dispatch<LearnPageState>>();
   const [open, setOpen] = useState(false);
 
@@ -43,10 +42,7 @@ export const LearnPage: FC = () => {
           path={`${path}`}
           render={() => <Landing onShowSidebar={() => setOpen(true)} />}
         />
-        <Route
-          path={`${path}/:documentSlug`}
-          render={() => <Content key={location.pathname} />}
-        />
+        <Route path={`${path}/:documentSlug`} render={() => <Content key={location.pathname} />} />
       </Grid>
     </Grid>
   );

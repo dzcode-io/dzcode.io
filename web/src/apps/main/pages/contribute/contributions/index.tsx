@@ -56,25 +56,11 @@ export const Contributions: FC = () => {
 
   return (
     <>
-      <Grid
-        container
-        className={classes.root}
-        justify="space-evenly"
-        spacing={1}
-      >
+      <Grid container className={classes.root} justify="space-evenly" spacing={1}>
         {contributions
           ? contributions.map(
               (
-                {
-                  project,
-                  title,
-                  languages,
-                  labels,
-                  url: link,
-                  type,
-                  commentsCount,
-                  updatedAt,
-                },
+                { project, title, languages, labels, url: link, type, commentsCount, updatedAt },
                 index,
               ) => (
                 <Grid key={`contribution-${index}-`} item xs={12} md={6} lg={4}>
@@ -83,10 +69,7 @@ export const Contributions: FC = () => {
                       <Typography className={classes.title} variant="h6">
                         {title}
                       </Typography>
-                      <Typography
-                        className={classes.project}
-                        color="textSecondary"
-                      >
+                      <Typography className={classes.project} color="textSecondary">
                         {project.name}
                       </Typography>
                       <div>
@@ -103,13 +86,7 @@ export const Contributions: FC = () => {
                               variant="default"
                               onClick={() => {
                                 dispatch(
-                                  updateFilterValue(
-                                    filterName,
-                                    optionName,
-                                    true,
-                                    true,
-                                    true,
-                                  ),
+                                  updateFilterValue(filterName, optionName, true, true, true),
                                 );
                               }}
                             />
@@ -132,9 +109,7 @@ export const Contributions: FC = () => {
                           {type === "issue" ? "Read Issue" : "Review Changes"}
                         </Button>
                       </LinkV2>
-                      <Typography variant="caption">
-                        {elapsedTime(updatedAt)}
-                      </Typography>
+                      <Typography variant="caption">{elapsedTime(updatedAt)}</Typography>
                       {commentsCount > 0 && (
                         <Badge badgeContent={commentsCount}>
                           <QuestionAnswerIcon />
@@ -155,19 +130,11 @@ export const Contributions: FC = () => {
                 <MuiCard className={classes.card} variant="outlined">
                   <CardContent className={classes.content}>
                     <Skeleton animation="wave" variant="text" />
-                    <Skeleton
-                      animation="wave"
-                      variant="text"
-                      style={{ width: "30%" }}
-                    />
+                    <Skeleton animation="wave" variant="text" style={{ width: "30%" }} />
                     <Skeleton animation="wave" variant="text" />
                   </CardContent>
                   <CardActions>
-                    <Skeleton
-                      animation="wave"
-                      variant="text"
-                      style={{ width: "30%" }}
-                    />
+                    <Skeleton animation="wave" variant="text" style={{ width: "30%" }} />
                   </CardActions>
                 </MuiCard>
               </Grid>

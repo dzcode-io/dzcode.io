@@ -15,11 +15,7 @@ import { Service } from "typedi";
 export class GithubService {
   constructor(private readonly fetchService: FetchService) {}
 
-  public listContributors = async ({
-    owner,
-    repo,
-    path,
-  }: GeneralGithubQuery) => {
+  public listContributors = async ({ owner, repo, path }: GeneralGithubQuery) => {
     const commits = await this.fetchService.get<ListContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repo}/commits`,
       {
@@ -40,9 +36,7 @@ export class GithubService {
     return contributors;
   };
 
-  public getUser = async ({
-    username,
-  }: GetUserInput): Promise<GitHubUserApiResponse> => {
+  public getUser = async ({ username }: GetUserInput): Promise<GitHubUserApiResponse> => {
     const user = await this.fetchService.get<GitHubUserApiResponse>(
       `${this.apiURL}/users/${username}`,
     );

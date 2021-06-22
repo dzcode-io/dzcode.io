@@ -39,10 +39,7 @@ export const Contributors: FC<ContributorsProps> = ({ contributors }) => {
                 className={classes.avatar}
                 href={contributor.html_url}
               >
-                <Tooltip
-                  title={contributor.login}
-                  aria-label={contributor.login}
-                >
+                <Tooltip title={contributor.login} aria-label={contributor.login}>
                   <Avatar src={contributor.avatar_url} />
                 </Tooltip>
               </LinkV2>

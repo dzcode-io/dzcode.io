@@ -15,11 +15,7 @@ export const elapsedTime = (time: string | number | Date) => {
             : `${
                 days > 0
                   ? `${days}d`
-                  : `${
-                      hours > 0
-                        ? `${hours}h`
-                        : `${minutes > 0 ? `${minutes}min` : "just now"}`
-                    }`
+                  : `${hours > 0 ? `${hours}h` : `${minutes > 0 ? `${minutes}min` : "just now"}`}`
               }`
         }`
   }`;

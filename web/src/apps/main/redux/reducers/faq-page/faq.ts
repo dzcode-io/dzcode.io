@@ -49,8 +49,7 @@ export const faqData: FAQData = [
 **Note** : Please make sure to inform the project maintainer to reserve the task for you, you can do that by commenting on the issue ticket.`,
       },
       {
-        question:
-          "I like the idea, what are the different ways i can contribute to DzCode i/o ?",
+        question: "I like the idea, what are the different ways i can contribute to DzCode i/o ?",
         answer: `Apart from checking out the [/Contribute](/Contribute) page, you can also contribute to DzCode i/o by:
 
 - Adding your open-source projects to dzcode.io website, you can do that [here](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).
@@ -86,8 +85,7 @@ export const faqData: FAQData = [
       },
       {
         question: "What makes my project eligible to be added to dzcode.io",
-        answer:
-          "It has to solve an Algerian problem, or, to be written by an Algerian Developer.",
+        answer: "It has to solve an Algerian problem, or, to be written by an Algerian Developer.",
       },
       {
         question: "Why should i add my project to dzcode.io ?",

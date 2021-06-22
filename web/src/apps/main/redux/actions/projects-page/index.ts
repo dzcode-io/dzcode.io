@@ -32,9 +32,7 @@ function shuffleProjects(array: Project[]) {
 /**
  * fetchProjectsList fetch an array from data api and pass it to the store
  */
-export const fetchProjectsList = (): ThunkResult<ProjectsPageState> => async (
-  dispatch,
-) => {
+export const fetchProjectsList = (): ThunkResult<ProjectsPageState> => async (dispatch) => {
   try {
     const response = await Axios.get(dataURL + "/projects/list.c.json");
     dispatch({

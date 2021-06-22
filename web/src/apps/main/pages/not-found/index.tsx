@@ -26,11 +26,7 @@ const NotFound: FC = () => {
 
   return (
     <div className={classes.root}>
-      <img
-        className={classes.image}
-        src={svg}
-        alt="DzCode i/o: 404 page not found"
-      />
+      <img className={classes.image} src={svg} alt="DzCode i/o: 404 page not found" />
       <Typography className={classes.text}>
         Finally someone saw the 404 page that{" "}
         <LinkV2 href="https://github.com/NurElHuda">Nour</LinkV2> developed 😅

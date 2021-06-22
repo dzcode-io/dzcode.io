@@ -40,12 +40,7 @@ export const Footer: FC = () => {
   return (
     <footer className={classes.root}>
       <Container maxWidth="lg">
-        <Grid
-          container
-          direction="row"
-          alignItems="flex-start"
-          alignContent="stretch"
-        >
+        <Grid container direction="row" alignItems="flex-start" alignContent="stretch">
           <Grid container item xs={12} md={9} spacing={6}>
             {sections &&
               sections.map((category, i) => (
@@ -56,10 +51,7 @@ export const Footer: FC = () => {
                   {category.links.map((link, i) => {
                     return (
                       <LinkV2 key={i} href={link.href}>
-                        <Typography
-                          variant="subtitle2"
-                          className={classes.linkText}
-                        >
+                        <Typography variant="subtitle2" className={classes.linkText}>
                           {link.text}
                         </Typography>
                       </LinkV2>
@@ -73,14 +65,10 @@ export const Footer: FC = () => {
               Contact Information
             </Typography>
             <a href="tel:+21367-626-1157">
-              <Typography className={classes.linkText}>
-                +213 06-76-26-11-57
-              </Typography>
+              <Typography className={classes.linkText}>+213 06-76-26-11-57</Typography>
             </a>
             <a href="mailto:contact@dzcode.io">
-              <Typography className={classes.linkText}>
-                contact@dzcode.io
-              </Typography>
+              <Typography className={classes.linkText}>contact@dzcode.io</Typography>
             </a>
             <Typography className={classes.linkText}>
               Copyright © {new Date().getFullYear() + " "}

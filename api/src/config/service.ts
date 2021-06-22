@@ -26,8 +26,7 @@ export class ConfigService {
     if (errors.length > 0)
       throw new Error(
         `⚠️  Errors in .env file in the following keys:${errors.reduce(
-          (pV, cV) =>
-            (pV += "\n" + cV.property + " : " + JSON.stringify(cV.constraints)),
+          (pV, cV) => (pV += "\n" + cV.property + " : " + JSON.stringify(cV.constraints)),
           "",
         )}`,
       );
