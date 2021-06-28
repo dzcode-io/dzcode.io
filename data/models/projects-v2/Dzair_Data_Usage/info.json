@@ -1,0 +1,10 @@
+{
+  "name": "My Awesome Project",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "dfourcfive",
+      "repository": "dzair_data_usage"
+    }
+  ]
+}
