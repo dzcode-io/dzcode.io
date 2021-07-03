@@ -20,9 +20,7 @@ const useStyles = makeStyles(() =>
 );
 
 export const LanguageSwitch: FC = () => {
-  const { settings } = useSelector<StateInterface, StateInterface>(
-    (state) => state,
-  );
+  const { settings } = useSelector<StateInterface, StateInterface>((state) => state);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const dispatch = useDispatch<Dispatch<SettingsState>>();
   const classes = useStyles();
@@ -62,12 +60,7 @@ export const LanguageSwitch: FC = () => {
   };
   return (
     <div>
-      <Button
-        id="btnAnchor"
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={showMenu}
-      >
+      <Button id="btnAnchor" aria-controls="simple-menu" aria-haspopup="true" onClick={showMenu}>
         {flags[settings.lang] + " " + settings.lang}
       </Button>
       <Menu
