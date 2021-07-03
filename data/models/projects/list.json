@@ -15,7 +15,8 @@
     "Voice_Translator_React_Native",
     "React_Native_Help_Create",
     "Melyon_Theme",
-    "AiPalettes"
+    "AiPalettes",
+    "Dzair_Data_Usage"
   ],
   "include": ["title", "description", "image", "githubURI"]
 }
