@@ -10,10 +10,7 @@ const composeEnhancers =
 /**
  * the main redux state, with all the reducers
  */
-export const mainStore = createStore(
-  mainReducer,
-  composeEnhancers(applyMiddleware(thunk)),
-);
+export const mainStore = createStore(mainReducer, composeEnhancers(applyMiddleware(thunk)));
 
 /**
  * Creates a new redux state each time this function is called, this is used only for unit tests, to ensure that we have fresh state on each individual test
@@ -40,13 +37,11 @@ export interface Action<T> {
   payload: Partial<T>;
 }
 
-export type ThunkResult<
-  A = Record<string, unknown>,
-  E = Record<string, unknown>
-> = ThunkAction<void, StateInterface, E, Action<A>>;
-
-export type Dispatch<A> = ThunkDispatch<
+export type ThunkResult<A = Record<string, unknown>, E = Record<string, unknown>> = ThunkAction<
+  void,
   StateInterface,
-  Record<string, unknown>,
+  E,
   Action<A>
 >;
+
+export type Dispatch<A> = ThunkDispatch<StateInterface, Record<string, unknown>, Action<A>>;

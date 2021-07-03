@@ -1,7 +1,4 @@
-import {
-  ExpressErrorMiddlewareInterface,
-  Middleware,
-} from "routing-controllers";
+import { ExpressErrorMiddlewareInterface, Middleware } from "routing-controllers";
 import { ErrorRequestHandler } from "express";
 import { GeneralResponseDto } from "@dzcode.io/common/dist/types/api-responses";
 import { LoggerService } from "../../logger/service";
@@ -12,12 +9,7 @@ import { Service } from "typedi";
 export class ErrorMiddleware implements ExpressErrorMiddlewareInterface {
   constructor(private loggerService: LoggerService) {}
 
-  error: ErrorRequestHandler<never, GeneralResponseDto, unknown> = (
-    err,
-    req,
-    res,
-    next,
-  ) => {
+  error: ErrorRequestHandler<never, GeneralResponseDto, unknown> = (err, req, res, next) => {
     // Logs error
     this.loggerService.error({
       message: "Internal Server Error",

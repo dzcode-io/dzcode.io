@@ -16,11 +16,7 @@ export const articles = (
     case "UPDATE_ARTICLES":
       return {
         ...state,
-        list: updateCollection<Article>(
-          state.list,
-          action.payload.list || [],
-          "slug",
-        ),
+        list: updateCollection<Article>(state.list, action.payload.list || [], "slug"),
       };
     default:
       return state;

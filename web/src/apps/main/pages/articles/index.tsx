@@ -11,10 +11,9 @@ import { Sidebar } from "src/apps/main/components/sidebar";
 import { fetchArticlesList } from "src/apps/main/redux/actions/articles-page";
 
 export const ArticlesPage: FC = () => {
-  const { currentArticle, expanded, sidebarTree } = useSelector<
-    StateInterface,
-    ArticlesPageState
-  >((state) => state.articlesPage);
+  const { currentArticle, expanded, sidebarTree } = useSelector<StateInterface, ArticlesPageState>(
+    (state) => state.articlesPage,
+  );
   const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
   const [open, setOpen] = useState(false);
 
@@ -43,10 +42,7 @@ export const ArticlesPage: FC = () => {
           path={`${path}`}
           render={() => <Landing onShowSidebar={() => setOpen(true)} />}
         />
-        <Route
-          path={`${path}/:articleSlug`}
-          render={() => <Content key={location.pathname} />}
-        />
+        <Route path={`${path}/:articleSlug`} render={() => <Content key={location.pathname} />} />
       </Grid>
     </Grid>
   );

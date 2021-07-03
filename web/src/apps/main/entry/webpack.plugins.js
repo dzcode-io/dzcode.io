@@ -42,10 +42,8 @@ if (process.env.NODE_ENV !== "development") {
       },
       {
         uri: "/Learn",
-        title:
-          "Learn about software development through open-source | DzCode i/o",
-        description:
-          "Learn, edit and share the knowledge between all Algerian developers!",
+        title: "Learn about software development through open-source | DzCode i/o",
+        description: "Learn, edit and share the knowledge between all Algerian developers!",
         ogImage:
           "https://images.unsplash.com/photo-1519670107408-15dc1b3ecb1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&h=627&q=80",
         themeColor: "#000",
@@ -53,8 +51,7 @@ if (process.env.NODE_ENV !== "development") {
       },
       {
         uri: "/Projects",
-        title:
-          "Browse a growing list of algerian open-source projects | DzCode i/o",
+        title: "Browse a growing list of algerian open-source projects | DzCode i/o",
         description:
           "Browse a growing list of algerian open-source projects and be up-to-date with the state of dz open-source, or Add your own project to the list!",
         ogImage:
@@ -64,8 +61,7 @@ if (process.env.NODE_ENV !== "development") {
       },
       {
         uri: "/Articles",
-        title:
-          "Read and discuss articles written by algerian developers | DzCode i/o",
+        title: "Read and discuss articles written by algerian developers | DzCode i/o",
         description:
           "Browse, read, modify a growing list of articles written by algerian developers, or Add your own article to the list!",
         ogImage:
@@ -109,10 +105,7 @@ if (process.env.NODE_ENV !== "development") {
 pages.forEach((page) => {
   plugins.push(
     new HtmlWebpackPlugin({
-      filename: (page.uri !== "/"
-        ? `${page.uri}/index.html`
-        : "/index.html"
-      ).substring(1),
+      filename: (page.uri !== "/" ? `${page.uri}/index.html` : "/index.html").substring(1),
       template: `pug-loader!./src/apps/${app.name}/entry/index.pug`,
       templateParameters: {
         isDev: isDevelopment,

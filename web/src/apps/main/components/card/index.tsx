@@ -48,11 +48,7 @@ export const Card: FC<CardProps> = ({ info }) => {
     <MuiCard className={classes.root}>
       {info ? (
         <>
-          <CardMedia
-            className={classes.media}
-            image={info.image}
-            title={info.title}
-          />
+          <CardMedia className={classes.media} image={info.image} title={info.title} />
           <CardContent className={classes.content}>
             <Typography gutterBottom variant="h5" component="h2">
               {info.title}
@@ -74,11 +70,7 @@ export const Card: FC<CardProps> = ({ info }) => {
           <Skeleton animation="wave" variant="rect" className={classes.media} />
           <CardContent>
             <>
-              <Skeleton
-                animation="wave"
-                height={10}
-                style={{ marginBottom: 6 }}
-              />
+              <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
               <Skeleton animation="wave" height={10} width="80%" />
             </>
           </CardContent>

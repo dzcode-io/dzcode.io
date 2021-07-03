@@ -32,9 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const FaqPage: FC = () => {
   const classes = useStyles();
-  const { faqData } = useSelector<StateInterface, FaqPageState>(
-    (state) => state.faqPage,
-  );
+  const { faqData } = useSelector<StateInterface, FaqPageState>((state) => state.faqPage);
 
   return (
     <>
@@ -44,24 +42,14 @@ export const FaqPage: FC = () => {
 
       {faqData.map(({ title, questions }, index) => (
         <div key={`category-${index}`}>
-          <Typography
-            data-testid={`faq-title-${index}`}
-            variant="h5"
-            className={classes.header}
-          >
+          <Typography data-testid={`faq-title-${index}`} variant="h5" className={classes.header}>
             {title}
           </Typography>
           <div>
             {questions.map(({ question, answer }, index) => (
-              <Accordion
-                key={`faq-${index}`}
-                variant="outlined"
-                style={{ marginBottom: -1 }}
-              >
+              <Accordion key={`faq-${index}`} variant="outlined" style={{ marginBottom: -1 }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography className={classes.question}>
-                    {question}
-                  </Typography>
+                  <Typography className={classes.question}>{question}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Markdown>{answer}</Markdown>

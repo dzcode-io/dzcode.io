@@ -14,9 +14,7 @@ export class GithubUserController {
     summary: "Return a github user with publicly available information",
   })
   @ResponseSchema(GetUserResponseDto)
-  public async getUserByUsername(
-    @Param("username") username: string,
-  ): Promise<GetUserResponseDto> {
+  public async getUserByUsername(@Param("username") username: string): Promise<GetUserResponseDto> {
     const user = await this.githubService.getUser({
       username,
     });
