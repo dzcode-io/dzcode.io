@@ -49,8 +49,4 @@ To add new article, named for example: "**My Awesome Article**", simply do the f
    }
    ```
 
-   **Notes**
-
-   - to make your article indexed by Google search, repeat the 4th step for `data/articles/ssr.json`.
-
-5. Finally, commit and push the modifications you did to the repository and create a [pull request](/learn/git_basics/pull_merge_request). the maintainers will happily review, approve, merge and [deploy](https://github.com/dzcode-io/dzcode.io/releases) your changes!
+5. Finally run `yarn` then `yarn lint:fix`, commit and push the modifications you did to the repository and create a [pull request](/learn/git_basics/pull_merge_request). the maintainers will happily review, approve, merge and [deploy](https://github.com/dzcode-io/dzcode.io/releases) your changes!

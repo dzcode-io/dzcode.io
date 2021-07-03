@@ -58,19 +58,6 @@ To add new project simply do the following:
   }
   ```
 
-- Also Make your project **server side rendered** by adding the name of the project folder into the `"items": [] array` on `ssr.json` under `data/projects`.
-
-  ```json
-  {
-    "items": [
-     "DzCode",
-     "React_Project_Builder",
-     "My_New_Project" 👈 here is my new project
-     ],
-    "include": ["title", "description", "image"]
-  }
-  ```
-
 - Finally, Commit and push the modifications you did to the repository and create a `pull request`.
 
 ### 🎉 Congratulations 🎉 Your project is listed on dzCode

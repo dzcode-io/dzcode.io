@@ -1,20 +1,4 @@
 {
-  "items": [
-    "Leblad",
-    "Leblad_Py",
-    "Mishkal",
-    "React_Project_Builder",
-    "Kuliya",
-    "DzCode",
-    "Algerian_Administrative_Division",
-    "Flutter_Reaction_Button",
-    "Algeria_Covid19_Tracker",
-    "React_Native_Currency_Converter",
-    "Python_Complex",
-    "List_to_Tree_aka_l2t",
-    "Voice_Translator_React_Native",
-    "React_Native_Help_Create",
-    "Melyon_Theme"
-  ],
+  "items": "all",
   "include": ["title", "description", "image"]
 }
