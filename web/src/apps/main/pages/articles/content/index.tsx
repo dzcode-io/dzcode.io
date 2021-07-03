@@ -2,9 +2,10 @@ import "./style.scss";
 
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { FC, useEffect } from "react";
+import { SpeedDial, SpeedDialAction } from "src/apps/main/components/speed-dial";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
-
+import { Article } from "@dzcode.io/common/dist/types";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { Authors } from "src/apps/main/components/authors";
 import { Contributors } from "src/apps/main/components/contributors";
@@ -16,13 +17,16 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import { Markdown } from "src/apps/main/components/markdown";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { SpeedDial } from "src/apps/main/components/speed-dial";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Typography from "@material-ui/core/Typography";
 import { fetchCurrentArticle } from "src/apps/main/redux/actions/articles-page";
 
-const actions = [
-  { icon: <EditIcon />, name: "Edit This Article" },
+const actions = ({ slug }: Article): SpeedDialAction[] => [
+  {
+    icon: <EditIcon />,
+    name: "Edit This Article",
+    link: `https://github.com/dzcode-io/dzcode.io/blob/main/data/models/articles/${slug}/content.md`,
+  },
   { icon: <FileCopyIcon />, name: "Copy URL" },
   { icon: <FacebookIcon />, name: "Share to Facebook" },
   { icon: <TwitterIcon />, name: "Share to Twitter" },
@@ -115,7 +119,7 @@ export const Content: FC = () => {
           <SpeedDial
             className={classes.speedDial}
             ariaLabel="Actions SpeedDial"
-            actions={actions}
+            actions={actions(currentArticle)}
             open
           />
           <Divider className={classes.spacing} />

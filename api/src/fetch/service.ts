@@ -5,9 +5,9 @@ import { Service } from "typedi";
 @Service()
 export class FetchService {
   constructor(private readonly configService: ConfigService) {
-    this.fetch = defaults(({
+    this.fetch = defaults({
       cachePath: this.configService.env().FETCH_CACHE_PATH,
-    } as unknown) as FetchOptions);
+    } as unknown as FetchOptions);
   }
 
   public get = async <T = unknown>(

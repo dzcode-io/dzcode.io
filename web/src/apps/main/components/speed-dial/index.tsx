@@ -5,11 +5,14 @@ import PropTypes from "prop-types";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 
+export interface SpeedDialAction {
+  icon: ReactNode;
+  name: string;
+  link?: string;
+}
+
 interface SpeedDialProps extends SpeedDialPropsMUI {
-  actions: Array<{
-    icon: ReactNode;
-    name: string;
-  }>;
+  actions: SpeedDialAction[];
   open: boolean;
 }
 export const SpeedDial: FC<SpeedDialProps> = (props) => {
@@ -31,6 +34,7 @@ export const SpeedDial: FC<SpeedDialProps> = (props) => {
           icon={action.icon}
           tooltipTitle={action.name}
           onClick={handleClose}
+          FabProps={{ href: action.link }}
         />
       ))}
     </SpeedDialMUI>
