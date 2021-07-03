@@ -156,3 +156,5 @@ export class FilterEntity {
   @Type(() => OptionEntity)
   options!: OptionEntity[];
 }
+
+export type Language = "en" | "ar" | "fr";
