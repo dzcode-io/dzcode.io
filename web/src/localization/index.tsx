@@ -11,16 +11,10 @@ import { StateInterface } from "src/apps/main/redux";
 export const Localization: FC = (props) => {
   const locals: { [key: string]: any } = { fr, ar, en };
 
-  const { settings } = useSelector<StateInterface, StateInterface>(
-    (state) => state,
-  );
+  const { settings } = useSelector<StateInterface, StateInterface>((state) => state);
 
   return (
-    <IntlProvider
-      messages={locals[settings.lang]}
-      locale={settings.lang}
-      defaultLocale="en"
-    >
+    <IntlProvider messages={locals[settings.lang]} locale={settings.lang} defaultLocale="en">
       {props.children}
     </IntlProvider>
   );
