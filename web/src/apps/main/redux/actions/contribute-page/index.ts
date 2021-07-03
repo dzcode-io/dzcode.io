@@ -24,17 +24,12 @@ export const fetchContributions = (): ThunkResult<ContributePageState> => async 
       (query, filter) =>
         `${query}${filter.name}=${filter.options
           .filter(({ checked }) => checked)
-          .reduce(
-            (filterQuery, option) => `${filterQuery}${option.name},`,
-            "",
-          )}&`,
+          .reduce((filterQuery, option) => `${filterQuery}${option.name},`, "")}&`,
       "?",
     );
     const {
       data: { contributions, filters },
-    } = await Axios.get<GetContributionsResponseDto>(
-      apiURL + "/v2/Contributions" + query,
-    );
+    } = await Axios.get<GetContributionsResponseDto>(apiURL + "/v2/Contributions" + query);
     // restore filters states:
     const checkedFilters: Array<{
       filterName: string;
@@ -55,8 +50,7 @@ export const fetchContributions = (): ThunkResult<ContributePageState> => async 
       options: filter.options.map((option) => ({
         ...option,
         checked: checkedFilters.some(
-          ({ filterName, optionName }) =>
-            filterName === filter.name && optionName === option.name,
+          ({ filterName, optionName }) => filterName === filter.name && optionName === option.name,
         ),
       })),
     }));

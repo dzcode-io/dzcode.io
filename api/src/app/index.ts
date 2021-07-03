@@ -20,11 +20,7 @@ useContainer(Container);
 
 // Create the app:
 export const routingControllersOptions = {
-  controllers: [
-    ContributionController,
-    ContributorController,
-    GithubUserController,
-  ],
+  controllers: [ContributionController, ContributorController, GithubUserController],
   middlewares: [
     // middlewares:
     SecurityMiddleware,

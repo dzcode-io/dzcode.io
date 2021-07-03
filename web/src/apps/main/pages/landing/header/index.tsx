@@ -68,13 +68,11 @@ export const Header: FC = () => {
       <div className={classes.topHeader}>
         <div className={classes.text}>
           <Typography variant="h4" className={classes.mainTitle}>
-            Algerian <span className={classes.highlight}>Open Source</span>{" "}
-            Community
+            Algerian <span className={classes.highlight}>Open Source</span> Community
           </Typography>{" "}
           <Hidden smDown>
             <Typography variant="h6" color="textSecondary">
-              Find and contribute to softwares that help in solving Algerian
-              problems.
+              Find and contribute to softwares that help in solving Algerian problems.
             </Typography>
           </Hidden>
           <div className={classes.buttons}>
@@ -90,13 +88,7 @@ export const Header: FC = () => {
               </Button>
             </LinkV2>
             <LinkV2 href="/FAQ">
-              <Button
-                disableRipple
-                disableFocusRipple
-                color="primary"
-                variant="text"
-                size="large"
-              >
+              <Button disableRipple disableFocusRipple color="primary" variant="text" size="large">
                 Have a question ?
               </Button>
             </LinkV2>

@@ -34,11 +34,7 @@ export const Authors: FC<AuthorsProps> = ({ githubAuthors }) => {
       <div className={classes.avatarsContainer}>
         {githubAuthors
           ? githubAuthors.map((author, index) => (
-              <LinkV2
-                key={`author-${index}`}
-                className={classes.avatar}
-                href={author.html_url}
-              >
+              <LinkV2 key={`author-${index}`} className={classes.avatar} href={author.html_url}>
                 <Tooltip title={author.login} aria-label={author.login}>
                   <Avatar src={author.avatar_url} />
                 </Tooltip>

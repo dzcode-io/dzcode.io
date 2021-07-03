@@ -7,10 +7,7 @@ export interface Collection {
   include: string[];
 }
 
-export const getDataEntry = <T = Record<string, unknown>>(
-  _path: string,
-  include?: string[],
-) => {
+export const getDataEntry = <T = Record<string, unknown>>(_path: string, include?: string[]) => {
   const path = join(__dirname, "../../../data/models", _path);
   // Entry doesn't exist
   if (!fse.existsSync(path))
@@ -44,10 +41,7 @@ export const getDataEntry = <T = Record<string, unknown>>(
   }
 
   // Read content.md
-  if (
-    (!include || include.includes("content")) &&
-    fse.existsSync(`${path}/content.md`)
-  )
+  if ((!include || include.includes("content")) && fse.existsSync(`${path}/content.md`))
     entry = {
       ...entry,
       content: String(fse.readFileSync(`${path}/content.md`)),
@@ -64,12 +58,7 @@ export const getDataCollection = <T = Record<string, unknown>>(
   // add .c
   collectionName = collectionName.replace(".c.json", ".json");
   // Collection doesn't exist
-  const path = join(
-    __dirname,
-    "../../../data/models",
-    collectionType,
-    collectionName,
-  );
+  const path = join(__dirname, "../../../data/models", collectionType, collectionName);
   if (!fse.existsSync(path)) return 404;
 
   // Read [collection].json
@@ -77,9 +66,7 @@ export const getDataCollection = <T = Record<string, unknown>>(
   let items: string[] = [];
 
   if (collection.items === "all") {
-    const files = glob.sync(
-      join(__dirname, `../../../data/models/${collectionType}/**/info.json`),
-    );
+    const files = glob.sync(join(__dirname, `../../../data/models/${collectionType}/**/info.json`));
     const dPath = `data/models/${collectionType}/`;
     items = files.map((filePath) => {
       return filePath.substring(
@@ -93,10 +80,7 @@ export const getDataCollection = <T = Record<string, unknown>>(
 
   // Collect Entries
   const entries = items.map((slug) => {
-    const entry = getDataEntry<T>(
-      `${collectionType}/${slug}`,
-      collection.include,
-    );
+    const entry = getDataEntry<T>(`${collectionType}/${slug}`, collection.include);
     return {
       slug,
       ...entry,
