@@ -1,0 +1,27 @@
+{
+  "name": "@dzcode.io/database",
+  "version": "1.0.0",
+  "description": "database code dzcode.io",
+  "repository": {
+    "type": "git",
+    "repository": "https://github.com/dzcode-io/dzcode.io.git"
+  },
+  "authors": [
+    {
+      "email": "contact@zakiii.com",
+      "name": "Zakaria Mansouri",
+      "url": "https://www.zakiii.com"
+    },
+    {
+      "name": "Khalil Mansouri"
+    }
+  ],
+  "license": "MIT",
+  "private": "true",
+  "lint-staged": {
+    "*.*": [
+      "eslint --quiet --fix --ignore-path .eslintignore",
+      "prettier --write --ignore-path ./.prettierignore"
+    ]
+  }
+}

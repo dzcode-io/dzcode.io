@@ -22,6 +22,10 @@ documentation:
 web:
   - web/**/*
 
+# Add 'database' to any changes within 'database' folder or any subfolders
+database:
+  - database/**/*
+
 # Add 'common' to any changes within 'common' folder or any subfolders
 common:
   - common/**/*
