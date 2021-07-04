@@ -5,7 +5,8 @@
     "api",
     "common",
     "data",
-    "web"
+    "web",
+    "mobile"
   ],
   "scripts": {
     "common:build": "yarn --cwd common build",

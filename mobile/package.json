@@ -11,7 +11,16 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll"
+    "lint:check": "yarn prettier:check && yarn eslint:check",
+    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
+    "eslint:check": "echo \"eslint:check\"",
+    "eslint:fix": "echo \"eslint:fix\"",
+    "prettier:check": "echo \"prettier:fix\"",
+    "prettier:fix": "echo \"prettier:fix\"",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:cov": "jest --coverage",
+    "test:cov:watch": "jest --coverage --watchAll"
   },
   "jest": {
     "preset": "jest-expo"
