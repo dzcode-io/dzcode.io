@@ -28,6 +28,10 @@ jobs:
         run: |
           cd common
           yarn build
+      - name: "Install mobile dependencies"
+        run: |
+          cd mobile
+          yarn
       - name: "checking script in mobile directory"
         run: |
           cd mobile
