@@ -1,5 +1,10 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "author": {
+    "email": "omarbelghaouti@gmail.com",
+    "name": "Omar Belghaouti",
+    "url": "https://omarbelghaouti.space/"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
