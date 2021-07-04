@@ -25,3 +25,7 @@ web:
 # Add 'common' to any changes within 'common' folder or any subfolders
 common:
   - common/**/*
+
+# Add 'mobile' to any changes within 'mobile' folder or any subfolders
+mobile:
+  - mobile/**/*
