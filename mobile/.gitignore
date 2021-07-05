@@ -10,5 +10,9 @@ npm-debug.*
 web-build/
 coverage
 
+# ignorin native code
+android/
+ios/
+
 # macOS
 .DS_Store
