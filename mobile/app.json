@@ -19,13 +19,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dzcode.io.mobile"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#000"
-      }
+      },
+      "package": "com.dzcode.io.mobile"
     },
     "web": {
       "favicon": "./src/assets/images/favicon.png"
