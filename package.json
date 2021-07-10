@@ -14,6 +14,7 @@
     "web:dev": "yarn --cwd web dev",
     "data:dev": "yarn --cwd data dev",
     "api:dev": "yarn --cwd api dev",
+    "mobile:dev": "yarn --cwd mobile start",
     "common:build:watch": "yarn --cwd common build:watch",
     "data:build:watch": "yarn --cwd data build:watch",
     "api:build:watch": "yarn --cwd api build:watch",
