@@ -65,3 +65,20 @@ jobs:
           fail_ci_if_error: true
         env:
           CI: true
+      - name: "Install mobile dependencies"
+        run: |
+          cd mobile
+          yarn
+      - name: "Running tests with coverage report"
+        run: |
+          cd mobile
+          yarn test:cov
+      - name: Upload common directory coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: mobile
+          name: codecov-mobile
+          directory: ./mobile
+          fail_ci_if_error: true
+        env:
+          CI: true
