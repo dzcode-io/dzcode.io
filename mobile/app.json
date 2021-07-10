@@ -27,6 +27,7 @@
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#000"
       },
+      "permissions": [],
       "package": "io.dzcode.mobile"
     },
     "web": {
