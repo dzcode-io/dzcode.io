@@ -2,7 +2,7 @@
   "expo": {
     "name": "DzCode i/o",
     "slug": "dzcode",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "dzcode",
@@ -28,7 +28,8 @@
         "backgroundColor": "#000"
       },
       "permissions": [],
-      "package": "io.dzcode.mobile"
+      "package": "io.dzcode.mobile",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./src/assets/images/favicon.png"
