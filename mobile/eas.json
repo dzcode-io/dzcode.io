@@ -1,0 +1,22 @@
+{
+  "builds": {
+    "android": {
+      "release": {
+        "buildType": "app-bundle"
+      },
+      "development": {
+        "buildType": "development-client",
+        "distribution": "internal"
+      }
+    },
+    "ios": {
+      "release": {
+        "buildType": "release"
+      },
+      "development": {
+        "buildType": "development-client",
+        "distribution": "internal"
+      }
+    }
+  }
+}
