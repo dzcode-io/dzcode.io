@@ -1,0 +1,15 @@
+{
+  "name": "Algeria Startup Jobs",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "algeriastartupjobs",
+      "repository": "algeriastartupjobs.com"
+    },
+    {
+      "provider": "github",
+      "owner": "algeriastartupjobs",
+      "repository": "diagrams"
+    }
+  ]
+}
