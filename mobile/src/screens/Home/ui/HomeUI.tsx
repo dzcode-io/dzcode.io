@@ -29,13 +29,6 @@ const HomeUI: FC<HomeUIProps> = ({}): JSX.Element => {
         <Text style={[globalStyles.titleText, { color: theme.colors.text }]}>
           Home UI created!
         </Text>
-        <Button
-          icon="close"
-          onPress={() => alert("Hello, World!")}
-          labelStyle={[globalStyles.titleText, { color: theme.colors.text }]}
-        >
-          Press me
-        </Button>
       </View>
     </View>
   );
