@@ -1,3 +1,5 @@
+import React from "react";
+
 // padding sizes
 export const SMALL_PADDING_SIZE = 5;
 export const MEDIUM_PADDING_SIZE = 10;
@@ -18,3 +20,9 @@ export const HUGE_TEXT_SIZE = 50;
 // border radius sizes
 export const SMALL_BORDER_RADIUS = 10;
 export const MEDIUM_BORDER_RADIUS = 20;
+
+// prefrences context
+export const PrefrencesContext = React.createContext({
+  toggleTheme: () => {},
+  isThemeDark: false,
+});
