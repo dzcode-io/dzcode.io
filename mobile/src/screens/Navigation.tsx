@@ -4,8 +4,12 @@ import React, { FC } from "react";
 // import drawer navigation
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
+// import components
+import { AppBar } from "../components/Shared";
+
 // create drawer navigation
 const Drawer = createDrawerNavigator();
+import { DrawerActions } from "@react-navigation/native";
 
 // import screens
 import HomeUI from "./Home/ui/HomeUI";
@@ -17,7 +21,23 @@ import FAQUI from "./FAQ/ui/FAQUI";
 
 const Navigation: FC = (): JSX.Element => {
   return (
-    <Drawer.Navigator initialRouteName="Home" drawerType="back">
+    <Drawer.Navigator
+      initialRouteName="Home"
+      drawerType="back"
+      screenOptions={{
+        headerShown: true,
+        header: (props) => (
+          <AppBar
+            title={props.scene.route.name}
+            openDrawer={() =>
+              props.scene.descriptor.navigation.dispatch(
+                DrawerActions.openDrawer()
+              )
+            }
+          />
+        ),
+      }}
+    >
       <Drawer.Screen name="Home" component={HomeUI} />
       <Drawer.Screen name="Contribute" component={ContributeUI} />
       <Drawer.Screen name="Learn" component={LearnUI} />

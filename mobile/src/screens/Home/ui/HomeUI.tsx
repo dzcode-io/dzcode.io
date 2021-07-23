@@ -9,10 +9,8 @@ import {
   Button,
   Switch,
   useTheme,
+  Colors,
 } from "react-native-paper";
-
-// import components
-import { AppBar } from "../../../components/Shared";
 
 // import styles
 import { globalStyles } from "../../../styles";
@@ -27,13 +25,14 @@ interface HomeUIProps {}
 const HomeUI: FC<HomeUIProps> = ({}): JSX.Element => {
   // use theme
   const theme = useTheme();
+
   return (
     // main view
     <View
       style={[globalStyles.mainView, { backgroundColor: theme.colors.primary }]}
     >
       {/* App bar */}
-      <AppBar title="Home" />
+      {/* <AppBar title="Home" /> */}
       {/* center view */}
       <View style={globalStyles.centerView}>
         <Text style={[globalStyles.titleText, { color: theme.colors.text }]}>
