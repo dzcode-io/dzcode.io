@@ -6,7 +6,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DrawerActions } from "@react-navigation/native";
 
 // import components
-import { AppBar } from "../components/Shared";
+import { AppBar, DrawerContent } from "../components/Shared";
 
 // create drawer navigation
 const Drawer = createDrawerNavigator();
@@ -37,6 +37,7 @@ const Navigation: FC = (): JSX.Element => {
           />
         ),
       }}
+      drawerContent={(props) => <DrawerContent {...props} />}
     >
       <Drawer.Screen name="Home" component={HomeUI} />
       <Drawer.Screen name="Contribute" component={ContributeUI} />
