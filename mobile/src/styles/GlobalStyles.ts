@@ -13,7 +13,7 @@ export const globalStyles = StyleSheet.create({
   mainView: {
     flex: 1,
     padding: MEDIUM_PADDING_SIZE,
-    backgroundColor: Colors.mainColor,
+    backgroundColor: Colors.primary,
   },
   centerView: {
     flex: 1,

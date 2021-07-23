@@ -2,6 +2,9 @@
 import React, { FC } from "react";
 import { Text, View } from "react-native";
 
+// import react native paper
+import { Button } from "react-native-paper";
+
 // import styles
 import { globalStyles } from "../../../styles";
 
@@ -19,6 +22,13 @@ const HomeUI: FC<HomeUIProps> = ({}): JSX.Element => {
       {/* center view */}
       <View style={globalStyles.centerView}>
         <Text style={globalStyles.titleText}>Home UI created!</Text>
+        <Button
+          icon="close"
+          onPress={() => alert("Hello, World!")}
+          labelStyle={globalStyles.titleText}
+        >
+          Press me
+        </Button>
       </View>
     </View>
   );
