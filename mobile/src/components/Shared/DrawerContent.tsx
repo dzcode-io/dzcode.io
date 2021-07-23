@@ -12,7 +12,7 @@ import {
 } from "@react-navigation/drawer";
 
 // import styles
-import Colors from "../../styles/Colors";
+import { drawerStyles } from "../../styles";
 
 // export DrawerContent component
 const DrawerContent: FC<any> = (props): JSX.Element => {
@@ -26,13 +26,7 @@ const DrawerContent: FC<any> = (props): JSX.Element => {
         <View style={{ backgroundColor: theme.colors.primary }}>
           <Image
             source={require("../../assets/images/png/logo.png")}
-            style={{
-              width: 260,
-              height: 60,
-              resizeMode: "stretch",
-              margin: 10,
-              marginVertical: 30,
-            }}
+            style={drawerStyles.logoView}
           />
         </View>
         {/* Drawer items */}
