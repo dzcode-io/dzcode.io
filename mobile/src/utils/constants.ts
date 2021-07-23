@@ -5,6 +5,14 @@ export const SMALL_PADDING_SIZE = 5;
 export const MEDIUM_PADDING_SIZE = 10;
 export const LARGE_PADDING_SIZE = 25;
 
+// logo sizes
+export const SMALL_LOGO_WIDTH = 50;
+export const MEDIUM_LOGO_WIDTH = 100;
+export const LARGE_LOGO_WIDTH = 260;
+export const SMALL_LOGO_HEIGHT = 50;
+export const MEDIUM_LOGO_HEIGHT = 100;
+export const LARGE_LOGO_HEIGHT = 260;
+
 // margin sizes
 export const SMALL_MARGIN_SIZE = 5;
 export const MEDIUM_MARGIN_SIZE = 10;
