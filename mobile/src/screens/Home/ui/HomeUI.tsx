@@ -1,16 +1,9 @@
 // import react native
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import { View } from "react-native";
 
 // import react native paper
-import {
-  TouchableRipple,
-  Text,
-  Button,
-  Switch,
-  useTheme,
-  Colors,
-} from "react-native-paper";
+import { Text, Button, useTheme } from "react-native-paper";
 
 // import styles
 import { globalStyles } from "../../../styles";
@@ -31,8 +24,6 @@ const HomeUI: FC<HomeUIProps> = ({}): JSX.Element => {
     <View
       style={[globalStyles.mainView, { backgroundColor: theme.colors.primary }]}
     >
-      {/* App bar */}
-      {/* <AppBar title="Home" /> */}
       {/* center view */}
       <View style={globalStyles.centerView}>
         <Text style={[globalStyles.titleText, { color: theme.colors.text }]}>

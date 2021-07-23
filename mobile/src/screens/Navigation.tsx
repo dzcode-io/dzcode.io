@@ -3,13 +3,13 @@ import React, { FC } from "react";
 
 // import drawer navigation
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { DrawerActions } from "@react-navigation/native";
 
 // import components
 import { AppBar } from "../components/Shared";
 
 // create drawer navigation
 const Drawer = createDrawerNavigator();
-import { DrawerActions } from "@react-navigation/native";
 
 // import screens
 import HomeUI from "./Home/ui/HomeUI";
