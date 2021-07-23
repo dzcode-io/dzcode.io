@@ -10,6 +10,7 @@ import {
   Text,
   Switch,
   useTheme,
+  Menu,
 } from "react-native-paper";
 
 // import utils
@@ -21,10 +22,11 @@ import Colors from "../../styles/Colors";
 // define Appbar props interface
 interface AppbarProps {
   title: string;
+  openDrawer: VoidFunction;
 }
 
 // export Appbar component
-const AppBar: FC<AppbarProps> = ({ title }): JSX.Element => {
+const AppBar: FC<AppbarProps> = ({ title, openDrawer }): JSX.Element => {
   // use theme
   const theme = useTheme();
 
@@ -35,6 +37,7 @@ const AppBar: FC<AppbarProps> = ({ title }): JSX.Element => {
     // Appbar header
     <Appbar.Header theme={{ colors: { primary: theme?.colors.surface } }}>
       {/* Appbar content */}
+      <Appbar.Action icon="menu" onPress={() => openDrawer()} />
       <Appbar.Content title={title} />
       {/* Dark theme switch */}
       <Text>Dark</Text>
