@@ -3,6 +3,6 @@ import renderer from "react-test-renderer";
 
 import Articles from "../src/screens/Articles/ui/ArticlesUI";
 
-it("renders correctly", () => {
+it("renders correctly", async () => {
   renderer.create(<Articles />);
 });

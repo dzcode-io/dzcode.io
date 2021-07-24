@@ -3,6 +3,6 @@ import renderer from "react-test-renderer";
 
 import FAQ from "../src/screens/FAQ/ui/FAQUI";
 
-it("renders correctly", () => {
+it("renders correctly", async () => {
   renderer.create(<FAQ />);
 });
