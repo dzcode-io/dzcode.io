@@ -3,6 +3,6 @@ import renderer from "react-test-renderer";
 
 import Projects from "../src/screens/Projects/ui/ProjectsUI";
 
-it("renders correctly", () => {
+it("renders correctly", async () => {
   renderer.create(<Projects />);
 });

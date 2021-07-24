@@ -1,6 +1,7 @@
 // colors used in the app
 const Colors = {
-  mainColor: "#282c34",
+  primary: "#282c34",
+  accent: "#43a047",
   white: "#fff",
   black: "#000",
 };
