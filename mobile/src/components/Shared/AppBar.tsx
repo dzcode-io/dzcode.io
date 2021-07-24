@@ -45,6 +45,7 @@ const AppBar: FC<AppbarProps> = ({ title, openDrawer }): JSX.Element => {
         onValueChange={() => toggleTheme()}
         color={Colors.accent}
         value={isThemeDark}
+        style={{ marginHorizontal: 5 }}
       />
     </Appbar.Header>
   );
