@@ -18,6 +18,7 @@ import { PrefrencesContext } from "../../utils/constants";
 
 // import styles
 import Colors from "../../styles/Colors";
+import { drawerStyles } from "../../styles";
 
 // define Appbar props interface
 interface AppbarProps {
@@ -45,7 +46,7 @@ const AppBar: FC<AppbarProps> = ({ title, openDrawer }): JSX.Element => {
         onValueChange={() => toggleTheme()}
         color={Colors.accent}
         value={isThemeDark}
-        style={{ marginHorizontal: 5 }}
+        style={drawerStyles.switchView}
       />
     </Appbar.Header>
   );

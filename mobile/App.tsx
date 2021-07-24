@@ -15,9 +15,6 @@ import {
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
 
-// import deepmerge
-import merge from "deepmerge";
-
 // import prefrences context
 import { PrefrencesContext } from "./src/utils/constants";
 
@@ -27,9 +24,25 @@ import Navigation from "./src/screens/Navigation";
 // import colors
 import Colors from "./src/styles/Colors";
 
-// define default theme
-const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
-const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
+// define combined default theme
+const CombinedDefaultTheme = {
+  ...PaperDefaultTheme,
+  ...NavigationDefaultTheme,
+  colors: {
+    ...PaperDefaultTheme.colors,
+    ...NavigationDefaultTheme.colors,
+  },
+};
+
+// define combined dark theme
+const CombinedDarkTheme = {
+  ...PaperDarkTheme,
+  ...NavigationDarkTheme,
+  colors: {
+    ...PaperDarkTheme.colors,
+    ...NavigationDarkTheme.colors,
+  },
+};
 
 // default theme
 const defaultTheme = {

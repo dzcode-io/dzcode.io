@@ -7,6 +7,7 @@ import {
   LARGE_MARGIN_SIZE,
   MEDIUM_MARGIN_SIZE,
   SMALL_LOGO_HEIGHT,
+  SMALL_MARGIN_SIZE,
 } from "../utils/constants";
 
 // export drawer styles
@@ -17,5 +18,8 @@ export const drawerStyles = StyleSheet.create({
     resizeMode: "stretch",
     margin: MEDIUM_MARGIN_SIZE,
     marginVertical: LARGE_MARGIN_SIZE,
+  },
+  switchView: {
+    marginHorizontal: SMALL_MARGIN_SIZE,
   },
 });
