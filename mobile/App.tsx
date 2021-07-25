@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/filename-case */
 import {
+  Theme as NT,
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
@@ -12,10 +13,11 @@ import {
 import React, { FC, useCallback, useMemo, useState } from "react";
 import Colors from "./src/styles/colors";
 import Navigation from "./src/screens/navigation";
+import { Theme as PT } from "react-native-paper/lib/typescript/types";
 import { PrefrencesContext } from "./src/utils/constants";
 
 // define combined default theme
-const CombinedDefaultTheme = {
+const CombinedDefaultTheme: PT & NT = {
   ...PaperDefaultTheme,
   ...NavigationDefaultTheme,
   colors: {
@@ -31,6 +33,7 @@ const CombinedDarkTheme = {
   colors: {
     ...PaperDarkTheme.colors,
     ...NavigationDarkTheme.colors,
+    background: Colors.dark,
   },
 };
 
@@ -39,10 +42,8 @@ const defaultTheme = {
   ...CombinedDefaultTheme,
   colors: {
     ...CombinedDefaultTheme.colors,
-    primary: Colors.white,
+    primary: Colors.primary,
     accent: Colors.accent,
-    text: Colors.black,
-    card: Colors.accent,
   },
 };
 
@@ -53,8 +54,6 @@ const darkTheme = {
     ...CombinedDarkTheme.colors,
     primary: Colors.primary,
     accent: Colors.accent,
-    text: Colors.white,
-    card: Colors.accent,
   },
 };
 
