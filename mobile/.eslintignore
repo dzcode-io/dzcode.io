@@ -1,0 +1,17 @@
+node_modules/
+.expo/
+npm-debug.*
+web-build/
+coverage
+
+# ignorin native code
+android/
+ios/
+
+# non-code files
+*.*
+!*.tsx
+!*.ts
+!*.js
+!*.json
+*.svg
