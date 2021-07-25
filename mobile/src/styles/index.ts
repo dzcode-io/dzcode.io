@@ -1,3 +1,3 @@
 // export styles
-export { globalStyles } from "./GlobalStyles";
-export { drawerStyles } from "./DrawerStyles";
+export { globalStyles } from "./global-styles";
+export { drawerStyles } from "./drawer-styles";

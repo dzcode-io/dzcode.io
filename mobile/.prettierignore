@@ -1,0 +1,27 @@
+node_modules/
+.expo/
+npm-debug.*
+web-build/
+coverage
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+yarn.lock
+
+# ignorin native code
+android/
+ios/
+
+# assets
+.*
+*.tsbuildinfo
+*.log
+*.svg
+*.jpeg
+*.png
+*.ico
+*.snap
+*.ttf

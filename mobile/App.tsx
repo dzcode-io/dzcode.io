@@ -1,28 +1,18 @@
-// import react native
-import React, { FC, useState, useCallback, useMemo } from "react";
-
-// import react native paper
-import {
-  Provider as PaperProvider,
-  DefaultTheme as PaperDefaultTheme,
-  DarkTheme as PaperDarkTheme,
-} from "react-native-paper";
-
-// import navigation container
+/* eslint-disable unicorn/filename-case */
 import {
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
-
-// import prefrences context
+import {
+  DarkTheme as PaperDarkTheme,
+  DefaultTheme as PaperDefaultTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
+import React, { FC, useCallback, useMemo, useState } from "react";
+import Colors from "./src/styles/colors";
+import Navigation from "./src/screens/navigation";
 import { PrefrencesContext } from "./src/utils/constants";
-
-// import screens
-import Navigation from "./src/screens/Navigation";
-
-// import colors
-import Colors from "./src/styles/Colors";
 
 // define combined default theme
 const CombinedDefaultTheme = {
@@ -73,7 +63,7 @@ const App: FC = (): JSX.Element => {
   const [isThemeDark, setIsThemeDark] = useState(false);
 
   // current theme
-  let theme = isThemeDark ? darkTheme : defaultTheme;
+  const theme = isThemeDark ? darkTheme : defaultTheme;
 
   // toggle theme
   const toggleTheme = useCallback(() => {
@@ -86,7 +76,7 @@ const App: FC = (): JSX.Element => {
       toggleTheme,
       isThemeDark,
     }),
-    [toggleTheme, isThemeDark]
+    [toggleTheme, isThemeDark],
   );
 
   return (

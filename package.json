@@ -14,7 +14,7 @@
     "web:dev": "yarn --cwd web dev",
     "data:dev": "yarn --cwd data dev",
     "api:dev": "yarn --cwd api dev",
-    "mobile:dev": "yarn --cwd mobile start",
+    "mobile:dev": "yarn --cwd mobile dev",
     "common:build:watch": "yarn --cwd common build:watch",
     "data:build:watch": "yarn --cwd data build:watch",
     "api:build:watch": "yarn --cwd api build:watch",
@@ -23,7 +23,7 @@
     "lint:fix": "yarn workspaces run lint:fix",
     "test": "yarn workspaces run test",
     "test:cov": "yarn workspaces run test:cov",
-    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\") || exit 0"
+    "postinstall": "yarn --cwd mobile install && (husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\nyarn --cwd mobile lint-staged\") || exit 0"
   },
   "devDependencies": {
     "husky": "^6.0.0",
