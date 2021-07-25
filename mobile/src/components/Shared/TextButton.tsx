@@ -2,11 +2,8 @@
 import React, { FC } from "react";
 import { Text, View } from "react-native";
 
-// define TextButton props interface
-interface TextButtonProps {}
-
 // export TextButton component
-const TextButton: FC<TextButtonProps> = ({}): JSX.Element => {
+const TextButton: FC = (): JSX.Element => {
   return (
     <View>
       <Text>TextButton component created!</Text>

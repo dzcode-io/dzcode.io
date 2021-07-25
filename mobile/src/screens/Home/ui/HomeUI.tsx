@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { View } from "react-native";
 
 // import react native paper
-import { Text, Button, useTheme } from "react-native-paper";
+import { Text, useTheme } from "react-native-paper";
 
 // import styles
 import { globalStyles } from "../../../styles";
@@ -11,11 +11,8 @@ import { globalStyles } from "../../../styles";
 // import Home functions
 import {} from "../functions";
 
-// define HomeUI props interface
-interface HomeUIProps {}
-
 // export Home UI
-const HomeUI: FC<HomeUIProps> = ({}): JSX.Element => {
+const HomeUI: FC = (): JSX.Element => {
   // use theme
   const theme = useTheme();
 

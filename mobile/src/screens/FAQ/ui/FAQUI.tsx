@@ -11,11 +11,8 @@ import { globalStyles } from "../../../styles";
 // import FAQ functions
 import {} from "../functions";
 
-// define FAQUI props interface
-interface FAQUIProps {}
-
 // export FAQ UI
-const FAQUI: FC<FAQUIProps> = ({}): JSX.Element => {
+const FAQUI: FC = (): JSX.Element => {
   // use theme
   const theme = useTheme();
 

@@ -11,11 +11,8 @@ import { globalStyles } from "../../../styles";
 // import Projects functions
 import {} from "../functions";
 
-// define ProjectsUI props interface
-interface ProjectsUIProps {}
-
 // export Projects UI
-const ProjectsUI: FC<ProjectsUIProps> = ({}): JSX.Element => {
+const ProjectsUI: FC = (): JSX.Element => {
   // use theme
   const theme = useTheme();
 

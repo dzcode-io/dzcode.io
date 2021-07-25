@@ -11,11 +11,8 @@ import { globalStyles } from "../../../styles";
 // import Articles functions
 import {} from "../functions";
 
-// define ArticlesUI props interface
-interface ArticlesUIProps {}
-
 // export Articles UI
-const ArticlesUI: FC<ArticlesUIProps> = ({}): JSX.Element => {
+const ArticlesUI: FC = (): JSX.Element => {
   // use theme
   const theme = useTheme();
 

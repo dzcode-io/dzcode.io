@@ -26,6 +26,7 @@ const Navigation: FC = (): JSX.Element => {
       drawerType="back"
       screenOptions={{
         headerShown: true,
+        /* eslint-disable react/prop-types, react/display-name */
         header: (props) => (
           <AppBar
             title={props.scene.route.name}
@@ -34,6 +35,7 @@ const Navigation: FC = (): JSX.Element => {
             }
           />
         ),
+        /* eslint-enable react/prop-types, react/display-name */
       }}
       drawerContent={(props) => <DrawerContent {...props} />}
     >
