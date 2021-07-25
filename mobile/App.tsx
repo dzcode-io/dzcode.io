@@ -86,7 +86,7 @@ const App: FC = (): JSX.Element => {
       toggleTheme,
       isThemeDark,
     }),
-    [toggleTheme, isThemeDark]
+    [toggleTheme, isThemeDark],
   );
 
   return (

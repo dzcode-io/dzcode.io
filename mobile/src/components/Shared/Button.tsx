@@ -1,7 +1,6 @@
-
 // import react native
-import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import React, { FC } from "react";
+import { Text, View } from "react-native";
 
 // define Button props interface
 interface ButtonProps {}

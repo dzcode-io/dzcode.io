@@ -30,9 +30,7 @@ const Navigation: FC = (): JSX.Element => {
           <AppBar
             title={props.scene.route.name}
             openDrawer={() =>
-              props.scene.descriptor.navigation.dispatch(
-                DrawerActions.openDrawer()
-              )
+              props.scene.descriptor.navigation.dispatch(DrawerActions.openDrawer())
             }
           />
         ),
