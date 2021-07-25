@@ -1,4 +1,3 @@
-import Colors from "./colors";
 import { LARGE_TEXT_SIZE } from "../utils/constants";
 import { StyleSheet } from "react-native";
 
@@ -7,7 +6,6 @@ export const globalStyles = StyleSheet.create({
   // views
   mainView: {
     flex: 1,
-    backgroundColor: Colors.primary,
   },
   centerView: {
     flex: 1,
@@ -51,6 +49,5 @@ export const globalStyles = StyleSheet.create({
   titleText: {
     fontSize: LARGE_TEXT_SIZE,
     fontWeight: "600",
-    color: Colors.white,
   },
 });
