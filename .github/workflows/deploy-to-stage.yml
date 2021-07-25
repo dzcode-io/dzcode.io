@@ -103,3 +103,40 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
           SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
+
+  Deploy-Mobile:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: "Install workspace dependencies"
+        run: |
+          yarn install --ignore-scripts
+      - name: "Build common directory"
+        run: |
+          cd common
+          yarn build
+      - name: "Install mobile dependencies"
+        run: |
+          cd mobile
+          yarn
+      - name: "Deploy mobile"
+        run: |
+          cd mobile
+          expo publish
+
+        env:
+          CI: true
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
