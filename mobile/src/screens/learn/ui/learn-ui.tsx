@@ -1,22 +1,17 @@
 import {} from "../functions";
 import React, { FC } from "react";
-import { Text, useTheme } from "react-native-paper";
+import { Text } from "react-native-paper";
 import { View } from "react-native";
 import { globalStyles } from "../../../styles";
 
 // export Learn UI
 const LearnUI: FC = (): JSX.Element => {
-  // use theme
-  const theme = useTheme();
-
   return (
     // main view
-    <View style={[globalStyles.mainView, { backgroundColor: theme.colors.primary }]}>
+    <View style={globalStyles.mainView}>
       {/* center view */}
       <View style={globalStyles.centerView}>
-        <Text style={[globalStyles.titleText, { color: theme.colors.text }]}>
-          Learn UI created!
-        </Text>
+        <Text style={globalStyles.titleText}>Learn UI created!</Text>
       </View>
     </View>
   );
