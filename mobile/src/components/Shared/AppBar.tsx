@@ -3,15 +3,7 @@ import React, { FC, useContext } from "react";
 import { View } from "react-native";
 
 // import react native paper
-import {
-  Appbar,
-  TouchableRipple,
-  Button,
-  Text,
-  Switch,
-  useTheme,
-  Menu,
-} from "react-native-paper";
+import { Appbar, TouchableRipple, Button, Text, Switch, useTheme, Menu } from "react-native-paper";
 
 // import utils
 import { PrefrencesContext } from "../../utils/constants";

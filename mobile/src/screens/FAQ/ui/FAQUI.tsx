@@ -21,14 +21,10 @@ const FAQUI: FC<FAQUIProps> = ({}): JSX.Element => {
 
   return (
     // main view
-    <View
-      style={[globalStyles.mainView, { backgroundColor: theme.colors.primary }]}
-    >
+    <View style={[globalStyles.mainView, { backgroundColor: theme.colors.primary }]}>
       {/* center view */}
       <View style={globalStyles.centerView}>
-        <Text style={[globalStyles.titleText, { color: theme.colors.text }]}>
-          FAQ UI created!
-        </Text>
+        <Text style={[globalStyles.titleText, { color: theme.colors.text }]}>FAQ UI created!</Text>
       </View>
     </View>
   );

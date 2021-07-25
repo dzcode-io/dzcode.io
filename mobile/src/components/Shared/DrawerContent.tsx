@@ -6,10 +6,7 @@ import { SafeAreaView, Image, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
 // import drawer navigation
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-} from "@react-navigation/drawer";
+import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
 
 // import styles
 import { drawerStyles } from "../../styles";
