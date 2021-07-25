@@ -1,28 +1,17 @@
-// import react native
-import React, { FC, useState, useCallback, useMemo } from "react";
-
-// import react native paper
-import {
-  Provider as PaperProvider,
-  DefaultTheme as PaperDefaultTheme,
-  DarkTheme as PaperDarkTheme,
-} from "react-native-paper";
-
-// import navigation container
 import {
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from "@react-navigation/native";
-
-// import prefrences context
-import { PrefrencesContext } from "./src/utils/constants";
-
-// import screens
-import Navigation from "./src/screens/Navigation";
-
-// import colors
+import {
+  DarkTheme as PaperDarkTheme,
+  DefaultTheme as PaperDefaultTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import Colors from "./src/styles/Colors";
+import Navigation from "./src/screens/Navigation";
+import { PrefrencesContext } from "./src/utils/constants";
 
 // define combined default theme
 const CombinedDefaultTheme = {

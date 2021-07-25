@@ -1,23 +1,16 @@
-// import react native
-import React, { FC } from "react";
-
-// import drawer navigation
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { DrawerActions } from "@react-navigation/native";
-
-// import components
 import { AppBar, DrawerContent } from "../components/Shared";
+import React, { FC } from "react";
+import ArticlesUI from "./Articles/ui/ArticlesUI";
+import ContributeUI from "./Contribute/ui/ContributeUI";
+import { DrawerActions } from "@react-navigation/native";
+import FAQUI from "./FAQ/ui/FAQUI";
+import HomeUI from "./Home/ui/HomeUI";
+import LearnUI from "./Learn/ui/LearnUI";
+import ProjectsUI from "./Projects/ui/ProjectsUI";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // create drawer navigation
 const Drawer = createDrawerNavigator();
-
-// import screens
-import HomeUI from "./Home/ui/HomeUI";
-import ContributeUI from "./Contribute/ui/ContributeUI";
-import LearnUI from "./Learn/ui/LearnUI";
-import ProjectsUI from "./Projects/ui/ProjectsUI";
-import ArticlesUI from "./Articles/ui/ArticlesUI";
-import FAQUI from "./FAQ/ui/FAQUI";
 
 const Navigation: FC = (): JSX.Element => {
   return (

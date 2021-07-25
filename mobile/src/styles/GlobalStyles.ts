@@ -1,11 +1,6 @@
-// import stylesheet
-import { StyleSheet } from "react-native";
-
-// import colors
 import Colors from "./Colors";
-
-// import constants
 import { LARGE_TEXT_SIZE } from "../utils/constants";
+import { StyleSheet } from "react-native";
 
 // export global styles
 export const globalStyles = StyleSheet.create({
