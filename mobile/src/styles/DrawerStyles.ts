@@ -1,7 +1,3 @@
-// import stylesheet
-import { StyleSheet } from "react-native";
-
-// import constants
 import {
   LARGE_LOGO_WIDTH,
   LARGE_MARGIN_SIZE,
@@ -9,6 +5,7 @@ import {
   SMALL_LOGO_HEIGHT,
   SMALL_MARGIN_SIZE,
 } from "../utils/constants";
+import { StyleSheet } from "react-native";
 
 // export drawer styles
 export const drawerStyles = StyleSheet.create({

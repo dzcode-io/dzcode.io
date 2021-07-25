@@ -1,15 +1,8 @@
-// import react native
+import { Appbar, Switch, Text, useTheme } from "react-native-paper";
 import React, { FC, useContext } from "react";
-import PropTypes from "prop-types";
-
-// import react native paper
-import { Appbar, Text, Switch, useTheme } from "react-native-paper";
-
-// import utils
-import { PrefrencesContext } from "../../utils/constants";
-
-// import styles
 import Colors from "../../styles/Colors";
+import { PrefrencesContext } from "../../utils/constants";
+import PropTypes from "prop-types";
 import { drawerStyles } from "../../styles";
 
 // define Appbar props interface

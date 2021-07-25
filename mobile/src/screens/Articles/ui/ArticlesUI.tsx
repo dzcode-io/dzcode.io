@@ -1,15 +1,8 @@
-// import react native
-import React, { FC } from "react";
-import { View } from "react-native";
-
-// import react native paper
-import { Text, useTheme } from "react-native-paper";
-
-// import styles
-import { globalStyles } from "../../../styles";
-
-// import Articles functions
 import {} from "../functions";
+import React, { FC } from "react";
+import { Text, useTheme } from "react-native-paper";
+import { View } from "react-native";
+import { globalStyles } from "../../../styles";
 
 // export Articles UI
 const ArticlesUI: FC = (): JSX.Element => {
