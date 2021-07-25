@@ -11,11 +11,8 @@ import { globalStyles } from "../../../styles";
 // import Contribute functions
 import {} from "../functions";
 
-// define ContributeUI props interface
-interface ContributeUIProps {}
-
 // export Contribute UI
-const ContributeUI: FC<ContributeUIProps> = ({}): JSX.Element => {
+const ContributeUI: FC = (): JSX.Element => {
   // use theme
   const theme = useTheme();
 

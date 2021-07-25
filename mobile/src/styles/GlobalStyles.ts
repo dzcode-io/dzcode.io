@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 import Colors from "./Colors";
 
 // import constants
-import { LARGE_TEXT_SIZE, MEDIUM_PADDING_SIZE } from "../utils/constants";
+import { LARGE_TEXT_SIZE } from "../utils/constants";
 
 // export global styles
 export const globalStyles = StyleSheet.create({

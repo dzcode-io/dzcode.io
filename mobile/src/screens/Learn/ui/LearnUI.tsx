@@ -11,11 +11,8 @@ import { globalStyles } from "../../../styles";
 // import Learn functions
 import {} from "../functions";
 
-// define LearnUI props interface
-interface LearnUIProps {}
-
 // export Learn UI
-const LearnUI: FC<LearnUIProps> = ({}): JSX.Element => {
+const LearnUI: FC = (): JSX.Element => {
   // use theme
   const theme = useTheme();
 

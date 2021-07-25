@@ -73,7 +73,7 @@ const App: FC = (): JSX.Element => {
   const [isThemeDark, setIsThemeDark] = useState(false);
 
   // current theme
-  let theme = isThemeDark ? darkTheme : defaultTheme;
+  const theme = isThemeDark ? darkTheme : defaultTheme;
 
   // toggle theme
   const toggleTheme = useCallback(() => {

@@ -1,9 +1,9 @@
 // import react native
 import React, { FC, useContext } from "react";
-import { View } from "react-native";
+import PropTypes from "prop-types";
 
 // import react native paper
-import { Appbar, TouchableRipple, Button, Text, Switch, useTheme, Menu } from "react-native-paper";
+import { Appbar, Text, Switch, useTheme } from "react-native-paper";
 
 // import utils
 import { PrefrencesContext } from "../../utils/constants";
@@ -44,3 +44,8 @@ const AppBar: FC<AppbarProps> = ({ title, openDrawer }): JSX.Element => {
   );
 };
 export default AppBar;
+
+AppBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  openDrawer: PropTypes.func.isRequired,
+};

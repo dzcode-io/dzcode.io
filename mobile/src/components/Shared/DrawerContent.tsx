@@ -6,13 +6,20 @@ import { SafeAreaView, Image, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
 // import drawer navigation
-import { DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
+import {
+  DrawerContentComponentProps,
+  DrawerContentOptions,
+  DrawerContentScrollView,
+  DrawerItemList,
+} from "@react-navigation/drawer";
 
 // import styles
 import { drawerStyles } from "../../styles";
 
 // export DrawerContent component
-const DrawerContent: FC<any> = (props): JSX.Element => {
+const DrawerContent: FC<DrawerContentComponentProps<DrawerContentOptions>> = (
+  props,
+): JSX.Element => {
   // use theme
   const theme = useTheme();
 

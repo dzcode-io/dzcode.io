@@ -31,6 +31,8 @@ export const MEDIUM_BORDER_RADIUS = 20;
 
 // prefrences context
 export const PrefrencesContext = React.createContext({
-  toggleTheme: () => {},
+  toggleTheme: () => {
+    //
+  },
   isThemeDark: false,
 });
