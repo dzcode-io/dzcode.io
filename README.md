@@ -56,6 +56,14 @@ yarn dev
 - For data server go to <http://localhost:9090>
 - For api server go to <http://localhost:7070/v2/docs>
 
+- Run mobile locally
+
+```sh
+yarn mobile:dev
+```
+
+- For mobile go to <http://localhost:19002> and scan QR code with your phone
+
 ## Contributing
 
 To get started see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/main/.github/CONTRIBUTING.md).
