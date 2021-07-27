@@ -1,12 +1,18 @@
 {
   "name": "@dzcode.io/root",
   "private": true,
-  "workspaces": [
-    "api",
-    "common",
-    "data",
-    "web"
-  ],
+  "workspaces": {
+    "packages": [
+      "api",
+      "common",
+      "data",
+      "web",
+      "mobile"
+    ],
+    "nohoist": [
+      "**/mobile/**"
+    ]
+  },
   "scripts": {
     "common:build": "yarn --cwd common build",
     "data:build": "yarn --cwd data build",
@@ -23,7 +29,7 @@
     "lint:fix": "yarn workspaces run lint:fix",
     "test": "yarn workspaces run test",
     "test:cov": "yarn workspaces run test:cov",
-    "postinstall": "yarn --cwd mobile install && (husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\nyarn --cwd mobile lint-staged\") || exit 0"
+    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\nyarn --cwd mobile lint-staged\") || exit 0"
   },
   "devDependencies": {
     "husky": "^6.0.0",
