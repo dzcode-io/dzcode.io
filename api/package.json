@@ -36,6 +36,10 @@
       "prettier --write --ignore-path ./.prettierignore"
     ]
   },
+  "engines": {
+    "node": ">=14",
+    "yarn": ">=1.4.2"
+  },
   "dependencies": {
     "@dzcode.io/common": "1.0.0",
     "axios": "^0.21.1",

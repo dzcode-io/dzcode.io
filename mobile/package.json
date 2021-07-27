@@ -8,8 +8,8 @@
     "url": "https://omarbelghaouti.space/"
   },
   "scripts": {
-    "expo": "yarn && expo",
-    "dev": "yarn && expo start",
+    "expo": "expo",
+    "dev": "expo start",
     "lint:check": "yarn prettier:check && yarn eslint:check",
     "lint:fix": "yarn prettier:fix && yarn eslint:fix",
     "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
@@ -31,6 +31,10 @@
     ]
   },
   "private": true,
+  "engines": {
+    "node": ">=14",
+    "yarn": ">=1.4.2"
+  },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
     "@react-native-community/masked-view": "0.1.10",

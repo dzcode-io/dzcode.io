@@ -23,8 +23,8 @@ You can find more about each folder by clicking on the folder name
 Make sure you have:
 
 - [Git](https://git-scm.com/)
-- [Nodejs](https://nodejs.org/) version 10 or higher
-- [Yarn](https://yarnpkg.com/) version 1 or higher
+- [Nodejs](https://nodejs.org/) version 14 or higher
+- [Yarn](https://yarnpkg.com/) version 1.4.2 or higher
 
 ### Run it locally
 
