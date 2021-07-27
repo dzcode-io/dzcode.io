@@ -9,7 +9,7 @@ RUN pwd
 RUN ls
 
 # Install app dependencies
-RUN yarn install --production --ignore-scripts
+RUN yarn --production
 
 # export server port
 ENV PORT=7070
