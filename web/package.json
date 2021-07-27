@@ -32,8 +32,8 @@
   "license": "MIT",
   "private": "true",
   "engines": {
-    "node": ">=10",
-    "yarn": "1"
+    "node": ">=14",
+    "yarn": ">=1.4.2"
   },
   "browserslist": {
     "production": [

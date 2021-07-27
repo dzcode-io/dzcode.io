@@ -21,7 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install workspace dependencies"
         run: |
-          yarn install --ignore-scripts
+          yarn
       - name: "Build common directory"
         run: |
           cd common
@@ -50,7 +50,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install workspace dependencies"
         run: |
-          yarn install --ignore-scripts
+          yarn
       - name: "Build common directory"
         run: |
           cd common
@@ -84,7 +84,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install workspace dependencies"
         run: |
-          yarn install --ignore-scripts
+          yarn
       - name: "Build common directory"
         run: |
           cd common

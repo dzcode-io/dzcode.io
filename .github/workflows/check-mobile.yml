@@ -23,15 +23,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install workspace dependencies"
         run: |
-          yarn install --ignore-scripts
+          yarn
       - name: "Build common directory"
         run: |
           cd common
           yarn build
-      - name: "Install mobile dependencies"
-        run: |
-          cd mobile
-          yarn
       - name: "checking script in mobile directory"
         run: |
           cd mobile

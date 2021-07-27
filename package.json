@@ -1,12 +1,18 @@
 {
   "name": "@dzcode.io/root",
   "private": true,
-  "workspaces": [
-    "api",
-    "common",
-    "data",
-    "web"
-  ],
+  "workspaces": {
+    "packages": [
+      "api",
+      "common",
+      "data",
+      "web",
+      "mobile"
+    ],
+    "nohoist": [
+      "**/mobile/**"
+    ]
+  },
   "scripts": {
     "common:build": "yarn --cwd common build",
     "data:build": "yarn --cwd data build",
@@ -18,12 +24,15 @@
     "common:build:watch": "yarn --cwd common build:watch",
     "data:build:watch": "yarn --cwd data build:watch",
     "api:build:watch": "yarn --cwd api build:watch",
-    "dev": "yarn && npm-run-all common:build -p data:build api:build -p web:dev data:dev api:dev common:build:watch data:build:watch api:build:watch",
+    "dev": "echo \"Please run one of these commands:\\n\\nyarn dev:web\\n\\nyarn dev:mobile\\n\\nyarn dev:all\n\"",
+    "dev:web": "yarn && npm-run-all common:build -p data:build api:build -p web:dev data:dev api:dev common:build:watch data:build:watch api:build:watch",
+    "dev:mobile": "yarn && npm-run-all common:build -p data:build api:build -p mobile:dev data:dev api:dev common:build:watch data:build:watch api:build:watch",
+    "dev:all": "yarn && npm-run-all common:build -p data:build api:build -p web:dev mobile:dev data:dev api:dev common:build:watch data:build:watch api:build:watch",
     "lint:check": "yarn workspaces run lint:check",
     "lint:fix": "yarn workspaces run lint:fix",
     "test": "yarn workspaces run test",
     "test:cov": "yarn workspaces run test:cov",
-    "postinstall": "yarn --cwd mobile install && (husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\nyarn --cwd mobile lint-staged\") || exit 0"
+    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\nyarn --cwd mobile lint-staged\") || exit 0"
   },
   "devDependencies": {
     "husky": "^6.0.0",

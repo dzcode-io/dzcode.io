@@ -23,8 +23,8 @@ You can find more about each folder by clicking on the folder name
 Make sure you have:
 
 - [Git](https://git-scm.com/)
-- [Nodejs](https://nodejs.org/) version 10 or higher
-- [Yarn](https://yarnpkg.com/) version 1 or higher
+- [Nodejs](https://nodejs.org/) version 14 or higher
+- [Yarn](https://yarnpkg.com/) version 1.4.2 or higher
 
 ### Run it locally
 
@@ -55,6 +55,14 @@ yarn dev
 - For web server go to <http://localhost:8080>
 - For data server go to <http://localhost:9090>
 - For api server go to <http://localhost:7070/v2/docs>
+
+- Run mobile locally
+
+```sh
+yarn mobile:dev
+```
+
+- For mobile go to <http://localhost:19002> and scan QR code with your phone
 
 ## Contributing
 
