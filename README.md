@@ -46,22 +46,23 @@ Make sure you have:
 yarn
 ```
 
-- Run it locally
+- Run it locally by either:
 
 ```sh
-yarn dev
+yarn dev:web
+```
+
+```sh
+yarn dev:mobile
+```
+
+```sh
+yarn dev:all
 ```
 
 - For web server go to <http://localhost:8080>
 - For data server go to <http://localhost:9090>
 - For api server go to <http://localhost:7070/v2/docs>
-
-- Run mobile locally
-
-```sh
-yarn mobile:dev
-```
-
 - For mobile go to <http://localhost:19002> and scan QR code with your phone
 
 ## Contributing

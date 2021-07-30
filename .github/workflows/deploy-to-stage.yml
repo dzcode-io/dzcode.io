@@ -131,7 +131,7 @@ jobs:
       - name: "Deploy mobile"
         run: |
           cd mobile
-          expo publish
+          expo publish --release-channel stage
 
         env:
           CI: true
