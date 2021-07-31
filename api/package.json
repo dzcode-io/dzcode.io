@@ -18,7 +18,8 @@
     "dev": "nodemon dist/app/index.js",
     "start": "node dist/app/index.js",
     "deploy": "yarn build && rimraf ./oracle-cloud/build && node oracle-cloud/deploy.js production",
-    "deploy:stg": "yarn build && rimraf ./oracle-cloud/build && node oracle-cloud/deploy.js staging"
+    "deploy:stg": "yarn build && rimraf ./oracle-cloud/build && node oracle-cloud/deploy.js staging",
+    "clean": "rimraf ./node_modules"
   },
   "repository": {
     "type": "git",
