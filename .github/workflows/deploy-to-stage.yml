@@ -22,13 +22,10 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
-        run: |
-          cd common
-          yarn build
       - name: "Deploy web"
         run: |
           cd web
+          yarn common:sync
           yarn deploy:stg
 
         env:
@@ -51,13 +48,10 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
-        run: |
-          cd common
-          yarn build
       - name: "Deploy data"
         run: |
           cd data
+          yarn common:sync
           yarn deploy:stg
 
         env:
@@ -85,13 +79,10 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
-        run: |
-          cd common
-          yarn build
       - name: "Build data directory"
         run: |
           cd data
+          yarn common:sync
           yarn build
       - name: "Deploy api"
         run: |
@@ -124,13 +115,10 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
-        run: |
-          cd common
-          yarn build
       - name: "Deploy mobile"
         run: |
           cd mobile
+          yarn common:sync
           expo publish --release-channel stage
 
         env:
