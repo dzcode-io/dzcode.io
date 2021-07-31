@@ -22,13 +22,10 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
-        run: |
-          cd common
-          yarn build
       - name: "Deploy web"
         run: |
           cd web
+          yarn common:sync
           yarn deploy
 
         env:
@@ -51,13 +48,10 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
-        run: |
-          cd common
-          yarn build
       - name: "Deploy data"
         run: |
           cd data
+          yarn common:sync
           yarn deploy
 
         env:
@@ -85,13 +79,10 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
-        run: |
-          cd common
-          yarn build
       - name: "Build data directory"
         run: |
           cd data
+          yarn common:sync
           yarn build
       - name: "Deploy api"
         run: |
@@ -103,3 +94,33 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
           SSH_ADDRESS_PRD: ${{ secrets.SSH_ADDRESS_PRD }}
+
+  Deploy-Mobile:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: "Install workspace dependencies"
+        run: |
+          yarn
+      - name: "Deploy mobile"
+        run: |
+          cd mobile
+          yarn common:sync
+          expo publish --release-channel production
+
+        env:
+          CI: true
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
