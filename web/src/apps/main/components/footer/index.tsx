@@ -44,7 +44,7 @@ export const Footer: FC = () => {
           <Grid container item xs={12} md={9} spacing={6}>
             {sections &&
               sections.map((category, i) => (
-                <Grid direction="column" container item xs={12} md={6} key={i}>
+                <Grid direction="column" container item xs={12} md={4} key={i}>
                   <Typography variant="h6" className={classes.categoryTitle}>
                     {category.title}
                   </Typography>
