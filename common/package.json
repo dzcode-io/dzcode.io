@@ -14,7 +14,8 @@
     "test:cov": "jest src --coverage",
     "test:cov:watch": "jest src --coverage --watchAll",
     "build": "tsc",
-    "build:watch": "tsc --watch"
+    "build:watch": "tsc --watch",
+    "clean": "rimraf ./node_modules"
   },
   "repository": {
     "type": "git",
