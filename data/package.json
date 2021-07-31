@@ -4,6 +4,8 @@
   "description": "dzCode.io data code",
   "scripts": {
     "clear": "rimraf ./dist",
+    "common:sync": "syncdir ../common/src ./src/.common -c",
+    "common:sync:watch": "yarn common:sync --watch",
     "lint:check": "yarn prettier:check && yarn eslint:check",
     "lint:fix": "yarn prettier:fix && yarn eslint:fix",
     "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",

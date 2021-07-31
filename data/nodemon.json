@@ -1,3 +1,3 @@
 {
-  "watch": ["dist", "../common/dist"]
+  "watch": ["dist"]
 }
