@@ -15,7 +15,7 @@ exports[`components/footer/footer.spec.tsx should render properly 1`] = `
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6 MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-9"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+            class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
           >
             <h6
               class="MuiTypography-root makeStyles-categoryTitle-3 MuiTypography-h6"
@@ -69,7 +69,43 @@ exports[`components/footer/footer.spec.tsx should render properly 1`] = `
             </a>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+            class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+          >
+            <h6
+              class="MuiTypography-root makeStyles-categoryTitle-3 MuiTypography-h6"
+            >
+              Mobile
+            </h6>
+            <a
+              href="/http://localhost:19002"
+            >
+              <h6
+                class="MuiTypography-root makeStyles-linkText-2 MuiTypography-subtitle2"
+              >
+                Android
+              </h6>
+            </a>
+            <a
+              href="/http://localhost:19002"
+            >
+              <h6
+                class="MuiTypography-root makeStyles-linkText-2 MuiTypography-subtitle2"
+              >
+                iOS
+              </h6>
+            </a>
+            <a
+              href="/http://localhost:19002"
+            >
+              <h6
+                class="MuiTypography-root makeStyles-linkText-2 MuiTypography-subtitle2"
+              >
+                Expo
+              </h6>
+            </a>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
           >
             <h6
               class="MuiTypography-root makeStyles-categoryTitle-3 MuiTypography-h6"

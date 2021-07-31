@@ -1,3 +1,5 @@
+import { fullstackConfig } from "src/config";
+
 export const sections = [
   {
     title: "Helpful Links",
@@ -7,6 +9,14 @@ export const sections = [
       { text: "Projects", href: "/Projects" },
       { text: "Articles", href: "/Articles" },
       { text: "FAQ", href: "/FAQ" },
+    ],
+  },
+  {
+    title: "Mobile",
+    links: [
+      { text: "Android", href: fullstackConfig.mobile.android.url },
+      { text: "iOS", href: fullstackConfig.mobile.ios.url },
+      { text: "Expo", href: fullstackConfig.mobile.expo.url },
     ],
   },
   {
