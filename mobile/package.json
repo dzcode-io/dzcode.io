@@ -8,6 +8,8 @@
     "url": "https://omarbelghaouti.space/"
   },
   "scripts": {
+    "common:sync": "syncdir ../common/src ./src/.common -c",
+    "common:sync:watch": "yarn common:sync --watch",
     "expo": "expo",
     "dev": "expo start",
     "lint:check": "yarn prettier:check && yarn eslint:check",
