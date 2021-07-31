@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
-import { GetContributionsResponseDto } from "@dzcode.io/common/dist/types/api-responses";
+import { GetContributionsResponseDto } from "src/.common/types/api-responses";
 import { ThunkResult } from "src/apps/main/redux";
 import debounce from "@material-ui/core/utils/debounce";
 import { fullstackConfig } from "src/config";

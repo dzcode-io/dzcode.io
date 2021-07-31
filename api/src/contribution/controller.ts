@@ -2,7 +2,7 @@ import { Controller, Get, QueryParams } from "routing-controllers";
 import {
   GetContributionsQueryDto,
   GetContributionsResponseDto,
-} from "@dzcode.io/common/dist/types/api-responses";
+} from "../.common/types/api-responses";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { ContributionRepository } from "./repository";
 import { Service } from "typedi";

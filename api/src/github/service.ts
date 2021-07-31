@@ -8,7 +8,7 @@ import {
   ListContributorsResponse,
 } from "./types";
 import { FetchService } from "../fetch/service";
-import { GithubIssue } from "@dzcode.io/common/dist/types";
+import { GithubIssue } from "../.common/types";
 import { Service } from "typedi";
 
 @Service()

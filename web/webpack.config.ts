@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-// required modules
-const path = require("path");
-const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TerserJSPlugin = require("terser-webpack-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const autoprefixer = require("autoprefixer");
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import TerserJSPlugin from "terser-webpack-plugin";
+import autoprefixer from "autoprefixer";
+import glob from "glob";
+import path from "path";
+import webpack from "webpack";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const precss = require("precss");
-const glob = require("glob");
 
 // setting up project configurations and some env variables
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -23,7 +22,7 @@ const apps = glob
   .map((path) => path.substring(9, path.indexOf("/", 9)));
 
 // exporting configs
-module.exports = {
+export default {
   // https://webpack.js.org/configuration/entry-context/
   entry: Object.fromEntries(
     new Map(

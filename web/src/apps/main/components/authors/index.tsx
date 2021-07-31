@@ -1,6 +1,6 @@
 import Avatar from "@material-ui/core/Avatar";
 import { FC } from "react";
-import { GithubUser } from "@dzcode.io/common/dist/types";
+import { GithubUser } from "src/.common/types";
 import { LinkV2 } from "src/components/link-v2";
 import PropTypes from "prop-types";
 import Skeleton from "@material-ui/lab/Skeleton";

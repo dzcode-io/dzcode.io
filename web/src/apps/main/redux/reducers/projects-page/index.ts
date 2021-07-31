@@ -1,4 +1,4 @@
-import { Project } from "@dzcode.io/common/dist/types";
+import { Project } from "src/.common/types";
 
 export interface ProjectsPageState {
   projectsList: Project[] | null;
