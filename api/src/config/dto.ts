@@ -1,4 +1,4 @@
-import { Environment } from "@dzcode.io/common/dist/types";
+import { Environment } from "../.common/types";
 import { Matches } from "class-validator";
 
 const environment: Environment[] = ["development", "staging", "production"];

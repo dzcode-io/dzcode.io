@@ -1,4 +1,4 @@
-import { GithubUser } from "@dzcode.io/common/dist/types";
+import { GithubUser } from "../src/.common/types";
 
 export const githubUserMock: GithubUser = {
   avatar_url: "avatar_url", // eslint-disable-line camelcase

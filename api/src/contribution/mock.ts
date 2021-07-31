@@ -1,4 +1,4 @@
-import { ContributionEntity, FilterEntity, OptionEntity } from "@dzcode.io/common/dist/types";
+import { ContributionEntity, FilterEntity, OptionEntity } from "../.common/types";
 import { lorem } from "faker";
 
 export const generateContributionMock = (index: number): ContributionEntity => {

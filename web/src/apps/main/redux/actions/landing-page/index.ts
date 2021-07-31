@@ -1,4 +1,4 @@
-import { Article, Project } from "@dzcode.io/common/dist/types";
+import { Article, Project } from "src/.common/types";
 
 import Axios from "axios";
 import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";

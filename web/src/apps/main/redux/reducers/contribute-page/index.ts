@@ -1,4 +1,4 @@
-import { ContributionEntity, FilterEntity } from "@dzcode.io/common/dist/types";
+import { ContributionEntity, FilterEntity } from "src/.common/types";
 import { Action } from "src/apps/main/redux";
 
 export interface ContributePageState {

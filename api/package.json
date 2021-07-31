@@ -44,7 +44,6 @@
     "yarn": ">=1.4.2"
   },
   "dependencies": {
-    "@dzcode.io/common": "1.0.0",
     "axios": "^0.21.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",

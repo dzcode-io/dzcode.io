@@ -1,5 +1,5 @@
 import { Action } from "src/apps/main/redux";
-import { Article } from "@dzcode.io/common/dist/types";
+import { Article } from "src/.common/types";
 import { SidebarTreeItem } from "src/apps/main/types";
 
 export interface ArticlesPageState {
