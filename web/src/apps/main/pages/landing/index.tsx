@@ -8,6 +8,7 @@ import { Dispatch } from "src/apps/main/redux";
 import { Header } from "./header";
 import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
 import { LinkV2 } from "src/components/link-v2";
+import { Mobile } from "./mobile";
 import { TopArticles } from "./top-articles";
 import { TopProjects } from "./top-projects";
 import { useDispatch } from "react-redux";
@@ -56,6 +57,7 @@ export const LandingPage: FC = () => {
           </Button>
         </LinkV2>
       </div>
+      <Mobile />
     </>
   );
 };

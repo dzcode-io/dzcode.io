@@ -12,7 +12,7 @@ import { LinkV2 } from "src/components/link-v2";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import logo from "src/apps/main/assets/png/logo.png";
+import logo from "src/assets/svg/logo-wide.svg";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 const useStyles = makeStyles((theme) =>
@@ -87,6 +87,7 @@ const useStyles = makeStyles((theme) =>
     },
     logoImg: {
       maxWidth: "100px",
+      height: 40,
     },
   }),
 );
