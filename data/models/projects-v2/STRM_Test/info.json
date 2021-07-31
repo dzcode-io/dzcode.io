@@ -1,0 +1,10 @@
+{
+  "name": "STRM test",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "linuxscout",
+      "repository": "strm-tests"
+    }
+  ]
+}
