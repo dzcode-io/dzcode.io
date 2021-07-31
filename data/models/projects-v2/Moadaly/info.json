@@ -1,0 +1,10 @@
+{
+  "name": "Moadaly: Moyenne calculatrice",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "Abdelmadjidsmail",
+      "repository": "moadaly"
+    }
+  ]
+}
