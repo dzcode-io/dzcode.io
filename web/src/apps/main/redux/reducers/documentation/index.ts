@@ -1,5 +1,5 @@
 import { Action } from "src/apps/main/redux";
-import { Document } from "@dzcode.io/common/dist/types";
+import { Document } from "src/.common/types";
 import { updateCollection } from "src/common/utils";
 
 export interface DocumentationState {

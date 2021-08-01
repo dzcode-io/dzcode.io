@@ -1,8 +1,4 @@
-dist
 coverage
-
-# logs
-**.tsbuildinfo
 
 # node
 **node_modules

@@ -1,8 +1,5 @@
-import {
-  GetContributorsResponseDto,
-  GetUserResponseDto,
-} from "@dzcode.io/common/dist/types/api-responses";
-import { Article } from "@dzcode.io/common/dist/types";
+import { GetContributorsResponseDto, GetUserResponseDto } from "src/.common/types/api-responses";
+import { Article } from "src/.common/types";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { ArticlesState } from "src/apps/main/redux/reducers/articles";
 import Axios from "axios";

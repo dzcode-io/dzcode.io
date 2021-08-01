@@ -24,13 +24,10 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
-        run: |
-          cd common
-          yarn build
       - name: "checking script in data directory"
         run: |
           cd data
+          yarn common:sync
           yarn lint:check
           yarn test:cov
           yarn build

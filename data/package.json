@@ -4,6 +4,8 @@
   "description": "dzCode.io data code",
   "scripts": {
     "clear": "rimraf ./dist",
+    "common:sync": "syncdir ../common/src ./src/.common -c",
+    "common:sync:watch": "yarn common:sync --watch",
     "lint:check": "yarn prettier:check && yarn eslint:check",
     "lint:fix": "yarn prettier:fix && yarn eslint:fix",
     "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
@@ -20,7 +22,8 @@
     "dev": "nodemon dist/index.js",
     "start": "node dist/index.js",
     "deploy": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.dzcode.io --token \"$FIREBASE_TOKEN\"",
-    "deploy:stg": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.stage.dzcode.io --token \"$FIREBASE_TOKEN\""
+    "deploy:stg": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "clean": "rimraf ./node_modules"
   },
   "repository": {
     "type": "git",
@@ -44,7 +47,6 @@
     "yarn": ">=1.4.2"
   },
   "dependencies": {
-    "@dzcode.io/common": "1.0.0",
     "express": "^4.17.1",
     "fs-extra": "^9.0.1",
     "glob": "^7.1.6"

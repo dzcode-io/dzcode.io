@@ -1,4 +1,4 @@
-import { Article, Project } from "@dzcode.io/common/dist/types";
+import { Article, Project } from "src/.common/types";
 
 import { Action } from "src/apps/main/redux";
 

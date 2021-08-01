@@ -12,7 +12,7 @@ import { GithubUserController } from "../github-user/controller";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
-import { fsConfig } from "@dzcode.io/common/dist/config";
+import { fsConfig } from "../.common/config";
 import router from "./routes/api";
 
 // Use typedi container

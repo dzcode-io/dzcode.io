@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const { SitemapStream } = require("sitemap");
-const { createWriteStream } = require("fs");
+import { SitemapStream } from "sitemap";
+import { createWriteStream } from "fs";
 const distFolder = "./dist";
-const { join } = require("path");
+import { getDataCollection } from "../.common/utils/data";
+import { join } from "path";
 
 // Static URLs
 console.log("Getting Static URLs ...");
@@ -11,13 +11,19 @@ console.log("✅", urls.length, "URLs Found");
 
 // Dynamic URLs
 console.log("Getting Dynamic URLs ...");
-const data = require("@dzcode.io/common/dist/utils/data");
 [
   { file: "articles", slug: "Articles" },
   { file: "documentation", slug: "Learn" },
   { file: "projects", slug: "Projects" },
 ].forEach((collectionInfo) => {
-  const collection = data.getDataCollection(collectionInfo.file, "ssr.json");
+  const collection = getDataCollection<Record<string, string>>(
+    join(__dirname, "../../../data"),
+    collectionInfo.file,
+    "ssr.json",
+  );
+  if (!Array.isArray(collection)) {
+    throw new Error(`Collection is not an array: ${collection}`);
+  }
   collection.forEach((entry) => {
     urls.push(`/${collectionInfo.slug}/${entry.slug}`);
   });
@@ -25,10 +31,7 @@ const data = require("@dzcode.io/common/dist/utils/data");
 console.log("✅", urls.length, "URLs Found");
 
 // Generate xml file
-const sitemap = new SitemapStream({
-  hostname: "https://www.dzCode.io/",
-  cacheTime: 600000,
-});
+const sitemap = new SitemapStream({ hostname: "https://www.dzCode.io/" });
 const path = join(distFolder, "w/main-sitemap.xml");
 const writeStream = createWriteStream(path);
 writeStream.on("error", (err) => {
@@ -38,7 +41,7 @@ writeStream.on("error", (err) => {
 writeStream.on("ready", () => {
   sitemap.pipe(writeStream);
   urls.forEach((url) => {
-    sitemap.write(url, null, (err) => {
+    sitemap.write(url, undefined, (err) => {
       if (err) console.log("Sitemap generation error", err);
     });
   });
