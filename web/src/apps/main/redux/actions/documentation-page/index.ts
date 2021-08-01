@@ -1,9 +1,6 @@
-import {
-  GetContributorsResponseDto,
-  GetUserResponseDto,
-} from "@dzcode.io/common/dist/types/api-responses";
+import { GetContributorsResponseDto, GetUserResponseDto } from "src/.common/types/api-responses";
 import Axios from "axios";
-import { Document } from "@dzcode.io/common/dist/types";
+import { Document } from "src/.common/types";
 import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import { SidebarTreeItem } from "src/apps/main/types";

@@ -1,6 +1,7 @@
 node_modules/
 coverage
 dist
+src/.common
 oracle-cloud/build
 *.*
 !*.tsx

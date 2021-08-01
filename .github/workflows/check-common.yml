@@ -28,7 +28,6 @@ jobs:
           cd common
           yarn lint:check
           yarn test:cov
-          yarn build
 
         env:
           CI: true

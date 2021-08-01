@@ -1,18 +1,18 @@
-import {
-  ContributionEntity,
-  FilterEntity,
-  OptionEntity,
-  ProjectEntity,
-} from "@dzcode.io/common/dist/types";
-import { GetContributionsResponseDto } from "@dzcode.io/common/dist/types/api-responses";
+import { ContributionEntity, FilterEntity, OptionEntity, ProjectEntity } from "../.common/types";
+import { GetContributionsResponseDto } from "../.common/types/api-responses";
 import { GithubService } from "../github/service";
 import { Service } from "typedi";
-import { getDataCollection } from "@dzcode.io/common/dist/utils/data";
+import { getDataCollection } from "../.common/utils/data";
+import { join } from "path";
 
 @Service()
 export class ContributionRepository {
   constructor(private readonly githubService: GithubService) {
-    const projects = getDataCollection<ProjectEntity>("projects-v2", "list.json");
+    const projects = getDataCollection<ProjectEntity>(
+      join(__dirname, "../../../data"),
+      "projects-v2",
+      "list.json",
+    );
     this.projects = projects !== 404 ? projects : [];
   }
 

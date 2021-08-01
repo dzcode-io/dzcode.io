@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import { GithubUser } from "@dzcode.io/common/dist/types";
+import { GithubUser } from "../.common/types";
 
 export type ListContributorsResponse = Array<{
   author: GithubUser;

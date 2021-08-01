@@ -1,17 +1,14 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import config from "./app-config";
+import { getDataCollection } from "../../../.common/utils/data";
+import { join } from "path";
 
-// required modules
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-// setting up project configurations and some env variables
-const config = require("./app-config");
 const app = { ...config, name: "main" };
-
 const isDevelopment = process.env.NODE_ENV === "development";
 const fbpCode = app.vars.analytics.facebook;
 const gaCode = app.vars.analytics.google;
 const fbAppCode = app.vars.plugins.fbAppCode;
-const plugins = [];
+const plugins: HtmlWebpackPlugin[] = [];
 
 // SSR --------------------------------|
 // Root URL ----
@@ -82,13 +79,19 @@ if (process.env.NODE_ENV !== "development") {
     ],
   );
   // Dynamic URLs ----
-  const data = require("@dzcode.io/common/dist/utils/data");
   [
     { file: "articles", slug: "Articles" },
     { file: "documentation", slug: "Learn" },
     { file: "projects", slug: "Projects" },
   ].forEach((collectionInfo) => {
-    const collection = data.getDataCollection(collectionInfo.file, "ssr.json");
+    const collection = getDataCollection<Record<string, string>>(
+      join(__dirname, "../../../../../data"),
+      collectionInfo.file,
+      "ssr.json",
+    );
+    if (!Array.isArray(collection)) {
+      throw new Error(`Collection is not an array: ${collection}`);
+    }
     collection.forEach((entry) => {
       pages.push({
         uri: `/${collectionInfo.slug}/${entry.slug}`,

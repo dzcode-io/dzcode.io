@@ -22,10 +22,12 @@ jobs:
       - name: "Install workspace dependencies"
         run: |
           yarn
-      - name: "Build common directory"
+      - name: "Sync common directory"
         run: |
-          cd common
-          yarn build
+          yarn data:sync
+          yarn api:sync
+          yarn web:sync
+          yarn mobile:sync
       - name: "Running tests with coverage report"
         run: |
           yarn test:cov

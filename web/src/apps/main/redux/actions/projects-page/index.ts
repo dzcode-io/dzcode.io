@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { Project } from "@dzcode.io/common/dist/types";
+import { Project } from "src/.common/types";
 import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
 import { ThunkResult } from "src/apps/main/redux";
 import { fullstackConfig } from "src/config";
