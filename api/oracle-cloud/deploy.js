@@ -7,9 +7,6 @@ const cp = require("child_process");
 console.log("⚙️  Preparing files ...");
 // root
 fse.copySync("../package.json", "./oracle-cloud/build/package.json");
-// common
-fse.copySync("../common/package.json", "./oracle-cloud/build/common/package.json");
-fse.copySync("../common/dist", "./oracle-cloud/build/common/dist");
 // data
 fse.copySync("../data/package.json", "./oracle-cloud/build/data/package.json");
 fse.copySync("../data/dist", "./oracle-cloud/build/data/dist");
