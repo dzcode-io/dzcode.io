@@ -87,6 +87,7 @@ jobs:
       - name: "Deploy api"
         run: |
           cd api
+          yarn common:sync
           yarn deploy:stg
 
         env:
