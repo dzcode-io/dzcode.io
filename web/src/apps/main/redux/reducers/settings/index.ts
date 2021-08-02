@@ -1,4 +1,4 @@
-import { Language } from "@dzcode.io/common/dist/types";
+import { Language } from "src/.common/types";
 
 const setBodyDir = (lang: Language) => {
   if (lang === "ar") {
