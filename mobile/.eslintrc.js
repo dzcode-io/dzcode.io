@@ -21,7 +21,7 @@ module.exports = {
   plugins: ["unicorn"],
   rules: {
     "sort-imports": [
-      "error",
+      "warn",
       {
         ignoreCase: false,
         ignoreDeclarationSort: false,

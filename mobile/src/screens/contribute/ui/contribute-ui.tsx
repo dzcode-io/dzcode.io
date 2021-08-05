@@ -1,6 +1,7 @@
 import {} from "../functions";
+import { getContributes } from "../../../api/requests";
 import React, { FC } from "react";
-import { Text } from "react-native-paper";
+import { Text, Button } from "react-native-paper";
 import { View } from "react-native";
 import { globalStyles } from "../../../styles";
 
@@ -12,6 +13,13 @@ const ContributeUI: FC = (): JSX.Element => {
       {/* center view */}
       <View style={globalStyles.centerView}>
         <Text style={globalStyles.titleText}>Contribute UI created!</Text>
+        <Button
+          onPress={async () => {
+            await getContributes();
+          }}
+        >
+          <Text>Get contributes</Text>
+        </Button>
       </View>
     </View>
   );

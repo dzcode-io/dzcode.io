@@ -38,7 +38,6 @@
     "lint:fix": "yarn workspaces run lint:fix",
     "test": "yarn workspaces run test",
     "test:cov": "yarn workspaces run test:cov",
-    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\nyarn --cwd mobile lint-staged\") || exit 0",
     "clean": "yarn workspaces run clean && rimraf ./node_modules"
   },
   "devDependencies": {
