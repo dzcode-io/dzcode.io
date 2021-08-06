@@ -1,8 +1,10 @@
 import {} from "../functions";
-import { Button, Text, Card, Title, Paragraph } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
+import { FlatList, View } from "react-native";
 import React, { FC, useState } from "react";
+import { CardItem } from "../../../components/shared";
+import { calculateDate } from "../../../utils/functions";
 import { ContributionsResponse } from "../../../api/interfaces";
-import { View } from "react-native";
 import { getContributes } from "../../../api/requests";
 import { globalStyles } from "../../../styles";
 
@@ -11,12 +13,14 @@ const ContributeUI: FC = (): JSX.Element => {
   // use constributions state
   const [contributions, setContributions] = useState<ContributionsResponse["contributions"]>([]);
 
+  // use refreshing state
+  const [refreshing, setRefreshing] = useState(false);
+
   return (
     // main view
     <View style={globalStyles.mainView}>
       {/* center view */}
       <View style={globalStyles.centerView}>
-        <Text style={globalStyles.titleText}>Contribute UI created!</Text>
         <Button
           onPress={async () => {
             const contributesResponse = await getContributes();
@@ -29,15 +33,32 @@ const ContributeUI: FC = (): JSX.Element => {
         </Button>
         {/* Cards */}
         {contributions.length > 0 && (
-          <Card>
-            <Card.Content>
-              <Title>{contributions[0]?.title}</Title>
-              <Paragraph>{contributions[0]?.project?.name}</Paragraph>
-            </Card.Content>
-            <Card.Actions>
-              <Button>Review changes</Button>
-            </Card.Actions>
-          </Card>
+          <FlatList
+            data={contributions}
+            onRefresh={async () => {
+              setRefreshing(true);
+              const contributesResponse = await getContributes();
+              if (contributesResponse) {
+                setContributions(contributesResponse.contributions);
+              }
+              setRefreshing(false);
+            }}
+            refreshing={refreshing}
+            keyExtractor={(item, index) => `${index}-${item?.id}`}
+            renderItem={({ item }) => (
+              <CardItem
+                title={item.title}
+                subtitle={item.project.name}
+                labels={[...item.labels, ...item.languages]}
+                type={item.type}
+                createdAt={item.createdAt}
+                commentsCount={item.commentsCount}
+                onPress={() => {
+                  console.log(calculateDate(new Date(item.createdAt), new Date()));
+                }}
+              />
+            )}
+          />
         )}
       </View>
     </View>

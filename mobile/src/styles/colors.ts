@@ -6,5 +6,6 @@ const Colors = {
   light: "#fff",
   black: "#000",
   dark: "#282c34",
+  violet: "#a371f7",
 };
 export default Colors;
