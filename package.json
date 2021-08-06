@@ -38,10 +38,7 @@
     "lint:fix": "yarn workspaces run lint:fix",
     "test": "yarn workspaces run test",
     "test:cov": "yarn workspaces run test:cov",
-<<<<<<< HEAD
     "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\") || exit 0",
-=======
->>>>>>> 6a899cf... getting contributes from api
     "clean": "yarn workspaces run clean && rimraf ./node_modules"
   },
   "devDependencies": {
