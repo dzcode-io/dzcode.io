@@ -20,5 +20,7 @@ module.exports = {
     "@babel/proposal-object-rest-spread",
     // https://babeljs.io/docs/en/babel-plugin-transform-runtime
     "@babel/plugin-transform-runtime",
+    // https://www.npmjs.com/package/babel-plugin-typescript-to-proptypes
+    ["babel-plugin-typescript-to-proptypes", { comments: true }],
   ],
 };

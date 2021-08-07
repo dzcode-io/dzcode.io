@@ -3,11 +3,10 @@ import "fontsource-roboto/400.css";
 import "fontsource-roboto/500.css";
 import "fontsource-roboto/700.css";
 
-import React, { FC } from "react";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import PropTypes from "prop-types";
+import { FC } from "react";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import { StateInterface } from "src/apps/main/redux";
 import { darkPalette } from "./palettes/dark";
@@ -17,7 +16,7 @@ import { useSelector } from "react-redux";
 export const Theme: FC = (props) => {
   const { darkMode } = useSelector<StateInterface, SettingsState>((state) => state.settings);
 
-  const theme = createMuiTheme({
+  const theme = createTheme({
     palette: darkMode ? darkPalette : lightPalette,
   });
 
@@ -27,8 +26,4 @@ export const Theme: FC = (props) => {
       <CssBaseline />
     </ThemeProvider>
   );
-};
-
-Theme.propTypes = {
-  children: PropTypes.node.isRequired,
 };
