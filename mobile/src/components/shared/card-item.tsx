@@ -15,6 +15,7 @@ interface CardItemProps {
   type: string;
   createdAt: string;
   commentsCount: number;
+  onChipPress: (item: string) => void;
   onPress: () => void;
 }
 
@@ -26,6 +27,7 @@ const CardItem: FC<CardItemProps> = ({
   type,
   createdAt,
   commentsCount,
+  onChipPress,
   onPress,
 }: CardItemProps): JSX.Element => {
   return (
@@ -38,7 +40,11 @@ const CardItem: FC<CardItemProps> = ({
           horizontal
           data={labels}
           keyExtractor={(label: string) => label}
-          renderItem={({ item }) => <Chip style={cardStyles.chipView}>{item}</Chip>}
+          renderItem={({ item }) => (
+            <Chip onPress={() => onChipPress(item)} style={cardStyles.chipView}>
+              {item}
+            </Chip>
+          )}
         />
       </Card.Content>
       <Card.Actions style={cardStyles.cardActionsView}>
