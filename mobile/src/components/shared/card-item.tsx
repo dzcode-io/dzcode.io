@@ -34,7 +34,7 @@ const CardItem: FC<CardItemProps> = ({
     <Card style={cardStyles.mainView}>
       <Card.Content>
         <Title>{title}</Title>
-        <Paragraph>{subtitle}</Paragraph>
+        <Paragraph style={cardStyles.subtitleText}>{subtitle}</Paragraph>
         <FlatList
           style={cardStyles.flatListView}
           horizontal
