@@ -20,18 +20,13 @@ export const getContributes = async (
 ): Promise<ContributionsResponse | undefined> => {
   try {
     // define full url
-    const FULL_GET_CONTRIBUTES_URL = `${GET_CONTRIBUTES_URL}projects=${projects.join(
+    const FULL_GET_CONTRIBUTES_URL = `${GET_CONTRIBUTES_URL}?projects=${projects.join(
       ",",
     )}&languages=${languages.join(",")}&labels=${labels.join(",")}&`;
-    // define payload
-    const payload: Record<string, string> = {
-      method: "GET",
-      //   headers: { accept: "text / html; charset=utf - 8" },
-    };
     console.log(FULL_GET_CONTRIBUTES_URL);
 
     // fetching contributes
-    const response = await fetch(GET_CONTRIBUTES_URL, payload);
+    const response = await fetch(FULL_GET_CONTRIBUTES_URL);
     // getting json response
     const jsonResponse = await response.json();
     console.log(jsonResponse);
