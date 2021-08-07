@@ -2,7 +2,6 @@ import { Appbar, Switch, Text, useTheme } from "react-native-paper";
 import React, { FC, useContext } from "react";
 import Colors from "../../styles/colors";
 import { PrefrencesContext } from "../../utils/constants";
-import PropTypes from "prop-types";
 import { drawerStyles } from "../../styles";
 
 // define Appbar props interface
@@ -37,8 +36,3 @@ const AppBar: FC<AppbarProps> = ({ title, openDrawer }): JSX.Element => {
   );
 };
 export default AppBar;
-
-AppBar.propTypes = {
-  title: PropTypes.string.isRequired,
-  openDrawer: PropTypes.func.isRequired,
-};
