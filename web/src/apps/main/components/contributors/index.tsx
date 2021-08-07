@@ -2,7 +2,6 @@ import Avatar from "@material-ui/core/Avatar";
 import { FC } from "react";
 import { GithubUser } from "src/.common/types";
 import { LinkV2 } from "src/components/link-v2";
-import PropTypes from "prop-types";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
@@ -56,8 +55,4 @@ export const Contributors: FC<ContributorsProps> = ({ contributors }) => {
       </div>
     </div>
   );
-};
-
-Contributors.propTypes = {
-  contributors: PropTypes.array,
 };
