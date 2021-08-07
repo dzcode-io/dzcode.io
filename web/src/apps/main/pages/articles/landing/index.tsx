@@ -3,7 +3,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { FC } from "react";
 import ListIcon from "@material-ui/icons/List";
-import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import articlesLanding from "src/apps/main/assets/svg/articles-landing.svg";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -56,8 +55,4 @@ export const Landing: FC<LandingProps> = ({ onShowSidebar }) => {
       )}
     </div>
   );
-};
-
-Landing.propTypes = {
-  onShowSidebar: PropTypes.func.isRequired,
 };
