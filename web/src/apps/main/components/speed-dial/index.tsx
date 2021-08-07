@@ -1,7 +1,6 @@
 import { FC, ReactNode, useState } from "react";
 import SpeedDialMUI, { SpeedDialProps as SpeedDialPropsMUI } from "@material-ui/lab/SpeedDial";
 
-import PropTypes from "prop-types";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 
@@ -39,8 +38,4 @@ export const SpeedDial: FC<SpeedDialProps> = (props) => {
       ))}
     </SpeedDialMUI>
   );
-};
-
-SpeedDial.propTypes = {
-  actions: PropTypes.array.isRequired,
 };

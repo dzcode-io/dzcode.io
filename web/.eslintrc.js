@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ["unicorn"],
   rules: {
+    "react/prop-types": "off", // Is this incompatible with TS props type?
     "sort-imports": [
       "error",
       {
