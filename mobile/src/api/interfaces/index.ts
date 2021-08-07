@@ -1,2 +1,8 @@
 // export interfaces
-export { ContributionsResponse } from "./contributions-response";
+export {
+  ContributionsResponse,
+  Contribution,
+  ContributionFilters,
+  Project,
+  Filter,
+} from "./contributions-response";

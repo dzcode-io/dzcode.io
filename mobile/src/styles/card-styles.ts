@@ -1,5 +1,6 @@
 import { MEDIUM_MARGIN_SIZE, SMALL_MARGIN_SIZE } from "../utils/constants";
 import { StyleSheet } from "react-native";
+import Colors from "./colors";
 
 // export card styles
 export const cardStyles = StyleSheet.create({
@@ -29,5 +30,8 @@ export const cardStyles = StyleSheet.create({
   cardActionsView: {
     alignItems: "center",
     justifyContent: "space-between",
+  },
+  subtitleText: {
+    color: Colors.grey,
   },
 });
