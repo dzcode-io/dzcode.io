@@ -10,6 +10,7 @@ import { learnPage } from "./learn-page";
 import { navbarComponent } from "./navbar-component";
 import { projectsPage } from "./projects-page";
 import { settings } from "./settings";
+import { team } from "./team";
 
 export const mainReducer = combineReducers({
   documentation,
@@ -23,4 +24,5 @@ export const mainReducer = combineReducers({
   navbarComponent,
   footerComponent,
   contributePage,
+  team,
 });

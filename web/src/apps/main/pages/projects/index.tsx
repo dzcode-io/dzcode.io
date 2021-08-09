@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Catalog } from "./catalog";
 import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
+
 import { fetchProjectsList } from "src/apps/main/redux/actions/projects-page";
 
 export const ProjectsPage: FC = () => {

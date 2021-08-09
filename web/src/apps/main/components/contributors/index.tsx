@@ -1,7 +1,11 @@
+import { FC, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
-import { FC } from "react";
+import { Card } from "src/apps/main/components/card";
 import { GithubUser } from "src/.common/types";
 import { LinkV2 } from "src/components/link-v2";
+import { Project } from "src/.common/types";
+import PropTypes from "prop-types";
+import { SimpleDialog } from "src/apps/main/components/dialog";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
@@ -55,4 +59,41 @@ export const Contributors: FC<ContributorsProps> = ({ contributors }) => {
       </div>
     </div>
   );
+};
+
+interface ContributorProps {
+  contributor: { login: string; avatar_url: string; projects: Project[] };
+}
+
+export const Contributor: FC<ContributorProps> = ({ contributor }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    console.log(open);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Card
+        info={{
+          image: contributor.avatar_url,
+          title: contributor.login,
+          description: "",
+          actionLabel: "Contributions",
+          handleOpen: handleOpen,
+        }}
+      />
+
+      {open && <SimpleDialog projects={contributor.projects} open={open} onClose={handleClose} />}
+    </>
+  );
+};
+
+Contributors.propTypes = {
+  contributors: PropTypes.any,
 };
