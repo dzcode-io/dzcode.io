@@ -71,6 +71,8 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@prettier/plugin-pug": "^1.13.1",
+    "@sentry/browser": "^6.11.0",
+    "@sentry/tracing": "^6.11.0",
     "@testing-library/react": "^11.2.6",
     "@types/css-minimizer-webpack-plugin": "^3.0.2",
     "@types/jest": "^26.0.19",
