@@ -13,6 +13,7 @@ module.exports = function (api) {
           "process.env.LOCAL_API_HOST": localIP,
         },
       ],
+      "@babel/plugin-proposal-class-properties",
       process.env.NODE_ENV !== "test" && [
         "babel-plugin-typescript-to-proptypes",
         { comments: true },
