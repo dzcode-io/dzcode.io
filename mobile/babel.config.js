@@ -13,11 +13,7 @@ module.exports = function (api) {
           "process.env.LOCAL_API_HOST": localIP,
         },
       ],
-      process.env.NODE_ENV !== "test" && [
-        "babel-plugin-typescript-to-proptypes",
-        { comments: true },
-      ],
-    ].filter(Boolean),
+    ],
     env: {
       production: {
         plugins: ["react-native-paper/babel"],
