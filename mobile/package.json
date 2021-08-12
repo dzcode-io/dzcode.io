@@ -79,7 +79,6 @@
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "babel-plugin-transform-define": "^2.0.0",
-    "babel-plugin-typescript-to-proptypes": "^1.4.2",
     "eslint": "^7.16.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-react": "^7.21.5",
