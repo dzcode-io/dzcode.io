@@ -1,4 +1,5 @@
 /* eslint-disable unicorn/filename-case */
+import * as Sentry from "sentry-expo";
 import {
   Theme as NT,
   NavigationContainer,
@@ -15,6 +16,13 @@ import Colors from "./src/styles/colors";
 import Navigation from "./src/screens/navigation";
 import { Theme as PT } from "react-native-paper/lib/typescript/types";
 import { PrefrencesContext } from "./src/utils/constants";
+import { getEnv } from "./src/utils/env";
+
+Sentry.init({
+  dsn: "https://aa3f0c7f4b234747a706fb60d84a190d@o953637.ingest.sentry.io/5904343",
+  enableInExpoDevelopment: true,
+  debug: getEnv() === "development",
+});
 
 // define combined default theme
 const CombinedDefaultTheme: PT & NT = {
