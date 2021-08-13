@@ -76,3 +76,14 @@ export class GetContributionsQueryDto {
   @Reflect.metadata("design:type", { name: "string" })
   labels: string[] = [];
 }
+
+export class GetUserContributionsDto extends GeneralResponseDto {
+  @ValidateNested()
+  user!: GithubUserDto;
+  projects!: string[];
+}
+
+export class GetUserContributionsResponseDto extends GeneralResponseDto {
+  @ValidateNested()
+  team!: GetUserContributionsDto[];
+}
