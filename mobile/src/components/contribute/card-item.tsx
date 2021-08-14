@@ -1,6 +1,6 @@
 import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
 import { Colors, cardStyles } from "../../styles";
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { ContributionType } from "../../api/interfaces/contributions-response";
 import { FlatList } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -97,4 +97,4 @@ const CardItem: FC<CardItemProps> = ({
     </Card>
   );
 };
-export default CardItem;
+export default memo(CardItem);
