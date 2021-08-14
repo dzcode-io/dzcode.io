@@ -1,7 +1,7 @@
 import { getFilters } from "../functions";
 import { FlatList, View, Linking, ScrollView } from "react-native";
 import React, { FC, useCallback, useEffect, useState } from "react";
-import { CardItem } from "../../../components/shared";
+import { CardItem } from "../../../components/contribute";
 import { ContributionFilters, ContributionsResponse } from "../../../api/interfaces";
 import { DZCodeLoading } from "../../../components/shared";
 import { getContributes } from "../../../api/requests";
