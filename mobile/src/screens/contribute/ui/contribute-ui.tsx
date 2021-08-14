@@ -5,7 +5,7 @@ import { CardItem } from "../../../components/contribute";
 import { ContributionFilters, ContributionsResponse } from "../../../api/interfaces";
 import { DZCodeLoading } from "../../../components/shared";
 import { getContributes } from "../../../api/requests";
-import { globalStyles } from "../../../styles";
+import { contributeStyles, globalStyles } from "../../../styles";
 import { Checkbox, List } from "react-native-paper";
 
 // export Contribute UI
@@ -203,12 +203,13 @@ const ContributeUI: FC = (): JSX.Element => {
       {/* Loading */}
       {isLoading && (
         <View style={globalStyles.centerView}>
-          <DZCodeLoading style={{ position: "absolute" }} />
+          <DZCodeLoading style={contributeStyles.dzcodeLoading} />
         </View>
       )}
       {/* Cards */}
       {contributions.length > 0 && (
         <FlatList
+          style={contributeStyles.listView}
           data={contributions}
           onRefresh={async () => {
             setRefreshing(true);
