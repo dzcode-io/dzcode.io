@@ -7,6 +7,6 @@ export const contributeStyles = StyleSheet.create({
     position: "absolute",
   },
   listView: {
-    marginBottom: MEDIUM_MARGIN_SIZE,
+    marginVertical: MEDIUM_MARGIN_SIZE,
   },
 });
