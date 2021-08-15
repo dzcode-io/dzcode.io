@@ -1,6 +1,7 @@
 import { Controller, Get } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { ContributionsRepository } from "./repository";
+import { GetUserContributionsResponseDto } from "../.common/types/api-responses";
 import { LoggerService } from "../logger/service";
 import { Service } from "typedi";
 
@@ -15,7 +16,8 @@ export class ContributionsController {
   @OpenAPI({
     summary: "Return a list of contributions for all dzcode contributors",
   })
-  public async getContributions() {
+  @ResponseSchema(GetUserContributionsResponseDto)
+  public async getContributions(): Promise<GetUserContributionsResponseDto> {
     const result = await this.contributionRepository.find();
 
     return result;

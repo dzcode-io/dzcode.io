@@ -1,9 +1,9 @@
-import { ContributionEntity, FilterEntity, OptionEntity, ProjectEntity } from "../.common/types";
 import {
   GetUserContributionsDto,
   GetUserContributionsResponseDto,
 } from "../.common/types/api-responses";
 import { GithubService } from "../github/service";
+import { ProjectEntity } from "../.common/types";
 import { Service } from "typedi";
 import { getDataCollection } from "../.common/utils/data";
 import { join } from "path";
@@ -21,7 +21,7 @@ export class ContributionsRepository {
 
   private projects: ProjectEntity[];
 
-  public async find(): Promise<any> {
+  public async find(): Promise<GetUserContributionsResponseDto> {
     const projects = await Promise.all(this.projects);
 
     const contributors = await Promise.all(
@@ -86,12 +86,6 @@ export class ContributionsRepository {
       });
     });
 
-    return projects_contributors_list;
+    return { team: projects_contributors_list };
   }
-  private pushUniqueOption = (options: OptionEntity[], filterOptions: OptionEntity[]) => {
-    const uniqueOptions = options.filter(
-      (_option) => !filterOptions.some(({ name }) => _option.name === name),
-    );
-    filterOptions.push(...uniqueOptions);
-  };
 }
