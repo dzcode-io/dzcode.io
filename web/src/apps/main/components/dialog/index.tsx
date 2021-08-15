@@ -32,6 +32,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
     onClose();
   };
 
+  console.log(projects);
   return (
     <>
       {open && (
@@ -56,7 +57,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
                         <Edit />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary={project.title} />
+                    <ListItemText primary={project.name} />
                   </ListItem>
                 ))
               : "Nothing to show here"}
