@@ -10,7 +10,8 @@
       "mobile"
     ],
     "nohoist": [
-      "**/mobile/**"
+      "**/mobile/**",
+      "**/web/**"
     ]
   },
   "scripts": {
