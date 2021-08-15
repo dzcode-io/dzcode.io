@@ -18,10 +18,13 @@ import { Theme as PT } from "react-native-paper/lib/typescript/types";
 import { PrefrencesContext } from "./src/utils/constants";
 import { getEnv } from "./src/utils/env";
 
+const env = getEnv();
+
 Sentry.init({
   dsn: "https://aa3f0c7f4b234747a706fb60d84a190d@o953637.ingest.sentry.io/5904343",
   enableInExpoDevelopment: true,
-  debug: getEnv() === "development",
+  environment: env,
+  debug: env === "development",
 });
 
 // define combined default theme
