@@ -16,9 +16,12 @@ import { SecurityMiddleware } from "./middlewares/security";
 import { fsConfig } from "../.common/config";
 import router from "./routes/api";
 
+const { NODE_ENV, PORT } = Container.get(ConfigService).env();
+
 Sentry.init({
   dsn: "https://5f9d7ae6e98944e1815f8d1944fc3c12@o953637.ingest.sentry.io/5904452",
   tracesSampleRate: 1.0,
+  environment: NODE_ENV,
 });
 
 // Use typedi container
@@ -43,7 +46,6 @@ const app: Application = createExpressServer(routingControllersOptions);
 // Load old code to the app, temporarily until we migrate all endpoints
 app.use("/", router);
 
-const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 const logger = Container.get(LoggerService);
 
 // Start it
