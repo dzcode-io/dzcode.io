@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { ContributionEntity, FilterEntity, GithubUser } from ".";
+import { ContributionEntity, FilterEntity, GithubUser, ProjectEntity } from ".";
 import { IsNumber, IsObject, IsOptional, IsString } from "class-validator";
 import { Transform, TransformFnParams, Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
@@ -79,8 +79,12 @@ export class GetContributionsQueryDto {
 
 export class GetUserContributionsDto extends GeneralResponseDto {
   @ValidateNested()
-  user!: GithubUserDto;
-  projects!: string[];
+  id!: number;
+  login!: string;
+  avatar_url!: string;
+  html_url!: string;
+  type!: string;
+  projects!: ProjectEntity[];
 }
 
 export class GetUserContributionsResponseDto extends GeneralResponseDto {

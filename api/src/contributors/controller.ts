@@ -10,12 +10,7 @@ import { Service } from "typedi";
 @Controller("/Team")
 export class ContributionsController {
   constructor(private readonly contributionRepository: ContributionsRepository) {}
-  @Get("/test")
-  public getTest(): string {
-    const n = new LoggerService();
-    n.log("info", { message: "azeazeaz" });
-    return "azaze";
-  }
+
   @Get("/")
   @OpenAPI({
     summary: "Return a list of contributions for all dzcode contributors",

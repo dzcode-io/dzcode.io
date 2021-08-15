@@ -10,6 +10,8 @@ import {
 import { FetchService } from "../fetch/service";
 import { GithubIssue } from "../.common/types";
 import { Service } from "typedi";
+import { listenerCount } from "stream";
+import { listeners } from "process";
 
 @Service()
 export class GithubService {
@@ -24,15 +26,16 @@ export class GithubService {
         per_page: 100,
       },
     );
-    const contributors = commits.map(
-      ({ committer: { login, avatar_url, html_url, type, id } }) => ({
+
+    const contributors = commits
+      .filter((item) => item.committer !== undefined && item.committer !== null)
+      .map(({ committer: { login, avatar_url, html_url, type, id } }) => ({
         id,
         login,
         avatar_url,
         html_url,
         type,
-      }),
-    );
+      }));
     return contributors;
   };
 
