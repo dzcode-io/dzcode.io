@@ -62,10 +62,6 @@ export class ContributionsRepository {
       for (let index = 0; index < list.length; index++) {
         if (list[index].id === dict.id) {
           list[index].projects.push(project);
-          list[index].projects = list[index].projects.filter(function (item, pos) {
-            return list[index].projects.indexOf(item) == pos;
-          });
-          list[index].projects = [...new Set(list[index].projects)];
         }
       }
     };
@@ -75,7 +71,7 @@ export class ContributionsRepository {
 
     await contributors.forEach((object: any) => {
       object.contributors[0].forEach((element: any) => {
-        if (!listcontains(projects_contributors_list, element)) {
+        if (!listcontains(projects_contributors_list, element) && element.login !== "web-flow") {
           const contributor = element;
           contributor.projects = contributor.projects ? contributor.projects : [];
           contributor.projects.push(object.project);
@@ -86,6 +82,9 @@ export class ContributionsRepository {
       });
     });
 
+    projects_contributors_list.forEach((element) => {
+      element.projects = element.projects.filter((v, i) => element.projects.indexOf(v) === i);
+    });
     return { team: projects_contributors_list };
   }
 }

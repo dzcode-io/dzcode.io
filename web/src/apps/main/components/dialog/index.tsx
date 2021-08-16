@@ -32,7 +32,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
     onClose();
   };
 
-  console.log(projects);
+
   return (
     <>
       {open && (
