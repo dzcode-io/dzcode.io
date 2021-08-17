@@ -24,15 +24,15 @@ export class GithubService {
         per_page: 100,
       },
     );
-    const contributors = commits.map(
-      ({ committer: { login, avatar_url, html_url, type, id } }) => ({
+    const contributors = commits
+      .filter((item) => item.committer !== undefined && item.committer !== null)
+      .map(({ committer: { login, avatar_url, html_url, type, id } }) => ({
         id,
         login,
         avatar_url,
         html_url,
         type,
-      }),
-    );
+      }));
     return contributors;
   };
 
