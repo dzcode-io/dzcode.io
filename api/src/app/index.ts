@@ -13,6 +13,7 @@ import { GithubUserController } from "../github-user/controller";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
+import { TeamController } from "../team/controller";
 import { fsConfig } from "../.common/config";
 import router from "./routes/api";
 
@@ -29,7 +30,12 @@ useContainer(Container);
 
 // Create the app:
 export const routingControllersOptions = {
-  controllers: [ContributionController, ContributorController, GithubUserController],
+  controllers: [
+    ContributionController,
+    ContributorController,
+    GithubUserController,
+    TeamController,
+  ],
   middlewares: [
     // middlewares:
     SecurityMiddleware,
