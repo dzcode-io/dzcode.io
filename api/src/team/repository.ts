@@ -19,7 +19,7 @@ export class TeamRepository {
   private projects: ProjectEntity[];
 
   public async find(): Promise<GetTeamResponseDto> {
-    const projects = await Promise.all(this.projects);
+    const projects = this.projects;
 
     const contributors = await Promise.all(
       projects.map(async (project) => {

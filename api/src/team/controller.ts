@@ -11,7 +11,7 @@ export class TeamController {
 
   @Get("/")
   @OpenAPI({
-    summary: "Return a list of contributions for all dzcode contributors",
+    summary: "Return a list of contributors for all listed projects in dzcode.io",
   })
   @ResponseSchema(GetTeamResponseDto)
   public async getContributions(): Promise<GetTeamResponseDto> {
