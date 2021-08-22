@@ -1,10 +1,10 @@
 {
-  "name": "React Native Help Create",
+  "name": "React Help Create",
   "repositories": [
     {
       "provider": "github",
       "owner": "Omar-Belghaouti",
-      "repository": "react-native-help-create"
+      "repository": "react-help-create"
     }
   ]
 }
