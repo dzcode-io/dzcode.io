@@ -11,11 +11,13 @@ import {
   DefaultTheme as PaperDefaultTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
-import React, { FC, useCallback, useMemo, useState } from "react";
+import { Provider, useSelector } from "react-redux";
+import React, { FC } from "react";
+import { StateInterface, mainStore } from "./src/redux";
 import Colors from "./src/styles/colors";
+import { GeneralState } from "./src/redux/reducers/general";
 import Navigation from "./src/screens/navigation";
 import { Theme as PT } from "react-native-paper/lib/typescript/types";
-import { PrefrencesContext } from "./src/utils/constants";
 import { getEnv } from "./src/utils/env";
 
 const env = getEnv();
@@ -68,35 +70,27 @@ const darkTheme = {
   },
 };
 
-const App: FC = (): JSX.Element => {
-  // use is theme dark state
-  const [isThemeDark, setIsThemeDark] = useState(false);
+const App: FC = () => {
+  const { theme: themeName } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
-  // current theme
-  const theme = isThemeDark ? darkTheme : defaultTheme;
-
-  // toggle theme
-  const toggleTheme = useCallback(() => {
-    return setIsThemeDark(!isThemeDark);
-  }, [isThemeDark]);
-
-  // preferences
-  const prefrences = useMemo(
-    () => ({
-      toggleTheme,
-      isThemeDark,
-    }),
-    [toggleTheme, isThemeDark],
-  );
+  const themes = {
+    dark: darkTheme,
+    light: defaultTheme,
+  };
+  const theme = themes[themeName];
 
   return (
-    <PrefrencesContext.Provider value={prefrences}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer theme={theme}>
-          <Navigation />
-        </NavigationContainer>
-      </PaperProvider>
-    </PrefrencesContext.Provider>
+    <PaperProvider theme={theme}>
+      <NavigationContainer theme={theme}>
+        <Navigation />
+      </NavigationContainer>
+    </PaperProvider>
   );
 };
-export default App;
+
+// eslint-disable-next-line react/display-name
+export default () => (
+  <Provider store={mainStore}>
+    <App />
+  </Provider>
+);
