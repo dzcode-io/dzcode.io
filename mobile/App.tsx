@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/filename-case */
 import * as Sentry from "sentry-expo";
+import { Dispatch, StateInterface, mainStore } from "./src/redux";
 import {
   Theme as NT,
   NavigationContainer,
@@ -11,14 +12,14 @@ import {
   DefaultTheme as PaperDefaultTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
-import { Provider, useSelector } from "react-redux";
-import React, { FC } from "react";
-import { StateInterface, mainStore } from "./src/redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import React, { FC, useEffect } from "react";
 import Colors from "./src/styles/colors";
 import { GeneralState } from "./src/redux/reducers/general";
 import Navigation from "./src/screens/navigation";
 import { Theme as PT } from "react-native-paper/lib/typescript/types";
 import { getEnv } from "./src/utils/env";
+import { init } from "./src/redux/actions/general";
 
 const env = getEnv();
 
@@ -72,6 +73,11 @@ const darkTheme = {
 
 const App: FC = () => {
   const { theme: themeName } = useSelector<StateInterface, GeneralState>((state) => state.general);
+  const dispatch = useDispatch<Dispatch<GeneralState>>();
+
+  useEffect(() => {
+    dispatch(init());
+  }, []);
 
   const themes = {
     dark: darkTheme,
