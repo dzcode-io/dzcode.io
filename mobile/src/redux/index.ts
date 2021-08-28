@@ -17,7 +17,7 @@ export const createMainStore = () => {
 
 export type StateInterface = ReturnType<typeof mainStore.getState>;
 
-export type ActionType = "UPDATE_SETTINGS" | "UPDATE_CONTRIBUTE_PAGE";
+export type ActionType = "UPDATE_SETTINGS" | "UPDATE_GENERAL";
 
 export interface Action<T> {
   type: ActionType;

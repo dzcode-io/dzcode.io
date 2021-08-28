@@ -1,24 +1,24 @@
-import { Appearance } from "react-native-appearance";
+import { Appearance } from "react-native";
 
 export interface GeneralState {
   theme: "dark" | "light";
 }
 
-let theme: GeneralState["theme"];
-
-switch (Appearance.getColorScheme()) {
-  case "dark":
-    theme = "dark";
-    break;
-  case "light":
-  default:
-    theme = "light";
-    break;
-}
+export const getThemeFromSystem = (
+  colorScheme = Appearance.getColorScheme(),
+): GeneralState["theme"] => {
+  switch (colorScheme) {
+    case "dark":
+      return "dark";
+    case "light":
+    default:
+      return "light";
+  }
+};
 
 export const general = (
   state: GeneralState = {
-    theme,
+    theme: getThemeFromSystem(),
   },
   action: {
     type: string;
