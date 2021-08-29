@@ -1,3 +1,4 @@
+import { Action } from "../..";
 import { Appearance } from "react-native";
 
 export interface GeneralState {
@@ -20,10 +21,7 @@ export const general = (
   state: GeneralState = {
     theme: getThemeFromSystem(),
   },
-  action: {
-    type: string;
-    payload: GeneralState;
-  },
+  action: Action<GeneralState>,
 ) => {
   switch (action.type) {
     case "UPDATE_GENERAL":
