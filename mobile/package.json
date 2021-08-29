@@ -47,6 +47,7 @@
     "@react-navigation/native": "~5.8.10",
     "@react-navigation/stack": "~5.12.8",
     "@types/jest": "^26.0.23",
+    "debounce": "^1.2.1",
     "expo": "~42.0.0",
     "expo-application": "~3.2.0",
     "expo-asset": "~8.3.2",
@@ -75,6 +76,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@types/debounce": "^1.2.0",
     "@types/react": "^17.0.0",
     "@types/react-native": "~0.63.2",
     "@types/react-test-renderer": "^17.0.1",
