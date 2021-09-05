@@ -10,13 +10,13 @@ export class TeamController {
   constructor(private readonly contributionRepository: TeamRepository) {}
 
   @Get("/")
-  @OpenAPI({
-    summary: "Return a list of contributors for all listed projects in dzcode.io",
-  })
+  @OpenAPI({ summary: "Return a list of contributors for all listed projects in dzcode.io" })
   @ResponseSchema(GetTeamResponseDto)
   public async getContributions(): Promise<GetTeamResponseDto> {
-    const result = await this.contributionRepository.find();
+    const contributors = await this.contributionRepository.find();
 
-    return result;
+    return {
+      contributors,
+    };
   }
 }
