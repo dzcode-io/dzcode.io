@@ -1,6 +1,5 @@
-import { GetTeamDto, GetTeamResponseDto } from "../.common/types/api-responses";
+import { ContributorEntity, ProjectEntity, RepositoryEntity } from "../.common/types";
 import { GithubService } from "../github/service";
-import { ProjectEntity } from "../.common/types";
 import { Service } from "typedi";
 import { getDataCollection } from "../.common/utils/data";
 import { join } from "path";
@@ -18,66 +17,56 @@ export class TeamRepository {
 
   private projects: ProjectEntity[];
 
-  public async find(): Promise<GetTeamResponseDto> {
-    const projects = this.projects;
+  public async find(): Promise<ContributorEntity[]> {
+    // flatten repositories into one array
+    const repositories = this.projects.reduce<RepositoryEntity[]>(
+      (repositories, project) => [...repositories, ...project.repositories],
+      [],
+    );
 
-    const contributors = await Promise.all(
-      projects.map(async (project) => {
-        const contributors_list = await Promise.all(
-          project.repositories.map((repository) => {
-            return this.githubService.listContributors({
-              owner: repository.owner,
-              repo: repository.repository,
-              path: "",
-            });
-          }),
-        );
-        return {
-          contributors: contributors_list,
-          project: { name: project.name, slug: project.slug },
-        };
+    // we first store them in a Record (object with id as keys) so we can uniquify them easily
+    const contributorsRecord: Record<string, ContributorEntity & { commits: number }> = {};
+
+    // get contributors from all the repos we have
+    await Promise.all(
+      repositories.map(async ({ provider, owner, repository }) => {
+        const committers = await this.githubService.listContributors({
+          owner,
+          repo: repository,
+          path: "",
+        });
+        committers.forEach(({ avatar_url: avatarUrl, id, login }) => {
+          const uuid = `${provider}/${id}`;
+          // add new contributor if doesn't exists
+          if (!contributorsRecord[uuid]) {
+            contributorsRecord[`${provider}/${id}`] = {
+              id: `${provider}/${id}`,
+              avatarUrl,
+              username: login,
+              repositories: [{ provider, owner, repository }],
+              commits: 1,
+            };
+          } else {
+            // if exists, increment commit counts
+            contributorsRecord[uuid].commits++;
+            // add repository if doesn't exists
+            if (
+              !contributorsRecord[uuid].repositories.some(
+                (r) => r.provider === provider && r.owner === owner && r.repository === repository,
+              )
+            ) {
+              contributorsRecord[uuid].repositories.push({ provider, owner, repository });
+            }
+          }
+        });
       }),
     );
 
-    // test if a list of dict containe an  element from a dict
-    const listcontains = (list: GetTeamDto[], dict: GetTeamDto) => {
-      let result = false;
-      list.forEach((element: GetTeamDto) => {
-        if (element.id === dict.id) {
-          result = true;
-          return;
-        }
+    return Object.keys(contributorsRecord)
+      .sort((a, b) => contributorsRecord[b].commits - contributorsRecord[a].commits) // sort contributors by their commits count
+      .map((id) => {
+        const { commits, ...contributor } = contributorsRecord[id];
+        return contributor;
       });
-      return result;
-    };
-
-    const listelment = (list: GetTeamDto[], dict: GetTeamDto, project: any): void => {
-      for (let index = 0; index < list.length; index++) {
-        if (list[index].id === dict.id) {
-          list[index].projects.push(project);
-        }
-      }
-    };
-
-    //get the contributors for each projects
-    const projects_contributors_list: GetTeamDto[] = [];
-
-    contributors.forEach((object: any) => {
-      object.contributors[0].forEach((element: any) => {
-        if (!listcontains(projects_contributors_list, element) && element.login !== "web-flow") {
-          const contributor = element;
-          contributor.projects = contributor.projects ? contributor.projects : [];
-          contributor.projects.push(object.project);
-          projects_contributors_list.push(contributor);
-        } else {
-          listelment(projects_contributors_list, element, object.project);
-        }
-      });
-    });
-
-    projects_contributors_list.forEach((element) => {
-      element.projects = element.projects.filter((v, i) => element.projects.indexOf(v) === i);
-    });
-    return { team: projects_contributors_list };
   }
 }
