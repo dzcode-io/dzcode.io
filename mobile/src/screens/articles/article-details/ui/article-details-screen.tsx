@@ -1,9 +1,15 @@
 import { Route } from "@react-navigation/routers";
-import React, { FC } from "react";
-import { View } from "react-native";
+import React, { FC, useEffect } from "react";
+import { View, ScrollView } from "react-native";
 import { Text } from "react-native-paper";
 import { Article } from "../../../../.common/types";
 import { globalStyles } from "../../../../styles";
+import { DZCodeLoading } from "../../../../components/shared";
+import { fetchArticle } from "../../../../redux/actions/articles-page";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, StateInterface } from "../../../../redux";
+import { ArticlesPageState } from "../../../../redux/reducers/articles-page";
+import { MarkdownView } from "react-native-markdown-view";
 
 interface ArticleDetailsScreenProps {
   route: Route<"ArticleDetails", RouteParams>;
@@ -16,11 +22,29 @@ interface RouteParams {
 const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   route,
 }: ArticleDetailsScreenProps) => {
-  console.log("props", route.params.article);
+  const { articles, refreshing } = useSelector<StateInterface, ArticlesPageState>(
+    (state) => state.articlesPage,
+  );
+
+  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+
+  useEffect(() => {
+    dispatch(fetchArticle(route.params.article.slug));
+  }, []);
 
   return (
     <View style={globalStyles.mainView}>
-      <Text>{JSON.stringify(route.params.article)}</Text>
+      {refreshing ? (
+        <View style={globalStyles.centerView}>
+          <DZCodeLoading />
+        </View>
+      ) : (
+        <ScrollView>
+          <MarkdownView>
+            {articles?.find((article) => article.slug === route.params.article.slug)?.content}
+          </MarkdownView>
+        </ScrollView>
+      )}
     </View>
   );
 };
