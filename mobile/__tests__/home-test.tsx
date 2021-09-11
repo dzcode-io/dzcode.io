@@ -1,4 +1,4 @@
-import Home from "../src/screens/home/ui/home-screen";
+import Home from "../src/screens/home";
 import React from "react";
 import renderer from "react-test-renderer";
 

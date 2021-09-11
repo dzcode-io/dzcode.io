@@ -1,12 +1,13 @@
-import { AppBar, DrawerContent } from "../components/shared";
+import { AppBar } from "../components/app-bar";
+import { DrawerContent } from "../components/drawer-content";
 import React, { FC } from "react";
 import ArticlesStack from "./articles/navigation";
-import ContributeScreen from "./contribute/ui/contribute-screen";
+import ContributeScreen from "./contribute";
 import { DrawerActions } from "@react-navigation/native";
-import FAQScreen from "./faq/ui/faq-screen";
-import HomeScreen from "./home/ui/home-screen";
-import LearnScreen from "./learn/ui/learn-screen";
-import ProjectsScreen from "./projects/ui/projects-screen";
+import FAQScreen from "./faq";
+import HomeScreen from "./home";
+import LearnScreen from "./learn";
+import ProjectsScreen from "./projects";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const { Navigator, Screen } = createDrawerNavigator();
