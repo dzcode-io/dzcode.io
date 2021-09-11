@@ -1,6 +1,7 @@
 import { ArticlesPageState } from "../../reducers/articles-page";
 import { ThunkResult } from "../..";
 import { fullstackConfig } from "../../../config";
+import { Article } from "../../../.common/types";
 
 const dataURL = fullstackConfig.data.url;
 
@@ -15,7 +16,7 @@ export const fetchArticles = (): ThunkResult<ArticlesPageState> => async (dispat
   });
   try {
     const response = await fetch(`${dataURL}/articles/list.c.json`);
-    const json = await response.json();
+    const json: Article[] = await response.json();
     dispatch({
       type: "UPDATE_ARTICLES_PAGE",
       payload: {
@@ -42,7 +43,7 @@ export const fetchArticle =
     try {
       const { articles } = getState().articlesPage;
       const response = await fetch(`${dataURL}/articles/${slug}.json`);
-      const json = await response.json();
+      const json: Article = await response.json();
       // update only the found article
       dispatch({
         type: "UPDATE_ARTICLES_PAGE",

@@ -3,7 +3,8 @@ import { Appearance } from "react-native";
 import { ThunkResult } from "../..";
 
 /**
- * Initiate some watchers and load state from Async Storage
+ * @function init
+ * @description Initiate some watchers and load state from Async Storage
  */
 export const init = (): ThunkResult<GeneralState> => async (dispatch, getState) => {
   Appearance.addChangeListener(({ colorScheme }) => {
