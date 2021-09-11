@@ -29,7 +29,7 @@ const CardItem: FC<CardItemProps> = ({
   commentsCount,
   onChipPress,
   onPress,
-}: CardItemProps): JSX.Element => {
+}: CardItemProps) => {
   return (
     <Card style={cardStyles.mainView}>
       <Card.Content>

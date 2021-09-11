@@ -10,11 +10,11 @@ import ProjectsUI from "./projects/ui/projects-ui";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // create drawer navigator
-const Drawer = createDrawerNavigator();
+const { Navigator, Screen } = createDrawerNavigator();
 
-const Navigation: FC = (): JSX.Element => {
+const Navigation: FC = () => {
   return (
-    <Drawer.Navigator
+    <Navigator
       initialRouteName="Home"
       drawerType="back"
       screenOptions={{
@@ -32,13 +32,13 @@ const Navigation: FC = (): JSX.Element => {
       }}
       drawerContent={(props) => <DrawerContent {...props} />}
     >
-      <Drawer.Screen name="Home" component={HomeUI} />
-      <Drawer.Screen name="Contribute" component={ContributeUI} />
-      <Drawer.Screen name="Learn" component={LearnUI} />
-      <Drawer.Screen name="Projects" component={ProjectsUI} />
-      <Drawer.Screen name="Articles" component={ArticlesStack} />
-      <Drawer.Screen name="FAQ" component={FAQUI} />
-    </Drawer.Navigator>
+      <Screen name="Home" component={HomeUI} />
+      <Screen name="Contribute" component={ContributeUI} />
+      <Screen name="Learn" component={LearnUI} />
+      <Screen name="Projects" component={ProjectsUI} />
+      <Screen name="Articles" component={ArticlesStack} />
+      <Screen name="FAQ" component={FAQUI} />
+    </Navigator>
   );
 };
 export default Navigation;

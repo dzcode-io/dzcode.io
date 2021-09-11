@@ -9,9 +9,7 @@ import React, { FC } from "react";
 import { drawerStyles } from "../../styles";
 
 // export DrawerContent component
-const DrawerContent: FC<DrawerContentComponentProps<DrawerContentOptions>> = (
-  props,
-): JSX.Element => {
+const DrawerContent: FC<DrawerContentComponentProps<DrawerContentOptions>> = (props) => {
   return (
     <DrawerContentScrollView {...props}>
       <SafeAreaView>
