@@ -7,7 +7,6 @@ import {
 } from "../utils/constants";
 import { StyleSheet } from "react-native";
 
-// export drawer styles
 export const drawerStyles = StyleSheet.create({
   logoView: {
     width: LARGE_LOGO_WIDTH,

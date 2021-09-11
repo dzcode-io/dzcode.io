@@ -8,7 +8,6 @@ import { Image, SafeAreaView, View } from "react-native";
 import React, { FC } from "react";
 import { drawerStyles } from "../../styles";
 
-// export DrawerContent component
 const DrawerContent: FC<DrawerContentComponentProps<DrawerContentOptions>> = (props) => {
   return (
     <DrawerContentScrollView {...props}>

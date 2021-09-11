@@ -10,7 +10,6 @@ import { fetchArticles } from "../../../../redux/actions/articles-page";
 import { DZCodeLoading } from "../../../../components/shared";
 import { useNavigation } from "@react-navigation/native";
 
-// export Articles UI
 const ArticlesListScreen: FC = () => {
   const { articles, refreshing } = useSelector<StateInterface, ArticlesPageState>(
     (state) => state.articlesPage,

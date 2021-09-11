@@ -9,13 +9,11 @@ import { CardItem } from "../../../components/contribute";
 import { ContributePageState } from "../../../redux/reducers/contribute-page";
 import { DZCodeLoading } from "../../../components/shared";
 
-// export Contribute UI
 const ContributeUI: FC = () => {
   const { contributions, refreshing, filters } = useSelector<StateInterface, ContributePageState>(
     (state) => state.contributePage,
   );
 
-  // use filters shown state
   const [filtersShown, setFiltersShown] = useState(false);
 
   const dispatch = useDispatch<Dispatch<ContributePageState>>();

@@ -4,7 +4,6 @@ import { Text } from "react-native-paper";
 import { View } from "react-native";
 import { globalStyles } from "../../../styles";
 
-// export Learn UI
 const LearnUI: FC = () => {
   return (
     // main view

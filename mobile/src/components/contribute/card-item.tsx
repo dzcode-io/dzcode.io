@@ -1,13 +1,16 @@
 import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
 import { Colors, cardStyles } from "../../styles";
 import React, { FC, memo } from "react";
-import { ContributionType } from "../../api/interfaces/contributions-response";
 import { FlatList } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { View } from "react-native";
 import { calculateDate } from "../../utils/functions";
 
-// declare card item props interface
+enum ContributionType {
+  PULL_REQUEST = "pullRequest",
+  ISSUE = "issue",
+}
+
 interface CardItemProps {
   title: string;
   subtitle: string;
@@ -19,7 +22,6 @@ interface CardItemProps {
   onPress: () => void;
 }
 
-// export card item component
 const CardItem: FC<CardItemProps> = ({
   title,
   subtitle,

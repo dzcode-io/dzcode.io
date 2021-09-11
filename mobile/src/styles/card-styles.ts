@@ -2,7 +2,6 @@ import { MEDIUM_MARGIN_SIZE, SMALL_MARGIN_SIZE } from "../utils/constants";
 import { StyleSheet } from "react-native";
 import Colors from "./colors";
 
-// export card styles
 export const cardStyles = StyleSheet.create({
   mainView: {
     marginHorizontal: MEDIUM_MARGIN_SIZE,

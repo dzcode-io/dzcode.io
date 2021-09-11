@@ -4,7 +4,6 @@ import { Text } from "react-native-paper";
 import { View } from "react-native";
 import { globalStyles } from "../../../styles";
 
-// export Home UI
 const HomeUI: FC = () => {
   return (
     // main view
