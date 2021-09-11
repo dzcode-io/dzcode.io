@@ -67,6 +67,9 @@ const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
                 color: theme === "dark" ? "white" : "black",
                 backgroundColor: theme === "dark" ? "black" : "white",
               },
+              body: {
+                marginHorizontal: 20,
+              },
             }}
             onLinkPress={(url: string) => true}
           >
