@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { globalStyles } from "../../../styles";
 
 // export Projects UI
-const ProjectsUI: FC = (): JSX.Element => {
+const ProjectsUI: FC = () => {
   return (
     // main view
     <View style={globalStyles.mainView}>

@@ -8,7 +8,7 @@ interface DZCodeLoadingProps {
 }
 
 // export dzcode loading component
-const DZCodeLoading: FC<DZCodeLoadingProps> = ({ style }: DZCodeLoadingProps): JSX.Element => {
+const DZCodeLoading: FC<DZCodeLoadingProps> = ({ style }: DZCodeLoadingProps) => {
   // use rotate animated value state
   const [rotateAnimValue, setRotateAnimValue] = useState(new Animated.Value(0));
 

@@ -8,7 +8,7 @@ interface AppbarProps {
 }
 
 // export Appbar component
-const AppBar: FC<AppbarProps> = ({ title, openDrawer }): JSX.Element => {
+const AppBar: FC<AppbarProps> = ({ title, openDrawer }) => {
   // use theme
   const theme = useTheme();
 

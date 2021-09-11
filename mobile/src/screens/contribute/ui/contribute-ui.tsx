@@ -10,7 +10,7 @@ import { ContributePageState } from "../../../redux/reducers/contribute-page";
 import { DZCodeLoading } from "../../../components/shared";
 
 // export Contribute UI
-const ContributeUI: FC = (): JSX.Element => {
+const ContributeUI: FC = () => {
   const { contributions, refreshing, filters } = useSelector<StateInterface, ContributePageState>(
     (state) => state.contributePage,
   );
