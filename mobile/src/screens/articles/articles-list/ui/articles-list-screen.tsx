@@ -1,7 +1,7 @@
 import {} from "../functions";
 import React, { FC, useEffect } from "react";
 import { Text, Button, Divider } from "react-native-paper";
-import { View, FlatList } from "react-native";
+import { View, FlatList, Image } from "react-native";
 import { globalStyles } from "../../../../styles";
 import { Dispatch, StateInterface } from "../../../../redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,21 +35,23 @@ const ArticlesListScreen: FC = (): JSX.Element => {
           ItemSeparatorComponent={() => <Divider />}
           keyExtractor={(item, index) => `item-${index}`}
           renderItem={({ item }) => (
-            <Button
-              style={{
-                height: 50,
-                marginVertical: 5,
-                justifyContent: "center",
-                alignSelf: "flex-start",
-              }}
-              onPress={() => {
-                navigation.navigate("ArticleDetails", {
-                  article: item,
-                });
-              }}
-            >
-              {item.title}
-            </Button>
+            <View>
+              <Button
+                style={{
+                  height: 50,
+                  marginVertical: 5,
+                  justifyContent: "center",
+                  alignSelf: "flex-start",
+                }}
+                onPress={() => {
+                  navigation.navigate("ArticleDetails", {
+                    article: item,
+                  });
+                }}
+              >
+                {item.title} - {JSON.stringify(item.githubAuthors)}
+              </Button>
+            </View>
           )}
         />
       ) : (
