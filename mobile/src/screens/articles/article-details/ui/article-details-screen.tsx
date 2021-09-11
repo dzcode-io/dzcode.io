@@ -1,6 +1,6 @@
 import { Route } from "@react-navigation/routers";
 import React, { FC, useEffect } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Linking } from "react-native";
 import { Text } from "react-native-paper";
 import { Article } from "../../../../.common/types";
 import { globalStyles } from "../../../../styles";
@@ -40,7 +40,15 @@ const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
         </View>
       ) : (
         <ScrollView>
-          <MarkdownView>
+          <MarkdownView
+            onLinkPress={(url) => {
+              try {
+                Linking.openURL(url);
+              } catch {
+                alert("Can't open browser");
+              }
+            }}
+          >
             {articles?.find((article) => article.slug === route.params.article.slug)?.content}
           </MarkdownView>
         </ScrollView>
