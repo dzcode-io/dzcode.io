@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, StateInterface } from "../../../../redux";
 import { ArticlesPageState } from "../../../../redux/reducers/articles-page";
 import Markdown from "react-native-markdown-display";
+import { GeneralState } from "../../../../redux/reducers/general";
 
 interface ArticleDetailsScreenProps {
   route: Route<"ArticleDetails", RouteParams>;
@@ -25,6 +26,7 @@ const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   const { articles, refreshing } = useSelector<StateInterface, ArticlesPageState>(
     (state) => state.articlesPage,
   );
+  const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
   const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
 
@@ -46,8 +48,29 @@ const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
             }}
             style={{ width: "100%", height: 200 }}
           />
-          <Markdown onLinkPress={(url: string) => true}>
-            {articles?.find((article) => article.slug === route.params.article.slug)?.content}
+          <Markdown
+            style={{
+              text: {
+                color: theme === "dark" ? "white" : "black",
+              },
+              bullet_list: {
+                color: theme === "dark" ? "white" : "black",
+              },
+              ordered_list: {
+                color: theme === "dark" ? "white" : "black",
+              },
+              fence: {
+                color: theme === "dark" ? "white" : "black",
+                backgroundColor: theme === "dark" ? "black" : "white",
+              },
+              blockquote: {
+                color: theme === "dark" ? "white" : "black",
+                backgroundColor: theme === "dark" ? "black" : "white",
+              },
+            }}
+            onLinkPress={(url: string) => true}
+          >
+            {articles?.find((article) => article.slug === route.params.article.slug)?.content || ""}
           </Markdown>
           <Text style={{ fontWeight: "bold", fontSize: 17 }}>
             Authors:{" "}
