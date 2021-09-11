@@ -8,7 +8,8 @@ import { fullstackConfig } from "../../../config";
 const apiURL = fullstackConfig.api.url;
 
 /**
- * fetchContributions fetch an array from api and pass it to the store
+ * @function fetchContributions
+ * @description fetch an array from api and pass it to the store
  */
 export const fetchContributions =
   (): ThunkResult<ContributePageState> => async (dispatch, getState) => {
@@ -25,9 +26,8 @@ export const fetchContributions =
             .reduce((filterQuery, option) => `${filterQuery}${option.name},`, "")}&`,
         "?",
       );
-      const {
-        data: { contributions, filters },
-      } = await Axios.get<GetContributionsResponseDto>(apiURL + "/v2/Contributions" + query);
+      const response = await fetch(apiURL + "/v2/Contributions" + query);
+      const { contributions, filters }: GetContributionsResponseDto = await response.json();
 
       const checkedFilters: Array<{
         filterName: string;
@@ -65,7 +65,8 @@ export const fetchContributions =
 const debouncedFetchContributions = Debounce(fetchContributions(), 500);
 
 /**
- * updateFilters update filters state and trigger a debounced fetchContributions action
+ * @function updateFilters
+ * @description update filters state and trigger a debounced fetchContributions action
  */
 export const updateFilterValue =
   (
