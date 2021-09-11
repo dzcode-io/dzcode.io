@@ -1,4 +1,4 @@
-import Learn from "../src/screens/learn/ui/learn-screen";
+import Learn from "../src/screens/learn";
 import React from "react";
 import renderer from "react-test-renderer";
 

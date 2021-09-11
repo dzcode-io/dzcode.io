@@ -1,4 +1,4 @@
-import Projects from "../src/screens/projects/ui/projects-screen";
+import Projects from "../src/screens/projects";
 import React from "react";
 import renderer from "react-test-renderer";
 
