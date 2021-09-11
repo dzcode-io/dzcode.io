@@ -9,7 +9,6 @@ import LearnUI from "./learn/ui/learn-ui";
 import ProjectsUI from "./projects/ui/projects-ui";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-// create drawer navigator
 const { Navigator, Screen } = createDrawerNavigator();
 
 const Navigation: FC = () => {

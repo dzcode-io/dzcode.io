@@ -4,7 +4,6 @@ import { Text } from "react-native-paper";
 import { View } from "react-native";
 import { globalStyles } from "../../../styles";
 
-// export FAQ UI
 const FAQUI: FC = () => {
   return (
     // main view

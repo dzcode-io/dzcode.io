@@ -2,17 +2,13 @@ import React, { FC, useEffect, useState } from "react";
 import { Animated, ImageStyle } from "react-native";
 import { dzcodeLoadingStyles } from "../../styles";
 
-// declare DZCodeLoading props interface
 interface DZCodeLoadingProps {
   style?: ImageStyle;
 }
 
-// export dzcode loading component
 const DZCodeLoading: FC<DZCodeLoadingProps> = ({ style }: DZCodeLoadingProps) => {
-  // use rotate animated value state
   const [rotateAnimValue, setRotateAnimValue] = useState(new Animated.Value(0));
 
-  // use effect on component did mount
   useEffect(() => {
     Animated.loop(
       Animated.spring(rotateAnimValue, {

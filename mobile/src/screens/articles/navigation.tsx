@@ -3,7 +3,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ArticlesListScreen from "./articles-list/ui/articles-list-screen";
 import ArticleDetailsScreen from "./article-details/ui/article-details-screen";
 
-// create stack navigator
 const { Navigator, Screen } = createStackNavigator();
 
 const Navigation: FC = () => {
