@@ -1,6 +1,6 @@
 import { AppBar, DrawerContent } from "../components/shared";
 import React, { FC } from "react";
-import ArticlesUI from "./articles/ui/articles-ui";
+import ArticlesStack from "./articles/navigation";
 import ContributeUI from "./contribute/ui/contribute-ui";
 import { DrawerActions } from "@react-navigation/native";
 import FAQUI from "./faq/ui/faq-ui";
@@ -9,7 +9,7 @@ import LearnUI from "./learn/ui/learn-ui";
 import ProjectsUI from "./projects/ui/projects-ui";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-// create drawer navigation
+// create drawer navigator
 const Drawer = createDrawerNavigator();
 
 const Navigation: FC = (): JSX.Element => {
@@ -36,7 +36,7 @@ const Navigation: FC = (): JSX.Element => {
       <Drawer.Screen name="Contribute" component={ContributeUI} />
       <Drawer.Screen name="Learn" component={LearnUI} />
       <Drawer.Screen name="Projects" component={ProjectsUI} />
-      <Drawer.Screen name="Articles" component={ArticlesUI} />
+      <Drawer.Screen name="Articles" component={ArticlesStack} />
       <Drawer.Screen name="FAQ" component={FAQUI} />
     </Drawer.Navigator>
   );
