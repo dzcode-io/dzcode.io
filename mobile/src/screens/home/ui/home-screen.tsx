@@ -4,15 +4,15 @@ import { Text } from "react-native-paper";
 import { View } from "react-native";
 import { globalStyles } from "../../../styles";
 
-const LearnUI: FC = () => {
+const HomeScreen: FC = () => {
   return (
     // main view
     <View style={globalStyles.mainView}>
       {/* center view */}
       <View style={globalStyles.centerView}>
-        <Text style={globalStyles.titleText}>Learn UI created!</Text>
+        <Text style={globalStyles.titleText}>Home UI created!</Text>
       </View>
     </View>
   );
 };
-export default LearnUI;
+export default HomeScreen;

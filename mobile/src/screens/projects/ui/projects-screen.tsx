@@ -4,7 +4,7 @@ import { Text } from "react-native-paper";
 import { View } from "react-native";
 import { globalStyles } from "../../../styles";
 
-const ProjectsUI: FC = () => {
+const ProjectsScreen: FC = () => {
   return (
     // main view
     <View style={globalStyles.mainView}>
@@ -15,4 +15,4 @@ const ProjectsUI: FC = () => {
     </View>
   );
 };
-export default ProjectsUI;
+export default ProjectsScreen;

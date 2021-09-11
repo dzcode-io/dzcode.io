@@ -1,12 +1,12 @@
 import { AppBar, DrawerContent } from "../components/shared";
 import React, { FC } from "react";
 import ArticlesStack from "./articles/navigation";
-import ContributeUI from "./contribute/ui/contribute-ui";
+import ContributeScreen from "./contribute/ui/contribute-screen";
 import { DrawerActions } from "@react-navigation/native";
-import FAQUI from "./faq/ui/faq-ui";
-import HomeUI from "./home/ui/home-ui";
-import LearnUI from "./learn/ui/learn-ui";
-import ProjectsUI from "./projects/ui/projects-ui";
+import FAQScreen from "./faq/ui/faq-screen";
+import HomeScreen from "./home/ui/home-screen";
+import LearnScreen from "./learn/ui/learn-screen";
+import ProjectsScreen from "./projects/ui/projects-screen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -31,12 +31,12 @@ const Navigation: FC = () => {
       }}
       drawerContent={(props) => <DrawerContent {...props} />}
     >
-      <Screen name="Home" component={HomeUI} />
-      <Screen name="Contribute" component={ContributeUI} />
-      <Screen name="Learn" component={LearnUI} />
-      <Screen name="Projects" component={ProjectsUI} />
+      <Screen name="Home" component={HomeScreen} />
+      <Screen name="Contribute" component={ContributeScreen} />
+      <Screen name="Learn" component={LearnScreen} />
+      <Screen name="Projects" component={ProjectsScreen} />
       <Screen name="Articles" component={ArticlesStack} />
-      <Screen name="FAQ" component={FAQUI} />
+      <Screen name="FAQ" component={FAQScreen} />
     </Navigator>
   );
 };

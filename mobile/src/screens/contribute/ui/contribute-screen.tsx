@@ -9,7 +9,7 @@ import { CardItem } from "../../../components/contribute";
 import { ContributePageState } from "../../../redux/reducers/contribute-page";
 import { DZCodeLoading } from "../../../components/shared";
 
-const ContributeUI: FC = () => {
+const ContributeScreen: FC = () => {
   const { contributions, refreshing, filters } = useSelector<StateInterface, ContributePageState>(
     (state) => state.contributePage,
   );
@@ -107,4 +107,4 @@ const ContributeUI: FC = () => {
     </View>
   );
 };
-export default ContributeUI;
+export default ContributeScreen;
