@@ -38,7 +38,7 @@ const ArticlesListScreen: FC = () => {
               <Button
                 style={articlesListStyles.button}
                 onPress={() => {
-                  navigation.navigate("ArticleDetails", {
+                  navigation.navigate("article-details", {
                     article: item,
                   });
                 }}
