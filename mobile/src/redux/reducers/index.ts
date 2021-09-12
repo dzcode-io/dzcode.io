@@ -1,10 +1,10 @@
-import { articlesPage } from "./articles-page";
+import { articlesScreen } from "./articles-screen";
 import { combineReducers } from "redux";
-import { contributePage } from "./contribute-page";
+import { contributeScreen } from "./contribute-screen";
 import { general } from "./general";
 
 export const mainReducer = combineReducers({
-  articlesPage,
-  contributePage,
+  articlesScreen,
+  contributeScreen,
   general,
 });

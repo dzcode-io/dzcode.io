@@ -3,14 +3,14 @@ import { Image, ScrollView, View } from "react-native";
 import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Article } from "../../../.common/types";
-import { ArticlesPageState } from "../../../redux/reducers/articles-page";
+import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
 import { DZCodeLoading } from "../../../components/loading";
 import { GeneralState } from "../../../redux/reducers/general";
 import Markdown from "react-native-markdown-display";
 import { Route } from "@react-navigation/routers";
 import { Text } from "react-native-paper";
 import { articleDetailsStyles } from "./styles";
-import { fetchArticle } from "../../../redux/actions/articles-page";
+import { fetchArticle } from "../../../redux/actions/articles-screen";
 import { globalStyles } from "../../../styles";
 
 interface ArticleDetailsScreenProps {
@@ -24,12 +24,12 @@ interface RouteParams {
 const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   route,
 }: ArticleDetailsScreenProps) => {
-  const { articles, refreshing } = useSelector<StateInterface, ArticlesPageState>(
-    (state) => state.articlesPage,
+  const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
+    (state) => state.articlesScreen,
   );
   const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
-  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+  const dispatch = useDispatch<Dispatch<ArticlesScreenState>>();
 
   useEffect(() => {
     dispatch(fetchArticle(route.params.article.slug));
