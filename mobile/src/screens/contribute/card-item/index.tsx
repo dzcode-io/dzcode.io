@@ -1,24 +1,16 @@
 import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
 import React, { FC, memo } from "react";
 import { Colors } from "../../../styles/colors";
+import { ContributionEntity } from "../../../.common/types";
 import { FlatList } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { View } from "react-native";
 import { calculateDate } from "../../../.common/utils/calculate-date";
 import { cardStyles } from "./styles";
 
-enum ContributionType {
-  PULL_REQUEST = "pullRequest",
-  ISSUE = "issue",
-}
-
-interface CardItemProps {
-  title: string;
+interface CardItemProps
+  extends Pick<ContributionEntity, "title" | "labels" | "type" | "updatedAt" | "commentsCount"> {
   subtitle: string;
-  labels: string[];
-  type: string;
-  createdAt: string;
-  commentsCount: number;
   onChipPress: (item: string) => void;
   onPress: () => void;
 }
@@ -28,7 +20,7 @@ export const CardItem: FC<CardItemProps> = ({
   subtitle,
   labels,
   type,
-  createdAt,
+  updatedAt,
   commentsCount,
   onChipPress,
   onPress,
@@ -51,28 +43,25 @@ export const CardItem: FC<CardItemProps> = ({
         />
       </Card.Content>
       <Card.Actions style={cardStyles.cardActionsView}>
-        <Button
-          color={type === ContributionType.ISSUE ? Colors.accent : Colors.violet}
-          onPress={onPress}
-        >
-          {type === ContributionType.ISSUE ? "Read issue" : "Review changes"}
+        <Button color={type === "issue" ? Colors.accent : Colors.violet} onPress={onPress}>
+          {type === "issue" ? "Read issue" : "Review changes"}
         </Button>
         <View style={cardStyles.row}>
-          <Text style={{ color: type === ContributionType.ISSUE ? Colors.accent : Colors.violet }}>
-            {calculateDate(new Date(createdAt), new Date())}
+          <Text style={{ color: type === "issue" ? Colors.accent : Colors.violet }}>
+            {calculateDate(new Date(updatedAt), new Date())}
           </Text>
           {commentsCount > 0 && (
             <View style={cardStyles.marginLeft}>
               <MaterialCommunityIcons
                 name="comment-multiple"
-                color={type === ContributionType.ISSUE ? Colors.accent : Colors.violet}
+                color={type === "issue" ? Colors.accent : Colors.violet}
                 size={25}
               />
               <Badge
                 style={[
                   cardStyles.badgeView,
                   {
-                    color: type === ContributionType.ISSUE ? Colors.accent : Colors.violet,
+                    color: type === "issue" ? Colors.accent : Colors.violet,
                   },
                 ]}
               >
@@ -80,7 +69,7 @@ export const CardItem: FC<CardItemProps> = ({
               </Badge>
             </View>
           )}
-          {type === ContributionType.ISSUE ? (
+          {type === "issue" ? (
             <MaterialCommunityIcons
               name="alert-circle-outline"
               color={Colors.accent}
