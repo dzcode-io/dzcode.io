@@ -1,23 +1,23 @@
 import { Checkbox, FAB, List, Text } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../redux";
-import { FlatList, Linking, ScrollView, View, Image } from "react-native";
+import { FlatList, Image, Linking, ScrollView, View } from "react-native";
 import React, { FC, useEffect, useState } from "react";
-import { globalStyles } from "../../styles";
-import { contributeStyles } from "./styles";
-import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-page";
+import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
 import { useDispatch, useSelector } from "react-redux";
-import CardItem from "./card-item";
-import { ContributePageState } from "../../redux/reducers/contribute-page";
+import { CardItemMemoed } from "./card-item";
+import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
 import { DZCodeLoading } from "../../components/loading";
+import { contributeStyles } from "./styles";
+import { globalStyles } from "../../styles/global";
 
-const ContributeScreen: FC = () => {
-  const { contributions, refreshing, filters } = useSelector<StateInterface, ContributePageState>(
-    (state) => state.contributePage,
+export const ContributeScreen: FC = () => {
+  const { contributions, refreshing, filters } = useSelector<StateInterface, ContributeScreenState>(
+    (state) => state.contributeScreen,
   );
 
   const [filtersShown, setFiltersShown] = useState(false);
 
-  const dispatch = useDispatch<Dispatch<ContributePageState>>();
+  const dispatch = useDispatch<Dispatch<ContributeScreenState>>();
   useEffect(() => {
     dispatch(fetchContributions());
   }, []);
@@ -37,12 +37,12 @@ const ContributeScreen: FC = () => {
             refreshing={refreshing}
             keyExtractor={(item, index) => `item-${index}`}
             renderItem={({ item }) => (
-              <CardItem
+              <CardItemMemoed
                 title={item.title}
                 subtitle={item.project.name}
                 labels={[...item.labels, ...item.languages]}
                 type={item.type}
-                createdAt={item.createdAt}
+                updatedAt={item.updatedAt}
                 commentsCount={item.commentsCount}
                 onChipPress={async (optionName) => {
                   const filterName = item.labels.includes(optionName) ? "labels" : "languages";
@@ -118,4 +118,3 @@ const ContributeScreen: FC = () => {
     </View>
   );
 };
-export default ContributeScreen;

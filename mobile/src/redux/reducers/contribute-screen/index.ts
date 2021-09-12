@@ -1,22 +1,22 @@
 import { ContributionEntity, FilterEntity } from "../../../.common/types";
 import { Action } from "../..";
 
-export interface ContributePageState {
+export interface ContributeScreenState {
   filters: FilterEntity[];
   contributions: ContributionEntity[] | null;
   refreshing: boolean;
 }
 
-export const contributePage = (
-  state: ContributePageState = {
+export const contributeScreen = (
+  state: ContributeScreenState = {
     filters: [],
     contributions: null,
     refreshing: false,
   },
-  action: Action<ContributePageState>,
+  action: Action<ContributeScreenState>,
 ) => {
   switch (action.type) {
-    case "UPDATE_CONTRIBUTE_PAGE":
+    case "UPDATE_CONTRIBUTE_SCREEN":
       return { ...state, ...action.payload };
     default:
       return state;

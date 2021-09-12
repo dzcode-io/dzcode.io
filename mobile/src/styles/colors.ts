@@ -1,5 +1,5 @@
 // colors used in the app
-const Colors = {
+export const Colors = {
   primary: "#43a047",
   accent: "#50C255",
   white: "#fff",
@@ -9,4 +9,3 @@ const Colors = {
   grey: "#757575",
   violet: "#a371f7",
 };
-export default Colors;
