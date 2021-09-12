@@ -1,4 +1,4 @@
-import FAQ from "../src/screens/faq/ui/faq-ui";
+import FAQ from "../src/screens/faq";
 import React from "react";
 import renderer from "react-test-renderer";
 

@@ -4,11 +4,11 @@
     "slug": "dzcode",
     "version": "1.1.2",
     "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
+    "icon": "./src/assets/png/icon.png",
     "scheme": "dzcode",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./src/assets/images/splash.png",
+      "image": "./src/assets/png/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#000"
     },
@@ -23,7 +23,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/png/adaptive-icon.png",
         "backgroundColor": "#000"
       },
       "permissions": [],
@@ -31,7 +31,7 @@
       "versionCode": 112
     },
     "web": {
-      "favicon": "./src/assets/images/favicon.png"
+      "favicon": "./src/assets/png/favicon.png"
     },
     "plugins": ["sentry-expo"]
   }
