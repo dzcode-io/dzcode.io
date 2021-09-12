@@ -1,4 +1,4 @@
-import { ContributePageState } from "../../reducers/contribute-page";
+import { ContributeScreenState } from "../../reducers/contribute-screen";
 import Debounce from "debounce";
 import { GetContributionsResponseDto } from "../../../.common/types/api-responses";
 import { ThunkResult } from "../..";
@@ -11,14 +11,14 @@ const apiURL = fullstackConfig.api.url;
  * @description fetch an array from api and pass it to the store
  */
 export const fetchContributions =
-  (): ThunkResult<ContributePageState> => async (dispatch, getState) => {
+  (): ThunkResult<ContributeScreenState> => async (dispatch, getState) => {
     dispatch({
-      type: "UPDATE_CONTRIBUTE_PAGE",
+      type: "UPDATE_CONTRIBUTE_SCREEN",
       payload: { refreshing: true },
     });
     try {
-      const { contributePage } = getState();
-      const query = contributePage.filters.reduce(
+      const { contributeScreen } = getState();
+      const query = contributeScreen.filters.reduce(
         (query, filter) =>
           `${query}${filter.name}=${filter.options
             .filter(({ checked }) => checked)
@@ -32,7 +32,7 @@ export const fetchContributions =
         filterName: string;
         optionName: string;
       }> = [];
-      contributePage.filters.forEach((filter) => {
+      contributeScreen.filters.forEach((filter) => {
         filter.options.forEach((option) => {
           if (option.checked) {
             checkedFilters.push({
@@ -53,7 +53,7 @@ export const fetchContributions =
         })),
       }));
       dispatch({
-        type: "UPDATE_CONTRIBUTE_PAGE",
+        type: "UPDATE_CONTRIBUTE_SCREEN",
         payload: { contributions, filters: newFilters, refreshing: false },
       });
     } catch (error) {
@@ -74,9 +74,9 @@ export const updateFilterValue =
     value: boolean | "reverse",
     updateImmediately = false,
     overwrite = false,
-  ): ThunkResult<ContributePageState> =>
+  ): ThunkResult<ContributeScreenState> =>
   async (dispatch, getState) => {
-    const { filters } = getState().contributePage;
+    const { filters } = getState().contributeScreen;
     const newFilters = filters.map((filter) => {
       if (filter.name !== filterName) {
         return {
@@ -104,7 +104,7 @@ export const updateFilterValue =
       }
     });
     dispatch({
-      type: "UPDATE_CONTRIBUTE_PAGE",
+      type: "UPDATE_CONTRIBUTE_SCREEN",
       payload: { filters: newFilters, contributions: null },
     });
     if (!updateImmediately) {

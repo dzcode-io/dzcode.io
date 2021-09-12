@@ -2,22 +2,22 @@ import { Checkbox, FAB, List, Text } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../redux";
 import { FlatList, Image, Linking, ScrollView, View } from "react-native";
 import React, { FC, useEffect, useState } from "react";
-import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-page";
+import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
 import { useDispatch, useSelector } from "react-redux";
 import CardItem from "./card-item";
-import { ContributePageState } from "../../redux/reducers/contribute-page";
+import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
 import { DZCodeLoading } from "../../components/loading";
 import { contributeStyles } from "./styles";
 import { globalStyles } from "../../styles";
 
 const ContributeScreen: FC = () => {
-  const { contributions, refreshing, filters } = useSelector<StateInterface, ContributePageState>(
-    (state) => state.contributePage,
+  const { contributions, refreshing, filters } = useSelector<StateInterface, ContributeScreenState>(
+    (state) => state.contributeScreen,
   );
 
   const [filtersShown, setFiltersShown] = useState(false);
 
-  const dispatch = useDispatch<Dispatch<ContributePageState>>();
+  const dispatch = useDispatch<Dispatch<ContributeScreenState>>();
   useEffect(() => {
     dispatch(fetchContributions());
   }, []);

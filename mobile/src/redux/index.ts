@@ -20,8 +20,8 @@ export type StateInterface = ReturnType<typeof mainStore.getState>;
 export type ActionType =
   | "UPDATE_SETTINGS"
   | "UPDATE_GENERAL"
-  | "UPDATE_CONTRIBUTE_PAGE"
-  | "UPDATE_ARTICLES_PAGE";
+  | "UPDATE_CONTRIBUTE_SCREEN"
+  | "UPDATE_ARTICLES_SCREEN";
 
 export interface Action<T> {
   type: ActionType;
