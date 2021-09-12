@@ -1,7 +1,7 @@
+import { Article } from "../../../.common/types";
 import { ArticlesPageState } from "../../reducers/articles-page";
 import { ThunkResult } from "../..";
 import { fullstackConfig } from "../../../config";
-import { Article } from "../../../.common/types";
 
 const dataURL = fullstackConfig.data.url;
 
