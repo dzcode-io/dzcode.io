@@ -4,7 +4,7 @@ import { Colors } from "../../../styles";
 import { FlatList } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { View } from "react-native";
-import { calculateDate } from "../../../utils/functions";
+import { calculateDate } from "../../../.common/utils/calculate-date";
 import { cardStyles } from "./styles";
 
 enum ContributionType {
