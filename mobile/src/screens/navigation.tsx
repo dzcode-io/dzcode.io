@@ -1,20 +1,20 @@
-import { AppBar, DrawerContent } from "../components/shared";
+import { AppBar } from "../components/app-bar";
+import { DrawerContent } from "../components/drawer-content";
 import React, { FC } from "react";
-import ArticlesUI from "./articles/ui/articles-ui";
-import ContributeUI from "./contribute/ui/contribute-ui";
+import ArticlesStack from "./articles/navigation";
+import ContributeScreen from "./contribute";
 import { DrawerActions } from "@react-navigation/native";
-import FAQUI from "./faq/ui/faq-ui";
-import HomeUI from "./home/ui/home-ui";
-import LearnUI from "./learn/ui/learn-ui";
-import ProjectsUI from "./projects/ui/projects-ui";
+import FAQScreen from "./faq";
+import HomeScreen from "./home";
+import LearnScreen from "./learn";
+import ProjectsScreen from "./projects";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-// create drawer navigation
-const Drawer = createDrawerNavigator();
+const { Navigator, Screen } = createDrawerNavigator();
 
-const Navigation: FC = (): JSX.Element => {
+const Navigation: FC = () => {
   return (
-    <Drawer.Navigator
+    <Navigator
       initialRouteName="Home"
       drawerType="back"
       screenOptions={{
@@ -32,13 +32,13 @@ const Navigation: FC = (): JSX.Element => {
       }}
       drawerContent={(props) => <DrawerContent {...props} />}
     >
-      <Drawer.Screen name="Home" component={HomeUI} />
-      <Drawer.Screen name="Contribute" component={ContributeUI} />
-      <Drawer.Screen name="Learn" component={LearnUI} />
-      <Drawer.Screen name="Projects" component={ProjectsUI} />
-      <Drawer.Screen name="Articles" component={ArticlesUI} />
-      <Drawer.Screen name="FAQ" component={FAQUI} />
-    </Drawer.Navigator>
+      <Screen name="Home" component={HomeScreen} />
+      <Screen name="Contribute" component={ContributeScreen} />
+      <Screen name="Learn" component={LearnScreen} />
+      <Screen name="Projects" component={ProjectsScreen} />
+      <Screen name="Articles" component={ArticlesStack} />
+      <Screen name="FAQ" component={FAQScreen} />
+    </Navigator>
   );
 };
 export default Navigation;
