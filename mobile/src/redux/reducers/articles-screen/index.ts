@@ -1,20 +1,20 @@
-import { Article } from "../../../.common/types";
 import { Action } from "../..";
+import { Article } from "../../../.common/types";
 
-export interface ArticlesPageState {
+export interface ArticlesScreenState {
   articles: Article[] | null;
   refreshing: boolean;
 }
 
-export const articlesPage = (
-  state: ArticlesPageState = {
+export const articlesScreen = (
+  state: ArticlesScreenState = {
     articles: null,
     refreshing: false,
   },
-  action: Action<ArticlesPageState>,
+  action: Action<ArticlesScreenState>,
 ) => {
   switch (action.type) {
-    case "UPDATE_ARTICLES_PAGE":
+    case "UPDATE_ARTICLES_SCREEN":
       return { ...state, ...action.payload };
 
     default:

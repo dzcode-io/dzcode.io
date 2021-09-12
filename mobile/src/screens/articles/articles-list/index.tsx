@@ -1,23 +1,23 @@
-import React, { FC, useEffect } from "react";
-import { Text, Button, Divider } from "react-native-paper";
-import { View, FlatList, Image } from "react-native";
-import { globalStyles } from "../../../styles";
+import { Button, Divider } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../../redux";
+import { FlatList, View } from "react-native";
+import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ArticlesPageState } from "../../../redux/reducers/articles-page";
-import { fetchArticles } from "../../../redux/actions/articles-page";
+import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
 import { DZCodeLoading } from "../../../components/loading";
-import { useNavigation } from "@react-navigation/native";
 import { articlesListStyles } from "./styles";
+import { fetchArticles } from "../../../redux/actions/articles-screen";
+import { globalStyles } from "../../../styles/global";
+import { useNavigation } from "@react-navigation/native";
 
-const ArticlesListScreen: FC = () => {
-  const { articles, refreshing } = useSelector<StateInterface, ArticlesPageState>(
-    (state) => state.articlesPage,
+export const ArticlesListScreen: FC = () => {
+  const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
+    (state) => state.articlesScreen,
   );
 
   const navigation = useNavigation();
 
-  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+  const dispatch = useDispatch<Dispatch<ArticlesScreenState>>();
 
   useEffect(() => {
     dispatch(fetchArticles());
@@ -38,7 +38,7 @@ const ArticlesListScreen: FC = () => {
               <Button
                 style={articlesListStyles.button}
                 onPress={() => {
-                  navigation.navigate("ArticleDetails", {
+                  navigation.navigate("article-details", {
                     article: item,
                   });
                 }}
@@ -56,4 +56,3 @@ const ArticlesListScreen: FC = () => {
     </View>
   );
 };
-export default ArticlesListScreen;

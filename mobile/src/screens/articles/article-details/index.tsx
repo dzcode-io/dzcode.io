@@ -1,17 +1,17 @@
-import { Route } from "@react-navigation/routers";
-import React, { FC, useEffect } from "react";
-import { View, ScrollView, Linking, Image } from "react-native";
-import { Text } from "react-native-paper";
-import { Article } from "../../../.common/types";
-import { globalStyles } from "../../../styles";
-import { DZCodeLoading } from "../../../components/loading";
-import { fetchArticle } from "../../../redux/actions/articles-page";
-import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, StateInterface } from "../../../redux";
-import { ArticlesPageState } from "../../../redux/reducers/articles-page";
-import Markdown from "react-native-markdown-display";
+import { Image, ScrollView, View } from "react-native";
+import React, { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Article } from "../../../.common/types";
+import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
+import { DZCodeLoading } from "../../../components/loading";
 import { GeneralState } from "../../../redux/reducers/general";
+import Markdown from "react-native-markdown-display";
+import { Route } from "@react-navigation/routers";
+import { Text } from "react-native-paper";
 import { articleDetailsStyles } from "./styles";
+import { fetchArticle } from "../../../redux/actions/articles-screen";
+import { globalStyles } from "../../../styles/global";
 
 interface ArticleDetailsScreenProps {
   route: Route<"ArticleDetails", RouteParams>;
@@ -21,15 +21,15 @@ interface RouteParams {
   article: Article;
 }
 
-const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
+export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   route,
 }: ArticleDetailsScreenProps) => {
-  const { articles, refreshing } = useSelector<StateInterface, ArticlesPageState>(
-    (state) => state.articlesPage,
+  const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
+    (state) => state.articlesScreen,
   );
   const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
-  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+  const dispatch = useDispatch<Dispatch<ArticlesScreenState>>();
 
   useEffect(() => {
     dispatch(fetchArticle(route.params.article.slug));
@@ -85,5 +85,3 @@ const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
     </View>
   );
 };
-
-export default ArticleDetailsScreen;
