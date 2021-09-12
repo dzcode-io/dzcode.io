@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import ArticleDetailsScreen from "./article-details";
-import ArticlesListScreen from "./articles-list";
+import { ArticleDetailsScreen } from "./article-details";
+import { ArticlesListScreen } from "./articles-list";
 import { createStackNavigator } from "@react-navigation/stack";
 
 const { Navigator, Screen } = createStackNavigator();
 
-const Navigation: FC = () => {
+export const Navigation: FC = () => {
   return (
     <Navigator initialRouteName={"articles-list"} headerMode={"none"}>
       <Screen name="articles-list" component={ArticlesListScreen} />
@@ -13,4 +13,3 @@ const Navigation: FC = () => {
     </Navigator>
   );
 };
-export default Navigation;

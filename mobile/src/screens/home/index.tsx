@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Text } from "react-native-paper";
 import { View } from "react-native";
-import { globalStyles } from "../../styles";
+import { globalStyles } from "../../styles/global";
 
-const HomeScreen: FC = () => {
+export const HomeScreen: FC = () => {
   return (
     // main view
     <View style={globalStyles.mainView}>
@@ -14,4 +14,3 @@ const HomeScreen: FC = () => {
     </View>
   );
 };
-export default HomeScreen;

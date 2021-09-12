@@ -14,9 +14,9 @@ import {
 } from "react-native-paper";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import React, { FC, useEffect } from "react";
-import Colors from "./src/styles/colors";
+import { Colors } from "./src/styles/colors";
 import { GeneralState } from "./src/redux/reducers/general";
-import Navigation from "./src/screens/navigation";
+import { Navigation } from "./src/screens/navigation";
 import { Theme as PT } from "react-native-paper/lib/typescript/types";
 import { getEnv } from "./src/utils/env";
 import { init } from "./src/redux/actions/general";

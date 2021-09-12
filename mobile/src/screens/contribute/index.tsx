@@ -4,13 +4,13 @@ import { FlatList, Image, Linking, ScrollView, View } from "react-native";
 import React, { FC, useEffect, useState } from "react";
 import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
 import { useDispatch, useSelector } from "react-redux";
-import CardItem from "./card-item";
+import { CardItemMemoed } from "./card-item";
 import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
 import { DZCodeLoading } from "../../components/loading";
 import { contributeStyles } from "./styles";
-import { globalStyles } from "../../styles";
+import { globalStyles } from "../../styles/global";
 
-const ContributeScreen: FC = () => {
+export const ContributeScreen: FC = () => {
   const { contributions, refreshing, filters } = useSelector<StateInterface, ContributeScreenState>(
     (state) => state.contributeScreen,
   );
@@ -37,7 +37,7 @@ const ContributeScreen: FC = () => {
             refreshing={refreshing}
             keyExtractor={(item, index) => `item-${index}`}
             renderItem={({ item }) => (
-              <CardItem
+              <CardItemMemoed
                 title={item.title}
                 subtitle={item.project.name}
                 labels={[...item.labels, ...item.languages]}
@@ -118,4 +118,3 @@ const ContributeScreen: FC = () => {
     </View>
   );
 };
-export default ContributeScreen;

@@ -1,18 +1,18 @@
 import React, { FC } from "react";
 import { AppBar } from "../components/app-bar";
-import ArticlesStack from "./articles/navigation";
-import ContributeScreen from "./contribute";
+import { Navigation as ArticlesStack } from "./articles/navigation";
+import { ContributeScreen } from "./contribute";
 import { DrawerActions } from "@react-navigation/native";
 import { DrawerContent } from "../components/drawer-content";
-import FAQScreen from "./faq";
-import HomeScreen from "./home";
-import LearnScreen from "./learn";
-import ProjectsScreen from "./projects";
+import { FAQScreen } from "./faq";
+import { HomeScreen } from "./home";
+import { LearnScreen } from "./learn";
+import { ProjectsScreen } from "./projects";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
-const Navigation: FC = () => {
+export const Navigation: FC = () => {
   return (
     <Navigator
       initialRouteName="home"
@@ -41,4 +41,3 @@ const Navigation: FC = () => {
     </Navigator>
   );
 };
-export default Navigation;

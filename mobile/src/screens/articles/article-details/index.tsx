@@ -11,7 +11,7 @@ import { Route } from "@react-navigation/routers";
 import { Text } from "react-native-paper";
 import { articleDetailsStyles } from "./styles";
 import { fetchArticle } from "../../../redux/actions/articles-screen";
-import { globalStyles } from "../../../styles";
+import { globalStyles } from "../../../styles/global";
 
 interface ArticleDetailsScreenProps {
   route: Route<"ArticleDetails", RouteParams>;
@@ -21,7 +21,7 @@ interface RouteParams {
   article: Article;
 }
 
-const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
+export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   route,
 }: ArticleDetailsScreenProps) => {
   const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
@@ -85,5 +85,3 @@ const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
     </View>
   );
 };
-
-export default ArticleDetailsScreen;
