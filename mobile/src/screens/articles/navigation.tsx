@@ -7,9 +7,9 @@ const { Navigator, Screen } = createStackNavigator();
 
 const Navigation: FC = () => {
   return (
-    <Navigator initialRouteName={"ArticlesList"} headerMode={"none"}>
-      <Screen name="ArticlesList" component={ArticlesListScreen} />
-      <Screen name="ArticleDetails" component={ArticleDetailsScreen} />
+    <Navigator initialRouteName={"articles-list"} headerMode={"none"}>
+      <Screen name="articles-list" component={ArticlesListScreen} />
+      <Screen name="article-details" component={ArticleDetailsScreen} />
     </Navigator>
   );
 };
