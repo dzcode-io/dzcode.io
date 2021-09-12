@@ -7,10 +7,10 @@ import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
 import { DZCodeLoading } from "../../../components/loading";
 import { articlesListStyles } from "./styles";
 import { fetchArticles } from "../../../redux/actions/articles-screen";
-import { globalStyles } from "../../../styles";
+import { globalStyles } from "../../../styles/global";
 import { useNavigation } from "@react-navigation/native";
 
-const ArticlesListScreen: FC = () => {
+export const ArticlesListScreen: FC = () => {
   const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
     (state) => state.articlesScreen,
   );
@@ -56,4 +56,3 @@ const ArticlesListScreen: FC = () => {
     </View>
   );
 };
-export default ArticlesListScreen;

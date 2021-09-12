@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Text } from "react-native-paper";
 import { View } from "react-native";
-import { globalStyles } from "../../styles";
+import { globalStyles } from "../../styles/global";
 
-const FAQScreen: FC = () => {
+export const FAQScreen: FC = () => {
   return (
     // main view
     <View style={globalStyles.mainView}>
@@ -14,4 +14,3 @@ const FAQScreen: FC = () => {
     </View>
   );
 };
-export default FAQScreen;
