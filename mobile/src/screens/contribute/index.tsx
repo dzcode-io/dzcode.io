@@ -42,7 +42,7 @@ export const ContributeScreen: FC = () => {
                 subtitle={item.project.name}
                 labels={[...item.labels, ...item.languages]}
                 type={item.type}
-                createdAt={item.createdAt}
+                updatedAt={item.updatedAt}
                 commentsCount={item.commentsCount}
                 onChipPress={async (optionName) => {
                   const filterName = item.labels.includes(optionName) ? "labels" : "languages";
