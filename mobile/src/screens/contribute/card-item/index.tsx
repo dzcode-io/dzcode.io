@@ -1,6 +1,6 @@
 import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
-import { Colors } from "../../../styles";
 import React, { FC, memo } from "react";
+import { Colors } from "../../../styles";
 import { FlatList } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { View } from "react-native";

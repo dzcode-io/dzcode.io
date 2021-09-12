@@ -1,14 +1,14 @@
-import React, { FC, useEffect } from "react";
-import { Text, Button, Divider } from "react-native-paper";
-import { View, FlatList, Image } from "react-native";
-import { globalStyles } from "../../../styles";
+import { Button, Divider } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../../redux";
+import { FlatList, View } from "react-native";
+import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ArticlesPageState } from "../../../redux/reducers/articles-page";
-import { fetchArticles } from "../../../redux/actions/articles-page";
 import { DZCodeLoading } from "../../../components/loading";
-import { useNavigation } from "@react-navigation/native";
 import { articlesListStyles } from "./styles";
+import { fetchArticles } from "../../../redux/actions/articles-page";
+import { globalStyles } from "../../../styles";
+import { useNavigation } from "@react-navigation/native";
 
 const ArticlesListScreen: FC = () => {
   const { articles, refreshing } = useSelector<StateInterface, ArticlesPageState>(

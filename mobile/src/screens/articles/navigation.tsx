@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import ArticlesListScreen from "./articles-list";
 import ArticleDetailsScreen from "./article-details";
+import ArticlesListScreen from "./articles-list";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const { Navigator, Screen } = createStackNavigator();
 

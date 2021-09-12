@@ -1,9 +1,9 @@
-import { AppBar } from "../components/app-bar";
-import { DrawerContent } from "../components/drawer-content";
 import React, { FC } from "react";
+import { AppBar } from "../components/app-bar";
 import ArticlesStack from "./articles/navigation";
 import ContributeScreen from "./contribute";
 import { DrawerActions } from "@react-navigation/native";
+import { DrawerContent } from "../components/drawer-content";
 import FAQScreen from "./faq";
 import HomeScreen from "./home";
 import LearnScreen from "./learn";

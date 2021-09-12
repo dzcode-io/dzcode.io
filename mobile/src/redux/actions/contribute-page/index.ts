@@ -1,4 +1,3 @@
-import Axios from "axios";
 import { ContributePageState } from "../../reducers/contribute-page";
 import Debounce from "debounce";
 import { GetContributionsResponseDto } from "../../../.common/types/api-responses";
