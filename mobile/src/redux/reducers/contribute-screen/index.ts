@@ -1,4 +1,4 @@
-import { ContributionEntity, FilterEntity } from "../../../.common/types";
+import { ContributionEntity, FilterEntity } from "../../../_common/types";
 import { Action } from "../..";
 
 export interface ContributeScreenState {

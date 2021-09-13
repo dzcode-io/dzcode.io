@@ -1,4 +1,4 @@
-import { Article } from "../../../.common/types";
+import { Article } from "../../../_common/types";
 import { ArticlesScreenState } from "../../reducers/articles-screen";
 import { ThunkResult } from "../..";
 import { fullstackConfig } from "../../../config";

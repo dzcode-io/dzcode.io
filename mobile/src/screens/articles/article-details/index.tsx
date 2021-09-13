@@ -2,7 +2,7 @@ import { Dispatch, StateInterface } from "../../../redux";
 import { Image, ScrollView, View } from "react-native";
 import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Article } from "../../../.common/types";
+import { Article } from "../../../_common/types";
 import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
 import { DZCodeLoading } from "../../../components/loading";
 import { GeneralState } from "../../../redux/reducers/general";
