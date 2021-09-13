@@ -19,7 +19,8 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "io.dzcode.mobile",
-      "buildNumber": "1.1.2"
+      "buildNumber": "1.1.2",
+      "userInterfaceStyle": "automatic"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,7 +29,8 @@
       },
       "permissions": [],
       "package": "io.dzcode.mobile",
-      "versionCode": 112
+      "versionCode": 112,
+      "userInterfaceStyle": "automatic"
     },
     "web": {
       "favicon": "./src/assets/png/favicon.png"
