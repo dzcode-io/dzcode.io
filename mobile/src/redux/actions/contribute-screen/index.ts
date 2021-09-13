@@ -1,6 +1,6 @@
 import { ContributeScreenState } from "../../reducers/contribute-screen";
 import Debounce from "debounce";
-import { GetContributionsResponseDto } from "../../../.common/types/api-responses";
+import { GetContributionsResponseDto } from "../../../_common/types/api-responses";
 import { ThunkResult } from "../..";
 import { fullstackConfig } from "../../../config";
 

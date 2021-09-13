@@ -1,5 +1,5 @@
 import { Action } from "../..";
-import { Article } from "../../../.common/types";
+import { Article } from "../../../_common/types";
 
 export interface ArticlesScreenState {
   articles: Article[] | null;
