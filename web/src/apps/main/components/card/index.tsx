@@ -14,7 +14,8 @@ interface CardInfo {
   image: string;
   title: string;
   description: string;
-  link: string;
+  link?: string;
+  handleOpen: () => void;
   actionLabel: string;
 }
 
@@ -57,7 +58,7 @@ export const Card: FC<CardProps> = ({ info }) => {
           </CardContent>
           <CardActions>
             <LinkV2 href={info.link}>
-              <Button size="small" color="primary">
+              <Button onClick={info.handleOpen} size="small" color="primary">
                 {info.actionLabel}
               </Button>
             </LinkV2>

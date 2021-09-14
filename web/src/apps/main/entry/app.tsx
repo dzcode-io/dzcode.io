@@ -41,6 +41,10 @@ const routes: RouteInterface[] = [
     path: "/Contribute",
   },
   {
+    import: import("src/apps/main/pages/team"),
+    path: "/Team",
+  },
+  {
     import: import("src/apps/main/pages/not-found"),
   },
 ];
