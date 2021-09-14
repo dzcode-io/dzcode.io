@@ -7,15 +7,19 @@ import {
   GitHubUserApiResponse,
   ListContributorsResponse,
 } from "./types";
+import { GithubIssue, GithubUser } from "../.common/types";
 import { FetchService } from "../fetch/service";
-import { GithubIssue } from "../.common/types";
 import { Service } from "typedi";
 
 @Service()
 export class GithubService {
   constructor(private readonly fetchService: FetchService) {}
 
-  public listContributors = async ({ owner, repo, path }: GeneralGithubQuery) => {
+  public listContributors = async ({
+    owner,
+    repo,
+    path,
+  }: GeneralGithubQuery): Promise<GithubUser[]> => {
     const commits = await this.fetchService.get<ListContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repo}/commits`,
       {
@@ -25,7 +29,8 @@ export class GithubService {
       },
     );
     const contributors = commits
-      .filter((item) => item.committer !== undefined && item.committer !== null)
+      // excluding github.com/web-flow user
+      .filter((item) => item.committer && item.committer.id !== 19864447)
       .map(({ committer: { login, avatar_url, html_url, type, id } }) => ({
         id,
         login,
