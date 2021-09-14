@@ -156,3 +156,18 @@ export class FilterEntity {
   @Type(() => OptionEntity)
   options!: OptionEntity[];
 }
+
+export class ContributorEntity {
+  @IsString()
+  id!: string;
+
+  @IsString()
+  username!: string;
+
+  @IsString()
+  avatarUrl!: string;
+
+  @ValidateNested({ each: true })
+  @Type(() => RepositoryEntity)
+  repositories!: RepositoryEntity[];
+}
