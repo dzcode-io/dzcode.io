@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { ContributionEntity, FilterEntity, GithubUser } from ".";
+import { ContributionEntity, ContributorEntity, FilterEntity, GithubUser } from ".";
 import { IsNumber, IsObject, IsOptional, IsString } from "class-validator";
 import { Transform, TransformFnParams, Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
@@ -75,4 +75,10 @@ export class GetContributionsQueryDto {
   @Transform(transformFilterOptions)
   @Reflect.metadata("design:type", { name: "string" })
   labels: string[] = [];
+}
+
+export class GetTeamResponseDto extends GeneralResponseDto {
+  @ValidateNested({ each: true })
+  @Type(() => ContributorEntity)
+  contributors!: ContributorEntity[];
 }
