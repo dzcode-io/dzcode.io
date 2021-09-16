@@ -25,7 +25,7 @@ export class TeamRepository {
     );
 
     // we first store them in a Record (object with id as keys) so we can uniquify them easily
-    const contributorsRecord: Record<string, ContributorEntity & { commits: number }> = {};
+    const contributorsRecord: Record<string, ContributorEntity & { contributions: number }> = {};
 
     // get contributors from all the repos we have
     await Promise.all(
@@ -34,7 +34,7 @@ export class TeamRepository {
           owner,
           repo: repository,
         });
-        committers.forEach(({ avatar_url: avatarUrl, id, login }) => {
+        committers.forEach(({ avatar_url: avatarUrl, id, login, contributions }) => {
           const uuid = `${provider}/${id}`;
           // add new contributor if doesn't exists
           if (!contributorsRecord[uuid]) {
@@ -43,11 +43,11 @@ export class TeamRepository {
               avatarUrl,
               username: login,
               repositories: [{ provider, owner, repository }],
-              commits: 1,
+              contributions,
             };
           } else {
             // if exists, increment commit counts
-            contributorsRecord[uuid].commits++;
+            contributorsRecord[uuid].contributions += contributions;
             // add repository if doesn't exists
             if (
               !contributorsRecord[uuid].repositories.some(
@@ -62,9 +62,9 @@ export class TeamRepository {
     );
 
     return Object.keys(contributorsRecord)
-      .sort((a, b) => contributorsRecord[b].commits - contributorsRecord[a].commits) // sort contributors by their commits count
+      .sort((a, b) => contributorsRecord[b].contributions - contributorsRecord[a].contributions) // sort contributors by their commits count
       .map((id) => {
-        const { commits, ...contributor } = contributorsRecord[id];
+        const { contributions, ...contributor } = contributorsRecord[id];
         return contributor;
       });
   }
