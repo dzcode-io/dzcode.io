@@ -30,10 +30,9 @@ export class TeamRepository {
     // get contributors from all the repos we have
     await Promise.all(
       repositories.map(async ({ provider, owner, repository }) => {
-        const committers = await this.githubService.listContributors({
+        const committers = await this.githubService.listRepositoryContributors({
           owner,
           repo: repository,
-          path: "",
         });
         committers.forEach(({ avatar_url: avatarUrl, id, login }) => {
           const uuid = `${provider}/${id}`;
