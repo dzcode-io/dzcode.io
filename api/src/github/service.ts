@@ -76,7 +76,7 @@ export class GithubService {
   public listRepositoryContributors = async ({
     owner,
     repo,
-  }: Omit<GeneralGithubQuery, "path">): Promise<GithubUser[]> => {
+  }: Omit<GeneralGithubQuery, "path">): Promise<ListRepositoryContributorsResponse> => {
     const contributors = await this.fetchService.get<ListRepositoryContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repo}/contributors`,
       {
@@ -85,7 +85,7 @@ export class GithubService {
       },
     );
 
-    return contributors;
+    return contributors.filter(({ type }) => type === "User");
   };
 
   private apiURL = "https://api.github.com";

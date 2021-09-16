@@ -7,7 +7,7 @@ export type ListContributorsResponse = Array<{
   committer: GithubUser;
 }>;
 
-export type ListRepositoryContributorsResponse = GithubUser[];
+export type ListRepositoryContributorsResponse = Array<GithubUser & { contributions: number }>;
 
 export interface GeneralGithubQuery {
   owner: string;
