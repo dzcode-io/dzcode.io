@@ -34,7 +34,7 @@ function shuffleProjects(array: Project[]) {
  */
 export const fetchProjectsList = (): ThunkResult<ProjectsPageState> => async (dispatch) => {
   try {
-    const response = await Axios.get(dataURL + "/projects/list.c.json");
+    const response = await Axios.get<Project[]>(dataURL + "/projects/list.c.json");
     dispatch({
       type: "UPDATE_PROJECTS_PAGE",
       payload: { projectsList: shuffleProjects(response.data) },
