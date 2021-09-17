@@ -58,7 +58,7 @@ export const ContributorCard: FC<ContributorCardProps> = ({ contributor }) => {
               <SimpleDialog
                 repositories={contributor.repositories}
                 open={open}
-                onClose={() => setOpen(true)}
+                onClose={() => setOpen(false)}
               />
             )}
           </>
