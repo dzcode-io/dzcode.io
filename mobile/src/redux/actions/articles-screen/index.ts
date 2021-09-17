@@ -1,6 +1,7 @@
 import { Article } from "../../../_common/types";
 import { ArticlesScreenState } from "../../reducers/articles-screen";
 import { ThunkResult } from "../..";
+import { fetchV2 } from "../../../utils/fetch";
 import { fullstackConfig } from "../../../config";
 
 const dataURL = fullstackConfig.data.url;
@@ -15,12 +16,11 @@ export const fetchArticles = (): ThunkResult<ArticlesScreenState> => async (disp
     payload: { refreshing: true },
   });
   try {
-    const response = await fetch(`${dataURL}/articles/list.c.json`);
-    const json: Article[] = await response.json();
+    const articles = await fetchV2("data:articles/list.c.json", {});
     dispatch({
       type: "UPDATE_ARTICLES_SCREEN",
       payload: {
-        articles: json,
+        articles,
         refreshing: false,
       },
     });
