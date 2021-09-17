@@ -20,7 +20,15 @@ export const fetchV2 = async <
 
   const queryString = query ? "?" + query.map(([key, value]) => `${key}=${value}`).join("&") : "";
 
-  const [domain, url] = (endpoint as string).split(":", 2);
+  const domain = (endpoint as string).slice(0, (endpoint as string).indexOf(":"));
+  let url = (endpoint as string).slice(domain.length + 1);
+
+  if (params) {
+    Object.keys(params).forEach((param) => {
+      url = url.replace(`:${param}`, params[param]);
+    });
+  }
+
   let baseURL = "";
 
   switch (domain) {
