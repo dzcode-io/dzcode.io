@@ -9,7 +9,7 @@ npm-debug.*
 *.orig.*
 web-build/
 coverage
-src/.common
+src/_common
 
 # ignorin native code
 android/

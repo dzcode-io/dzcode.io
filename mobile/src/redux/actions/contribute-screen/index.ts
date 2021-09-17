@@ -1,10 +1,7 @@
 import { ContributeScreenState } from "../../reducers/contribute-screen";
 import Debounce from "debounce";
-import { GetContributionsResponseDto } from "../../../.common/types/api-responses";
 import { ThunkResult } from "../..";
-import { fullstackConfig } from "../../../config";
-
-const apiURL = fullstackConfig.api.url;
+import { fetchV2 } from "../../../utils/fetch";
 
 /**
  * @function fetchContributions
@@ -18,15 +15,13 @@ export const fetchContributions =
     });
     try {
       const { contributeScreen } = getState();
-      const query = contributeScreen.filters.reduce(
-        (query, filter) =>
-          `${query}${filter.name}=${filter.options
-            .filter(({ checked }) => checked)
-            .reduce((filterQuery, option) => `${filterQuery}${option.name},`, "")}&`,
-        "?",
-      );
-      const response = await fetch(apiURL + "/v2/Contributions" + query);
-      const { contributions, filters }: GetContributionsResponseDto = await response.json();
+      const query: [string, string][] = [];
+      contributeScreen.filters.forEach((filter) => {
+        filter.options.forEach((option) => {
+          if (option.checked) query.push([filter.name, option.name]);
+        });
+      });
+      const { contributions, filters } = await fetchV2("api:v2/Contributions", { query });
 
       const checkedFilters: Array<{
         filterName: string;

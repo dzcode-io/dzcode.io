@@ -1,11 +1,11 @@
 import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
 import React, { FC, memo } from "react";
 import { Colors } from "../../../styles/colors";
-import { ContributionEntity } from "../../../.common/types";
+import { ContributionEntity } from "../../../_common/types";
 import { FlatList } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { View } from "react-native";
-import { calculateDate } from "../../../.common/utils/calculate-date";
+import { calculateDate } from "../../../_common/utils/calculate-date";
 import { cardStyles } from "./styles";
 
 interface CardItemProps

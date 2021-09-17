@@ -10,7 +10,7 @@ coverage
 *.mobileprovision
 *.orig.*
 yarn.lock
-src/.common
+src/_common
 
 # ignorin native code
 android/
