@@ -90,8 +90,7 @@ const useStyles = makeStyles((theme) =>
       height: 40,
     },
     divider: {
-      marginTop: 4,
-      marginBottom: 4,
+      margin: 6,
     },
   }),
 );
