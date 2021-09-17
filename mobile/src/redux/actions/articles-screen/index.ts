@@ -1,16 +1,12 @@
-import { Article } from "../../../_common/types";
 import { ArticlesScreenState } from "../../reducers/articles-screen";
 import { ThunkResult } from "../..";
 import { fetchV2 } from "../../../utils/fetch";
-import { fullstackConfig } from "../../../config";
-
-const dataURL = fullstackConfig.data.url;
 
 /**
  * @function fetchArticles
  * @description Fetch articles from the server and pass them to the reducer
  */
-export const fetchArticles = (): ThunkResult<ArticlesScreenState> => async (dispatch, getState) => {
+export const fetchArticles = (): ThunkResult<ArticlesScreenState> => async (dispatch) => {
   dispatch({
     type: "UPDATE_ARTICLES_SCREEN",
     payload: { refreshing: true },
@@ -42,13 +38,12 @@ export const fetchArticle =
     });
     try {
       const { articles } = getState().articlesScreen;
-      const response = await fetch(`${dataURL}/articles/${slug}.json`);
-      const json: Article = await response.json();
-      // update only the found article
+      const article = await fetchV2(`data:articles/:slug.json`, { params: { slug } });
       dispatch({
         type: "UPDATE_ARTICLES_SCREEN",
         payload: {
-          articles: articles?.map((article) => (article.slug === slug ? json : article)),
+          // update only the found article
+          articles: articles?.map((a) => (a.slug === slug ? article : a)),
           refreshing: false,
         },
       });
