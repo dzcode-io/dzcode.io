@@ -1,5 +1,9 @@
+import {
+  GetContributionsResponseDto,
+  GetContributorsResponseDto,
+  GetUserResponseDto,
+} from "./api-responses";
 import { Article } from ".";
-import { GetContributionsResponseDto } from "./api-responses";
 
 export interface Endpoints {
   "data:articles/list.c.json": {
@@ -12,5 +16,13 @@ export interface Endpoints {
   "api:v2/Contributions": {
     response: GetContributionsResponseDto;
     query: [string, string][];
+  };
+  "api:v2/Contributors": {
+    response: GetContributorsResponseDto;
+    query: [["path", string]];
+  };
+  "api:v2/GithubUsers/:login": {
+    response: GetUserResponseDto;
+    params: { login: string };
   };
 }
