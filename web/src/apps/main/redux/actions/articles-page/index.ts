@@ -57,7 +57,14 @@ export const fetchCurrentArticleContributors =
     // update our page state
     dispatch({
       type: "UPDATE_ARTICLES_PAGE",
-      payload: { currentArticle: { ...mrCurrentArticle, contributors } },
+      payload: {
+        currentArticle: {
+          ...mrCurrentArticle,
+          contributors: contributors.filter(
+            ({ login }) => !mrCurrentArticle.authors?.includes(login),
+          ),
+        },
+      },
     });
     // update our cache state
     dispatch({
