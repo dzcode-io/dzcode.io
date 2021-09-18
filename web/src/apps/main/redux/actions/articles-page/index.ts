@@ -1,25 +1,18 @@
-import { GetContributorsResponseDto, GetUserResponseDto } from "src/_common/types/api-responses";
 import { Article } from "src/_common/types";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { ArticlesState } from "src/apps/main/redux/reducers/articles";
-import Axios from "axios";
 import { SidebarTreeItem } from "src/apps/main/types";
 import { ThunkResult } from "src/apps/main/redux";
-import { fullstackConfig } from "src/config";
+import { fetchV2 } from "src/common/utils/fetch";
 import { hasInCollection } from "src/common/utils";
-import { history } from "src/common/utils/history";
 import { listToTree } from "l2t";
-
-const dataURL = fullstackConfig.data.url;
-const apiURL = fullstackConfig.api.url;
 
 /**
  * Fetches the list of articles for the sidebar
  */
 export const fetchArticlesList = (): ThunkResult<ArticlesPageState> => async (dispatch) => {
   try {
-    const response = await Axios.get<Article[]>(dataURL + "/articles/list.c.json");
-    const articlesList = response.data;
+    const articlesList = await fetchV2("data:articles/list.c.json", {});
     const ids: string[] = [];
 
     // convert list into tree
@@ -55,15 +48,9 @@ export const fetchCurrentArticleContributors =
     const { currentArticle } = getState().articlesPage;
     if (!currentArticle || Array.isArray(currentArticle.contributors)) return;
 
-    const response = await Axios.get<GetContributorsResponseDto>(
-      apiURL + `/v2/contributors?path=articles/${currentArticle.slug}`,
-    );
-
-    if (response.data.hasOwnProperty("error")) {
-      throw Error("error_fetching_contributors");
-    }
-
-    const { contributors } = response.data;
+    const { contributors } = await fetchV2("api:v2/Contributors", {
+      query: [["path", `articles/${currentArticle.slug}`]],
+    });
 
     //  getting the  most recent  current article
     const mrCurrentArticle = getState().articlesPage.currentArticle || currentArticle;
@@ -91,11 +78,11 @@ const fetchCurrentArticleAuthors =
     const githubAuthors = (
       await Promise.all(
         currentArticle.authors?.map((author) => {
-          return Axios.get<GetUserResponseDto>(apiURL + `/v2/GithubUsers/${author}`);
+          return fetchV2("api:v2/GithubUsers/:login", { params: { login: author } });
         }) || [],
       )
     ).map((response) => {
-      return response.data.user;
+      return response.user;
     });
 
     //  getting the  most recent  current article
@@ -119,11 +106,11 @@ const fetchCurrentArticleAuthors =
  */
 export const fetchCurrentArticle =
   (): ThunkResult<ArticlesPageState | ArticlesState> => async (dispatch, getState) => {
-    const articleSlug = location.pathname
+    const slug = location.pathname
       .substring(location.pathname.indexOf("/", 1) + 1)
       .replace(/\/$/, "");
 
-    const cashedArticle = hasInCollection<Article>(getState().articles.list, "slug", articleSlug, [
+    const cashedArticle = hasInCollection<Article>(getState().articles.list, "slug", slug, [
       ["content"],
     ]);
     if (cashedArticle) {
@@ -144,13 +131,8 @@ export const fetchCurrentArticle =
       });
 
       try {
-        const response = await Axios.get<Article>(dataURL + `/articles/${articleSlug}.json`);
+        const currentArticle = await fetchV2(`data:articles/:slug.json`, { params: { slug } });
 
-        if (response.data.hasOwnProperty("error")) {
-          throw Error("article_not_found");
-        }
-
-        const currentArticle = response.data;
         // update our page state
         dispatch({
           type: "UPDATE_ARTICLES_PAGE",
@@ -166,9 +148,7 @@ export const fetchCurrentArticle =
         // Fetch contributors
         dispatch(fetchCurrentArticleContributors());
       } catch (error) {
-        if (error.message == "article_not_found") {
-          history.push("/Articles");
-        }
+        console.error(error);
       }
     }
   };
