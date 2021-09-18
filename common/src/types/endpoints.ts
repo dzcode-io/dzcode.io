@@ -2,6 +2,7 @@ import { Article, Document, Project } from ".";
 import {
   GetContributionsResponseDto,
   GetContributorsResponseDto,
+  GetTeamResponseDto,
   GetUserResponseDto,
 } from "./api-responses";
 
@@ -34,5 +35,8 @@ export interface Endpoints {
   "api:v2/GithubUsers/:login": {
     response: GetUserResponseDto;
     params: { login: string };
+  };
+  "api:v2/Team": {
+    response: GetTeamResponseDto;
   };
 }
