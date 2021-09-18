@@ -1,11 +1,7 @@
-import Axios from "axios";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
-import { GetContributionsResponseDto } from "src/_common/types/api-responses";
 import { ThunkResult } from "src/apps/main/redux";
 import debounce from "@material-ui/core/utils/debounce";
-import { fullstackConfig } from "src/config";
-
-const apiURL = fullstackConfig.api.url;
+import { fetchV2 } from "src/common/utils/fetch";
 
 /**
  * fetchContributions fetch an array from api and pass it to the store
@@ -18,16 +14,15 @@ export const fetchContributions =
     });
     try {
       const { contributePage } = getState();
-      const query = contributePage.filters.reduce(
-        (query, filter) =>
-          `${query}${filter.name}=${filter.options
-            .filter(({ checked }) => checked)
-            .reduce((filterQuery, option) => `${filterQuery}${option.name},`, "")}&`,
-        "?",
-      );
-      const {
-        data: { contributions, filters },
-      } = await Axios.get<GetContributionsResponseDto>(apiURL + "/v2/Contributions" + query);
+      const query: [string, string][] = [];
+      contributePage.filters.forEach((filter) => {
+        filter.options.forEach((option) => {
+          if (option.checked) query.push([filter.name, option.name]);
+        });
+      });
+
+      const { contributions, filters } = await fetchV2("api:v2/Contributions", { query });
+
       // restore filters states:
       const checkedFilters: Array<{
         filterName: string;
