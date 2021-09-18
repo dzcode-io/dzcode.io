@@ -1,4 +1,4 @@
-import { Article, Document } from ".";
+import { Article, Document, Project } from ".";
 import {
   GetContributionsResponseDto,
   GetContributorsResponseDto,
@@ -19,6 +19,9 @@ export interface Endpoints {
   "data:documentation/:slug.json": {
     response: Document;
     params: { slug: string };
+  };
+  "data:projects/list.c.json": {
+    response: Pick<Project, "title" | "description" | "image" | "githubURI">[];
   };
   "api:v2/Contributions": {
     response: GetContributionsResponseDto;

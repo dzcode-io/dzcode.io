@@ -29,7 +29,7 @@ export const Catalog: FC<CatalogProps> = ({ projectsList }) => {
       <Typography variant="h4" className={classes.header}>
         Open Source Projects
       </Typography>
-      <Grid container className={classes.root} spacing={4}>
+      <Grid container className={classes.root} spacing={4} justifyContent="space-around">
         {projectsList
           ? projectsList.map((project: Project) => (
               <Grid key={`project-${project.slug}`} item xs={12} md={6} lg={4}>
