@@ -1,4 +1,4 @@
-import { GithubUser } from "../src/.common/types";
+import { GithubUser } from "../src/_common/types";
 
 export const githubUserMock: GithubUser = {
   avatar_url: "avatar_url", // eslint-disable-line camelcase

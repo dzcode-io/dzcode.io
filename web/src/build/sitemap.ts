@@ -1,7 +1,7 @@
 import { SitemapStream } from "sitemap";
 import { createWriteStream } from "fs";
 const distFolder = "./dist";
-import { getDataCollection } from "../.common/utils/data";
+import { getDataCollection } from "../_common/utils/data";
 import { join } from "path";
 
 // Static URLs

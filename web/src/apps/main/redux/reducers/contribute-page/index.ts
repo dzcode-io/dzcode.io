@@ -1,4 +1,4 @@
-import { ContributionEntity, FilterEntity } from "src/.common/types";
+import { ContributionEntity, FilterEntity } from "src/_common/types";
 import { Action } from "src/apps/main/redux";
 
 export interface ContributePageState {

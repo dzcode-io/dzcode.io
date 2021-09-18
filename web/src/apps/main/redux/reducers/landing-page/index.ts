@@ -1,4 +1,4 @@
-import { Article, Project } from "src/.common/types";
+import { Article, Project } from "src/_common/types";
 
 import { Action } from "src/apps/main/redux";
 
