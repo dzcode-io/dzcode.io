@@ -3,7 +3,7 @@ import { Article, Project } from "src/_common/types";
 import { Action } from "src/apps/main/redux";
 
 export interface LandingPageState {
-  topProjects: Project[] | null;
+  topProjects: Pick<Project, "title" | "description" | "image" | "githubURI">[] | null;
   topArticles: Article[] | null;
 }
 
