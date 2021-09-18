@@ -22,12 +22,14 @@ import { init } from "../redux/actions/general";
 
 const env = getEnv();
 
-Sentry.init({
-  dsn: "https://aa3f0c7f4b234747a706fb60d84a190d@o953637.ingest.sentry.io/5904343",
-  enableInExpoDevelopment: true,
-  environment: env,
-  debug: env === "development",
-});
+if (env !== "development") {
+  Sentry.init({
+    dsn: "https://aa3f0c7f4b234747a706fb60d84a190d@o953637.ingest.sentry.io/5904343",
+    enableInExpoDevelopment: true,
+    environment: env,
+    debug: env === "staging",
+  });
+}
 
 // define combined default theme
 const CombinedDefaultTheme: PT & NT = {

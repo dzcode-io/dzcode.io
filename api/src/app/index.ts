@@ -19,11 +19,14 @@ import router from "./routes/api";
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
-Sentry.init({
-  dsn: "https://5f9d7ae6e98944e1815f8d1944fc3c12@o953637.ingest.sentry.io/5904452",
-  tracesSampleRate: 1.0,
-  environment: NODE_ENV,
-});
+if (NODE_ENV !== "development") {
+  Sentry.init({
+    dsn: "https://5f9d7ae6e98944e1815f8d1944fc3c12@o953637.ingest.sentry.io/5904452",
+    tracesSampleRate: 1.0,
+    environment: NODE_ENV,
+    debug: NODE_ENV === "staging",
+  });
+}
 
 // Use typedi container
 useContainer(Container);
