@@ -1,7 +1,7 @@
 import { Project } from "src/_common/types";
 
 export interface ProjectsPageState {
-  projectsList: Project[] | null;
+  projectsList: Pick<Project, "title" | "description" | "image" | "githubURI">[] | null;
 }
 
 export const projectsPage = (
