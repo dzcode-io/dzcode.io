@@ -1,5 +1,5 @@
 dist
-src/.common
+src/_common
 coverage
 oracle-cloud/build
 fetch_cache

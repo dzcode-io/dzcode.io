@@ -1,5 +1,5 @@
-import { GetContributorsResponseDto, GetUserResponseDto } from "src/.common/types/api-responses";
-import { Article } from "src/.common/types";
+import { GetContributorsResponseDto, GetUserResponseDto } from "src/_common/types/api-responses";
+import { Article } from "src/_common/types";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { ArticlesState } from "src/apps/main/redux/reducers/articles";
 import Axios from "axios";

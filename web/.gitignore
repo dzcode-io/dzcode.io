@@ -20,4 +20,4 @@ node_modules/
 
 #
 dist
-src/.common
+src/_common

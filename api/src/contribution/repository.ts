@@ -1,8 +1,8 @@
-import { ContributionEntity, FilterEntity, OptionEntity, ProjectEntity } from "../.common/types";
-import { GetContributionsResponseDto } from "../.common/types/api-responses";
+import { ContributionEntity, FilterEntity, OptionEntity, ProjectEntity } from "../_common/types";
+import { GetContributionsResponseDto } from "../_common/types/api-responses";
 import { GithubService } from "../github/service";
 import { Service } from "typedi";
-import { getDataCollection } from "../.common/utils/data";
+import { getDataCollection } from "../_common/utils/data";
 import { join } from "path";
 
 @Service()

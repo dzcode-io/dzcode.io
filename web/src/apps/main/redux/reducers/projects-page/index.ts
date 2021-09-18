@@ -1,4 +1,4 @@
-import { Project } from "src/.common/types";
+import { Project } from "src/_common/types";
 
 export interface ProjectsPageState {
   projectsList: Project[] | null;

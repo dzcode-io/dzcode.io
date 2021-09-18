@@ -2,7 +2,7 @@ node_modules/
 coverage
 firebase
 dist
-src/.common
+src/_common
 *.prettierignore
 *.tsbuildinfo
 

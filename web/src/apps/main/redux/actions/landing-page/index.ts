@@ -1,4 +1,4 @@
-import { Article, Project } from "src/.common/types";
+import { Article, Project } from "src/_common/types";
 
 import Axios from "axios";
 import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";

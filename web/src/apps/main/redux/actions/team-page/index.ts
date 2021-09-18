@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { GetTeamResponseDto } from "src/.common/types/api-responses";
+import { GetTeamResponseDto } from "src/_common/types/api-responses";
 import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
 import { ThunkResult } from "src/apps/main/redux";
 import { fullstackConfig } from "src/config";

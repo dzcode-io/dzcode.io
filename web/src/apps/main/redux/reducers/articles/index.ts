@@ -1,5 +1,5 @@
 import { Action } from "src/apps/main/redux";
-import { Article } from "src/.common/types";
+import { Article } from "src/_common/types";
 import { updateCollection } from "src/common/utils";
 
 export interface ArticlesState {
