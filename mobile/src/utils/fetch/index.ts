@@ -1,4 +1,4 @@
-import { Endpoints } from "./endpoints";
+import { Endpoints } from "../../_common/types/endpoints";
 import { fullstackConfig } from "../../config";
 
 interface Endpoint {
