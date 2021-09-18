@@ -56,7 +56,14 @@ const fetchCurrentDocumentContributors =
     // update our page state
     dispatch({
       type: "UPDATE_LEARN_PAGE",
-      payload: { currentDocument: { ...mrCurrentDocument, contributors } },
+      payload: {
+        currentDocument: {
+          ...mrCurrentDocument,
+          contributors: contributors.filter(
+            ({ login }) => !mrCurrentDocument.authors?.includes(login),
+          ),
+        },
+      },
     });
     // update our cache state
     dispatch({
