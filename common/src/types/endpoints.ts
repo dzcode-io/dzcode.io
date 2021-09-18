@@ -1,5 +1,5 @@
-import { Article } from "../../_common/types";
-import { GetContributionsResponseDto } from "../../_common/types/api-responses";
+import { Article } from ".";
+import { GetContributionsResponseDto } from "./api-responses";
 
 export interface Endpoints {
   "data:articles/list.c.json": {
