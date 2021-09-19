@@ -1,7 +1,7 @@
 node_modules/
 coverage
 dist
-src/.common
+src/_common
 firebase
 
 .*

@@ -1,4 +1,4 @@
-import { Environment } from "../.common/types";
+import { Environment } from "../_common/types";
 import { Matches } from "class-validator";
 
 const environment: Environment[] = ["development", "staging", "production"];

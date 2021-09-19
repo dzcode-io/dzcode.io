@@ -1,28 +1,21 @@
-import { GetContributorsResponseDto, GetUserResponseDto } from "src/.common/types/api-responses";
-import Axios from "axios";
-import { Document } from "src/.common/types";
+import { Document } from "src/_common/types";
 import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import { SidebarTreeItem } from "src/apps/main/types";
 import { ThunkResult } from "src/apps/main/redux";
-import { fullstackConfig } from "src/config";
+import { fetchV2 } from "src/common/utils/fetch";
 import { hasInCollection } from "src/common/utils";
-import { history } from "src/common/utils/history";
 import { listToTree } from "l2t";
-
-const dataURL = fullstackConfig.data.url;
-const apiURL = fullstackConfig.api.url;
 
 /**
  * Fetches the list of documents for the sidebar
  */
 export const fetchDocumentationList = (): ThunkResult<LearnPageState> => async (dispatch) => {
   try {
-    const response = await Axios.get<Document[]>(dataURL + "/documentation/list.c.json");
-    const documentationList = response.data;
+    const documentationList = await fetchV2("data:documentation/list.c.json", {});
     const ids: string[] = [];
     // convert list into tree
-    const tree = listToTree<Document, SidebarTreeItem>(
+    const tree = listToTree<typeof documentationList[0], SidebarTreeItem>(
       documentationList,
       (item) => item.slug,
       (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
@@ -55,21 +48,22 @@ const fetchCurrentDocumentContributors =
 
     if (!currentDocument || Array.isArray(currentDocument.contributors)) return;
 
-    const response = await Axios.get<GetContributorsResponseDto>(
-      apiURL + `/v2/contributors?path=documentation/${currentDocument.slug}`,
-    );
-
-    if (response.data.hasOwnProperty("error")) {
-      throw Error("error_fetching_contributors");
-    }
-
-    const { contributors } = response.data;
+    const { contributors } = await fetchV2("api:v2/Contributors", {
+      query: [["path", `documentation/${currentDocument.slug}`]],
+    });
 
     const mrCurrentDocument = getState().learnPage.currentDocument || currentDocument;
     // update our page state
     dispatch({
       type: "UPDATE_LEARN_PAGE",
-      payload: { currentDocument: { ...mrCurrentDocument, contributors } },
+      payload: {
+        currentDocument: {
+          ...mrCurrentDocument,
+          contributors: contributors.filter(
+            ({ login }) => !mrCurrentDocument.authors?.includes(login),
+          ),
+        },
+      },
     });
     // update our cache state
     dispatch({
@@ -90,14 +84,14 @@ const fetchCurrentDocumentAuthors =
     const githubAuthors = (
       await Promise.all(
         currentDocument.authors?.map((author) => {
-          return Axios.get<GetUserResponseDto>(apiURL + `/v2/GithubUsers/${author}`);
+          return fetchV2("api:v2/GithubUsers/:login", { params: { login: author } });
         }) || [],
       )
     ).map((response) => {
-      return response.data.user;
+      return response.user;
     });
 
-    //  getting the  most recent  current article
+    //  getting the  most recent  current document
     const mrCurrentDocument = getState().learnPage.currentDocument || currentDocument;
 
     // update our page state
@@ -118,15 +112,12 @@ const fetchCurrentDocumentAuthors =
  */
 export const fetchCurrentDocument =
   (): ThunkResult<LearnPageState | DocumentationState> => async (dispatch, getState) => {
-    const documentSlug = location.pathname
+    const slug = location.pathname
       .substring(location.pathname.indexOf("/", 1) + 1)
       .replace(/\/$/, "");
-    const cashedDocument = hasInCollection<Document>(
-      getState().documentation.list,
-      "slug",
-      documentSlug,
-      [["content"]],
-    );
+    const cashedDocument = hasInCollection<Document>(getState().documentation.list, "slug", slug, [
+      ["content"],
+    ]);
     if (cashedDocument) {
       // update our page state
       dispatch({
@@ -143,13 +134,10 @@ export const fetchCurrentDocument =
         payload: { currentDocument: null },
       });
       try {
-        const response = await Axios.get(dataURL + `/documentation/${documentSlug}.json`);
+        const currentDocument = await fetchV2(`data:documentation/:slug.json`, {
+          params: { slug },
+        });
 
-        if (response.data.hasOwnProperty("error")) {
-          throw Error("learn_not_found");
-        }
-
-        const currentDocument = response.data;
         // update our page state
         dispatch({
           type: "UPDATE_LEARN_PAGE",
@@ -165,9 +153,7 @@ export const fetchCurrentDocument =
         // Fetch contributors
         dispatch(fetchCurrentDocumentContributors());
       } catch (error) {
-        if (error.message == "learn_not_found") {
-          history.push("/Learn");
-        }
+        console.error(error);
       }
     }
   };

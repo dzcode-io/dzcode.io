@@ -1,5 +1,5 @@
-import { Endpoints } from "../../_common/types/endpoints";
-import { fullstackConfig } from "../../config";
+import { Endpoints } from "src/_common/types/endpoints";
+import { fullstackConfig } from "src/config";
 
 interface Endpoint {
   params?: Record<string, string>;

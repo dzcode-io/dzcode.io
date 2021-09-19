@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import config from "./app-config";
-import { getDataCollection } from "../../../.common/utils/data";
+import { getDataCollection } from "../../../_common/utils/data";
 import { join } from "path";
 
 const app = { ...config, name: "main" };

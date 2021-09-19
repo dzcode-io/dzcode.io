@@ -1,6 +1,6 @@
 import { ExpressErrorMiddlewareInterface, Middleware } from "routing-controllers";
 import { ErrorRequestHandler } from "express";
-import { GeneralResponseDto } from "../../.common/types/api-responses";
+import { GeneralResponseDto } from "../../_common/types/api-responses";
 import { LoggerService } from "../../logger/service";
 import { Service } from "typedi";
 

@@ -15,7 +15,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     "node_modules",
     "dist",
-    "src/.common",
+    "src/_common",
     "src/app/index.ts",
     // temporarily until we migrate all endpoints to v2
     "src/app/controllers",

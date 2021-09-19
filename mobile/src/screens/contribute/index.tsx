@@ -1,6 +1,6 @@
 import { Checkbox, FAB, List, Text } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../redux";
-import { FlatList, Image, Linking, ScrollView, View } from "react-native";
+import { FlatList, Image, Linking, SafeAreaView, ScrollView, View } from "react-native";
 import React, { FC, useEffect, useState } from "react";
 import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +24,7 @@ export const ContributeScreen: FC = () => {
 
   return (
     // main view
-    <View style={globalStyles.mainView}>
+    <SafeAreaView style={globalStyles.mainView}>
       {contributions ? (
         // Cards
         contributions.length > 0 ? (
@@ -115,6 +115,6 @@ export const ContributeScreen: FC = () => {
           />
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 };

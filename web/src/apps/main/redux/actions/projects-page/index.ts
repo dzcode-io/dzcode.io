@@ -1,15 +1,11 @@
-import Axios from "axios";
-import { Project } from "src/.common/types";
 import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
 import { ThunkResult } from "src/apps/main/redux";
-import { fullstackConfig } from "src/config";
-
-const dataURL = fullstackConfig.data.url;
+import { fetchV2 } from "src/common/utils/fetch";
 
 /**
  * shuffleProjects randomize the order of a projects array
  */
-function shuffleProjects(array: Project[]) {
+const shuffleProjects = <T>(array: T[]) => {
   let currentIndex = array.length,
     temporaryValue,
     randomIndex;
@@ -27,17 +23,17 @@ function shuffleProjects(array: Project[]) {
   }
 
   return array;
-}
+};
 
 /**
  * fetchProjectsList fetch an array from data api and pass it to the store
  */
 export const fetchProjectsList = (): ThunkResult<ProjectsPageState> => async (dispatch) => {
   try {
-    const response = await Axios.get<Project[]>(dataURL + "/projects/list.c.json");
+    const projectsList = await fetchV2("data:projects/list.c.json", {});
     dispatch({
       type: "UPDATE_PROJECTS_PAGE",
-      payload: { projectsList: shuffleProjects(response.data) },
+      payload: { projectsList: shuffleProjects(projectsList) },
     });
   } catch (error) {
     console.error(error);

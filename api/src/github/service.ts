@@ -8,7 +8,7 @@ import {
   ListContributorsResponse,
   ListRepositoryContributorsResponse,
 } from "./types";
-import { GithubIssue, GithubUser } from "../.common/types";
+import { GithubIssue, GithubUser } from "../_common/types";
 import { FetchService } from "../fetch/service";
 import { Service } from "typedi";
 

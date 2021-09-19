@@ -13,6 +13,6 @@ module.exports = {
     "^.+\\.(ts|tsx|js|jsx)?$": "ts-jest",
   },
   transformIgnorePatterns: ["node_modules/(?!react-syntax-highlighter)"],
-  coveragePathIgnorePatterns: ["node_modules", "dist", "src/.common"],
+  coveragePathIgnorePatterns: ["node_modules", "dist", "src/_common"],
   modulePaths: ["<rootDir>"],
 };

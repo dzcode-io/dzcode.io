@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "dzCode.io api code",
   "scripts": {
-    "common:sync": "rimraf ./src/.common && syncdir ../common/src ./src/.common -c",
+    "common:sync": "rimraf ./src/_common && syncdir ../common/src ./src/_common -c",
     "common:sync:watch": "yarn common:sync --watch",
     "lint:check": "yarn prettier:check && yarn eslint:check",
     "lint:fix": "yarn prettier:fix && yarn eslint:fix",
