@@ -6,7 +6,7 @@ import { Catalog } from "./catalog";
 import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
 import { fetchTeamList } from "src/apps/main/redux/actions/team-page";
 
-export const ProjectsPage: FC = () => {
+export const TeamPage: FC = () => {
   const { teamList } = useSelector<StateInterface, TeamPageState>((state) => state.teamPage);
   const dispatch = useDispatch<Dispatch<TeamPageState>>();
 
@@ -20,4 +20,5 @@ export const ProjectsPage: FC = () => {
     </div>
   );
 };
-export default ProjectsPage;
+
+export default TeamPage;

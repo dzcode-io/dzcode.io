@@ -1,9 +1,9 @@
 import { Dispatch, StateInterface } from "src/apps/main/redux";
-import { FC, useState } from "react";
+import { FC, Fragment, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
-
+import Divider from "@material-ui/core/Divider";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
@@ -89,6 +89,9 @@ const useStyles = makeStyles((theme) =>
       maxWidth: "100px",
       height: 40,
     },
+    divider: {
+      margin: 6,
+    },
   }),
 );
 
@@ -166,15 +169,15 @@ export const Navbar: FC = () => {
           </Hidden>
 
           {navbarComponent.sections
-            ? navbarComponent.sections.map((section) => (
-                <LinkV2
-                  color="inherit"
-                  key={section.title}
-                  href={section.url}
-                  className={classes.toolbarLink}
-                >
-                  {section.title}
-                </LinkV2>
+            ? navbarComponent.sections.map((section, index) => (
+                <Fragment key={section.title}>
+                  {index > 0 && (
+                    <Divider className={classes.divider} orientation="vertical" flexItem />
+                  )}
+                  <LinkV2 color="inherit" href={section.url} className={classes.toolbarLink}>
+                    {section.title}
+                  </LinkV2>
+                </Fragment>
               ))
             : null}
         </Grid>

@@ -1,7 +1,7 @@
-import { FC, useState } from "react";
-import Card from "@material-ui/core/Card";
-import { Contributor } from "src/apps/main/components/contributors";
+import { ContributorCard } from "src/apps/main/components/contributor-card";
+import { FC } from "react";
 import Grid from "@material-ui/core/Grid";
+import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -18,14 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface CatalogProps {
-  teamList:
-    | {
-        id: string;
-        username: string;
-        avatarUrl: string;
-        repositories: { provider: string; owner: string; repository: string }[];
-      }[]
-    | null;
+  teamList: TeamPageState["teamList"];
 }
 
 export const Catalog: FC<CatalogProps> = ({ teamList }) => {
@@ -34,25 +27,18 @@ export const Catalog: FC<CatalogProps> = ({ teamList }) => {
   return (
     <>
       <Typography variant="h4" className={classes.header}>
-        Our Team
+        Say Hi to the team 💻
       </Typography>
-      <Grid container className={classes.root} spacing={4}>
+      <Grid container className={classes.root} spacing={4} justifyContent="space-around">
         {teamList
-          ? teamList.map(
-              (contributor: {
-                id: string;
-                username: string;
-                avatarUrl: string;
-                repositories: { provider: string; owner: string; repository: string }[];
-              }) => (
-                <Grid key={`contributor-${contributor.id}`} item xs={12} md={6} lg={4}>
-                  <Contributor contributor={contributor} />
-                </Grid>
-              ),
-            )
-          : [1, 2, 3].map((id) => (
+          ? teamList.map((contributor) => (
+              <Grid key={`contributor-${contributor.id}`} item>
+                <ContributorCard contributor={contributor} />
+              </Grid>
+            ))
+          : [1, 2, 3, 4].map((id) => (
               <Grid key={`contributor-${id}`} item>
-                <Card />
+                <ContributorCard />
               </Grid>
             ))}
       </Grid>

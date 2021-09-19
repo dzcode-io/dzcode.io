@@ -1,10 +1,7 @@
-import { FC, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
-import { Card } from "src/apps/main/components/card";
+import { FC } from "react";
 import { GithubUser } from "src/.common/types";
 import { LinkV2 } from "src/components/link-v2";
-import { Project } from "src/.common/types";
-import { SimpleDialog } from "src/apps/main/components/dialog";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
@@ -57,44 +54,5 @@ export const Contributors: FC<ContributorsProps> = ({ contributors }) => {
             ))}
       </div>
     </div>
-  );
-};
-
-interface ContributorProps {
-  contributor: {
-    id: string;
-    username: string;
-    avatarUrl: string;
-    repositories: { provider: string; owner: string; repository: string }[];
-  };
-}
-
-export const Contributor: FC<ContributorProps> = ({ contributor }) => {
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <>
-      <Card
-        info={{
-          image: contributor.avatarUrl,
-          title: contributor.username,
-          description: "",
-          actionLabel: "Contributions",
-          handleOpen: handleOpen,
-        }}
-      />
-
-      {open && (
-        <SimpleDialog repositories={contributor.repositories} open={open} onClose={handleClose} />
-      )}
-    </>
   );
 };
