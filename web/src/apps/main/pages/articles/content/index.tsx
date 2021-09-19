@@ -5,7 +5,7 @@ import { FC, useEffect } from "react";
 import { SpeedDial, SpeedDialAction } from "src/apps/main/components/speed-dial";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { Article } from "src/.common/types";
+import { Article } from "src/_common/types";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { Authors } from "src/apps/main/components/authors";
 import { Contributors } from "src/apps/main/components/contributors";

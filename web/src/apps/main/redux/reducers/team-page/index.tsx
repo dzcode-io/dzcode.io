@@ -1,5 +1,5 @@
 import { Action } from "src/apps/main/redux";
-import { GetTeamResponseDto } from "src/.common/types/api-responses";
+import { GetTeamResponseDto } from "src/_common/types/api-responses";
 
 export interface TeamPageState {
   teamList: GetTeamResponseDto["contributors"] | null;

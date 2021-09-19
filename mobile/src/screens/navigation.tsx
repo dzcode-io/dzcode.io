@@ -12,6 +12,47 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const { Navigator, Screen } = createDrawerNavigator();
 
+interface Route {
+  name: string;
+  title: string;
+  label: string;
+  component: React.ComponentType;
+}
+
+const routes: Route[] = [
+  { name: "home", title: "Welcome to DzCode i/o", label: "Home", component: HomeScreen },
+  {
+    name: "contribute",
+    title: "Contribution Gallery",
+    label: "Contribute",
+    component: ContributeScreen,
+  },
+  {
+    name: "learn",
+    title: "Read & Learn",
+    label: "Learn",
+    component: LearnScreen,
+  },
+  {
+    name: "projects",
+    title: "Projects Gallery",
+    label: "DZ Open-Source Projects",
+    component: ProjectsScreen,
+  },
+  {
+    name: "articles",
+    title: "Articles",
+    label: "Read Articles",
+    component: ArticlesStack,
+  },
+  {
+    name: "faq",
+    title: "Frequently Asked Questions",
+    label: "Have a Question?",
+    component: FAQScreen,
+  },
+];
+
 export const Navigation: FC = () => {
   return (
     <Navigator
@@ -19,25 +60,21 @@ export const Navigation: FC = () => {
       drawerType="back"
       screenOptions={{
         headerShown: true,
-        /* eslint-disable react/display-name */
+        // eslint-disable-next-line react/display-name
         header: (props) => (
           <AppBar
-            title={props.scene.route.name}
+            title={routes.find(({ name }) => name === props.scene.route.name)?.title || ""}
             openDrawer={() =>
               props.scene.descriptor.navigation.dispatch(DrawerActions.openDrawer())
             }
           />
         ),
-        /* eslint-enable react/prop-types, react/display-name */
       }}
       drawerContent={(props) => <DrawerContent {...props} />}
     >
-      <Screen name="home" component={HomeScreen} />
-      <Screen name="contribute" component={ContributeScreen} />
-      <Screen name="learn" component={LearnScreen} />
-      <Screen name="projects" component={ProjectsScreen} />
-      <Screen name="articles" component={ArticlesStack} />
-      <Screen name="faq" component={FAQScreen} />
+      {routes.map(({ name, component, label }) => (
+        <Screen key={name} name={name} component={component} options={{ title: label }} />
+      ))}
     </Navigator>
   );
 };

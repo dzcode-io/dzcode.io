@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import { GithubUser } from "../.common/types";
+import { GithubUser } from "../_common/types";
 
 export type ListContributorsResponse = Array<{
   author: GithubUser;

@@ -1,7 +1,7 @@
-import { ContributorEntity, ProjectEntity, RepositoryEntity } from "../.common/types";
+import { ContributorEntity, ProjectEntity, RepositoryEntity } from "../_common/types";
 import { GithubService } from "../github/service";
 import { Service } from "typedi";
-import { getDataCollection } from "../.common/utils/data";
+import { getDataCollection } from "../_common/utils/data";
 import { join } from "path";
 
 @Service()

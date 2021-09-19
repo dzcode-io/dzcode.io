@@ -1,4 +1,4 @@
-import { ContributionEntity, FilterEntity, OptionEntity } from "../.common/types";
+import { ContributionEntity, FilterEntity, OptionEntity } from "../_common/types";
 import { lorem } from "faker";
 
 export const generateContributionMock = (index: number): ContributionEntity => {

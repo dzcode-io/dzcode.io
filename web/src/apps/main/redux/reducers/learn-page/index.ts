@@ -1,5 +1,5 @@
 import { Action } from "src/apps/main/redux";
-import { Document } from "src/.common/types";
+import { Document } from "src/_common/types";
 import { SidebarTreeItem } from "src/apps/main/types";
 
 export interface LearnPageState {

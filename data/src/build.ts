@@ -1,4 +1,4 @@
-import { getDataCollection, getDataEntry } from "./.common/utils/data";
+import { getDataCollection, getDataEntry } from "./_common/utils/data";
 import fse from "fs-extra";
 import glob from "glob";
 import { join } from "path";
