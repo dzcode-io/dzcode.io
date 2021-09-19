@@ -6,6 +6,7 @@ import {
   GitHubListRepositoryLanguagesInput,
   GitHubUserApiResponse,
   ListContributorsResponse,
+  ListRepositoryContributorsResponse,
 } from "./types";
 import { GithubIssue, GithubUser } from "../.common/types";
 import { FetchService } from "../fetch/service";
@@ -70,6 +71,21 @@ export class GithubService {
       `${this.apiURL}/repos/${owner}/${repo}/languages`,
     );
     return Object.keys(languages);
+  };
+
+  public listRepositoryContributors = async ({
+    owner,
+    repo,
+  }: Omit<GeneralGithubQuery, "path">): Promise<ListRepositoryContributorsResponse> => {
+    const contributors = await this.fetchService.get<ListRepositoryContributorsResponse>(
+      `${this.apiURL}/repos/${owner}/${repo}/contributors`,
+      {
+        state: "all",
+        per_page: 100,
+      },
+    );
+
+    return contributors.filter(({ type }) => type === "User");
   };
 
   private apiURL = "https://api.github.com";

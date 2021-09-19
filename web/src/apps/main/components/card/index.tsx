@@ -15,7 +15,6 @@ interface CardInfo {
   title: string;
   description: string;
   link?: string;
-  handleOpen: () => void;
   actionLabel: string;
 }
 
@@ -44,12 +43,12 @@ const useStyles = makeStyles((theme) => ({
 export const Card: FC<CardProps> = ({ info }) => {
   const classes = useStyles();
   return (
-    <MuiCard className={classes.root}>
+    <MuiCard className={classes.root} variant="outlined">
       {info ? (
         <>
           <CardMedia className={classes.media} image={info.image} title={info.title} />
           <CardContent className={classes.content}>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h6">
               {info.title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
@@ -58,7 +57,7 @@ export const Card: FC<CardProps> = ({ info }) => {
           </CardContent>
           <CardActions>
             <LinkV2 href={info.link}>
-              <Button onClick={info.handleOpen} size="small" color="primary">
+              <Button size="small" color="primary">
                 {info.actionLabel}
               </Button>
             </LinkV2>
