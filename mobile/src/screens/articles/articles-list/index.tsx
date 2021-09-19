@@ -1,6 +1,6 @@
 import { Button, Divider } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../../redux";
-import { FlatList, View } from "react-native";
+import { FlatList, SafeAreaView, View } from "react-native";
 import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
@@ -25,7 +25,7 @@ export const ArticlesListScreen: FC = () => {
 
   return (
     // main view
-    <View style={globalStyles.mainView}>
+    <SafeAreaView style={globalStyles.mainView}>
       {articles ? (
         <FlatList
           data={articles}
@@ -53,6 +53,6 @@ export const ArticlesListScreen: FC = () => {
           <DZCodeLoading />
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 };

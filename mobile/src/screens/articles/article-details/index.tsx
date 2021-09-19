@@ -1,5 +1,5 @@
 import { Dispatch, StateInterface } from "../../../redux";
-import { Image, ScrollView, View } from "react-native";
+import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Article } from "../../../_common/types";
@@ -36,7 +36,7 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   }, []);
 
   return (
-    <View style={globalStyles.mainView}>
+    <SafeAreaView style={globalStyles.mainView}>
       {refreshing ? (
         <View style={globalStyles.centerView}>
           <DZCodeLoading />
@@ -82,6 +82,6 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
           </Text>
         </ScrollView>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
