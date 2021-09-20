@@ -1,3 +1,4 @@
 {
-  "watch": ["dist", ".env"]
+  "watch": ["dist", ".env"],
+  "delay": 1000
 }
