@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { SafeAreaView, View, ScrollView } from "react-native";
+import { SafeAreaView, View, ScrollView, Linking } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Text, List } from "react-native-paper";
 import { globalStyles } from "../../styles/global";
 import { faqStyles } from "./styles";
@@ -9,7 +10,9 @@ import { StateInterface } from "../../redux";
 import Markdown from "react-native-markdown-display";
 
 export const FAQScreen: FC = () => {
+  const navigation = useNavigation();
   const { faqData } = useSelector<StateInterface, FaqScreenState>((state) => state.faqScreen);
+
   return (
     // main view
     <SafeAreaView style={globalStyles.mainView}>
@@ -23,6 +26,15 @@ export const FAQScreen: FC = () => {
                   <Markdown
                     style={{
                       body: faqStyles.description,
+                    }}
+                    onLinkPress={(url) => {
+                      if (url.startsWith("http")) {
+                        Linking.openURL(url);
+                        return true;
+                      } else {
+                        navigation.navigate(url);
+                        return true;
+                      }
                     }}
                   >
                     {answer}
