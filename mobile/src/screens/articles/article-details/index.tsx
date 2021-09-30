@@ -1,6 +1,7 @@
 import { Dispatch, StateInterface } from "../../../redux";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import React, { FC, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { Article } from "../../../_common/types";
 import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
@@ -12,6 +13,7 @@ import { Text } from "react-native-paper";
 import { articleDetailsStyles } from "./styles";
 import { fetchArticle } from "../../../redux/actions/articles-screen";
 import { globalStyles } from "../../../styles/global";
+import { openLink } from "../../../utils/link";
 
 interface ArticleDetailsScreenProps {
   route: Route<"ArticleDetails", RouteParams>;
@@ -30,6 +32,8 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
   const dispatch = useDispatch<Dispatch<ArticlesScreenState>>();
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(fetchArticle(route.params.article.slug));
@@ -70,7 +74,10 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
               },
               body: articleDetailsStyles.mdBody,
             }}
-            onLinkPress={() => true}
+            onLinkPress={(url) => {
+              openLink(url, navigation);
+              return true;
+            }}
           >
             {articles?.find((article) => article.slug === route.params.article.slug)?.content || ""}
           </Markdown>
