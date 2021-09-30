@@ -1,4 +1,10 @@
-import { FAQData } from "../../../_common/web";
+export type FAQData = Array<{
+  title: string;
+  questions: Array<{
+    question: string;
+    answer: string;
+  }>;
+}>;
 
 export const faqData: FAQData = [
   {
@@ -11,9 +17,9 @@ export const faqData: FAQData = [
       {
         question: "What are the Goals of DzCode i/o ?",
         answer: `
-- Share our experiences (in form of [Articles](articles)), there are many algerian developers that accumulated lots experiences, dzcode.io gives them the chance to share it with the right audience.
-- Guide new developers to build their career (with detailed [documentation](learn)), and understand the software market, instead of wasting their time on other useless resources.
-- Fix some common algerian software problems, in form of ready to use open-source [softwares](projects) (packages, libraries ...etc).`,
+- Share our experiences (in form of [Articles](/Articles)), there are many algerian developers that accumulated lots experiences, dzcode.io gives them the chance to share it with the right audience.
+- Guide new developers to build their career (with detailed [documentation](/Learn)), and understand the software market, instead of wasting their time on other useless resources.
+- Fix some common algerian software problems, in form of ready to use open-source [softwares](/Projects) (packages, libraries ...etc).`,
       },
       {
         question: "What benefit will i get from it ?",
@@ -44,16 +50,16 @@ export const faqData: FAQData = [
       },
       {
         question: "I want to code, where should I start ?",
-        answer: `Go to [/Contribute](contribute) page, you will see list projects with their open tasks, pick whatever you like and start coding 🔥.
+        answer: `Go to [/Contribute](/Contribute) page, you will see list projects with their open tasks, pick whatever you like and start coding 🔥.
 
 **Note** : Please make sure to inform the project maintainer to reserve the task for you, you can do that by commenting on the issue ticket.`,
       },
       {
         question: "I like the idea, what are the different ways i can contribute to DzCode i/o ?",
-        answer: `Apart from checking out the [/Contribute](contribute) page, you can also contribute to DzCode i/o by:
+        answer: `Apart from checking out the [/Contribute](/Contribute) page, you can also contribute to DzCode i/o by:
 
-- Adding your open-source projects to dzcode.io website, you can do that [here](learn).
-- Writing about your experience in form of articles, it's as easy as following the steps [here](learn).
+- Adding your open-source projects to dzcode.io website, you can do that [here](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).
+- Writing about your experience in form of articles, it's as easy as following the steps [here](/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io).
 `,
       },
     ],
@@ -63,7 +69,7 @@ export const faqData: FAQData = [
     questions: [
       {
         question: "How to write an article in dzcode.io",
-        answer: `See this [tutorial](learn).`,
+        answer: `See this [tutorial](/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io).`,
       },
       {
         question: "The Articles should they be in English ?",
@@ -81,7 +87,7 @@ export const faqData: FAQData = [
     questions: [
       {
         question: "How to add my open-source project to dzcode.io",
-        answer: `See this [tutorial](learn).`,
+        answer: `See this [tutorial](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).`,
       },
       {
         question: "What makes my project eligible to be added to dzcode.io",

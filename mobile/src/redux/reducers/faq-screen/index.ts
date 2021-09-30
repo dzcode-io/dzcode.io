@@ -1,13 +1,5 @@
 import { Action } from "../..";
-import { faqData } from "./faq";
-
-export type FAQData = Array<{
-  title: string;
-  questions: Array<{
-    question: string;
-    answer: string;
-  }>;
-}>;
+import { faqData, FAQData } from "../../../_common/web";
 
 export interface FaqScreenState {
   faqData: FAQData;
