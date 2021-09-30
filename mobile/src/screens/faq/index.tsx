@@ -6,12 +6,14 @@ import { globalStyles } from "../../styles/global";
 import { faqStyles } from "./styles";
 import { useSelector } from "react-redux";
 import { FaqScreenState } from "../../redux/reducers/faq-screen";
+import { GeneralState } from "../../redux/reducers/general";
 import { StateInterface } from "../../redux";
 import Markdown from "react-native-markdown-display";
 
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();
   const { faqData } = useSelector<StateInterface, FaqScreenState>((state) => state.faqScreen);
+  const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
   return (
     // main view
@@ -25,6 +27,23 @@ export const FAQScreen: FC = () => {
                 <List.Accordion key={`question-${index}`} title={question}>
                   <Markdown
                     style={{
+                      text: {
+                        color: theme === "dark" ? "white" : "black",
+                      },
+                      bullet_list: {
+                        color: theme === "dark" ? "white" : "black",
+                      },
+                      ordered_list: {
+                        color: theme === "dark" ? "white" : "black",
+                      },
+                      fence: {
+                        color: theme === "dark" ? "white" : "black",
+                        backgroundColor: theme === "dark" ? "black" : "white",
+                      },
+                      blockquote: {
+                        color: theme === "dark" ? "white" : "black",
+                        backgroundColor: theme === "dark" ? "black" : "white",
+                      },
                       body: faqStyles.description,
                     }}
                     onLinkPress={(url) => {
