@@ -9,6 +9,7 @@ import { FaqScreenState } from "../../redux/reducers/faq-screen";
 import { GeneralState } from "../../redux/reducers/general";
 import { StateInterface } from "../../redux";
 import Markdown from "react-native-markdown-display";
+import { openLink } from "../../utils/link";
 
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();
@@ -47,13 +48,8 @@ export const FAQScreen: FC = () => {
                       body: faqStyles.description,
                     }}
                     onLinkPress={(url) => {
-                      if (url.startsWith("http")) {
-                        Linking.openURL(url);
-                        return true;
-                      } else {
-                        navigation.navigate(url);
-                        return true;
-                      }
+                      openLink(url, navigation);
+                      return true;
                     }}
                   >
                     {answer}
