@@ -4,6 +4,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { FC } from "react";
 import { FaqPageState } from "src/apps/main/redux/reducers/faq-page";
+import { FormattedMessage } from "react-intl";
 import { Markdown } from "../../components/markdown";
 import { StateInterface } from "src/apps/main/redux";
 import Typography from "@material-ui/core/Typography";
@@ -37,7 +38,7 @@ export const FaqPage: FC = () => {
   return (
     <>
       <Typography variant="h4" className={classes.title}>
-        Frequently Asked Questions
+        <FormattedMessage id="faq.header.title" defaultMessage="Frequently Asked Questions" />
       </Typography>
 
       {faqData.map(({ title, questions }, index) => (

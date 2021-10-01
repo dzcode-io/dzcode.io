@@ -21,7 +21,10 @@
     "generate:sitemap": "cross-env TS_NODE_PROJECT=\"webpack.tsconfig.json\" ts-node src/build/sitemap.ts",
     "deploy": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
     "deploy:stg": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
-    "clean": "rimraf ./node_modules"
+    "clean": "rimraf ./node_modules",
+    "extract": "formatjs extract 'src/**/*.ts*'",
+    "compile": "formatjs compile",
+    "extract-compile": "formatjs extract src/apps/main/**/*.tsx --out-file temp.json --flatten --id-interpolation-pattern '[sha512:contenthash:base64:6]' && formatjs compile temp.json --out-file src/localization/locals/json/en.json && rm temp.json"
   },
   "repository": {
     "type": "git",
@@ -66,6 +69,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
+    "@formatjs/cli": "^4.3.1",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
