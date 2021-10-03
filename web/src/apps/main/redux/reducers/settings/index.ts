@@ -1,4 +1,4 @@
-import { Language } from "src/.common/types";
+import { Language } from "src/_common/types";
 
 const setBodyDir = (lang: Language) => {
   if (lang === "ar") {
