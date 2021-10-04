@@ -1,15 +1,14 @@
 /* eslint sort-imports:off */
 import { FC } from "react";
-import fr from "./locals/fr";
-import ar from "./locals/ar";
-import en from "./locals/en";
-import PropTypes from "prop-types";
+import ar from "./locals/ar.json";
+import fr from "./locals/fr.json";
+import en from "./locals/en.json";
 import { IntlProvider } from "react-intl";
 import { useSelector } from "react-redux";
 import { StateInterface } from "src/apps/main/redux";
 
 export const Localization: FC = (props) => {
-  const locals: { [key: string]: any } = { fr, ar, en };
+  const locals: any = { fr, ar, en };
 
   const { settings } = useSelector<StateInterface, StateInterface>((state) => state);
 
@@ -18,10 +17,6 @@ export const Localization: FC = (props) => {
       {props.children}
     </IntlProvider>
   );
-};
-
-Localization.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default Localization;

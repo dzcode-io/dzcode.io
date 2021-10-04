@@ -1,5 +1,7 @@
 node_modules/
 dist
+src/localization/locals/
+src/localization/utils/
 src/_common
 firebase
 coverage
