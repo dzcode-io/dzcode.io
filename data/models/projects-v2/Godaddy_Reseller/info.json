@@ -1,0 +1,10 @@
+{
+  "name": "Godaddy_Reseller",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "bychis",
+      "repository": "godaddy-reseller"
+    }
+  ]
+}
