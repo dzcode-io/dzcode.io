@@ -1,0 +1,10 @@
+{
+  "name": "Weather Forecast",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "jidmaa",
+      "repository": "weather-forecast"
+    }
+  ]
+}
