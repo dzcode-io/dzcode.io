@@ -22,9 +22,8 @@
     "deploy": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
     "deploy:stg": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
     "clean": "rimraf ./node_modules",
-    "extract": "formatjs extract 'src/**/*.ts*'",
-    "compile": "formatjs compile",
-    "extract-compile": "formatjs extract src/apps/main/**/*.tsx --out-file temp.json --flatten --id-interpolation-pattern '[sha512:contenthash:base64:6]' && formatjs compile temp.json --out-file src/localization/locals/json/en.json && rm temp.json"
+    "extract": "formatjs extract src/apps/main/**/*.ts* --out-file src/localization/extractions/extracted.json --id-interpolation-pattern '[sha512:contenthash:base64:6]' --format src/localization/utils/formatter.js",
+    "compile": "yarn extract && node src/localization/utils/runner.ts"
   },
   "repository": {
     "type": "git",
@@ -130,6 +129,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-intl": "^5.20.6",
+    "react-intl-translations-manager": "^5.0.3",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-spring": "^8.0.27",
@@ -149,5 +149,8 @@
     "webpack": "^5.11.0",
     "webpack-cli": "^4.3.0",
     "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@formatjs/cli": "^4.3.1"
   }
 }
