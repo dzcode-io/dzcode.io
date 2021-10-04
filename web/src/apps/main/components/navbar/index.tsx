@@ -185,7 +185,7 @@ export const Navbar: FC = () => {
                     <Divider className={classes.divider} orientation="vertical" flexItem />
                   )}
                   <LinkV2 color="inherit" href={section.url} className={classes.toolbarLink}>
-                    <FormattedMessage id={section.title} defaultMessage={section.title} />
+                    <FormattedMessage id={section.title} />
                   </LinkV2>
                 </Fragment>
               ))
