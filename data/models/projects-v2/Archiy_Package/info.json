@@ -1,0 +1,10 @@
+{
+  "name": "Archy Package",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "yassine-youcefi",
+      "repository": "Archy"
+    }
+  ]
+}
