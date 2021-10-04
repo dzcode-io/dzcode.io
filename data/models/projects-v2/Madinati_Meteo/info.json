@@ -1,0 +1,10 @@
+{
+  "name": "Weather Forecast",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "khalilpreview",
+      "repository": "madinateo"
+    }
+  ]
+}
