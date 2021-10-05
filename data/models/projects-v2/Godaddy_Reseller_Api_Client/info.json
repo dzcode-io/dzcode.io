@@ -1,0 +1,10 @@
+{
+  "name": "Godaddy Reseller Api Client",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "Omar-Belghaouti",
+      "repository": "godaddy-reseller-api-client"
+    }
+  ]
+}
