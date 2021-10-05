@@ -1,0 +1,10 @@
+{
+  "name": "Facial Mask Detection",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "Ghali-Benbernou",
+      "repository": "mask-detect"
+    }
+  ]
+}
