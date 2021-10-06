@@ -1,0 +1,10 @@
+{
+  "name": "React glassmorphism components",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "jusinamine",
+      "repository": "react-glassmorphism-components"
+    }
+  ]
+}
