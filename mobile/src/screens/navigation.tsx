@@ -6,7 +6,7 @@ import { DrawerActions } from "@react-navigation/native";
 import { DrawerContent } from "../components/drawer-content";
 import { FAQScreen } from "./faq";
 import { HomeScreen } from "./home";
-import { LearnScreen } from "./learn";
+import { Navigation as DocumentsStack } from "./learn/navigation";
 import { ProjectsScreen } from "./projects";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
@@ -31,7 +31,7 @@ const routes: Route[] = [
     name: "learn",
     title: "Read & Learn",
     label: "Learn",
-    component: LearnScreen,
+    component: DocumentsStack,
   },
   {
     name: "projects",

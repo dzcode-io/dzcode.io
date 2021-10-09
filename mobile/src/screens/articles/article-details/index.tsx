@@ -16,7 +16,7 @@ import { globalStyles } from "../../../styles/global";
 import { openLink } from "../../../utils/link";
 
 interface ArticleDetailsScreenProps {
-  route: Route<"ArticleDetails", RouteParams>;
+  route: Route<"article-details", RouteParams>;
 }
 
 interface RouteParams {
