@@ -5,7 +5,8 @@ import { LearnScreenState } from "../../../redux/reducers/learn-screen";
 import { DZCodeLoading } from "../../../components/loading";
 import { fetchDocuments } from "../../../redux/actions/learn-screen";
 import { FlatList, SafeAreaView, View } from "react-native";
-import { Text, Divider, Button } from "react-native-paper";
+import { Divider, Button } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 import { globalStyles } from "../../../styles/global";
 import { documentsListStyles } from "./styles";
 
@@ -13,6 +14,8 @@ export const DocumentsListScreen: FC = () => {
   const { documents, refreshing } = useSelector<StateInterface, LearnScreenState>(
     (state) => state.learnScreen,
   );
+
+  const navigation = useNavigation();
 
   const dispatch = useDispatch<Dispatch<LearnScreenState>>();
 
@@ -30,7 +33,10 @@ export const DocumentsListScreen: FC = () => {
           ItemSeparatorComponent={() => <Divider />}
           keyExtractor={(item, index) => `item-${index}`}
           renderItem={({ item }) => (
-            <Button style={documentsListStyles.button}>
+            <Button
+              style={documentsListStyles.button}
+              onPress={() => navigation.navigate("document-details", { document: item })}
+            >
               {item.slug.includes("/") ? `   ${item.title}` : item.title}
             </Button>
           )}

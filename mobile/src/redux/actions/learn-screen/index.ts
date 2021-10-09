@@ -24,3 +24,31 @@ export const fetchDocuments = (): ThunkResult<LearnScreenState> => async (dispat
     console.error(error);
   }
 };
+
+/**
+ * @function fetchDocument
+ * @description Fetch a document from the server and pass it to the reducer
+ * @param slug - The slug of the document to fetch
+ */
+export const fetchDocument =
+  (slug: string): ThunkResult<LearnScreenState> =>
+  async (dispatch, getState) => {
+    dispatch({
+      type: "UPDATE_LEARN_SCREEN",
+      payload: { refreshing: true },
+    });
+    try {
+      const { documents } = getState().learnScreen;
+      const document = await fetchV2("data:documentation/:slug.json", { params: { slug } });
+      dispatch({
+        type: "UPDATE_LEARN_SCREEN",
+        payload: {
+          // update only the found document
+          documents: documents?.map((doc) => (doc.slug === slug ? document : doc)),
+          refreshing: false,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
