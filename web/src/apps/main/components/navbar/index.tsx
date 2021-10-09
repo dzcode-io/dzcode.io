@@ -15,6 +15,7 @@ import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import logo from "src/assets/svg/logo-wide.svg";
+import { useIntl } from "react-intl";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 const useStyles = makeStyles((theme) =>
@@ -106,8 +107,10 @@ export const Navbar: FC = () => {
   const { settings, navbarComponent } = useSelector<StateInterface, StateInterface>(
     (state) => state,
   );
+
   const dispatch = useDispatch<Dispatch<SettingsState>>();
   const classes = useStyles();
+  const intl = useIntl();
   const [visible, setVisible] = useState(true);
   useScrollPosition(({ prevPos, currPos }) => {
     const isVisible = currPos.y <= -120 ? currPos.y > prevPos.y : true;
@@ -184,8 +187,12 @@ export const Navbar: FC = () => {
                   {index > 0 && (
                     <Divider className={classes.divider} orientation="vertical" flexItem />
                   )}
-                  <LinkV2 color="inherit" href={section.url} className={classes.toolbarLink}>
-                    <FormattedMessage id={section.title} />
+                  <LinkV2
+                    color="inherit"
+                    href={`/${intl.formatMessage(section.message)}`}
+                    className={classes.toolbarLink}
+                  >
+                    <FormattedMessage id={section.message.id} defaultMessage={section.title} />
                   </LinkV2>
                 </Fragment>
               ))

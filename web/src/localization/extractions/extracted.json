@@ -1,5 +1,35 @@
 [
   {
+    "defaultMessage": "Learn",
+    "description": "Learn page route",
+    "id": "learn.path"
+  },
+  {
+    "defaultMessage": "Projects",
+    "description": "Projects page route",
+    "id": "projects.path"
+  },
+  {
+    "defaultMessage": "Articles",
+    "description": "Articles page route",
+    "id": "articles.path"
+  },
+  {
+    "defaultMessage": "FAQ",
+    "description": "FAQ page route",
+    "id": "faq.path"
+  },
+  {
+    "defaultMessage": "Contribute",
+    "description": "Contribute page route",
+    "id": "contribute.path"
+  },
+  {
+    "defaultMessage": "Team",
+    "description": "Team page route",
+    "id": "team.path"
+  },
+  {
     "defaultMessage": "Frequently Asked Questions",
     "id": "faq.header.title"
   }
