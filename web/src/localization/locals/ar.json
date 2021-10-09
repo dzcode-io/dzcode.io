@@ -1,3 +1,9 @@
 {
-  "faq.header.title": "اللاسئلة الاكثر طرحا"
+  "articles.path": "المقالات",
+  "contribute.path": "شارك معنا",
+  "faq.header.title": "اللاسئلة الاكثر طرحا",
+  "faq.path": "اللاسئلة الاكثر طرحا",
+  "learn.path": "تعلم",
+  "projects.path": "المشاريع",
+  "team.path": "فريقنا"
 }
