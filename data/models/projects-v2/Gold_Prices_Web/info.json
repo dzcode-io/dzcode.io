@@ -1,0 +1,10 @@
+{
+  "name": "Gold prices web",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "jusinamine",
+      "repository": "gold-prices-web"
+    }
+  ]
+}
