@@ -6,7 +6,7 @@ import {
 } from "../../../utils/constants";
 import { StyleSheet } from "react-native";
 
-export const articleDetailsStyles = StyleSheet.create({
+export const documentDetailsStyles = StyleSheet.create({
   image: {
     width: "100%",
     height: LARGE_LOGO_HEIGHT,
