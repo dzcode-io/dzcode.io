@@ -53,6 +53,10 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
             }}
             style={articleDetailsStyles.image}
           />
+          <Text style={articleDetailsStyles.authorsText}>{route.params.article.title}</Text>
+          <Text style={articleDetailsStyles.descriptionText}>
+            {articles?.find((article) => article.slug === route.params.article.slug)?.description}
+          </Text>
           <Markdown
             style={{
               text: {
@@ -69,6 +73,10 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
                 backgroundColor: theme === "dark" ? "black" : "white",
               },
               blockquote: {
+                color: theme === "dark" ? "white" : "black",
+                backgroundColor: theme === "dark" ? "black" : "white",
+              },
+              code_inline: {
                 color: theme === "dark" ? "white" : "black",
                 backgroundColor: theme === "dark" ? "black" : "white",
               },
