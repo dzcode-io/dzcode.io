@@ -28,9 +28,5 @@
     "defaultMessage": "Team",
     "description": "Team page route",
     "id": "team.path"
-  },
-  {
-    "defaultMessage": "Frequently Asked Questions",
-    "id": "faq.header.title"
   }
 ]

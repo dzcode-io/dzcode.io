@@ -187,6 +187,7 @@ export const Navbar: FC = () => {
                   {index > 0 && (
                     <Divider className={classes.divider} orientation="vertical" flexItem />
                   )}
+
                   <LinkV2
                     color="inherit"
                     href={`/${intl.formatMessage(section.message)}`}
