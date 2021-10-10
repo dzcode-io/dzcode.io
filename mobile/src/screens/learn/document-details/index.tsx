@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { View, SafeAreaView, ScrollView } from "react-native";
+import { View, SafeAreaView, ScrollView, Image } from "react-native";
 import { Text } from "react-native-paper";
 import { Route } from "@react-navigation/routers";
 import { Document } from "../../../_common/types";
@@ -48,6 +48,14 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
         </View>
       ) : (
         <ScrollView>
+          <Image
+            source={{ uri: documents?.find((d) => d.slug === route.params.document.slug)?.image }}
+            style={documentDetailsStyles.image}
+          />
+          <Text style={documentDetailsStyles.authorsText}>{route.params.document.title}</Text>
+          <Text style={documentDetailsStyles.descriptionText}>
+            {documents?.find((d) => d.slug === route.params.document.slug)?.description}
+          </Text>
           <Markdown
             style={{
               text: {
@@ -64,6 +72,10 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
                 backgroundColor: theme === "dark" ? "black" : "white",
               },
               blockquote: {
+                color: theme === "dark" ? "white" : "black",
+                backgroundColor: theme === "dark" ? "black" : "white",
+              },
+              code_inline: {
                 color: theme === "dark" ? "white" : "black",
                 backgroundColor: theme === "dark" ? "black" : "white",
               },

@@ -1,4 +1,9 @@
-import { LARGE_LOGO_HEIGHT, LARGE_MARGIN_SIZE, MEDIUM_TEXT_SIZE } from "../../../utils/constants";
+import {
+  LARGE_LOGO_HEIGHT,
+  LARGE_MARGIN_SIZE,
+  MEDIUM_MARGIN_SIZE,
+  MEDIUM_TEXT_SIZE,
+} from "../../../utils/constants";
 import { StyleSheet } from "react-native";
 
 export const articleDetailsStyles = StyleSheet.create({
@@ -9,8 +14,12 @@ export const articleDetailsStyles = StyleSheet.create({
   mdBody: {
     marginHorizontal: LARGE_MARGIN_SIZE,
   },
+  descriptionText: {
+    marginHorizontal: MEDIUM_MARGIN_SIZE,
+  },
   authorsText: {
     fontWeight: "bold",
     fontSize: MEDIUM_TEXT_SIZE,
+    marginHorizontal: MEDIUM_MARGIN_SIZE,
   },
 });
