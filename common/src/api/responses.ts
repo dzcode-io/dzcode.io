@@ -1,8 +1,18 @@
 import "reflect-metadata";
-import { ContributionEntity, ContributorEntity, FilterEntity, GithubUser } from ".";
-import { IsNumber, IsObject, IsOptional, IsString } from "class-validator";
+import {
+  IsBoolean,
+  IsNumber,
+  IsObject,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from "class-validator";
 import { Transform, TransformFnParams, Type } from "class-transformer";
-import { ValidateNested } from "class-validator";
+import { ContributionEntity } from "../entities/contribution";
+import { ContributorEntity } from "../entities/contributor";
+import { GithubUser } from "../types";
+import { Model } from "../entities";
+import { ProjectEntity } from "../entities/project";
 
 export class GeneralResponseDto {
   @IsNumber()
@@ -42,14 +52,38 @@ export class GetUserResponseDto extends GeneralResponseDto {
   user!: GithubUserDto;
 }
 
+export class OptionDto {
+  @IsString()
+  label!: string;
+
+  @IsString()
+  name!: string;
+
+  @IsBoolean()
+  @IsOptional()
+  checked?: boolean;
+}
+
+export class FilterDto {
+  @IsString()
+  label!: string;
+
+  @IsString()
+  name!: string;
+
+  @ValidateNested({ each: true })
+  @Type(() => OptionDto)
+  options!: OptionDto[];
+}
+
 export class GetContributionsResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
   @Type(() => ContributionEntity)
-  contributions!: ContributionEntity[];
+  contributions!: Model<ContributionEntity>[];
 
   @ValidateNested({ each: true })
-  @Type(() => FilterEntity)
-  filters!: FilterEntity[];
+  @Type(() => FilterDto)
+  filters!: FilterDto[];
 }
 
 const transformFilterOptions = ({ value }: TransformFnParams) => {
@@ -80,5 +114,10 @@ export class GetContributionsQueryDto {
 export class GetTeamResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
   @Type(() => ContributorEntity)
-  contributors!: ContributorEntity[];
+  contributors!: Model<ContributorEntity, "repositories">[];
+}
+export class GetProjectsResponseDto extends GeneralResponseDto {
+  @ValidateNested({ each: true })
+  @Type(() => ProjectEntity)
+  projects!: Model<ProjectEntity, "repositories">[];
 }
