@@ -4,7 +4,7 @@ import {
   GetContributorsResponseDto,
   GetTeamResponseDto,
   GetUserResponseDto,
-} from "./api-responses";
+} from "../api/responses";
 
 export interface Endpoints {
   "data:articles/list.c.json": {

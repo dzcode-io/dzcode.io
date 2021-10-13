@@ -1,4 +1,5 @@
-import { ContributionEntity, FilterEntity, OptionEntity } from "../_common/types";
+import { FilterDto, OptionDto } from "../_common/api/responses";
+import { ContributionEntity } from "../_common/entities/contribution";
 import { lorem } from "faker";
 
 export const generateContributionMock = (index: number): ContributionEntity => {
@@ -23,13 +24,13 @@ export const generateContributionMock = (index: number): ContributionEntity => {
 
 export const bulkGenerateContributionMock = (from: number, to: number) => {
   const contributionsMock: ContributionEntity[] = [];
-  const filtersMock: FilterEntity[] = [
+  const filtersMock: FilterDto[] = [
     { label: "Project", name: "projects", options: [] },
     { label: "Language", name: "languages", options: [] },
     { label: "Label", name: "labels", options: [] },
   ];
 
-  const pushUniqueOption = (options: OptionEntity[], filterOptions: OptionEntity[]) => {
+  const pushUniqueOption = (options: OptionDto[], filterOptions: OptionDto[]) => {
     const uniqueOptions = options.filter(
       (_option) => !filterOptions.some(({ name }) => _option.name === name),
     );
