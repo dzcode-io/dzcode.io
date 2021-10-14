@@ -29,6 +29,7 @@ export const LearnPage: FC = () => {
       <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
         <Sidebar
           tree={sidebarTree}
+          path={path}
           expanded={expanded}
           selected={currentDocument ? currentDocument.slug : ""}
           isOpen={open}
