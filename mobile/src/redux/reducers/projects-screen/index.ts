@@ -2,7 +2,7 @@ import { Action } from "../..";
 import { Project } from "../../../_common/types";
 
 export interface ProjectsScreenState {
-  projects: Project[] | null;
+  projects: Pick<Project, "title" | "description" | "image" | "githubURI">[] | null;
   refreshing: boolean;
 }
 
