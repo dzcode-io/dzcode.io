@@ -2,5 +2,19 @@
   "title": "Syncing An Old Forked Repository With Upstream",
   "description": "Sync a fork of a repository to keep it up-to-date with the upstream repository.",
   "image": "https://images.unsplash.com/photo-1542838309-fbfad201ce6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=100",
-  "authors": ["ZibanPirate"]
+  "authors": ["ZibanPirate"],
+  "ar": {
+    "title": "",
+    "description": "",
+    "image": "",
+    "authors": [""],
+    "content": ""
+  },
+  "fr": {
+    "title": "",
+    "description": "",
+    "image": "",
+    "authors": [""],
+    "content": ""
+  }
 }

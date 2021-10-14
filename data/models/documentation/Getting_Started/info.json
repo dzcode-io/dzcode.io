@@ -2,5 +2,19 @@
   "title": "Getting Started",
   "description": "Welcome to the learning section of dzcode.io, learn, edit and share the knowledge between all Algerian developers!",
   "image": "https://images.unsplash.com/photo-1520338661084-680395057c93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=formatfit=crop&w=800&q=100",
-  "authors": ["ZibanPirate"]
+  "authors": ["ZibanPirate"],
+  "ar": {
+    "title": "",
+    "description": "",
+    "image": "",
+    "authors": [""],
+    "content": ""
+  },
+  "fr": {
+    "title": "",
+    "description": "",
+    "image": "",
+    "authors": [""],
+    "content": ""
+  }
 }

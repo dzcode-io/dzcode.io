@@ -1,6 +1,20 @@
 {
   "title": "Send emails with Django and Gmail, a better way",
   "description": "how can we send emails using Django and Gmail, I read a lot of articles about this but none of them is working for me,   this is my way of doing this",
-  "image": "https://i.imgur.com/XYQgZPW.png",
-  "authors": ["abderrahmaneMustapha"]
+  "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--G67FLzXM--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/k5m4vxhssjsvbdu5xfzh.png",
+  "authors": ["abderrahmaneMustapha"],
+  "ar": {
+    "title": "",
+    "description": "",
+    "image": "",
+    "authors": [""],
+    "content": ""
+  },
+  "fr": {
+    "title": "",
+    "description": "",
+    "image": "",
+    "authors": [""],
+    "content": ""
+  }
 }
