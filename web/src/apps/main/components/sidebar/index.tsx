@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) =>
 
 interface SidebarProps {
   tree: SidebarTreeItem[] | null;
+  path: string;
   expanded: string[];
   selected: string;
   isOpen: boolean;
@@ -71,10 +72,10 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       key={node.id}
       nodeId={node.id}
       label={
-        node.link && node.children ? (
+        node.id && node.children ? (
           <LinkV2
             className={classes.treeItem}
-            href={node.link}
+            href={`${props.path}/${node.id}`}
             style={{
               color: "inherit",
               textDecoration: "none",
