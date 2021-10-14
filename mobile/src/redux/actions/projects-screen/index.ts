@@ -1,6 +1,7 @@
 import { ProjectsScreenState } from "../../reducers/projects-screen";
 import { ThunkResult } from "../..";
 import { fetchV2 } from "../../../utils/fetch";
+import { shuffleArray } from "../../../utils/shuffle";
 
 /**
  * @function fetchProjects
@@ -15,7 +16,7 @@ export const fetchProjects = (): ThunkResult<ProjectsScreenState> => async (disp
     const projects = await fetchV2("data:projects/list.c.json", {});
     dispatch({
       type: "UPDATE_PROJECTS_SCREEN",
-      payload: { projects, refreshing: false },
+      payload: { projects: shuffleArray(projects), refreshing: false },
     });
   } catch (error) {
     console.error(error);
