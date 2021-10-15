@@ -27,7 +27,7 @@
   "jest": {
     "preset": "jest-expo",
     "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation|redux-persist|react-native-vector-icons|)"
+      "node_modules/(?!((jest-)?react-native|react-native-screens|react-native-reanimated|react-clone-referenced-element|expo(nent)?|@unimodules/.*|jest-expo/.*|@expo(nent)?/.*|react-navigation|@sentry|@react-navigation/.*|sentry-expo|native-base))"
     ]
   },
   "lint-staged": {
