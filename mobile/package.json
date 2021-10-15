@@ -25,7 +25,10 @@
     "clean": "rimraf ./node_modules"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation|redux-persist|react-native-vector-icons|)"
+    ]
   },
   "lint-staged": {
     "*.*": [
