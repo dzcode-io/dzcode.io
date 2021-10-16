@@ -11,7 +11,7 @@ import { join } from "path";
 export class TeamRepository {
   constructor(private readonly githubService: GithubService) {
     const projects = getDataCollection<Model<ProjectReferenceEntity, "repositories">>(
-      join(__dirname, "../../../data"),
+      join(__dirname, "../../../../data"),
       "projects-v2",
       "list.json",
     );
