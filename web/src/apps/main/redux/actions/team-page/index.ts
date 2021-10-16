@@ -4,7 +4,7 @@ import { fetchV2 } from "src/common/utils/fetch";
 
 export const fetchTeamList = (): ThunkResult<TeamPageState> => async (dispatch) => {
   try {
-    const { contributors } = await fetchV2("api:v2/Team", {});
+    const { contributors } = await fetchV2("api:Team", {});
 
     dispatch({
       type: "UPDATE_TEAM_PAGE",
