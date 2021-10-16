@@ -17,7 +17,9 @@ describe("ConfigService", () => {
     mockedDotenv.config.mockReturnValue({ parsed: { NODE_ENV: "testing" } });
 
     expect(() => new ConfigService()).toThrowError(
-      `⚠️  Errors in .env file in the following keys:\nNODE_ENV : {\"matches\":\"NODE_ENV must match (development)|(staging)|(production) regular expression\"}`,
+      `⚠️  Errors in .env file in the following keys:\nNODE_ENV : ${JSON.stringify({
+        matches: "NODE_ENV must match (development)|(staging)|(production) regular expression",
+      })}`,
     );
   });
 

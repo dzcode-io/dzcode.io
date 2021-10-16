@@ -5,7 +5,7 @@ import { LinkV2 } from "src/components/link-v2";
 import image from "src/apps/main/assets/svg/dzcode.svg";
 import { makeStyles } from "@material-ui/core/styles";
 
-export const Header: FC = ({}) => {
+export const Header: FC = () => {
   const useStyles = makeStyles((theme) => ({
     greenHighlight: {
       color: theme.palette.primary.main,

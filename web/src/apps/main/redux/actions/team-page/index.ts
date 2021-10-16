@@ -10,5 +10,7 @@ export const fetchTeamList = (): ThunkResult<TeamPageState> => async (dispatch) 
       type: "UPDATE_TEAM_PAGE",
       payload: { teamList: contributors },
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };

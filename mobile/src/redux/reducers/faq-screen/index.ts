@@ -1,4 +1,4 @@
-import { FAQData, faqData } from "../../../_common/web";
+import { FAQData, faqData } from "../../../_common/web/faq-data";
 import { Action } from "../..";
 
 export interface FaqScreenState {
