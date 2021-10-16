@@ -48,7 +48,7 @@ export const fetchCurrentArticleContributors =
     const { currentArticle } = getState().articlesPage;
     if (!currentArticle || Array.isArray(currentArticle.contributors)) return;
 
-    const { contributors } = await fetchV2("api:v2/Contributors", {
+    const { contributors } = await fetchV2("api:Contributors", {
       query: [["path", `articles/${currentArticle.slug}`]],
     });
 
@@ -85,7 +85,7 @@ const fetchCurrentArticleAuthors =
     const githubAuthors = (
       await Promise.all(
         currentArticle.authors?.map((author) => {
-          return fetchV2("api:v2/GithubUsers/:login", { params: { login: author } });
+          return fetchV2("api:GithubUsers/:login", { params: { login: author } });
         }) || [],
       )
     ).map((response) => {

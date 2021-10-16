@@ -21,7 +21,7 @@ export const fetchContributions =
           if (option.checked) query.push([filter.name, option.name]);
         });
       });
-      const { contributions, filters } = await fetchV2("api:v2/Contributions", { query });
+      const { contributions, filters } = await fetchV2("api:Contributions", { query });
 
       const checkedFilters: Array<{
         filterName: string;
