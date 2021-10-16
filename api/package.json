@@ -17,8 +17,8 @@
     "test:cov:watch": "jest --coverage --watchAll",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "dev": "nodemon dist/app/index.js",
-    "start": "node dist/app/index.js",
+    "dev": "nodemon dist/src/app/index.js",
+    "start": "node dist/src/app/index.js",
     "deploy": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts production",
     "deploy:stg": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts staging",
     "clean": "rimraf ./node_modules"
