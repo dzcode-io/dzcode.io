@@ -1,7 +1,6 @@
 import { Dispatch, StateInterface } from "../../../redux";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import React, { FC, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { Article } from "../../../_common/types";
 import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
@@ -14,6 +13,7 @@ import { articleDetailsStyles } from "./styles";
 import { fetchArticle } from "../../../redux/actions/articles-screen";
 import { globalStyles } from "../../../styles/global";
 import { openLink } from "../../../utils/link";
+import { useNavigation } from "@react-navigation/native";
 
 interface ArticleDetailsScreenProps {
   route: Route<"article-details", RouteParams>;
@@ -62,6 +62,7 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
               text: {
                 color: theme === "dark" ? "white" : "black",
               },
+              /* eslint-disable camelcase */
               bullet_list: {
                 color: theme === "dark" ? "white" : "black",
               },
@@ -81,6 +82,7 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
                 backgroundColor: theme === "dark" ? "black" : "white",
               },
               body: articleDetailsStyles.mdBody,
+              /* eslint-enable camelcase */
             }}
             onLinkPress={(url) => {
               openLink(url, navigation);
