@@ -70,6 +70,7 @@ export class TeamRepository {
     return Object.keys(contributorsRecord)
       .sort((a, b) => contributorsRecord[b].contributions - contributorsRecord[a].contributions) // sort contributors by their commits count
       .map((id) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { contributions, ...contributor } = contributorsRecord[id];
         return contributor;
       });

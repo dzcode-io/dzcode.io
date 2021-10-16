@@ -1,15 +1,15 @@
+import { List, Text } from "react-native-paper";
 import React, { FC } from "react";
-import { SafeAreaView, View, ScrollView, Linking } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { Text, List } from "react-native-paper";
-import { globalStyles } from "../../styles/global";
-import { faqStyles } from "./styles";
-import { useSelector } from "react-redux";
+import { SafeAreaView, ScrollView, View } from "react-native";
 import { FaqScreenState } from "../../redux/reducers/faq-screen";
 import { GeneralState } from "../../redux/reducers/general";
-import { StateInterface } from "../../redux";
 import Markdown from "react-native-markdown-display";
+import { StateInterface } from "../../redux";
+import { faqStyles } from "./styles";
+import { globalStyles } from "../../styles/global";
 import { openLink } from "../../utils/link";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();
@@ -31,12 +31,14 @@ export const FAQScreen: FC = () => {
                       text: {
                         color: theme === "dark" ? "white" : "black",
                       },
+                      /* eslint-disable camelcase */
                       bullet_list: {
                         color: theme === "dark" ? "white" : "black",
                       },
                       ordered_list: {
                         color: theme === "dark" ? "white" : "black",
                       },
+                      /* eslint-enable camelcase */
                       fence: {
                         color: theme === "dark" ? "white" : "black",
                         backgroundColor: theme === "dark" ? "black" : "white",
