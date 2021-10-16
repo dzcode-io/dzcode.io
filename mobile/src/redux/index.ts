@@ -22,7 +22,8 @@ export type ActionType =
   | "UPDATE_GENERAL"
   | "UPDATE_CONTRIBUTE_SCREEN"
   | "UPDATE_ARTICLES_SCREEN"
-  | "UPDATE_LEARN_SCREEN";
+  | "UPDATE_LEARN_SCREEN"
+  | "UPDATE_PROJECTS_SCREEN";
 
 export interface Action<T> {
   type: ActionType;

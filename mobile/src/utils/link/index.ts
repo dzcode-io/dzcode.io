@@ -7,7 +7,7 @@ import { Linking } from "react-native";
  * @param url The url to open
  * @param navigation The navigation object
  */
-export const openLink = (url: string, navigation: NavigationProp<ParamListBase, string>) => {
+export const openLink = (url: string, navigation?: NavigationProp<ParamListBase, string>) => {
   if (url.startsWith("http")) {
     try {
       Linking.openURL(url);
@@ -15,6 +15,6 @@ export const openLink = (url: string, navigation: NavigationProp<ParamListBase, 
       alert("Cannot open url on browser");
     }
   } else {
-    navigation.navigate(url.split("/")[1].toLocaleLowerCase());
+    navigation?.navigate(url.split("/")[1].toLocaleLowerCase());
   }
 };
