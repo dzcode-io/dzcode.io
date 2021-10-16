@@ -1,9 +1,11 @@
-import { ContributionEntity, FilterEntity } from "../../../_common/types";
 import { Action } from "../..";
+import { ContributionEntity } from "../../../_common/entities/contribution";
+import { FilterDto } from "../../../_common/api/responses";
+import { Model } from "../../../_common/entities";
 
 export interface ContributeScreenState {
-  filters: FilterEntity[];
-  contributions: ContributionEntity[] | null;
+  filters: FilterDto[];
+  contributions: Model<ContributionEntity, "project">[] | null;
   refreshing: boolean;
 }
 
