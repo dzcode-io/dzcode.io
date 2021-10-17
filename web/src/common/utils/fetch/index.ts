@@ -28,6 +28,7 @@ export const fetchV2 = async <
       url = url.replace(`:${param}`, params[param]);
     });
   }
+  console.log(url);
 
   let baseURL = "";
 
