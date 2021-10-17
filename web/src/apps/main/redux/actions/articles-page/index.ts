@@ -12,7 +12,11 @@ import { listToTree } from "l2t";
  */
 export const fetchArticlesList = (): ThunkResult<ArticlesPageState> => async (dispatch) => {
   try {
-    const articlesList = await fetchV2("data:articles/list.c.json", {});
+    const currentLanguage = localStorage.getItem("lang");
+
+    const articlesList = await fetchV2("data:articles/list.c.json", {
+      query: [["language", currentLanguage]],
+    });
     const ids: string[] = [];
 
     // convert list into tree
@@ -137,8 +141,13 @@ export const fetchCurrentArticle =
         payload: { currentArticle: null },
       });
 
+      const currentLanguage: string = getState().settings.lang ?? localStorage.getItem("lang");
+
       try {
-        const currentArticle = await fetchV2(`data:articles/:slug.json`, { params: { slug } });
+        const currentArticle = await fetchV2(`data:articles/:slug.json`, {
+          params: { slug },
+          query: [["language", currentLanguage]],
+        });
 
         // update our page state
         dispatch({
