@@ -15,13 +15,25 @@ app.use((req, res, next) => {
 
 // Collections
 app.get("/:type/:collection(\\S+.c.json$)", (req, res) =>
-  res.json(getDataCollection(join(__dirname, ".."), req.params.type, req.params.collection)),
+  res.json(
+    getDataCollection(
+      join(__dirname, ".."),
+      req.params.type,
+      req.params.collection,
+      req.query.language as string,
+    ),
+  ),
 );
 
 // Entries
 app.get("/:type/:entry([\\/\\S]+.json$)", (req, res) =>
   res.json(
-    getDataEntry(join(__dirname, ".."), `${req.params.type}/${req.params.entry.slice(0, -5)}`),
+    getDataEntry(
+      join(__dirname, ".."),
+      `${req.params.type}/${req.params.entry.slice(0, -5)}`,
+      undefined,
+      req.query.language as string,
+    ),
   ),
 );
 
