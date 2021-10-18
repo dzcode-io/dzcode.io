@@ -1,9 +1,10 @@
-import { Checkbox, FAB, List, Text } from "react-native-paper";
+import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../redux";
 import { FlatList, Image, Linking, SafeAreaView, ScrollView, View } from "react-native";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
 import { useDispatch, useSelector } from "react-redux";
+import BottomSheet from "@gorhom/bottom-sheet";
 import { CardItemMemoed } from "./card-item";
 import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
 import { DZCodeLoading } from "../../components/loading";
@@ -15,7 +16,7 @@ export const ContributeScreen: FC = () => {
     (state) => state.contributeScreen,
   );
 
-  const [filtersShown, setFiltersShown] = useState(false);
+  const { colors } = useTheme();
 
   const dispatch = useDispatch<Dispatch<ContributeScreenState>>();
   useEffect(() => {
@@ -74,47 +75,44 @@ export const ContributeScreen: FC = () => {
         </View>
       )}
       {/* Filters */}
-      {filters.length > 0 && (
-        <View>
-          <View style={{ bottom: 70, display: filtersShown ? "flex" : "none" }}>
-            <List.AccordionGroup>
-              {filters.map(({ name: filterName, label: filterLabel, options }) => (
-                <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
-                  <ScrollView>
-                    {options.map(({ label: optionLabel, name: optionName, checked }) => (
-                      <List.Item
-                        key={`filter-${filterName}-${optionName}`}
-                        title={optionLabel}
-                        right={() => (
-                          <Checkbox
-                            status={checked ? "checked" : "unchecked"}
-                            onPress={() => {
-                              dispatch(updateFilterValue(filterName, optionName, "reverse"));
-                            }}
-                          />
-                        )}
+      <BottomSheet
+        index={0}
+        snapPoints={["15%", "75%"]}
+        style={{ borderColor: colors.background, borderWidth: 1, borderRadius: 16 }}
+        backgroundStyle={{ backgroundColor: colors.surface }}
+        handleIndicatorStyle={{ backgroundColor: colors.placeholder }}
+      >
+        <List.AccordionGroup>
+          {filters.map(({ name: filterName, label: filterLabel, options }) => (
+            <List.Accordion
+              key={`filter-${filterName}`}
+              title={filterLabel}
+              id={filterName}
+              style={{ backgroundColor: colors.surface }}
+            >
+              <ScrollView>
+                {options.map(({ label: optionLabel, name: optionName, checked }) => (
+                  <List.Item
+                    key={`filter-${filterName}-${optionName}`}
+                    title={optionLabel}
+                    right={() => (
+                      <Checkbox
+                        status={checked ? "checked" : "unchecked"}
                         onPress={() => {
                           dispatch(updateFilterValue(filterName, optionName, "reverse"));
                         }}
                       />
-                    ))}
-                  </ScrollView>
-                </List.Accordion>
-              ))}
-            </List.AccordionGroup>
-          </View>
-          <FAB
-            icon={filtersShown ? "close" : "menu"}
-            style={{
-              position: "absolute",
-              bottom: 0,
-              right: 0,
-              margin: 20,
-            }}
-            onPress={() => setFiltersShown(!filtersShown)}
-          />
-        </View>
-      )}
+                    )}
+                    onPress={() => {
+                      dispatch(updateFilterValue(filterName, optionName, "reverse"));
+                    }}
+                  />
+                ))}
+              </ScrollView>
+            </List.Accordion>
+          ))}
+        </List.AccordionGroup>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
