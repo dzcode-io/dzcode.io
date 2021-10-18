@@ -30,8 +30,11 @@ export const getDataEntry = <T = Record<string, unknown>>(
     slug: _path.substring(_path.indexOf("/") + 1),
   };
 
-  info = language ? info[language] : info;
-  console.log(language);
+  // check if the info file contain a title for
+  // the given language
+  const INFO_CONTAINS_LANG_TITLE = language && info[language].title;
+  info = INFO_CONTAINS_LANG_TITLE ? info[language as string] : info;
+
   // Filter properties
 
   if (!include) {
@@ -52,7 +55,7 @@ export const getDataEntry = <T = Record<string, unknown>>(
   if (
     (!include || include.includes("content")) &&
     fse.existsSync(`${path}/content.md`) &&
-    !language
+    !INFO_CONTAINS_LANG_TITLE
   )
     entry = {
       ...entry,
