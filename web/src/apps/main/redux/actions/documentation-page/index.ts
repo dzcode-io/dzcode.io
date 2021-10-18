@@ -12,7 +12,10 @@ import { listToTree } from "l2t";
  */
 export const fetchDocumentationList = (): ThunkResult<LearnPageState> => async (dispatch) => {
   try {
-    const documentationList = await fetchV2("data:documentation/list.c.json", {});
+    const currentLanguage = localStorage.getItem("lang");
+    const documentationList = await fetchV2("data:documentation/list.c.json", {
+      query: [["language", currentLanguage]],
+    });
     const ids: string[] = [];
     // convert list into tree
     const tree = listToTree<typeof documentationList[0], SidebarTreeItem>(
@@ -134,8 +137,10 @@ export const fetchCurrentDocument =
         payload: { currentDocument: null },
       });
       try {
+        const currentLanguage: string = getState().settings.lang ?? localStorage.getItem("lang");
         const currentDocument = await fetchV2(`data:documentation/:slug.json`, {
           params: { slug },
+          query: [["language", currentLanguage]],
         });
 
         // update our page state
