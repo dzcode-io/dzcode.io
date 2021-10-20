@@ -16,7 +16,7 @@ export const fetchContributions =
     try {
       const { contributeScreen } = getState();
       const query: [string, string][] = [];
-      contributeScreen.filters.forEach((filter) => {
+      contributeScreen.filters?.forEach((filter) => {
         filter.options.forEach((option) => {
           if (option.checked) query.push([filter.name, option.name]);
         });
@@ -27,7 +27,7 @@ export const fetchContributions =
         filterName: string;
         optionName: string;
       }> = [];
-      contributeScreen.filters.forEach((filter) => {
+      contributeScreen.filters?.forEach((filter) => {
         filter.options.forEach((option) => {
           if (option.checked) {
             checkedFilters.push({
@@ -72,7 +72,7 @@ export const updateFilterValue =
   ): ThunkResult<ContributeScreenState> =>
   async (dispatch, getState) => {
     const { filters } = getState().contributeScreen;
-    const newFilters = filters.map((filter) => {
+    const newFilters = filters?.map((filter) => {
       if (filter.name !== filterName) {
         return {
           ...filter,
