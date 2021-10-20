@@ -1,10 +1,10 @@
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../redux";
-import { FlatList, Image, Linking, SafeAreaView, ScrollView, View } from "react-native";
+import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import React, { FC, useEffect } from "react";
 import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
 import { useDispatch, useSelector } from "react-redux";
-import BottomSheet from "@gorhom/bottom-sheet";
 import { CardItemMemoed } from "./card-item";
 import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
 import { DZCodeLoading } from "../../components/loading";
@@ -94,10 +94,10 @@ export const ContributeScreen: FC = () => {
         backgroundStyle={{ backgroundColor: colors.background }}
         handleIndicatorStyle={{ backgroundColor: colors.placeholder }}
       >
-        <List.AccordionGroup>
-          {filters.map(({ name: filterName, label: filterLabel, options }) => (
-            <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
-              <ScrollView>
+        <BottomSheetScrollView>
+          <List.AccordionGroup>
+            {filters.map(({ name: filterName, label: filterLabel, options }) => (
+              <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
                 {options.map(({ label: optionLabel, name: optionName, checked }) => (
                   <List.Item
                     key={`filter-${filterName}-${optionName}`}
@@ -115,10 +115,10 @@ export const ContributeScreen: FC = () => {
                     }}
                   />
                 ))}
-              </ScrollView>
-            </List.Accordion>
-          ))}
-        </List.AccordionGroup>
+              </List.Accordion>
+            ))}
+          </List.AccordionGroup>
+        </BottomSheetScrollView>
       </BottomSheet>
     </SafeAreaView>
   );
