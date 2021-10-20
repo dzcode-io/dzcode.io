@@ -77,19 +77,26 @@ export const ContributeScreen: FC = () => {
       {/* Filters */}
       <BottomSheet
         index={0}
-        snapPoints={["15%", "75%"]}
-        style={{ borderColor: colors.background, borderWidth: 1, borderRadius: 16 }}
-        backgroundStyle={{ backgroundColor: colors.surface }}
+        snapPoints={["10%", "75%"]}
+        style={{
+          borderColor: "#aaa3",
+          borderWidth: 2,
+          borderRadius: 16,
+
+          shadowColor: "#000",
+          // iOS
+          shadowOffset: { width: 0, height: 12 },
+          shadowOpacity: 0.58,
+          shadowRadius: 16.0,
+          // Android
+          elevation: 8,
+        }}
+        backgroundStyle={{ backgroundColor: colors.background }}
         handleIndicatorStyle={{ backgroundColor: colors.placeholder }}
       >
         <List.AccordionGroup>
           {filters.map(({ name: filterName, label: filterLabel, options }) => (
-            <List.Accordion
-              key={`filter-${filterName}`}
-              title={filterLabel}
-              id={filterName}
-              style={{ backgroundColor: colors.surface }}
-            >
+            <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
               <ScrollView>
                 {options.map(({ label: optionLabel, name: optionName, checked }) => (
                   <List.Item
