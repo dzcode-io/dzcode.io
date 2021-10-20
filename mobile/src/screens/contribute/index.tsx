@@ -94,31 +94,37 @@ export const ContributeScreen: FC = () => {
         backgroundStyle={{ backgroundColor: colors.background }}
         handleIndicatorStyle={{ backgroundColor: colors.placeholder }}
       >
-        <BottomSheetScrollView>
-          <List.AccordionGroup>
-            {filters.map(({ name: filterName, label: filterLabel, options }) => (
-              <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
-                {options.map(({ label: optionLabel, name: optionName, checked }) => (
-                  <List.Item
-                    key={`filter-${filterName}-${optionName}`}
-                    title={optionLabel}
-                    right={() => (
-                      <Checkbox
-                        status={checked ? "checked" : "unchecked"}
-                        onPress={() => {
-                          dispatch(updateFilterValue(filterName, optionName, "reverse"));
-                        }}
-                      />
-                    )}
-                    onPress={() => {
-                      dispatch(updateFilterValue(filterName, optionName, "reverse"));
-                    }}
-                  />
-                ))}
-              </List.Accordion>
-            ))}
-          </List.AccordionGroup>
-        </BottomSheetScrollView>
+        {filters ? (
+          <BottomSheetScrollView>
+            <List.AccordionGroup>
+              {filters.map(({ name: filterName, label: filterLabel, options }) => (
+                <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
+                  {options.map(({ label: optionLabel, name: optionName, checked }) => (
+                    <List.Item
+                      key={`filter-${filterName}-${optionName}`}
+                      title={optionLabel}
+                      right={() => (
+                        <Checkbox
+                          status={checked ? "checked" : "unchecked"}
+                          onPress={() => {
+                            dispatch(updateFilterValue(filterName, optionName, "reverse"));
+                          }}
+                        />
+                      )}
+                      onPress={() => {
+                        dispatch(updateFilterValue(filterName, optionName, "reverse"));
+                      }}
+                    />
+                  ))}
+                </List.Accordion>
+              ))}
+            </List.AccordionGroup>
+          </BottomSheetScrollView>
+        ) : (
+          <View style={globalStyles.centerView}>
+            <DZCodeLoading style={contributeStyles.dzcodeLoading} />
+          </View>
+        )}
       </BottomSheet>
     </SafeAreaView>
   );
