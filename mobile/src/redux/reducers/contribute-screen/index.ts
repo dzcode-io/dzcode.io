@@ -4,14 +4,14 @@ import { FilterDto } from "../../../_common/api/responses";
 import { Model } from "../../../_common/entities";
 
 export interface ContributeScreenState {
-  filters: FilterDto[];
+  filters: FilterDto[] | null;
   contributions: Model<ContributionEntity, "project">[] | null;
   refreshing: boolean;
 }
 
 export const contributeScreen = (
   state: ContributeScreenState = {
-    filters: [],
+    filters: null,
     contributions: null,
     refreshing: false,
   },
