@@ -18,7 +18,7 @@ describe("ContributorController", () => {
     });
 
     const contributorController = new ContributorController(mockedGithubServiceInstance);
-    let errorThrown = false;
+    let errorThrown: unknown;
     try {
       await contributorController.getContributor("/");
     } catch (error) {

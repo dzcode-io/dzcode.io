@@ -21,7 +21,7 @@ export const fetchContributions =
         });
       });
 
-      const { contributions, filters } = await fetchV2("api:v2/Contributions", { query });
+      const { contributions, filters } = await fetchV2("api:Contributions", { query });
 
       // restore filters states:
       const checkedFilters: Array<{

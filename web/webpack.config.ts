@@ -18,7 +18,7 @@ const publicPath = "/";
 const nonCodeFiles = ["png", "jpg", "jpeg", "gif", "svg", "ico", "ttf", "woff", "woff2"];
 
 const apps = glob
-  .sync("src/apps/*/entry/app-config.js")
+  .sync("src/apps/*/entry/app-config.ts")
   .map((path) => path.substring(9, path.indexOf("/", 9)));
 
 // exporting configs
@@ -66,7 +66,7 @@ export default {
       },
       // Non-Code files (assets)
       {
-        test: new RegExp(`\.(${nonCodeFiles.join("|")})$`),
+        test: new RegExp(`.(${nonCodeFiles.join("|")})$`),
         // https://github.com/webpack-contrib/file-loader
         use: [
           {

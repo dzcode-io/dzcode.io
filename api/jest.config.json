@@ -1,0 +1,8 @@
+{
+  "testEnvironment": "node",
+  "collectCoverageFrom": ["src/**/*.ts"],
+  "transform": {
+    "^.+\\.(ts)?$": "ts-jest"
+  },
+  "coveragePathIgnorePatterns": ["node_modules", "dist", "src/_common", "src/app/index.ts"]
+}
