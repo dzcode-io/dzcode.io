@@ -30,19 +30,19 @@ export interface Endpoints {
   "data:projects/top-projects.c.json": {
     response: Pick<Project, "title" | "description" | "image" | "githubURI">[];
   };
-  "api:v2/Contributions": {
+  "api:Contributions": {
     response: GetContributionsResponseDto;
     query: [string, string][];
   };
-  "api:v2/Contributors": {
+  "api:Contributors": {
     response: GetContributorsResponseDto;
     query: [["path", string]];
   };
-  "api:v2/GithubUsers/:login": {
+  "api:GithubUsers/:login": {
     response: GetUserResponseDto;
     params: { login: string };
   };
-  "api:v2/Team": {
+  "api:Team": {
     response: GetTeamResponseDto;
   };
 }

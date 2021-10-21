@@ -5,10 +5,10 @@
   "scripts": {
     "common:sync": "rimraf ./src/_common && syncdir ../common/src ./src/_common -c",
     "common:sync:watch": "yarn common:sync --watch",
-    "lint:check": "yarn prettier:check && yarn eslint:check",
+    "lint:check": "yarn prettier:check && yarn eslint:check && yarn tsc --noEmit",
     "lint:fix": "yarn prettier:fix && yarn eslint:fix",
-    "eslint:check": "eslint \"**/*.*\" --report-unused-disable-directives",
-    "eslint:fix": "eslint \"**/*.*\" --quiet --fix",
+    "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx --report-unused-disable-directives",
+    "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --quiet --fix",
     "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
     "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
     "test": "jest src",
@@ -17,10 +17,10 @@
     "test:cov:watch": "jest --coverage --watchAll",
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "dev": "nodemon dist/app/index.js",
-    "start": "node dist/app/index.js",
-    "deploy": "yarn build && rimraf ./oracle-cloud/build && node oracle-cloud/deploy.js production",
-    "deploy:stg": "yarn build && rimraf ./oracle-cloud/build && node oracle-cloud/deploy.js staging",
+    "dev": "nodemon dist/src/app/index.js",
+    "start": "node dist/src/app/index.js",
+    "deploy": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts production",
+    "deploy:stg": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts staging",
     "clean": "rimraf ./node_modules"
   },
   "repository": {
@@ -32,7 +32,7 @@
     "name": "Adam Ayuda Djezzar"
   },
   "license": "MIT",
-  "private": "true",
+  "private": true,
   "lint-staged": {
     "*.*": [
       "eslint --quiet --fix --ignore-path .eslintignore",
@@ -40,7 +40,7 @@
     ]
   },
   "engines": {
-    "node": ">=14",
+    "node": ">=16",
     "yarn": ">=1.4.2"
   },
   "dependencies": {
@@ -72,14 +72,29 @@
     "@types/express": "^4.17.9",
     "@types/express-rate-limit": "^5.1.1",
     "@types/faker": "^5.5.6",
+    "@types/fs-extra": "^9.0.6",
+    "@types/glob": "^7.1.3",
+    "@types/jest": "^26.0.19",
     "@types/make-fetch-happen": "^8.0.1",
     "@types/morgan": "^1.9.2",
     "@types/node": "^14.14.16",
     "@types/swagger-ui-express": "^4.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-unicorn": "^37.0.1",
+    "glob": "^7.1.7",
+    "jest": "^26.6.3",
     "jest-mock-extended": "^1.0.13",
     "lint-staged": "^10.5.3",
     "nodemon": "^2.0.6",
-    "typescript": "^4.1.3"
+    "prettier": "^2.2.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^10.3.0",
+    "typescript": "^4.4.4"
   }
 }

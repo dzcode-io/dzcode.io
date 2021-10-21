@@ -79,7 +79,7 @@ export class FilterDto {
 export class GetContributionsResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
   @Type(() => ContributionEntity)
-  contributions!: Model<ContributionEntity>[];
+  contributions!: Model<ContributionEntity, "project">[];
 
   @ValidateNested({ each: true })
   @Type(() => FilterDto)

@@ -1,11 +1,11 @@
-import React, { FC, memo } from "react";
 import { Button, Card, Paragraph, Title } from "react-native-paper";
-import { openLink } from "../../../utils/link";
-import { Project } from "../../../_common/types";
+import React, { FC, memo } from "react";
 import { Colors } from "../../../styles/colors";
-import { cardStyles } from "./styles";
-import { StateInterface } from "../../../redux";
 import { GeneralState } from "../../../redux/reducers/general";
+import { Project } from "../../../_common/types";
+import { StateInterface } from "../../../redux";
+import { cardStyles } from "./styles";
+import { openLink } from "../../../utils/link";
 import { useSelector } from "react-redux";
 
 interface CardItemProps {

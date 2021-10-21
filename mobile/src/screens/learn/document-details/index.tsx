@@ -1,19 +1,17 @@
-import React, { FC, useEffect } from "react";
-import { View, SafeAreaView, ScrollView, Image } from "react-native";
-import { Text } from "react-native-paper";
-import { Route } from "@react-navigation/routers";
-import { Document } from "../../../_common/types";
-import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, StateInterface } from "../../../redux";
-import { LearnScreenState } from "../../../redux/reducers/learn-screen";
-import { fetchDocument } from "../../../redux/actions/learn-screen";
-import { GeneralState } from "../../../redux/reducers/general";
+import { Image, SafeAreaView, ScrollView, View } from "react-native";
+import React, { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { DZCodeLoading } from "../../../components/loading";
+import { Document } from "../../../_common/types";
+import { GeneralState } from "../../../redux/reducers/general";
+import { LearnScreenState } from "../../../redux/reducers/learn-screen";
 import Markdown from "react-native-markdown-display";
-import { globalStyles } from "../../../styles/global";
-import { openLink } from "../../../utils/link";
-import { useNavigation } from "@react-navigation/native";
+import { Route } from "@react-navigation/routers";
+import { Text } from "react-native-paper";
 import { documentDetailsStyles } from "./styles";
+import { fetchDocument } from "../../../redux/actions/learn-screen";
+import { globalStyles } from "../../../styles/global";
 
 interface DocumentDetailsScreenProps {
   route: Route<"DocumentDetails", RouteParams>;
@@ -33,8 +31,6 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
   const dispatch = useDispatch<Dispatch<LearnScreenState>>();
-
-  const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(fetchDocument(route.params.document.slug));
@@ -61,6 +57,7 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
               text: {
                 color: theme === "dark" ? "white" : "black",
               },
+              /* eslint-disable camelcase */
               bullet_list: {
                 color: theme === "dark" ? "white" : "black",
               },
@@ -80,6 +77,7 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
                 backgroundColor: theme === "dark" ? "black" : "white",
               },
               body: documentDetailsStyles.mdBody,
+              /* eslint-enable camelcase */
             }}
           >
             {documents?.find((document) => document.slug === route.params.document.slug)?.content ||

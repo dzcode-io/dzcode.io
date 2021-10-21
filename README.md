@@ -8,13 +8,13 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 
 You can find more about each folder by clicking on the folder name
 
-| Folder               | Coverage                                                                                                                       |                                         Production URL |                                                                                                                                                                                         Staging URL |                                               Local URL |
-| :------------------- | :----------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------: |
-| [./web](./web)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |                         [dzcode.io](https://dzcode.io) |                                                                                                                                                          [stage.dzcode.io](https://stage.dzcode.io) |                 [localhost:8080](http://localhost:8080) |
-| [./data](./data)     | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |               [data.dzcode.io](https://data.dzcode.io) |                                                                                                                                                [data.stage.dzcode.io](https://data.stage.dzcode.io) |                 [localhost:9090](http://localhost:9090) |
-| [./api](./api)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    | [api.dzcode.io/v2/docs](https://api.dzcode.io/v2/docs) |                                                                                                                                  [api-stage.dzcode.io/v2/docs](https://api-stage.dzcode.io/v2/docs) | [localhost:7070/v2/docs](http://localhost:7070/v2/docs) |
-| [./mobile](./mobile) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=mobile)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                        | [Android](https://play.google.com/store/apps/details?id=io.dzcode.mobile) \| [iOS](https://testflight.apple.com/join/XDcfIqdJ) \| [Expo](https://expo.dev/@zakman.dev/dzcode?release-channel=stage) |               [localhost:19002](http://localhost:19002) |
-| [./common](./common) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                        |                                                                                                                                                                                                     |                                                         |
+| Folder               | Coverage                                                                                                                       |                                   Production URL |                                                                                                                                                                                         Staging URL |                                         Local URL |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------: |
+| [./web](./web)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |                   [dzcode.io](https://dzcode.io) |                                                                                                                                                          [stage.dzcode.io](https://stage.dzcode.io) |           [localhost:8080](http://localhost:8080) |
+| [./data](./data)     | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |         [data.dzcode.io](https://data.dzcode.io) |                                                                                                                                                [data.stage.dzcode.io](https://data.stage.dzcode.io) |           [localhost:9090](http://localhost:9090) |
+| [./api](./api)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    | [api.dzcode.io/docs](https://api.dzcode.io/docs) |                                                                                                                                        [api-stage.dzcode.io/docs](https://api-stage.dzcode.io/docs) | [localhost:7070/docs](http://localhost:7070/docs) |
+| [./mobile](./mobile) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=mobile)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                  | [Android](https://play.google.com/store/apps/details?id=io.dzcode.mobile) \| [iOS](https://testflight.apple.com/join/XDcfIqdJ) \| [Expo](https://expo.dev/@zakman.dev/dzcode?release-channel=stage) |         [localhost:19002](http://localhost:19002) |
+| [./common](./common) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=common)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                  |                                                                                                                                                                                                     |                                                   |
 
 ## Get Started
 
@@ -23,7 +23,7 @@ You can find more about each folder by clicking on the folder name
 Make sure you have:
 
 - [Git](https://git-scm.com/)
-- [Nodejs](https://nodejs.org/) version 14 or higher
+- [Nodejs](https://nodejs.org/) version 16 or higher (we recommend using [nvm](https://github.com/nvm-sh/nvm))
 - [Yarn](https://yarnpkg.com/) version 1.4.2 or higher
 
 ### Run it locally
@@ -62,7 +62,7 @@ yarn dev:all
 
 - For web server go to <http://localhost:8080>
 - For data server go to <http://localhost:9090>
-- For api server go to <http://localhost:7070/v2/docs>
+- For api server go to <http://localhost:7070/docs>
 - For mobile go to <http://localhost:19002> and scan QR code with your phone
 
 ## Contributing

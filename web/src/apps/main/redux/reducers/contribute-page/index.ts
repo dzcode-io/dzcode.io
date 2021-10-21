@@ -5,7 +5,7 @@ import { Model } from "src/_common/entities";
 
 export interface ContributePageState {
   filters: FilterDto[];
-  contributions: Model<ContributionEntity>[] | null;
+  contributions: Model<ContributionEntity, "project">[] | null;
 }
 
 export const contributePage = (
