@@ -7,6 +7,7 @@ import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { FC } from "react";
+import { RTLprovider } from "./rtl";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import { StateInterface } from "src/apps/main/redux";
 import { darkPalette } from "./palettes/dark";
@@ -25,7 +26,7 @@ export const Theme: FC = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      {props.children}
+      <RTLprovider>{props.children}</RTLprovider>
       <CssBaseline />
     </ThemeProvider>
   );

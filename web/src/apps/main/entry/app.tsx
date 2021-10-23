@@ -3,6 +3,7 @@ import "./style.scss";
 import { ComponentType, FC, Suspense, lazy, useEffect } from "react";
 import { Route, RouteProps, Switch, useLocation } from "react-router-dom";
 import { defineMessages, useIntl } from "react-intl";
+
 import Container from "@material-ui/core/Container";
 import { Footer } from "src/apps/main/components/footer";
 import { Loading } from "src/components/loading";
@@ -130,7 +131,7 @@ export const App: FC = () => {
           <Navbar />
           <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
             <Suspense fallback={<Loading />}>
-              <Routes></Routes>
+              <Routes />
             </Suspense>
           </Container>
           <Footer />

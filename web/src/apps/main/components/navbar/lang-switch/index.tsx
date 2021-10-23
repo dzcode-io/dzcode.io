@@ -1,10 +1,10 @@
+import { Box, Button, Menu, MenuItem } from "@material-ui/core";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { FC, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "@material-ui/core";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
+import { Translate } from "@material-ui/icons";
 import { languages } from "src/_common/config/languages";
 
 export const LanguageSwitch: FC = () => {
@@ -14,8 +14,8 @@ export const LanguageSwitch: FC = () => {
   const anchorButton = useRef(null);
 
   return (
-    <div>
-      <Button ref={anchorButton} onClick={() => setDropDownOpen(true)}>
+    <Box minWidth={20}>
+      <Button ref={anchorButton} onClick={() => setDropDownOpen(true)} startIcon={<Translate />}>
         {settings.language.shortLabel}
       </Button>
       <Menu
@@ -26,7 +26,6 @@ export const LanguageSwitch: FC = () => {
         {languages.map((language) => (
           <MenuItem
             key={language.label}
-            style={{ margin: 5 }}
             onClick={() => {
               dispatch({
                 type: "UPDATE_SETTINGS",
@@ -39,6 +38,6 @@ export const LanguageSwitch: FC = () => {
           </MenuItem>
         ))}
       </Menu>
-    </div>
+    </Box>
   );
 };
