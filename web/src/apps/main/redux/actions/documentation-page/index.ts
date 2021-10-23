@@ -10,37 +10,38 @@ import { listToTree } from "l2t";
 /**
  * Fetches the list of documents for the sidebar
  */
-export const fetchDocumentationList = (): ThunkResult<LearnPageState> => async (dispatch) => {
-  try {
-    const currentLanguage = localStorage.getItem("lang");
-    const documentationList = await fetchV2("data:documentation/list.c.json", {
-      query: [["language", currentLanguage]],
-    });
-    const ids: string[] = [];
-    // convert list into tree
-    const tree = listToTree<typeof documentationList[0], SidebarTreeItem>(
-      documentationList,
-      (item) => item.slug,
-      (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
-      "children",
-      (item) => {
-        ids.push(item.slug);
-        return {
-          content: item.title,
-          id: item.slug,
-          link: "/Learn/" + item.slug,
-        };
-      },
-    );
+export const fetchDocumentationList =
+  (): ThunkResult<LearnPageState> => async (dispatch, getState) => {
+    try {
+      const currentLanguage = getState().settings.language;
+      const documentationList = await fetchV2("data:documentation/list.c.json", {
+        query: [["language", currentLanguage.code]],
+      });
+      const ids: string[] = [];
+      // convert list into tree
+      const tree = listToTree<typeof documentationList[0], SidebarTreeItem>(
+        documentationList,
+        (item) => item.slug,
+        (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
+        "children",
+        (item) => {
+          ids.push(item.slug);
+          return {
+            content: item.title,
+            id: item.slug,
+            link: "/Learn/" + item.slug,
+          };
+        },
+      );
 
-    dispatch({
-      type: "UPDATE_LEARN_PAGE",
-      payload: { sidebarTree: tree, expanded: ids },
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: { sidebarTree: tree, expanded: ids },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 /**
  * Fetches the contributors of the an current document
@@ -137,10 +138,10 @@ export const fetchCurrentDocument =
         payload: { currentDocument: null },
       });
       try {
-        const currentLanguage: string = getState().settings.lang ?? localStorage.getItem("lang");
+        const currentLanguage = getState().settings.language;
         const currentDocument = await fetchV2(`data:documentation/:slug.json`, {
           params: { slug },
-          query: [["language", currentLanguage]],
+          query: [["language", currentLanguage.code]],
         });
 
         // update our page state
