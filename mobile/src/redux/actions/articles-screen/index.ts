@@ -12,7 +12,7 @@ export const fetchArticles = (): ThunkResult<ArticlesScreenState> => async (disp
     payload: { refreshing: true },
   });
   try {
-    const articles = await fetchV2("data:articles/list.c.json", {});
+    const articles = await fetchV2("data:articles/list.c.json", { query: [["language", "en"]] });
     dispatch({
       type: "UPDATE_ARTICLES_SCREEN",
       payload: {
@@ -38,7 +38,10 @@ export const fetchArticle =
     });
     try {
       const { articles } = getState().articlesScreen;
-      const article = await fetchV2(`data:articles/:slug.json`, { params: { slug } });
+      const article = await fetchV2(`data:articles/:slug.json`, {
+        params: { slug },
+        query: [["language", "en"]],
+      });
       dispatch({
         type: "UPDATE_ARTICLES_SCREEN",
         payload: {
