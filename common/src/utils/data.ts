@@ -32,8 +32,8 @@ export const getDataEntry = <T = Record<string, unknown>>(
 
   // check if the info file contain a title for
   // the given language
-  const INFO_CONTAINS_LANG_TITLE = language && info[language].title;
-  info = INFO_CONTAINS_LANG_TITLE ? info[language as string] : info;
+  const INFO_CONTAINS_LANG_TITLE = language && info[language]?.title;
+  info = INFO_CONTAINS_LANG_TITLE ? info[language] : info;
 
   // Filter properties
 
