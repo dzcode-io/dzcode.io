@@ -322,7 +322,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.0.0", "@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.15.4", "@babel/parser@^7.15.8", "@babel/parser@^7.6.0", "@babel/parser@^7.7.2", "@babel/parser@^7.9.0", "@babel/parser@^7.9.6":
+"@babel/parser@^7.0.0", "@babel/parser@^7.1.0", "@babel/parser@^7.14.7", "@babel/parser@^7.15.0", "@babel/parser@^7.15.4", "@babel/parser@^7.15.8", "@babel/parser@^7.6.0", "@babel/parser@^7.7.2", "@babel/parser@^7.9.0", "@babel/parser@^7.9.6":
   version "7.15.8"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.15.8.tgz#7bacdcbe71bdc3ff936d510c15dcea7cf0b99016"
   integrity sha512-BRYa3wcQnjS/nqI8Ac94pYYpJfojHVvVXJ97+IDCImX4Jc8W8Xv1+47enbruk+q1etOpsQNwnfFcNGw+gtPGxA==
@@ -1908,6 +1908,11 @@
     chalk "^4.0.0"
     tslib "^2.1.0"
     typescript "^4.3"
+
+"@gar/promisify@^1.0.1":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"
+  integrity sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw==
 
 "@google-cloud/paginator@^3.0.0":
   version "3.0.6"
@@ -3512,6 +3517,11 @@
   version "1.0.33"
   resolved "https://registry.yarnpkg.com/@types/json-stable-stringify/-/json-stable-stringify-1.0.33.tgz#099b0712d824d15e2660c20e1c16e6a8381f308c"
   integrity sha512-qEWiQff6q2tA5gcJGWwzplQcXdJtm+0oy6IHGHzlOf3eFAkGE/FIPXZK9ofWgNSHVp8AFFI33PJJshS0ei3Gvw==
+
+"@types/json5@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
+  integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
 "@types/keyv@*":
   version "3.1.3"
@@ -14646,12 +14656,17 @@ nan@^2.12.1, nan@^2.14.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
   integrity sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==
 
+nanocolors@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/nanocolors/-/nanocolors-0.1.12.tgz#8577482c58cbd7b5bb1681db4cf48f11a87fd5f6"
+  integrity sha512-2nMHqg1x5PU+unxX7PGY7AuYxl2qDx7PSrTRjizr8sxdd3l/3hBuWWaki62qmtYm2U5i4Z5E7GbjlyDFhs9/EQ==
+
 nanoid@^3.1.15, nanoid@^3.1.23:
   version "3.1.25"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.25.tgz#09ca32747c0e543f0e1814b7d3793477f9c8e152"
   integrity sha512-rdwtIXaXCLFAQbnfqDRnI6jaRHp9fTcYBjtFKE8eezcZ7LuLjhUaQGNeMXf1HmRoCH32CLz6XwX0TtxEOS/A3Q==
 
-nanoid@^3.1.20, nanoid@^3.1.28:
+nanoid@^3.1.20, nanoid@^3.1.28, nanoid@^3.1.30:
   version "3.1.30"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
   integrity sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==
@@ -15893,6 +15908,11 @@ picocolors@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"
   integrity sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==
+
+picocolors@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
+  integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
 
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   version "2.3.0"
