@@ -18,17 +18,11 @@
     "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,json --quiet --fix",
     "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
     "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
-    "test:cov": "jest --coverage",
-    "test:cov:watch": "jest --coverage --watchAll",
+    "test": "jest src",
+    "test:watch": "jest src --watchAll",
+    "test:cov": "jest src --coverage",
+    "test:cov:watch": "jest src --coverage --watchAll",
     "clean": "rimraf ./node_modules"
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|react-native-screens|react-native-reanimated|react-clone-referenced-element|expo(nent)?|@unimodules/.*|jest-expo/.*|@expo(nent)?/.*|react-navigation|@sentry|@react-navigation/.*|sentry-expo|native-base))"
-    ]
   },
   "lint-staged": {
     "*.*": [
