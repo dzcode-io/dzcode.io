@@ -58,7 +58,6 @@ export const Navigation: FC = () => {
       drawerType="back"
       screenOptions={{
         headerShown: true,
-        // eslint-disable-next-line react/display-name
         header: (props) => (
           <AppBar
             title={routes.find(({ name }) => name === props.scene.route.name)?.title || ""}
