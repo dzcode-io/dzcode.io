@@ -12,7 +12,9 @@ export const fetchDocuments = (): ThunkResult<LearnScreenState> => async (dispat
     payload: { refreshing: true },
   });
   try {
-    const documents = await fetchV2("data:documentation/list.c.json", {});
+    const documents = await fetchV2("data:documentation/list.c.json", {
+      query: [["language", "en"]],
+    });
     dispatch({
       type: "UPDATE_LEARN_SCREEN",
       payload: {
@@ -39,7 +41,10 @@ export const fetchDocument =
     });
     try {
       const { documents } = getState().learnScreen;
-      const document = await fetchV2("data:documentation/:slug.json", { params: { slug } });
+      const document = await fetchV2("data:documentation/:slug.json", {
+        params: { slug },
+        query: [["language", "en"]],
+      });
       dispatch({
         type: "UPDATE_LEARN_SCREEN",
         payload: {

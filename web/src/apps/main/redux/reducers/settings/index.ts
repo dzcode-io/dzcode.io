@@ -1,23 +1,20 @@
-import { Language } from "src/_common/types";
-
-const setBodyDir = (lang: Language) => {
-  if (lang === "ar") {
-    document.body.setAttribute("dir", "rtl");
-  } else {
-    document.body.setAttribute("dir", "ltr");
-  }
-  return lang;
-};
+import { Language, languages } from "src/_common/config/languages";
 
 export interface SettingsState {
   darkMode: boolean;
-  lang: Language;
+  language: Language;
 }
 
 export const settings = (
   state: SettingsState = {
     darkMode: localStorage.getItem("darkMode") !== "off",
-    lang: setBodyDir((localStorage.getItem("lang") as Language) || "en"),
+    language: (() => {
+      const persistedLanguageCode = localStorage.getItem("languageCode");
+      const initialLanguage =
+        languages.find(({ code }) => code === persistedLanguageCode) || languages[0];
+      document.body.setAttribute("dir", initialLanguage?.code === "ar" ? "rtl" : "ltr");
+      return initialLanguage;
+    })(),
   },
   action: {
     type: string;
@@ -26,11 +23,13 @@ export const settings = (
 ) => {
   switch (action.type) {
     case "UPDATE_SETTINGS":
-      localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
-      return { ...state, ...action.payload };
-    case "UPDATE_LANGUAGE":
-      localStorage.setItem("lang", action.payload.lang);
-      setBodyDir(action.payload.lang);
+      if (action.payload.darkMode) {
+        localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
+      }
+      if (action.payload.language) {
+        localStorage.setItem("languageCode", action.payload.language.code);
+        document.body.setAttribute("dir", action.payload.language.code === "ar" ? "rtl" : "ltr");
+      }
       return { ...state, ...action.payload };
     default:
       return state;

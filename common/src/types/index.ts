@@ -67,5 +67,3 @@ export interface GithubIssue {
     html_url: "https://github.com/ZibanPirate/l2t/pull/9";
   };
 }
-
-export type Language = "en" | "ar" | "fr";
