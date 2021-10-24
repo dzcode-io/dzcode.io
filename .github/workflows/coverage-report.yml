@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install workspace dependencies"
         run: |
-          yarn
+          yarn --frozen-lockfile
       - name: "Sync common directory"
         run: |
           yarn data:sync
@@ -70,7 +70,7 @@ jobs:
       - name: "Install mobile dependencies"
         run: |
           cd mobile
-          yarn
+          yarn --frozen-lockfile
       - name: "Running tests with coverage report"
         run: |
           cd mobile
