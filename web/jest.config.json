@@ -10,5 +10,6 @@
   },
   "transformIgnorePatterns": ["node_modules/(?!react-syntax-highlighter)"],
   "coveragePathIgnorePatterns": ["node_modules", "dist", "src/_common"],
-  "modulePaths": ["<rootDir>"]
+  "modulePaths": ["<rootDir>"],
+  "modulePathIgnorePatterns": ["<rootDir>/dist/"]
 }
