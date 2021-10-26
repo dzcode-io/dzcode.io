@@ -14,7 +14,7 @@ export const Header: FC = () => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("md")]: {
         alignItems: "flex-start",
       },
     },
@@ -22,11 +22,9 @@ export const Header: FC = () => {
       fontWeight: theme.typography.fontWeightBold,
       color: theme.palette.text.primary,
       textAlign: "center",
-      fontSize: theme.typography.h4.fontSize,
+      fontSize: theme.typography.h5.fontSize,
       [theme.breakpoints.up("sm")]: {
-        textAlign: "left",
-        fontSize: theme.typography.h2.fontSize,
-        marginBottom: 0,
+        fontSize: theme.typography.h4.fontSize,
       },
     },
     callToAction: {
@@ -38,18 +36,15 @@ export const Header: FC = () => {
     },
     button: {
       fontWeight: theme.typography.fontWeightBold,
-      [theme.breakpoints.down("sm")]: {
+      [theme.breakpoints.down("md")]: {
         width: "100%",
       },
     },
-    buttons: {
-      width: "100%",
-    },
     description: {
-      fontSize: theme.typography.h5.fontSize,
+      fontSize: theme.typography.body1.fontSize,
       margin: "40px 10px",
       [theme.breakpoints.up("sm")]: {
-        textAlign: "left",
+        fontSize: theme.typography.h5.fontSize,
         margin: "65px 0",
         width: "90%",
       },
@@ -84,7 +79,7 @@ export const Header: FC = () => {
               problems.
             </Typography>
 
-            <Box className={classes.buttons}>
+            <Box>
               <LinkV2 href="/Contribute" className={classes.callToAction}>
                 <Button
                   color="primary"
