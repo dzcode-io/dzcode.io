@@ -3,7 +3,7 @@
 exports[`header component should render header component 1`] = `
 <div>
   <div
-    class="MuiBox-root MuiBox-root-8"
+    class="MuiBox-root MuiBox-root-7"
   >
     <div
       class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-content-xs-center"
@@ -13,7 +13,7 @@ exports[`header component should render header component 1`] = `
         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
       >
         <div
-          class="MuiBox-root MuiBox-root-9 makeStyles-left-2"
+          class="MuiBox-root MuiBox-root-8 makeStyles-left-2"
         >
           <h1
             class="MuiTypography-root makeStyles-title-3 MuiTypography-body1"
@@ -27,7 +27,7 @@ exports[`header component should render header component 1`] = `
              Community
           </h1>
           <p
-            class="MuiTypography-root makeStyles-description-7 MuiTypography-body1 MuiTypography-colorTextPrimary"
+            class="MuiTypography-root makeStyles-description-6 MuiTypography-body1 MuiTypography-colorTextPrimary"
           >
             Whether you're a maintainer or an open-source enthusiast DzCode helps you
              
@@ -52,7 +52,7 @@ exports[`header component should render header component 1`] = `
              open-source projects that solve Algerian problems.
           </p>
           <div
-            class="MuiBox-root MuiBox-root-10 makeStyles-buttons-6"
+            class="MuiBox-root MuiBox-root-9"
           >
             <a
               class="makeStyles-callToAction-4"
