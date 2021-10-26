@@ -1,0 +1,35 @@
+changelog:
+  categories:
+    - title: Features 🎉
+      labels:
+        - enhancement
+
+    - title: Projects 🚀
+      labels:
+        - project
+
+    - title: Articles 📰
+      labels:
+        - article
+
+    - title: Documentation 📜
+      labels:
+        - documentation
+
+    - title: Breaking Changes 🚨
+      labels:
+        - breaking-change
+
+    - title: Enhancements 💅
+      labels:
+        - enhancement
+
+    - title: Bug fixes 🐞
+      labels:
+        - bug
+        - bug-fix
+        - bugfix
+
+    - title: Other Changes
+      labels:
+        - "*"
