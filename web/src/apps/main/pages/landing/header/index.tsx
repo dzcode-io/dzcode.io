@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Hidden, Typography } from "@material-ui/core";
 
 import { FC } from "react";
+import { FormattedMessage } from "react-intl";
 import { LinkV2 } from "src/components/link-v2";
 import image from "src/apps/main/assets/svg/dzcode.svg";
 import { makeStyles } from "@material-ui/core/styles";
@@ -64,7 +65,14 @@ export const Header: FC = () => {
         <Grid item xs={12} md={7}>
           <Box className={classes.left}>
             <Typography component="h1" className={classes.title}>
-              Algerian <span className={classes.greenHighlight}>Open Source</span> Community
+              <FormattedMessage
+                id="landing.header.h"
+                defaultMessage="Algerian <span>
+              Open Source </span> Community"
+                values={{
+                  span: (msg) => <span className={classes.greenHighlight}>{msg}</span>,
+                }}
+              />
             </Typography>
 
             <Typography
@@ -73,10 +81,26 @@ export const Header: FC = () => {
               color="textPrimary"
               className={classes.description}
             >
-              Whether you&apos;re a maintainer or an open-source enthusiast DzCode helps you{" "}
-              <LinkV2 href="/Projects">find</LinkV2>, <LinkV2 href="/Contribute">contribute</LinkV2>{" "}
-              and <LinkV2 href="/Projects">list</LinkV2> open-source projects that solve Algerian
-              problems.
+              <FormattedMessage
+                id="landing.header.body"
+                defaultMessage="Whether you are a maintainer or an open-source enthusiast DzCode helps you"
+              />{" "}
+              <LinkV2 href="/Projects">
+                <FormattedMessage id="landing.header.body.find" defaultMessage="find" />
+              </LinkV2>
+              ,{" "}
+              <LinkV2 href="/Contribute">
+                <FormattedMessage id="landing.header.body.contribute" defaultMessage="contribute" />{" "}
+              </LinkV2>
+              <FormattedMessage id="and" defaultMessage="and" />
+              <LinkV2 href="/Projects">
+                <FormattedMessage id="landing.header.body.list" defaultMessage="list" />{" "}
+              </LinkV2>
+              <FormattedMessage
+                id="landing.header.body.desc"
+                defaultMessage="open-source projects that solve Algerian
+              problems."
+              />
             </Typography>
 
             <Box>
@@ -90,7 +114,10 @@ export const Header: FC = () => {
                   disableTouchRipple
                   className={classes.button}
                 >
-                  Make a Contribution
+                  <FormattedMessage
+                    id="landing.button.contribute"
+                    defaultMessage="Make a Contribution"
+                  />
                 </Button>
               </LinkV2>
               <LinkV2 href="/FAQ">
@@ -104,7 +131,7 @@ export const Header: FC = () => {
                   size="large"
                   className={classes.button}
                 >
-                  Have a question ?
+                  <FormattedMessage id="landing.question" defaultMessage="Have a question ?" />
                 </Button>
               </LinkV2>
             </Box>

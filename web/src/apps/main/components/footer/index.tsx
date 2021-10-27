@@ -1,6 +1,7 @@
 import Container from "@material-ui/core/Container";
 import { FC } from "react";
 import { FooterComponentState } from "src/apps/main/redux/reducers/footer-component";
+import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
 import { LinkV2 } from "src/components/link-v2";
 import { StateInterface } from "src/apps/main/redux";
@@ -46,7 +47,7 @@ export const Footer: FC = () => {
               sections.map((category, i) => (
                 <Grid direction="column" container item xs={12} md={4} key={i}>
                   <Typography variant="h6" className={classes.categoryTitle}>
-                    {category.title}
+                    <FormattedMessage defaultMessage={category.title} />
                   </Typography>
                   {category.links.map((link, i) => {
                     return (
@@ -62,7 +63,7 @@ export const Footer: FC = () => {
           </Grid>
           <Grid item xs={12} md={3} className={classes.contactDetails}>
             <Typography variant="h6" className={classes.categoryTitle}>
-              Contact Information
+              <FormattedMessage id="footer.contact.info" defaultMessage="Contact Information" />
             </Typography>
             <a href="tel:+21367-626-1157">
               <Typography className={classes.linkText}>+213 06-76-26-11-57</Typography>
