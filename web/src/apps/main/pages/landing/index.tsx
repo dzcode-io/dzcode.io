@@ -5,6 +5,7 @@ import { fetchTopArticles, fetchTopProjects } from "src/apps/main/redux/actions/
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Button from "@material-ui/core/Button";
 import { Dispatch } from "src/apps/main/redux";
+import { FormattedMessage } from "react-intl";
 import { Header } from "./header";
 import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
 import { LinkV2 } from "src/components/link-v2";
@@ -44,7 +45,7 @@ export const LandingPage: FC = () => {
       <div style={{ textAlign: "center" }}>
         <LinkV2 className={classes.button} href="/Projects">
           <Button endIcon={<ArrowForwardIcon />} size="large">
-            See More Projects
+            <FormattedMessage id="landing.more.projects" defaultMessage="See More Projects" />
           </Button>
         </LinkV2>
         <hr className={classes.hr} />
@@ -53,7 +54,7 @@ export const LandingPage: FC = () => {
       <div style={{ textAlign: "center" }}>
         <LinkV2 className={classes.button} href="/Articles">
           <Button endIcon={<ArrowForwardIcon />} size="large">
-            Explore More Articles
+            <FormattedMessage id="landing.more.articles" defaultMessage="Explore More Articles" />
           </Button>
         </LinkV2>
       </div>
