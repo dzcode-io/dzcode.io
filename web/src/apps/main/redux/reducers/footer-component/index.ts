@@ -5,6 +5,7 @@ export interface FooterComponentState {
   sections: Array<{
     title: string;
     links: Array<{
+      id?: string;
       href: string;
       text: string;
     }>;
