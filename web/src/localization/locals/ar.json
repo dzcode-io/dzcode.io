@@ -1,5 +1,6 @@
 {
   "and": "و",
+  "home.path": "الصفحة الرئيسية",
   "articles.path": "المقالات",
   "contribute.path": "شارك معنا",
   "faq.header.title": "اللاسئلة الاكثر طرحا",
@@ -23,5 +24,8 @@
   "landing.top.projects.h": "افضل مشروعاتنا",
   "learn.path": "تعلم",
   "projects.path": "المشاريع",
-  "team.path": "فريقنا"
+  "team.path": "فريقنا",
+  "footer-social-media": "حسابتنا على مواقع التواصل",
+  "footer-mobile": "تطبيقنا على الجوال",
+  "footer-helpful-links": "روابط ستساعدك"
 }
