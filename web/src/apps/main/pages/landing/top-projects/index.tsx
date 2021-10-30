@@ -46,8 +46,8 @@ export const TopProjects: FC = () => {
       </Typography>
       <Grid container className={classes.topProjects} spacing={4}>
         {topProjects
-          ? topProjects.map((project) => (
-              <Grid key={`project-${project.slug}`} item xs={12} md={6} lg={4}>
+          ? topProjects.map((project, index) => (
+              <Grid key={`project-${index}`} item xs={12} md={6} lg={4}>
                 <Card
                   info={{
                     image: project.image || "",

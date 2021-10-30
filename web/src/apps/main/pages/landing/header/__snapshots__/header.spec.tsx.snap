@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`header component should render header component 1`] = `
+<div>
+  <div
+    class="MuiBox-root MuiBox-root-7"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-align-items-xs-center MuiGrid-justify-content-xs-center"
+      style="width: 100%; height: 100%;"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
+      >
+        <div
+          class="MuiBox-root MuiBox-root-8 makeStyles-left-2"
+        >
+          <h1
+            class="MuiTypography-root makeStyles-title-3 MuiTypography-body1"
+          >
+            Algerian 
+            <span
+              class="makeStyles-greenHighlight-1"
+            >
+              Open Source
+            </span>
+             Community
+          </h1>
+          <p
+            class="MuiTypography-root makeStyles-description-6 MuiTypography-body1 MuiTypography-colorTextPrimary"
+          >
+            Whether you're a maintainer or an open-source enthusiast DzCode helps you
+             
+            <a
+              href="/Projects"
+            >
+              find
+            </a>
+            , 
+            <a
+              href="/Contribute"
+            >
+              contribute
+            </a>
+             
+            and 
+            <a
+              href="/Projects"
+            >
+              list
+            </a>
+             open-source projects that solve Algerian problems.
+          </p>
+          <div
+            class="MuiBox-root MuiBox-root-9"
+          >
+            <a
+              class="makeStyles-callToAction-4"
+              href="/Contribute"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-button-5 MuiButton-containedPrimary MuiButton-containedSizeLarge MuiButton-sizeLarge"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Make a Contribution
+                </span>
+              </button>
+            </a>
+            <a
+              href="/FAQ"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text makeStyles-button-5 MuiButton-textPrimary MuiButton-textSizeLarge MuiButton-sizeLarge MuiButton-disableElevation"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-label"
+                >
+                  Have a question ?
+                </span>
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+      />
+    </div>
+  </div>
+</div>
+`;

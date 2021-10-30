@@ -2,11 +2,10 @@ import React, { FC } from "react";
 import { AppBar } from "../components/app-bar";
 import { Navigation as ArticlesStack } from "./articles/navigation";
 import { ContributeScreen } from "./contribute";
+import { Navigation as DocumentsStack } from "./learn/navigation";
 import { DrawerActions } from "@react-navigation/native";
 import { DrawerContent } from "../components/drawer-content";
 import { FAQScreen } from "./faq";
-import { HomeScreen } from "./home";
-import { LearnScreen } from "./learn";
 import { ProjectsScreen } from "./projects";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
@@ -20,9 +19,8 @@ interface Route {
 }
 
 const routes: Route[] = [
-  { name: "home", title: "Welcome to DzCode i/o", label: "Home", component: HomeScreen },
   {
-    name: "contribute",
+    name: "contribute" as const,
     title: "Contribution Gallery",
     label: "Contribute",
     component: ContributeScreen,
@@ -31,7 +29,7 @@ const routes: Route[] = [
     name: "learn",
     title: "Read & Learn",
     label: "Learn",
-    component: LearnScreen,
+    component: DocumentsStack,
   },
   {
     name: "projects",
@@ -56,11 +54,10 @@ const routes: Route[] = [
 export const Navigation: FC = () => {
   return (
     <Navigator
-      initialRouteName="home"
+      initialRouteName="contribute"
       drawerType="back"
       screenOptions={{
         headerShown: true,
-        // eslint-disable-next-line react/display-name
         header: (props) => (
           <AppBar
             title={routes.find(({ name }) => name === props.scene.route.name)?.title || ""}

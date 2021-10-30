@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface CatalogProps {
-  projectsList: Project[] | null;
+  projectsList: Pick<Project, "title" | "description" | "image" | "githubURI">[] | null;
 }
 
 export const Catalog: FC<CatalogProps> = ({ projectsList }) => {
@@ -31,8 +31,8 @@ export const Catalog: FC<CatalogProps> = ({ projectsList }) => {
       </Typography>
       <Grid container className={classes.root} spacing={4} justifyContent="space-around">
         {projectsList
-          ? projectsList.map((project: Project) => (
-              <Grid key={`project-${project.slug}`} item xs={12} md={6} lg={4}>
+          ? projectsList.map((project, index) => (
+              <Grid key={`project-${index}`} item xs={12} md={6} lg={4}>
                 <Card
                   info={{
                     image: project.image || "",

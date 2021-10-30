@@ -1,5 +1,8 @@
-import { ContributorEntity, ProjectEntity, RepositoryEntity } from "../_common/types";
+import { ContributorEntity } from "../_common/entities/contributor";
 import { GithubService } from "../github/service";
+import { Model } from "../_common/entities";
+import { ProjectReferenceEntity } from "../_common/entities/project-reference";
+import { RepositoryEntity } from "../_common/entities/repository";
 import { Service } from "typedi";
 import { getDataCollection } from "../_common/utils/data";
 import { join } from "path";
@@ -7,17 +10,17 @@ import { join } from "path";
 @Service()
 export class TeamRepository {
   constructor(private readonly githubService: GithubService) {
-    const projects = getDataCollection<ProjectEntity>(
-      join(__dirname, "../../../data"),
+    const projects = getDataCollection<Model<ProjectReferenceEntity, "repositories">>(
+      join(__dirname, "../../../../data"),
       "projects-v2",
       "list.json",
     );
     this.projects = projects !== 404 ? projects : [];
   }
 
-  private projects: ProjectEntity[];
+  private projects: Model<ProjectReferenceEntity, "repositories">[];
 
-  public async find(): Promise<ContributorEntity[]> {
+  public async find(): Promise<Model<ContributorEntity, "repositories">[]> {
     // flatten repositories into one array
     const repositories = this.projects.reduce<RepositoryEntity[]>(
       (repositories, project) => [...repositories, ...project.repositories],
@@ -25,7 +28,10 @@ export class TeamRepository {
     );
 
     // we first store them in a Record (object with id as keys) so we can uniquify them easily
-    const contributorsRecord: Record<string, ContributorEntity & { contributions: number }> = {};
+    const contributorsRecord: Record<
+      string,
+      Model<ContributorEntity, "repositories"> & { contributions: number }
+    > = {};
 
     // get contributors from all the repos we have
     await Promise.all(
@@ -64,6 +70,7 @@ export class TeamRepository {
     return Object.keys(contributorsRecord)
       .sort((a, b) => contributorsRecord[b].contributions - contributorsRecord[a].contributions) // sort contributors by their commits count
       .map((id) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { contributions, ...contributor } = contributorsRecord[id];
         return contributor;
       });

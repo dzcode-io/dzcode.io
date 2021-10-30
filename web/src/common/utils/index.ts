@@ -31,6 +31,8 @@ export const updateCollection = <T>(
     let updated: T | null = null;
     for (const updateIndex in clonedUC) {
       // check if it's there and it's not undefined as well
+      // @TODO-ZM: remove this code
+      // eslint-disable-next-line no-prototype-builtins
       if (clonedUC.hasOwnProperty(updateIndex) && clonedUC[updateIndex]) {
         const update = clonedUC[updateIndex];
         // found similar update:
@@ -57,6 +59,7 @@ export const updateCollection = <T>(
   // add the new updates to arrayToReturn
   for (const updateIndex in clonedUC) {
     // check if it's there and it's not undefined as well
+    // eslint-disable-next-line no-prototype-builtins
     if (clonedUC.hasOwnProperty(updateIndex) && clonedUC[updateIndex]) {
       const updated = Object.assign({}, clonedUC[updateIndex]);
       // add update to arrayToReturn
