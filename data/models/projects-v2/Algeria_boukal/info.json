@@ -1,0 +1,10 @@
+{
+  "name": "Algeria boukal",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "jusinamine",
+      "repository": "algeria-boukal"
+    }
+  ]
+}
