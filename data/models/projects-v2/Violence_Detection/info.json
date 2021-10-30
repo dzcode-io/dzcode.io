@@ -1,0 +1,10 @@
+{
+  "name": "violence detection",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "jusinamine",
+      "repository": "violence_detection"
+    }
+  ]
+}
