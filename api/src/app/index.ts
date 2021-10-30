@@ -15,7 +15,6 @@ import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
 import { TeamController } from "../team/controller";
 import { fsConfig } from "../_common/config";
-import router from "./routes/api";
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
@@ -46,19 +45,15 @@ export const routingControllersOptions = {
     LoggerMiddleware,
     DocsMiddleware,
   ],
-  routePrefix: "/v2",
   defaultErrorHandler: false,
   cors: Container.get(SecurityMiddleware).cors(),
 };
 const app: Application = createExpressServer(routingControllersOptions);
-
-// Load old code to the app, temporarily until we migrate all endpoints
-app.use("/", router);
 
 const logger = Container.get(LoggerService);
 
 // Start it
 app.listen(PORT, () => {
   const commonConfig = fsConfig(NODE_ENV);
-  logger.info({ message: `API Server up on: ${commonConfig.api.url}/v2/docs` });
+  logger.info({ message: `API Server up on: ${commonConfig.api.url}/docs` });
 });

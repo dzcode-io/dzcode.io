@@ -23,7 +23,7 @@ describe("GithubService", () => {
   it("should throw error when api call fails", async () => {
     fetchService.get.mockRejectedValue({ meg: "service down" });
     const githubService = new GithubService(fetchService);
-    let errorThrown = false;
+    let errorThrown: unknown;
     try {
       await githubService.listContributors(githubQuery);
     } catch (error) {

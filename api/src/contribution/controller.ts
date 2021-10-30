@@ -1,8 +1,5 @@
 import { Controller, Get, QueryParams } from "routing-controllers";
-import {
-  GetContributionsQueryDto,
-  GetContributionsResponseDto,
-} from "../_common/types/api-responses";
+import { GetContributionsQueryDto, GetContributionsResponseDto } from "../_common/api/responses";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { ContributionRepository } from "./repository";
 import { Service } from "typedi";

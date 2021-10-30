@@ -1,6 +1,9 @@
-import { ContributionEntity, FilterEntity, OptionEntity, ProjectEntity } from "../_common/types";
-import { GetContributionsResponseDto } from "../_common/types/api-responses";
+import { FilterDto, OptionDto } from "../_common/api/responses";
+import { ContributionEntity } from "../_common/entities/contribution";
+import { GetContributionsResponseDto } from "../_common/api/responses";
 import { GithubService } from "../github/service";
+import { Model } from "../_common/entities";
+import { ProjectReferenceEntity } from "../_common/entities/project-reference";
 import { Service } from "typedi";
 import { getDataCollection } from "../_common/utils/data";
 import { join } from "path";
@@ -8,22 +11,22 @@ import { join } from "path";
 @Service()
 export class ContributionRepository {
   constructor(private readonly githubService: GithubService) {
-    const projects = getDataCollection<ProjectEntity>(
-      join(__dirname, "../../../data"),
+    const projects = getDataCollection<Model<ProjectReferenceEntity, "repositories">>(
+      join(__dirname, "../../../../data"),
       "projects-v2",
       "list.json",
     );
     this.projects = projects !== 404 ? projects : [];
   }
 
-  private projects: ProjectEntity[];
+  private projects: Model<ProjectReferenceEntity, "repositories">[];
 
   public async find(
     filterFn?: (value: ContributionEntity, index: number, array: ContributionEntity[]) => boolean,
   ): Promise<Pick<GetContributionsResponseDto, "contributions" | "filters">> {
     let contributions = (
       await Promise.all(
-        this.projects.reduce<Promise<ContributionEntity[]>[]>(
+        this.projects.reduce<Promise<Model<ContributionEntity, "project">[]>[]>(
           (pV, { repositories, name, slug }) => [
             ...pV,
             ...repositories
@@ -38,7 +41,7 @@ export class ContributionRepository {
                   owner,
                   repo,
                 });
-                return issuesIncludingPRs.map<ContributionEntity>(
+                return issuesIncludingPRs.map<Model<ContributionEntity, "project">>(
                   /* eslint-disable camelcase */
                   ({
                     number,
@@ -79,7 +82,7 @@ export class ContributionRepository {
       (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
     );
 
-    const filters: FilterEntity[] = [
+    const filters: FilterDto[] = [
       { label: "Project", name: "projects", options: [] },
       { label: "Language", name: "languages", options: [] },
       { label: "Label", name: "labels", options: [] },
@@ -105,7 +108,7 @@ export class ContributionRepository {
     };
   }
 
-  private pushUniqueOption = (options: OptionEntity[], filterOptions: OptionEntity[]) => {
+  private pushUniqueOption = (options: OptionDto[], filterOptions: OptionDto[]) => {
     const uniqueOptions = options.filter(
       (_option) => !filterOptions.some(({ name }) => _option.name === name),
     );

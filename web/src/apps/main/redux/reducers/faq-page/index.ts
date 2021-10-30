@@ -1,5 +1,5 @@
 import { Action } from "src/apps/main/redux";
-import { faqData } from "./faq";
+import { faqData } from "src/_common/web/faq-data";
 
 export type FAQData = Array<{
   title: string;

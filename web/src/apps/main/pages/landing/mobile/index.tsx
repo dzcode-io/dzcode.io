@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   mobileApp: {
-    width: 200,
+    height: 480,
     borderRadius: 25,
     transition: "boxShadow .5s",
     "&:hover": {

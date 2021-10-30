@@ -1,9 +1,11 @@
-import { ContributionEntity, FilterEntity } from "src/_common/types";
 import { Action } from "src/apps/main/redux";
+import { ContributionEntity } from "src/_common/entities/contribution";
+import { FilterDto } from "src/_common/api/responses";
+import { Model } from "src/_common/entities";
 
 export interface ContributePageState {
-  filters: FilterEntity[];
-  contributions: ContributionEntity[] | null;
+  filters: FilterDto[];
+  contributions: Model<ContributionEntity, "project">[] | null;
 }
 
 export const contributePage = (

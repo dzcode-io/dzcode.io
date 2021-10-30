@@ -21,7 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install workspace dependencies"
         run: |
-          yarn
+          yarn --frozen-lockfile
       - name: "Deploy web"
         run: |
           cd web
@@ -47,7 +47,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install workspace dependencies"
         run: |
-          yarn
+          yarn --frozen-lockfile
       - name: "Deploy data"
         run: |
           cd data
@@ -78,7 +78,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: "Install workspace dependencies"
         run: |
-          yarn
+          yarn --frozen-lockfile
       - name: "Build data directory"
         run: |
           cd data
@@ -115,7 +115,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - name: "Install workspace dependencies"
         run: |
-          yarn
+          yarn --frozen-lockfile
       - name: "Deploy mobile"
         run: |
           cd mobile
