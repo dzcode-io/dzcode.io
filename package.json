@@ -1,6 +1,47 @@
 {
   "name": "@dzcode.io/root",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.3",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "sync-directory": "^4.0.5",
+    "syncpack": "^5.8.15"
+  },
+  "lint-staged": {
+    "**/package.json": [
+      "syncpack format"
+    ]
+  },
   "private": true,
+  "scripts": {
+    "api:build": "yarn --cwd api build",
+    "api:build:watch": "yarn --cwd api build:watch",
+    "api:dev": "yarn --cwd api dev",
+    "api:sync": "yarn --cwd api common:sync",
+    "api:sync:watch": "yarn api:sync --watch",
+    "clean": "yarn workspaces run clean && rimraf ./node_modules",
+    "data:build": "yarn --cwd data build",
+    "data:build:watch": "yarn --cwd data build:watch",
+    "data:dev": "yarn --cwd data dev",
+    "data:sync": "yarn --cwd data common:sync",
+    "data:sync:watch": "yarn data:sync --watch",
+    "dev": "echo \"Please run one of these commands:\\n\\nyarn dev:web\\n\\nyarn dev:mobile\\n\\nyarn dev:all\n\"",
+    "dev:all": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p web:sync:watch web:dev mobile:sync:watch mobile:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
+    "dev:mobile": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p mobile:sync:watch mobile:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
+    "dev:web": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p web:sync:watch web:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
+    "lint:check": "yarn workspaces run lint:check",
+    "lint:fix": "yarn workspaces run lint:fix",
+    "mobile:dev": "yarn --cwd mobile dev",
+    "mobile:sync": "yarn --cwd mobile common:sync",
+    "mobile:sync:watch": "yarn mobile:sync --watch",
+    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\") || exit 0",
+    "test": "yarn workspaces run test",
+    "test:cov": "yarn workspaces run test:cov",
+    "web:dev": "yarn --cwd web dev",
+    "web:sync": "yarn --cwd web common:sync",
+    "web:sync:watch": "yarn web:sync --watch"
+  },
   "workspaces": {
     "packages": [
       "api",
@@ -16,39 +57,5 @@
       "**/web/**",
       "**/mobile/**"
     ]
-  },
-  "scripts": {
-    "data:sync": "yarn --cwd data common:sync",
-    "api:sync": "yarn --cwd api common:sync",
-    "web:sync": "yarn --cwd web common:sync",
-    "mobile:sync": "yarn --cwd mobile common:sync",
-    "data:sync:watch": "yarn data:sync --watch",
-    "api:sync:watch": "yarn api:sync --watch",
-    "web:sync:watch": "yarn web:sync --watch",
-    "mobile:sync:watch": "yarn mobile:sync --watch",
-    "data:build": "yarn --cwd data build",
-    "api:build": "yarn --cwd api build",
-    "web:dev": "yarn --cwd web dev",
-    "data:dev": "yarn --cwd data dev",
-    "api:dev": "yarn --cwd api dev",
-    "mobile:dev": "yarn --cwd mobile dev",
-    "data:build:watch": "yarn --cwd data build:watch",
-    "api:build:watch": "yarn --cwd api build:watch",
-    "dev": "echo \"Please run one of these commands:\\n\\nyarn dev:web\\n\\nyarn dev:mobile\\n\\nyarn dev:all\n\"",
-    "dev:web": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p web:sync:watch web:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
-    "dev:mobile": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p mobile:sync:watch mobile:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
-    "dev:all": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p web:sync:watch web:dev mobile:sync:watch mobile:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
-    "lint:check": "yarn workspaces run lint:check",
-    "lint:fix": "yarn workspaces run lint:fix",
-    "test": "yarn workspaces run test",
-    "test:cov": "yarn workspaces run test:cov",
-    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\") || exit 0",
-    "clean": "yarn workspaces run clean && rimraf ./node_modules"
-  },
-  "devDependencies": {
-    "husky": "^7.0.4",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2",
-    "sync-directory": "^4.0.5"
   }
 }

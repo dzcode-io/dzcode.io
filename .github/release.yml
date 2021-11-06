@@ -2,7 +2,7 @@ changelog:
   categories:
     - title: Features 🎉
       labels:
-        - enhancement
+        - feature
 
     - title: Projects 🚀
       labels:
