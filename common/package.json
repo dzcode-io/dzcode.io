@@ -1,40 +1,18 @@
 {
   "name": "@dzcode.io/common",
-  "version": "1.0.0",
   "description": "dzCode.io common code",
-  "scripts": {
-    "lint:check": "yarn prettier:check && yarn eslint:check && yarn tsc --noEmit",
-    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
-    "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx,json --report-unused-disable-directives",
-    "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,json --quiet --fix",
-    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
-    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
-    "test": "jest src",
-    "test:watch": "jest src --watchAll",
-    "test:cov": "jest src --coverage",
-    "test:cov:watch": "jest src --coverage --watchAll",
-    "clean": "rimraf ./node_modules"
-  },
-  "repository": {
-    "type": "git",
-    "repository": "https://github.com/dzcode-io/dzcode.io.git"
-  },
+  "version": "1.0.0",
   "author": {
     "email": "contact@zakiii.com",
     "name": "Zakaria Mansouri",
     "url": "https://www.zakiii.com"
   },
-  "license": "MIT",
-  "private": true,
-  "lint-staged": {
-    "*.*": [
-      "eslint --quiet --fix --ignore-path .eslintignore",
-      "prettier --write --ignore-path ./.prettierignore"
-    ]
-  },
-  "engines": {
-    "node": ">=14",
-    "yarn": ">=1.4.2"
+  "dependencies": {
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
+    "fs-extra": "^10.0.0",
+    "glob": "^7.1.7",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
@@ -53,11 +31,33 @@
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4"
   },
-  "dependencies": {
-    "class-transformer": "^0.4.0",
-    "class-validator": "^0.13.1",
-    "fs-extra": "^10.0.0",
-    "glob": "^7.1.7",
-    "reflect-metadata": "^0.1.13"
+  "engines": {
+    "node": ">=14",
+    "yarn": ">=1.4.2"
+  },
+  "license": "MIT",
+  "lint-staged": {
+    "*.*": [
+      "eslint --quiet --fix --ignore-path .eslintignore",
+      "prettier --write --ignore-path ./.prettierignore"
+    ]
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "repository": "https://github.com/dzcode-io/dzcode.io.git"
+  },
+  "scripts": {
+    "clean": "rimraf ./node_modules",
+    "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx,json --report-unused-disable-directives",
+    "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,json --quiet --fix",
+    "lint:check": "yarn prettier:check && yarn eslint:check && yarn tsc --noEmit",
+    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
+    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
+    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
+    "test": "jest src",
+    "test:cov": "jest src --coverage",
+    "test:cov:watch": "jest src --coverage --watchAll",
+    "test:watch": "jest src --watchAll"
   }
 }
