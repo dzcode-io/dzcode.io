@@ -1,44 +1,10 @@
 {
   "name": "@dzcode.io/mobile",
   "version": "3.0.4",
-  "main": "node_modules/expo/AppEntry.js",
   "author": {
     "email": "omarbelghaouti@gmail.com",
     "name": "Omar Belghaouti",
     "url": "https://omarbelghaouti.space/"
-  },
-  "scripts": {
-    "common:sync": "rimraf ./src/_common && syncdir ../common/src ./src/_common -c",
-    "common:sync:watch": "yarn common:sync --watch",
-    "expo": "expo",
-    "dev": "expo start",
-    "lint:check": "yarn prettier:check && yarn eslint:check && yarn tsc --noEmit",
-    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
-    "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx,json --report-unused-disable-directives",
-    "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,json --quiet --fix",
-    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
-    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
-    "test": "jest src",
-    "test:watch": "jest src --watchAll",
-    "test:cov": "jest src --coverage",
-    "test:cov:watch": "jest src --coverage --watchAll",
-    "clean": "rimraf ./node_modules",
-    "build:ios": "expo build:ios --no-wait -t archive",
-    "build:android": "expo build:android --no-wait -t app-bundle",
-    "build:production": "yarn build:ios --release-channel production && yarn build:android --release-channel production",
-    "build:stage": "yarn build:ios --release-channel stage && yarn build:android --release-channel stage"
-  },
-  "lint-staged": {
-    "*.*": [
-      "eslint --quiet --fix --ignore-path .eslintignore",
-      "prettier --write --ignore-path ./.prettierignore"
-    ]
-  },
-  "license": "MIT",
-  "private": true,
-  "engines": {
-    "node": ">=14",
-    "yarn": ">=1.4.2"
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
@@ -107,5 +73,39 @@
     "reflect-metadata": "^0.1.13",
     "ts-jest": "^27.0.7",
     "typescript": "^4.4.4"
+  },
+  "engines": {
+    "node": ">=14",
+    "yarn": ">=1.4.2"
+  },
+  "license": "MIT",
+  "lint-staged": {
+    "*.*": [
+      "eslint --quiet --fix --ignore-path .eslintignore",
+      "prettier --write --ignore-path ./.prettierignore"
+    ]
+  },
+  "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "scripts": {
+    "build:android": "expo build:android --no-wait -t app-bundle",
+    "build:ios": "expo build:ios --no-wait -t archive",
+    "build:production": "yarn build:ios --release-channel production && yarn build:android --release-channel production",
+    "build:stage": "yarn build:ios --release-channel stage && yarn build:android --release-channel stage",
+    "clean": "rimraf ./node_modules",
+    "common:sync": "rimraf ./src/_common && syncdir ../common/src ./src/_common -c",
+    "common:sync:watch": "yarn common:sync --watch",
+    "dev": "expo start",
+    "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx,json --report-unused-disable-directives",
+    "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,json --quiet --fix",
+    "expo": "expo",
+    "lint:check": "yarn prettier:check && yarn eslint:check && yarn tsc --noEmit",
+    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
+    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
+    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
+    "test": "jest src",
+    "test:cov": "jest src --coverage",
+    "test:cov:watch": "jest src --coverage --watchAll",
+    "test:watch": "jest src --watchAll"
   }
 }
