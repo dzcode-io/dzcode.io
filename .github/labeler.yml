@@ -9,6 +9,7 @@ data:
 # Add 'project' to any changes within 'data/models/projects' folder or any subfolders
 project:
   - data/models/projects/**/*
+  - data/models/projects-v2/**/*
 
 # Add 'article' to any changes within 'data/models/articles' folder or any subfolders
 article:
