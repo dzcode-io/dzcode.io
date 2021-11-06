@@ -2,5 +2,19 @@
   "title": "A Friendly Tool For React Native Projects",
   "description": "How this tool was created and what it can be helpful for?",
   "image": "https://miro.medium.com/max/1400/1*nmzHh215x4FgBqm8RDPjug.png",
-  "authors": ["Omar-Belghaouti"]
+  "authors": ["Omar-Belghaouti"],
+  "ar": {
+    "title": "أدوات و مكتبات رائعة ستساعدك في مشاريع React native القادمة",
+    "description": "كيف تم إنشاء هذه الأداة او المكتبة  وكيف يمكن ان تكون مفيدة؟",
+    "image": "https://miro.medium.com/max/1400/1*nmzHh215x4FgBqm8RDPjug.png",
+    "authors": ["Omar-Belghaouti", "abderrahmaneMustapha"],
+    "content": "الترجمة للعربية ستكون متوفرة قريبا##"
+  },
+  "fr": {
+    "title": "",
+    "description": "",
+    "image": "",
+    "authors": [""],
+    "content": ""
+  }
 }

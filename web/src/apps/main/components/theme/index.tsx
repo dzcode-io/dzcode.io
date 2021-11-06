@@ -14,10 +14,13 @@ import { lightPalette } from "./palettes/light";
 import { useSelector } from "react-redux";
 
 export const Theme: FC = (props) => {
-  const { darkMode } = useSelector<StateInterface, SettingsState>((state) => state.settings);
+  const { darkMode, language } = useSelector<StateInterface, SettingsState>(
+    (state) => state.settings,
+  );
 
   const theme = createTheme({
     palette: darkMode ? darkPalette : lightPalette,
+    direction: language.code === "ar" ? "rtl" : "ltr",
   });
 
   return (
