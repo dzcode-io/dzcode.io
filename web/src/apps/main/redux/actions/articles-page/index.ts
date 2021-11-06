@@ -10,35 +10,40 @@ import { listToTree } from "l2t";
 /**
  * Fetches the list of articles for the sidebar
  */
-export const fetchArticlesList = (): ThunkResult<ArticlesPageState> => async (dispatch) => {
-  try {
-    const articlesList = await fetchV2("data:articles/list.c.json", {});
-    const ids: string[] = [];
+export const fetchArticlesList =
+  (): ThunkResult<ArticlesPageState> => async (dispatch, getState) => {
+    try {
+      const currentLanguage = getState().settings.language;
 
-    // convert list into tree
-    const tree = listToTree<Article, SidebarTreeItem>(
-      articlesList,
-      (item) => item.slug,
-      (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
-      "children",
-      (item) => {
-        ids.push(item.slug);
-        return {
-          content: item.title,
-          id: item.slug,
-          link: "/Articles/" + item.slug,
-        };
-      },
-    );
+      const articlesList = await fetchV2("data:articles/list.c.json", {
+        query: [["language", currentLanguage.code]],
+      });
+      const ids: string[] = [];
 
-    dispatch({
-      type: "UPDATE_ARTICLES_PAGE",
-      payload: { sidebarTree: tree, expanded: ids },
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
+      // convert list into tree
+      const tree = listToTree<Article, SidebarTreeItem>(
+        articlesList,
+        (item) => item.slug,
+        (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
+        "children",
+        (item) => {
+          ids.push(item.slug);
+          return {
+            content: item.title,
+            id: item.slug,
+            link: "/Articles/" + item.slug,
+          };
+        },
+      );
+
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: { sidebarTree: tree, expanded: ids },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 /**
  * Fetches the contributors of the an current article
@@ -137,8 +142,13 @@ export const fetchCurrentArticle =
         payload: { currentArticle: null },
       });
 
+      const currentLanguage = getState().settings.language.code;
+
       try {
-        const currentArticle = await fetchV2(`data:articles/:slug.json`, { params: { slug } });
+        const currentArticle = await fetchV2(`data:articles/:slug.json`, {
+          params: { slug },
+          query: [["language", currentLanguage]],
+        });
 
         // update our page state
         dispatch({

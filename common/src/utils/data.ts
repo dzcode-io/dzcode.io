@@ -11,6 +11,7 @@ export const getDataEntry = <T = Record<string, unknown>>(
   dataFolder: string,
   _path: string,
   include?: string[],
+  language?: string,
 ) => {
   const path = join(dataFolder, "models", _path);
   // Entry doesn't exist
@@ -24,12 +25,18 @@ export const getDataEntry = <T = Record<string, unknown>>(
   let entry = {};
 
   // Read info.json
-  const info = {
+  let info = {
     ...fse.readJsonSync(`${path}/info.json`),
     slug: _path.substring(_path.indexOf("/") + 1),
   };
 
+  // check if the info file contain a title for
+  // the given language
+  const INFO_CONTAINS_LANG_TITLE = language && info[language]?.title;
+  info = INFO_CONTAINS_LANG_TITLE ? info[language] : info;
+
   // Filter properties
+
   if (!include) {
     entry = { ...info };
   } else {
@@ -45,7 +52,11 @@ export const getDataEntry = <T = Record<string, unknown>>(
   }
 
   // Read content.md
-  if ((!include || include.includes("content")) && fse.existsSync(`${path}/content.md`))
+  if (
+    (!include || include.includes("content")) &&
+    fse.existsSync(`${path}/content.md`) &&
+    !INFO_CONTAINS_LANG_TITLE
+  )
     entry = {
       ...entry,
       content: String(fse.readFileSync(`${path}/content.md`)),
@@ -59,6 +70,7 @@ export const getDataCollection = <T = Record<string, unknown>>(
   dataFolder: string,
   collectionType: string,
   collectionName: string,
+  language?: string,
 ) => {
   // add .c
   collectionName = collectionName.replace(".c.json", ".json");
@@ -85,7 +97,12 @@ export const getDataCollection = <T = Record<string, unknown>>(
 
   // Collect Entries
   const entries = items.map((slug) => {
-    const entry = getDataEntry<T>(dataFolder, `${collectionType}/${slug}`, collection.include);
+    const entry = getDataEntry<T>(
+      dataFolder,
+      `${collectionType}/${slug}`,
+      collection.include,
+      language,
+    );
     return {
       slug,
       ...entry,
