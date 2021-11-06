@@ -1,6 +1,6 @@
 {
   "name": "@dzcode.io/mobile",
-  "version": "1.1.2",
+  "version": "3.0.4",
   "main": "node_modules/expo/AppEntry.js",
   "author": {
     "email": "omarbelghaouti@gmail.com",
@@ -22,7 +22,11 @@
     "test:watch": "jest src --watchAll",
     "test:cov": "jest src --coverage",
     "test:cov:watch": "jest src --coverage --watchAll",
-    "clean": "rimraf ./node_modules"
+    "clean": "rimraf ./node_modules",
+    "build:ios": "expo build:ios --no-wait -t archive",
+    "build:android": "expo build:android --no-wait -t app-bundle",
+    "build:production": "yarn build:ios --release-channel production && yarn build:android --release-channel production",
+    "build:stage": "yarn build:ios --release-channel stage && yarn build:android --release-channel stage"
   },
   "lint-staged": {
     "*.*": [
