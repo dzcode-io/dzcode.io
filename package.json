@@ -35,7 +35,7 @@
     "mobile:dev": "yarn --cwd mobile dev",
     "mobile:sync": "yarn --cwd mobile common:sync",
     "mobile:sync:watch": "yarn mobile:sync --watch",
-    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged\") || exit 0",
+    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged && yarn lint-staged\") || exit 0",
     "test": "yarn workspaces run test",
     "test:cov": "yarn workspaces run test:cov",
     "web:dev": "yarn --cwd web dev",
