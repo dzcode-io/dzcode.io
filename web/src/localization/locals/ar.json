@@ -4,6 +4,7 @@
   "articles.path": "المقالات",
   "contribute.path": "شارك معنا",
   "faq.header.title": "اللاسئلة الاكثر طرحا",
+  "faq.need.help": "هل ما زلت بحاجة إلى المساعدة؟ أرسل إلينا بريدًا إلكترونيًا على {link}",
   "faq.path": "اللاسئلة الاكثر طرحا",
   "footer.contact.info": "تواصل معنا",
   "landing.button.contribute": "قم بالمشاركة معنا",
@@ -25,7 +26,7 @@
   "learn.path": "تعلم",
   "projects.path": "المشاريع",
   "team.path": "فريقنا",
-  "footer-social-media": "حسابتنا على مواقع التواصل",
-  "footer-mobile": "تطبيقنا على الجوال",
-  "footer-helpful-links": "روابط ستساعدك"
+  "footer.social.media": "حسابتنا على مواقع التواصل",
+  "footer.mobile": "تطبيقنا على الجوال",
+  "footer.helpful.links": "روابط ستساعدك"
 }
