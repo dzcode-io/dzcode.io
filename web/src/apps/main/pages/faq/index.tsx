@@ -44,13 +44,15 @@ export const FaqPage: FC = () => {
       {faqData.map(({ title, questions }, index) => (
         <div key={`category-${index}`}>
           <Typography data-testid={`faq-title-${index}`} variant="h5" className={classes.header}>
-            {title}
+            <FormattedMessage id={`faq.title.${index}`} defaultMessage={title} />
           </Typography>
           <div>
             {questions.map(({ question, answer }, index) => (
               <Accordion key={`faq-${index}`} variant="outlined" style={{ marginBottom: -1 }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography className={classes.question}>{question}</Typography>
+                  <Typography className={classes.question}>
+                    <FormattedMessage id={`faq.question.${index}`} defaultMessage={question} />
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Markdown>{answer}</Markdown>
@@ -62,8 +64,13 @@ export const FaqPage: FC = () => {
       ))}
       <div className={classes.spacing} />
       <Typography className={classes.title}>
-        Still need help? send us an email at{" "}
-        <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>
+        <FormattedMessage
+          id="faq.need.help"
+          defaultMessage="Still need help? send us an email at {link}"
+          values={{
+            link: <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>,
+          }}
+        />
       </Typography>
     </>
   );

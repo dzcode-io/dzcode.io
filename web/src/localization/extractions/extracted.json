@@ -38,6 +38,10 @@
     "id": "faq.header.title"
   },
   {
+    "defaultMessage": "Still need help? send us an email at {link}",
+    "id": "faq.need.help"
+  },
+  {
     "defaultMessage": "See More Projects",
     "id": "landing.more.projects"
   },

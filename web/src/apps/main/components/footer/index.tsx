@@ -48,10 +48,10 @@ export const Footer: FC = () => {
               sections.map((category, i) => (
                 <Grid direction="column" container item xs={12} md={4} key={i}>
                   <Typography variant="h6" className={classes.categoryTitle}>
-                    <FormattedMessage
-                      id={`footer-${category.title.toLowerCase().replace(" ", "-")}`}
-                      defaultMessage={category.title}
-                    />
+                    {intl.formatMessage({
+                      id: `footer.${category.title.toLowerCase().replace(" ", ".")}`,
+                      defaultMessage: category.title,
+                    })}
                   </Typography>
                   {category.links.map((link, i) => {
                     return (
@@ -67,14 +67,12 @@ export const Footer: FC = () => {
                         }
                       >
                         <Typography variant="subtitle2" className={classes.linkText}>
-                          {link.id ? (
-                            <FormattedMessage
-                              id={link.id || link.text}
-                              defaultMessage={link.text}
-                            />
-                          ) : (
-                            link.text
-                          )}
+                          {link.id
+                            ? intl.formatMessage({
+                                id: link.id.replace("-", ".") || link.text.replace(" ", "."),
+                                defaultMessage: link.text,
+                              })
+                            : link.text}
                         </Typography>
                       </LinkV2>
                     );

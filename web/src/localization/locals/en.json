@@ -3,6 +3,7 @@
   "articles.path": "Articles",
   "contribute.path": "Contribute",
   "faq.header.title": "Frequently Asked Questions",
+  "faq.need.help": "Still need help? send us an email at {link}",
   "faq.path": "FAQ",
   "footer.contact.info": "Contact Information",
   "landing.button.contribute": "Make a Contribution",
