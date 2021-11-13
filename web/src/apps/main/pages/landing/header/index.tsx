@@ -70,7 +70,7 @@ export const Header: FC = () => {
                 defaultMessage="Algerian <span>
               Open Source </span> Community"
                 values={{
-                  span: (msg) => <span className={classes.greenHighlight}>{msg}</span>,
+                  span: (msg: string) => <span className={classes.greenHighlight}>{msg}</span>,
                 }}
               />
             </Typography>
