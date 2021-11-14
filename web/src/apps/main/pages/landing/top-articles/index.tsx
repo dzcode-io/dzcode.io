@@ -6,6 +6,7 @@ import { StateInterface } from "src/apps/main/redux";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
+import { FormattedMessage } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,10 +40,13 @@ export const TopArticles: FC = () => {
   return (
     <section className={classes.root}>
       <Typography className={classes.title} variant="h4">
-        Read Community Articles
+        <FormattedMessage id="landing.read.articles.h" defaultMessage="Read Community Articles" />
       </Typography>
       <Typography className={classes.subTitle} variant="h6" color="textSecondary">
-        Read awesome articles, written by Algerian Developers
+        <FormattedMessage
+          id="landing.read.articles.desc"
+          defaultMessage="Read awesome articles, written by Algerian Developers"
+        />
       </Typography>
       <Grid container className={classes.topArticles} spacing={4}>
         {topArticles

@@ -1,5 +1,6 @@
 import { Card } from "src/apps/main/components/card";
 import { FC } from "react";
+import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
 import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
 import { StateInterface } from "src/apps/main/redux";
@@ -39,10 +40,13 @@ export const TopProjects: FC = () => {
   return (
     <section className={classes.root}>
       <Typography className={classes.title} variant="h4">
-        Top Community Projects
+        <FormattedMessage id="landing.top.projects.h" defaultMessage="Top Community Projects" />
       </Typography>
       <Typography className={classes.subTitle} variant="h6" color="textSecondary">
-        Find, Use and Improve solutions written by Algerians for Algerians
+        <FormattedMessage
+          id="landing.top.projects.desc"
+          defaultMessage="Find, Use and Improve solutions written by Algerians for Algerians"
+        />
       </Typography>
       <Grid container className={classes.topProjects} spacing={4}>
         {topProjects
