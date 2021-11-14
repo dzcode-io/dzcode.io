@@ -30,7 +30,83 @@
     "id": "team.path"
   },
   {
+    "defaultMessage": "Contact Information",
+    "id": "footer.contact.info"
+  },
+  {
     "defaultMessage": "Frequently Asked Questions",
     "id": "faq.header.title"
+  },
+  {
+    "defaultMessage": "Still need help? send us an email at {link}",
+    "id": "faq.need.help"
+  },
+  {
+    "defaultMessage": "See More Projects",
+    "id": "landing.more.projects"
+  },
+  {
+    "defaultMessage": "Explore More Articles",
+    "id": "landing.more.articles"
+  },
+  {
+    "defaultMessage": "Algerian <span> Open Source </span> Community",
+    "id": "landing.header.h"
+  },
+  {
+    "defaultMessage": "Whether you are a maintainer or an open-source enthusiast DzCode helps you",
+    "id": "landing.header.body"
+  },
+  {
+    "defaultMessage": "find",
+    "id": "landing.header.body.find"
+  },
+  {
+    "defaultMessage": "contribute",
+    "id": "landing.header.body.contribute"
+  },
+  {
+    "defaultMessage": "and",
+    "id": "and"
+  },
+  {
+    "defaultMessage": "list",
+    "id": "landing.header.body.list"
+  },
+  {
+    "defaultMessage": "open-source projects that solve Algerian problems.",
+    "id": "landing.header.body.desc"
+  },
+  {
+    "defaultMessage": "Make a Contribution",
+    "id": "landing.button.contribute"
+  },
+  {
+    "defaultMessage": "Have a question ?",
+    "id": "landing.question"
+  },
+  {
+    "defaultMessage": "Going Mobile",
+    "id": "landing.mobile.h"
+  },
+  {
+    "defaultMessage": "Meet the DzCode i/o Mobile App and Stay up-to-date with state of dz open-source on iOS and Android",
+    "id": "landing.mobile.desc"
+  },
+  {
+    "defaultMessage": "Read Community Articles",
+    "id": "landing.read.articles.h"
+  },
+  {
+    "defaultMessage": "Read awesome articles, written by Algerian Developers",
+    "id": "landing.read.articles.desc"
+  },
+  {
+    "defaultMessage": "Top Community Projects",
+    "id": "landing.top.projects.h"
+  },
+  {
+    "defaultMessage": "Find, Use and Improve solutions written by Algerians for Algerians",
+    "id": "landing.top.projects.desc"
   }
 ]

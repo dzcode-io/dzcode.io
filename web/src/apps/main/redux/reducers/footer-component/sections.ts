@@ -4,11 +4,11 @@ export const sections = [
   {
     title: "Helpful Links",
     links: [
-      { text: "Home", href: "/" },
-      { text: "Learn", href: "/Learn" },
-      { text: "Projects", href: "/Projects" },
-      { text: "Articles", href: "/Articles" },
-      { text: "FAQ", href: "/FAQ" },
+      { id: "home.path", text: "Home", href: "/" },
+      { id: "learn.path", text: "Learn", href: "/Learn" },
+      { id: "projects.path", text: "Projects", href: "/Projects" },
+      { id: "articles.path", text: "Articles", href: "/Articles" },
+      { id: "faq.path", text: "FAQ", href: "/FAQ" },
     ],
   },
   {

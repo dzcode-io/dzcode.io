@@ -22,34 +22,38 @@ exports[`header component should render header component 1`] = `
             <span
               class="makeStyles-greenHighlight-1"
             >
-              Open Source
+              
+              Open Source 
             </span>
              Community
           </h1>
           <p
             class="MuiTypography-root makeStyles-description-6 MuiTypography-body1 MuiTypography-colorTextPrimary"
           >
-            Whether you're a maintainer or an open-source enthusiast DzCode helps you
+            Whether you are a maintainer or an open-source enthusiast DzCode helps you
              
             <a
               href="/Projects"
             >
               find
             </a>
-            , 
+            ,
+             
             <a
               href="/Contribute"
             >
               contribute
+               
             </a>
-             
-            and 
+            and
             <a
               href="/Projects"
             >
               list
+               
             </a>
-             open-source projects that solve Algerian problems.
+            open-source projects that solve Algerian
+              problems.
           </p>
           <div
             class="MuiBox-root MuiBox-root-9"
