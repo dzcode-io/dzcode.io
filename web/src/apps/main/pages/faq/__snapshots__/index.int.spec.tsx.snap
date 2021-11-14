@@ -1092,8 +1092,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
   <p
     class="MuiTypography-root makeStyles-title-1 MuiTypography-body1"
   >
-    Still need help? send us an email at
-     
+    Still need help? send us an email at 
     <a
       href="mailto:contact@dzcode.io"
     >
