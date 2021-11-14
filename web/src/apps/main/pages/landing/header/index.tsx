@@ -68,7 +68,7 @@ export const Header: FC = () => {
               <FormattedMessage
                 id="landing.header.h"
                 defaultMessage="Algerian <span>
-              Open Source </span> Community"
+                Open Source </span> Community"
                 values={{
                   span: (msg: string) => <span className={classes.greenHighlight}>{msg}</span>,
                 }}
