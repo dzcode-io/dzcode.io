@@ -2,6 +2,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import Button from "@material-ui/core/Button";
 import { FC } from "react";
+import { FormattedMessage } from "react-intl";
 import ListIcon from "@material-ui/icons/List";
 import Typography from "@material-ui/core/Typography";
 import articlesLanding from "src/apps/main/assets/svg/articles-landing.svg";
@@ -39,10 +40,18 @@ export const Landing: FC<LandingProps> = ({ onShowSidebar }) => {
     <div className={classes.root}>
       <img src={articlesLanding} className={classes.image} alt="Dzcode i/o: Articles" />
       <Typography className={classes.text}>
-        Welcome to the articles section of Dzcode i/o
+        <FormattedMessage
+          id="faq.articlespage.header"
+          defaultMessage="Welcome to the articles section of Dzcode i/o"
+        />
       </Typography>
       {md ? (
-        <Typography className={classes.text}>👈 Please select from the left sidebar</Typography>
+        <Typography className={classes.text}>
+          <FormattedMessage
+            id="faq.sidebar.select"
+            defaultMessage="👈 Please select from the left sidebar"
+          />
+        </Typography>
       ) : (
         <Button
           className={classes.button}
