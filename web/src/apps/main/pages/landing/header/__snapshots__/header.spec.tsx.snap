@@ -22,8 +22,7 @@ exports[`header component should render header component 1`] = `
             <span
               class="makeStyles-greenHighlight-1"
             >
-              
-              Open Source 
+              Open Source
             </span>
              Community
           </h1>
