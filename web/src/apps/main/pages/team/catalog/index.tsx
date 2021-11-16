@@ -1,5 +1,6 @@
 import { ContributorCard } from "src/apps/main/components/contributor-card";
 import { FC } from "react";
+import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
 import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
 import Typography from "@material-ui/core/Typography";
@@ -27,7 +28,7 @@ export const Catalog: FC<CatalogProps> = ({ teamList }) => {
   return (
     <>
       <Typography variant="h4" className={classes.header}>
-        Say Hi to the team 💻
+        <FormattedMessage id="faq.teampage.header" defaultMessage="Say Hi to the team 💻" />
       </Typography>
       <Grid container className={classes.root} spacing={4} justifyContent="space-around">
         {teamList

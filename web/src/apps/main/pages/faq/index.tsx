@@ -51,7 +51,10 @@ export const FaqPage: FC = () => {
               <Accordion key={`faq-${index}`} variant="outlined" style={{ marginBottom: -1 }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography className={classes.question}>
-                    <FormattedMessage id={`faq.question.${index}`} defaultMessage={question} />
+                    <FormattedMessage
+                      id={`faq.question.${title.toLowerCase()}.${index}`}
+                      defaultMessage={question}
+                    />
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails>

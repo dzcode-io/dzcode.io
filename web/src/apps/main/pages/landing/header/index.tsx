@@ -67,8 +67,7 @@ export const Header: FC = () => {
             <Typography component="h1" className={classes.title}>
               <FormattedMessage
                 id="landing.header.h"
-                defaultMessage="Algerian <span>
-              Open Source </span> Community"
+                defaultMessage="Algerian <span>Open Source</span> Community"
                 values={{
                   span: (msg: string) => <span className={classes.greenHighlight}>{msg}</span>,
                 }}

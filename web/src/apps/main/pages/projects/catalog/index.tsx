@@ -1,5 +1,6 @@
 import { Card } from "src/apps/main/components/card";
 import { FC } from "react";
+import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
 import { Project } from "src/_common/types";
 import Typography from "@material-ui/core/Typography";
@@ -27,7 +28,7 @@ export const Catalog: FC<CatalogProps> = ({ projectsList }) => {
   return (
     <>
       <Typography variant="h4" className={classes.header}>
-        Open Source Projects
+        <FormattedMessage id="faq.projectspage.header" defaultMessage="Open Source Projects" />
       </Typography>
       <Grid container className={classes.root} spacing={4} justifyContent="space-around">
         {projectsList
