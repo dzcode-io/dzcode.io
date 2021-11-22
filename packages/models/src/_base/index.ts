@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import "@dzcode.io/utils/dist/ts";
+import { KeysMatching } from "@dzcode.io/utils/dist/ts";
 
 export class BaseEntity {
   private _entity?: undefined;
