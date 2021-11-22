@@ -42,20 +42,11 @@
     "web:sync": "yarn --cwd web common:sync",
     "web:sync:watch": "yarn web:sync --watch"
   },
-  "workspaces": {
-    "packages": [
-      "api",
-      "common",
-      "data",
-      "web",
-      "mobile"
-    ],
-    "nohoist": [
-      "**/api/**",
-      "**/common/**",
-      "**/data/**",
-      "**/web/**",
-      "**/mobile/**"
-    ]
-  }
+  "workspaces": [
+    "packages/*",
+    "api",
+    "data",
+    "web",
+    "mobile"
+  ]
 }
