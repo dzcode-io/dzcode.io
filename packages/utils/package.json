@@ -20,7 +20,7 @@
   "main": "dist",
   "private": true,
   "scripts": {
-    "build": "yarn build:alone",
+    "build": "yarn lerna run build:alone --scope=@dzcode.io/utils --include-dependencies --stream",
     "build:alone": "tsc",
     "clean": "rimraf dist",
     "lint": "yarn lint:eslint . && yarn lint:prettier --check .",
