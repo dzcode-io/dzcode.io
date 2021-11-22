@@ -1,0 +1,7 @@
+{
+  "extends": "@dzcode.io/tooling/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["src"]
+}

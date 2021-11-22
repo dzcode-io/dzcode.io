@@ -1,6 +1,6 @@
-import { BaseEntity, Model } from ".";
+import { BaseEntity, Model } from "../_base";
 import { IsString } from "class-validator";
-import { RepositoryReferenceEntity } from "./repository-reference";
+import { RepositoryReferenceEntity } from "../repository-reference";
 import { Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
 

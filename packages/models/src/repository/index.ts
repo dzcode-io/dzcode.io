@@ -1,7 +1,7 @@
-import { ContributionEntity } from "./contribution";
-import { ContributorEntity } from "./contributor";
-import { Model } from ".";
-import { RepositoryReferenceEntity } from "./repository-reference";
+import { ContributionEntity } from "../contribution";
+import { ContributorEntity } from "../contributor";
+import { Model } from "../_base";
+import { RepositoryReferenceEntity } from "../repository-reference";
 import { Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
 

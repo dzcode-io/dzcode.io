@@ -1,6 +1,6 @@
-import { Model } from ".";
-import { ProjectReferenceEntity } from "./project-reference";
-import { RepositoryEntity } from "./repository";
+import { Model } from "../_base";
+import { ProjectReferenceEntity } from "../project-reference";
+import { RepositoryEntity } from "../repository";
 import { Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
 

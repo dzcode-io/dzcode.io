@@ -1,4 +1,4 @@
-import { BaseEntity } from ".";
+import { BaseEntity } from "../_base";
 import { IsString } from "class-validator";
 
 export class RepositoryReferenceEntity extends BaseEntity {

@@ -1,6 +1,11 @@
-import { BaseEntity, Model } from ".";
-import { IsDateString, IsNumber, IsString, ValidateNested } from "class-validator";
-import { ProjectReferenceEntity } from "./project-reference";
+import { BaseEntity, Model } from "../_base";
+import {
+  IsDateString,
+  IsNumber,
+  IsString,
+  ValidateNested,
+} from "class-validator";
+import { ProjectReferenceEntity } from "../project-reference";
 import { Type } from "class-transformer";
 
 export class ContributionEntity extends BaseEntity {
