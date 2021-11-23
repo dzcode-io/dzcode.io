@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import * as Sentry from "@sentry/node";
 import { createExpressServer, useContainer } from "routing-controllers";
 import { Application } from "express";

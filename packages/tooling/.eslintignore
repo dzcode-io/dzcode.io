@@ -5,6 +5,9 @@ dist
 # api
 oracle-cloud/build
 
+# data
+firebase
+
 *.*
 !*.ts
 !*.tsx
