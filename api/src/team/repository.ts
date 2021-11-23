@@ -1,21 +1,22 @@
-import { ContributorEntity } from "../_common/entities/contributor";
 import { GithubService } from "../github/service";
-import { Model } from "../_common/entities";
-import { ProjectReferenceEntity } from "../_common/entities/project-reference";
-import { RepositoryEntity } from "../_common/entities/repository";
 import { Service } from "typedi";
-import { getDataCollection } from "../_common/utils/data";
-import { join } from "path";
+// import { getDataCollection } from "../_common/utils/data";
+// import { join } from "path";
+import { Model } from "@dzcode.io/models/dist/_base";
+import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 
 @Service()
 export class TeamRepository {
   constructor(private readonly githubService: GithubService) {
-    const projects = getDataCollection<Model<ProjectReferenceEntity, "repositories">>(
-      join(__dirname, "../../../../data"),
-      "projects-v2",
-      "list.json",
-    );
-    this.projects = projects !== 404 ? projects : [];
+    // const projects = getDataCollection<Model<ProjectReferenceEntity, "repositories">>(
+    //   join(__dirname, "../../../../data"),
+    //   "projects-v2",
+    //   "list.json",
+    // );
+    // this.projects = projects !== 404 ? projects : [];
+    this.projects = [];
   }
 
   private projects: Model<ProjectReferenceEntity, "repositories">[];

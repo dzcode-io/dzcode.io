@@ -2,6 +2,9 @@ node_modules/
 coverage
 dist
 
+# api
+oracle-cloud/build
+
 .*
 *.tsbuildinfo
 *.log
