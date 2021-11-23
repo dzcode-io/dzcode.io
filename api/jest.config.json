@@ -4,6 +4,6 @@
   "transform": {
     "^.+\\.(ts)?$": "ts-jest"
   },
-  "coveragePathIgnorePatterns": ["node_modules", "dist", "src/_common", "src/app/index.ts"],
+  "coveragePathIgnorePatterns": ["node_modules", "dist", "src/app/index.ts"],
   "modulePathIgnorePatterns": ["<rootDir>/dist/"]
 }

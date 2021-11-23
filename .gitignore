@@ -1,7 +1,8 @@
 node_modules
-**.DS_Store
+*.DS_Store
 .vscode
 
+*.tsbuildinfo
 yarn-error.log
 
 .idea/
