@@ -22,6 +22,8 @@
   "scripts": {
     "build": "yarn lerna run build:alone --scope=@dzcode.io/utils --include-dependencies --stream",
     "build:alone": "tsc",
+    "build:alone:watch": "tsc --watch --preserveWatchOutput",
+    "build:watch": "yarn build & yarn lerna run build:alone:watch --scope=@dzcode.io/utils --include-dependencies --parallel",
     "clean": "yarn lerna run clean:alone --scope=@dzcode.io/utils --include-dependencies --stream",
     "clean:alone": "rimraf dist",
     "lint": "yarn build && yarn lint:alone",
