@@ -1,8 +1,8 @@
 import { Controller, Get } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
-import { GetTeamResponseDto } from "../_common/api/responses";
 import { Service } from "typedi";
 import { TeamRepository } from "./repository";
+import { GetTeamResponseDto } from "./types";
 
 @Service()
 @Controller("/Team")

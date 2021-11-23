@@ -1,6 +1,4 @@
-/* eslint-disable camelcase */
-
-export type LoadingStatus = "loading" | "loaded" | "not-loaded";
+ 
 
 export interface Document {
   slug: string;
@@ -37,8 +35,6 @@ export interface Project {
   views?: number;
   githubURI?: string;
 }
-
-export type Environment = "development" | "staging" | "production";
 
 export interface GithubUser {
   login: string;

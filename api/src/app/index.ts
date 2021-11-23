@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 import * as Sentry from "@sentry/node";
 import { createExpressServer, useContainer } from "routing-controllers";
 import { Application } from "express";
@@ -14,7 +12,6 @@ import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
 import { TeamController } from "../team/controller";
-import { fsConfig } from "../_common/config";
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
@@ -54,6 +51,5 @@ const logger = Container.get(LoggerService);
 
 // Start it
 app.listen(PORT, () => {
-  const commonConfig = fsConfig(NODE_ENV);
-  logger.info({ message: `API Server up on: ${commonConfig.api.url}/docs` });
+  logger.info({ message: `API Server up on port: ${PORT}` });
 });

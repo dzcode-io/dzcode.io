@@ -28,8 +28,10 @@
   "scripts": {
     "build": "yarn lerna run build:alone --scope=@dzcode.io/models --include-dependencies --stream",
     "build:alone": "tsc",
-    "clean": "rimraf dist",
-    "lint": "yarn lint:eslint . && yarn lint:prettier --check .",
+    "clean": "yarn lerna run clean:alone --scope=@dzcode.io/models --include-dependencies --stream",
+    "clean:alone": "rimraf dist",
+    "lint": "yarn build && yarn lint:alone",
+    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
     "lint:eslint": "eslint --config ../tooling/.eslintrc.json --ignore-path ../tooling/.eslintignore --report-unused-disable-directives",
     "lint:prettier": "prettier  --config ../tooling/.prettierrc.json --ignore-path ../tooling/.prettierignore --loglevel warn"
   }

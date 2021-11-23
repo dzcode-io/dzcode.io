@@ -10,3 +10,7 @@ yarn-error.log
 .husky
 
 dist/
+
+# api
+api/oracle-cloud/build
+api/fetch_cache
