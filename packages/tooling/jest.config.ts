@@ -5,5 +5,6 @@ export default {
   testEnvironment: "node",
   globals: { "ts-jest": { tsconfig: "<rootDir>/tsconfig.json" } },
   collectCoverageFrom: ["<rootDir>/src/**/*.{ts,tsx,js,jsx}"],
-  testPathIgnorePatterns: ["<rootDir>/(?!src)"],
+  coveragePathIgnorePatterns: ["<rootDir>/src/_test"],
+  testPathIgnorePatterns: ["<rootDir>/(?!src)", "<rootDir>/src/_test"],
 } as Config.InitialOptions;
