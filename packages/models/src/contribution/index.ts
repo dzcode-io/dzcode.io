@@ -3,6 +3,7 @@ import {
   IsDateString,
   IsNumber,
   IsString,
+  IsUrl,
   ValidateNested,
 } from "class-validator";
 import { ProjectReferenceEntity } from "../project-reference";
@@ -22,13 +23,13 @@ export class ContributionEntity extends BaseEntity {
   @IsString()
   type!: "issue" | "pullRequest";
 
-  @IsString()
+  @IsUrl()
   url!: string;
 
-  @IsString()
+  @IsString({ each: true })
   languages!: string[];
 
-  @IsString()
+  @IsString({ each: true })
   labels!: string[];
 
   @IsDateString()
