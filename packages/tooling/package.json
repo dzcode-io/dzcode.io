@@ -8,12 +8,16 @@
     "url": "https://zakiii.com/"
   },
   "devDependencies": {
+    "@prettier/plugin-pug": "^1.17.3",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-unicorn": "^39.0.0",
     "jest": "^27.3.1",
     "jest-mock-extended": "^2.0.4",
     "lint-staged": "^12.1.2",

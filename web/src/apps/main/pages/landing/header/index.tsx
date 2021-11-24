@@ -20,7 +20,7 @@ export const Header: FC = () => {
       },
     },
     title: {
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightBold,
       color: theme.palette.text.primary,
       textAlign: "center",
       fontSize: theme.typography.h5.fontSize,
@@ -36,7 +36,7 @@ export const Header: FC = () => {
       },
     },
     button: {
-      fontWeight: theme.typography.fontWeightBold,
+      // fontWeight: theme.typography.fontWeightBold,
       [theme.breakpoints.down("md")]: {
         width: "100%",
       },
