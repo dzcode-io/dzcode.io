@@ -30,6 +30,7 @@
   "workspaces": [
     "packages/*",
     "api",
-    "data"
+    "data",
+    "web"
   ]
 }

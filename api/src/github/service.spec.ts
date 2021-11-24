@@ -3,7 +3,7 @@ import { GeneralGithubQuery, ListContributorsResponse } from "./types";
 import { FetchService } from "../fetch/service";
 import { GithubService } from "./service";
 import { mock } from "jest-mock-extended";
-import { githubUserMock } from "../test/mocks";
+import { githubUserMock } from "../_test/mocks";
 
 describe("GithubService", () => {
   const githubQuery: GeneralGithubQuery = {
