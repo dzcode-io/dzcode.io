@@ -81,4 +81,4 @@ To get started see [the contributing guidelines](https://github.com/dzcode-io/dz
 
 ## License
 
-Copyright (c) 2020 dzCode.io (twitter: [@dzcode_io](https://twitter.com/dzcode_io)) Licensed under the MIT license.
+Copyright (c) 2021 dzCode.io (twitter: [@dzcode_io](https://twitter.com/dzcode_io)) Licensed under the MIT license.
