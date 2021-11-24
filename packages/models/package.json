@@ -31,7 +31,7 @@
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:watch": "yarn build & yarn lerna run build:alone:watch --scope=@dzcode.io/models --include-dependencies --parallel",
     "clean": "yarn lerna run clean:alone --scope=@dzcode.io/models --include-dependencies --stream",
-    "clean:alone": "rimraf dist",
+    "clean:alone": "rimraf dist coverage",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
     "lint:eslint": "eslint --config ../tooling/.eslintrc.json --ignore-path ../tooling/.eslintignore --report-unused-disable-directives",
