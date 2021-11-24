@@ -1,7 +1,6 @@
 {
   "name": "@dzcode.io/root",
   "devDependencies": {
-    "concurrently": "^6.4.0",
     "husky": "^7.0.4",
     "lerna": "^4.0.0",
     "syncpack": "^5.8.15"
@@ -17,9 +16,10 @@
     "build:watch": "yarn lerna run build:alone:watch --parallel",
     "clean": "yarn lerna run clean:alone --stream",
     "dev": "echo \"Please run one of these commands:\\n\\nyarn dev:web\\nyarn dev:mobile\\nyarn dev:all\n\"",
-    "dev:all": "yarn build && concurrently \"yarn build:watch\" \"yarn start:dev\"",
-    "dev:mobile": "yarn build --scope=@dzcode.io/{mobile,api,data} --include-dependencies && concurrently \"yarn build:watch --scope=@dzcode.io/{mobile,api,data} --include-dependencies\" \"yarn start:dev --scope=@dzcode.io/{mobile,api,data}\"",
-    "dev:web": "yarn build --scope=@dzcode.io/{web,api,data} --include-dependencies && concurrently \"yarn build:watch --scope=@dzcode.io/{web,api,data} --include-dependencies\" \"yarn start:dev --scope=@dzcode.io/{web,api,data}\"",
+    "dev:all": "npm-run-all \"build --include-dependencies {@}\" --parallel \"build:watch --include-dependencies {@}\" \"start:dev {@}\" --",
+    "dev:api": "yarn dev:all --scope=@dzcode.io/api",
+    "dev:mobile": "yarn dev:all --scope=@dzcode.io/{mobile,api,data}",
+    "dev:web": "yarn dev:all --scope=@dzcode.io/{web,api,data}",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lerna run lint:alone --stream",
     "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged && yarn lint-staged\") || exit 0",
