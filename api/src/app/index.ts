@@ -14,6 +14,7 @@ import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
 import { TeamController } from "../team/controller";
+import { fsConfig } from "@dzcode.io/utils/dist/config";
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
@@ -53,5 +54,6 @@ const logger = Container.get(LoggerService);
 
 // Start it
 app.listen(PORT, () => {
-  logger.info({ message: `API Server up on port: ${PORT}` });
+  const commonConfig = fsConfig(NODE_ENV);
+  logger.info({ message: `API Server up on: ${commonConfig.api.url}/docs` });
 });

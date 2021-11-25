@@ -1,4 +1,4 @@
-import { Environment } from "../types";
+import { Environment } from "./environment";
 
 const apiPort = 7070;
 const dataPort = 9090;
