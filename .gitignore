@@ -16,3 +16,6 @@ coverage
 # api
 api/oracle-cloud/build
 api/fetch_cache
+
+# web
+web/bundle

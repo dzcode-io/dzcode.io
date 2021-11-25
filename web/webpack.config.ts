@@ -4,30 +4,66 @@ import TerserJSPlugin from "terser-webpack-plugin";
 import autoprefixer from "autoprefixer";
 import glob from "glob";
 import path from "path";
-import webpack from "webpack";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const precss = require("precss");
+import { Configuration as WPC } from "webpack";
+import { Configuration as WPDSC } from "webpack-dev-server";
+import precss from "precss";
 
 // setting up project configurations and some env variables
 const isDevelopment = process.env.NODE_ENV === "development";
 const isProduction = process.env.NODE_ENV === "production";
 const port = process.env.DEV_SERVER_PORT || 8080;
-const distFolder = "./dist";
+const distFolder = "./bundle";
 const publicResourcesPath = "w/";
 const publicPath = "/";
-const nonCodeFiles = ["png", "jpg", "jpeg", "gif", "svg", "ico", "ttf", "woff", "woff2"];
+const nonCodeFiles = [
+  "png",
+  "jpg",
+  "jpeg",
+  "gif",
+  "svg",
+  "ico",
+  "ttf",
+  "woff",
+  "woff2",
+];
 
 const apps = glob
   .sync("src/apps/*/entry/app-config.ts")
   .map((path) => path.substring(9, path.indexOf("/", 9)));
+
+const babelOptions = {
+  presets: [
+    [
+      "@babel/preset-env",
+      {
+        targets: [">0.2%", "not dead", "not op_mini all"],
+        modules: false,
+      },
+    ],
+    "@babel/preset-typescript",
+    ["@babel/preset-react", { runtime: "automatic" }],
+  ],
+  plugins: [
+    "@babel/proposal-class-properties",
+    // https://babeljs.io/docs/en/babel-plugin-proposal-object-rest-spread
+    "@babel/proposal-object-rest-spread",
+    // https://babeljs.io/docs/en/babel-plugin-transform-runtime
+    "@babel/plugin-transform-runtime",
+    // https://www.npmjs.com/package/babel-plugin-typescript-to-proptypes
+    ["babel-plugin-typescript-to-proptypes", { comments: true }],
+  ],
+};
 
 // exporting configs
 export default {
   // https://webpack.js.org/configuration/entry-context/
   entry: Object.fromEntries(
     new Map(
-      apps.map((app) => [app, __dirname + "/src/apps/" + "/" + app + "/" + "/entry/index.tsx"]),
-    ),
+      apps.map((app) => [
+        app,
+        path.join(__dirname + "/src/apps/" + app + "/" + "/entry/index.tsx"),
+      ])
+    )
   ),
   // https://webpack.js.org/concepts/output/#multiple-entry-points
   output: {
@@ -38,12 +74,33 @@ export default {
   },
   module: {
     rules: [
-      // TS / TSX
       {
-        include: path.resolve(__dirname, "src"),
-        // https://github.com/babel/babel-loader
-        loader: "babel-loader",
         test: /\.tsx?$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: babelOptions,
+          },
+          {
+            loader: "ts-loader",
+          },
+        ],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: babelOptions,
+          },
+        ],
+      },
+      {
+        test: /\.js$/,
+        use: ["source-map-loader"],
+        enforce: "pre",
       },
       // SCSS / SASS
       {
@@ -80,37 +137,40 @@ export default {
     ],
   },
   plugins: [
-    // https://webpack.js.org/plugins/hot-module-replacement-plugin/
-    isDevelopment ? new webpack.HotModuleReplacementPlugin() : () => null,
     // https://webpack.js.org/plugins/mini-css-extract-plugin
     new MiniCssExtractPlugin({
       filename: publicResourcesPath + "/bundle.[contenthash].css",
       chunkFilename: publicResourcesPath + "/chunk.[contenthash].css",
     }),
-    ...apps.reduce((pV, app) => [...pV, ...require(`./src/apps/${app}/entry/webpack.plugins`)], []),
+    ...apps.reduce<WPC["plugins"][]>(
+      (pV, app) => [
+        ...pV,
+        ...require(`./src/apps/${app}/entry/webpack.plugins`),
+      ],
+      []
+    ),
   ],
   resolve: {
     // https://webpack.js.org/configuration/resolve/#resolvealias
-    alias: { src: path.resolve(__dirname, "src") },
+    alias: {
+      src: [path.resolve(__dirname, "src")],
+    },
     // https://webpack.js.org/configuration/resolve/#resolveextensions
     extensions: [".ts", ".tsx", ".js", ".json"],
   },
   // https://webpack.js.org/configuration/dev-server/
   devServer: {
-    contentBase: distFolder,
     compress: true,
     headers: { "Access-Control-Allow-Origin": "*" },
     hot: true,
     liveReload: false,
-    disableHostCheck: true,
     host: "0.0.0.0",
     port,
-    writeToDisk: false,
     historyApiFallback: {
       disableDotRule: true,
     },
-    stats: "minimal",
-  },
+    open: { target: "/" },
+  } as WPDSC,
   // https://webpack.js.org/configuration/stats/
   stats: "minimal",
   // https://webpack.js.org/configuration/target/
@@ -123,4 +183,4 @@ export default {
   optimization: {
     minimizer: [new TerserJSPlugin({}), new CssMinimizerPlugin({})],
   },
-};
+} as WPC;
