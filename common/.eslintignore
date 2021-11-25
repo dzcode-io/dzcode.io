@@ -1,8 +1,0 @@
-node_modules/
-coverage
-*.*
-!*.tsx
-!*.ts
-!*.js
-!*.json
-*.svg
