@@ -36,20 +36,27 @@ export const Footer: FC = () => {
   const classes = useStyles();
   const intl = useIntl();
   const { sections } = useSelector<StateInterface, FooterComponentState>(
-    (state: StateInterface) => state.footerComponent,
+    (state: StateInterface) => state.footerComponent
   );
 
   return (
     <footer className={classes.root}>
       <Container maxWidth="lg">
-        <Grid container direction="row" alignItems="flex-start" alignContent="stretch">
+        <Grid
+          container
+          direction="row"
+          alignItems="flex-start"
+          alignContent="stretch"
+        >
           <Grid container item xs={12} md={9} spacing={6}>
             {sections &&
               sections.map((category, i) => (
                 <Grid direction="column" container item xs={12} md={4} key={i}>
                   <Typography variant="h6" className={classes.categoryTitle}>
                     {intl.formatMessage({
-                      id: `footer.${category.title.toLowerCase().replace(" ", ".")}`,
+                      id: `footer.${category.title
+                        .toLowerCase()
+                        .replace(" ", ".")}`,
                       defaultMessage: category.title,
                     })}
                   </Typography>
@@ -66,10 +73,15 @@ export const Footer: FC = () => {
                             : link.href
                         }
                       >
-                        <Typography variant="subtitle2" className={classes.linkText}>
+                        <Typography
+                          variant="subtitle2"
+                          className={classes.linkText}
+                        >
                           {link.id
                             ? intl.formatMessage({
-                                id: link.id.replace("-", ".") || link.text.replace(" ", "."),
+                                id:
+                                  link.id.replace("-", ".") ||
+                                  link.text.replace(" ", "."),
                                 defaultMessage: link.text,
                               })
                             : link.text}
@@ -82,13 +94,20 @@ export const Footer: FC = () => {
           </Grid>
           <Grid item xs={12} md={3} className={classes.contactDetails}>
             <Typography variant="h6" className={classes.categoryTitle}>
-              <FormattedMessage id="footer.contact.info" defaultMessage="Contact Information" />
+              <FormattedMessage
+                id="footer.contact.info"
+                defaultMessage="Contact Information"
+              />
             </Typography>
             <a href="tel:+21367-626-1157">
-              <Typography className={classes.linkText}>+213 06-76-26-11-57</Typography>
+              <Typography className={classes.linkText}>
+                +213 06-76-26-11-57
+              </Typography>
             </a>
             <a href="mailto:contact@dzcode.io">
-              <Typography className={classes.linkText}>contact@dzcode.io</Typography>
+              <Typography className={classes.linkText}>
+                contact@dzcode.io
+              </Typography>
             </a>
             <Typography className={classes.linkText}>
               Copyright © {new Date().getFullYear() + " "}
