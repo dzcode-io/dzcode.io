@@ -106,6 +106,7 @@
     "build": "yarn lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "build:alone": "tsc",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
+    "build:watch": "yarn lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
     "bundle": "echo \"create production bundle\"",
     "clean": "yarn lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage bundle",
@@ -117,9 +118,8 @@
     "lint:eslint": "eslint --config ../packages/tooling/.eslintrc.json --ignore-path ../packages/tooling/.eslintignore --report-unused-disable-directives",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc.json --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
     "start:dev": "cross-env TS_NODE_SKIP_PROJECT=true NODE_ENV=development webpack serve",
-    "test": "jest src",
-    "test:cov": "jest src --coverage",
-    "test:cov:watch": "jest src --coverage --watchAll",
-    "test:watch": "jest src --watchAll"
+    "test": "yarn build && yarn test:alone",
+    "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir . --testEnvironment jsdom",
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }
