@@ -1,8 +1,8 @@
-import { Language, languages } from "src/_common/config/languages";
+import { LanguageEntity, allLanguages } from "@dzcode.io/models/dist/language";
 
 export interface SettingsState {
   darkMode: boolean;
-  language: Language;
+  language: LanguageEntity;
 }
 
 export const settings = (
@@ -11,24 +11,34 @@ export const settings = (
     language: (() => {
       const persistedLanguageCode = localStorage.getItem("languageCode");
       const initialLanguage =
-        languages.find(({ code }) => code === persistedLanguageCode) || languages[0];
-      document.body.setAttribute("dir", initialLanguage?.code === "ar" ? "rtl" : "ltr");
+        allLanguages.find(({ code }) => code === persistedLanguageCode) ||
+        allLanguages[0];
+      document.body.setAttribute(
+        "dir",
+        initialLanguage?.code === "ar" ? "rtl" : "ltr"
+      );
       return initialLanguage;
     })(),
   },
   action: {
     type: string;
     payload: SettingsState;
-  },
+  }
 ) => {
   switch (action.type) {
     case "UPDATE_SETTINGS":
       if (action.payload.darkMode) {
-        localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
+        localStorage.setItem(
+          "darkMode",
+          action.payload.darkMode ? "on" : "off"
+        );
       }
       if (action.payload.language) {
         localStorage.setItem("languageCode", action.payload.language.code);
-        document.body.setAttribute("dir", action.payload.language.code === "ar" ? "rtl" : "ltr");
+        document.body.setAttribute(
+          "dir",
+          action.payload.language.code === "ar" ? "rtl" : "ltr"
+        );
       }
       return { ...state, ...action.payload };
     default:

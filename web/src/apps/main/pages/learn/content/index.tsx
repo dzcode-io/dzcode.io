@@ -2,13 +2,16 @@ import "./style.scss";
 
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { FC, useEffect } from "react";
-import { SpeedDial, SpeedDialAction } from "src/apps/main/components/speed-dial";
+import {
+  SpeedDial,
+  SpeedDialAction,
+} from "src/apps/main/components/speed-dial";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { Authors } from "src/apps/main/components/authors";
 import { Contributors } from "src/apps/main/components/contributors";
 import { Divider } from "@material-ui/core";
-import { Document } from "src/_common/types";
+import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import EditIcon from "@material-ui/icons/Edit";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
@@ -56,12 +59,12 @@ const useStyles = makeStyles((theme) =>
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(3),
     },
-  }),
+  })
 );
 
 export const Content: FC = () => {
   const { currentDocument } = useSelector<StateInterface, LearnPageState>(
-    (state) => state.learnPage,
+    (state) => state.learnPage
   );
   const dispatch = useDispatch<Dispatch<LearnPageState>>();
 

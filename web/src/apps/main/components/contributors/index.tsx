@@ -1,6 +1,6 @@
 import Avatar from "@material-ui/core/Avatar";
 import { FC } from "react";
-import { GithubUser } from "src/_common/types";
+import { GithubUser } from "@dzcode.io/api/dist/app/types/legacy";
 import { LinkV2 } from "src/components/link-v2";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -38,7 +38,10 @@ export const Contributors: FC<ContributorsProps> = ({ contributors }) => {
                 className={classes.avatar}
                 href={contributor.html_url}
               >
-                <Tooltip title={contributor.login} aria-label={contributor.login}>
+                <Tooltip
+                  title={contributor.login}
+                  aria-label={contributor.login}
+                >
                   <Avatar src={contributor.avatar_url} />
                 </Tooltip>
               </LinkV2>
