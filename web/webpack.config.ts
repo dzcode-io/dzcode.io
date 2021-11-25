@@ -1,12 +1,10 @@
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserJSPlugin from "terser-webpack-plugin";
-import autoprefixer from "autoprefixer";
 import glob from "glob";
 import path from "path";
 import { Configuration as WPC } from "webpack";
 import { Configuration as WPDSC } from "webpack-dev-server";
-import precss from "precss";
 
 // setting up project configurations and some env variables
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -31,12 +29,13 @@ const apps = glob
   .sync("src/apps/*/entry/app-config.ts")
   .map((path) => path.substring(9, path.indexOf("/", 9)));
 
+const browserslist = [">0.2%", "not dead", "not op_mini all"];
 const babelOptions = {
   presets: [
     [
       "@babel/preset-env",
       {
-        targets: [">0.2%", "not dead", "not op_mini all"],
+        targets: browserslist,
         modules: false,
       },
     ],
@@ -51,6 +50,8 @@ const babelOptions = {
     "@babel/plugin-transform-runtime",
     // https://www.npmjs.com/package/babel-plugin-typescript-to-proptypes
     ["babel-plugin-typescript-to-proptypes", { comments: true }],
+    // https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs
+    "@babel/plugin-transform-modules-commonjs",
   ],
 };
 
@@ -114,7 +115,9 @@ export default {
           {
             loader: "postcss-loader",
             options: {
-              postcssOptions: { plugins: [autoprefixer, precss] },
+              postcssOptions: {
+                plugins: [["postcss-preset-env", { browsers: browserslist }]],
+              },
             },
           },
           // Compiles Sass to CSS

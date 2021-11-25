@@ -1,5 +1,5 @@
 import { Action } from "src/apps/main/redux";
-import { Document } from "src/_common/types";
+import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { SidebarTreeItem } from "src/apps/main/types";
 
 export interface LearnPageState {
@@ -14,7 +14,7 @@ export const learnPage = (
     expanded: [],
     currentDocument: null,
   },
-  action: Action<LearnPageState>,
+  action: Action<LearnPageState>
 ) => {
   switch (action.type) {
     case "UPDATE_LEARN_PAGE":

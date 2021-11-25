@@ -1,5 +1,5 @@
 import { Action } from "src/apps/main/redux";
-import { faqData } from "src/_common/web/faq-data";
+import { faqData } from "./faq-data";
 
 export type FAQData = Array<{
   title: string;
@@ -17,7 +17,7 @@ export const faqPage = (
   state: FaqPageState = {
     faqData,
   },
-  action: Action<FaqPageState>,
+  action: Action<FaqPageState>
 ) => {
   switch (action.type) {
     default:

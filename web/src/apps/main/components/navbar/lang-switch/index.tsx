@@ -5,10 +5,12 @@ import { Button } from "@material-ui/core";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
-import { languages } from "src/_common/config/languages";
+import { allLanguages } from "@dzcode.io/models/dist/language";
 
 export const LanguageSwitch: FC = () => {
-  const { settings } = useSelector<StateInterface, StateInterface>((state) => state);
+  const { settings } = useSelector<StateInterface, StateInterface>(
+    (state) => state
+  );
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const dispatch = useDispatch<Dispatch<SettingsState>>();
   const anchorButton = useRef(null);
@@ -23,7 +25,7 @@ export const LanguageSwitch: FC = () => {
         open={dropDownOpen}
         onClose={() => setDropDownOpen(false)}
       >
-        {languages.map((language) => (
+        {allLanguages.map((language) => (
           <MenuItem
             key={language.label}
             style={{ margin: 5 }}

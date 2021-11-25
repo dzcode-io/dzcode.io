@@ -4,7 +4,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import { ContributorEntity } from "src/_common/entities/contributor";
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import MuiCard from "@material-ui/core/Card";
 import { SimpleDialog } from "src/apps/main/components/dialog";
 import Skeleton from "@material-ui/lab/Skeleton";
@@ -50,7 +50,11 @@ export const ContributorCard: FC<ContributorCardProps> = ({ contributor }) => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button onClick={() => setOpen(true)} size="small" color="primary">
+              <Button
+                onClick={() => setOpen(true)}
+                size="small"
+                color="primary"
+              >
                 Contributions
               </Button>
             </CardActions>
@@ -64,10 +68,18 @@ export const ContributorCard: FC<ContributorCardProps> = ({ contributor }) => {
           </>
         ) : (
           <CardActionArea>
-            <Skeleton animation="wave" variant="rect" className={classes.media} />
+            <Skeleton
+              animation="wave"
+              variant="rect"
+              className={classes.media}
+            />
             <CardContent>
               <>
-                <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+                <Skeleton
+                  animation="wave"
+                  height={10}
+                  style={{ marginBottom: 6 }}
+                />
                 <Skeleton animation="wave" height={10} width="80%" />
               </>
             </CardContent>
