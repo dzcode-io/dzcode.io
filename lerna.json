@@ -1,5 +1,5 @@
 {
-  "packages": ["packages/*", "api", "data", "web"],
+  "packages": ["packages/*", "api", "data", "web", "mobile"],
   "version": "0.0.0",
   "npmClient": "yarn",
   "useWorkspaces": true

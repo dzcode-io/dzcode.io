@@ -45,34 +45,20 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@dzcode.io/tooling": "*",
     "@types/debounce": "^1.2.0",
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.1.4",
-    "@types/jest": "^27.0.2",
     "@types/react": "^17.0.0",
     "@types/react-native": "~0.63.2",
     "@types/react-test-renderer": "^17.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
     "babel-plugin-transform-define": "^2.0.0",
-    "class-transformer": "^0.4.0",
-    "class-validator": "^0.13.1",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-unicorn": "^37.0.1",
     "expo-cli": "^4.7.2",
     "glob": "^7.2.0",
     "internal-ip": "^6.2.0",
-    "jest": "^27.2.5",
     "jest-expo": "^42.0.0",
-    "lint-staged": "^11.2.3",
-    "prettier": "^2.3.2",
     "react-native-help-create": "^1.0.5",
-    "react-test-renderer": "16.14.0",
-    "reflect-metadata": "^0.1.13",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.4.4"
+    "react-test-renderer": "16.14.0"
   },
   "engines": {
     "node": ">=14",
@@ -81,31 +67,33 @@
   "license": "MIT",
   "lint-staged": {
     "*.*": [
-      "eslint --quiet --fix --ignore-path .eslintignore",
-      "prettier --write --ignore-path ./.prettierignore"
+      "yarn lint:eslint --fix",
+      "yarn lint:prettier --write"
     ]
   },
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "repository": {
+    "type": "git",
+    "repository": "https://github.com/dzcode-io/dzcode.io.git"
+  },
   "scripts": {
+    "build": "yarn lerna run build:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
+    "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:android": "expo build:android --no-wait -t app-bundle",
     "build:ios": "expo build:ios --no-wait -t archive",
     "build:production": "yarn build:ios --release-channel production && yarn build:android --release-channel production",
     "build:stage": "yarn build:ios --release-channel stage && yarn build:android --release-channel stage",
-    "clean": "rimraf ./node_modules",
-    "common:sync": "rimraf ./src/_common && syncdir ../common/src ./src/_common -c",
-    "common:sync:watch": "yarn common:sync --watch",
-    "dev": "expo start",
-    "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx,json --report-unused-disable-directives",
-    "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,json --quiet --fix",
-    "expo": "expo",
-    "lint:check": "yarn prettier:check && yarn eslint:check && yarn tsc --noEmit",
-    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
-    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
-    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
-    "test": "jest src",
-    "test:cov": "jest src --coverage",
-    "test:cov:watch": "jest src --coverage --watchAll",
-    "test:watch": "jest src --watchAll"
+    "build:watch": "yarn lerna run build:alone:watch --scope=@dzcode.io/mobile --include-dependencies --parallel",
+    "clean": "yarn lerna run clean:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
+    "clean:alone": "rimraf .expo dist",
+    "lint": "yarn build && yarn lint:alone",
+    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
+    "lint:eslint": "eslint --config ../packages/tooling/.eslintrc.json --ignore-path ../packages/tooling/.eslintignore --report-unused-disable-directives",
+    "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc.json --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
+    "start:dev": "expo start",
+    "test": "yarn build && yarn test:alone",
+    "test:alone": "jest --rootDir .",
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }
