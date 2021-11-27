@@ -1,7 +1,7 @@
 import { Action } from "../..";
-import { ContributionEntity } from "../../../_common/entities/contribution";
-import { FilterDto } from "../../../_common/api/responses";
-import { Model } from "../../../_common/entities";
+import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { FilterDto } from "@dzcode.io/api/dist/contribution/types";
+import { Model } from "@dzcode.io/models/dist/_base";
 
 export interface ContributeScreenState {
   filters: FilterDto[] | null;
