@@ -6,13 +6,14 @@ import path from "path";
 import { Configuration as WPC } from "webpack";
 import { Configuration as WPDSC } from "webpack-dev-server";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
+import { join } from "path";
 
 // setting up project configurations and some env variables
 const isDevelopment = process.env.NODE_ENV === "development";
 const isProduction = process.env.NODE_ENV === "production";
 const { web } = fsConfig("development");
 const distFolder = "./bundle";
-const publicResourcesPath = "w/";
+const publicResourcesPath = "w";
 const publicPath = "/";
 const nonCodeFiles = ["png", "jpg", "jpeg", "gif", "svg", "ico", "ttf", "woff", "woff2"];
 
@@ -50,18 +51,13 @@ const babelOptions = {
 export default {
   // https://webpack.js.org/configuration/entry-context/
   entry: Object.fromEntries(
-    new Map(
-      apps.map((app) => [
-        app,
-        path.join(__dirname + "/src/apps/" + app + "/" + "/entry/index.tsx"),
-      ]),
-    ),
+    new Map(apps.map((app) => [app, path.join(__dirname, "src/apps", app, "entry/index.tsx")])),
   ),
   // https://webpack.js.org/concepts/output/#multiple-entry-points
   output: {
-    chunkFilename: publicResourcesPath + "/chunk.[contenthash].js",
-    filename: publicResourcesPath + "/bundle.[name].[contenthash].js",
-    path: __dirname + "/" + distFolder + "/" + publicPath,
+    chunkFilename: join(publicResourcesPath, "chunk.[contenthash].js"),
+    filename: join(publicResourcesPath, "bundle.[name].[contenthash].js"),
+    path: join(__dirname, distFolder, publicPath),
     publicPath: publicPath,
   },
   module: {
@@ -123,7 +119,7 @@ export default {
           {
             loader: "file-loader",
             options: {
-              outputPath: publicResourcesPath + "/assets",
+              outputPath: join(publicResourcesPath, "assets"),
             },
           },
         ],
@@ -133,8 +129,8 @@ export default {
   plugins: [
     // https://webpack.js.org/plugins/mini-css-extract-plugin
     new MiniCssExtractPlugin({
-      filename: publicResourcesPath + "/bundle.[contenthash].css",
-      chunkFilename: publicResourcesPath + "/chunk.[contenthash].css",
+      filename: join(publicResourcesPath, "bundle.[contenthash].css"),
+      chunkFilename: join(publicResourcesPath, "chunk.[contenthash].css"),
     }),
     ...apps.reduce<WPC["plugins"][]>(
       (pV, app) => [...pV, ...require(`./src/apps/${app}/entry/webpack.plugins`)],
