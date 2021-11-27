@@ -23,10 +23,18 @@ documentation:
 web:
   - web/**/*
 
-# Add 'common' to any changes within 'common' folder or any subfolders
-common:
-  - common/**/*
-
 # Add 'mobile' to any changes within 'mobile' folder or any subfolders
 mobile:
   - mobile/**/*
+
+# Add 'models' to any changes within 'models' folder or any subfolders
+models:
+  - packages/models/**/*
+
+# Add 'utils' to any changes within 'utils' folder or any subfolders
+utils:
+  - packages/utils/**/*
+
+# Add 'tooling' to any changes within 'tooling' folder or any subfolders
+tooling:
+  - packages/tooling/**/*
