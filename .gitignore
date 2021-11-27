@@ -19,3 +19,6 @@ api/fetch_cache
 
 # web
 web/bundle
+
+# web
+mobile/.expo
