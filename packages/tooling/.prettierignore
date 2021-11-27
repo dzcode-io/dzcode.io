@@ -8,7 +8,7 @@ oracle-cloud/build
 # data
 firebase
 
-.*
+./.*
 *.tsbuildinfo
 *.log
 *.svg

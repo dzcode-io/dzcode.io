@@ -94,7 +94,7 @@
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
     "lint:eslint": "eslint --config ../packages/tooling/.eslintrc.json --ignore-path ../packages/tooling/.eslintignore --report-unused-disable-directives",
-    "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc.json --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
+    "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
     "start:dev": "expo start",
     "test": "yarn build && yarn test:alone",
     "test:alone": "jest --rootDir .",
