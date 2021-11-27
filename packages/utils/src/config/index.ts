@@ -25,7 +25,7 @@ export const fsConfig = (env: Environment, extra?: Record<string, unknown>) => {
         "https://data.dzcode.io",
       ][e],
     },
-    frontend: {
+    web: {
       port: frontendPort,
       url: [
         `http://${hostname}:${frontendPort}`,

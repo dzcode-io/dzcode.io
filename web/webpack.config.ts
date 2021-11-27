@@ -5,11 +5,12 @@ import glob from "glob";
 import path from "path";
 import { Configuration as WPC } from "webpack";
 import { Configuration as WPDSC } from "webpack-dev-server";
+import { fsConfig } from "@dzcode.io/utils/dist/config";
 
 // setting up project configurations and some env variables
 const isDevelopment = process.env.NODE_ENV === "development";
 const isProduction = process.env.NODE_ENV === "production";
-const port = process.env.DEV_SERVER_PORT || 8080;
+const { web } = fsConfig("development");
 const distFolder = "./bundle";
 const publicResourcesPath = "w/";
 const publicPath = "/";
@@ -155,11 +156,9 @@ export default {
     hot: true,
     liveReload: false,
     host: "0.0.0.0",
-    port,
-    historyApiFallback: {
-      disableDotRule: true,
-    },
-    open: { target: "/" },
+    port: web.port,
+    historyApiFallback: { disableDotRule: true },
+    open: { target: web.url },
   } as WPDSC,
   // https://webpack.js.org/configuration/stats/
   stats: "minimal",
