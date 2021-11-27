@@ -1,6 +1,7 @@
 {
   "extends": "@dzcode.io/tooling/tsconfig.json",
   "compilerOptions": {
+    "module": "esnext",
     "outDir": "dist",
     "baseUrl": "."
   },

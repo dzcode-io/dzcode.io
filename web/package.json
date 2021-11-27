@@ -108,8 +108,6 @@
   },
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
-    "build:alone": "tsc",
-    "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
     "bundle": "yarn build && yarn bundle:alone",
     "bundle:alone": "cross-env TS_NODE_SKIP_PROJECT=true NODE_ENV=production webpack",
