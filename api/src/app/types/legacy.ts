@@ -1,5 +1,3 @@
- 
-
 export interface Document {
   slug: string;
   image?: string;

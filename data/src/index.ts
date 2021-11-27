@@ -20,9 +20,9 @@ app.get("/:type/:collection(\\S+.c.json$)", (req, res) =>
       join(__dirname, ".."),
       req.params.type,
       req.params.collection,
-      req.query.language as string
-    )
-  )
+      req.query.language as string,
+    ),
+  ),
 );
 
 // Entries
@@ -32,9 +32,9 @@ app.get("/:type/:entry([\\/\\S]+.json$)", (req, res) =>
       join(__dirname, ".."),
       `${req.params.type}/${req.params.entry.slice(0, -5)}`,
       undefined,
-      req.query.language as string
-    )
-  )
+      req.query.language as string,
+    ),
+  ),
 );
 
 // Start the server

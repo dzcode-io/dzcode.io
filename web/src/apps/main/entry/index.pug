@@ -4,7 +4,7 @@ head(lang=lang)
     //- Google Analytics
     script.
       (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
+        i["GoogleAnalyticsObject"] = r;
         (i[r] =
           i[r] ||
           function () {
@@ -15,8 +15,8 @@ head(lang=lang)
         a.async = 1;
         a.src = g;
         m.parentNode.insertBefore(a, m);
-      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-      ga('create', '#{gaCode}', 'auto');
+      })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+      ga("create", "#{gaCode}", "auto");
     //- Facebook Pixel Code
     script.
       !(function (f, b, e, v, n, t, s) {
@@ -27,15 +27,15 @@ head(lang=lang)
         if (!f._fbq) f._fbq = n;
         n.push = n;
         n.loaded = !0;
-        n.version = '2.0';
+        n.version = "2.0";
         n.queue = [];
         t = b.createElement(e);
         t.async = !0;
         t.src = v;
         s = b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '#{fbpCode}');
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", "#{fbpCode}");
   //- Facebook Comments plugin
   meta(property="fb:app_id", content=fbAppCode)
 
@@ -44,7 +44,7 @@ head(lang=lang)
   meta(name="viewport", content="width=device-width, initial-scale=1")
 
   title= title
-  link(rel="icon", href=require('src/assets/ico/logo-square.ico').default)
+  link(rel="icon", href=require("src/assets/ico/logo-square.ico").default)
   meta(name="description", content=description)
   meta(name="keywords", content=keywords)
   meta(property="og:image", content=ogImage)
@@ -62,7 +62,7 @@ head(lang=lang)
       background: #282c34;
     }
     #splash-screen::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 50%;
       top: 50%;
@@ -81,7 +81,7 @@ head(lang=lang)
       z-index: 1000;
     }
     * {
-      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      font-family: "Tajawal", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
 
 body

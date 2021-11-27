@@ -16,7 +16,4 @@ export type OptionalPropertiesOf<T extends object> = Required<
   >
 >;
 
-export type RequiredPropertiesOf<T extends object> = Omit<
-  T,
-  keyof OptionalPropertiesOf<T>
->;
+export type RequiredPropertiesOf<T extends object> = Omit<T, keyof OptionalPropertiesOf<T>>;

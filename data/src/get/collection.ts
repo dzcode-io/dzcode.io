@@ -12,7 +12,7 @@ export const getCollection = <T = Record<string, unknown>>(
   dataFolder: string,
   collectionType: string,
   collectionName: string,
-  language?: string
+  language?: string,
 ) => {
   // add .c
   collectionName = collectionName.replace(".c.json", ".json");
@@ -25,14 +25,12 @@ export const getCollection = <T = Record<string, unknown>>(
   let items: string[] = [];
 
   if (collection.items === "all") {
-    const files = glob.sync(
-      join(dataFolder, "models", `/${collectionType}/**/info.json`)
-    );
+    const files = glob.sync(join(dataFolder, "models", `/${collectionType}/**/info.json`));
     const dPath = `data/models/${collectionType}/`;
     items = files.map((filePath) => {
       return filePath.substring(
         filePath.lastIndexOf(dPath) + dPath.length,
-        filePath.lastIndexOf("/info.json")
+        filePath.lastIndexOf("/info.json"),
       );
     });
   } else {
@@ -45,7 +43,7 @@ export const getCollection = <T = Record<string, unknown>>(
       dataFolder,
       `${collectionType}/${slug}`,
       collection.include,
-      language
+      language,
     );
     return {
       slug,

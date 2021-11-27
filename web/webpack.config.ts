@@ -13,17 +13,7 @@ const port = process.env.DEV_SERVER_PORT || 8080;
 const distFolder = "./bundle";
 const publicResourcesPath = "w/";
 const publicPath = "/";
-const nonCodeFiles = [
-  "png",
-  "jpg",
-  "jpeg",
-  "gif",
-  "svg",
-  "ico",
-  "ttf",
-  "woff",
-  "woff2",
-];
+const nonCodeFiles = ["png", "jpg", "jpeg", "gif", "svg", "ico", "ttf", "woff", "woff2"];
 
 const apps = glob
   .sync("src/apps/*/entry/app-config.ts")
@@ -63,8 +53,8 @@ export default {
       apps.map((app) => [
         app,
         path.join(__dirname + "/src/apps/" + app + "/" + "/entry/index.tsx"),
-      ])
-    )
+      ]),
+    ),
   ),
   // https://webpack.js.org/concepts/output/#multiple-entry-points
   output: {
@@ -146,11 +136,8 @@ export default {
       chunkFilename: publicResourcesPath + "/chunk.[contenthash].css",
     }),
     ...apps.reduce<WPC["plugins"][]>(
-      (pV, app) => [
-        ...pV,
-        ...require(`./src/apps/${app}/entry/webpack.plugins`),
-      ],
-      []
+      (pV, app) => [...pV, ...require(`./src/apps/${app}/entry/webpack.plugins`)],
+      [],
     ),
   ],
   resolve: {

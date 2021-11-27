@@ -25,7 +25,7 @@ export class SecurityMiddleware implements ExpressMiddlewareInterface {
       rateLimit({
         windowMs: 15 * 60 * 1000, // 15 minutes
         max: 100, // limit each IP to 100 requests per windowMs
-      })
+      }),
     );
   }
 
@@ -38,11 +38,7 @@ export class SecurityMiddleware implements ExpressMiddlewareInterface {
   public cors = (): CorsOptions => {
     return {
       origin: (origin, callback) => {
-        if (
-          !origin ||
-          this.whitelist.indexOf(origin) !== -1 ||
-          this.env === "development"
-        ) {
+        if (!origin || this.whitelist.indexOf(origin) !== -1 || this.env === "development") {
           callback(null, true);
         } else {
           callback(new Error(`Origin ${origin} not allowed by CORS`));

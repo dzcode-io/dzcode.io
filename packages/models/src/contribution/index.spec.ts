@@ -18,5 +18,5 @@ runDTOTestCases(
     updatedAt: "2020-02-02T20:22:02.000Z",
     url: "https://github.com/dzcode-io/leblad/issues/71",
   },
-  {}
+  {},
 );

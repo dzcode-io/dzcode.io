@@ -1,9 +1,7 @@
 import { Project } from "@dzcode.io/api/dist/app/types/legacy";
 
 export interface ProjectsPageState {
-  projectsList:
-    | Pick<Project, "title" | "description" | "image" | "githubURI">[]
-    | null;
+  projectsList: Pick<Project, "title" | "description" | "image" | "githubURI">[] | null;
 }
 
 export const projectsPage = (
@@ -13,7 +11,7 @@ export const projectsPage = (
   action: {
     type: string;
     payload: ProjectsPageState;
-  }
+  },
 ) => {
   switch (action.type) {
     case "UPDATE_PROJECTS_PAGE":

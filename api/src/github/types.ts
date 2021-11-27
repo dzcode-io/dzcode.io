@@ -1,5 +1,3 @@
- 
-
 import { GithubUser } from "../app/types/legacy";
 
 export type ListContributorsResponse = Array<{

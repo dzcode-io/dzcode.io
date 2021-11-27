@@ -1,8 +1,4 @@
-import {
-  githubUserMock,
-  githubUserMock2,
-  githubUserMock3,
-} from "../_test/mocks";
+import { githubUserMock, githubUserMock2, githubUserMock3 } from "../_test/mocks";
 import { ContributorController } from "./controller";
 import { GithubService } from "../github/service";
 import { mock } from "jest-mock-extended";
@@ -21,9 +17,7 @@ describe("ContributorController", () => {
       meg: "service down",
     });
 
-    const contributorController = new ContributorController(
-      mockedGithubServiceInstance
-    );
+    const contributorController = new ContributorController(mockedGithubServiceInstance);
     let errorThrown: unknown;
     try {
       await contributorController.getContributor("/");
@@ -34,13 +28,9 @@ describe("ContributorController", () => {
   });
 
   it("should return list of contributors when GithubService succeed", async () => {
-    mockedGithubServiceInstance.listContributors.mockResolvedValue(
-      contributorsMock
-    );
+    mockedGithubServiceInstance.listContributors.mockResolvedValue(contributorsMock);
 
-    const contributorController = new ContributorController(
-      mockedGithubServiceInstance
-    );
+    const contributorController = new ContributorController(mockedGithubServiceInstance);
 
     const contributors = await contributorController.getContributor("/");
 

@@ -14,7 +14,7 @@ export const learnPage = (
     expanded: [],
     currentDocument: null,
   },
-  action: Action<LearnPageState>
+  action: Action<LearnPageState>,
 ) => {
   switch (action.type) {
     case "UPDATE_LEARN_PAGE":

@@ -1,11 +1,5 @@
 import { BaseEntity, Model } from "../_base";
-import {
-  IsDateString,
-  IsNumber,
-  IsString,
-  IsUrl,
-  ValidateNested,
-} from "class-validator";
+import { IsDateString, IsNumber, IsString, IsUrl, ValidateNested } from "class-validator";
 import { ProjectReferenceEntity } from "../project-reference";
 import { Type } from "class-transformer";
 

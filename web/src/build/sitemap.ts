@@ -19,7 +19,7 @@ console.log("Getting Dynamic URLs ...");
   const collection = getCollection<Record<string, string>>(
     join(__dirname, "../../../data"),
     collectionInfo.file,
-    "ssr.json"
+    "ssr.json",
   );
   if (!Array.isArray(collection)) {
     throw new Error(`Collection is not an array: ${collection}`);

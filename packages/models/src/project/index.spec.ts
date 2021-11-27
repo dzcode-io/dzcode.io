@@ -19,5 +19,5 @@ runDTOTestCases(
     ],
     slug: "Leblad",
   },
-  {}
+  {},
 );

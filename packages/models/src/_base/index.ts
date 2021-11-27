@@ -6,9 +6,9 @@ export class BaseEntity {
   private _entity?: undefined;
 }
 
-export type Model<
+export type Model<ENTITY, RELATIONS extends KeysMatching<ENTITY, BaseEntity> = never> = Pick<
   ENTITY,
-  RELATIONS extends KeysMatching<ENTITY, BaseEntity> = never
-> = Pick<ENTITY, Exclude<keyof ENTITY, KeysMatching<ENTITY, BaseEntity>>> &
+  Exclude<keyof ENTITY, KeysMatching<ENTITY, BaseEntity>>
+> &
   Pick<Required<ENTITY>, RELATIONS> &
   BaseEntity;

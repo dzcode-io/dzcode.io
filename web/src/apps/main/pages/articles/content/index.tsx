@@ -2,10 +2,7 @@ import "./style.scss";
 
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { FC, useEffect } from "react";
-import {
-  SpeedDial,
-  SpeedDialAction,
-} from "src/apps/main/components/speed-dial";
+import { SpeedDial, SpeedDialAction } from "src/apps/main/components/speed-dial";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
@@ -59,12 +56,12 @@ const useStyles = makeStyles((theme) =>
       marginTop: theme.spacing(3),
       marginBottom: theme.spacing(3),
     },
-  })
+  }),
 );
 
 export const Content: FC = () => {
   const { currentArticle } = useSelector<StateInterface, ArticlesPageState>(
-    (state) => state.articlesPage
+    (state) => state.articlesPage,
   );
   const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
 

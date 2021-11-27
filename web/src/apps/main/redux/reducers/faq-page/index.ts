@@ -17,7 +17,7 @@ export const faqPage = (
   state: FaqPageState = {
     faqData,
   },
-  action: Action<FaqPageState>
+  action: Action<FaqPageState>,
 ) => {
   switch (action.type) {
     default:

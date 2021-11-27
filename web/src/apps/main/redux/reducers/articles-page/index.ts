@@ -14,7 +14,7 @@ export const articlesPage = (
     expanded: [],
     currentArticle: null,
   },
-  action: Action<ArticlesPageState>
+  action: Action<ArticlesPageState>,
 ) => {
   switch (action.type) {
     case "UPDATE_ARTICLES_PAGE":

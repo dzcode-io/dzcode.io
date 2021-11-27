@@ -13,7 +13,7 @@ export const contributePage = (
     filters: [],
     contributions: null,
   },
-  action: Action<ContributePageState>
+  action: Action<ContributePageState>,
 ) => {
   switch (action.type) {
     case "UPDATE_CONTRIBUTE_PAGE":

@@ -14,12 +14,9 @@ export const fetchDocumentationList =
   (): ThunkResult<LearnPageState> => async (dispatch, getState) => {
     try {
       const currentLanguage = getState().settings.language;
-      const documentationList = await fetchV2(
-        "data:documentation/list.c.json",
-        {
-          query: [["language", currentLanguage.code]],
-        }
-      );
+      const documentationList = await fetchV2("data:documentation/list.c.json", {
+        query: [["language", currentLanguage.code]],
+      });
       const ids: string[] = [];
       // convert list into tree
       const tree = listToTree<typeof documentationList[0], SidebarTreeItem>(
@@ -34,7 +31,7 @@ export const fetchDocumentationList =
             id: item.slug,
             link: "/Learn/" + item.slug,
           };
-        }
+        },
       );
 
       dispatch({
@@ -50,8 +47,7 @@ export const fetchDocumentationList =
  * Fetches the contributors of the an current document
  */
 const fetchCurrentDocumentContributors =
-  (): ThunkResult<LearnPageState | DocumentationState> =>
-  async (dispatch, getState) => {
+  (): ThunkResult<LearnPageState | DocumentationState> => async (dispatch, getState) => {
     const { currentDocument } = getState().learnPage;
 
     if (!currentDocument || Array.isArray(currentDocument.contributors)) return;
@@ -60,8 +56,7 @@ const fetchCurrentDocumentContributors =
       query: [["path", `documentation/${currentDocument.slug}`]],
     });
 
-    const mrCurrentDocument =
-      getState().learnPage.currentDocument || currentDocument;
+    const mrCurrentDocument = getState().learnPage.currentDocument || currentDocument;
     // update our page state
     dispatch({
       type: "UPDATE_LEARN_PAGE",
@@ -69,7 +64,7 @@ const fetchCurrentDocumentContributors =
         currentDocument: {
           ...mrCurrentDocument,
           contributors: contributors.filter(
-            ({ login }) => !mrCurrentDocument.authors?.includes(login)
+            ({ login }) => !mrCurrentDocument.authors?.includes(login),
           ),
         },
       },
@@ -85,12 +80,10 @@ const fetchCurrentDocumentContributors =
  * Fetches the authors of the an current document
  */
 const fetchCurrentDocumentAuthors =
-  (): ThunkResult<LearnPageState | DocumentationState> =>
-  async (dispatch, getState) => {
+  (): ThunkResult<LearnPageState | DocumentationState> => async (dispatch, getState) => {
     const { currentDocument } = getState().learnPage;
 
-    if (!currentDocument || Array.isArray(currentDocument.githubAuthors))
-      return;
+    if (!currentDocument || Array.isArray(currentDocument.githubAuthors)) return;
 
     const githubAuthors = (
       await Promise.all(
@@ -98,15 +91,14 @@ const fetchCurrentDocumentAuthors =
           return fetchV2("api:GithubUsers/:login", {
             params: { login: author },
           });
-        }) || []
+        }) || [],
       )
     ).map((response) => {
       return response.user;
     });
 
     //  getting the  most recent  current document
-    const mrCurrentDocument =
-      getState().learnPage.currentDocument || currentDocument;
+    const mrCurrentDocument = getState().learnPage.currentDocument || currentDocument;
 
     // update our page state
 
@@ -125,17 +117,13 @@ const fetchCurrentDocumentAuthors =
  * Fetches the content of the current document
  */
 export const fetchCurrentDocument =
-  (): ThunkResult<LearnPageState | DocumentationState> =>
-  async (dispatch, getState) => {
+  (): ThunkResult<LearnPageState | DocumentationState> => async (dispatch, getState) => {
     const slug = location.pathname
       .substring(location.pathname.indexOf("/", 1) + 1)
       .replace(/\/$/, "");
-    const cashedDocument = hasInCollection<Document>(
-      getState().documentation.list,
-      "slug",
-      slug,
-      [["content"]]
-    );
+    const cashedDocument = hasInCollection<Document>(getState().documentation.list, "slug", slug, [
+      ["content"],
+    ]);
     if (cashedDocument) {
       // update our page state
       dispatch({
