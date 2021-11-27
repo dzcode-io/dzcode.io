@@ -38,14 +38,14 @@
     "repository": "https://github.com/dzcode-io/dzcode.io.git"
   },
   "scripts": {
-    "_deploy": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.dzcode.io --token \"$FIREBASE_TOKEN\"",
-    "_deploy:stg": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
     "build": "lerna run build:alone --scope=@dzcode.io/data --include-dependencies --stream",
     "build:alone": "tsc",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/data --include-dependencies --parallel",
     "clean": "lerna run clean:alone --scope=@dzcode.io/api --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage",
+    "deploy": "yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "deploy:stg": "yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
     "generate:data": "node dist/build.js",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
