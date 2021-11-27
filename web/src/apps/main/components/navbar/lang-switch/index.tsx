@@ -8,9 +8,7 @@ import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import { allLanguages } from "@dzcode.io/models/dist/language";
 
 export const LanguageSwitch: FC = () => {
-  const { settings } = useSelector<StateInterface, StateInterface>(
-    (state) => state
-  );
+  const { settings } = useSelector<StateInterface, StateInterface>((state) => state);
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const dispatch = useDispatch<Dispatch<SettingsState>>();
   const anchorButton = useRef(null);

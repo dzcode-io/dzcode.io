@@ -4,9 +4,9 @@ import { GithubUser } from "../app/types/legacy";
 
 export class GithubUserDto implements GithubUser {
   @IsString()
-  avatar_url!: string;  
+  avatar_url!: string;
   @IsString()
-  html_url!: string;  
+  html_url!: string;
   @IsNumber()
   id!: number;
   @IsString()

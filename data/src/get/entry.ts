@@ -5,7 +5,7 @@ export const getEntry = <T = Record<string, unknown>>(
   dataFolder: string,
   _path: string,
   include?: string[],
-  language?: string
+  language?: string,
 ) => {
   const path = join(dataFolder, "models", _path);
   // Entry doesn't exist
@@ -41,7 +41,7 @@ export const getEntry = <T = Record<string, unknown>>(
           ...obj,
           [key]: info[key],
         }),
-        {}
+        {},
       );
   }
 

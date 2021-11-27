@@ -8,7 +8,7 @@ runDTOTestCases(
     label: "English",
     shortLabel: "EN",
   },
-  {}
+  {},
 );
 
 it("should match snapshot of allLanguages", () => {

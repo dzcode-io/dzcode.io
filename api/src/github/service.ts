@@ -1,4 +1,3 @@
- 
 import {
   GeneralGithubQuery,
   GetUserInput,

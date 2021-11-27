@@ -3,9 +3,7 @@ import { Article, Project } from "@dzcode.io/api/dist/app/types/legacy";
 import { Action } from "src/apps/main/redux";
 
 export interface LandingPageState {
-  topProjects:
-    | Pick<Project, "title" | "description" | "image" | "githubURI">[]
-    | null;
+  topProjects: Pick<Project, "title" | "description" | "image" | "githubURI">[] | null;
   topArticles: Article[] | null;
 }
 
@@ -14,7 +12,7 @@ export const landingPage = (
     topProjects: null,
     topArticles: null,
   },
-  action: Action<LandingPageState>
+  action: Action<LandingPageState>,
 ) => {
   switch (action.type) {
     case "UPDATE_LANDING_PAGE":

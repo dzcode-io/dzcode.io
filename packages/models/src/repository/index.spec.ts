@@ -11,5 +11,5 @@ runDTOTestCases(
   {
     contributions: [],
     contributors: [],
-  }
+  },
 );

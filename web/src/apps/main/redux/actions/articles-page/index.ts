@@ -33,7 +33,7 @@ export const fetchArticlesList =
             id: item.slug,
             link: "/Articles/" + item.slug,
           };
-        }
+        },
       );
 
       dispatch({
@@ -49,8 +49,7 @@ export const fetchArticlesList =
  * Fetches the contributors of the an current article
  */
 export const fetchCurrentArticleContributors =
-  (): ThunkResult<ArticlesPageState | ArticlesState> =>
-  async (dispatch, getState) => {
+  (): ThunkResult<ArticlesPageState | ArticlesState> => async (dispatch, getState) => {
     const { currentArticle } = getState().articlesPage;
     if (!currentArticle || Array.isArray(currentArticle.contributors)) return;
 
@@ -59,8 +58,7 @@ export const fetchCurrentArticleContributors =
     });
 
     //  getting the  most recent  current article
-    const mrCurrentArticle =
-      getState().articlesPage.currentArticle || currentArticle;
+    const mrCurrentArticle = getState().articlesPage.currentArticle || currentArticle;
     // update our page state
     dispatch({
       type: "UPDATE_ARTICLES_PAGE",
@@ -68,7 +66,7 @@ export const fetchCurrentArticleContributors =
         currentArticle: {
           ...mrCurrentArticle,
           contributors: contributors.filter(
-            ({ login }) => !mrCurrentArticle.authors?.includes(login)
+            ({ login }) => !mrCurrentArticle.authors?.includes(login),
           ),
         },
       },
@@ -84,8 +82,7 @@ export const fetchCurrentArticleContributors =
  * Fetches the authors of the an current article
  */
 const fetchCurrentArticleAuthors =
-  (): ThunkResult<ArticlesPageState | ArticlesState> =>
-  async (dispatch, getState) => {
+  (): ThunkResult<ArticlesPageState | ArticlesState> => async (dispatch, getState) => {
     const { currentArticle } = getState().articlesPage;
 
     if (!currentArticle || Array.isArray(currentArticle.githubAuthors)) return;
@@ -96,15 +93,14 @@ const fetchCurrentArticleAuthors =
           return fetchV2("api:GithubUsers/:login", {
             params: { login: author },
           });
-        }) || []
+        }) || [],
       )
     ).map((response) => {
       return response.user;
     });
 
     //  getting the  most recent  current article
-    const mrCurrentArticle =
-      getState().articlesPage.currentArticle || currentArticle;
+    const mrCurrentArticle = getState().articlesPage.currentArticle || currentArticle;
 
     // update our page state
 
@@ -123,18 +119,14 @@ const fetchCurrentArticleAuthors =
  * Fetches the content of the current article
  */
 export const fetchCurrentArticle =
-  (): ThunkResult<ArticlesPageState | ArticlesState> =>
-  async (dispatch, getState) => {
+  (): ThunkResult<ArticlesPageState | ArticlesState> => async (dispatch, getState) => {
     const slug = location.pathname
       .substring(location.pathname.indexOf("/", 1) + 1)
       .replace(/\/$/, "");
 
-    const cashedArticle = hasInCollection<Article>(
-      getState().articles.list,
-      "slug",
-      slug,
-      [["content"]]
-    );
+    const cashedArticle = hasInCollection<Article>(getState().articles.list, "slug", slug, [
+      ["content"],
+    ]);
     if (cashedArticle) {
       // update our page state
       dispatch({

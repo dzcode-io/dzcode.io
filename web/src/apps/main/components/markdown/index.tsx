@@ -12,9 +12,7 @@ import { useTheme } from "@material-ui/core/styles";
 
 export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
   const theme = useTheme();
-  const darkMode = useSelector<StateInterface, boolean>(
-    (state) => state.settings.darkMode
-  );
+  const darkMode = useSelector<StateInterface, boolean>((state) => state.settings.darkMode);
 
   return (
     <ReactMarkdown
@@ -64,11 +62,7 @@ export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
                     borderColor: theme.palette.divider,
                   }}
                   {...props}
-                  language={
-                    props.className
-                      ? props.className.replace("lang-", "")
-                      : null
-                  }
+                  language={props.className ? props.className.replace("lang-", "") : null}
                   style={darkMode ? tomorrow : prism}
                 />
               );

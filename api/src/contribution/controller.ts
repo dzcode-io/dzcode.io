@@ -7,31 +7,25 @@ import { GetContributionsQueryDto, GetContributionsResponseDto } from "./types";
 @Service()
 @Controller("/Contributions")
 export class ContributionController {
-  constructor(
-    private readonly contributionRepository: ContributionRepository
-  ) {}
+  constructor(private readonly contributionRepository: ContributionRepository) {}
 
   @Get("/")
   @OpenAPI({
-    summary:
-      "Return a list of contributions for all projects listed in dzcode.io",
+    summary: "Return a list of contributions for all projects listed in dzcode.io",
   })
   @ResponseSchema(GetContributionsResponseDto)
   public async getContributions(
-    @QueryParams() { labels, languages, projects }: GetContributionsQueryDto
+    @QueryParams() { labels, languages, projects }: GetContributionsQueryDto,
   ): Promise<GetContributionsResponseDto> {
     const { contributions, filters } = await this.contributionRepository.find(
       (contribution) =>
-        (labels.length === 0 ||
-          labels.some((label) => contribution.labels.includes(label))) &&
+        (labels.length === 0 || labels.some((label) => contribution.labels.includes(label))) &&
         (languages.length === 0 ||
-          languages.some((language) =>
-            contribution.languages.includes(language)
-          )) &&
+          languages.some((language) => contribution.languages.includes(language))) &&
         (projects.length === 0 ||
           projects.some((project) => {
             return contribution.project.slug === project;
-          }))
+          })),
     );
     return {
       contributions,

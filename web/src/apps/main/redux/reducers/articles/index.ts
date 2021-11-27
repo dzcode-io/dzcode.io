@@ -10,17 +10,13 @@ export const articles = (
   state: ArticlesState = {
     list: [],
   },
-  action: Action<ArticlesState>
+  action: Action<ArticlesState>,
 ) => {
   switch (action.type) {
     case "UPDATE_ARTICLES":
       return {
         ...state,
-        list: updateCollection<Article>(
-          state.list,
-          action.payload.list || [],
-          "slug"
-        ),
+        list: updateCollection<Article>(state.list, action.payload.list || [], "slug"),
       };
     default:
       return state;

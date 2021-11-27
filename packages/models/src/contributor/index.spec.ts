@@ -10,5 +10,5 @@ runDTOTestCases(
   },
   {
     repositories: [],
-  }
+  },
 );

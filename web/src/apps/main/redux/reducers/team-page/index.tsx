@@ -9,7 +9,7 @@ export const teamPage = (
   state: TeamPageState = {
     teamList: null,
   },
-  action: Action<TeamPageState>
+  action: Action<TeamPageState>,
 ) => {
   switch (action.type) {
     case "UPDATE_TEAM_PAGE":

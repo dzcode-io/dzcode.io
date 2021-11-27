@@ -30,15 +30,8 @@ glob("models/*/*.json", {}, (err, files) => {
     const collectionName = collectionPath.slice(backslashIndex + 1);
     console.log(collectionType, collectionName);
 
-    const collection = getCollection(
-      join(__dirname, ".."),
-      collectionType,
-      collectionName
-    );
-    const collectionFilePath = `${outputFolder}/${collectionPath.slice(
-      0,
-      -5
-    )}.c.json`;
+    const collection = getCollection(join(__dirname, ".."), collectionType, collectionName);
+    const collectionFilePath = `${outputFolder}/${collectionPath.slice(0, -5)}.c.json`;
     fse.ensureFileSync(collectionFilePath);
     fse.writeJSON(collectionFilePath, collection);
   });

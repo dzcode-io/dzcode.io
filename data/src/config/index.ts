@@ -1,12 +1,8 @@
-import {
-  Environment,
-  environments,
-} from "@dzcode.io/utils/dist/config/environment";
+import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
 
 export const getConfig = (
-  environment: Environment = (process.env.NODE_ENV as Environment) ||
-    "development",
-  extra?: Record<string, unknown>
+  environment: Environment = (process.env.NODE_ENV as Environment) || "development",
+  extra?: Record<string, unknown>,
 ) => {
   const e = environments.indexOf(environment);
 
@@ -14,10 +10,8 @@ export const getConfig = (
   const port = 9090;
   return {
     port,
-    url: [
-      `http://${hostname}:${port}`,
-      "https://data.stage.dzcode.io",
-      "https://data.dzcode.io",
-    ][e],
+    url: [`http://${hostname}:${port}`, "https://data.stage.dzcode.io", "https://data.dzcode.io"][
+      e
+    ],
   };
 };
