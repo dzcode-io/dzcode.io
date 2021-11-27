@@ -1,0 +1,47 @@
+name: "CI Check for PullRequest"
+
+on:
+  pull_request:
+
+jobs:
+  install-build-lint-test-misc:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: "Nodejs"
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: "Install"
+        run: |
+          yarn --frozen-lockfile
+
+      - name: "Build"
+        run: |
+          yarn build --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+
+      - name: "Lint"
+        run: |
+          yarn lint:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+
+      - name: "Test"
+        run: |
+          yarn test:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+
+      - name: "Misc"
+        run: |
+          yarn lerna run bundle:alone --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          yarn lerna run generate:sitemap --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+
+        env:
+          CI: true
