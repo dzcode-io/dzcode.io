@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const internalIp = require("internal-ip");
 const localIP = internalIp.v4.sync();
 module.exports = function (api) {
