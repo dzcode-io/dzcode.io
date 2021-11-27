@@ -32,7 +32,7 @@ jobs:
 
       - name: "Install"
         run: |
-          yarn --frozen-lockfile
+          yarn --frozen-lockfile --network-timeout 1000000
 
       - name: "Build"
         run: |
