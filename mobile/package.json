@@ -82,14 +82,14 @@
     "repository": "https://github.com/dzcode-io/dzcode.io.git"
   },
   "scripts": {
-    "build": "yarn lerna run build:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
+    "build": "lerna run build:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:android": "expo build:android --no-wait -t app-bundle",
     "build:ios": "expo build:ios --no-wait -t archive",
     "build:production": "yarn build:ios --release-channel production && yarn build:android --release-channel production",
     "build:stage": "yarn build:ios --release-channel stage && yarn build:android --release-channel stage",
-    "build:watch": "yarn lerna run build:alone:watch --scope=@dzcode.io/mobile --include-dependencies --parallel",
-    "clean": "yarn lerna run clean:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
+    "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/mobile --include-dependencies --parallel",
+    "clean": "lerna run clean:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
     "clean:alone": "rimraf .expo dist",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",

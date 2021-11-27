@@ -38,11 +38,11 @@
     "repository": "https://github.com/dzcode-io/dzcode.io.git"
   },
   "scripts": {
-    "build": "yarn lerna run build:alone --scope=@dzcode.io/data --include-dependencies --stream",
+    "build": "lerna run build:alone --scope=@dzcode.io/data --include-dependencies --stream",
     "build:alone": "tsc",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
-    "build:watch": "yarn lerna run build:alone:watch --scope=@dzcode.io/data --include-dependencies --parallel",
-    "clean": "yarn lerna run clean:alone --scope=@dzcode.io/api --include-dependencies --stream",
+    "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/data --include-dependencies --parallel",
+    "clean": "lerna run clean:alone --scope=@dzcode.io/api --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage",
     "deploy": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.dzcode.io --token \"$FIREBASE_TOKEN\"",
     "deploy:stg": "yarn build && yarn generate:data && rimraf ./firebase/public && cpx -u \"./dist/_data/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:data.stage.dzcode.io --token \"$FIREBASE_TOKEN\"",

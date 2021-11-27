@@ -38,7 +38,7 @@ jobs:
 
       - name: "Test"
         run: |
-          yarn test:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          yarn test:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents -- -- --coverage
 
       - name: "Misc"
         run: |
