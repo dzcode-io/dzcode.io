@@ -25,6 +25,8 @@
     "build": "lerna run build:alone --stream",
     "build:watch": "lerna run build:alone:watch --parallel",
     "clean": "lerna run clean:alone --stream",
+    "deploy": "lerna run deploy --parallel",
+    "deploy:stg": "lerna run deploy:stg --parallel",
     "dev": "echo \"Please run one of these commands:\\n\\nyarn dev:web\\nyarn dev:mobile\\nyarn dev:all\n\"",
     "dev:all": "npm-run-all \"build --include-dependencies {@}\" --parallel \"build:watch --include-dependencies {@}\" \"start:dev {@}\" --",
     "dev:api": "yarn dev:all --scope=@dzcode.io/api",
