@@ -107,6 +107,8 @@
     "repository": "https://github.com/dzcode-io/dzcode.io.git"
   },
   "scripts": {
+    "_deploy": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "_deploy:stg": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "build:alone": "tsc",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
@@ -115,8 +117,6 @@
     "bundle:alone": "cross-env TS_NODE_SKIP_PROJECT=true NODE_ENV=production webpack",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage bundle",
-    "deploy": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
-    "deploy:stg": "yarn build && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./dist/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
     "generate:sitemap": "cross-env TS_NODE_SKIP_PROJECT=true ts-node src/build/sitemap.ts",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",

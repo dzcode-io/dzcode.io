@@ -82,6 +82,8 @@
     "repository": "https://github.com/dzcode-io/dzcode.io.git"
   },
   "scripts": {
+    "_deploy": "expo publish --release-channel production",
+    "_deploy:stg": "expo publish --release-channel stage",
     "build": "lerna run build:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:android": "expo build:android --no-wait -t app-bundle",

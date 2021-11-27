@@ -62,14 +62,14 @@
     "repository": "https://github.com/dzcode-io/dzcode.io.git"
   },
   "scripts": {
+    "_deploy": "rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts production",
+    "_deploy:stg": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts staging",
     "build": "lerna run build:alone --scope=@dzcode.io/api --include-dependencies --stream",
     "build:alone": "tsc",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/api --include-dependencies --parallel",
     "clean": "lerna run clean:alone --scope=@dzcode.io/api --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage fetch_cache",
-    "deploy": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts production",
-    "deploy:stg": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts staging",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
     "lint:eslint": "eslint --config ../packages/tooling/.eslintrc.json --ignore-path ../packages/tooling/.eslintignore --report-unused-disable-directives",
