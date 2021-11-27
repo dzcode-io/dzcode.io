@@ -31,22 +31,27 @@ jobs:
           cache: "yarn"
 
       - name: "Install"
+        shell: bash
         run: |
           yarn --frozen-lockfile --network-timeout 1000000
 
       - name: "Build"
+        shell: bash
         run: |
           yarn build --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
 
       - name: "Lint"
+        shell: bash
         run: |
           yarn lint:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
 
       - name: "Test"
+        shell: bash
         run: |
           yarn test:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents -- -- --coverage
 
       - name: "Misc"
+        shell: bash
         run: |
           yarn lerna run bundle:alone --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
           yarn lerna run generate:sitemap --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents

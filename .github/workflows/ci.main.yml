@@ -27,18 +27,22 @@ jobs:
           cache: "yarn"
 
       - name: "Install"
+        shell: bash
         run: |
           yarn --frozen-lockfile --network-timeout 1000000
 
       - name: "Build"
+        shell: bash
         run: |
           yarn build
 
       - name: "Lint"
+        shell: bash
         run: |
           yarn lint:alone
 
       - name: "Test"
+        shell: bash
         run: |
           yarn test:alone  -- -- --coverage
 
@@ -86,6 +90,7 @@ jobs:
           fail_ci_if_error: true
 
       - name: "Misc"
+        shell: bash
         run: |
           yarn lerna run bundle:alone --scope @dzcode.io/web
           yarn lerna run generate:sitemap --scope @dzcode.io/web
