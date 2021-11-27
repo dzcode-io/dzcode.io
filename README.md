@@ -72,6 +72,14 @@ yarn dev:all
 
 To get started see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/main/.github/CONTRIBUTING.md).
 
+If you use VSCode, please make sure to have a `.vscode/settings.json` file with the content:
+
+```json
+{
+  "prettier.configPath": "packages/tooling/.prettierrc"
+}
+```
+
 ### Before You Create a Pull Request
 
 - If you already forked the repository, please make sure your fork is up-to-date, following [this simple steps](https://www.dzcode.io/Learn/Git_Basics/Syncing_An_Old_Forked_Repository_With_Upstream).
