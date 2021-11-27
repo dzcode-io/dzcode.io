@@ -3,7 +3,7 @@ import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { DZCodeLoading } from "../../../components/loading";
-import { Document } from "../../../_common/types";
+import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { GeneralState } from "../../../redux/reducers/general";
 import { LearnScreenState } from "../../../redux/reducers/learn-screen";
 import Markdown from "react-native-markdown-display";

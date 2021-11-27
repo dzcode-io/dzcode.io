@@ -1,4 +1,4 @@
-import { Endpoints } from "../../_common/types/endpoints";
+import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
 import { fullstackConfig } from "../../config";
 
 interface Endpoint {
