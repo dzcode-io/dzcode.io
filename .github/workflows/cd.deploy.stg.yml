@@ -31,6 +31,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
+      - name: "Expo"
+        uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+          token: ${{ secrets.EXPO_TOKEN }}
 
       - name: "Install"
         shell: bash
@@ -53,3 +58,4 @@ jobs:
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
           SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

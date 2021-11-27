@@ -82,8 +82,6 @@
     "repository": "https://github.com/dzcode-io/dzcode.io.git"
   },
   "scripts": {
-    "_deploy": "expo publish --release-channel production",
-    "_deploy:stg": "expo publish --release-channel stage",
     "build": "lerna run build:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:android": "expo build:android --no-wait -t app-bundle",
@@ -93,6 +91,8 @@
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/mobile --include-dependencies --parallel",
     "clean": "lerna run clean:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
     "clean:alone": "rimraf .expo dist",
+    "deploy": "expo publish --release-channel production",
+    "deploy:stg": "expo publish --release-channel stage",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
     "lint:eslint": "eslint --config ../packages/tooling/.eslintrc.json --ignore-path ../packages/tooling/.eslintignore --report-unused-disable-directives",
