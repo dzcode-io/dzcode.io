@@ -3,7 +3,7 @@ name: Deploy To Stage Environment
 on:
   push:
     tags:
-      - "stg-v*"
+      - "v*"
 
 jobs:
   install-build-deploy:
@@ -54,6 +54,6 @@ jobs:
           CI: true
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-          SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
+          SSH_ADDRESS_PRD: ${{ secrets.SSH_ADDRESS_PRD }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
