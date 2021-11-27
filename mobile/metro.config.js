@@ -18,5 +18,3 @@ config.resolver.nodeModulesPaths = [
 ];
 
 module.exports = config;
-
-console.log(JSON.stringify(config));
