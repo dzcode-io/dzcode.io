@@ -8,6 +8,9 @@
   "lint-staged": {
     "**/package.json": [
       "syncpack format"
+    ],
+    "./*.*": [
+      "yarn prettier --config ./packages/tooling/.prettierrc --ignore-path ./packages/tooling/.prettierignore --loglevel warn --write"
     ]
   },
   "private": true,
