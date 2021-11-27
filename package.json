@@ -29,7 +29,7 @@
     "dev:web": "yarn dev:all --scope=@dzcode.io/{web,api,data}",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lerna run lint:alone --stream",
-    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged && yarn lint-staged\") || exit 0",
+    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn lerna run lint-staged --since HEAD && yarn lint-staged\") || exit 0",
     "start:dev": "yarn lerna run start:dev --parallel",
     "test": "yarn build && yarn test:alone",
     "test:alone": "yarn lerna run test:alone --stream"
