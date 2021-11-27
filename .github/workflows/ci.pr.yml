@@ -11,6 +11,7 @@ jobs:
       matrix:
         node-version: [14.x]
         os: [macos-latest, ubuntu-latest, windows-latest]
+      fail-fast: false
 
     steps:
       - name: "Git"
