@@ -21,6 +21,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: "SSH"
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
       - name: "Nodejs"
         uses: actions/setup-node@v2
         with:
@@ -44,4 +49,6 @@ jobs:
 
         env:
           CI: true
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
