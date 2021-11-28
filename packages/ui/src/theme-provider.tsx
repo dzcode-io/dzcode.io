@@ -1,18 +1,28 @@
-import { CssBaseline, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import {
+  CssBaseline,
+  Direction,
+  ThemeProvider as MuiThemeProvider,
+} from "@mui/material";
 
 import { FC } from "react";
+import { PluginsProvider } from "./plugins-provider";
 import { darkTheme } from "./dark-theme";
 import { lightTheme } from "./light-theme";
 
 interface Props {
-  dark?: "dark" | "light";
+  mode?: "dark" | "light";
+  direction: Direction;
 }
 
-const ThemeProvider: FC<Props> = ({ children, dark }) => {
+const ThemeProvider: FC<Props> = ({ children, mode, direction }) => {
   return (
-    <MuiThemeProvider theme={dark === "dark" ? darkTheme : lightTheme}>
-      <CssBaseline />
-      {children}
+    <MuiThemeProvider
+      theme={mode === "dark" ? darkTheme(direction) : lightTheme(direction)}
+    >
+      <PluginsProvider direction={direction}>
+        <CssBaseline />
+        {children}
+      </PluginsProvider>
     </MuiThemeProvider>
   );
 };

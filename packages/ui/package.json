@@ -12,7 +12,10 @@
     "@fontsource/roboto": "^4.5.1",
     "@mui/material": "^5.2.1",
     "@mui/styled-engine-sc": "^5.1.0",
-    "styled-components": "^5.3.3"
+    "@types/styled-components": "^5.1.15",
+    "react": "^17.0.2",
+    "styled-components": "^5.3.3",
+    "stylis-plugin-rtl": "^2.1.1"
   },
   "devDependencies": {
     "@dzcode.io/tooling": "*"
