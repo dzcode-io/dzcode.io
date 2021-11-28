@@ -8,7 +8,6 @@
     "url": "https://sohaibbenbouzid.com/"
   },
   "dependencies": {
-    "@dzcode.io/utils": "*",
     "@fontsource/roboto": "^4.5.1",
     "@mui/material": "^5.2.1",
     "@mui/styled-engine-sc": "^5.1.0",
