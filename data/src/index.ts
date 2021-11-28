@@ -1,10 +1,10 @@
-import { getDataCollection, getDataEntry } from "./_common/utils/data";
 import express from "express";
-import { fullstackConfig } from "./config";
+import { getConfig } from "./config";
 import { join } from "path";
+import { getCollection } from "./get/collection";
+import { getEntry } from "./get/entry";
 
 const app = express();
-const port = fullstackConfig.data.port;
 
 // Apply headers and logger
 app.use((req, res, next) => {
@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 // Collections
 app.get("/:type/:collection(\\S+.c.json$)", (req, res) =>
   res.json(
-    getDataCollection(
+    getCollection(
       join(__dirname, ".."),
       req.params.type,
       req.params.collection,
@@ -28,7 +28,7 @@ app.get("/:type/:collection(\\S+.c.json$)", (req, res) =>
 // Entries
 app.get("/:type/:entry([\\/\\S]+.json$)", (req, res) =>
   res.json(
-    getDataEntry(
+    getEntry(
       join(__dirname, ".."),
       `${req.params.type}/${req.params.entry.slice(0, -5)}`,
       undefined,
@@ -38,4 +38,5 @@ app.get("/:type/:entry([\\/\\S]+.json$)", (req, res) =>
 );
 
 // Start the server
-app.listen(port, () => console.log(`Data server listening at http://localhost:${port}`));
+const { port, url } = getConfig();
+app.listen(port, () => console.log(`Data server listening at ${url}`));

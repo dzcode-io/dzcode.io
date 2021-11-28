@@ -1,0 +1,43 @@
+{
+  "name": "@dzcode.io/models",
+  "description": "Model definitions",
+  "version": "1.0.0",
+  "author": {
+    "email": "contact@zakiii.com",
+    "name": "Zakaria Mansouri",
+    "url": "https://zakiii.com/"
+  },
+  "dependencies": {
+    "@dzcode.io/utils": "*",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@dzcode.io/tooling": "*"
+  },
+  "license": "MIT",
+  "lint-staged": {
+    "*.*": [
+      "yarn lint:eslint --fix",
+      "yarn lint:prettier --write"
+    ]
+  },
+  "main": "dist",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build:alone --scope=@dzcode.io/models --include-dependencies --stream",
+    "build:alone": "tsc",
+    "build:alone:watch": "tsc --watch --preserveWatchOutput",
+    "build:watch": "yarn build & yarn lerna run build:alone:watch --scope=@dzcode.io/models --include-dependencies --parallel",
+    "clean": "lerna run clean:alone --scope=@dzcode.io/models --include-dependencies --stream",
+    "clean:alone": "rimraf dist coverage",
+    "lint": "yarn build && yarn lint:alone",
+    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
+    "lint:eslint": "eslint --config ../tooling/.eslintrc.json --ignore-path ../tooling/.eslintignore --report-unused-disable-directives",
+    "lint:prettier": "prettier  --config ../tooling/.prettierrc --ignore-path ../tooling/.prettierignore --loglevel warn",
+    "test": "yarn build && yarn test:alone",
+    "test:alone": "jest --config ../tooling/jest.config.ts --rootDir .",
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
+  }
+}

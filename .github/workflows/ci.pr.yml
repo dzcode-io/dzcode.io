@@ -1,0 +1,60 @@
+name: "CI Check for PullRequest"
+
+on:
+  pull_request:
+
+jobs:
+  install-build-lint-test-misc:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+      fail-fast: false
+
+    steps:
+      - name: labels
+        uses: actions/labeler@main
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          sync-labels: true
+      - name: "Git"
+        if: always()
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: "Nodejs"
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+
+      - name: "Install"
+        shell: bash
+        run: |
+          yarn --frozen-lockfile --network-timeout 1000000
+
+      - name: "Build"
+        shell: bash
+        run: |
+          yarn build --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+
+      - name: "Lint"
+        shell: bash
+        run: |
+          yarn lint:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+
+      - name: "Test"
+        shell: bash
+        run: |
+          yarn test:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents -- -- --coverage
+
+      - name: "Misc"
+        shell: bash
+        run: |
+          yarn lerna run bundle:alone --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          yarn lerna run generate:sitemap --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+
+        env:
+          CI: true

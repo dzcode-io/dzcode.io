@@ -9,7 +9,7 @@ RUN pwd
 RUN ls
 
 # Install app dependencies
-RUN yarn --production
+RUN yarn --production --frozen-lockfile
 
 # export server port
 ENV PORT=7070

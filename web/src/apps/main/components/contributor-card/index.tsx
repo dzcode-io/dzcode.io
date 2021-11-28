@@ -4,7 +4,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import { ContributorEntity } from "src/_common/entities/contributor";
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import MuiCard from "@material-ui/core/Card";
 import { SimpleDialog } from "src/apps/main/components/dialog";
 import Skeleton from "@material-ui/lab/Skeleton";

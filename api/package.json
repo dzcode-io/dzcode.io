@@ -1,17 +1,20 @@
 {
   "name": "@dzcode.io/api",
-  "description": "dzCode.io api code",
+  "description": "code for api.dzcode.io",
   "version": "2.0.0",
   "author": {
     "email": "adamayuda1@gmail.com",
     "name": "Adam Ayuda Djezzar"
   },
   "dependencies": {
+    "@dzcode.io/data": "*",
+    "@dzcode.io/models": "*",
+    "@dzcode.io/utils": "*",
     "@sentry/node": "^6.11.0",
     "@sentry/tracing": "^6.11.0",
-    "class-transformer": "^0.4.0",
-    "class-validator": "^0.13.1",
-    "class-validator-jsonschema": "^3.0.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "class-validator-jsonschema": "^3.1.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -22,12 +25,13 @@
     "morgan": "^1.10.0",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.9.0",
-    "routing-controllers-openapi": "^3.0.0",
+    "routing-controllers-openapi": "^3.1.0",
     "swagger-ui-express": "^4.1.6",
     "typedi": "^0.10.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@dzcode.io/tooling": "*",
     "@types/body-parser": "^1.19.0",
     "@types/cors": "^2.8.9",
     "@types/express": "^4.17.9",
@@ -35,28 +39,11 @@
     "@types/faker": "^5.5.6",
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.1.4",
-    "@types/jest": "^27.0.2",
     "@types/make-fetch-happen": "^8.0.1",
     "@types/morgan": "^1.9.2",
-    "@types/node": "^14.14.16",
     "@types/swagger-ui-express": "^4.1.2",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "class-transformer": "^0.4.0",
-    "class-validator": "^0.13.1",
-    "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.1.0",
-    "eslint-plugin-unicorn": "^37.0.1",
     "faker": "^5.5.3",
-    "glob": "^7.1.7",
-    "jest": "^27.2.5",
-    "jest-mock-extended": "^1.0.13",
-    "lint-staged": "^11.2.3",
-    "nodemon": "^2.0.6",
-    "prettier": "^2.3.2",
-    "ts-jest": "^27.0.7",
-    "ts-node": "^10.3.0",
-    "typescript": "^4.4.4"
+    "glob": "^7.1.7"
   },
   "engines": {
     "node": ">=14",
@@ -65,8 +52,8 @@
   "license": "MIT",
   "lint-staged": {
     "*.*": [
-      "eslint --quiet --fix --ignore-path .eslintignore",
-      "prettier --write --ignore-path ./.prettierignore"
+      "yarn lint:eslint --fix",
+      "yarn lint:prettier --write"
     ]
   },
   "private": true,
@@ -75,24 +62,22 @@
     "repository": "https://github.com/dzcode-io/dzcode.io.git"
   },
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "clean": "rimraf ./node_modules",
-    "common:sync": "rimraf ./src/_common && syncdir ../common/src ./src/_common -c",
-    "common:sync:watch": "yarn common:sync --watch",
-    "deploy": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts production",
-    "deploy:stg": "yarn build && rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts staging",
-    "dev": "nodemon dist/src/app/index.js",
-    "eslint:check": "eslint . --ext .js,.jsx,.ts,.tsx --report-unused-disable-directives",
-    "eslint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --quiet --fix",
-    "lint:check": "yarn prettier:check && yarn eslint:check && yarn tsc --noEmit",
-    "lint:fix": "yarn prettier:fix && yarn eslint:fix",
-    "prettier:check": "prettier \"**/*.*\" --check --ignore-path ./.prettierignore",
-    "prettier:fix": "prettier \"**/*.*\" --write --ignore-path ./.prettierignore",
-    "start": "node dist/src/app/index.js",
-    "test": "jest src",
-    "test:cov": "jest src --coverage",
-    "test:cov:watch": "jest src --coverage --watchAll",
-    "test:watch": "jest src --watchAll"
+    "build": "lerna run build:alone --scope=@dzcode.io/api --include-dependencies --stream",
+    "build:alone": "tsc",
+    "build:alone:watch": "tsc --watch --preserveWatchOutput",
+    "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/api --include-dependencies --parallel",
+    "clean": "lerna run clean:alone --scope=@dzcode.io/api --include-dependencies --stream",
+    "clean:alone": "rimraf dist coverage fetch_cache oracle-cloud/build",
+    "deploy": "rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts production",
+    "deploy:stg": "rimraf ./oracle-cloud/build && ts-node oracle-cloud/deploy.ts staging",
+    "lint": "yarn build && yarn lint:alone",
+    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
+    "lint:eslint": "eslint --config ../packages/tooling/.eslintrc.json --ignore-path ../packages/tooling/.eslintignore --report-unused-disable-directives",
+    "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
+    "start": "node dist/app/index.js",
+    "start:dev": "nodemon dist/app/index.js",
+    "test": "yarn build && yarn test:alone",
+    "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }

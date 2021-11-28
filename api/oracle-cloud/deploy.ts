@@ -1,26 +1,47 @@
-import { copySync } from "fs-extra";
 import { execSync } from "child_process";
+import { join } from "path";
+import { copySync, existsSync } from "fs-extra";
 
-// Coping files
-console.log("⚙️  Preparing files ...");
-// root
-copySync("../package.json", "./oracle-cloud/build/package.json");
-// data
-copySync("../data/package.json", "./oracle-cloud/build/data/package.json");
-copySync("../data/dist", "./oracle-cloud/build/data/dist");
-copySync("../data/models", "./oracle-cloud/build/data/models");
-// api
-copySync("./package.json", "./oracle-cloud/build/api/package.json");
-copySync("./dist", "./oracle-cloud/build/api/dist");
-copySync("./oracle-cloud/docker-compose.yml", "./oracle-cloud/build/docker-compose.yml");
-copySync("./oracle-cloud/Dockerfile", "./oracle-cloud/build/Dockerfile");
-console.log("✅ files copied\n");
+console.log("🏗  Preparing files ...");
+const stdout = execSync(
+  "lerna list --include-dependencies --json --all --loglevel silent --scope @dzcode.io/api",
+);
+const dependencies = JSON.parse(stdout.toString()) as Array<{ name: string; location: string }>;
+const subPaths = ["dist", "package.json", "models"];
+const workspaceRoot = join(__dirname, "../..");
+const fromToRecords = dependencies
+  .map<{ from: string; to: string }>(({ location }) => ({
+    from: location,
+    to: join(workspaceRoot, "api/oracle-cloud/build", location.replace(workspaceRoot, ".")),
+  }))
+  .reduce<Array<{ from: string; to: string }>>(
+    (pV, { from, to }) => [
+      ...pV,
+      ...subPaths.map((subPath) => ({ from: join(from, subPath), to: join(to, subPath) })),
+    ],
+    [],
+  )
+  .filter(({ from }) => existsSync(from));
+
+fromToRecords.push(
+  { from: "./oracle-cloud/docker-compose.yml", to: "./oracle-cloud/build/docker-compose.yml" },
+  { from: "./oracle-cloud/Dockerfile", to: "./oracle-cloud/build/Dockerfile" },
+  { from: join(workspaceRoot, "package.json"), to: "./oracle-cloud/build/package.json" },
+  { from: join(workspaceRoot, "yarn.lock"), to: "./oracle-cloud/build/yarn.lock" },
+);
+
+fromToRecords.forEach(({ from, to }) => {
+  copySync(from, to);
+  console.log(to);
+});
+
+console.log("✅ File preparation completed\n");
 
 // Deploying with ssh
 const isProduction = process.argv.includes("production");
 console.log("⚙️  Deploying to", isProduction ? "Production" : "Staging", "...");
 
-let logs;
+let logs: Buffer;
 const sshServer = isProduction ? process.env.SSH_ADDRESS_PRD : process.env.SSH_ADDRESS_STG;
 const appPath = "~/app";
 const sshPrefix = "ssh -o StrictHostKeyChecking=no " + sshServer + " ";

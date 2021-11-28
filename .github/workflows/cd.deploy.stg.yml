@@ -1,0 +1,59 @@
+name: Deploy To Stage Environment
+
+on:
+  push:
+    tags:
+      - "stg-v*"
+
+jobs:
+  install-build-deploy:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        os: [ubuntu-latest]
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: "SSH"
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+      - name: "Nodejs"
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - name: "Expo"
+        uses: expo/expo-github-action@v6
+        with:
+          expo-version: 4.x
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: "Install"
+        shell: bash
+        run: |
+          yarn --frozen-lockfile --network-timeout 1000000
+
+      - name: "Build"
+        shell: bash
+        run: |
+          yarn build
+
+      - name: "Deploy"
+        shell: bash
+        run: |
+          yarn deploy:stg
+
+        env:
+          CI: true
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

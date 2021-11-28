@@ -1,9 +1,0 @@
-{
-  "testEnvironment": "node",
-  "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
-  "transform": {
-    "^.+\\.(ts|tsx)?$": "ts-jest"
-  },
-  "coveragePathIgnorePatterns": ["node_modules", "dist"],
-  "modulePathIgnorePatterns": ["<rootDir>/dist/"]
-}

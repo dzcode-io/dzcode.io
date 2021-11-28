@@ -1,6 +1,6 @@
-import { FilterDto, OptionDto } from "../_common/api/responses";
-import { ContributionEntity } from "../_common/entities/contribution";
+import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { lorem } from "faker";
+import { FilterDto, OptionDto } from "./types";
 
 export const generateContributionMock = (index: number): ContributionEntity => {
   const projectName = `${lorem.word()}/${lorem.word()}`;

@@ -1,4 +1,4 @@
-import { fsConfig } from "../_common/config";
+import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { getEnv } from "src/common/utils";
 
 export const fullstackConfig = fsConfig(getEnv(), {

@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import {
   GeneralGithubQuery,
   GetUserInput,
@@ -8,9 +7,9 @@ import {
   ListContributorsResponse,
   ListRepositoryContributorsResponse,
 } from "./types";
-import { GithubIssue, GithubUser } from "../_common/types";
 import { FetchService } from "../fetch/service";
 import { Service } from "typedi";
+import { GithubIssue, GithubUser } from "../app/types/legacy";
 
 @Service()
 export class GithubService {

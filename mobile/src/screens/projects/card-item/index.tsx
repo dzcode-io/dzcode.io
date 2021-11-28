@@ -2,7 +2,7 @@ import { Button, Card, Paragraph, Title } from "react-native-paper";
 import React, { FC, memo } from "react";
 import { Colors } from "../../../styles/colors";
 import { GeneralState } from "../../../redux/reducers/general";
-import { Project } from "../../../_common/types";
+import { Project } from "@dzcode.io/api/dist/app/types/legacy";
 import { StateInterface } from "../../../redux";
 import { cardStyles } from "./styles";
 import { openLink } from "../../../utils/link";

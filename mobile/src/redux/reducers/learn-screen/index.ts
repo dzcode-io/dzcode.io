@@ -1,5 +1,5 @@
 import { Action } from "../..";
-import { Document } from "../../../_common/types";
+import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 
 export interface LearnScreenState {
   documents: Document[] | null;

@@ -1,4 +1,4 @@
-import { Document } from "src/_common/types";
+import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import { SidebarTreeItem } from "src/apps/main/types";
@@ -88,7 +88,9 @@ const fetchCurrentDocumentAuthors =
     const githubAuthors = (
       await Promise.all(
         currentDocument.authors?.map((author) => {
-          return fetchV2("api:GithubUsers/:login", { params: { login: author } });
+          return fetchV2("api:GithubUsers/:login", {
+            params: { login: author },
+          });
         }) || [],
       )
     ).map((response) => {

@@ -14,7 +14,7 @@ import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
 import { TeamController } from "../team/controller";
-import { fsConfig } from "../_common/config";
+import { fsConfig } from "@dzcode.io/utils/dist/config";
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 

@@ -1,0 +1,15 @@
+node_modules
+coverage
+dist
+
+# api
+oracle-cloud/build
+
+# data
+firebase
+
+*.*
+!*.ts
+!*.tsx
+!*.js
+!*.jsx

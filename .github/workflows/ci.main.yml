@@ -1,0 +1,99 @@
+name: "CI Check for main Branch"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  install-build-lint-test-coverage-misc:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+      fail-fast: false
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: "Nodejs"
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+
+      - name: "Install"
+        shell: bash
+        run: |
+          yarn --frozen-lockfile --network-timeout 1000000
+
+      - name: "Build"
+        shell: bash
+        run: |
+          yarn build
+
+      - name: "Lint"
+        shell: bash
+        run: |
+          yarn lint:alone
+
+      - name: "Test"
+        shell: bash
+        run: |
+          yarn test:alone  -- -- --coverage
+
+      - uses: codecov/codecov-action@v2
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          flags: api
+          name: codecov-api
+          directory: ./api
+          fail_ci_if_error: true
+      - uses: codecov/codecov-action@v2
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          flags: web
+          name: codecov-web
+          directory: ./web
+          fail_ci_if_error: true
+      - uses: codecov/codecov-action@v2
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          flags: data
+          name: codecov-data
+          directory: ./data
+          fail_ci_if_error: false # put it back to true once we have tests in ./data
+      - uses: codecov/codecov-action@v2
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          flags: mobile
+          name: codecov-mobile
+          directory: ./mobile
+          fail_ci_if_error: true
+      - uses: codecov/codecov-action@v2
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          flags: models
+          name: codecov-models
+          directory: ./packages/models
+          fail_ci_if_error: true
+      - uses: codecov/codecov-action@v2
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          flags: utils
+          name: codecov-utils
+          directory: ./packages/utils
+          fail_ci_if_error: true
+
+      - name: "Misc"
+        shell: bash
+        run: |
+          yarn lerna run bundle:alone --scope @dzcode.io/web
+          yarn lerna run generate:sitemap --scope @dzcode.io/web
+
+        env:
+          CI: true

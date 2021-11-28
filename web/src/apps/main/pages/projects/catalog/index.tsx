@@ -2,7 +2,7 @@ import { Card } from "src/apps/main/components/card";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
-import { Project } from "src/_common/types";
+import { Project } from "@dzcode.io/api/dist/app/types/legacy";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
