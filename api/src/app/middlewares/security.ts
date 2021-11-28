@@ -5,11 +5,13 @@ import { CorsOptions } from "cors";
 import { Service } from "typedi";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import { ENVDto } from "../../config/dto";
 
 @Service()
 @Middleware({ type: "before" })
 export class SecurityMiddleware implements ExpressMiddlewareInterface {
   constructor(private configService: ConfigService) {
+    this.env = this.configService.env().NODE_ENV;
     this.whitelist =
       this.env === "staging"
         ? ["https://stage.dzcode.io"]
@@ -28,7 +30,7 @@ export class SecurityMiddleware implements ExpressMiddlewareInterface {
   }
 
   private router = Router();
-  private env = this.configService.env().NODE_ENV;
+  private env: ENVDto["NODE_ENV"];
   private whitelist: string[];
 
   use: RequestHandler = this.router;

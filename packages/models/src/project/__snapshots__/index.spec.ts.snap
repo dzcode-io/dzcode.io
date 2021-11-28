@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot when providing all fields: errors 1`] = `Array []`;
+
+exports[`should match snapshot when providing all fields: output 1`] = `
+ProjectEntity {
+  "name": "Leblad",
+  "repositories": Array [
+    RepositoryEntity {
+      "owner": "dzcode-io",
+      "provider": "github",
+      "repository": "leblad",
+    },
+    RepositoryEntity {
+      "owner": "abderrahmaneMustapha",
+      "provider": "github",
+      "repository": "leblad-py",
+    },
+  ],
+  "slug": "Leblad",
+}
+`;
+
+exports[`should match snapshot when providing required fields only: errors 1`] = `Array []`;
+
+exports[`should match snapshot when providing required fields only: output 1`] = `
+ProjectEntity {
+  "name": "Leblad",
+  "repositories": Array [
+    RepositoryEntity {
+      "owner": "dzcode-io",
+      "provider": "github",
+      "repository": "leblad",
+    },
+    RepositoryEntity {
+      "owner": "abderrahmaneMustapha",
+      "provider": "github",
+      "repository": "leblad-py",
+    },
+  ],
+  "slug": "Leblad",
+}
+`;
+
+exports[`should show an error that matches snapshot when passing empty object: errors 1`] = `
+Array [
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isString": "slug must be a string",
+    },
+    "property": "slug",
+    "target": ProjectEntity {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": Array [],
+    "constraints": Object {
+      "isString": "name must be a string",
+    },
+    "property": "name",
+    "target": ProjectEntity {},
+    "value": undefined,
+  },
+]
+`;
+
+exports[`should show an error that matches snapshot when passing empty object: output 1`] = `ProjectEntity {}`;

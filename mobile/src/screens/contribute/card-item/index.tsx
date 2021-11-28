@@ -1,11 +1,11 @@
 import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
 import React, { FC, memo } from "react";
 import { Colors } from "../../../styles/colors";
-import { ContributionEntity } from "../../../_common/entities/contribution";
+import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { FlatList } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { View } from "react-native";
-import { calculateDate } from "../../../_common/utils/calculate-date";
+import { calculateDateBetween } from "@dzcode.io/utils/dist/date/difference";
 import { cardStyles } from "./styles";
 
 interface CardItemProps
@@ -48,7 +48,7 @@ export const CardItem: FC<CardItemProps> = ({
         </Button>
         <View style={cardStyles.row}>
           <Text style={{ color: type === "issue" ? Colors.accent : Colors.violet }}>
-            {calculateDate(new Date(updatedAt), new Date())}
+            {calculateDateBetween(new Date(updatedAt), new Date())}
           </Text>
           {commentsCount > 0 && (
             <View style={cardStyles.marginLeft}>

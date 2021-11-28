@@ -1,9 +1,0 @@
-node_modules/
-coverage
-firebase
-dist
-src/_common
-*.prettierignore
-*.tsbuildinfo
-
-.*

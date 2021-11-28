@@ -2,60 +2,48 @@
   "name": "@dzcode.io/root",
   "devDependencies": {
     "husky": "^7.0.4",
-    "lint-staged": "^11.2.3",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2",
-    "sync-directory": "^4.0.5",
+    "lerna": "^4.0.0",
     "syncpack": "^5.8.15"
   },
   "lint-staged": {
     "**/package.json": [
       "syncpack format"
+    ],
+    "./*.*": [
+      "yarn prettier --config ./packages/tooling/.prettierrc --ignore-path ./packages/tooling/.prettierignore --loglevel warn --write"
     ]
   },
   "private": true,
-  "scripts": {
-    "api:build": "yarn --cwd api build",
-    "api:build:watch": "yarn --cwd api build:watch",
-    "api:dev": "yarn --cwd api dev",
-    "api:sync": "yarn --cwd api common:sync",
-    "api:sync:watch": "yarn api:sync --watch",
-    "clean": "yarn workspaces run clean && rimraf ./node_modules",
-    "data:build": "yarn --cwd data build",
-    "data:build:watch": "yarn --cwd data build:watch",
-    "data:dev": "yarn --cwd data dev",
-    "data:sync": "yarn --cwd data common:sync",
-    "data:sync:watch": "yarn data:sync --watch",
-    "dev": "echo \"Please run one of these commands:\\n\\nyarn dev:web\\n\\nyarn dev:mobile\\n\\nyarn dev:all\n\"",
-    "dev:all": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p web:sync:watch web:dev mobile:sync:watch mobile:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
-    "dev:mobile": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p mobile:sync:watch mobile:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
-    "dev:web": "yarn && npm-run-all data:sync api:sync -p data:build api:build -p web:sync:watch web:dev data:sync:watch data:dev api:sync:watch api:dev data:build:watch api:build:watch",
-    "lint:check": "yarn workspaces run lint:check",
-    "lint:fix": "yarn workspaces run lint:fix",
-    "mobile:dev": "yarn --cwd mobile dev",
-    "mobile:sync": "yarn --cwd mobile common:sync",
-    "mobile:sync:watch": "yarn mobile:sync --watch",
-    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn workspaces run lint-staged && yarn lint-staged\") || exit 0",
-    "test": "yarn workspaces run test",
-    "test:cov": "yarn workspaces run test:cov",
-    "web:dev": "yarn --cwd web dev",
-    "web:sync": "yarn --cwd web common:sync",
-    "web:sync:watch": "yarn web:sync --watch"
+  "resolutions": {
+    "@types/jest": "^26.0.14",
+    "@types/react": "^17.0.1",
+    "jest": "^26.6.3",
+    "react": "^17.0.1",
+    "ts-jest": "^26.5.6"
   },
-  "workspaces": {
-    "packages": [
-      "api",
-      "common",
-      "data",
-      "web",
-      "mobile"
-    ],
-    "nohoist": [
-      "**/api/**",
-      "**/common/**",
-      "**/data/**",
-      "**/web/**",
-      "**/mobile/**"
-    ]
-  }
+  "scripts": {
+    "build": "lerna run build:alone --stream",
+    "build:watch": "lerna run build:alone:watch --parallel",
+    "clean": "lerna run clean:alone --stream",
+    "deploy": "lerna run deploy --parallel",
+    "deploy:stg": "lerna run deploy:stg --parallel",
+    "dev": "echo \"Please run one of these commands:\\n\\nyarn dev:web\\nyarn dev:mobile\\nyarn dev:all\n\"",
+    "dev:all": "npm-run-all \"build --include-dependencies {@}\" --parallel \"build:watch --include-dependencies {@}\" \"start:dev {@}\" --",
+    "dev:api": "yarn dev:all --scope=@dzcode.io/api",
+    "dev:mobile": "yarn dev:all --scope=@dzcode.io/{mobile,api,data}",
+    "dev:web": "yarn dev:all --scope=@dzcode.io/{web,api,data}",
+    "lint": "yarn build && yarn lint:alone",
+    "lint:alone": "lerna run lint:alone --stream",
+    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn lerna run lint-staged --since HEAD && yarn lint-staged\") || exit 0",
+    "start:dev": "lerna run start:dev --parallel",
+    "test": "yarn build && yarn test:alone",
+    "test:alone": "lerna run test:alone --stream"
+  },
+  "workspaces": [
+    "packages/*",
+    "api",
+    "data",
+    "web",
+    "mobile"
+  ]
 }

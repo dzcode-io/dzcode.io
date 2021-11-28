@@ -1,7 +1,7 @@
 import { SitemapStream } from "sitemap";
 import { createWriteStream } from "fs";
-const distFolder = "./dist";
-import { getDataCollection } from "../_common/utils/data";
+const distFolder = "./bundle";
+import { getCollection } from "@dzcode.io/data/dist/get/collection";
 import { join } from "path";
 
 // Static URLs
@@ -16,7 +16,7 @@ console.log("Getting Dynamic URLs ...");
   { file: "documentation", slug: "Learn" },
   { file: "projects", slug: "Projects" },
 ].forEach((collectionInfo) => {
-  const collection = getDataCollection<Record<string, string>>(
+  const collection = getCollection<Record<string, string>>(
     join(__dirname, "../../../data"),
     collectionInfo.file,
     "ssr.json",

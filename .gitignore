@@ -1,10 +1,24 @@
 node_modules
-**.DS_Store
+*.DS_Store
 .vscode
 
+*.tsbuildinfo
 yarn-error.log
 
 .idea/
 .env
 
 .husky
+
+dist
+coverage
+
+# api
+api/oracle-cloud/build
+api/fetch_cache
+
+# web
+web/bundle
+
+# web
+mobile/.expo

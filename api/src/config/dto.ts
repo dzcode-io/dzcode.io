@@ -1,12 +1,9 @@
-import { Environment } from "../_common/types";
 import { Matches } from "class-validator";
-
-const environment: Environment[] = ["development", "staging", "production"];
-
+import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
 export class ENVDto {
   PORT = 7070;
 
-  @Matches("(" + environment.join(")|(") + ")")
+  @Matches("(" + environments.join(")|(") + ")")
   NODE_ENV: Environment = "development";
 
   FETCH_CACHE_PATH = "./fetch_cache";

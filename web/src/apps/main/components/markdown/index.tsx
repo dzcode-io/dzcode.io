@@ -5,8 +5,8 @@ import { LinkV2 } from "src/components/link-v2";
 import { StateInterface } from "src/apps/main/redux";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import Typography from "@material-ui/core/Typography";
-import prism from "react-syntax-highlighter/dist/esm/styles/prism/prism";
-import tomorrow from "react-syntax-highlighter/dist/esm/styles/prism/tomorrow";
+import prism from "react-syntax-highlighter/dist/cjs/styles/prism/prism";
+import tomorrow from "react-syntax-highlighter/dist/cjs/styles/prism/tomorrow";
 import { useSelector } from "react-redux";
 import { useTheme } from "@material-ui/core/styles";
 

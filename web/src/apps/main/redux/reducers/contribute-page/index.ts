@@ -1,7 +1,7 @@
 import { Action } from "src/apps/main/redux";
-import { ContributionEntity } from "src/_common/entities/contribution";
-import { FilterDto } from "src/_common/api/responses";
-import { Model } from "src/_common/entities";
+import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { FilterDto } from "@dzcode.io/api/dist/contribution/types";
+import { Model } from "@dzcode.io/models/dist/_base";
 
 export interface ContributePageState {
   filters: FilterDto[];

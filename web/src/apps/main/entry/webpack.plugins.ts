@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import config from "./app-config";
-import { getDataCollection } from "../../../_common/utils/data";
+import { getCollection } from "@dzcode.io/data/dist/get/collection";
 import { join } from "path";
 
 const app = { ...config, name: "main" };
@@ -15,7 +15,7 @@ const plugins: HtmlWebpackPlugin[] = [];
 const pages = [
   {
     uri: "/",
-    title: "DZ Open-Source | dzCode i/o",
+    title: "DZ Open-Source | DzCode i/o",
     description: "Algerian Open-Source Community",
     ogImage:
       "https://images.unsplash.com/photo-1527285341945-715b98b98ea2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&h=627&q=80",
@@ -76,6 +76,16 @@ if (process.env.NODE_ENV !== "development") {
         themeColor: "#000",
         keywords: "faq, open-source, algeria, dzcode",
       },
+      {
+        uri: "/Team",
+        title: "Meet the team! | DzCode i/o",
+        description:
+          "Meet and connect with all the open-source contributors of all the listed projects in dzcode.io website",
+        ogImage:
+          "https://images.unsplash.com/photo-1526663089957-f2aa2776f572?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80&auto=format&fit=crop&w=1200&h=627&q=80",
+        themeColor: "#000",
+        keywords: "faq, open-source, algeria, dzcode",
+      },
     ],
   );
   // Dynamic URLs ----
@@ -84,7 +94,7 @@ if (process.env.NODE_ENV !== "development") {
     { file: "documentation", slug: "Learn" },
     { file: "projects", slug: "Projects" },
   ].forEach((collectionInfo) => {
-    const collection = getDataCollection<Record<string, string>>(
+    const collection = getCollection<Record<string, string>>(
       join(__dirname, "../../../../../data"),
       collectionInfo.file,
       "ssr.json",

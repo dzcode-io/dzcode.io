@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Authors } from "src/apps/main/components/authors";
 import { Contributors } from "src/apps/main/components/contributors";
 import { Divider } from "@material-ui/core";
-import { Document } from "src/_common/types";
+import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import EditIcon from "@material-ui/icons/Edit";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";

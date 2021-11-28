@@ -29,5 +29,7 @@ jest.mock("@react-navigation/drawer", () => ({
 }));
 
 it("renders correctly", () => {
-  renderer.create(<App />);
+  const render = renderer.create(<App />);
+
+  expect(render).toMatchSnapshot();
 });

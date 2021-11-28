@@ -1,0 +1,18 @@
+node_modules/
+coverage
+dist
+
+# api
+oracle-cloud/build
+
+# data
+firebase
+
+./.*
+*.tsbuildinfo
+*.log
+*.svg
+*.jpeg
+*.png
+*.ico
+*.lock

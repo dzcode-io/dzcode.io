@@ -1,4 +1,4 @@
-import { Article } from "src/_common/types";
+import { Article } from "@dzcode.io/api/dist/app/types/legacy";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
 import { ArticlesState } from "src/apps/main/redux/reducers/articles";
 import { SidebarTreeItem } from "src/apps/main/types";
@@ -90,7 +90,9 @@ const fetchCurrentArticleAuthors =
     const githubAuthors = (
       await Promise.all(
         currentArticle.authors?.map((author) => {
-          return fetchV2("api:GithubUsers/:login", { params: { login: author } });
+          return fetchV2("api:GithubUsers/:login", {
+            params: { login: author },
+          });
         }) || [],
       )
     ).map((response) => {
