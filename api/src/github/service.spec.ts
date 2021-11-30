@@ -4,6 +4,7 @@ import { FetchService } from "../fetch/service";
 import { GithubService } from "./service";
 import { mock } from "jest-mock-extended";
 import { githubUserMock } from "../_test/mocks";
+import { ConfigService } from "../config/service";
 
 describe("GithubService", () => {
   const githubQuery: GeneralGithubQuery = {
@@ -18,11 +19,12 @@ describe("GithubService", () => {
     },
   ];
 
+  const configService = mock<ConfigService>();
   const fetchService = mock<FetchService>();
 
   it("should throw error when api call fails", async () => {
     fetchService.get.mockRejectedValue({ meg: "service down" });
-    const githubService = new GithubService(fetchService);
+    const githubService = new GithubService(configService, fetchService);
     let errorThrown: unknown;
     try {
       await githubService.listContributors(githubQuery);
@@ -34,7 +36,7 @@ describe("GithubService", () => {
 
   it("should return list of contributors when api call succeed", async () => {
     fetchService.get.mockResolvedValue(contributorsMock);
-    const githubService = new GithubService(fetchService);
+    const githubService = new GithubService(configService, fetchService);
     const contributors = await githubService.listContributors(githubQuery);
 
     expect(contributors).toMatchObject([githubUserMock]);
