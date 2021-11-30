@@ -28,7 +28,7 @@ export class GithubService {
     const commits = await this.fetchService.get<ListContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repo}/commits`,
       {
-        headers: this.githubToken ? { Authorization: `Basic ${this.githubToken}` } : {},
+        headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
         params: { path, state: "all", per_page: 100 },
       },
     );
@@ -48,7 +48,7 @@ export class GithubService {
   public getUser = async ({ username }: GetUserInput): Promise<GitHubUserApiResponse> => {
     const user = await this.fetchService.get<GitHubUserApiResponse>(
       `${this.apiURL}/users/${username}`,
-      { headers: this.githubToken ? { Authorization: `Basic ${this.githubToken}` } : {} },
+      { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
     return user;
   };
@@ -60,7 +60,7 @@ export class GithubService {
     const issues = await this.fetchService.get<GithubIssue[]>(
       `${this.apiURL}/repos/${owner}/${repo}/issues`,
       {
-        headers: this.githubToken ? { Authorization: `Basic ${this.githubToken}` } : {},
+        headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
         params: { sort: "updated", per_page: 100 },
       },
     );
@@ -73,7 +73,7 @@ export class GithubService {
   }: GitHubListRepositoryLanguagesInput): Promise<string[]> => {
     const languages = await this.fetchService.get<Record<string, number>>(
       `${this.apiURL}/repos/${owner}/${repo}/languages`,
-      { headers: this.githubToken ? { Authorization: `Basic ${this.githubToken}` } : {} },
+      { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
     return Object.keys(languages);
   };
@@ -85,7 +85,7 @@ export class GithubService {
     const contributors = await this.fetchService.get<ListRepositoryContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repo}/contributors`,
       {
-        headers: this.githubToken ? { Authorization: `Basic ${this.githubToken}` } : {},
+        headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
         params: { state: "all", per_page: 100 },
       },
     );
@@ -96,7 +96,7 @@ export class GithubService {
   public getRateLimit = async (): Promise<{ limit: number; used: number; ratio: number }> => {
     const rateLimitInfo = await this.fetchService.get<GitHubRateLimitApiResponse>(
       `${this.apiURL}/rate_limit`,
-      { headers: this.githubToken ? { Authorization: `Basic ${this.githubToken}` } : {} },
+      { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
     const { limit, used } = rateLimitInfo.rate;
     return {
