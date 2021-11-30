@@ -23,9 +23,11 @@ export class GithubService {
     const commits = await this.fetchService.get<ListContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repo}/commits`,
       {
-        path,
-        state: "all",
-        per_page: 100,
+        params: {
+          path,
+          state: "all",
+          per_page: 100,
+        },
       },
     );
     const contributors = commits
@@ -55,8 +57,10 @@ export class GithubService {
     const issues = await this.fetchService.get<GithubIssue[]>(
       `${this.apiURL}/repos/${owner}/${repo}/issues`,
       {
-        sort: "updated",
-        per_page: 100,
+        params: {
+          sort: "updated",
+          per_page: 100,
+        },
       },
     );
     return issues;
@@ -79,8 +83,10 @@ export class GithubService {
     const contributors = await this.fetchService.get<ListRepositoryContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repo}/contributors`,
       {
-        state: "all",
-        per_page: 100,
+        params: {
+          state: "all",
+          per_page: 100,
+        },
       },
     );
 
