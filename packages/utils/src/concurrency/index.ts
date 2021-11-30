@@ -7,6 +7,7 @@ interface QueueObject {
 
 export const lock = <T extends (...args: any) => Promise<any>>(func: T): T => {
   const queue: Record<string, QueueObject> = {};
+  let timer: NodeJS.Timer | null = null;
 
   const lockedFunction = async (...args: Parameters<T>) => {
     return await new Promise((resolve, reject) => {
@@ -30,29 +31,39 @@ export const lock = <T extends (...args: any) => Promise<any>>(func: T): T => {
       queue[argsHash] = { callbacks: [callback], args };
     }
     if (queueIsIdle) {
-      processQueue();
+      processFirstItem("manual");
     }
   };
 
-  const processQueue = async () => {
-    while (Object.keys(queue).length > 0) {
-      for (const queueKey in queue) {
-        if (Object.prototype.hasOwnProperty.call(queue, queueKey)) {
-          const { args, callbacks } = queue[queueKey];
-          try {
-            const result = await func(...(args as unknown[]));
-            for (let index = 0; index < callbacks.length; index++) {
-              callbacks[index](result);
-            }
-          } catch (error) {
-            for (let index = 0; index < callbacks.length; index++) {
-              callbacks[index](undefined, error);
-            }
-          }
-          delete queue[queueKey];
-        }
+  const processFirstItem = async (runType?: "manual") => {
+    const queueKeys = Object.keys(queue);
+
+    if (queueKeys.length <= 0) {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      return;
+    } else if (runType === "manual") {
+      if (!timer) {
+        timer = setInterval(processFirstItem, 0);
+      }
+      return;
+    }
+    const { args, callbacks } = queue[queueKeys[0]];
+    delete queue[queueKeys[0]];
+    try {
+      const result = await func(...(args as unknown[]));
+      for (let index = 0; index < callbacks.length; index++) {
+        callbacks[index](result);
+      }
+    } catch (error) {
+      for (let index = 0; index < callbacks.length; index++) {
+        callbacks[index](undefined, error);
       }
     }
+    delete queue[queueKeys[0]];
+    const newQueueKeys = Object.keys(queue);
   };
 
   return lockedFunction as T;
