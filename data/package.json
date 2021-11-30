@@ -52,7 +52,7 @@
     "lint:eslint": "eslint --config ../packages/tooling/.eslintrc.json --ignore-path ../packages/tooling/.eslintignore --report-unused-disable-directives",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
     "start": "node dist/index.js",
-    "start:dev": "nodemon dist/index.js",
+    "start:dev": "ts-node ../packages/tooling/nodemon.ts @dzcode.io/api && nodemon dist/index.js",
     "test": "jest src",
     "test:cov": "jest src --coverage",
     "test:cov:watch": "jest src --coverage --watchAll",
