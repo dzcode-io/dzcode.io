@@ -1,3 +1,4 @@
+import { IsNumber } from "class-validator";
 import { GithubUser } from "../app/types/legacy";
 
 export type ListContributorsResponse = Array<{
@@ -58,3 +59,55 @@ export interface GitHubListRepositoryIssuesInput {
 }
 
 export type GitHubListRepositoryLanguagesInput = GitHubListRepositoryIssuesInput;
+
+export interface GitHubRateLimitApiResponse {
+  resources: {
+    core: {
+      limit: number;
+      remaining: number;
+      reset: number;
+      used: number;
+    };
+    search: {
+      limit: number;
+      remaining: number;
+      reset: number;
+      used: number;
+    };
+    graphql: {
+      limit: number;
+      remaining: number;
+      reset: number;
+      used: number;
+    };
+    integration_manifest: {
+      limit: number;
+      remaining: number;
+      reset: number;
+      used: number;
+    };
+    code_scanning_upload: {
+      limit: number;
+      remaining: number;
+      reset: number;
+      used: number;
+    };
+  };
+  rate: {
+    limit: number;
+    remaining: number;
+    reset: number;
+    used: number;
+  };
+}
+
+export class GetRateLimitResponseDto {
+  @IsNumber()
+  limit!: number;
+
+  @IsNumber()
+  used!: number;
+
+  @IsNumber()
+  ratio!: number;
+}

@@ -3,6 +3,7 @@ import {
   GetUserInput,
   GitHubListRepositoryIssuesInput,
   GitHubListRepositoryLanguagesInput,
+  GitHubRateLimitApiResponse,
   GitHubUserApiResponse,
   ListContributorsResponse,
   ListRepositoryContributorsResponse,
@@ -90,6 +91,19 @@ export class GithubService {
     );
 
     return contributors.filter(({ type }) => type === "User");
+  };
+
+  public getRateLimit = async (): Promise<{ limit: number; used: number; ratio: number }> => {
+    const rateLimitInfo = await this.fetchService.get<GitHubRateLimitApiResponse>(
+      `${this.apiURL}/rate_limit`,
+      { headers: this.githubToken ? { Authorization: `Basic ${this.githubToken}` } : {} },
+    );
+    const { limit, used } = rateLimitInfo.rate;
+    return {
+      limit,
+      used,
+      ratio: used / limit,
+    };
   };
 
   private githubToken = this.configService.env().GITHUB_TOKEN;

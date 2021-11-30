@@ -15,6 +15,7 @@ import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
 import { TeamController } from "../team/controller";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
+import { GithubController } from "../github/controller";
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
@@ -37,6 +38,7 @@ export const routingControllersOptions = {
     ContributorController,
     GithubUserController,
     TeamController,
+    GithubController,
   ],
   middlewares: [
     // middlewares:
