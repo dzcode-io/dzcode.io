@@ -1,8 +1,8 @@
 import { githubUserMock, githubUserMock2, githubUserMock3 } from "../_test/mocks";
 import { ContributorController } from "./controller";
+import { GetContributorsResponseDto } from "./types";
 import { GithubService } from "../github/service";
 import { mock } from "jest-mock-extended";
-import { GetContributorsResponseDto } from "./types";
 
 describe("ContributorController", () => {
   const mockedGithubServiceInstance = mock<GithubService>();

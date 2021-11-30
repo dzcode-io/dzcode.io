@@ -10,6 +10,7 @@ firebase
 
 ./.*
 .gitignore
+nodemon.json
 *.tsbuildinfo
 *.log
 *.svg

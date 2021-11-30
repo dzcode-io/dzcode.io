@@ -22,7 +22,7 @@ export const lock = <T extends (...args: any) => Promise<any>>(func: T): T => {
   };
 
   const pushToQueue = (args: unknown, callback: Callback) => {
-    let queueIsIdle = Object.keys(queue).length <= 0;
+    const queueIsIdle = Object.keys(queue).length <= 0;
 
     const argsHash = JSON.stringify(args); // better hash it for better performance
     if (queue[argsHash]) {
@@ -63,7 +63,6 @@ export const lock = <T extends (...args: any) => Promise<any>>(func: T): T => {
       }
     }
     delete queue[queueKeys[0]];
-    const newQueueKeys = Object.keys(queue);
   };
 
   return lockedFunction as T;

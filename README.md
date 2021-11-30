@@ -70,7 +70,7 @@ yarn dev:all
 
 **Note**
 
-In `./api`, keep in mind that you have limited calls to Github Api (60 calls per hour), the FetchService is doing a great job at caching theses calls so it doesn't unnecessarily consume Github API quota. If you wish to extend the limit from 60 to 5000, simply create a [Github Personal Access Token](https://github.com/settings/tokens) (make sure it has `Access public repositories` checked), and set it in `./api/.env` like this:
+In [`./api`](./api), keep in mind that you have limited calls to Github Api (60 calls per hour), the [FetchService](./api/src/fetch/service.ts) is doing a great job at caching theses calls so it doesn't unnecessarily consume Github API quota. If you wish to extend the limit from 60 to 5000, simply create a [Github Personal Access Token](https://github.com/settings/tokens) (make sure it has `Access public repositories` checked), and set it in `./api/.env` like this:
 
 ```.env
 GITHUB_TOKEN=Paste_You_Token_Here
@@ -85,7 +85,7 @@ If you use VSCode, please make sure to have a `.vscode/settings.json` file with 
 ```json
 {
   "prettier.configPath": "./packages/tooling/.prettierrc",
-  "eslint.options": { "configFile": "./packages/tooling/.eslintrc.json" }
+  "eslint.options": { "overrideConfigFile": "./packages/tooling/.eslintrc.json" }
 }
 ```
 

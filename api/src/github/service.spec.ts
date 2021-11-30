@@ -19,7 +19,9 @@ describe("GithubService", () => {
     },
   ];
 
-  const configService = mock<ConfigService>();
+  const configService = mock<ConfigService>({
+    env: () => ({ FETCH_CACHE_PATH: "", NODE_ENV: "development", PORT: 0 }),
+  });
   const fetchService = mock<FetchService>();
 
   it("should throw error when api call fails", async () => {
