@@ -16,9 +16,13 @@ coverage
 # api
 api/oracle-cloud/build
 api/fetch_cache
+api/nodemon.json
 
 # web
 web/bundle
 
-# web
+# mobile
 mobile/.expo
+
+# data
+data/nodemon.json
