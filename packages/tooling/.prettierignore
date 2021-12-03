@@ -9,6 +9,8 @@ oracle-cloud/build
 firebase
 
 ./.*
+.gitignore
+nodemon.json
 *.tsbuildinfo
 *.log
 *.svg
