@@ -94,7 +94,7 @@ export const ContributeScreen: FC = () => {
         backgroundStyle={{ backgroundColor: colors.background }}
         handleIndicatorStyle={{ backgroundColor: colors.placeholder }}
       >
-        {filters ? (
+        {filters && !refreshing ? (
           <BottomSheetScrollView>
             <List.AccordionGroup>
               {filters.map(({ name: filterName, label: filterLabel, options }) => (
