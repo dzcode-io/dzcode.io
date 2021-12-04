@@ -14,7 +14,11 @@ interface Props {
   direction?: Direction;
 }
 
-const ThemeProvider: FC<Props> = ({ children, mode, direction = "ltr" }) => {
+export const ThemeProvider: FC<Props> = ({
+  children,
+  mode,
+  direction = "ltr",
+}) => {
   return (
     <PluginsProvider direction={direction}>
       <MuiThemeProvider
@@ -22,9 +26,7 @@ const ThemeProvider: FC<Props> = ({ children, mode, direction = "ltr" }) => {
       >
         <CssBaseline />
         {children}
-      </MuiThemeProvider>{" "}
+      </MuiThemeProvider>
     </PluginsProvider>
   );
 };
-
-export default ThemeProvider;

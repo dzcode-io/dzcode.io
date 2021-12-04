@@ -2,6 +2,10 @@ import { PaletteOptions } from "@mui/material";
 
 export const lightPalette: PaletteOptions = {
   mode: "light",
+  background: {
+    default: "#fff",
+    paper: "#F5F5F5",
+  },
 };
 
 export const darkPalette: PaletteOptions = {
@@ -16,5 +20,9 @@ export const defaultPalette: PaletteOptions = {
   secondary: {
     main: "#1D1D1D",
     contrastText: "#fff",
+  },
+  background: {
+    default: "#282c34",
+    paper: "#1d1d1d",
   },
 };

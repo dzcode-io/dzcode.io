@@ -17,15 +17,11 @@ interface FaqCardProps {
   }>;
 }
 
-const FaqCard = ({ title, questions }: FaqCardProps) => {
+export const FaqCard = ({ title, questions }: FaqCardProps) => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <Typography
-          variant="h5"
-          component="h2"
-          sx={{ textAlign: { xs: "center", lg: "left" } }}
-        >
+        <Typography variant="h5" component="h2" sx={{ textAlign: "center" }}>
           {title}
         </Typography>
       </Grid>
@@ -42,5 +38,3 @@ const FaqCard = ({ title, questions }: FaqCardProps) => {
     </Grid>
   );
 };
-
-export default FaqCard;
