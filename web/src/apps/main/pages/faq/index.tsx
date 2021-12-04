@@ -1,4 +1,7 @@
-import { DzCodeThemeProvider, FaqCard, Grid, Typography } from "@dzcode.io/ui";
+import { FaqCard } from "@dzcode.io/ui/dist/faq-card";
+import { Grid } from "@dzcode.io/ui/dist/grid";
+import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
+import { Typography } from "@dzcode.io/ui/dist/typography";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
@@ -68,7 +71,7 @@ export const FaqPage: FC = () => {
   } = useSelector<StateInterface, StateInterface>((state) => state);
 
   return (
-    <DzCodeThemeProvider
+    <ThemeProvider
       direction={language.code === "ar" ? "rtl" : "ltr"}
       mode={darkMode ? "dark" : "light"}
     >
@@ -83,7 +86,7 @@ export const FaqPage: FC = () => {
           <PageFooter />
         </Grid>
       </Grid>
-    </DzCodeThemeProvider>
+    </ThemeProvider>
   );
 };
 
