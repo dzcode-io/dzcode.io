@@ -17,7 +17,10 @@
     "stylis-plugin-rtl": "^1"
   },
   "devDependencies": {
-    "@dzcode.io/tooling": "*"
+    "@dzcode.io/tooling": "*",
+    "@testing-library/jest-dom": "^5.16.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0"
   },
   "license": "MIT",
   "lint-staged": {
@@ -40,7 +43,7 @@
     "lint:eslint": "eslint --config ../tooling/.eslintrc.json --ignore-path ../tooling/.eslintignore --report-unused-disable-directives",
     "lint:prettier": "prettier  --config ../tooling/.prettierrc.json --ignore-path ../tooling/.prettierignore --loglevel warn",
     "test": "yarn build && yarn test:alone",
-    "test:alone": "jest --config ../tooling/jest.config.ts --rootDir .",
+    "test:alone": "jest --config ./jest.config.ts --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }
