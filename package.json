@@ -10,7 +10,7 @@
       "syncpack format"
     ],
     "./*.*": [
-      "yarn prettier --config ./packages/tooling/.prettierrc --ignore-path ./packages/tooling/.prettierignore --loglevel warn --write"
+      "prettier --config ./packages/tooling/.prettierrc --ignore-path ./packages/tooling/.prettierignore --loglevel warn --write"
     ]
   },
   "private": true,
@@ -34,7 +34,8 @@
     "dev:web": "yarn dev:all --scope=@dzcode.io/{web,api,data}",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "lerna run lint:alone --stream",
-    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn lerna run lint-staged --since HEAD && yarn lint-staged\") || exit 0",
+    "lint:staged": "lerna exec --since HEAD -- lint-staged && lint-staged",
+    "postinstall": "(husky install && husky set .husky/pre-commit \"yarn lint:staged\") || exit 0",
     "start:dev": "lerna run start:dev --parallel",
     "test": "yarn build && yarn test:alone",
     "test:alone": "lerna run test:alone --stream"
