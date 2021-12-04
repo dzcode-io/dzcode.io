@@ -2,7 +2,7 @@
   "expo": {
     "name": "DzCode i/o",
     "slug": "dzcode",
-    "version": "3.0.4",
+    "version": "test-release-pr435.0",
     "orientation": "portrait",
     "icon": "./src/assets/png/icon.png",
     "scheme": "dzcode",

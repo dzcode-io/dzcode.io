@@ -1,7 +1,7 @@
 {
   "name": "@dzcode.io/tooling",
   "description": "tooling related files, such as tsconfig.json ...etc",
-  "version": "1.0.0",
+  "version": "test-release-pr435.0",
   "author": {
     "email": "contact@zakiii.com",
     "name": "Zakaria Mansouri",
