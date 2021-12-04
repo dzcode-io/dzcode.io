@@ -1,4 +1,4 @@
-import { allLanguages, LanguageEntity } from ".";
+import { LanguageEntity, allLanguages } from ".";
 import { runDTOTestCases } from "../_test";
 
 runDTOTestCases(
