@@ -39,7 +39,7 @@
     "start:dev": "lerna run start:dev --parallel",
     "test": "yarn build && yarn test:alone",
     "test:alone": "lerna run test:alone --stream",
-    "version:apply": "ts-node packages/tooling/version.ts",
+    "version:apply": "ts-node packages/tooling/version-apply.ts",
     "version:push": "ts-node packages/tooling/version-push.ts"
   },
   "workspaces": [
