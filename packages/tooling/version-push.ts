@@ -24,7 +24,9 @@ if (branches.length > 0) {
   const headStdOut = String(execSync(`git rev-parse HEAD`));
   console.log(headStdOut);
   const firstBranchHeadHash = headStdOut.replace("\n", "");
-  // console.log(String(execSync(`git push`)));
+  console.log(String(execSync(`git push`)));
+  console.log(String(execSync(`git tag ${version} -f`)));
+  console.log(String(execSync(`git push --tags -f`)));
 
   if (branches.length > 1) {
     console.log(
@@ -33,6 +35,7 @@ if (branches.length > 0) {
       } more branches with same HEAD, cherry-picking ${firstBranchHeadHash}...`,
     );
     // cherry-pick commit from outer block
+    console.log(`@TODO-ZM: cherry-pick ${firstBranchHeadHash} to all branches with same HEAD`);
   }
   console.log(`Done applying version ${version}`);
 } else {
