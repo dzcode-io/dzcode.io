@@ -9,11 +9,12 @@ const currentHeadHashStdout = String(execSync(`git rev-parse HEAD`));
 console.log("\n" + currentHeadHashStdout);
 const currentHeadHash = currentHeadHashStdout.replace("\n", "");
 
-const showRefsStdout = String(execSync(`git show-ref --heads`));
+const showRefsStdout = String(execSync(`git show-ref`));
+
 const branches = showRefsStdout
   .split("\n")
-  .filter((headAndBranch) => headAndBranch.startsWith(currentHeadHash))
-  .map((headAndBranch) => headAndBranch.replace(/\S+\srefs\/heads\//, ""));
+  .filter((headAndBranch) => headAndBranch.startsWith(`${currentHeadHash} refs/remotes/origin`))
+  .map((headAndBranch) => headAndBranch.replace(/\S+\srefs\/remotes\/origin\//, ""));
 
 if (branches.length > 0) {
   const firstBranch = branches[0];
