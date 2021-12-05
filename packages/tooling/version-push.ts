@@ -5,13 +5,14 @@ if (!version) throw new Error("Please provide a version");
 
 console.log(`Pushing version ${version} ...`);
 
-const showRefsScript = `git show-ref --heads | grep -E $(git rev-parse HEAD)`;
-console.log(`running:\n${showRefsScript}`);
-const showRefsStdout = execSync(showRefsScript);
-console.log("\n" + String(showRefsStdout));
-const branches = String(showRefsStdout)
+const currentHeadHashStdout = String(execSync(`git rev-parse HEAD`));
+console.log("\n" + currentHeadHashStdout);
+const currentHeadHash = currentHeadHashStdout.replace("\n", "");
+
+const showRefsStdout = String(execSync(`git show-ref --heads`));
+const branches = showRefsStdout
   .split("\n")
-  .filter(Boolean)
+  .filter((headAndBranch) => headAndBranch.startsWith(currentHeadHash))
   .map((headAndBranch) => headAndBranch.replace(/\S+\srefs\/heads\//, ""));
 
 if (branches.length > 0) {
