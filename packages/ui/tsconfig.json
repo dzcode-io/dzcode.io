@@ -1,8 +1,7 @@
 {
   "extends": "@dzcode.io/tooling/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "incremental": false
+    "outDir": "dist"
   },
   "include": ["src/**/*", "./jest-setup.ts"]
 }
