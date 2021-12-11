@@ -1,12 +1,13 @@
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserJSPlugin from "terser-webpack-plugin";
-import glob from "glob";
-import path from "path";
 import { Configuration as WPC } from "webpack";
 import { Configuration as WPDSC } from "webpack-dev-server";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
+import glob from "glob";
 import { join } from "path";
+import path from "path";
+import { readFileSync } from "fs";
 
 // setting up project configurations and some env variables
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -20,6 +21,14 @@ const nonCodeFiles = ["png", "jpg", "jpeg", "gif", "svg", "ico", "ttf", "woff", 
 const apps = glob
   .sync("src/apps/*/entry/app-config.ts")
   .map((path) => path.substring(9, path.indexOf("/", 9)));
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+let bundleInfo: { version: string } = { version: require("./package.json").version as string };
+try {
+  bundleInfo = JSON.parse(readFileSync(".bundle-info.json").toString()) as typeof bundleInfo;
+} catch (error) {
+  /**/
+}
 
 const browserslist = [">0.2%", "not dead", "not op_mini all"];
 const babelOptions = {
@@ -44,6 +53,12 @@ const babelOptions = {
     ["babel-plugin-typescript-to-proptypes", { comments: true }],
     // https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs
     "@babel/plugin-transform-modules-commonjs",
+    [
+      "transform-define",
+      {
+        "window.bundleInfo": bundleInfo,
+      },
+    ],
   ],
 };
 
