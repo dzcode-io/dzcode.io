@@ -32,6 +32,7 @@
     "dev:api": "yarn dev:all --scope=@dzcode.io/api",
     "dev:mobile": "yarn dev:all --scope=@dzcode.io/{mobile,api,data}",
     "dev:web": "yarn dev:all --scope=@dzcode.io/{web,api,data}",
+    "generate:bundle-info": "lerna run generate:bundle-info --parallel --",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "lerna run lint:alone --parallel",
     "lint:fix": "yarn build && yarn lint:fix:alone",

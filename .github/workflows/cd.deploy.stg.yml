@@ -40,6 +40,11 @@ jobs:
         run: |
           yarn --frozen-lockfile --network-timeout 1000000
 
+      - name: "Bundle info"
+        shell: bash
+        run: |
+          yarn generate:bundle-info ${{ github.ref_name }}
+
       - name: "Build"
         shell: bash
         run: |
