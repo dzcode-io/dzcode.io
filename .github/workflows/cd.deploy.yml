@@ -1,4 +1,4 @@
-name: Deploy To Stage Environment
+name: Deploy To Production Environment
 
 on:
   push:
@@ -19,6 +19,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          token: ${{ secrets.GH_ZAK_PAT }}
       - name: "SSH"
         uses: shimataro/ssh-key-action@v2
         with:
@@ -40,6 +41,12 @@ jobs:
         run: |
           yarn --frozen-lockfile --network-timeout 1000000
 
+      - name: "Version"
+        shell: bash
+        run: |
+          yarn version:apply ${{ github.ref_name }}
+          yarn version:push ${{ github.ref_name }}
+
       - name: "Build"
         shell: bash
         run: |
@@ -52,7 +59,6 @@ jobs:
 
         env:
           CI: true
-          SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
           SSH_ADDRESS_PRD: ${{ secrets.SSH_ADDRESS_PRD }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
