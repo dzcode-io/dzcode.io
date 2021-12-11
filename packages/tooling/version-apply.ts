@@ -1,12 +1,15 @@
 import { existsSync, writeFileSync } from "fs";
 import { execSync } from "child_process";
 import { join } from "path";
+import { clean } from "semver";
 
 const version = process.argv[2];
-const args = process.argv.slice(3);
 if (!version) throw new Error("Please provide a version");
-
+const cleanVersion = clean(version);
+if (!cleanVersion) throw new Error("Provided version does not follow semver format");
 console.log(`Applying version ${version} ...`);
+
+const args = process.argv.slice(3);
 const lernaScript = `lerna list --include-dependencies --include-dependents --json --all --loglevel silent ${args.join(
   " ",
 )}`;
@@ -19,7 +22,7 @@ dependencies.forEach(({ location }) => {
   const packageJsonPath = join(location, "package.json");
   if (existsSync(packageJsonPath)) {
     const packageJsonContent = require(packageJsonPath); // eslint-disable-line @typescript-eslint/no-var-requires
-    packageJsonContent.version = version;
+    packageJsonContent.version = cleanVersion;
     writeFileSync(packageJsonPath, JSON.stringify(packageJsonContent, null, 2));
     console.log(`Applied version ${version} to ${packageJsonPath}`);
     modifiedFilePaths.push(packageJsonPath);
@@ -28,10 +31,9 @@ dependencies.forEach(({ location }) => {
   const appJsonPath = join(location, "app.json");
   if (existsSync(appJsonPath)) {
     const appJsonContent = require(appJsonPath); // eslint-disable-line @typescript-eslint/no-var-requires
-    const clearedVersion = version.replace(/(stg\-v|v)/, "");
-    appJsonContent.expo.version = clearedVersion;
-    appJsonContent.expo.ios.buildNumber = clearedVersion;
-    appJsonContent.expo.android.versionCode = Number(version.replace(/\D/g, ""));
+    appJsonContent.expo.version = cleanVersion;
+    appJsonContent.expo.ios.buildNumber = cleanVersion;
+    appJsonContent.expo.android.versionCode = Number(cleanVersion.replace(/\D/g, ""));
     writeFileSync(appJsonPath, JSON.stringify(appJsonContent, null, 2));
     console.log(`Applied version ${version} to ${appJsonPath}`);
     modifiedFilePaths.push(appJsonPath);
