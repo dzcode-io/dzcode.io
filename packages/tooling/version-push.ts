@@ -22,6 +22,8 @@ if (branches.length > 0) {
   console.log(String(execSync(`git checkout ${firstBranch}`)));
   console.log(String(execSync(`git stash pop`)));
   console.log(String(execSync(`git add .`)));
+  console.log(String(execSync(`git config user.name "DzCode i/o"`)));
+  console.log(String(execSync(`git config user.email contact@dzcode.io`)));
   console.log(String(execSync(`git commit -m "version: ${version}\n[skip ci]" --no-verify`)));
   const headStdOut = String(execSync(`git rev-parse HEAD`));
   console.log(headStdOut);
