@@ -34,8 +34,17 @@
   "license": "MIT",
   "lint-staged": {
     "*.*": [
-      "echo"
+      "yarn lint:eslint --fix",
+      "yarn lint:prettier --write"
     ]
   },
-  "private": true
+  "private": true,
+  "scripts": {
+    "lint": "yarn lint:alone",
+    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
+    "lint:eslint": "eslint --config .eslintrc.json --ignore-path .eslintignore --report-unused-disable-directives",
+    "lint:fix": "yarn lint:fix:alone",
+    "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
+    "lint:prettier": "prettier  --config .prettierrc --ignore-path .prettierignore --loglevel warn"
+  }
 }

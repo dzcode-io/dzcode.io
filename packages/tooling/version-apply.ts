@@ -1,7 +1,7 @@
 import { existsSync, writeFileSync } from "fs";
+import { clean } from "semver";
 import { execSync } from "child_process";
 import { join } from "path";
-import { clean } from "semver";
 
 const version = process.argv[2];
 if (!version) throw new Error("Please provide a version");

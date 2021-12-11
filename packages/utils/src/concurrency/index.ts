@@ -5,6 +5,7 @@ interface QueueObject {
   callbacks: Callback[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const lock = <T extends (...args: any) => Promise<any>>(func: T): T => {
   const queue: Record<string, QueueObject> = {};
   let timer: NodeJS.Timer | null = null;
