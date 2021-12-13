@@ -47,6 +47,11 @@ jobs:
           yarn version:apply ${{ github.ref_name }}
           yarn version:push ${{ github.ref_name }}
 
+      - name: "Bundle info"
+        shell: bash
+        run: |
+          yarn generate:bundle-info ${{ github.ref_name }}
+
       - name: "Build"
         shell: bash
         run: |

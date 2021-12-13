@@ -12,6 +12,7 @@ yarn-error.log
 
 dist
 coverage
+.bundle-info.json
 
 # api
 api/oracle-cloud/build

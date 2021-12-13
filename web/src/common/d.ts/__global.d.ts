@@ -6,5 +6,8 @@ declare global {
     ga: (command: string, ...fields: Array<string>) => void;
     fbq: (command: string, ...fields: Array<string>) => void;
     FB: { XFBML: { parse: () => void } };
+    bundleInfo: {
+      version: string;
+    };
   }
 }

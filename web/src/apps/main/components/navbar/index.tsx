@@ -67,6 +67,18 @@ const useStyles = makeStyles((theme) =>
     toolbarTitle: {
       marginRight: "auto",
     },
+    toolbarVersion: {
+      margin: "auto 1rem",
+      flex: "1",
+      color: theme.palette.text.primary,
+    },
+    toolbarVersionLink: {
+      color: theme.palette.text.primary,
+      "&:hover": {
+        textDecoration: "none",
+        color: theme.palette.primary.main,
+      },
+    },
     toolbarLink: {
       display: "flex",
       alignItems: "center",
@@ -137,6 +149,14 @@ export const Navbar: FC = () => {
             </LinkV2>
           </Typography>
         </Hidden>
+        <Typography variant="caption" className={classes.toolbarVersion}>
+          <LinkV2
+            href={`https://github.com/dzcode-io/dzcode.io/releases/tag/${window.bundleInfo.version}`}
+            className={classes.toolbarVersionLink}
+          >
+            {window.bundleInfo.version}
+          </LinkV2>
+        </Typography>
         <div className={`${classes.langAndTheme} `}>
           <LanguageSwitch />
           <FormControlLabel
