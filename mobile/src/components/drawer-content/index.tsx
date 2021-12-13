@@ -6,6 +6,7 @@ import {
 } from "@react-navigation/drawer";
 import { Image, SafeAreaView, View } from "react-native";
 import React, { FC } from "react";
+import { Text } from "react-native-paper";
 import { drawerStyles } from "./styles";
 
 export const DrawerContent: FC<DrawerContentComponentProps<DrawerContentOptions>> = (props) => {
@@ -15,6 +16,7 @@ export const DrawerContent: FC<DrawerContentComponentProps<DrawerContentOptions>
         {/* dzcode.io logo */}
         <View>
           <Image source={require("../../assets/png/logo.png")} style={drawerStyles.logoView} />
+          <Text style={drawerStyles.version}>{window.bundleInfo.version}</Text>
         </View>
         {/* Drawer items */}
         <DrawerItemList {...props} />
