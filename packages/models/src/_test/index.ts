@@ -1,7 +1,7 @@
-import { OptionalPropertiesOf, RequiredPropertiesOf } from "@dzcode.io/utils/dist/ts";
 import { ClassConstructor, plainToClass } from "class-transformer";
-import { validateSync } from "class-validator";
+import { OptionalPropertiesOf, RequiredPropertiesOf } from "@dzcode.io/utils/dist/ts";
 import { BaseEntity } from "../_base";
+import { validateSync } from "class-validator";
 
 export type Cases<T extends object> = [
   [string, RequiredPropertiesOf<T>, false],

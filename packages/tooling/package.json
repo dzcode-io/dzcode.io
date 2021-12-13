@@ -11,6 +11,7 @@
     "@prettier/plugin-pug": "^1.17.3",
     "@types/jest": "^26.0.14",
     "@types/node": "^16.11.10",
+    "@types/semver": "^7.3.9",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "cross-env": "^7.0.3",
@@ -25,10 +26,25 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
+    "semver": "^7.3.5",
     "ts-jest": "^26.5.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   },
   "license": "MIT",
-  "private": true
+  "lint-staged": {
+    "*.*": [
+      "yarn lint:eslint --fix",
+      "yarn lint:prettier --write"
+    ]
+  },
+  "private": true,
+  "scripts": {
+    "lint": "yarn lint:alone",
+    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
+    "lint:eslint": "eslint --config .eslintrc.json --ignore-path .eslintignore --report-unused-disable-directives",
+    "lint:fix": "yarn lint:fix:alone",
+    "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
+    "lint:prettier": "prettier  --config .prettierrc --ignore-path .prettierignore --loglevel warn"
+  }
 }

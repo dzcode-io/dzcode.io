@@ -19,7 +19,7 @@ const directoriesToWatch = dependencies
     (pV, location) => [...pV, ...subPaths.map((subPath) => join(location, subPath))],
     [],
   )
-  .filter((locaiton) => existsSync(locaiton));
+  .filter((location) => existsSync(location));
 
 const nodemonJson = {
   watch: directoriesToWatch,
