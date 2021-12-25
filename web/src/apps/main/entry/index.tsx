@@ -16,6 +16,7 @@ if (env !== "development") {
     tracesSampleRate: 1.0,
     environment: env,
     debug: env === "staging",
+    release: `web@${window.bundleInfo.version}`,
   });
 }
 

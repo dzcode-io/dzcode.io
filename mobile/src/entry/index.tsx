@@ -28,6 +28,7 @@ if (env !== "development") {
     enableInExpoDevelopment: true,
     environment: env,
     debug: env === "staging",
+    release: `mobile@${window.bundleInfo.version}`,
   });
 }
 
