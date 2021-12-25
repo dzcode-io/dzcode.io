@@ -20,7 +20,12 @@ describe("GithubService", () => {
   ];
 
   const configService = mock<ConfigService>({
-    env: () => ({ FETCH_CACHE_PATH: "", NODE_ENV: "development", PORT: 0 }),
+    env: () => ({
+      FETCH_CACHE_PATH: "",
+      NODE_ENV: "development",
+      PORT: 0,
+      BUNDLE_INFO: { version: "test" },
+    }),
   });
   const fetchService = mock<FetchService>();
 
