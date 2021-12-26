@@ -50,6 +50,11 @@ jobs:
         run: |
           yarn build
 
+      - name: "Sentry Release"
+        shell: bash
+        run: |
+          yarn generate:sentry-release ${{ github.ref_name }} stage ${{ secrets.SENTRY_AUTH_TOKEN }}
+
       - name: "Deploy"
         shell: bash
         run: |
