@@ -176,7 +176,7 @@ export default {
   // https://webpack.js.org/configuration/target/
   target: "web",
   // https://webpack.js.org/configuration/devtool/#development
-  devtool: isProduction ? false : "eval-source-map",
+  devtool: isProduction ? "source-map" : "eval-source-map",
   // https://webpack.js.org/configuration/mode/
   mode: isProduction ? "production" : isDevelopment ? "development" : "none",
   // https://webpack.js.org/configuration/optimization/#optimizationminimizer

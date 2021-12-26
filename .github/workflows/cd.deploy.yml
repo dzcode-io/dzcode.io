@@ -56,6 +56,7 @@ jobs:
         shell: bash
         run: |
           yarn build
+          yarn --cwd=web bundle:alone
 
       - name: "Sentry Release"
         shell: bash
