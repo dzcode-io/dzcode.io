@@ -35,6 +35,7 @@
     "web": {
       "favicon": "./src/assets/png/favicon.png"
     },
-    "plugins": ["sentry-expo"]
+    "plugins": ["sentry-expo"],
+    "hooks": { "postExport": [{ "file": "sentry-expo/upload-sourcemaps" }] }
   }
 }

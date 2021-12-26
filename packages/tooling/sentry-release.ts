@@ -18,6 +18,15 @@ if (!authToken) throw new Error("Please provide a authToken");
 const org = "dzcode";
 const project = scope;
 
+if (scope === "mobile") {
+  console.log(`Creating, publishing and deploying a new Sentry release ...`);
+  const mobileScript = `SENTRY_AUTH_TOKEN=${authToken} SENTRY_ORG=${org} SENTRY_PROJECT=${project} SENTRY_RELEASE=${scope}@${version} SENTRY_DEPLOY_ENV=${environment} SENTRY_DIST=0 expo export --dump-sourcemap --public-url "https://www.dzcode.io/"`;
+  console.log(`running:\n${mobileScript}`);
+  const mobileScriptStdout = String(execSync(mobileScript));
+  console.log(mobileScriptStdout);
+  process.exit(0);
+}
+
 console.log(`Creating a Sentry release draft ...`);
 const releaseScript = `sentry-cli --auth-token ${authToken} releases --org ${org} new --project ${project} ${scope}@${version}`;
 console.log(`running:\n${releaseScript}`);
