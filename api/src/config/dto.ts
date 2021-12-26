@@ -1,5 +1,15 @@
-import { IsOptional, IsString, Matches } from "class-validator";
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
+import { IsOptional, IsString, Matches } from "class-validator";
+import { readFileSync } from "fs-extra";
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+let bundleInfo = { version: require("../../package.json").version };
+try {
+  bundleInfo = JSON.parse(readFileSync(".bundle-info.json").toString());
+} catch (error) {
+  /**/
+}
+
 export class ENVDto {
   PORT = 7070;
 
@@ -12,4 +22,7 @@ export class ENVDto {
   @IsString()
   @IsOptional()
   GITHUB_TOKEN?: string;
+
+  @IsOptional()
+  BUNDLE_INFO: { version: string } = bundleInfo;
 }

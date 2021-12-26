@@ -9,15 +9,18 @@ import { ContributionController } from "../contribution/controller";
 import { ContributorController } from "../contributor/controller";
 import { DocsMiddleware } from "./middlewares/docs";
 import { ErrorMiddleware } from "./middlewares/error";
+import { GithubController } from "../github/controller";
 import { GithubUserController } from "../github-user/controller";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
 import { TeamController } from "../team/controller";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
-import { GithubController } from "../github/controller";
 
-const { NODE_ENV, PORT } = Container.get(ConfigService).env();
+// Use typedi container
+useContainer(Container);
+
+const { NODE_ENV, PORT, BUNDLE_INFO } = Container.get(ConfigService).env();
 
 if (NODE_ENV !== "development") {
   Sentry.init({
@@ -25,11 +28,9 @@ if (NODE_ENV !== "development") {
     tracesSampleRate: 1.0,
     environment: NODE_ENV,
     debug: NODE_ENV === "staging",
+    release: `api@${BUNDLE_INFO.version}`,
   });
 }
-
-// Use typedi container
-useContainer(Container);
 
 // Create the app:
 export const routingControllersOptions = {

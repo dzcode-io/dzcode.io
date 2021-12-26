@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@prettier/plugin-pug": "^1.17.3",
+    "@sentry/cli": "^1.71.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^16.11.10",
     "@types/semver": "^7.3.9",
