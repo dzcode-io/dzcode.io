@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import * as Sentry from "@sentry/node";
-import { createExpressServer, useContainer } from "routing-controllers";
+import { RoutingControllersOptions, createExpressServer, useContainer } from "routing-controllers";
 import { Application } from "express";
 import { ConfigService } from "../config/service";
 import Container from "typedi";
@@ -14,6 +14,8 @@ import { GithubUserController } from "../github-user/controller";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "../logger/service";
 import { SecurityMiddleware } from "./middlewares/security";
+import { SentryErrorHandlerMiddleware } from "./middlewares/sentry-error-handler";
+import { SentryRequestHandlerMiddleware } from "./middlewares/sentry-request-handler";
 import { TeamController } from "../team/controller";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 
@@ -27,13 +29,13 @@ if (NODE_ENV !== "development") {
     dsn: "https://5f9d7ae6e98944e1815f8d1944fc3c12@o953637.ingest.sentry.io/5904452",
     tracesSampleRate: 1.0,
     environment: NODE_ENV,
-    debug: NODE_ENV === "staging",
+    debug: NODE_ENV !== "production",
     release: `api@${BUNDLE_INFO.version}`,
   });
 }
 
 // Create the app:
-export const routingControllersOptions = {
+export const routingControllersOptions: RoutingControllersOptions = {
   controllers: [
     ContributionController,
     ContributorController,
@@ -42,8 +44,9 @@ export const routingControllersOptions = {
     GithubController,
   ],
   middlewares: [
-    // middlewares:
+    SentryRequestHandlerMiddleware,
     SecurityMiddleware,
+    SentryErrorHandlerMiddleware,
     ErrorMiddleware,
     LoggerMiddleware,
     DocsMiddleware,
