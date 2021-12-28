@@ -1,8 +1,8 @@
 import { ExpressErrorMiddlewareInterface, Middleware } from "routing-controllers";
 import { ErrorRequestHandler } from "express";
+import { GeneralResponseDto } from "../types";
 import { LoggerService } from "../../logger/service";
 import { Service } from "typedi";
-import { GeneralResponseDto } from "../types";
 
 @Service()
 @Middleware({ type: "after" })
@@ -13,7 +13,7 @@ export class ErrorMiddleware implements ExpressErrorMiddlewareInterface {
     // Logs error
     this.loggerService.error({
       message: "Internal Server Error",
-      error: err?.message,
+      meta: err,
     });
 
     // Skip if headers are already sent
@@ -24,7 +24,7 @@ export class ErrorMiddleware implements ExpressErrorMiddlewareInterface {
     // return a general error response
     return res.status(500).json({
       code: 500,
-      msg: err?.message,
+      msg: "Internal Server Error",
     });
   };
 }
