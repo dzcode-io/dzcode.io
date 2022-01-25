@@ -5,6 +5,7 @@ import {
   SMALL_LOGO_HEIGHT,
   SMALL_MARGIN_SIZE,
 } from "../../utils/constants";
+
 import { StyleSheet } from "react-native";
 
 export const drawerStyles = StyleSheet.create({
@@ -17,7 +18,6 @@ export const drawerStyles = StyleSheet.create({
     marginBottom: 0,
   },
   version: {
-    resizeMode: "stretch",
     margin: MEDIUM_MARGIN_SIZE,
     marginBottom: LARGE_MARGIN_SIZE,
     textAlign: "center",
