@@ -1,3 +1,8 @@
+import BottomSheet, {
+  BottomSheetDraggableView,
+  BottomSheetFlatList,
+  BottomSheetScrollView,
+} from "@gorhom/bottom-sheet";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { Dispatch, StateInterface } from "../../redux";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
@@ -5,11 +10,9 @@ import React, { FC, useEffect } from "react";
 import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
 import { useDispatch, useSelector } from "react-redux";
 
-import BottomSheet from "@gorhom/bottom-sheet";
 import { CardItemMemoed } from "./card-item";
 import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
 import { DZCodeLoading } from "../../components/loading";
-import { ScrollView } from "react-native-virtualized-view";
 import { contributeStyles } from "./styles";
 import { globalStyles } from "../../styles/global";
 
@@ -96,42 +99,31 @@ export const ContributeScreen: FC = () => {
         backgroundStyle={{ backgroundColor: colors.background }}
         handleIndicatorStyle={{ backgroundColor: colors.placeholder }}
       >
-        {filters && (
-          <ScrollView nestedScrollEnabled>
-            <List.AccordionGroup>
-              <FlatList
-                nestedScrollEnabled
-                data={filters}
-                keyExtractor={({ name }) => `filter-${name}`}
-                renderItem={({ item }) => (
-                  <List.Accordion title={item.label} id={item.name}>
-                    <FlatList
-                      nestedScrollEnabled
-                      data={item.options}
-                      keyExtractor={({ name }) => `option-${item.name}-${name}`}
-                      renderItem={({ item: option }) => (
-                        <List.Item
-                          title={option.label}
-                          right={() => (
-                            <Checkbox
-                              status={option.checked ? "checked" : "unchecked"}
-                              onPress={() => {
-                                dispatch(updateFilterValue(item.name, option.name, "reverse"));
-                              }}
-                            />
-                          )}
-                          onPress={() => {
-                            dispatch(updateFilterValue(item.name, option.name, "reverse"));
-                          }}
-                        />
-                      )}
-                    />
-                  </List.Accordion>
-                )}
-              />
-            </List.AccordionGroup>
-          </ScrollView>
-        )}
+        <BottomSheetScrollView>
+          <List.AccordionGroup>
+            {filters?.map((item) => (
+              <List.Accordion key={`filter-${item.name}`} title={item.label} id={item.name}>
+                {item.options.map((option) => (
+                  <List.Item
+                    key={`option-${item.name}-${option.name}`}
+                    title={option.label}
+                    right={() => (
+                      <Checkbox
+                        status={option.checked ? "checked" : "unchecked"}
+                        onPress={() => {
+                          dispatch(updateFilterValue(item.name, option.name, "reverse"));
+                        }}
+                      />
+                    )}
+                    onPress={() => {
+                      dispatch(updateFilterValue(item.name, option.name, "reverse"));
+                    }}
+                  />
+                ))}
+              </List.Accordion>
+            ))}
+          </List.AccordionGroup>
+        </BottomSheetScrollView>
       </BottomSheet>
     </SafeAreaView>
   );

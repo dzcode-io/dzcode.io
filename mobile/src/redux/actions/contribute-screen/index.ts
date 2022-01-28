@@ -15,13 +15,16 @@ export const fetchContributions =
     });
     try {
       const { contributeScreen } = getState();
+      const { filters: originalFilters } = contributeScreen;
       const query: [string, string][] = [];
       contributeScreen.filters?.forEach((filter) => {
         filter.options.forEach((option) => {
           if (option.checked) query.push([filter.name, option.name]);
         });
       });
-      const { contributions, filters } = await fetchV2("api:Contributions", { query });
+      const { contributions, filters } = await fetchV2("api:Contributions", {
+        query,
+      });
 
       const checkedFilters: Array<{
         filterName: string;
@@ -37,16 +40,27 @@ export const fetchContributions =
           }
         });
       });
-      const newFilters = filters.map((filter) => ({
-        ...filter,
-        options: filter.options.map((option) => ({
-          ...option,
-          checked: checkedFilters.some(
-            ({ filterName, optionName }) =>
-              filterName === filter.name && optionName === option.name,
-          ),
-        })),
-      }));
+      const newFilters = originalFilters
+        ? originalFilters.map((filter) => ({
+            ...filter,
+            options: filter.options.map((option) => ({
+              ...option,
+              checked: checkedFilters.some(
+                ({ filterName, optionName }) =>
+                  filterName === filter.name && optionName === option.name,
+              ),
+            })),
+          }))
+        : filters.map((filter) => ({
+            ...filter,
+            options: filter.options.map((option) => ({
+              ...option,
+              checked: checkedFilters.some(
+                ({ filterName, optionName }) =>
+                  filterName === filter.name && optionName === option.name,
+              ),
+            })),
+          }));
       dispatch({
         type: "UPDATE_CONTRIBUTE_SCREEN",
         payload: { contributions, filters: newFilters, refreshing: false },
@@ -92,7 +106,10 @@ export const updateFilterValue =
             if (option.name !== optionName) {
               return overwrite ? { ...option, checked: false } : option;
             } else {
-              return { ...option, checked: value === "reverse" ? !option.checked : value };
+              return {
+                ...option,
+                checked: value === "reverse" ? !option.checked : value,
+              };
             }
           }),
         };
