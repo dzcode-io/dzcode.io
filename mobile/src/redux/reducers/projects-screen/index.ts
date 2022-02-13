@@ -1,5 +1,6 @@
-import { Action } from "../..";
 import { Project } from "@dzcode.io/api/dist/app/types/legacy";
+
+import { Action } from "../..";
 
 export interface ProjectsScreenState {
   projects: Pick<Project, "title" | "description" | "image" | "githubURI">[] | null;

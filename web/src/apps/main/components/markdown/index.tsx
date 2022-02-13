@@ -1,14 +1,13 @@
-import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
-
-import { FC } from "react";
-import { LinkV2 } from "src/components/link-v2";
-import { StateInterface } from "src/apps/main/redux";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
+import { FC } from "react";
+import { useSelector } from "react-redux";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import prism from "react-syntax-highlighter/dist/cjs/styles/prism/prism";
 import tomorrow from "react-syntax-highlighter/dist/cjs/styles/prism/tomorrow";
-import { useSelector } from "react-redux";
-import { useTheme } from "@material-ui/core/styles";
+import { StateInterface } from "src/apps/main/redux";
+import { LinkV2 } from "src/components/link-v2";
 
 export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
   const theme = useTheme();

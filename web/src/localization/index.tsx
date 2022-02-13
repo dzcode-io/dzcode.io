@@ -1,12 +1,13 @@
 /* eslint sort-imports:off */
-import { FC } from "react";
-import fr from "./locals/fr";
-import ar from "./locals/ar";
-import en from "./locals/en";
 import PropTypes from "prop-types";
+import { FC } from "react";
 import { IntlProvider } from "react-intl";
 import { useSelector } from "react-redux";
 import { StateInterface } from "src/apps/main/redux";
+
+import ar from "./locals/ar";
+import en from "./locals/en";
+import fr from "./locals/fr";
 
 export const Localization: FC = (props) => {
   const locals: { [key: string]: any } = { fr, ar, en };

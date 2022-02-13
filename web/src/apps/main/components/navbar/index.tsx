@@ -1,22 +1,23 @@
-import { Dispatch, StateInterface } from "src/apps/main/redux";
-import { FC, Fragment, useState } from "react";
-import { animated, useSpring } from "react-spring";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { useDispatch, useSelector } from "react-redux";
 import Divider from "@material-ui/core/Divider";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-import { IOSSwitch } from "./ios-switch";
-import { LanguageSwitch } from "./lang-switch";
-import { LinkV2 } from "src/components/link-v2";
-import { SettingsState } from "src/apps/main/redux/reducers/settings";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import logo from "src/assets/svg/logo-wide.svg";
-import { useIntl } from "react-intl";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { FC, Fragment, useState } from "react";
+import { FormattedMessage } from "react-intl";
+import { useIntl } from "react-intl";
+import { useDispatch, useSelector } from "react-redux";
+import { animated, useSpring } from "react-spring";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { SettingsState } from "src/apps/main/redux/reducers/settings";
+import logo from "src/assets/svg/logo-wide.svg";
+import { LinkV2 } from "src/components/link-v2";
+
+import { IOSSwitch } from "./ios-switch";
+import { LanguageSwitch } from "./lang-switch";
 
 const useStyles = makeStyles((theme) =>
   createStyles({

@@ -1,5 +1,5 @@
-import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
 import { ThunkResult } from "src/apps/main/redux";
+import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
 import { fetchV2 } from "src/common/utils/fetch";
 
 /**

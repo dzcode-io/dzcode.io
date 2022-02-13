@@ -1,10 +1,10 @@
-import { GeneralGithubQuery, ListContributorsResponse } from "./types";
-
-import { FetchService } from "../fetch/service";
-import { GithubService } from "./service";
 import { mock } from "jest-mock-extended";
+
 import { githubUserMock } from "../_test/mocks";
 import { ConfigService } from "../config/service";
+import { FetchService } from "../fetch/service";
+import { GithubService } from "./service";
+import { GeneralGithubQuery, ListContributorsResponse } from "./types";
 
 describe("GithubService", () => {
   const githubQuery: GeneralGithubQuery = {

@@ -1,11 +1,11 @@
-import { Dispatch, StateInterface } from "src/apps/main/redux";
-import { FC, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { allLanguages } from "@dzcode.io/models/dist/language";
 import { Button } from "@material-ui/core";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { FC, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
-import { allLanguages } from "@dzcode.io/models/dist/language";
 
 export const LanguageSwitch: FC = () => {
   const { settings } = useSelector<StateInterface, StateInterface>((state) => state);

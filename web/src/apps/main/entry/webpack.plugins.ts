@@ -1,7 +1,8 @@
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import config from "./app-config";
 import { getCollection } from "@dzcode.io/data/dist/get/collection";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import { join } from "path";
+
+import config from "./app-config";
 
 const app = { ...config, name: "main" };
 const isDevelopment = process.env.NODE_ENV === "development";

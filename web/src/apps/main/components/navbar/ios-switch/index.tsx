@@ -1,8 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-
-import { FC } from "react";
 import Switch from "@material-ui/core/Switch";
 import { SwitchProps } from "@material-ui/core/Switch";
+import { FC } from "react";
 
 const useStyles = makeStyles((theme) =>
   createStyles({

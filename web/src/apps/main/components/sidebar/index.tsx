@@ -1,17 +1,16 @@
-import { FC, Fragment } from "react";
-import { createStyles, makeStyles, useTheme } from "@material-ui/core/styles";
-
-import CloseIcon from "@material-ui/icons/Close";
 import Drawer from "@material-ui/core/Drawer";
-import { LinkV2 } from "src/components/link-v2";
+import { createStyles, makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";
-import { SidebarTreeItem } from "src/apps/main/types";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { SpeedDial } from "src/apps/main/components/speed-dial";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import TreeItem from "@material-ui/lab/TreeItem";
 import TreeView from "@material-ui/lab/TreeView";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { FC, Fragment } from "react";
+import { SpeedDial } from "src/apps/main/components/speed-dial";
+import { SidebarTreeItem } from "src/apps/main/types";
+import { LinkV2 } from "src/components/link-v2";
 
 const useStyles = makeStyles((theme) =>
   createStyles({

@@ -1,5 +1,5 @@
-import { FAQData, faqData } from "./faq-data";
 import { Action } from "../..";
+import { FAQData, faqData } from "./faq-data";
 
 export interface FaqScreenState {
   faqData: FAQData;

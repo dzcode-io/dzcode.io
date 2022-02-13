@@ -1,6 +1,7 @@
 import { Controller, Get } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { Service } from "typedi";
+
 import { TeamRepository } from "./repository";
 import { GetTeamResponseDto } from "./types";
 

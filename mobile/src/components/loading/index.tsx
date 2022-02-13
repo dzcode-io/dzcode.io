@@ -1,5 +1,6 @@
-import { Animated, ImageStyle } from "react-native";
 import React, { FC, useEffect, useState } from "react";
+import { Animated, ImageStyle } from "react-native";
+
 import { dzcodeLoadingStyles } from "./styles";
 
 interface DZCodeLoadingProps {

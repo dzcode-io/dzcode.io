@@ -1,5 +1,5 @@
-import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
 import { ThunkResult } from "src/apps/main/redux";
+import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
 import { fetchV2 } from "src/common/utils/fetch";
 
 export const fetchTeamList = (): ThunkResult<TeamPageState> => async (dispatch) => {

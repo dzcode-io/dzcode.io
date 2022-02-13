@@ -1,6 +1,6 @@
-import { ArticlesScreenState } from "../../reducers/articles-screen";
-import { ThunkResult } from "../..";
 import { fetchV2 } from "../../../utils/fetch";
+import { ThunkResult } from "../..";
+import { ArticlesScreenState } from "../../reducers/articles-screen";
 
 /**
  * @function fetchArticles

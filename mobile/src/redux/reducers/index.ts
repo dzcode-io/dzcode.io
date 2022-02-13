@@ -1,5 +1,6 @@
-import { articlesScreen } from "./articles-screen";
 import { combineReducers } from "redux";
+
+import { articlesScreen } from "./articles-screen";
 import { contributeScreen } from "./contribute-screen";
 import { faqScreen } from "./faq-screen";
 import { general } from "./general";

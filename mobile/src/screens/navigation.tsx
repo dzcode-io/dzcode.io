@@ -1,13 +1,14 @@
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { DrawerActions } from "@react-navigation/native";
 import React, { FC } from "react";
+
 import { AppBar } from "../components/app-bar";
+import { DrawerContent } from "../components/drawer-content";
 import { Navigation as ArticlesStack } from "./articles/navigation";
 import { ContributeScreen } from "./contribute";
-import { Navigation as DocumentsStack } from "./learn/navigation";
-import { DrawerActions } from "@react-navigation/native";
-import { DrawerContent } from "../components/drawer-content";
 import { FAQScreen } from "./faq";
+import { Navigation as DocumentsStack } from "./learn/navigation";
 import { ProjectsScreen } from "./projects";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const { Navigator, Screen } = createDrawerNavigator();
 

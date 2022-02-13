@@ -1,8 +1,9 @@
-import { ENVDto } from "./dto";
-import { Service } from "typedi";
-import { config } from "dotenv";
 import { plainToClass } from "class-transformer";
 import { validateSync } from "class-validator";
+import { config } from "dotenv";
+import { Service } from "typedi";
+
+import { ENVDto } from "./dto";
 
 let _env: ENVDto;
 

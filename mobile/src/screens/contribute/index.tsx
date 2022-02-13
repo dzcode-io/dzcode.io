@@ -1,15 +1,16 @@
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { Checkbox, List, Text, useTheme } from "react-native-paper";
-import { Dispatch, StateInterface } from "../../redux";
-import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import React, { FC, useEffect } from "react";
-import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
+import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
+import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { CardItemMemoed } from "./card-item";
-import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
+
 import { DZCodeLoading } from "../../components/loading";
-import { contributeStyles } from "./styles";
+import { Dispatch, StateInterface } from "../../redux";
+import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
+import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
 import { globalStyles } from "../../styles/global";
+import { CardItemMemoed } from "./card-item";
+import { contributeStyles } from "./styles";
 
 export const ContributeScreen: FC = () => {
   const { contributions, refreshing, filters } = useSelector<StateInterface, ContributeScreenState>(

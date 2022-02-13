@@ -1,10 +1,9 @@
 import { Box, Button, Grid, Hidden, Typography } from "@material-ui/core";
-
+import { makeStyles } from "@material-ui/core/styles";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
-import { LinkV2 } from "src/components/link-v2";
 import image from "src/apps/main/assets/svg/dzcode.svg";
-import { makeStyles } from "@material-ui/core/styles";
+import { LinkV2 } from "src/components/link-v2";
 
 export const Header: FC = () => {
   const useStyles = makeStyles((theme) => ({

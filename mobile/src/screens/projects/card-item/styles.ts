@@ -1,5 +1,6 @@
-import { MEDIUM_MARGIN_SIZE } from "../../../utils/constants";
 import { StyleSheet } from "react-native";
+
+import { MEDIUM_MARGIN_SIZE } from "../../../utils/constants";
 
 export const cardStyles = StyleSheet.create({
   mainView: {

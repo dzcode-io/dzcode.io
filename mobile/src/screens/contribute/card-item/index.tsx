@@ -1,11 +1,12 @@
-import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
-import React, { FC, memo } from "react";
-import { Colors } from "../../../styles/colors";
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { FlatList } from "react-native";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { View } from "react-native";
 import { calculateDateBetween } from "@dzcode.io/utils/dist/date/difference";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import React, { FC, memo } from "react";
+import { FlatList } from "react-native";
+import { View } from "react-native";
+import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
+
+import { Colors } from "../../../styles/colors";
 import { cardStyles } from "./styles";
 
 interface CardItemProps

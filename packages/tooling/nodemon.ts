@@ -1,5 +1,5 @@
-import { existsSync, writeFileSync } from "fs";
 import { execSync } from "child_process";
+import { existsSync, writeFileSync } from "fs";
 import { join } from "path";
 
 console.log("Setting up nodemon.json ...");

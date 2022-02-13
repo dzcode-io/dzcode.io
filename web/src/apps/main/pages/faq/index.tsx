@@ -1,15 +1,16 @@
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { FC } from "react";
-import { FaqPageState } from "src/apps/main/redux/reducers/faq-page";
 import { FormattedMessage } from "react-intl";
-import { Markdown } from "../../components/markdown";
-import { StateInterface } from "src/apps/main/redux";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
+import { StateInterface } from "src/apps/main/redux";
+import { FaqPageState } from "src/apps/main/redux/reducers/faq-page";
+
+import { Markdown } from "../../components/markdown";
 
 const useStyles = makeStyles((theme) => ({
   title: {

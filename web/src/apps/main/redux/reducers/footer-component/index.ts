@@ -1,4 +1,5 @@
 import { Action } from "src/apps/main/redux";
+
 import { sections } from "./sections";
 
 export interface FooterComponentState {

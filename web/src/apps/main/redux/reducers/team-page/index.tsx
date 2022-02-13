@@ -1,5 +1,5 @@
-import { Action } from "src/apps/main/redux";
 import { GetTeamResponseDto } from "@dzcode.io/api/dist/team/types";
+import { Action } from "src/apps/main/redux";
 
 export interface TeamPageState {
   teamList: GetTeamResponseDto["contributors"] | null;

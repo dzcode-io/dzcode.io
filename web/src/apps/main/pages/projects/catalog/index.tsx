@@ -1,10 +1,10 @@
-import { Card } from "src/apps/main/components/card";
+import { Project } from "@dzcode.io/api/dist/app/types/legacy";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
-import Grid from "@material-ui/core/Grid";
-import { Project } from "@dzcode.io/api/dist/app/types/legacy";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { Card } from "src/apps/main/components/card";
 
 const useStyles = makeStyles((theme) => ({
   root: {

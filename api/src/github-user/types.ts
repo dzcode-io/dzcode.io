@@ -1,4 +1,5 @@
 import { IsNumber, IsString, ValidateNested } from "class-validator";
+
 import { GeneralResponseDto } from "../app/types";
 import { GithubUser } from "../app/types/legacy";
 

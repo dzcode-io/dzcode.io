@@ -1,12 +1,13 @@
-import { Button, Card, Paragraph, Title } from "react-native-paper";
-import React, { FC, memo } from "react";
-import { Colors } from "../../../styles/colors";
-import { GeneralState } from "../../../redux/reducers/general";
 import { Project } from "@dzcode.io/api/dist/app/types/legacy";
-import { StateInterface } from "../../../redux";
-import { cardStyles } from "./styles";
-import { openLink } from "../../../utils/link";
+import React, { FC, memo } from "react";
+import { Button, Card, Paragraph, Title } from "react-native-paper";
 import { useSelector } from "react-redux";
+
+import { StateInterface } from "../../../redux";
+import { GeneralState } from "../../../redux/reducers/general";
+import { Colors } from "../../../styles/colors";
+import { openLink } from "../../../utils/link";
+import { cardStyles } from "./styles";
 
 interface CardItemProps {
   project: Pick<Project, "title" | "description" | "image" | "githubURI">;

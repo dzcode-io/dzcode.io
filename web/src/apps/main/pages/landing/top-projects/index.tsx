@@ -1,12 +1,12 @@
-import { Card } from "src/apps/main/components/card";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
-import Grid from "@material-ui/core/Grid";
-import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
-import { StateInterface } from "src/apps/main/redux";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
+import { Card } from "src/apps/main/components/card";
+import { StateInterface } from "src/apps/main/redux";
+import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
 
 const useStyles = makeStyles((theme) => ({
   root: {

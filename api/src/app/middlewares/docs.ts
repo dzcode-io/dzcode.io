@@ -1,15 +1,16 @@
-import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
 import { RequestHandler, Router } from "express";
+import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
 import { serve, setup } from "swagger-ui-express";
+import { Service } from "typedi";
 
 import { ConfigService } from "../../config/service";
-import { Service } from "typedi";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { defaultMetadataStorage } = require("class-transformer/cjs/storage");
-import { getMetadataArgsStorage } from "routing-controllers";
-import { routingControllersOptions } from "..";
-import { routingControllersToSpec } from "routing-controllers-openapi";
 import { validationMetadatasToSchemas } from "class-validator-jsonschema";
+import { getMetadataArgsStorage } from "routing-controllers";
+import { routingControllersToSpec } from "routing-controllers-openapi";
+
+import { routingControllersOptions } from "..";
 
 @Service()
 @Middleware({ type: "after" })

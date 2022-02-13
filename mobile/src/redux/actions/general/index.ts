@@ -1,7 +1,8 @@
-import { GeneralState, getThemeFromSystem } from "../../reducers/general";
-import { Appearance } from "react-native";
 import Debounce from "debounce";
+import { Appearance } from "react-native";
+
 import { ThunkResult } from "../..";
+import { GeneralState, getThemeFromSystem } from "../../reducers/general";
 
 /**
  * @function init

@@ -1,7 +1,8 @@
 import { Controller, Get, Param } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
-import { GithubService } from "../github/service";
 import { Service } from "typedi";
+
+import { GithubService } from "../github/service";
 import { GetUserResponseDto } from "./types";
 
 @Service()

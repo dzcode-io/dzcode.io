@@ -1,6 +1,7 @@
 import express from "express";
-import { getConfig } from "./config";
 import { join } from "path";
+
+import { getConfig } from "./config";
 import { getCollection } from "./get/collection";
 import { getEntry } from "./get/entry";
 

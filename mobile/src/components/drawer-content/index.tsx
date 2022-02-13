@@ -4,9 +4,10 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { Image, SafeAreaView, View } from "react-native";
 import React, { FC } from "react";
+import { Image, SafeAreaView, View } from "react-native";
 import { Text } from "react-native-paper";
+
 import { drawerStyles } from "./styles";
 
 export const DrawerContent: FC<DrawerContentComponentProps<DrawerContentOptions>> = (props) => {

@@ -1,11 +1,12 @@
-import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
-import { RequestHandler, Router } from "express";
-import { ConfigService } from "../../config/service";
 import { CorsOptions } from "cors";
-import { Service } from "typedi";
-import helmet from "helmet";
+import { RequestHandler, Router } from "express";
 import rateLimit from "express-rate-limit";
+import helmet from "helmet";
+import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
+import { Service } from "typedi";
+
 import { ENVDto } from "../../config/dto";
+import { ConfigService } from "../../config/service";
 
 @Service()
 @Middleware({ type: "before" })

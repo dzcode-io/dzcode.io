@@ -1,7 +1,8 @@
-import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
-import { LogLevel, LoggerService } from "../../logger/service";
 import { RequestHandler } from "express";
+import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
 import { Service } from "typedi";
+
+import { LoggerService, LogLevel } from "../../logger/service";
 
 @Service()
 @Middleware({ type: "after" })

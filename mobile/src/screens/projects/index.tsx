@@ -1,12 +1,13 @@
-import { Dispatch, StateInterface } from "../../redux";
-import { FlatList, SafeAreaView, View } from "react-native";
 import React, { FC, useEffect } from "react";
+import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { CardItemMemoed } from "./card-item";
+
 import { DZCodeLoading } from "../../components/loading";
-import { ProjectsScreenState } from "../../redux/reducers/projects-screen";
+import { Dispatch, StateInterface } from "../../redux";
 import { fetchProjects } from "../../redux/actions/projects-screen";
+import { ProjectsScreenState } from "../../redux/reducers/projects-screen";
 import { globalStyles } from "../../styles/global";
+import { CardItemMemoed } from "./card-item";
 
 export const ProjectsScreen: FC = () => {
   const { projects, refreshing } = useSelector<StateInterface, ProjectsScreenState>(

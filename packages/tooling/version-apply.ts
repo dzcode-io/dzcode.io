@@ -1,7 +1,7 @@
-import { existsSync, writeFileSync } from "fs";
-import { clean } from "semver";
 import { execSync } from "child_process";
+import { existsSync, writeFileSync } from "fs";
 import { join } from "path";
+import { clean } from "semver";
 
 // Get the version passed as argument
 const version = process.argv[2];

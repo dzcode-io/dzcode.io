@@ -1,5 +1,5 @@
-import { ProjectReferenceEntity } from ".";
 import { runDTOTestCases } from "../_test";
+import { ProjectReferenceEntity } from ".";
 
 runDTOTestCases(
   ProjectReferenceEntity,

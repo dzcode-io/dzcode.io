@@ -1,11 +1,11 @@
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
-import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
-import { ArticlesState } from "src/apps/main/redux/reducers/articles";
-import { SidebarTreeItem } from "src/apps/main/types";
-import { ThunkResult } from "src/apps/main/redux";
-import { fetchV2 } from "src/common/utils/fetch";
-import { hasInCollection } from "src/common/utils";
 import { listToTree } from "l2t";
+import { ThunkResult } from "src/apps/main/redux";
+import { ArticlesState } from "src/apps/main/redux/reducers/articles";
+import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
+import { SidebarTreeItem } from "src/apps/main/types";
+import { hasInCollection } from "src/common/utils";
+import { fetchV2 } from "src/common/utils/fetch";
 
 /**
  * Fetches the list of articles for the sidebar

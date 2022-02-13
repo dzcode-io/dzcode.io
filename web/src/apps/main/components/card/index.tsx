@@ -1,14 +1,14 @@
 import Button from "@material-ui/core/Button";
+import MuiCard from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
 import { LinkV2 } from "src/components/link-v2";
-import MuiCard from "@material-ui/core/Card";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 
 interface CardInfo {
   image: string;
