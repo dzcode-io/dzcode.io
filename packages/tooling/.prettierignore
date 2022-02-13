@@ -18,3 +18,5 @@ nodemon.json
 *.png
 *.ico
 *.lock
+*.snap
+*.prettierignore
