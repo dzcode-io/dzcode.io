@@ -7,10 +7,9 @@ import { StateInterface } from "src/apps/main/redux";
 
 import ar from "./locals/ar";
 import en from "./locals/en";
-import fr from "./locals/fr";
 
 export const Localization: FC = (props) => {
-  const locals: { [key: string]: any } = { fr, ar, en };
+  const locals: { [key: string]: any } = { ar, en };
 
   const { settings } = useSelector<StateInterface, StateInterface>((state) => state);
 
