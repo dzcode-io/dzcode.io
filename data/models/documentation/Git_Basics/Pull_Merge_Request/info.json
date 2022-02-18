@@ -2,19 +2,5 @@
   "title": "What is a Pull/Merge Request",
   "description": "What is a Pull Request? And what is a Merge Request? they are the same right???",
   "image": "https://images.unsplash.com/photo-1452802447250-470a88ac82bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=100",
-  "authors": ["ZibanPirate"],
-  "ar": {
-    "title": "",
-    "description": "",
-    "image": "",
-    "authors": [""],
-    "content": ""
-  },
-  "fr": {
-    "title": "",
-    "description": "",
-    "image": "",
-    "authors": [""],
-    "content": ""
-  }
+  "authors": ["ZibanPirate"]
 }
