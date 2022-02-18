@@ -8,6 +8,7 @@ import { Footer } from ".";
 
 describe("components/footer/footer.spec.tsx", () => {
   test("should render properly", () => {
+    Date.now = jest.fn(() => 1586563200000); // 2020-04-11
     const mainStore = createMainStore();
     const { container } = render(
       <Provider store={mainStore}>

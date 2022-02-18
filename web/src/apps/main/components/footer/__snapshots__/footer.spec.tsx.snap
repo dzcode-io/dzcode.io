@@ -207,7 +207,7 @@ exports[`components/footer/footer.spec.tsx should render properly 1`] = `
             class="MuiTypography-root makeStyles-linkText-2 MuiTypography-body1"
           >
             Copyright © 
-            2022 
+            2020 
             <a
               href="https://twitter.com/dzcode_io"
             >

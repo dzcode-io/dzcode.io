@@ -91,7 +91,7 @@ export const Footer: FC = () => {
               <Typography className={classes.linkText}>contact@dzcode.io</Typography>
             </a>
             <Typography className={classes.linkText}>
-              Copyright © {new Date().getFullYear() + " "}
+              Copyright © {new Date(Date.now()).getFullYear() + " "}
               <LinkV2 href="https://twitter.com/dzcode_io">@dzCode_io</LinkV2>
             </Typography>
           </Grid>
