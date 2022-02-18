@@ -55,7 +55,7 @@ jobs:
 
       - name: "Build"
         run: |
-          yarn build --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          yarn build
 
       # Initializes the CodeQL tools for scanning.
       - name: "CodeQL"
