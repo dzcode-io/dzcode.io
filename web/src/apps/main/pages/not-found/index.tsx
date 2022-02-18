@@ -1,10 +1,10 @@
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Button from "@material-ui/core/Button";
-import { FC } from "react";
-import { LinkV2 } from "src/components/link-v2";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { FC } from "react";
 import svg from "src/assets/svg/404.svg";
+import { LinkV2 } from "src/components/link-v2";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,5 +1,6 @@
-import { Action } from "../..";
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+
+import { Action } from "../..";
 
 export interface ArticlesScreenState {
   articles: Article[] | null;

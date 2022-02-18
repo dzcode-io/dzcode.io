@@ -1,5 +1,6 @@
-import { BaseEntity } from "../_base";
 import { IsIn } from "class-validator";
+
+import { BaseEntity } from "../_base";
 
 export const allLanguages = [
   { code: "en", shortLabel: "EN", label: "English" },

@@ -3,15 +3,15 @@ import "fontsource-roboto/400.css";
 import "fontsource-roboto/500.css";
 import "fontsource-roboto/700.css";
 
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
-
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { FC } from "react";
-import { SettingsState } from "src/apps/main/redux/reducers/settings";
+import { useSelector } from "react-redux";
 import { StateInterface } from "src/apps/main/redux";
+import { SettingsState } from "src/apps/main/redux/reducers/settings";
+
 import { darkPalette } from "./palettes/dark";
 import { lightPalette } from "./palettes/light";
-import { useSelector } from "react-redux";
 
 export const Theme: FC = (props) => {
   const { darkMode, language } = useSelector<StateInterface, SettingsState>(

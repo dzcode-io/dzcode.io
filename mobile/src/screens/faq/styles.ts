@@ -1,6 +1,7 @@
-import { MEDIUM_PADDING_SIZE, MEDIUM_TEXT_SIZE } from "../../utils/constants";
-import { Colors } from "../../styles/colors";
 import { StyleSheet } from "react-native";
+
+import { Colors } from "../../styles/colors";
+import { MEDIUM_PADDING_SIZE, MEDIUM_TEXT_SIZE } from "../../utils/constants";
 
 export const faqStyles = StyleSheet.create({
   title: {

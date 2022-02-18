@@ -1,10 +1,10 @@
-import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { fetchProjectsList } from "src/apps/main/redux/actions/projects-page";
+import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
 
 import { Catalog } from "./catalog";
-import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
-import { fetchProjectsList } from "src/apps/main/redux/actions/projects-page";
 
 export const ProjectsPage: FC = () => {
   const { projectsList } = useSelector<StateInterface, ProjectsPageState>(

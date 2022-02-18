@@ -1,15 +1,16 @@
-import { List, Text } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
+import Markdown from "react-native-markdown-display";
+import { List, Text } from "react-native-paper";
+import { useSelector } from "react-redux";
+
+import { StateInterface } from "../../redux";
 import { FaqScreenState } from "../../redux/reducers/faq-screen";
 import { GeneralState } from "../../redux/reducers/general";
-import Markdown from "react-native-markdown-display";
-import { StateInterface } from "../../redux";
-import { faqStyles } from "./styles";
 import { globalStyles } from "../../styles/global";
 import { openLink } from "../../utils/link";
-import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { faqStyles } from "./styles";
 
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();

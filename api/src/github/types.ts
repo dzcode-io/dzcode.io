@@ -1,4 +1,5 @@
 import { IsNumber } from "class-validator";
+
 import { GithubUser } from "../app/types/legacy";
 
 export type ListContributorsResponse = Array<{

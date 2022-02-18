@@ -1,10 +1,10 @@
-import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { fetchTeamList } from "src/apps/main/redux/actions/team-page";
+import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
 
 import { Catalog } from "./catalog";
-import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
-import { fetchTeamList } from "src/apps/main/redux/actions/team-page";
 
 export const TeamPage: FC = () => {
   const { teamList } = useSelector<StateInterface, TeamPageState>((state) => state.teamPage);

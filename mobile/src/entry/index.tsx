@@ -1,24 +1,25 @@
-import * as Sentry from "sentry-expo";
-import { Dispatch, StateInterface, mainStore } from "../redux";
 import {
-  Theme as NT,
-  NavigationContainer,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
+  NavigationContainer,
+  Theme as NT,
 } from "@react-navigation/native";
+import React, { FC, useEffect } from "react";
 import {
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
   Provider as PaperProvider,
 } from "react-native-paper";
+import { Theme as PT } from "react-native-paper/lib/typescript/types";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import React, { FC, useEffect } from "react";
-import { Colors } from "../styles/colors";
+import * as Sentry from "sentry-expo";
+
+import { Dispatch, mainStore, StateInterface } from "../redux";
+import { init } from "../redux/actions/general";
 import { GeneralState } from "../redux/reducers/general";
 import { Navigation } from "../screens/navigation";
-import { Theme as PT } from "react-native-paper/lib/typescript/types";
+import { Colors } from "../styles/colors";
 import { getEnv } from "../utils/env";
-import { init } from "../redux/actions/general";
 
 const env = getEnv();
 

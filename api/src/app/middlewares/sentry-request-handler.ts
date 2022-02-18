@@ -1,6 +1,6 @@
 import * as Sentry from "@sentry/node";
-import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
 import { RequestHandler } from "express";
+import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
 import { Service } from "typedi";
 
 @Service()

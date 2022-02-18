@@ -1,6 +1,6 @@
-import { LearnScreenState } from "../../reducers/learn-screen";
-import { ThunkResult } from "../..";
 import { fetchV2 } from "../../../utils/fetch";
+import { ThunkResult } from "../..";
+import { LearnScreenState } from "../../reducers/learn-screen";
 
 /**
  * @function fetchDocuments

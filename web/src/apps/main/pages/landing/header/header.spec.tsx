@@ -1,7 +1,8 @@
-import { Header } from "./index";
+import { render } from "@testing-library/react";
 import { IntlProvider } from "react-intl";
 import { MemoryRouter } from "react-router-dom";
-import { render } from "@testing-library/react";
+
+import { Header } from "./index";
 
 describe("header component", () => {
   test("should render header component", () => {

@@ -1,18 +1,18 @@
-import { FC, useEffect } from "react";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { fetchTopArticles, fetchTopProjects } from "src/apps/main/redux/actions/landing-page";
-
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Button from "@material-ui/core/Button";
-import { Dispatch } from "src/apps/main/redux";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { FC, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
-import { Header } from "./header";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "src/apps/main/redux";
+import { fetchTopArticles, fetchTopProjects } from "src/apps/main/redux/actions/landing-page";
 import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
 import { LinkV2 } from "src/components/link-v2";
+
+import { Header } from "./header";
 import { Mobile } from "./mobile";
 import { TopArticles } from "./top-articles";
 import { TopProjects } from "./top-projects";
-import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) =>
   createStyles({

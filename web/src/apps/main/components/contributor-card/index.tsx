@@ -1,15 +1,15 @@
-import { FC, useState } from "react";
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import Button from "@material-ui/core/Button";
+import MuiCard from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
-import MuiCard from "@material-ui/core/Card";
-import { SimpleDialog } from "src/apps/main/components/dialog";
-import Skeleton from "@material-ui/lab/Skeleton";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Skeleton from "@material-ui/lab/Skeleton";
+import { FC, useState } from "react";
+import { SimpleDialog } from "src/apps/main/components/dialog";
 
 interface ContributorCardProps {
   contributor?: ContributorEntity;

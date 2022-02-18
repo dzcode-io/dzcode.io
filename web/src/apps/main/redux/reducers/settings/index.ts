@@ -1,4 +1,4 @@
-import { LanguageEntity, allLanguages } from "@dzcode.io/models/dist/language";
+import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
 
 export interface SettingsState {
   darkMode: boolean;

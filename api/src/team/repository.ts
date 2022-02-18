@@ -1,11 +1,12 @@
-import { GithubService } from "../github/service";
-import { Service } from "typedi";
-import { join } from "path";
-import { Model } from "@dzcode.io/models/dist/_base";
-import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
-import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { getCollection } from "@dzcode.io/data/dist/get/collection";
+import { Model } from "@dzcode.io/models/dist/_base";
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
+import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
+import { join } from "path";
+import { Service } from "typedi";
+
+import { GithubService } from "../github/service";
 
 @Service()
 export class TeamRepository {

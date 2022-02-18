@@ -1,16 +1,16 @@
-import { FC } from "react";
 import Grid from "@material-ui/core/Grid";
-import { LinkV2 } from "src/components/link-v2";
-import { StateInterface } from "src/apps/main/redux";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { FC } from "react";
+import { FormattedMessage } from "react-intl";
+import { useSelector } from "react-redux";
 import androidDark from "src/apps/main/assets/png/android-dark.png";
 import androidLight from "src/apps/main/assets/png/android-light.png";
-import { FormattedMessage } from "react-intl";
-import { fullstackConfig } from "src/config";
 import iosDark from "src/apps/main/assets/png/ios-dark.png";
 import iosLight from "src/apps/main/assets/png/ios-light.png";
-import { makeStyles } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
+import { StateInterface } from "src/apps/main/redux";
+import { LinkV2 } from "src/components/link-v2";
+import { fullstackConfig } from "src/config";
 
 const useStyles = makeStyles((theme) => ({
   root: {

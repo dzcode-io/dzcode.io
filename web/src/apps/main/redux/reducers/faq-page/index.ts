@@ -1,4 +1,5 @@
 import { Action } from "src/apps/main/redux";
+
 import { faqData } from "./faq-data";
 
 export type FAQData = Array<{

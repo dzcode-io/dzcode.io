@@ -1,19 +1,20 @@
-import { Dispatch, StateInterface } from "../../../redux";
-import { Image, SafeAreaView, ScrollView, View } from "react-native";
-import React, { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
-import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
-import { DZCodeLoading } from "../../../components/loading";
-import { GeneralState } from "../../../redux/reducers/general";
-import Markdown from "react-native-markdown-display";
+import { useNavigation } from "@react-navigation/native";
 import { Route } from "@react-navigation/routers";
+import React, { FC, useEffect } from "react";
+import { Image, SafeAreaView, ScrollView, View } from "react-native";
+import Markdown from "react-native-markdown-display";
 import { Text } from "react-native-paper";
-import { articleDetailsStyles } from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+
+import { DZCodeLoading } from "../../../components/loading";
+import { Dispatch, StateInterface } from "../../../redux";
 import { fetchArticle } from "../../../redux/actions/articles-screen";
+import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
+import { GeneralState } from "../../../redux/reducers/general";
 import { globalStyles } from "../../../styles/global";
 import { openLink } from "../../../utils/link";
-import { useNavigation } from "@react-navigation/native";
+import { articleDetailsStyles } from "./styles";
 
 interface ArticleDetailsScreenProps {
   route: Route<"article-details", RouteParams>;

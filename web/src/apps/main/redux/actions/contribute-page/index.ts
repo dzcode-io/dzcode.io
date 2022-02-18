@@ -1,6 +1,6 @@
-import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
-import { ThunkResult } from "src/apps/main/redux";
 import debounce from "@material-ui/core/utils/debounce";
+import { ThunkResult } from "src/apps/main/redux";
+import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
 import { fetchV2 } from "src/common/utils/fetch";
 
 /**

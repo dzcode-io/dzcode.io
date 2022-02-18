@@ -1,5 +1,5 @@
-import { LanguageEntity, allLanguages } from ".";
 import { runDTOTestCases } from "../_test";
+import { allLanguages, LanguageEntity } from ".";
 
 runDTOTestCases(
   LanguageEntity,

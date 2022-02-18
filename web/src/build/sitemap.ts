@@ -1,5 +1,5 @@
-import { SitemapStream } from "sitemap";
 import { createWriteStream } from "fs";
+import { SitemapStream } from "sitemap";
 const distFolder = "./bundle";
 import { getCollection } from "@dzcode.io/data/dist/get/collection";
 import { join } from "path";

@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
-import { join } from "path";
 import { copySync, existsSync } from "fs-extra";
+import { join } from "path";
 
 console.log("🏗  Preparing files ...");
 const stdout = execSync(

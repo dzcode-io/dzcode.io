@@ -1,14 +1,14 @@
-import { Dispatch, StateInterface } from "src/apps/main/redux";
+import Grid from "@material-ui/core/Grid";
 import { FC, useEffect, useState } from "react";
-import { Route, useRouteMatch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Route, useRouteMatch } from "react-router-dom";
+import { Sidebar } from "src/apps/main/components/sidebar";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { fetchDocumentationList } from "src/apps/main/redux/actions/documentation-page";
+import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 
 import { Content } from "./content";
-import Grid from "@material-ui/core/Grid";
 import { Landing } from "./landing";
-import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
-import { Sidebar } from "src/apps/main/components/sidebar";
-import { fetchDocumentationList } from "src/apps/main/redux/actions/documentation-page";
 
 export const LearnPage: FC = () => {
   const { currentDocument, expanded, sidebarTree } = useSelector<StateInterface, LearnPageState>(

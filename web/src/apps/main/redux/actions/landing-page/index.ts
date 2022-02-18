@@ -1,5 +1,5 @@
-import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
 import { ThunkResult } from "src/apps/main/redux";
+import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
 import { fetchV2 } from "src/common/utils/fetch";
 
 export const fetchTopProjects = (): ThunkResult<LandingPageState> => async (dispatch) => {

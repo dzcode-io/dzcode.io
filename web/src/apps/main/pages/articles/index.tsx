@@ -1,14 +1,14 @@
-import { Dispatch, StateInterface } from "src/apps/main/redux";
-import { FC, useEffect, useState } from "react";
-import { Route, useRouteMatch } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
-import { Content } from "./content";
 import Grid from "@material-ui/core/Grid";
-import { Landing } from "./landing";
+import { FC, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, useRouteMatch } from "react-router-dom";
 import { Sidebar } from "src/apps/main/components/sidebar";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { fetchArticlesList } from "src/apps/main/redux/actions/articles-page";
+import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
+
+import { Content } from "./content";
+import { Landing } from "./landing";
 
 export const ArticlesPage: FC = () => {
   const { currentArticle, expanded, sidebarTree } = useSelector<StateInterface, ArticlesPageState>(

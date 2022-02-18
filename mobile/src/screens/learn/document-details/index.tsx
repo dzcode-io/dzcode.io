@@ -1,17 +1,18 @@
-import { Dispatch, StateInterface } from "../../../redux";
-import { Image, SafeAreaView, ScrollView, View } from "react-native";
-import React, { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DZCodeLoading } from "../../../components/loading";
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { Route } from "@react-navigation/routers";
+import React, { FC, useEffect } from "react";
+import { Image, SafeAreaView, ScrollView, View } from "react-native";
+import Markdown from "react-native-markdown-display";
+import { Text } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
+
+import { DZCodeLoading } from "../../../components/loading";
+import { Dispatch, StateInterface } from "../../../redux";
+import { fetchDocument } from "../../../redux/actions/learn-screen";
 import { GeneralState } from "../../../redux/reducers/general";
 import { LearnScreenState } from "../../../redux/reducers/learn-screen";
-import Markdown from "react-native-markdown-display";
-import { Route } from "@react-navigation/routers";
-import { Text } from "react-native-paper";
-import { documentDetailsStyles } from "./styles";
-import { fetchDocument } from "../../../redux/actions/learn-screen";
 import { globalStyles } from "../../../styles/global";
+import { documentDetailsStyles } from "./styles";
 
 interface DocumentDetailsScreenProps {
   route: Route<"DocumentDetails", RouteParams>;

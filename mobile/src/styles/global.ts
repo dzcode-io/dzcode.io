@@ -1,5 +1,6 @@
-import { LARGE_TEXT_SIZE } from "../utils/constants";
 import { StyleSheet } from "react-native";
+
+import { LARGE_TEXT_SIZE } from "../utils/constants";
 
 export const globalStyles = StyleSheet.create({
   // views

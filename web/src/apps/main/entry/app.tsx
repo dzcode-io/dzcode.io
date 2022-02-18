@@ -1,15 +1,15 @@
 import "./style.scss";
 
-import { ComponentType, FC, Suspense, lazy, useEffect } from "react";
-import { Route, RouteProps, Switch, useLocation } from "react-router-dom";
-import { defineMessages, useIntl } from "react-intl";
 import Container from "@material-ui/core/Container";
+import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
+import { defineMessages, useIntl } from "react-intl";
+import { Route, RouteProps, Switch, useLocation } from "react-router-dom";
 import { Footer } from "src/apps/main/components/footer";
-import { Loading } from "src/components/loading";
-import Localization from "src/localization";
 import { Navbar } from "src/apps/main/components/navbar";
 import { Theme } from "src/apps/main/components/theme";
 import { getEnv } from "src/common/utils";
+import { Loading } from "src/components/loading";
+import Localization from "src/localization";
 
 interface RouteInterface extends RouteProps {
   import: Promise<{ default: ComponentType }>;

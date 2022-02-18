@@ -1,10 +1,10 @@
-import { ContributorCard } from "src/apps/main/components/contributor-card";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
-import Grid from "@material-ui/core/Grid";
+import { ContributorCard } from "src/apps/main/components/contributor-card";
 import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {

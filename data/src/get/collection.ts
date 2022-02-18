@@ -1,6 +1,7 @@
-import { join } from "path";
-import glob from "glob";
 import fse from "fs-extra";
+import glob from "glob";
+import { join } from "path";
+
 import { getEntry } from "./entry";
 
 export interface Collection {

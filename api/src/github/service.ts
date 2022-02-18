@@ -1,3 +1,8 @@
+import { Service } from "typedi";
+
+import { GithubIssue, GithubUser } from "../app/types/legacy";
+import { ConfigService } from "../config/service";
+import { FetchService } from "../fetch/service";
 import {
   GeneralGithubQuery,
   GetUserInput,
@@ -8,10 +13,6 @@ import {
   ListContributorsResponse,
   ListRepositoryContributorsResponse,
 } from "./types";
-import { FetchService } from "../fetch/service";
-import { Service } from "typedi";
-import { GithubIssue, GithubUser } from "../app/types/legacy";
-import { ConfigService } from "../config/service";
 
 @Service()
 export class GithubService {

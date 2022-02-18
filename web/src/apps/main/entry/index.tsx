@@ -1,11 +1,12 @@
 import * as Sentry from "@sentry/browser";
-import { App } from "./app";
 import { Integrations } from "@sentry/tracing";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { getEnv } from "src/common/utils";
 import { mainStore } from "src/apps/main/redux";
-import { render } from "react-dom";
+import { getEnv } from "src/common/utils";
+
+import { App } from "./app";
 
 const env = getEnv();
 

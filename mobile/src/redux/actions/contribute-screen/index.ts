@@ -1,7 +1,8 @@
-import { ContributeScreenState } from "../../reducers/contribute-screen";
 import Debounce from "debounce";
-import { ThunkResult } from "../..";
+
 import { fetchV2 } from "../../../utils/fetch";
+import { ThunkResult } from "../..";
+import { ContributeScreenState } from "../../reducers/contribute-screen";
 
 /**
  * @function fetchContributions

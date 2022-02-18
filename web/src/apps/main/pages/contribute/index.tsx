@@ -1,11 +1,12 @@
-import { FC, useEffect } from "react";
-import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
-import { Contributions } from "./contributions";
-import { Dispatch } from "../../redux";
-import { Filters } from "./filters";
 import Grid from "@material-ui/core/Grid";
-import { fetchContributions } from "../../redux/actions/contribute-page";
+import { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
+
+import { Dispatch } from "../../redux";
+import { fetchContributions } from "../../redux/actions/contribute-page";
+import { Contributions } from "./contributions";
+import { Filters } from "./filters";
 
 export const ContributePage: FC = () => {
   const dispatch = useDispatch<Dispatch<ContributePageState>>();

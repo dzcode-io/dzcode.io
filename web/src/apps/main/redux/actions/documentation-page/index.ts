@@ -1,11 +1,11 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { listToTree } from "l2t";
+import { ThunkResult } from "src/apps/main/redux";
 import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import { SidebarTreeItem } from "src/apps/main/types";
-import { ThunkResult } from "src/apps/main/redux";
-import { fetchV2 } from "src/common/utils/fetch";
 import { hasInCollection } from "src/common/utils";
-import { listToTree } from "l2t";
+import { fetchV2 } from "src/common/utils/fetch";
 
 /**
  * Fetches the list of documents for the sidebar

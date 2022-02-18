@@ -1,13 +1,13 @@
+import { fsConfig } from "@dzcode.io/utils/dist/config";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import { readFileSync } from "fs";
+import glob from "glob";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { join } from "path";
+import path from "path";
 import TerserJSPlugin from "terser-webpack-plugin";
 import { Configuration as WPC } from "webpack";
 import { Configuration as WPDSC } from "webpack-dev-server";
-import { fsConfig } from "@dzcode.io/utils/dist/config";
-import glob from "glob";
-import { join } from "path";
-import path from "path";
-import { readFileSync } from "fs";
 
 // setting up project configurations and some env variables
 const isDevelopment = process.env.NODE_ENV === "development";

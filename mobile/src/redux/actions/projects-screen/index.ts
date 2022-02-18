@@ -1,7 +1,7 @@
-import { ProjectsScreenState } from "../../reducers/projects-screen";
-import { ThunkResult } from "../..";
 import { fetchV2 } from "../../../utils/fetch";
 import { shuffleArray } from "../../../utils/shuffle";
+import { ThunkResult } from "../..";
+import { ProjectsScreenState } from "../../reducers/projects-screen";
 
 /**
  * @function fetchProjects

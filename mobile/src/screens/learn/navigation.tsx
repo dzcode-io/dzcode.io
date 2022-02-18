@@ -1,7 +1,8 @@
+import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
+
 import { DocumentDetailsScreen } from "./document-details";
 import { DocumentsListScreen } from "./documents-list";
-import { createStackNavigator } from "@react-navigation/stack";
 
 const { Navigator, Screen } = createStackNavigator();
 

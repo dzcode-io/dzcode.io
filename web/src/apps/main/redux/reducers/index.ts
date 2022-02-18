@@ -1,6 +1,7 @@
+import { combineReducers } from "redux";
+
 import { articles } from "./articles";
 import { articlesPage } from "./articles-page";
-import { combineReducers } from "redux";
 import { contributePage } from "./contribute-page";
 import { documentation } from "./documentation";
 import { faqPage } from "./faq-page";

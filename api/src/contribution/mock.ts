@@ -1,5 +1,6 @@
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { lorem } from "faker";
+
 import { FilterDto, OptionDto } from "./types";
 
 export const generateContributionMock = (index: number): ContributionEntity => {

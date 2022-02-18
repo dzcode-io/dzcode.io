@@ -1,5 +1,5 @@
-import { ContributionEntity } from ".";
 import { runDTOTestCases } from "../_test";
+import { ContributionEntity } from ".";
 
 runDTOTestCases(
   ContributionEntity,

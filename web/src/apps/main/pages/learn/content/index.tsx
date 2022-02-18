@@ -1,25 +1,25 @@
 import "./style.scss";
 
-import { Dispatch, StateInterface } from "src/apps/main/redux";
-import { FC, useEffect } from "react";
-import { SpeedDial, SpeedDialAction } from "src/apps/main/components/speed-dial";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { useDispatch, useSelector } from "react-redux";
-import { Authors } from "src/apps/main/components/authors";
-import { Contributors } from "src/apps/main/components/contributors";
-import { Divider } from "@material-ui/core";
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { Divider } from "@material-ui/core";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import EditIcon from "@material-ui/icons/Edit";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
 import InstagramIcon from "@material-ui/icons/Instagram";
-import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import { Markdown } from "src/apps/main/components/markdown";
-import Skeleton from "@material-ui/lab/Skeleton";
 import TwitterIcon from "@material-ui/icons/Twitter";
-import Typography from "@material-ui/core/Typography";
+import Skeleton from "@material-ui/lab/Skeleton";
+import { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Authors } from "src/apps/main/components/authors";
+import { Contributors } from "src/apps/main/components/contributors";
+import { Markdown } from "src/apps/main/components/markdown";
+import { SpeedDial, SpeedDialAction } from "src/apps/main/components/speed-dial";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { fetchCurrentDocument } from "src/apps/main/redux/actions/documentation-page";
+import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 
 const actions = ({ slug }: Document): SpeedDialAction[] => [
   {

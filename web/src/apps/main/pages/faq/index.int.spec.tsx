@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import { FaqPage } from ".";
 import { IntlProvider } from "react-intl";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { createMainStore } from "src/apps/main/redux";
+
+import { FaqPage } from ".";
 
 describe("src/pages/landing/index.tsx", () => {
   test("Render FAQ page", async () => {

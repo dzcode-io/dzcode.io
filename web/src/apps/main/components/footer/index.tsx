@@ -1,14 +1,14 @@
 import Container from "@material-ui/core/Container";
-import { FC } from "react";
-import { FooterComponentState } from "src/apps/main/redux/reducers/footer-component";
-import { FormattedMessage } from "react-intl";
 import Grid from "@material-ui/core/Grid";
-import { LinkV2 } from "src/components/link-v2";
-import { StateInterface } from "src/apps/main/redux";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import { FC } from "react";
+import { FormattedMessage } from "react-intl";
 import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
+import { StateInterface } from "src/apps/main/redux";
+import { FooterComponentState } from "src/apps/main/redux/reducers/footer-component";
+import { LinkV2 } from "src/components/link-v2";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,7 +91,7 @@ export const Footer: FC = () => {
               <Typography className={classes.linkText}>contact@dzcode.io</Typography>
             </a>
             <Typography className={classes.linkText}>
-              Copyright © {new Date().getFullYear() + " "}
+              Copyright © {new Date(Date.now()).getFullYear() + " "}
               <LinkV2 href="https://twitter.com/dzcode_io">@dzCode_io</LinkV2>
             </Typography>
           </Grid>

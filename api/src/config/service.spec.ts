@@ -1,5 +1,6 @@
-import { ConfigService } from "./service";
 import dotenv from "dotenv";
+
+import { ConfigService } from "./service";
 
 jest.mock("dotenv");
 const mockedDotenv = dotenv as jest.Mocked<typeof dotenv>;

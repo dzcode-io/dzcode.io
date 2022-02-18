@@ -1,5 +1,6 @@
-import { Action } from "../..";
 import { Appearance } from "react-native";
+
+import { Action } from "../..";
 
 export interface GeneralState {
   theme: "dark" | "light";

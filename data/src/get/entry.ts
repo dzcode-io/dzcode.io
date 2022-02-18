@@ -1,5 +1,5 @@
-import { join } from "path";
 import fse from "fs-extra";
+import { join } from "path";
 
 export const getEntry = <T = Record<string, unknown>>(
   dataFolder: string,
