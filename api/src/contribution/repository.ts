@@ -46,10 +46,10 @@ export class ContributionRepository {
                     number,
                     labels: gLabels,
                     title,
-                    html_url,
-                    pull_request,
-                    created_at,
-                    updated_at,
+                    html_url, // eslint-disable-line camelcase
+                    pull_request, // eslint-disable-line camelcase
+                    created_at, // eslint-disable-line camelcase
+                    updated_at, // eslint-disable-line camelcase
                     comments,
                   }) => ({
                     id: `${number}`,
@@ -60,10 +60,10 @@ export class ContributionRepository {
                       name,
                     },
                     title,
-                    type: pull_request ? "pullRequest" : "issue",
-                    url: html_url,
-                    createdAt: created_at,
-                    updatedAt: updated_at,
+                    type: pull_request ? "pullRequest" : "issue", // eslint-disable-line camelcase
+                    url: html_url, // eslint-disable-line camelcase
+                    createdAt: created_at, // eslint-disable-line camelcase
+                    updatedAt: updated_at, // eslint-disable-line camelcase
                     commentsCount: comments,
                     /* eslint-enable camelcase */
                   }),

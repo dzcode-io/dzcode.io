@@ -21,7 +21,9 @@ describe("src/pages/landing/index.tsx", () => {
       </Provider>,
     );
 
-    const firstQuestionTitle = await screen.findByTestId(`faq-title-${faqIndex}`);
+    const firstQuestionTitle = await screen.findByText(
+      mainStore.getState().faqPage.faqData[0].title,
+    );
 
     expect(firstQuestionTitle.innerHTML).toBe(mainStore.getState().faqPage.faqData[faqIndex].title);
     expect(container).toMatchSnapshot();

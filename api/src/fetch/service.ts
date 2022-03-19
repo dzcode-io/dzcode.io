@@ -1,5 +1,5 @@
 import { lock } from "@dzcode.io/utils/dist/concurrency";
-import { defaults, FetchOptions } from "make-fetch-happen";
+import { defaults } from "make-fetch-happen";
 import { Service } from "typedi";
 
 import { ConfigService } from "../config/service";

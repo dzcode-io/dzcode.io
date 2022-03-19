@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Grid component 1`] = `
+<div>
+  <div
+    class="MuiGrid-root css-vj1n65-MuiGrid-root"
+  />
+</div>
+`;

@@ -13,4 +13,6 @@ export default {
     "^.+\\.(css|sass|scss)$": "<rootDir>/src/__mocks__/style-mock.ts",
     "^src/(.*)": "<rootDir>/src/$1",
   },
+  setupFiles: ["<rootDir>/src/_test/setup.ts"],
+  setupFilesAfterEnv: ["<rootDir>/src/_test/pre-test.ts"],
 } as Config.InitialOptions;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Typography component 1`] = `
+<div>
+  <p
+    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+  />
+</div>
+`;

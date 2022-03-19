@@ -1,48 +1,41 @@
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import { Box } from "@dzcode.io/ui/dist/box";
+import { ContributorCard, ContributorSkeleton } from "@dzcode.io/ui/dist/contributor-card";
+import { Grid } from "@dzcode.io/ui/dist/grid";
+import { Typography } from "@dzcode.io/ui/dist/typography";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
-import { ContributorCard } from "src/apps/main/components/contributor-card";
 import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    paddingBottom: theme.spacing(4),
-  },
-  header: {
-    padding: theme.spacing(2),
-    paddingBottom: theme.spacing(6),
-    textAlign: "center",
-  },
-}));
 
 interface CatalogProps {
   teamList: TeamPageState["teamList"];
 }
 
 export const Catalog: FC<CatalogProps> = ({ teamList }) => {
-  const classes = useStyles();
-
   return (
-    <>
-      <Typography variant="h4" className={classes.header}>
-        <FormattedMessage id="faq.teampage.header" defaultMessage="Say Hi to the team 💻" />
-      </Typography>
-      <Grid container className={classes.root} spacing={4} justifyContent="space-around">
-        {teamList
-          ? teamList.map((contributor) => (
-              <Grid key={`contributor-${contributor.id}`} item>
-                <ContributorCard contributor={contributor} />
-              </Grid>
-            ))
-          : [1, 2, 3, 4].map((id) => (
-              <Grid key={`contributor-${id}`} item>
-                <ContributorCard />
-              </Grid>
-            ))}
+    <Grid container alignItems="center" justifyContent="center" sx={{ my: 2 }} rowGap={4}>
+      <Grid item xs={12}>
+        <Typography variant="h4" sx={{ textAlign: "center" }}>
+          <FormattedMessage
+            id="faq.teampage.header"
+            defaultMessage="Say Hi to Our Contributors 💻"
+          />
+        </Typography>
       </Grid>
-    </>
+      {teamList
+        ? teamList.map((contributor) => (
+            <Grid key={`contributor-${contributor.id}`} item xs={12} sm={6} md={4} lg={3}>
+              <Box display="flex" justifyContent="center">
+                <ContributorCard contributor={contributor} />
+              </Box>
+            </Grid>
+          ))
+        : [1, 2, 3, 4, 5, 6, 7, 8].map((_, index) => (
+            <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+              <Box display="flex" justifyContent="center">
+                <ContributorSkeleton />
+              </Box>
+            </Grid>
+          ))}
+    </Grid>
   );
 };
