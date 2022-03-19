@@ -1,3 +1,5 @@
+import { Project } from "@dzcode.io/api/dist/app/types/legacy";
+import { AutoFixHigh } from "@mui/icons-material";
 import {
   Avatar,
   Dialog,
@@ -9,9 +11,6 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-
-import { AutoFixHigh } from "@mui/icons-material";
-import { Project } from "@dzcode.io/api/dist/app/types/legacy";
 
 interface ContributionItemProps {
   description: string;
@@ -45,9 +44,7 @@ const ContributionList = ({ title, items }: ContributionListProps) => {
       </Typography>
       <List>
         {items &&
-          items.map((item, index) => (
-            <ContributionItem key={index} description={item.label} />
-          ))}
+          items.map((item, index) => <ContributionItem key={index} description={item.label} />)}
       </List>
     </>
   );

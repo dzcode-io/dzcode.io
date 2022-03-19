@@ -9,7 +9,7 @@ import ar from "./locals/ar";
 import en from "./locals/en";
 
 export const Localization: FC = (props) => {
-  const locals: { [key: string]: any } = { ar, en };
+  const locals: { [key: string]: Record<string, string> } = { ar, en };
 
   const { settings } = useSelector<StateInterface, StateInterface>((state) => state);
 

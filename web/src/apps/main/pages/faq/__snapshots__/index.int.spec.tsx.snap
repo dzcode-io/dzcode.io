@@ -2,1102 +2,1046 @@
 
 exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
 <div>
-  <h4
-    class="MuiTypography-root makeStyles-title-1 MuiTypography-h4"
-  >
-    Frequently Asked Questions
-  </h4>
-  <div>
-    <h5
-      class="MuiTypography-root makeStyles-header-2 MuiTypography-h5"
-      data-testid="faq-title-0"
-    >
-      General
-    </h5>
-    <div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              What exactly is DzCode i/o ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <span>
-                    An open-source online community of algerian developers, no organization or any political party is involved, only us dz developers.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              What are the Goals of DzCode i/o ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <ul>
-                    <li>
-                      Share our experiences (in form of 
-                      <a
-                        href="/Articles"
-                      >
-                        Articles
-                      </a>
-                      ), there are many algerian developers that accumulated lots experiences, dzcode.io gives them the chance to share it with the right audience.
-                    </li>
-                    <li>
-                      Guide new developers to build their career (with detailed 
-                      <a
-                        href="/Learn"
-                      >
-                        documentation
-                      </a>
-                      ), and understand the software market, instead of wasting their time on other useless resources.
-                    </li>
-                    <li>
-                      Fix some common algerian software problems, in form of ready to use open-source 
-                      <a
-                        href="/Projects"
-                      >
-                        softwares
-                      </a>
-                       (packages, libraries ...etc).
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              What benefit will i get from it ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
-                    >
-                      There are couple of benefits, to name few:
-                    </p>
-                    <ul>
-                      <li>
-                        You will meet other algerian developers, experienced and juniors, where you can grow your network!
-                      </li>
-                      <li>
-                        You'll get to experience a professional environment, which is completely different than the one you used to in school.
-                      </li>
-                      <li>
-                        Your contribution will be shown on your Github profile, and that is a big plus in your professional career!
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              dzcode, dzcode.io or DzCode i/o ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
-                    >
-                      You may get confused with the different terms, so here's the official breakdown:
-                    </p>
-                    <ul>
-                      <li>
-                        <strong>
-                          DzCode i/o
-                        </strong>
-                         (with capital C) is the official name of the community.
-                      </li>
-                      <li>
-                        <strong>
-                          dzcode.io
-                        </strong>
-                         is the website of the DzCode i/o, this has been voted for 
-                        <a
-                          href="https://www.facebook.com/groups/dzdevs/permalink/3052880478141052/"
-                        >
-                          here
-                        </a>
-                        .
-                      </li>
-                      <li>
-                        <strong>
-                          dzcode
-                        </strong>
-                         is a short name, not official, but it's usually used to refer DzCode i/o.
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <h5
-      class="MuiTypography-root makeStyles-header-2 MuiTypography-h5"
-      data-testid="faq-title-1"
-    >
-      Participation
-    </h5>
-    <div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              How to join DzCode i/o ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <span>
-                    We're most active in slack, it's highly recommended to 
-                    <a
-                      href="https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ"
-                    >
-                      join us there
-                    </a>
-                    .
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              I want to code, where should I start ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
-                    >
-                      Go to 
-                      <a
-                        href="/Contribute"
-                      >
-                        /Contribute
-                      </a>
-                       page, you will see list projects with their open tasks, pick whatever you like and start coding 🔥.
-                    </p>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
-                    >
-                      <strong>
-                        Note
-                      </strong>
-                       : Please make sure to inform the project maintainer to reserve the task for you, you can do that by commenting on the issue ticket.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              I like the idea, what are the different ways i can contribute to DzCode i/o ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <div>
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
-                    >
-                      Apart from checking out the 
-                      <a
-                        href="/Contribute"
-                      >
-                        /Contribute
-                      </a>
-                       page, you can also contribute to DzCode i/o by:
-                    </p>
-                    <ul>
-                      <li>
-                        Adding your open-source projects to dzcode.io website, you can do that 
-                        <a
-                          href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
-                        >
-                          here
-                        </a>
-                        .
-                      </li>
-                      <li>
-                        Writing about your experience in form of articles, it's as easy as following the steps 
-                        <a
-                          href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
-                        >
-                          here
-                        </a>
-                        .
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <h5
-      class="MuiTypography-root makeStyles-header-2 MuiTypography-h5"
-      data-testid="faq-title-2"
-    >
-      Articles
-    </h5>
-    <div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              How to write an article in dzcode.io
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <span>
-                    See this 
-                    <a
-                      href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
-                    >
-                      tutorial
-                    </a>
-                    .
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              The Articles should they be in English ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <span>
-                    Yes, to reach a wide range of audience we will add a feature to allow article localization and multiple language articles in the future.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              Can I write about anything ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <span>
-                    As long as its IT related yes you can write about anything.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div>
-    <h5
-      class="MuiTypography-root makeStyles-header-2 MuiTypography-h5"
-      data-testid="faq-title-3"
-    >
-      Projects
-    </h5>
-    <div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              How to add my open-source project to dzcode.io
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <span>
-                    See this 
-                    <a
-                      href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
-                    >
-                      tutorial
-                    </a>
-                    .
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              What makes my project eligible to be added to dzcode.io
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <span>
-                    It has to solve an Algerian problem, or, to be written by an Algerian Developer.
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="MuiPaper-root MuiAccordion-root MuiAccordion-rounded MuiPaper-outlined MuiPaper-rounded"
-        style="margin-bottom: -1px;"
-      >
-        <div
-          aria-disabled="false"
-          aria-expanded="false"
-          class="MuiButtonBase-root MuiAccordionSummary-root"
-          role="button"
-          tabindex="0"
-        >
-          <div
-            class="MuiAccordionSummary-content"
-          >
-            <p
-              class="MuiTypography-root makeStyles-question-3 MuiTypography-body1"
-            >
-              Why should i add my project to dzcode.io ?
-            </p>
-          </div>
-          <div
-            aria-disabled="false"
-            aria-hidden="true"
-            class="MuiButtonBase-root MuiIconButton-root MuiAccordionSummary-expandIcon MuiIconButton-edgeEnd"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </div>
-        </div>
-        <div
-          class="MuiCollapse-root MuiCollapse-hidden"
-          style="min-height: 0px;"
-        >
-          <div
-            class="MuiCollapse-wrapper"
-          >
-            <div
-              class="MuiCollapse-wrapperInner"
-            >
-              <div
-                role="region"
-              >
-                <div
-                  class="MuiAccordionDetails-root"
-                >
-                  <ul>
-                    <li>
-                      Your project will potentially get noticed by more algerian developers.
-                    </li>
-                    <li>
-                      You will get potential contribution from other DZ developers, and eventually better shape your piece of software.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div
-    class="makeStyles-spacing-4"
-  />
-  <p
-    class="MuiTypography-root makeStyles-title-1 MuiTypography-body1"
+    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-undefined muiltr-11kqawl-MuiGrid-root"
   >
-    Still need help? send us an email at 
-    <a
-      href="mailto:contact@dzcode.io"
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
     >
-      contact@dzcode.io
-    </a>
-  </p>
+      <h1
+        class="MuiTypography-root MuiTypography-h4 muiltr-149xwtl-MuiTypography-root"
+      >
+        Frequently Asked Questions
+      </h1>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+    >
+      <div
+        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-undefined muiltr-18p4n9n-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 muiltr-mhc70k-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+            >
+              <h2
+                class="MuiTypography-root MuiTypography-h5 muiltr-ph2xsj-MuiTypography-root"
+              >
+                General
+              </h2>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+            >
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      What exactly is DzCode i/o ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <span>
+                            An open-source online community of algerian developers, no organization or any political party is involved, only us dz developers.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      What are the Goals of DzCode i/o ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <ul>
+                            <li>
+                              Share our experiences (in form of 
+                              <a
+                                href="/Articles"
+                              >
+                                Articles
+                              </a>
+                              ), there are many algerian developers that accumulated lots experiences, dzcode.io gives them the chance to share it with the right audience.
+                            </li>
+                            <li>
+                              Guide new developers to build their career (with detailed 
+                              <a
+                                href="/Learn"
+                              >
+                                documentation
+                              </a>
+                              ), and understand the software market, instead of wasting their time on other useless resources.
+                            </li>
+                            <li>
+                              Fix some common algerian software problems, in form of ready to use open-source 
+                              <a
+                                href="/Projects"
+                              >
+                                softwares
+                              </a>
+                               (packages, libraries ...etc).
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      What benefit will i get from it ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <div>
+                            <p
+                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+                            >
+                              There are couple of benefits, to name few:
+                            </p>
+                            <ul>
+                              <li>
+                                You will meet other algerian developers, experienced and juniors, where you can grow your network!
+                              </li>
+                              <li>
+                                You'll get to experience a professional environment, which is completely different than the one you used to in school.
+                              </li>
+                              <li>
+                                Your contribution will be shown on your Github profile, and that is a big plus in your professional career!
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      dzcode, dzcode.io or DzCode i/o ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <div>
+                            <p
+                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+                            >
+                              You may get confused with the different terms, so here's the official breakdown:
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>
+                                  DzCode i/o
+                                </strong>
+                                 (with capital C) is the official name of the community.
+                              </li>
+                              <li>
+                                <strong>
+                                  dzcode.io
+                                </strong>
+                                 is the website of the DzCode i/o, this has been voted for 
+                                <a
+                                  href="https://www.facebook.com/groups/dzdevs/permalink/3052880478141052/"
+                                >
+                                  here
+                                </a>
+                                .
+                              </li>
+                              <li>
+                                <strong>
+                                  dzcode
+                                </strong>
+                                 is a short name, not official, but it's usually used to refer DzCode i/o.
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 muiltr-mhc70k-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+            >
+              <h2
+                class="MuiTypography-root MuiTypography-h5 muiltr-ph2xsj-MuiTypography-root"
+              >
+                Participation
+              </h2>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+            >
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      How to join DzCode i/o ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <span>
+                            We're most active in slack, it's highly recommended to 
+                            <a
+                              href="https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ"
+                            >
+                              join us there
+                            </a>
+                            .
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      I want to code, where should I start ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <div>
+                            <p
+                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+                            >
+                              Go to 
+                              <a
+                                href="/Contribute"
+                              >
+                                /Contribute
+                              </a>
+                               page, you will see list projects with their open tasks, pick whatever you like and start coding 🔥.
+                            </p>
+                            <p
+                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+                            >
+                              <strong>
+                                Note
+                              </strong>
+                               : Please make sure to inform the project maintainer to reserve the task for you, you can do that by commenting on the issue ticket.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      I like the idea, what are the different ways i can contribute to DzCode i/o ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <div>
+                            <p
+                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+                            >
+                              Apart from checking out the 
+                              <a
+                                href="/Contribute"
+                              >
+                                /Contribute
+                              </a>
+                               page, you can also contribute to DzCode i/o by:
+                            </p>
+                            <ul>
+                              <li>
+                                Adding your open-source projects to dzcode.io website, you can do that 
+                                <a
+                                  href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
+                                >
+                                  here
+                                </a>
+                                .
+                              </li>
+                              <li>
+                                Writing about your experience in form of articles, it's as easy as following the steps 
+                                <a
+                                  href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
+                                >
+                                  here
+                                </a>
+                                .
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 muiltr-mhc70k-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+            >
+              <h2
+                class="MuiTypography-root MuiTypography-h5 muiltr-ph2xsj-MuiTypography-root"
+              >
+                Articles
+              </h2>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+            >
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      How to write an article in dzcode.io
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <span>
+                            See this 
+                            <a
+                              href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
+                            >
+                              tutorial
+                            </a>
+                            .
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      The Articles should they be in English ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <span>
+                            Yes, to reach a wide range of audience we will add a feature to allow article localization and multiple language articles in the future.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      Can I write about anything ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <span>
+                            As long as its IT related yes you can write about anything.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 muiltr-mhc70k-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+            >
+              <h2
+                class="MuiTypography-root MuiTypography-h5 muiltr-ph2xsj-MuiTypography-root"
+              >
+                Projects
+              </h2>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+            >
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      How to add my open-source project to dzcode.io
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <span>
+                            See this 
+                            <a
+                              href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
+                            >
+                              tutorial
+                            </a>
+                            .
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      What makes my project eligible to be added to dzcode.io
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <span>
+                            It has to solve an Algerian problem, or, to be written by an Algerian Developer.
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+              >
+                <div
+                  aria-expanded="false"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  role="button"
+                  tabindex="0"
+                >
+                  <div
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                    >
+                      Why should i add my project to dzcode.io ?
+                    </p>
+                  </div>
+                  <div
+                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  style="min-height: 0px;"
+                >
+                  <div
+                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                  >
+                    <div
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                    >
+                      <div
+                        class="MuiAccordion-region"
+                        role="region"
+                      >
+                        <div
+                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                        >
+                          <ul>
+                            <li>
+                              Your project will potentially get noticed by more algerian developers.
+                            </li>
+                            <li>
+                              You will get potential contribution from other DZ developers, and eventually better shape your piece of software.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+    >
+      <h2
+        class="MuiTypography-root MuiTypography-h6 muiltr-1kgxqm0-MuiTypography-root"
+      >
+        Still need help? send us an email at 
+        <a
+          href="mailto:contact@dzcode.io"
+        >
+          contact@dzcode.io
+        </a>
+      </h2>
+    </div>
+  </div>
 </div>
 `;

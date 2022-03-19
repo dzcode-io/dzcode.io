@@ -5,9 +5,9 @@ import { GithubUser } from "../app/types/legacy";
 
 export class GithubUserDto implements GithubUser {
   @IsString()
-  avatar_url!: string;
+  avatar_url!: string; // eslint-disable-line camelcase
   @IsString()
-  html_url!: string;
+  html_url!: string; // eslint-disable-line camelcase
   @IsNumber()
   id!: number;
   @IsString()

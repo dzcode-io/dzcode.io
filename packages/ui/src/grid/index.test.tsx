@@ -1,5 +1,6 @@
-import { Grid } from ".";
 import { render } from "@testing-library/react";
+
+import { Grid } from ".";
 
 it("should render Grid component", () => {
   const { container } = render(<Grid />);

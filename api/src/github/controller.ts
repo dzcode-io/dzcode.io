@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from "routing-controllers";
+import { Controller, Get } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { Service } from "typedi";
 

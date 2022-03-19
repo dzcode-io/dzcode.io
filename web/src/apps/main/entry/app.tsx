@@ -3,7 +3,7 @@ import "./style.scss";
 import Container from "@material-ui/core/Container";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
 import { defineMessages, useIntl } from "react-intl";
-import { Route, RouteProps, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import { Footer } from "src/apps/main/components/footer";
 import { Navbar } from "src/apps/main/components/navbar";
 import { Theme } from "src/apps/main/components/theme";
@@ -11,9 +11,10 @@ import { getEnv } from "src/common/utils";
 import { Loading } from "src/components/loading";
 import Localization from "src/localization";
 
-interface RouteInterface extends RouteProps {
+type RouteInterface = {
   import: Promise<{ default: ComponentType }>;
-}
+  exact?: boolean;
+} & ({ translate?: false; path?: string } | { translate: true; path: Record<string, unknown> });
 
 const messages = defineMessages({
   learn: {
@@ -48,7 +49,7 @@ const messages = defineMessages({
   },
 });
 
-const routes: any[] = [
+const routes: RouteInterface[] = [
   {
     import: import("src/apps/main/pages/landing"),
     path: "/",

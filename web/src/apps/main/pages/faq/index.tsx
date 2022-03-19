@@ -18,13 +18,7 @@ const FaqCards = () => {
       {faqData.map(({ title, questions }, index) => (
         <Grid item xs={12} key={`faq.title.${index}`}>
           <FaqCard
-            title={
-              <FormattedMessage
-                data-testid={`faq-title-${index}`}
-                id={`faq.title.${index}`}
-                defaultMessage={title}
-              />
-            }
+            title={<FormattedMessage id={`faq.title.${index}`} defaultMessage={title} />}
             questions={questions.map(({ question, answer }, index) => {
               return {
                 question: (

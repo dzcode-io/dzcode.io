@@ -30,17 +30,18 @@ export class GithubService {
       `${this.apiURL}/repos/${owner}/${repo}/commits`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
-        params: { path, state: "all", per_page: 100 },
+        params: { path, state: "all", per_page: 100 }, // eslint-disable-line camelcase
       },
     );
     const contributors = commits
       // excluding github.com/web-flow user
       .filter((item) => item.committer && item.committer.id !== 19864447)
+      // eslint-disable-next-line camelcase
       .map(({ committer: { login, avatar_url, html_url, type, id } }) => ({
         id,
         login,
-        avatar_url,
-        html_url,
+        avatar_url, // eslint-disable-line camelcase
+        html_url, // eslint-disable-line camelcase
         type,
       }));
     return contributors;
@@ -62,7 +63,7 @@ export class GithubService {
       `${this.apiURL}/repos/${owner}/${repo}/issues`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
-        params: { sort: "updated", per_page: 100 },
+        params: { sort: "updated", per_page: 100 }, // eslint-disable-line camelcase
       },
     );
     return issues;
@@ -87,7 +88,7 @@ export class GithubService {
       `${this.apiURL}/repos/${owner}/${repo}/contributors`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
-        params: { state: "all", per_page: 100 },
+        params: { state: "all", per_page: 100 }, // eslint-disable-line camelcase
       },
     );
 

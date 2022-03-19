@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-
-import { FaqCard } from ".";
-import { createFaqSections } from "../__mocks__/create-faqs";
 import userEvent from "@testing-library/user-event";
+
+import { createFaqSections } from "../__mocks__/create-faqs";
+import { FaqCard } from ".";
 
 it("should render a faq card", () => {
   const faqSection = createFaqSections(1)[0];

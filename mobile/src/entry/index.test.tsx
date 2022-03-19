@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import renderer from "react-test-renderer";
 
 import { App } from ".";
@@ -11,7 +11,7 @@ jest.mock("react-native-reanimated", () => ({
   useSharedValue: jest.fn().mockReturnValue(0),
   useAnimatedStyle: jest.fn().mockReturnValue({}),
   useAnimatedScrollHandler: jest.fn().mockReturnValue({}),
-  createAnimatedComponent: (component: any) => jest.fn().mockReturnValue(component),
+  createAnimatedComponent: (component: Component) => jest.fn().mockReturnValue(component),
   __reanimatedWorkletInit: jest.fn(),
   ScrollView: "ScrollView",
 }));
@@ -20,7 +20,7 @@ jest.mock("@gorhom/bottom-sheet", () => {
   require("react-native-reanimated/mock");
 });
 
-(global as any).__reanimatedWorkletInit = jest.fn();
+(global as any).__reanimatedWorkletInit = jest.fn(); // eslint-disable-line @typescript-eslint/no-explicit-any
 
 jest.mock("@react-navigation/drawer", () => ({
   createDrawerNavigator: jest.fn().mockReturnValue({

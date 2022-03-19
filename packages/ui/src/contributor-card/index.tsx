@@ -1,17 +1,17 @@
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import {
   Button,
+  Card as MuiCard,
   CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
-  Card as MuiCard,
   Skeleton,
   Typography,
 } from "@mui/material";
 import { FC, useState } from "react";
 
 import { ContributionsDialog } from "../dialog";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 
 const styles = {
   root: {
@@ -31,11 +31,7 @@ export const ContributorSkeleton = () => {
   return (
     <MuiCard variant="outlined" sx={{ ...styles.root }}>
       <CardActionArea data-testid="contributor-card-skeleton">
-        <Skeleton
-          animation="wave"
-          variant="rectangular"
-          sx={{ ...styles.media }}
-        />
+        <Skeleton animation="wave" variant="rectangular" sx={{ ...styles.media }} />
         <CardContent sx={{ ...styles.content }}>
           <Typography variant="h3">
             <Skeleton animation="wave" />
@@ -73,11 +69,7 @@ export const ContributorCard: FC<ContributorCardProps> = ({ contributor }) => {
           Contributions
         </Button>
       </CardActions>
-      <ContributionsDialog
-        repositories={repositories}
-        open={open}
-        onClose={() => setOpen(false)}
-      />
+      <ContributionsDialog repositories={repositories} open={open} onClose={() => setOpen(false)} />
     </MuiCard>
   );
 };

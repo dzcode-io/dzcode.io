@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 
-import { ContributionsDialog } from ".";
 import { createProjects } from "../__mocks__/create-projects";
 import { createRepositories } from "../__mocks__/create-repositories";
+import { ContributionsDialog } from ".";
 
 it("should render a closed dialog on first mount", async () => {
   const onClose = jest.fn();

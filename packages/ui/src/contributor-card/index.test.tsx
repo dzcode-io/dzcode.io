@@ -1,8 +1,8 @@
-import { ContributorCard, ContributorSkeleton } from ".";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { createContributors } from "../__mocks__/create-contributors";
-import userEvent from "@testing-library/user-event";
+import { ContributorCard, ContributorSkeleton } from ".";
 
 it("should render a contributor skeleton ", async () => {
   render(<ContributorSkeleton />);

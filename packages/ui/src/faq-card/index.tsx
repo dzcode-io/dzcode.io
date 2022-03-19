@@ -1,12 +1,5 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Grid,
-  Typography,
-} from "@mui/material";
-
 import { ExpandMore } from "@mui/icons-material";
+import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 interface FaqCardProps {
