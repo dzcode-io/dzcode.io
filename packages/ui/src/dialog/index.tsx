@@ -1,4 +1,3 @@
-import { Project } from "@dzcode.io/api/dist/app/types/legacy";
 import { AutoFixHigh } from "@mui/icons-material";
 import {
   Avatar,
@@ -52,7 +51,17 @@ const ContributionList = ({ title, items }: ContributionListProps) => {
 
 export interface ContributionsDialogProps {
   open: boolean;
-  projects?: Project[];
+  projects?: Array<{
+    slug: string;
+    image?: string;
+    title: string;
+    description?: string;
+    content?: string;
+    authors?: string[];
+    contributors?: string[];
+    views?: number;
+    githubURI?: string;
+  }>;
   repositories?: { provider: string; owner: string; repository: string }[];
   onClose: () => void;
 }
