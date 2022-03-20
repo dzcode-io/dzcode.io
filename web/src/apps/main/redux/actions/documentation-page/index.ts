@@ -1,4 +1,6 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { isLoaded } from "@dzcode.io/utils/dist/loadable";
+import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { ThunkResult } from "src/apps/main/redux";
 import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
@@ -13,11 +15,17 @@ import { fetchV2 } from "src/common/utils/fetch";
 export const fetchDocumentationList =
   (): ThunkResult<LearnPageState> => async (dispatch, getState) => {
     try {
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: { sidebarTree: null },
+      });
       const currentLanguage = getState().settings.language;
+
       const documentationList = await fetchV2("data:documentation/list.c.json", {
         query: [["language", currentLanguage.code]],
       });
       const ids: string[] = [];
+
       // convert list into tree
       const tree = listToTree<typeof documentationList[0], SidebarTreeItem>(
         documentationList,
@@ -39,7 +47,11 @@ export const fetchDocumentationList =
         payload: { sidebarTree: tree, expanded: ids },
       });
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: { sidebarTree: "ERROR" },
+      });
+      Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
     }
   };
 
@@ -49,31 +61,49 @@ export const fetchDocumentationList =
 const fetchCurrentDocumentContributors =
   (): ThunkResult<LearnPageState | DocumentationState> => async (dispatch, getState) => {
     const { currentDocument } = getState().learnPage;
+    const loadedCurrentDocument = isLoaded(currentDocument);
 
-    if (!currentDocument || Array.isArray(currentDocument.contributors)) return;
+    // Don't re-fetch data again
+    if (!loadedCurrentDocument || isLoaded(loadedCurrentDocument.contributors)) return;
 
-    const { contributors } = await fetchV2("api:Contributors", {
-      query: [["path", `documentation/${currentDocument.slug}`]],
-    });
+    try {
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: { currentDocument: { ...loadedCurrentDocument, contributors: null } },
+      });
+      const { contributors } = await fetchV2("api:Contributors", {
+        query: [["path", `documentation/${loadedCurrentDocument.slug}`]],
+      });
+      //  getting the current document from a fresh state
+      const freshCurrentDocument =
+        isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
 
-    const mrCurrentDocument = getState().learnPage.currentDocument || currentDocument;
-    // update our page state
-    dispatch({
-      type: "UPDATE_LEARN_PAGE",
-      payload: {
-        currentDocument: {
-          ...mrCurrentDocument,
-          contributors: contributors.filter(
-            ({ login }) => !mrCurrentDocument.authors?.includes(login),
-          ),
+      // update our page state
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: {
+          currentDocument: {
+            ...freshCurrentDocument,
+            contributors: contributors.filter(
+              ({ login }) => !freshCurrentDocument.authors?.includes(login),
+            ),
+          },
         },
-      },
-    });
-    // update our cache state
-    dispatch({
-      type: "UPDATE_DOCUMENTATION",
-      payload: { list: [{ ...mrCurrentDocument, contributors }] },
-    });
+      });
+      // update our cache state
+      dispatch({
+        type: "UPDATE_DOCUMENTATION",
+        payload: { list: [{ ...freshCurrentDocument, contributors }] },
+      });
+    } catch (error) {
+      const freshCurrentDocument =
+        isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: { currentDocument: { ...freshCurrentDocument, contributors: "ERROR" } },
+      });
+      Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
+    }
   };
 
 /**
@@ -82,35 +112,50 @@ const fetchCurrentDocumentContributors =
 const fetchCurrentDocumentAuthors =
   (): ThunkResult<LearnPageState | DocumentationState> => async (dispatch, getState) => {
     const { currentDocument } = getState().learnPage;
+    const loadedCurrentDocument = isLoaded(currentDocument);
 
-    if (!currentDocument || Array.isArray(currentDocument.githubAuthors)) return;
+    // Don't re-fetch data again
+    if (!loadedCurrentDocument || isLoaded(loadedCurrentDocument.githubAuthors)) return;
 
-    const githubAuthors = (
-      await Promise.all(
-        currentDocument.authors?.map((author) => {
-          return fetchV2("api:GithubUsers/:login", {
-            params: { login: author },
-          });
-        }) || [],
-      )
-    ).map((response) => {
-      return response.user;
-    });
+    try {
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: { currentDocument: { ...loadedCurrentDocument, githubAuthors: null } },
+      });
 
-    //  getting the  most recent  current document
-    const mrCurrentDocument = getState().learnPage.currentDocument || currentDocument;
-
-    // update our page state
-
-    dispatch({
-      type: "UPDATE_LEARN_PAGE",
-      payload: { currentDocument: { ...mrCurrentDocument, githubAuthors } },
-    });
-    // update our cache state
-    dispatch({
-      type: "UPDATE_DOCUMENTATION",
-      payload: { list: [{ ...mrCurrentDocument, githubAuthors }] },
-    });
+      const githubAuthors = (
+        await Promise.all(
+          loadedCurrentDocument.authors?.map((author) => {
+            return fetchV2("api:GithubUsers/:login", {
+              params: { login: author },
+            });
+          }) || [],
+        )
+      ).map((response) => {
+        return response.user;
+      });
+      //  getting the current document from a fresh state
+      const freshCurrentDocument =
+        isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
+      // update our page state
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: { currentDocument: { ...freshCurrentDocument, githubAuthors } },
+      });
+      // update our cache state
+      dispatch({
+        type: "UPDATE_DOCUMENTATION",
+        payload: { list: [{ ...freshCurrentDocument, githubAuthors }] },
+      });
+    } catch (error) {
+      const freshCurrentDocument =
+        isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
+      dispatch({
+        type: "UPDATE_LEARN_PAGE",
+        payload: { currentDocument: { ...freshCurrentDocument, githubAuthors: "ERROR" } },
+      });
+      Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
+    }
   };
 
 /**
@@ -161,7 +206,11 @@ export const fetchCurrentDocument =
         // Fetch contributors
         dispatch(fetchCurrentDocumentContributors());
       } catch (error) {
-        console.error(error);
+        dispatch({
+          type: "UPDATE_LEARN_PAGE",
+          payload: { currentDocument: "ERROR" },
+        });
+        Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
       }
     }
   };

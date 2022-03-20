@@ -1,3 +1,5 @@
+import { TryAgain } from "@dzcode.io/ui/dist/try-again";
+import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import Grid from "@material-ui/core/Grid";
 import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,19 +24,28 @@ export const LearnPage: FC = () => {
   }, []);
 
   const { path } = useRouteMatch();
+  const loadedCurrentDocument = isLoaded(currentDocument);
 
   return (
     <Grid container className="learn">
       {/* Sidebar */}
       <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
-        <Sidebar
-          tree={sidebarTree}
-          path={path}
-          expanded={expanded}
-          selected={currentDocument ? currentDocument.slug : ""}
-          isOpen={open}
-          onChange={(isOpen) => setOpen(isOpen)}
-        />
+        {sidebarTree === "ERROR" ? (
+          <TryAgain
+            error="Ops, an error occurred while loading the documentation list, please try again..."
+            action="Try Again"
+            onClick={() => dispatch(fetchDocumentationList())}
+          />
+        ) : (
+          <Sidebar
+            tree={sidebarTree}
+            path={path}
+            expanded={expanded}
+            selected={loadedCurrentDocument ? loadedCurrentDocument.slug : ""}
+            isOpen={open}
+            onChange={(isOpen) => setOpen(isOpen)}
+          />
+        )}
       </Grid>
       {/* Content */}
       <Grid item xs md={7}>
