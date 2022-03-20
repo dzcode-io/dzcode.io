@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/browser";
 import { ThunkResult } from "src/apps/main/redux";
 import { ProjectsPageState } from "src/apps/main/redux/reducers/projects-page";
 import { fetchV2 } from "src/common/utils/fetch";
@@ -30,12 +31,20 @@ const shuffleProjects = <T>(array: T[]) => {
  */
 export const fetchProjectsList = (): ThunkResult<ProjectsPageState> => async (dispatch) => {
   try {
+    dispatch({
+      type: "UPDATE_PROJECTS_PAGE",
+      payload: { projectsList: null },
+    });
     const projectsList = await fetchV2("data:projects/list.c.json", {});
     dispatch({
       type: "UPDATE_PROJECTS_PAGE",
       payload: { projectsList: shuffleProjects(projectsList) },
     });
   } catch (error) {
-    console.error(error);
+    dispatch({
+      type: "UPDATE_PROJECTS_PAGE",
+      payload: { projectsList: "ERROR" },
+    });
+    Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
