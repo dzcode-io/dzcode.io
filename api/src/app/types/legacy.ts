@@ -1,3 +1,5 @@
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
+
 export interface Document {
   slug: string;
   image?: string;
@@ -17,8 +19,8 @@ export interface Article {
   description?: string;
   content?: string;
   authors?: string[];
-  githubAuthors?: GithubUser[];
-  contributors?: GithubUser[];
+  githubAuthors: LOADABLE<GithubUser[]>;
+  contributors: LOADABLE<GithubUser[]>;
   views?: number;
 }
 

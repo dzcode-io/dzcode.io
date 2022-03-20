@@ -9,12 +9,7 @@ export const getEntry = <T = Record<string, unknown>>(
 ) => {
   const path = join(dataFolder, "models", _path);
   // Entry doesn't exist
-  if (!fse.existsSync(path))
-    return {
-      error: {
-        code: 404,
-      },
-    };
+  if (!fse.existsSync(path)) return 404;
 
   let entry = {};
 

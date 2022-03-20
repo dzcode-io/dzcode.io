@@ -124,10 +124,10 @@ export const Content: FC = () => {
 
           <Divider className={classes.spacing} />
           {/* Authors */}
-          <Authors githubAuthors={currentDocument.githubAuthors} />
+          <Authors githubAuthors={currentDocument.githubAuthors || []} />
           <Divider className={classes.spacing} />
           {/* Contributors */}
-          <Contributors contributors={currentDocument.contributors} />
+          <Contributors contributors={currentDocument.contributors || []} />
           <Divider className={classes.spacing} />
           {/* Comments */}
           <div
