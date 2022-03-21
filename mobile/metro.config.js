@@ -1,5 +1,6 @@
 // Learn more https://docs.expo.io/guides/customizing-metro
 const { getDefaultConfig } = require("expo/metro-config");
+const exclusionList = require("metro-config/src/defaults/exclusionList");
 const path = require("path");
 const findWorkspaceRoot = require("find-yarn-workspace-root");
 
@@ -16,5 +17,10 @@ config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, "node_modules"),
   path.resolve(workspaceRoot, "node_modules"),
 ];
+
+// 3. Ignore `./api` deployment artifacts
+config.resolver.blacklistRE = exclusionList([
+  new RegExp(`${path.resolve(workspaceRoot, "api/oracle-cloud/build").replace(/\//g, "\\/")}\\/.*`),
+]);
 
 module.exports = config;
