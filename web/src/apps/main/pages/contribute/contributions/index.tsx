@@ -1,3 +1,4 @@
+import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import MuiCard from "@material-ui/core/Card";
@@ -14,7 +15,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
-import { updateFilterValue } from "src/apps/main/redux/actions/contribute-page";
+import { fetchContributions, updateFilterValue } from "src/apps/main/redux/actions/contribute-page";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
 import { elapsedTime } from "src/common/utils/elapsed-time";
 import { LinkV2 } from "src/components/link-v2";
@@ -57,88 +58,94 @@ export const Contributions: FC = () => {
   return (
     <>
       <Grid container className={classes.root} justify="space-evenly" spacing={1}>
-        {contributions
-          ? contributions.map(
-              (
-                { project, title, languages, labels, url: link, type, commentsCount, updatedAt },
-                index,
-              ) => (
-                <Grid key={`contribution-${index}-`} item xs={12} md={6} lg={4}>
-                  <MuiCard className={classes.card} variant="outlined">
-                    <CardContent className={classes.content}>
-                      <Typography className={classes.title} variant="h6">
-                        {title}
-                      </Typography>
-                      <Typography className={classes.project} color="textSecondary">
-                        {project.name}
-                      </Typography>
-                      <div>
-                        {[
-                          { filterName: "labels", options: labels },
-                          { filterName: "languages", options: languages },
-                        ].map(({ filterName, options }) =>
-                          options.map((optionName) => (
-                            <Chip
-                              className={classes.chip}
-                              key={`${filterName}-${optionName}`}
-                              label={optionName}
-                              size="small"
-                              variant="default"
-                              onClick={() => {
-                                dispatch(
-                                  updateFilterValue(filterName, optionName, true, true, true),
-                                );
-                              }}
-                            />
-                          )),
-                        )}
-                      </div>
-                    </CardContent>
-                    <CardActions
-                      style={{
-                        color: type === "issue" ? "#56d364" : "#a371f7",
-                      }}
-                    >
-                      <LinkV2 href={link} className={classes.contribute}>
-                        <Button
-                          size="small"
-                          style={{
-                            color: type === "issue" ? "#56d364" : "#a371f7",
-                          }}
-                        >
-                          {type === "issue" ? "Read Issue" : "Review Changes"}
-                        </Button>
-                      </LinkV2>
-                      <Typography variant="caption">{elapsedTime(updatedAt)}</Typography>
-                      {commentsCount > 0 && (
-                        <Badge badgeContent={commentsCount}>
-                          <QuestionAnswerIcon />
-                        </Badge>
-                      )}
-                      {type === "issue" ? (
-                        <ErrorOutlineIcon style={{ color: "#56d364" }} />
-                      ) : (
-                        <MergeTypeIcon style={{ color: "#a371f7" }} />
-                      )}
-                    </CardActions>
-                  </MuiCard>
-                </Grid>
-              ),
-            )
-          : [1, 2, 3].map((id) => (
-              <Grid key={`loading-${id}`} item xs={12} md={6} lg={4}>
+        {contributions === "ERROR" ? (
+          <TryAgain
+            error="Ops, an error occurred while loading the contribution cards, please try again..."
+            action="Try Again"
+            onClick={() => dispatch(fetchContributions())}
+          />
+        ) : contributions ? (
+          contributions.map(
+            (
+              { project, title, languages, labels, url: link, type, commentsCount, updatedAt },
+              index,
+            ) => (
+              <Grid key={`contribution-${index}-`} item xs={12} md={6} lg={4}>
                 <MuiCard className={classes.card} variant="outlined">
                   <CardContent className={classes.content}>
-                    <Skeleton animation="wave" variant="text" />
-                    <Skeleton animation="wave" variant="text" style={{ width: "30%" }} />
-                    <Skeleton animation="wave" variant="text" />
+                    <Typography className={classes.title} variant="h6">
+                      {title}
+                    </Typography>
+                    <Typography className={classes.project} color="textSecondary">
+                      {project.name}
+                    </Typography>
+                    <div>
+                      {[
+                        { filterName: "labels", options: labels },
+                        { filterName: "languages", options: languages },
+                      ].map(({ filterName, options }) =>
+                        options.map((optionName) => (
+                          <Chip
+                            className={classes.chip}
+                            key={`${filterName}-${optionName}`}
+                            label={optionName}
+                            size="small"
+                            variant="default"
+                            onClick={() => {
+                              dispatch(updateFilterValue(filterName, optionName, true, true, true));
+                            }}
+                          />
+                        )),
+                      )}
+                    </div>
                   </CardContent>
-                  <CardActions>
-                    <Skeleton animation="wave" variant="text" style={{ width: "30%" }} />
+                  <CardActions
+                    style={{
+                      color: type === "issue" ? "#56d364" : "#a371f7",
+                    }}
+                  >
+                    <LinkV2 href={link} className={classes.contribute}>
+                      <Button
+                        size="small"
+                        style={{
+                          color: type === "issue" ? "#56d364" : "#a371f7",
+                        }}
+                      >
+                        {type === "issue" ? "Read Issue" : "Review Changes"}
+                      </Button>
+                    </LinkV2>
+                    <Typography variant="caption">{elapsedTime(updatedAt)}</Typography>
+                    {commentsCount > 0 && (
+                      <Badge badgeContent={commentsCount}>
+                        <QuestionAnswerIcon />
+                      </Badge>
+                    )}
+                    {type === "issue" ? (
+                      <ErrorOutlineIcon style={{ color: "#56d364" }} />
+                    ) : (
+                      <MergeTypeIcon style={{ color: "#a371f7" }} />
+                    )}
                   </CardActions>
                 </MuiCard>
               </Grid>
-            ))}
+            ),
+          )
+        ) : (
+          [1, 2, 3].map((id) => (
+            <Grid key={`loading-${id}`} item xs={12} md={6} lg={4}>
+              <MuiCard className={classes.card} variant="outlined">
+                <CardContent className={classes.content}>
+                  <Skeleton animation="wave" variant="text" />
+                  <Skeleton animation="wave" variant="text" style={{ width: "30%" }} />
+                  <Skeleton animation="wave" variant="text" />
+                </CardContent>
+                <CardActions>
+                  <Skeleton animation="wave" variant="text" style={{ width: "30%" }} />
+                </CardActions>
+              </MuiCard>
+            </Grid>
+          ))
+        )}
       </Grid>
     </>
   );

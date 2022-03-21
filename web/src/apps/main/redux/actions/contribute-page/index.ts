@@ -53,7 +53,10 @@ export const fetchContributions =
         payload: { contributions, filters: newFilters },
       });
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: "UPDATE_CONTRIBUTE_PAGE",
+        payload: { contributions: "ERROR" },
+      });
     }
   };
 
