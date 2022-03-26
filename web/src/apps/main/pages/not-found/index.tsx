@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -25,18 +26,20 @@ const NotFound: FC = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <img className={classes.image} src={svg} alt="DzCode i/o: 404 page not found" />
-      <Typography className={classes.text}>
-        Finally someone saw the 404 page that{" "}
-        <LinkV2 href="https://github.com/NurElHuda">Nour</LinkV2> developed 😅
-      </Typography>
-      <LinkV2 href="/">
-        <Button startIcon={<ArrowBackIcon />} size="large">
-          Go Back Home
-        </Button>
-      </LinkV2>
-    </div>
+    <ErrorBoundary>
+      <div className={classes.root}>
+        <img className={classes.image} src={svg} alt="DzCode i/o: 404 page not found" />
+        <Typography className={classes.text}>
+          Finally someone saw the 404 page that{" "}
+          <LinkV2 href="https://github.com/NurElHuda">Nour</LinkV2> developed 😅
+        </Typography>
+        <LinkV2 href="/">
+          <Button startIcon={<ArrowBackIcon />} size="large">
+            Go Back Home
+          </Button>
+        </LinkV2>
+      </div>
+    </ErrorBoundary>
   );
 };
 

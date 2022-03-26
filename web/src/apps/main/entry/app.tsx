@@ -133,7 +133,7 @@ export const App: FC = () => {
             <Navbar />
             <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
               <Suspense fallback={<Loading />}>
-                <Routes></Routes>
+                <Routes />
               </Suspense>
             </Container>
             <Footer />

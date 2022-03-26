@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { FC, useEffect } from "react";
@@ -20,20 +21,22 @@ export const TeamPage: FC = () => {
   }, []);
 
   return (
-    <ThemeProvider
-      direction={language.code === "ar" ? "rtl" : "ltr"}
-      mode={darkMode ? "dark" : "light"}
-    >
-      {teamList === "ERROR" ? (
-        <TryAgain
-          error="Ops, an error occurred while loading the projects, please try again..."
-          action="Try Again"
-          onClick={() => dispatch(fetchTeamList())}
-        />
-      ) : (
-        <Catalog teamList={teamList} />
-      )}
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider
+        direction={language.code === "ar" ? "rtl" : "ltr"}
+        mode={darkMode ? "dark" : "light"}
+      >
+        {teamList === "ERROR" ? (
+          <TryAgain
+            error="Ops, an error occurred while loading the projects, please try again..."
+            action="Try Again"
+            onClick={() => dispatch(fetchTeamList())}
+          />
+        ) : (
+          <Catalog teamList={teamList} />
+        )}
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 };
 

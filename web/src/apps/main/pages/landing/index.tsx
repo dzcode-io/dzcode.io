@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Button from "@material-ui/core/Button";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
@@ -39,7 +40,7 @@ export const LandingPage: FC = () => {
   }, []);
 
   return (
-    <>
+    <ErrorBoundary>
       <Header />
       <TopProjects />
       <div style={{ textAlign: "center" }}>
@@ -59,7 +60,7 @@ export const LandingPage: FC = () => {
         </LinkV2>
       </div>
       <Mobile />
-    </>
+    </ErrorBoundary>
   );
 };
 
