@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import Grid from "@material-ui/core/Grid";
@@ -27,36 +28,41 @@ export const LearnPage: FC = () => {
   const loadedCurrentDocument = isLoaded(currentDocument);
 
   return (
-    <Grid container className="learn">
-      {/* Sidebar */}
-      <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
-        {sidebarTree === "ERROR" ? (
-          <TryAgain
-            error="Ops, an error occurred while loading the documentation list, please try again..."
-            action="Try Again"
-            onClick={() => dispatch(fetchDocumentationList())}
+    <ErrorBoundary>
+      <Grid container className="learn">
+        {/* Sidebar */}
+        <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
+          {sidebarTree === "ERROR" ? (
+            <TryAgain
+              error="Ops, an error occurred while loading the documentation list, please try again..."
+              action="Try Again"
+              onClick={() => dispatch(fetchDocumentationList())}
+            />
+          ) : (
+            <Sidebar
+              tree={sidebarTree}
+              path={path}
+              expanded={expanded}
+              selected={loadedCurrentDocument ? loadedCurrentDocument.slug : ""}
+              isOpen={open}
+              onChange={(isOpen) => setOpen(isOpen)}
+            />
+          )}
+        </Grid>
+        {/* Content */}
+        <Grid item xs md={7}>
+          <Route
+            exact
+            path={`${path}`}
+            render={() => <Landing onShowSidebar={() => setOpen(true)} />}
           />
-        ) : (
-          <Sidebar
-            tree={sidebarTree}
-            path={path}
-            expanded={expanded}
-            selected={loadedCurrentDocument ? loadedCurrentDocument.slug : ""}
-            isOpen={open}
-            onChange={(isOpen) => setOpen(isOpen)}
+          <Route
+            path={`${path}/:documentSlug`}
+            render={() => <Content key={location.pathname} />}
           />
-        )}
+        </Grid>
       </Grid>
-      {/* Content */}
-      <Grid item xs md={7}>
-        <Route
-          exact
-          path={`${path}`}
-          render={() => <Landing onShowSidebar={() => setOpen(true)} />}
-        />
-        <Route path={`${path}/:documentSlug`} render={() => <Content key={location.pathname} />} />
-      </Grid>
-    </Grid>
+    </ErrorBoundary>
   );
 };
 

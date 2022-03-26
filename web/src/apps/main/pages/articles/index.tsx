@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import Grid from "@material-ui/core/Grid";
@@ -27,36 +28,38 @@ export const ArticlesPage: FC = () => {
   const loadedCurrentArticle = isLoaded(currentArticle);
 
   return (
-    <Grid container className="articles">
-      {/* Sidebar */}
-      <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
-        {sidebarTree === "ERROR" ? (
-          <TryAgain
-            error="Ops, an error occurred while loading the articles list, please try again..."
-            action="Try Again"
-            onClick={() => dispatch(fetchArticlesList())}
+    <ErrorBoundary>
+      <Grid container className="articles">
+        {/* Sidebar */}
+        <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
+          {sidebarTree === "ERROR" ? (
+            <TryAgain
+              error="Ops, an error occurred while loading the articles list, please try again..."
+              action="Try Again"
+              onClick={() => dispatch(fetchArticlesList())}
+            />
+          ) : (
+            <Sidebar
+              tree={sidebarTree}
+              path={path}
+              expanded={expanded}
+              selected={loadedCurrentArticle ? loadedCurrentArticle.slug : ""}
+              isOpen={open}
+              onChange={(isOpen) => setOpen(isOpen)}
+            />
+          )}
+        </Grid>
+        {/* Content */}
+        <Grid item xs md={7}>
+          <Route
+            exact
+            path={`${path}`}
+            render={() => <Landing onShowSidebar={() => setOpen(true)} />}
           />
-        ) : (
-          <Sidebar
-            tree={sidebarTree}
-            path={path}
-            expanded={expanded}
-            selected={loadedCurrentArticle ? loadedCurrentArticle.slug : ""}
-            isOpen={open}
-            onChange={(isOpen) => setOpen(isOpen)}
-          />
-        )}
+          <Route path={`${path}/:articleSlug`} render={() => <Content key={location.pathname} />} />
+        </Grid>
       </Grid>
-      {/* Content */}
-      <Grid item xs md={7}>
-        <Route
-          exact
-          path={`${path}`}
-          render={() => <Landing onShowSidebar={() => setOpen(true)} />}
-        />
-        <Route path={`${path}/:articleSlug`} render={() => <Content key={location.pathname} />} />
-      </Grid>
-    </Grid>
+    </ErrorBoundary>
   );
 };
 

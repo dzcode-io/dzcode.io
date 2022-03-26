@@ -19,6 +19,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@sentry/browser": "^6.11.0",
+    "@sentry/react": "^6.11.0",
     "@sentry/tracing": "^6.11.0",
     "immutable": "^4.0.0-rc.12",
     "l2t": "^1.1.0",

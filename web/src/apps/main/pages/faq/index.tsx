@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { FaqCard } from "@dzcode.io/ui/dist/faq-card";
 import { Grid } from "@dzcode.io/ui/dist/grid";
 import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
@@ -65,22 +66,24 @@ export const FaqPage: FC = () => {
   } = useSelector<StateInterface, StateInterface>((state) => state);
 
   return (
-    <ThemeProvider
-      direction={language.code === "ar" ? "rtl" : "ltr"}
-      mode={darkMode ? "dark" : "light"}
-    >
-      <Grid container gap={6} sx={{ mb: 6, mt: { xs: 0, lg: 2 } }}>
-        <Grid item xs={12}>
-          <PageTitle />
+    <ErrorBoundary>
+      <ThemeProvider
+        direction={language.code === "ar" ? "rtl" : "ltr"}
+        mode={darkMode ? "dark" : "light"}
+      >
+        <Grid container gap={6} sx={{ mb: 6, mt: { xs: 0, lg: 2 } }}>
+          <Grid item xs={12}>
+            <PageTitle />
+          </Grid>
+          <Grid item xs={12}>
+            <FaqCards />
+          </Grid>
+          <Grid item xs={12}>
+            <PageFooter />
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <FaqCards />
-        </Grid>
-        <Grid item xs={12}>
-          <PageFooter />
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 };
 

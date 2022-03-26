@@ -88,6 +88,13 @@ jobs:
           name: codecov-utils
           directory: ./packages/utils
           fail_ci_if_error: true
+      - uses: codecov/codecov-action@v2
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        with:
+          flags: ui
+          name: codecov-ui
+          directory: ./packages/ui
+          fail_ci_if_error: true
 
       - name: "Misc"
         shell: bash

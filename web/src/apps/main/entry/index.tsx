@@ -16,7 +16,7 @@ if (env !== "development") {
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 1.0,
     environment: env,
-    debug: env === "staging",
+    debug: env !== "production",
     release: `web@${window.bundleInfo.version}`,
   });
 }

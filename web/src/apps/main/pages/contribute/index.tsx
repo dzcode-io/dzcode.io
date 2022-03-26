@@ -1,3 +1,4 @@
+import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Grid from "@material-ui/core/Grid";
 import { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -15,16 +16,18 @@ export const ContributePage: FC = () => {
   }, []);
 
   return (
-    <Grid container className="contribute-page" spacing={1}>
-      {/* Filters */}
-      <Grid item xs={false} md={3}>
-        <Filters />
+    <ErrorBoundary>
+      <Grid container className="contribute-page" spacing={1}>
+        {/* Filters */}
+        <Grid item xs={false} md={3}>
+          <Filters />
+        </Grid>
+        {/* Content */}
+        <Grid item xs={12} md={9}>
+          <Contributions />
+        </Grid>
       </Grid>
-      {/* Content */}
-      <Grid item xs={12} md={9}>
-        <Contributions />
-      </Grid>
-    </Grid>
+    </ErrorBoundary>
   );
 };
 
