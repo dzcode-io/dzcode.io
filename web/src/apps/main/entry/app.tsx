@@ -1,5 +1,6 @@
 import "./style.scss";
 
+import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Container from "@material-ui/core/Container";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
 import { defineMessages, useIntl } from "react-intl";
@@ -126,17 +127,19 @@ export const App: FC = () => {
 
   return (
     <Theme>
-      <Localization>
-        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-          <Navbar />
-          <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
-            <Suspense fallback={<Loading />}>
-              <Routes></Routes>
-            </Suspense>
-          </Container>
-          <Footer />
-        </div>
-      </Localization>
+      <ErrorBoundary>
+        <Localization>
+          <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+            <Navbar />
+            <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
+              <Suspense fallback={<Loading />}>
+                <Routes></Routes>
+              </Suspense>
+            </Container>
+            <Footer />
+          </div>
+        </Localization>
+      </ErrorBoundary>
     </Theme>
   );
 };
