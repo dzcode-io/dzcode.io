@@ -1,4 +1,6 @@
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { isLoaded } from "@dzcode.io/utils/dist/loadable";
+import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { ThunkResult } from "src/apps/main/redux";
 import { ArticlesState } from "src/apps/main/redux/reducers/articles";
@@ -13,6 +15,10 @@ import { fetchV2 } from "src/common/utils/fetch";
 export const fetchArticlesList =
   (): ThunkResult<ArticlesPageState> => async (dispatch, getState) => {
     try {
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: { sidebarTree: null },
+      });
       const currentLanguage = getState().settings.language;
 
       const articlesList = await fetchV2("data:articles/list.c.json", {
@@ -41,7 +47,11 @@ export const fetchArticlesList =
         payload: { sidebarTree: tree, expanded: ids },
       });
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: { sidebarTree: "ERROR" },
+      });
+      Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
     }
   };
 
@@ -51,68 +61,102 @@ export const fetchArticlesList =
 export const fetchCurrentArticleContributors =
   (): ThunkResult<ArticlesPageState | ArticlesState> => async (dispatch, getState) => {
     const { currentArticle } = getState().articlesPage;
-    if (!currentArticle || Array.isArray(currentArticle.contributors)) return;
+    const loadedCurrentArticle = isLoaded(currentArticle);
 
-    const { contributors } = await fetchV2("api:Contributors", {
-      query: [["path", `articles/${currentArticle.slug}`]],
-    });
+    // Don't re-fetch data again
+    if (!loadedCurrentArticle || isLoaded(loadedCurrentArticle.contributors)) return;
 
-    //  getting the  most recent  current article
-    const mrCurrentArticle = getState().articlesPage.currentArticle || currentArticle;
-    // update our page state
-    dispatch({
-      type: "UPDATE_ARTICLES_PAGE",
-      payload: {
-        currentArticle: {
-          ...mrCurrentArticle,
-          contributors: contributors.filter(
-            ({ login }) => !mrCurrentArticle.authors?.includes(login),
-          ),
+    try {
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: { currentArticle: { ...loadedCurrentArticle, contributors: null } },
+      });
+      const { contributors } = await fetchV2("api:Contributors", {
+        query: [["path", `articles/${loadedCurrentArticle.slug}`]],
+      });
+      //  getting the current article from a fresh state
+      const freshCurrentArticle =
+        isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
+
+      // update our page state
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: {
+          currentArticle: {
+            ...freshCurrentArticle,
+            // Filter the author out the contributors
+            contributors: contributors.filter(
+              ({ login }) => !freshCurrentArticle.authors?.includes(login),
+            ),
+          },
         },
-      },
-    });
-    // update our cache state
-    dispatch({
-      type: "UPDATE_ARTICLES",
-      payload: { list: [{ ...mrCurrentArticle, contributors }] },
-    });
+      });
+      // update our cache state
+      dispatch({
+        type: "UPDATE_ARTICLES",
+        payload: { list: [{ ...freshCurrentArticle, contributors }] },
+      });
+    } catch (error) {
+      const freshCurrentArticle =
+        isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: { currentArticle: { ...freshCurrentArticle, contributors: "ERROR" } },
+      });
+      Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
+    }
   };
 
 /**
- * Fetches the authors of the an current article
+ * Fetches the authors of the current article
  */
-const fetchCurrentArticleAuthors =
+export const fetchCurrentArticleAuthors =
   (): ThunkResult<ArticlesPageState | ArticlesState> => async (dispatch, getState) => {
     const { currentArticle } = getState().articlesPage;
+    const loadedCurrentArticle = isLoaded(currentArticle);
 
-    if (!currentArticle || Array.isArray(currentArticle.githubAuthors)) return;
+    // Don't re-fetch data again
+    if (!loadedCurrentArticle || isLoaded(loadedCurrentArticle.githubAuthors)) return;
 
-    const githubAuthors = (
-      await Promise.all(
-        currentArticle.authors?.map((author) => {
-          return fetchV2("api:GithubUsers/:login", {
-            params: { login: author },
-          });
-        }) || [],
-      )
-    ).map((response) => {
-      return response.user;
-    });
+    try {
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: { currentArticle: { ...loadedCurrentArticle, githubAuthors: null } },
+      });
 
-    //  getting the  most recent  current article
-    const mrCurrentArticle = getState().articlesPage.currentArticle || currentArticle;
-
-    // update our page state
-
-    dispatch({
-      type: "UPDATE_ARTICLES_PAGE",
-      payload: { currentArticle: { ...mrCurrentArticle, githubAuthors } },
-    });
-    // update our cache state
-    dispatch({
-      type: "UPDATE_ARTICLES",
-      payload: { list: [{ ...mrCurrentArticle, githubAuthors }] },
-    });
+      const githubAuthors = (
+        await Promise.all(
+          loadedCurrentArticle.authors?.map((author) => {
+            return fetchV2("api:GithubUsers/:login", {
+              params: { login: author },
+            });
+          }) || [],
+        )
+      ).map((response) => {
+        return response.user;
+      });
+      //  getting the current article from a fresh state
+      const freshCurrentArticle =
+        isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
+      // update our page state
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: { currentArticle: { ...freshCurrentArticle, githubAuthors } },
+      });
+      // update our cache state
+      dispatch({
+        type: "UPDATE_ARTICLES",
+        payload: { list: [{ ...freshCurrentArticle, githubAuthors }] },
+      });
+    } catch (error) {
+      const freshCurrentArticle =
+        isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
+      dispatch({
+        type: "UPDATE_ARTICLES_PAGE",
+        payload: { currentArticle: { ...freshCurrentArticle, githubAuthors: "ERROR" } },
+      });
+      Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
+    }
   };
 
 /**
@@ -167,7 +211,11 @@ export const fetchCurrentArticle =
         // Fetch contributors
         dispatch(fetchCurrentArticleContributors());
       } catch (error) {
-        console.error(error);
+        dispatch({
+          type: "UPDATE_ARTICLES_PAGE",
+          payload: { currentArticle: "ERROR" },
+        });
+        Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
       }
     }
   };

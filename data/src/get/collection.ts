@@ -48,7 +48,7 @@ export const getCollection = <T = Record<string, unknown>>(
     );
     return {
       slug,
-      ...entry,
+      ...(entry === 404 ? { error: { code: 404 } } : entry),
     };
   });
 

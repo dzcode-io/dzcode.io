@@ -1,11 +1,13 @@
+import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Card } from "src/apps/main/components/card";
-import { StateInterface } from "src/apps/main/redux";
+import { Dispatch, StateInterface } from "src/apps/main/redux";
+import { fetchTopArticles } from "src/apps/main/redux/actions/landing-page";
 import { LandingPageState } from "src/apps/main/redux/reducers/landing-page";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +38,7 @@ export const TopArticles: FC = () => {
   const { topArticles } = useSelector<StateInterface, LandingPageState>(
     (state) => state.landingPage,
   );
+  const dispatch = useDispatch<Dispatch<LandingPageState>>();
 
   return (
     <section className={classes.root}>
@@ -49,25 +52,34 @@ export const TopArticles: FC = () => {
         />
       </Typography>
       <Grid container className={classes.topArticles} spacing={4}>
-        {topArticles
-          ? topArticles.map((article) => (
-              <Grid key={`article-${article.slug}`} item xs={12} md={6} lg={4}>
-                <Card
-                  info={{
-                    image: article.image || "",
-                    title: article.title,
-                    description: article.description || "",
-                    link: `/Articles/${article.slug}`,
-                    actionLabel: "Read Article",
-                  }}
-                />
-              </Grid>
-            ))
-          : [1, 2, 3].map((id) => (
-              <Grid key={`article-${id}`} item xs={12} md={6} lg={4}>
-                <Card />
-              </Grid>
-            ))}
+        {topArticles === "ERROR" ? (
+          <TryAgain
+            error="Ops, an error occurred while loading the top articles, please try again..."
+            action="Try Again"
+            onClick={() => dispatch(fetchTopArticles())}
+            stretch={true}
+          />
+        ) : topArticles ? (
+          topArticles.map((article) => (
+            <Grid key={`article-${article.slug}`} item xs={12} md={6} lg={4}>
+              <Card
+                info={{
+                  image: article.image || "",
+                  title: article.title,
+                  description: article.description || "",
+                  link: `/Articles/${article.slug}`,
+                  actionLabel: "Read Article",
+                }}
+              />
+            </Grid>
+          ))
+        ) : (
+          [1, 2, 3].map((id) => (
+            <Grid key={`article-${id}`} item xs={12} md={6} lg={4}>
+              <Card />
+            </Grid>
+          ))
+        )}
       </Grid>
     </section>
   );

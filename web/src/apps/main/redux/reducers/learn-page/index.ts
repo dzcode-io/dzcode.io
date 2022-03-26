@@ -1,11 +1,12 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { Action } from "src/apps/main/redux";
 import { SidebarTreeItem } from "src/apps/main/types";
 
 export interface LearnPageState {
-  sidebarTree: SidebarTreeItem[] | null;
+  sidebarTree: LOADABLE<SidebarTreeItem[]>;
   expanded: string[];
-  currentDocument: Document | null;
+  currentDocument: LOADABLE<Document>;
 }
 
 export const learnPage = (

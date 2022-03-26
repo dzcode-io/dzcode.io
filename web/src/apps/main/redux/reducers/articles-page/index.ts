@@ -1,11 +1,12 @@
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { Action } from "src/apps/main/redux";
 import { SidebarTreeItem } from "src/apps/main/types";
 
 export interface ArticlesPageState {
-  sidebarTree: SidebarTreeItem[] | null;
+  sidebarTree: LOADABLE<SidebarTreeItem[]>;
   expanded: string[];
-  currentArticle: Article | null;
+  currentArticle: LOADABLE<Article>;
 }
 
 export const articlesPage = (

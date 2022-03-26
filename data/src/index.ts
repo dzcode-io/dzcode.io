@@ -15,28 +15,35 @@ app.use((req, res, next) => {
 });
 
 // Collections
-app.get("/:type/:collection(\\S+.c.json$)", (req, res) =>
-  res.json(
-    getCollection(
-      join(__dirname, ".."),
-      req.params.type,
-      req.params.collection,
-      req.query.language as string,
-    ),
-  ),
-);
+app.get("/:type/:collection(\\S+.c.json$)", (req, res) => {
+  const collection = getCollection(
+    join(__dirname, ".."),
+    req.params.type,
+    req.params.collection,
+    req.query.language as string,
+  );
+
+  if (typeof collection === "number") {
+    return res.sendStatus(404);
+  }
+
+  return res.json(collection);
+});
 
 // Entries
-app.get("/:type/:entry([\\/\\S]+.json$)", (req, res) =>
-  res.json(
-    getEntry(
-      join(__dirname, ".."),
-      `${req.params.type}/${req.params.entry.slice(0, -5)}`,
-      undefined,
-      req.query.language as string,
-    ),
-  ),
-);
+app.get("/:type/:entry([\\/\\S]+.json$)", (req, res) => {
+  const entry = getEntry(
+    join(__dirname, ".."),
+    `${req.params.type}/${req.params.entry.slice(0, -5)}`,
+    undefined,
+    req.query.language as string,
+  );
+
+  if (typeof entry === "number") {
+    return res.sendStatus(404);
+  }
+  return res.json(entry);
+});
 
 // Start the server
 const { port, url } = getConfig();

@@ -28,7 +28,6 @@ export const fetchV2 = async <
       url = url.replace(`:${param}`, params[param]);
     });
   }
-  console.log(url);
 
   let baseURL = "";
 
@@ -40,6 +39,10 @@ export const fetchV2 = async <
       baseURL = fullstackConfig.api.url;
       break;
   }
-  const response = await fetch(`${baseURL}/${url}${queryString}`, { body });
+  const fullUrl = `${baseURL}/${url}${queryString}`;
+  const response = await fetch(fullUrl, { body });
+  if (!response.ok) {
+    throw new Error(`Fetch: ${response.statusText}: (${fullUrl})`);
+  }
   return (await response.json()) as C[D & "response"];
 };

@@ -1,6 +1,7 @@
 import "./style.scss";
 
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { Divider } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -94,7 +95,13 @@ export const Content: FC = () => {
 
   return (
     <>
-      {currentArticle ? (
+      {currentArticle === "ERROR" ? (
+        <TryAgain
+          error="Ops, an error occurred while loading the selected article, please try again..."
+          action="Try Again"
+          onClick={() => dispatch(fetchCurrentArticle())}
+        />
+      ) : currentArticle ? (
         <>
           {/* Image */}
           {currentArticle.image && (
@@ -123,9 +130,9 @@ export const Content: FC = () => {
             open
           />
           <Divider className={classes.spacing} />
-          {/* AUhtors */}
-          <Authors githubAuthors={currentArticle.githubAuthors} />
 
+          {/* Authors */}
+          <Authors githubAuthors={currentArticle.githubAuthors} />
           <Divider className={classes.spacing} />
           {/* Contributors */}
           <Contributors contributors={currentArticle.contributors} />

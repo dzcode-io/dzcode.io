@@ -1,6 +1,7 @@
 import "./style.scss";
 
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { Divider } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -92,9 +93,15 @@ export const Content: FC = () => {
   );
 
   return (
-    <div>
-      {currentDocument ? (
-        <div>
+    <>
+      {currentDocument === "ERROR" ? (
+        <TryAgain
+          error="Ops, an error occurred while loading the selected document, please try again..."
+          action="Try Again"
+          onClick={() => dispatch(fetchCurrentDocument())}
+        />
+      ) : currentDocument ? (
+        <>
           {/* Image */}
           {currentDocument.image && (
             <img
@@ -124,10 +131,10 @@ export const Content: FC = () => {
 
           <Divider className={classes.spacing} />
           {/* Authors */}
-          <Authors githubAuthors={currentDocument.githubAuthors} />
+          <Authors githubAuthors={currentDocument.githubAuthors || []} />
           <Divider className={classes.spacing} />
           {/* Contributors */}
-          <Contributors contributors={currentDocument.contributors} />
+          <Contributors contributors={currentDocument.contributors || []} />
           <Divider className={classes.spacing} />
           {/* Comments */}
           <div
@@ -137,10 +144,10 @@ export const Content: FC = () => {
             data-numposts="5"
           />
           <div className={classes.spacing} />
-        </div>
+        </>
       ) : (
         ContentSkeleton
       )}
-    </div>
+    </>
   );
 };

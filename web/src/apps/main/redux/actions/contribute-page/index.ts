@@ -1,4 +1,5 @@
 import debounce from "@material-ui/core/utils/debounce";
+import * as Sentry from "@sentry/browser";
 import { ThunkResult } from "src/apps/main/redux";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
 import { fetchV2 } from "src/common/utils/fetch";
@@ -53,7 +54,11 @@ export const fetchContributions =
         payload: { contributions, filters: newFilters },
       });
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: "UPDATE_CONTRIBUTE_PAGE",
+        payload: { contributions: "ERROR" },
+      });
+      Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
     }
   };
 

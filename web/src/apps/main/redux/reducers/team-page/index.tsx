@@ -1,8 +1,9 @@
 import { GetTeamResponseDto } from "@dzcode.io/api/dist/team/types";
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { Action } from "src/apps/main/redux";
 
 export interface TeamPageState {
-  teamList: GetTeamResponseDto["contributors"] | null;
+  teamList: LOADABLE<GetTeamResponseDto["contributors"]>;
 }
 
 export const teamPage = (
