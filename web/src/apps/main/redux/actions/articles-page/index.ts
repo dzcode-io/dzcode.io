@@ -27,7 +27,7 @@ export const fetchArticlesList =
       const ids: string[] = [];
 
       // convert list into tree
-      const tree = listToTree<Article, SidebarTreeItem>(
+      const tree = listToTree<typeof articlesList[0], SidebarTreeItem>(
         articlesList,
         (item) => item.slug,
         (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
