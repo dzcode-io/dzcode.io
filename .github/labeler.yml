@@ -38,3 +38,7 @@ utils:
 # Add 'tooling' to any changes within 'tooling' folder or any subfolders
 tooling:
   - packages/tooling/**/*
+
+# Add 'ui' to any changes within 'ui' folder or any subfolders
+ui:
+  - packages/ui/**/*
