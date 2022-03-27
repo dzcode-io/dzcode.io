@@ -1,4 +1,5 @@
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import { useNavigation } from "@react-navigation/native";
 import { Route } from "@react-navigation/routers";
 import React, { FC, useEffect } from "react";
@@ -8,6 +9,7 @@ import { Text } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DZCodeLoading } from "../../../components/loading";
+import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
 import { fetchArticle } from "../../../redux/actions/articles-screen";
 import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
@@ -30,6 +32,11 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
     (state) => state.articlesScreen,
   );
+  const loadedArticle = isLoaded(articles);
+  const currentArticle = (
+    loadedArticle?.filter((article) => (article as Article).content) as Article[]
+  ).find((article) => article.slug === route.params.article.slug);
+
   const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
   const dispatch = useDispatch<Dispatch<ArticlesScreenState>>();
@@ -46,18 +53,11 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
         <View style={globalStyles.centerView}>
           <DZCodeLoading />
         </View>
-      ) : (
+      ) : currentArticle ? (
         <ScrollView>
-          <Image
-            source={{
-              uri: articles?.find((article) => article.slug === route.params.article.slug)?.image,
-            }}
-            style={articleDetailsStyles.image}
-          />
+          <Image source={{ uri: currentArticle.image }} style={articleDetailsStyles.image} />
           <Text style={articleDetailsStyles.authorsText}>{route.params.article.title}</Text>
-          <Text style={articleDetailsStyles.descriptionText}>
-            {articles?.find((article) => article.slug === route.params.article.slug)?.description}
-          </Text>
+          <Text style={articleDetailsStyles.descriptionText}>{currentArticle.description}</Text>
           <Markdown
             style={{
               text: {
@@ -90,15 +90,18 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
               return true;
             }}
           >
-            {articles?.find((article) => article.slug === route.params.article.slug)?.content || ""}
+            {currentArticle.content}
           </Markdown>
           <Text style={articleDetailsStyles.authorsText}>
-            Authors:{" "}
-            {articles
-              ?.find((article) => article.slug === route.params.article.slug)
-              ?.authors?.join(", ")}
+            Authors: {currentArticle.authors?.join(", ")}
           </Text>
         </ScrollView>
+      ) : (
+        <TryAgain
+          error="Ops, an error occurred while loading the selected article, please try again..."
+          action="Try Again"
+          onClick={() => dispatch(fetchArticle(route.params.article.slug))}
+        />
       )}
     </SafeAreaView>
   );

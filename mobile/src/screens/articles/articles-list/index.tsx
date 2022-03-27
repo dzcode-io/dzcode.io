@@ -5,6 +5,7 @@ import { Button, Divider } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DZCodeLoading } from "../../../components/loading";
+import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
 import { fetchArticles } from "../../../redux/actions/articles-screen";
 import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
@@ -27,7 +28,13 @@ export const ArticlesListScreen: FC = () => {
   return (
     // main view
     <SafeAreaView style={globalStyles.mainView}>
-      {articles ? (
+      {articles === "ERROR" ? (
+        <TryAgain
+          error="Ops, an error occurred while loading the articles, please try again..."
+          action="Try Again"
+          onClick={() => dispatch(fetchArticles(true))}
+        />
+      ) : articles ? (
         <FlatList
           data={articles}
           onRefresh={() => dispatch(fetchArticles())}

@@ -1,9 +1,15 @@
-import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 
 import { Action } from "../..";
 
 export interface ArticlesScreenState {
-  articles: Article[] | null;
+  articles: LOADABLE<
+    Array<
+      | Endpoints["data:articles/list.c.json"]["response"][number]
+      | Endpoints["data:articles/:slug.json"]["response"]
+    >
+  >;
   refreshing: boolean;
 }
 

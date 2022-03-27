@@ -8,7 +8,7 @@ import { Article, Document, Project } from "./types/legacy";
 
 export interface Endpoints {
   "data:articles/list.c.json": {
-    response: Article[]; // TODO-ZM: should be: Pick<Article, "title" | "slug">[] instead
+    response: Pick<Article, "title" | "slug">[];
     query: [["language", LanguageEntity["code"]]];
   };
   "data:articles/:slug.json": {
