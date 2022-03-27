@@ -8,6 +8,7 @@ import Markdown from "react-native-markdown-display";
 import { Text } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 
+import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
@@ -48,61 +49,63 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   }, []);
 
   return (
-    <SafeAreaView style={globalStyles.mainView}>
-      {refreshing ? (
-        <View style={globalStyles.centerView}>
-          <DZCodeLoading />
-        </View>
-      ) : currentArticle ? (
-        <ScrollView>
-          <Image source={{ uri: currentArticle.image }} style={articleDetailsStyles.image} />
-          <Text style={articleDetailsStyles.authorsText}>{route.params.article.title}</Text>
-          <Text style={articleDetailsStyles.descriptionText}>{currentArticle.description}</Text>
-          <Markdown
-            style={{
-              text: {
-                color: theme === "dark" ? "white" : "black",
-              },
-              /* eslint-disable camelcase */
-              bullet_list: {
-                color: theme === "dark" ? "white" : "black",
-              },
-              ordered_list: {
-                color: theme === "dark" ? "white" : "black",
-              },
-              fence: {
-                color: theme === "dark" ? "white" : "black",
-                backgroundColor: theme === "dark" ? "black" : "white",
-              },
-              blockquote: {
-                color: theme === "dark" ? "white" : "black",
-                backgroundColor: theme === "dark" ? "black" : "white",
-              },
-              code_inline: {
-                color: theme === "dark" ? "white" : "black",
-                backgroundColor: theme === "dark" ? "black" : "white",
-              },
-              body: articleDetailsStyles.mdBody,
-              /* eslint-enable camelcase */
-            }}
-            onLinkPress={(url) => {
-              openLink(url, navigation);
-              return true;
-            }}
-          >
-            {currentArticle.content}
-          </Markdown>
-          <Text style={articleDetailsStyles.authorsText}>
-            Authors: {currentArticle.authors?.join(", ")}
-          </Text>
-        </ScrollView>
-      ) : (
-        <TryAgain
-          error="Ops, an error occurred while loading the selected article, please try again..."
-          action="Try Again"
-          onClick={() => dispatch(fetchArticle(route.params.article.slug))}
-        />
-      )}
-    </SafeAreaView>
+    <ErrorBoundary>
+      <SafeAreaView style={globalStyles.mainView}>
+        {refreshing ? (
+          <View style={globalStyles.centerView}>
+            <DZCodeLoading />
+          </View>
+        ) : currentArticle ? (
+          <ScrollView>
+            <Image source={{ uri: currentArticle.image }} style={articleDetailsStyles.image} />
+            <Text style={articleDetailsStyles.authorsText}>{route.params.article.title}</Text>
+            <Text style={articleDetailsStyles.descriptionText}>{currentArticle.description}</Text>
+            <Markdown
+              style={{
+                text: {
+                  color: theme === "dark" ? "white" : "black",
+                },
+                /* eslint-disable camelcase */
+                bullet_list: {
+                  color: theme === "dark" ? "white" : "black",
+                },
+                ordered_list: {
+                  color: theme === "dark" ? "white" : "black",
+                },
+                fence: {
+                  color: theme === "dark" ? "white" : "black",
+                  backgroundColor: theme === "dark" ? "black" : "white",
+                },
+                blockquote: {
+                  color: theme === "dark" ? "white" : "black",
+                  backgroundColor: theme === "dark" ? "black" : "white",
+                },
+                code_inline: {
+                  color: theme === "dark" ? "white" : "black",
+                  backgroundColor: theme === "dark" ? "black" : "white",
+                },
+                body: articleDetailsStyles.mdBody,
+                /* eslint-enable camelcase */
+              }}
+              onLinkPress={(url) => {
+                openLink(url, navigation);
+                return true;
+              }}
+            >
+              {currentArticle.content}
+            </Markdown>
+            <Text style={articleDetailsStyles.authorsText}>
+              Authors: {currentArticle.authors?.join(", ")}
+            </Text>
+          </ScrollView>
+        ) : (
+          <TryAgain
+            error="Ops, an error occurred while loading the selected article, please try again..."
+            action="Try Again"
+            onClick={() => dispatch(fetchArticle(route.params.article.slug))}
+          />
+        )}
+      </SafeAreaView>
+    </ErrorBoundary>
   );
 };

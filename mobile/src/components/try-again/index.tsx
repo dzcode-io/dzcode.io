@@ -14,6 +14,7 @@ export const TryAgain: FC<{
         alignItems: "center",
         flex: 1,
         zIndex: 0,
+        padding: 10,
       }}
     >
       <Headline style={{ marginVertical: 24 }}>{error}</Headline>

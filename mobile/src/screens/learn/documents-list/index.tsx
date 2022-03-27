@@ -4,6 +4,7 @@ import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 
+import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
@@ -26,34 +27,36 @@ export const DocumentsListScreen: FC = () => {
   }, []);
 
   return (
-    <SafeAreaView style={globalStyles.mainView}>
-      {documents === "ERROR" ? (
-        <TryAgain
-          error="Ops, an error occurred while loading the documentation, please try again..."
-          action="Try Again"
-          onClick={() => dispatch(fetchDocuments(true))}
-        />
-      ) : documents ? (
-        <FlatList
-          data={documents}
-          onRefresh={() => dispatch(fetchDocuments())}
-          refreshing={refreshing}
-          ItemSeparatorComponent={() => <Divider />}
-          keyExtractor={(item, index) => `item-${index}`}
-          renderItem={({ item }) => (
-            <Button
-              style={documentsListStyles.button}
-              onPress={() => navigation.navigate("document-details", { document: item })}
-            >
-              {item.slug.includes("/") ? `   ${item.title}` : item.title}
-            </Button>
-          )}
-        />
-      ) : (
-        <View style={globalStyles.centerView}>
-          <DZCodeLoading />
-        </View>
-      )}
-    </SafeAreaView>
+    <ErrorBoundary>
+      <SafeAreaView style={globalStyles.mainView}>
+        {documents === "ERROR" ? (
+          <TryAgain
+            error="Ops, an error occurred while loading the documentation, please try again..."
+            action="Try Again"
+            onClick={() => dispatch(fetchDocuments(true))}
+          />
+        ) : documents ? (
+          <FlatList
+            data={documents}
+            onRefresh={() => dispatch(fetchDocuments())}
+            refreshing={refreshing}
+            ItemSeparatorComponent={() => <Divider />}
+            keyExtractor={(item, index) => `item-${index}`}
+            renderItem={({ item }) => (
+              <Button
+                style={documentsListStyles.button}
+                onPress={() => navigation.navigate("document-details", { document: item })}
+              >
+                {item.slug.includes("/") ? `   ${item.title}` : item.title}
+              </Button>
+            )}
+          />
+        ) : (
+          <View style={globalStyles.centerView}>
+            <DZCodeLoading />
+          </View>
+        )}
+      </SafeAreaView>
+    </ErrorBoundary>
   );
 };

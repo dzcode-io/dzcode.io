@@ -1,5 +1,5 @@
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
-import * as Sentry from "@sentry/browser";
+import * as Sentry from "@sentry/react-native";
 
 import { fetchV2 } from "../../../utils/fetch";
 import { ThunkResult } from "../..";
