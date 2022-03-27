@@ -1,4 +1,5 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import { Route } from "@react-navigation/routers";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
@@ -7,6 +8,7 @@ import { Text } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DZCodeLoading } from "../../../components/loading";
+import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
 import { fetchDocument } from "../../../redux/actions/learn-screen";
 import { GeneralState } from "../../../redux/reducers/general";
@@ -28,6 +30,10 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   const { documents, refreshing } = useSelector<StateInterface, LearnScreenState>(
     (state) => state.learnScreen,
   );
+  const loadedDocuments = isLoaded(documents);
+  const currentDocument = (
+    loadedDocuments?.filter((document) => (document as Document).content) as Document[]
+  ).find((document) => document.slug === route.params.document.slug);
 
   const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
@@ -43,16 +49,11 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
         <View style={globalStyles.centerView}>
           <DZCodeLoading />
         </View>
-      ) : (
+      ) : currentDocument ? (
         <ScrollView>
-          <Image
-            source={{ uri: documents?.find((d) => d.slug === route.params.document.slug)?.image }}
-            style={documentDetailsStyles.image}
-          />
+          <Image source={{ uri: currentDocument.image }} style={documentDetailsStyles.image} />
           <Text style={documentDetailsStyles.authorsText}>{route.params.document.title}</Text>
-          <Text style={documentDetailsStyles.descriptionText}>
-            {documents?.find((d) => d.slug === route.params.document.slug)?.description}
-          </Text>
+          <Text style={documentDetailsStyles.descriptionText}>{currentDocument.description}</Text>
           <Markdown
             style={{
               text: {
@@ -81,16 +82,18 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
               /* eslint-enable camelcase */
             }}
           >
-            {documents?.find((document) => document.slug === route.params.document.slug)?.content ||
-              ""}
+            {currentDocument.content}
           </Markdown>
           <Text style={documentDetailsStyles.authorsText}>
-            Authors:{" "}
-            {documents
-              ?.find((document) => document.slug === route.params.document.slug)
-              ?.authors?.join(", ")}
+            Authors: {currentDocument.authors?.join(", ")}
           </Text>
         </ScrollView>
+      ) : (
+        <TryAgain
+          error="Ops, an error occurred while loading the selected document, please try again..."
+          action="Try Again"
+          onClick={() => dispatch(fetchDocument(route.params.document.slug))}
+        />
       )}
     </SafeAreaView>
   );

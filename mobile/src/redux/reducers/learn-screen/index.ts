@@ -1,9 +1,15 @@
-import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 
 import { Action } from "../..";
 
 export interface LearnScreenState {
-  documents: Document[] | null;
+  documents: LOADABLE<
+    Array<
+      | Endpoints["data:documentation/list.c.json"]["response"][number]
+      | Endpoints["data:documentation/:slug.json"]["response"]
+    >
+  >;
   refreshing: boolean;
 }
 

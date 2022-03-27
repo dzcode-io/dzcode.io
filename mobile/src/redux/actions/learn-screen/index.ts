@@ -1,3 +1,6 @@
+import { isLoaded } from "@dzcode.io/utils/dist/loadable";
+import * as Sentry from "@sentry/browser";
+
 import { fetchV2 } from "../../../utils/fetch";
 import { ThunkResult } from "../..";
 import { LearnScreenState } from "../../reducers/learn-screen";
@@ -6,26 +9,32 @@ import { LearnScreenState } from "../../reducers/learn-screen";
  * @function fetchDocuments
  * @description Fetch documents from the server and pass them to the reducer
  */
-export const fetchDocuments = (): ThunkResult<LearnScreenState> => async (dispatch) => {
-  dispatch({
-    type: "UPDATE_LEARN_SCREEN",
-    payload: { refreshing: true },
-  });
-  try {
-    const documents = await fetchV2("data:documentation/list.c.json", {
-      query: [["language", "en"]],
-    });
+export const fetchDocuments =
+  (reset = false): ThunkResult<LearnScreenState> =>
+  async (dispatch) => {
     dispatch({
       type: "UPDATE_LEARN_SCREEN",
-      payload: {
-        documents: documents as unknown as LearnScreenState["documents"],
-        refreshing: false,
-      },
+      payload: { refreshing: true, ...(reset ? { documents: null } : {}) },
     });
-  } catch (error) {
-    console.error(error);
-  }
-};
+    try {
+      const documents = await fetchV2("data:documentation/list.c.json", {
+        query: [["language", "en"]],
+      });
+      dispatch({
+        type: "UPDATE_LEARN_SCREEN",
+        payload: {
+          documents,
+          refreshing: false,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: "UPDATE_LEARN_SCREEN",
+        payload: { refreshing: false, documents: "ERROR" },
+      });
+      Sentry.captureException(error, { tags: { type: "MOBILE_FETCH" } });
+    }
+  };
 
 /**
  * @function fetchDocument
@@ -41,6 +50,7 @@ export const fetchDocument =
     });
     try {
       const { documents } = getState().learnScreen;
+      const loadedDocuments = isLoaded(documents);
       const document = await fetchV2("data:documentation/:slug.json", {
         params: { slug },
         query: [["language", "en"]],
@@ -48,12 +58,17 @@ export const fetchDocument =
       dispatch({
         type: "UPDATE_LEARN_SCREEN",
         payload: {
-          // update only the found document
-          documents: documents?.map((doc) => (doc.slug === slug ? document : doc)),
+          documents: loadedDocuments
+            ? loadedDocuments.map((doc) => (doc.slug === slug ? document : doc))
+            : [document],
           refreshing: false,
         },
       });
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: "UPDATE_LEARN_SCREEN",
+        payload: { refreshing: false },
+      });
+      Sentry.captureException(error, { tags: { type: "MOBILE_FETCH" } });
     }
   };

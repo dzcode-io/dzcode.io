@@ -32,9 +32,9 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
     (state) => state.articlesScreen,
   );
-  const loadedArticle = isLoaded(articles);
+  const loadedArticles = isLoaded(articles);
   const currentArticle = (
-    loadedArticle?.filter((article) => (article as Article).content) as Article[]
+    loadedArticles?.filter((article) => (article as Article).content) as Article[]
   ).find((article) => article.slug === route.params.article.slug);
 
   const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
