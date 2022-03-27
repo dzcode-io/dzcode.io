@@ -18,7 +18,7 @@ export const fetchDocuments = (): ThunkResult<LearnScreenState> => async (dispat
     dispatch({
       type: "UPDATE_LEARN_SCREEN",
       payload: {
-        documents,
+        documents: documents as unknown as LearnScreenState["documents"],
         refreshing: false,
       },
     });

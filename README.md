@@ -85,8 +85,8 @@ If you use VSCode, please make sure to have a `.vscode/settings.json` file with 
 
 ```json
 {
-  "prettier.configPath": "./packages/tooling/.prettierrc",
-  "eslint.options": { "overrideConfigFile": "./packages/tooling/.eslintrc.json" }
+  "prettier.configPath": "packages/tooling/.prettierrc",
+  "eslint.options": { "overrideConfigFile": "packages/tooling/.eslintrc.json" }
 }
 ```
 
