@@ -2,7 +2,7 @@
   "expo": {
     "name": "DzCode i/o",
     "slug": "dzcode",
-    "version": "3.0.4",
+    "version": "3.8.0",
     "orientation": "portrait",
     "icon": "./src/assets/png/icon.png",
     "scheme": "dzcode",
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "io.dzcode.mobile",
-      "buildNumber": "3.0.4",
+      "buildNumber": "3.8.0",
       "userInterfaceStyle": "automatic"
     },
     "android": {
@@ -29,13 +29,19 @@
       },
       "permissions": [],
       "package": "io.dzcode.mobile",
-      "versionCode": 304,
+      "versionCode": 380,
       "userInterfaceStyle": "automatic"
     },
     "web": {
       "favicon": "./src/assets/png/favicon.png"
     },
     "plugins": ["sentry-expo"],
-    "hooks": { "postExport": [{ "file": "sentry-expo/upload-sourcemaps" }] }
+    "hooks": {
+      "postExport": [
+        {
+          "file": "sentry-expo/upload-sourcemaps"
+        }
+      ]
+    }
   }
 }

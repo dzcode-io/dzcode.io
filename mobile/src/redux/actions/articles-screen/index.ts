@@ -1,3 +1,6 @@
+import { isLoaded } from "@dzcode.io/utils/dist/loadable";
+import * as Sentry from "@sentry/browser";
+
 import { fetchV2 } from "../../../utils/fetch";
 import { ThunkResult } from "../..";
 import { ArticlesScreenState } from "../../reducers/articles-screen";
@@ -6,24 +9,30 @@ import { ArticlesScreenState } from "../../reducers/articles-screen";
  * @function fetchArticles
  * @description Fetch articles from the server and pass them to the reducer
  */
-export const fetchArticles = (): ThunkResult<ArticlesScreenState> => async (dispatch) => {
-  dispatch({
-    type: "UPDATE_ARTICLES_SCREEN",
-    payload: { refreshing: true },
-  });
-  try {
-    const articles = await fetchV2("data:articles/list.c.json", { query: [["language", "en"]] });
+export const fetchArticles =
+  (reset = false): ThunkResult<ArticlesScreenState> =>
+  async (dispatch) => {
     dispatch({
       type: "UPDATE_ARTICLES_SCREEN",
-      payload: {
-        articles,
-        refreshing: false,
-      },
+      payload: { refreshing: true, ...(reset ? { articles: null } : {}) },
     });
-  } catch (error) {
-    console.error(error);
-  }
-};
+    try {
+      const articles = await fetchV2("data:articles/list.c.json", { query: [["language", "en"]] });
+      dispatch({
+        type: "UPDATE_ARTICLES_SCREEN",
+        payload: {
+          articles,
+          refreshing: false,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: "UPDATE_ARTICLES_SCREEN",
+        payload: { refreshing: false, articles: "ERROR" },
+      });
+      Sentry.captureException(error, { tags: { type: "MOBILE_FETCH" } });
+    }
+  };
 
 /**
  * @function fetchArticle
@@ -38,6 +47,7 @@ export const fetchArticle =
     });
     try {
       const { articles } = getState().articlesScreen;
+      const loadedArticles = isLoaded(articles);
       const article = await fetchV2(`data:articles/:slug.json`, {
         params: { slug },
         query: [["language", "en"]],
@@ -45,12 +55,17 @@ export const fetchArticle =
       dispatch({
         type: "UPDATE_ARTICLES_SCREEN",
         payload: {
-          // update only the found article
-          articles: articles?.map((a) => (a.slug === slug ? article : a)),
+          articles: loadedArticles
+            ? loadedArticles.map((a) => (a.slug === slug ? article : a))
+            : [article],
           refreshing: false,
         },
       });
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: "UPDATE_ARTICLES_SCREEN",
+        payload: { refreshing: false },
+      });
+      Sentry.captureException(error, { tags: { type: "MOBILE_FETCH" } });
     }
   };

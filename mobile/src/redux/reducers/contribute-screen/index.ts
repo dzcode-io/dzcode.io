@@ -1,12 +1,13 @@
 import { FilterDto } from "@dzcode.io/api/dist/contribution/types";
 import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 
 import { Action } from "../..";
 
 export interface ContributeScreenState {
   filters: FilterDto[] | null;
-  contributions: Model<ContributionEntity, "project">[] | null;
+  contributions: LOADABLE<Model<ContributionEntity, "project">[]>;
   refreshing: boolean;
 }
 

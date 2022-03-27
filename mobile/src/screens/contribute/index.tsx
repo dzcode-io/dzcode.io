@@ -5,6 +5,7 @@ import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DZCodeLoading } from "../../components/loading";
+import { TryAgain } from "../../components/try-again";
 import { Dispatch, StateInterface } from "../../redux";
 import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
 import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
@@ -27,7 +28,13 @@ export const ContributeScreen: FC = () => {
   return (
     // main view
     <SafeAreaView style={globalStyles.mainView}>
-      {contributions ? (
+      {contributions === "ERROR" ? (
+        <TryAgain
+          error="Ops, an error occurred while loading the contribution cards, please try again..."
+          action="Try Again"
+          onClick={() => dispatch(fetchContributions(true))}
+        />
+      ) : contributions ? (
         // Cards
         contributions.length > 0 ? (
           <FlatList

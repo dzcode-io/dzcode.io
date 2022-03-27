@@ -5,6 +5,7 @@ import { Button, Divider } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DZCodeLoading } from "../../../components/loading";
+import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
 import { fetchDocuments } from "../../../redux/actions/learn-screen";
 import { LearnScreenState } from "../../../redux/reducers/learn-screen";
@@ -26,7 +27,13 @@ export const DocumentsListScreen: FC = () => {
 
   return (
     <SafeAreaView style={globalStyles.mainView}>
-      {documents ? (
+      {documents === "ERROR" ? (
+        <TryAgain
+          error="Ops, an error occurred while loading the documentation, please try again..."
+          action="Try Again"
+          onClick={() => dispatch(fetchDocuments(true))}
+        />
+      ) : documents ? (
         <FlatList
           data={documents}
           onRefresh={() => dispatch(fetchDocuments())}

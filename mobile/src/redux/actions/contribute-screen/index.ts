@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/browser";
 import Debounce from "debounce";
 
 import { fetchV2 } from "../../../utils/fetch";
@@ -9,10 +10,11 @@ import { ContributeScreenState } from "../../reducers/contribute-screen";
  * @description fetch an array from api and pass it to the store
  */
 export const fetchContributions =
-  (): ThunkResult<ContributeScreenState> => async (dispatch, getState) => {
+  (reset = false): ThunkResult<ContributeScreenState> =>
+  async (dispatch, getState) => {
     dispatch({
       type: "UPDATE_CONTRIBUTE_SCREEN",
-      payload: { refreshing: true },
+      payload: { refreshing: true, ...(reset ? { contributions: null } : {}) },
     });
     try {
       const { contributeScreen } = getState();
@@ -53,7 +55,11 @@ export const fetchContributions =
         payload: { contributions, filters: newFilters, refreshing: false },
       });
     } catch (error) {
-      console.error(error);
+      dispatch({
+        type: "UPDATE_CONTRIBUTE_SCREEN",
+        payload: { contributions: "ERROR", refreshing: false },
+      });
+      Sentry.captureException(error, { tags: { type: "MOBILE_FETCH" } });
     }
   };
 

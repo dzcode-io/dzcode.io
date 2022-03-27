@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/browser";
+
 import { fetchV2 } from "../../../utils/fetch";
 import { shuffleArray } from "../../../utils/shuffle";
 import { ThunkResult } from "../..";
@@ -19,6 +21,10 @@ export const fetchProjects = (): ThunkResult<ProjectsScreenState> => async (disp
       payload: { projects: shuffleArray(projects), refreshing: false },
     });
   } catch (error) {
-    console.error(error);
+    dispatch({
+      type: "UPDATE_PROJECTS_SCREEN",
+      payload: { refreshing: false, projects: "ERROR" },
+    });
+    Sentry.captureException(error, { tags: { type: "MOBILE_FETCH" } });
   }
 };

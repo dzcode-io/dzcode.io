@@ -1,9 +1,10 @@
-import { Project } from "@dzcode.io/api/dist/app/types/legacy";
+import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 
 import { Action } from "../..";
 
 export interface ProjectsScreenState {
-  projects: Pick<Project, "title" | "description" | "image" | "githubURI">[] | null;
+  projects: LOADABLE<Endpoints["data:projects/list.c.json"]["response"]>;
   refreshing: boolean;
 }
 
