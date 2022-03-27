@@ -3,6 +3,7 @@ import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DZCodeLoading } from "../../components/loading";
+import { TryAgain } from "../../components/try-again";
 import { Dispatch, StateInterface } from "../../redux";
 import { fetchProjects } from "../../redux/actions/projects-screen";
 import { ProjectsScreenState } from "../../redux/reducers/projects-screen";
@@ -22,7 +23,13 @@ export const ProjectsScreen: FC = () => {
 
   return (
     <SafeAreaView style={globalStyles.mainView}>
-      {projects ? (
+      {projects === "ERROR" ? (
+        <TryAgain
+          error="Ops, an error occurred while loading the projects, please try again..."
+          action="Try Again"
+          onClick={() => dispatch(fetchProjects())}
+        />
+      ) : projects ? (
         <FlatList
           data={projects}
           onRefresh={() => dispatch(fetchProjects())}
