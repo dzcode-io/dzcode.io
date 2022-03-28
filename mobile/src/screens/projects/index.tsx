@@ -2,6 +2,7 @@ import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
+import { ErrorBoundary } from "../../components/error-boundary";
 import { DZCodeLoading } from "../../components/loading";
 import { TryAgain } from "../../components/try-again";
 import { Dispatch, StateInterface } from "../../redux";
@@ -22,26 +23,28 @@ export const ProjectsScreen: FC = () => {
   }, []);
 
   return (
-    <SafeAreaView style={globalStyles.mainView}>
-      {projects === "ERROR" ? (
-        <TryAgain
-          error="Ops, an error occurred while loading the projects, please try again..."
-          action="Try Again"
-          onClick={() => dispatch(fetchProjects())}
-        />
-      ) : projects ? (
-        <FlatList
-          data={projects}
-          onRefresh={() => dispatch(fetchProjects())}
-          refreshing={refreshing}
-          keyExtractor={(item, index) => `item-${index}`}
-          renderItem={({ item }) => <CardItemMemoed project={item} />}
-        />
-      ) : (
-        <View style={globalStyles.centerView}>
-          <DZCodeLoading />
-        </View>
-      )}
-    </SafeAreaView>
+    <ErrorBoundary>
+      <SafeAreaView style={globalStyles.mainView}>
+        {projects === "ERROR" ? (
+          <TryAgain
+            error="Ops, an error occurred while loading the projects, please try again..."
+            action="Try Again"
+            onClick={() => dispatch(fetchProjects())}
+          />
+        ) : projects ? (
+          <FlatList
+            data={projects}
+            onRefresh={() => dispatch(fetchProjects())}
+            refreshing={refreshing}
+            keyExtractor={(item, index) => `item-${index}`}
+            renderItem={({ item }) => <CardItemMemoed project={item} />}
+          />
+        ) : (
+          <View style={globalStyles.centerView}>
+            <DZCodeLoading />
+          </View>
+        )}
+      </SafeAreaView>
+    </ErrorBoundary>
   );
 };

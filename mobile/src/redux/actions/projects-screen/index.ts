@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/browser";
+import * as Sentry from "@sentry/react-native";
 
 import { fetchV2 } from "../../../utils/fetch";
 import { shuffleArray } from "../../../utils/shuffle";
