@@ -195,3 +195,19 @@ yarn delete:action <reducer-name> <name>
 ```sh
 yarn delete:action <reducer-name> <name-1> <name-2> ...
 ```
+
+### Combine Components
+
+- To combine components into a specific path under the `./src/components/` directory:
+
+```sh
+yarn combine:components <name-1> <name-2> ... --folder <path>
+```
+
+### Combine Screens
+
+- To combine screens into a specific path under the `./src/screens/` directory:
+
+```sh
+yarn combine:screens <name-1> <name-2> ... --folder <path>
+```
