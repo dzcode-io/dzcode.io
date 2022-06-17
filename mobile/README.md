@@ -113,3 +113,85 @@ yarn create:action <reducer-name> <name>
 ```sh
 yarn create:action <reducer-name> <name-1> <name-2> ...
 ```
+
+### Delete Components
+
+1. To delete a component:
+
+```sh
+yarn delete:component <name>
+```
+
+2. To delete multiple components:
+
+```sh
+yarn delete:component <name-1> <name-2> ...
+```
+
+3. To delete a component or multiple components in a specific path under the `./src/components/` directory:
+
+```sh
+yarn delete:component <name-1> <name-2> ... --folder <path>
+```
+
+### Delete Screens
+
+1. To delete a screen:
+
+```sh
+yarn delete:screen <name>
+```
+
+2. To delete multiple screens:
+
+```sh
+yarn delete:screen <name-1> <name-2> ...
+```
+
+3. To delete a screen or multiple screens in a specific path under the `./src/screens/` directory:
+
+```sh
+yarn delete:screen <name-1> <name-2> ... --folder <path>
+```
+
+### Delete Navigations
+
+1. To delete a navigation for the screens that resides in `./src/screens/` directory:
+
+```sh
+yarn delete:navigation
+```
+
+2. To delete a navigation for the screens that resides in a specific path under the `./src/screens/` directory:
+
+```sh
+yarn delete:navigation --folder <path>
+```
+
+### Delete Reducers
+
+1. To delete a reducer:
+
+```sh
+yarn delete:reducer <name>
+```
+
+2. To delete multiple reducers:
+
+```sh
+yarn delete:reducer <name-1> <name-2> ...
+```
+
+### Delete Actions
+
+1. To delete an action for an existing reducer:
+
+```sh
+yarn delete:action <reducer-name> <name>
+```
+
+2. To delete multiple actions for an existing reducer:
+
+```sh
+yarn delete:action <reducer-name> <name-1> <name-2> ...
+```
