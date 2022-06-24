@@ -34,7 +34,7 @@ yarn create:component <name>
 yarn create:component <name-1> <name-2> ...
 ```
 
-3. To create a component with a specific template (more details can be found [here](https://omar-belghaouti.github.io/react-native-help-create/CREATING_FILES.html#templates)):
+3. To create a component with a specific template (more details can be found [here](https://omar-belghaouti.github.io/react-native-help-create/docs/create/using-templates)):
 
 ```sh
 yarn create:component <name> --template <template>
@@ -60,7 +60,7 @@ yarn create:screen <name>
 yarn create:screen <name-1> <name-2> ...
 ```
 
-3. To create a screen with a specific template (more details can be found [here](https://omar-belghaouti.github.io/react-native-help-create/CREATING_FILES.html#templates)):
+3. To create a screen with a specific template (more details can be found [here](https://omar-belghaouti.github.io/react-native-help-create/docs/create/using-templates)):
 
 ```sh
 yarn create:screen <name> --template <template>
