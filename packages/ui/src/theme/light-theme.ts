@@ -1,4 +1,4 @@
-import { Direction } from "@mui/material";
+import type { Direction } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 
 import { components } from "./configs/components";

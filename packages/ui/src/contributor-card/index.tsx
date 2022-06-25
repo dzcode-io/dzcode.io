@@ -1,14 +1,12 @@
 import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
-import {
-  Button,
-  Card as MuiCard,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Skeleton,
-  Typography,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import MuiCard from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
 import { FC, useState } from "react";
 
 import { ContributionsDialog } from "../dialog";

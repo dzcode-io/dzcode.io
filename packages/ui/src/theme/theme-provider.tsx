@@ -1,4 +1,6 @@
-import { CssBaseline, Direction, ThemeProvider as MuiThemeProvider } from "@mui/material";
+import type { Direction } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { FC } from "react";
 
 import { darkTheme } from "./dark-theme";

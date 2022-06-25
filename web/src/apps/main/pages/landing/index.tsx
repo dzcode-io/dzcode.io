@@ -1,6 +1,7 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Button from "@material-ui/core/Button";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import createStyles from "@material-ui/core/styles/createStyles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { FC, useEffect } from "react";
 import { FormattedMessage } from "react-intl";

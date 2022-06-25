@@ -1,6 +1,6 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { FC } from "react";

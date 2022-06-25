@@ -1,4 +1,4 @@
-import { useTheme } from "@material-ui/core/styles";
+import useTheme from "@material-ui/core/styles/useTheme";
 import Typography from "@material-ui/core/Typography";
 import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
 import { FC } from "react";

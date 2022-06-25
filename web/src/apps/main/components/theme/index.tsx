@@ -4,7 +4,8 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import createTheme from "@material-ui/core/styles/createTheme";
+import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { StateInterface } from "src/apps/main/redux";

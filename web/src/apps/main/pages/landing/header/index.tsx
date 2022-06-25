@@ -1,5 +1,9 @@
-import { Box, Button, Grid, Hidden, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
 import image from "src/apps/main/assets/svg/dzcode.svg";

@@ -2,8 +2,9 @@ import "./style.scss";
 
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
-import { Divider } from "@material-ui/core";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import Divider from "@material-ui/core/Divider";
+import createStyles from "@material-ui/core/styles/createStyles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import EditIcon from "@material-ui/icons/Edit";
 import FacebookIcon from "@material-ui/icons/Facebook";
