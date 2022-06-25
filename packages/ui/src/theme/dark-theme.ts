@@ -1,5 +1,5 @@
 import type { Direction } from "@mui/material";
-import createTheme from "@mui/material/styles/createTheme";
+import { createTheme } from "@mui/material/styles";
 
 import { components } from "./configs/components";
 import { darkPalette, defaultPalette } from "./configs/palettes";
