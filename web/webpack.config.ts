@@ -32,7 +32,7 @@ try {
   /**/
 }
 
-const browserslist = [">0.2%", "not dead", "not op_mini all"];
+const browserslist = ["defaults"];
 const babelOptions = {
   presets: [
     [
