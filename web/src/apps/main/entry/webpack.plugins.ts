@@ -106,7 +106,7 @@ if (process.env.NODE_ENV !== "development") {
     collection.forEach((entry) => {
       pages.push({
         uri: `/${collectionInfo.slug}/${entry.slug}`,
-        title: entry.title,
+        title: `${entry.title} | DzCode i/o`,
         description: entry.description,
         ogImage: entry.image,
         themeColor: "#000",
