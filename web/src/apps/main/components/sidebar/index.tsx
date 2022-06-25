@@ -1,5 +1,7 @@
 import Drawer from "@material-ui/core/Drawer";
-import { createStyles, makeStyles, useTheme } from "@material-ui/core/styles";
+import createStyles from "@material-ui/core/styles/createStyles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import useTheme from "@material-ui/core/styles/useTheme";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";

@@ -7,11 +7,13 @@ import { join } from "path";
 import path from "path";
 import TerserJSPlugin from "terser-webpack-plugin";
 import { Configuration as WPC } from "webpack";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { Configuration as WPDSC } from "webpack-dev-server";
 
 // setting up project configurations and some env variables
-const isDevelopment = process.env.NODE_ENV === "development";
-const isProduction = process.env.NODE_ENV === "production";
+const ANALYZE = process.env.ANALYZE === "true";
+const isProduction = process.env.NODE_ENV === "production" || ANALYZE;
+const isDevelopment = process.env.NODE_ENV === "development" && !ANALYZE;
 const { web } = fsConfig("development");
 const distFolder = "./bundle";
 const publicResourcesPath = "w";
@@ -64,6 +66,7 @@ const babelOptions = {
 
 // exporting configs
 export default {
+  watch: ANALYZE || undefined,
   // https://webpack.js.org/configuration/entry-context/
   entry: Object.fromEntries(
     new Map(apps.map((app) => [app, path.join(__dirname, "src/apps", app, "entry/index.tsx")])),
@@ -147,6 +150,12 @@ export default {
       filename: join(publicResourcesPath, "bundle.[contenthash].css"),
       chunkFilename: join(publicResourcesPath, "chunk.[contenthash].css"),
     }),
+    ...(ANALYZE
+      ? [
+          // https://github.com/webpack-contrib/webpack-bundle-analyzer
+          new BundleAnalyzerPlugin(),
+        ]
+      : []),
     ...apps.reduce<WPC["plugins"][]>(
       (pV, app) => [...pV, ...require(`./src/apps/${app}/entry/webpack.plugins`)],
       [],

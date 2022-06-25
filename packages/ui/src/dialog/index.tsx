@@ -1,15 +1,13 @@
-import { AutoFixHigh } from "@mui/icons-material";
-import {
-  Avatar,
-  Dialog,
-  DialogTitle,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import AutoFixHigh from "@mui/icons-material/AutoFixHigh";
+import Avatar from "@mui/material/Avatar";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 
 interface ContributionItemProps {
   description: string;

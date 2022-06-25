@@ -1,5 +1,5 @@
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import { FormattedMessage } from "react-intl";
@@ -58,7 +58,10 @@ export const Mobile: FC = () => {
       image: settings.darkMode ? androidDark : androidLight,
       href: fullstackConfig.mobile.android.url,
     },
-    { image: settings.darkMode ? iosDark : iosLight, href: fullstackConfig.mobile.ios.url },
+    {
+      image: settings.darkMode ? iosDark : iosLight,
+      href: fullstackConfig.mobile.ios.url,
+    },
   ];
 
   return (

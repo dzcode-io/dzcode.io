@@ -2,7 +2,7 @@ import { GithubUser } from "@dzcode.io/api/dist/app/types/legacy";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import Avatar from "@material-ui/core/Avatar";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";

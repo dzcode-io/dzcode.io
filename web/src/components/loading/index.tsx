@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import { FC } from "react";
 import logoSquare from "src/assets/svg/logo-wide.svg";
 
