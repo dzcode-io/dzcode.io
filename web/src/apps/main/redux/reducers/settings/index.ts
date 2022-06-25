@@ -9,7 +9,8 @@ export const settings = (
   state: SettingsState = {
     darkMode: localStorage.getItem("darkMode") !== "off",
     language: (() => {
-      const persistedLanguageCode = localStorage.getItem("languageCode");
+      // const persistedLanguageCode = localStorage.getItem("languageCode");
+      const persistedLanguageCode = "en";
       const initialLanguage =
         allLanguages.find(({ code }) => code === persistedLanguageCode) || allLanguages[0];
       document.body.setAttribute("dir", initialLanguage?.code === "ar" ? "rtl" : "ltr");

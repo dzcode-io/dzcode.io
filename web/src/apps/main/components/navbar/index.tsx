@@ -18,7 +18,7 @@ import logo from "src/assets/svg/logo-wide.svg";
 import { LinkV2 } from "src/components/link-v2";
 
 import { IOSSwitch } from "./ios-switch";
-import { LanguageSwitch } from "./lang-switch";
+// import { LanguageSwitch } from "./lang-switch";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -160,7 +160,7 @@ export const Navbar: FC = () => {
           </LinkV2>
         </Typography>
         <div className={`${classes.langAndTheme} `}>
-          <LanguageSwitch />
+          {/* <LanguageSwitch /> */}
           <FormControlLabel
             className={classes.switch}
             control={
