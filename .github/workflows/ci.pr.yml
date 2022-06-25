@@ -1,5 +1,4 @@
 name: "CI Check for PullRequest"
-
 on:
   pull_request:
 
@@ -16,6 +15,7 @@ jobs:
     steps:
       - name: labels
         uses: actions/labeler@main
+        continue-on-error: true
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           sync-labels: true
