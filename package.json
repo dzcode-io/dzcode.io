@@ -17,6 +17,7 @@
   "resolutions": {
     "@types/jest": "^26.0.14",
     "@types/react": "^17.0.1",
+    "caniuse-lite": "^1.0.30001359",
     "jest": "^26.6.3",
     "react": "^17.0.1",
     "ts-jest": "^26.5.6"
