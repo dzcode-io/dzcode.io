@@ -1,0 +1,10 @@
+{
+  "name": "Algeria Logos",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "aimen08",
+      "repository": "algerialogos"
+    }
+  ]
+}
