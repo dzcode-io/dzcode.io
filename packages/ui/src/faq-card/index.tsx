@@ -24,7 +24,7 @@ export const FaqCard = ({ title, questions }: FaqCardProps) => {
       </Grid>
       <Grid item xs={12}>
         {questions.map(({ question, answer }, index) => (
-          <Accordion key={`faq-${index}`} variant="outlined">
+          <Accordion key={`faq-${index}`} variant="outlined" style={{ marginTop: -1 }}>
             <AccordionSummary expandIcon={<ExpandMore />}>
               <Typography variant="body1">{question}</Typography>
             </AccordionSummary>

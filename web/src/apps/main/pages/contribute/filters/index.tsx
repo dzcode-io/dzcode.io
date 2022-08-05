@@ -14,6 +14,8 @@ import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SpeedDial } from "src/apps/main/components/speed-dial";
+import { t } from "src/apps/main/components/t";
+import type { DictionaryKeys } from "src/apps/main/components/t/dictionary";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { updateFilterValue } from "src/apps/main/redux/actions/contribute-page";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
@@ -41,9 +43,11 @@ export const Filters: FC = () => {
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
   const renderFilters = () =>
-    filters.map(({ name: filterName, label: filterLabel, options }) => (
+    filters.map(({ name: filterName, options }) => (
       <Accordion key={`filter-${filterName}`} variant="outlined" style={{ marginBottom: -1 }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>{filterLabel}</AccordionSummary>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          {t(`contribute-filter-${filterName}` as DictionaryKeys<"contribute-filter">)}
+        </AccordionSummary>
         <AccordionDetails className={classes.filter}>
           {options.map(({ label: optionLabel, name: optionName, checked }) => (
             <FormControlLabel

@@ -1,5 +1,4 @@
 import { render } from "@testing-library/react";
-import { IntlProvider } from "react-intl";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { createMainStore } from "src/apps/main/redux";
@@ -13,9 +12,7 @@ describe("components/footer/footer.spec.tsx", () => {
     const { container } = render(
       <Provider store={mainStore}>
         <Router>
-          <IntlProvider locale={"en"} defaultLocale="en">
-            <Footer />
-          </IntlProvider>
+          <Footer />
         </Router>
       </Provider>,
     );

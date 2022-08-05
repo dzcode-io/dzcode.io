@@ -1,40 +1,22 @@
+import { DictionaryKeys } from "src/apps/main/components/t/dictionary";
 import { Action } from "src/apps/main/redux";
 
-export interface TranslationMessage {
-  id: string;
-  defaultMessage: string;
-  description?: string;
-}
 export interface NavbarComponentState {
-  sections: Array<{ message: TranslationMessage; title: string; url: string }>;
+  sections: Array<{
+    title: DictionaryKeys<"navbar">;
+    url: string;
+  }>;
 }
 
 export const navbarComponent = (
   state: NavbarComponentState = {
     sections: [
-      {
-        message: { id: "contribute.path", defaultMessage: "Contribute" },
-        url: "/Contribute",
-        title: "Contribute",
-      },
-
-      { message: { id: "team.path", defaultMessage: "Team" }, url: "/Team", title: "Connect" },
-
-      { message: { id: "learn.path", defaultMessage: "Learn" }, url: "/Learn", title: "Learn" },
-
-      {
-        message: { id: "projects.path", defaultMessage: "Projects" },
-        url: "/Projects",
-        title: "Projects",
-      },
-
-      {
-        message: { id: "articles.path", defaultMessage: "Articles" },
-        url: "/Articles",
-        title: "Articles",
-      },
-
-      { message: { id: "faq.path", defaultMessage: "FAQ" }, url: "/FAQ", title: "FAQ" },
+      { url: "/Contribute", title: "navbar-section-contribute" },
+      { url: "/Team", title: "navbar-section-connect" },
+      { url: "/Learn", title: "navbar-section-learn" },
+      { url: "/Projects", title: "navbar-section-projects" },
+      { url: "/Articles", title: "navbar-section-articles" },
+      { url: "/FAQ", title: "navbar-section-faq" },
     ],
   },
   action: Action<NavbarComponentState>,

@@ -9,7 +9,7 @@ import tomorrow from "react-syntax-highlighter/dist/cjs/styles/prism/tomorrow";
 import { StateInterface } from "src/apps/main/redux";
 import { LinkV2 } from "src/components/link-v2";
 
-export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
+export const Markdown: FC<ReactMarkdown> = ({ children, t, ...markdownProps }) => {
   const theme = useTheme();
   const darkMode = useSelector<StateInterface, boolean>((state) => state.settings.darkMode);
 
@@ -69,12 +69,13 @@ export const Markdown: FC<ReactMarkdown> = (markdownProps) => {
           },
         },
       }}
-    />
+      children={t || (children as string)} // eslint-disable-line react/no-children-prop
+    ></ReactMarkdown>
   );
 };
 
 interface ReactMarkdown {
   [key: string]: unknown;
-  children: string;
+  t?: string;
   options?: MarkdownToJSX.Options;
 }

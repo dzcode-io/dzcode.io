@@ -26,8 +26,6 @@
     "markdown-to-jsx": "^7.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-intl": "^5.20.6",
-    "react-intl-translations-manager": "^5.0.3",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
     "react-spring": "^8.0.27",

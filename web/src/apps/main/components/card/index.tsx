@@ -47,7 +47,7 @@ export const Card: FC<CardProps> = ({ info }) => {
       {info ? (
         <>
           <CardMedia className={classes.media} image={info.image} title={info.title} />
-          <CardContent className={classes.content}>
+          <CardContent dir="ltr" className={classes.content}>
             <Typography gutterBottom variant="h6">
               {info.title}
             </Typography>

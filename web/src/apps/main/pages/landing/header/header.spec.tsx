@@ -1,17 +1,20 @@
 import { render } from "@testing-library/react";
-import { IntlProvider } from "react-intl";
+import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
+import { createMainStore } from "src/apps/main/redux";
 
 import { Header } from "./index";
 
 describe("header component", () => {
   test("should render header component", () => {
+    const mainStore = createMainStore();
+
     const { container } = render(
-      <MemoryRouter>
-        <IntlProvider locale={"en"} defaultLocale="en">
+      <Provider store={mainStore}>
+        <MemoryRouter>
           <Header />
-        </IntlProvider>
-      </MemoryRouter>,
+        </MemoryRouter>
+      </Provider>,
     );
 
     expect(container).toMatchSnapshot();

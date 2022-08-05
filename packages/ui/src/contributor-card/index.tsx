@@ -9,7 +9,7 @@ import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import { FC, useState } from "react";
 
-import { ContributionsDialog } from "../dialog";
+import { ContributionsDialog } from "./dialog";
 
 const styles = {
   root: {
@@ -41,11 +41,17 @@ export const ContributorSkeleton = () => {
   );
 };
 
-interface ContributorCardProps {
+export interface ContributorCardProps {
+  ctaText: string;
+  repositoriesText: string;
   contributor: ContributorEntity;
 }
 
-export const ContributorCard: FC<ContributorCardProps> = ({ contributor }) => {
+export const ContributorCard: FC<ContributorCardProps> = ({
+  contributor,
+  ctaText,
+  repositoriesText,
+}) => {
   const [open, setOpen] = useState(false);
   const { avatarUrl, username, repositories } = contributor;
   return (
@@ -64,10 +70,15 @@ export const ContributorCard: FC<ContributorCardProps> = ({ contributor }) => {
           fullWidth
           variant="contained"
         >
-          Contributions
+          {ctaText}
         </Button>
       </CardActions>
-      <ContributionsDialog repositories={repositories} open={open} onClose={() => setOpen(false)} />
+      <ContributionsDialog
+        repositoriesText={repositoriesText}
+        repositories={repositories}
+        open={open}
+        onClose={() => setOpen(false)}
+      />
     </MuiCard>
   );
 };

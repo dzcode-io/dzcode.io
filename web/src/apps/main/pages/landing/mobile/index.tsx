@@ -2,12 +2,12 @@ import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
-import { FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
 import androidDark from "src/apps/main/assets/png/android-dark.png";
 import androidLight from "src/apps/main/assets/png/android-light.png";
 import iosDark from "src/apps/main/assets/png/ios-dark.png";
 import iosLight from "src/apps/main/assets/png/ios-light.png";
+import { T } from "src/apps/main/components/t";
 import { StateInterface } from "src/apps/main/redux";
 import { LinkV2 } from "src/components/link-v2";
 import { fullstackConfig } from "src/config";
@@ -67,15 +67,10 @@ export const Mobile: FC = () => {
   return (
     <section className={classes.root}>
       <Typography className={classes.title} variant="h4">
-        <FormattedMessage id="landing.mobile.h" defaultMessage="Going Mobile" />
+        <T landing-mobile-title />
       </Typography>
       <Typography className={classes.subTitle} variant="h6" color="textSecondary">
-        <FormattedMessage
-          id="landing.mobile.desc"
-          defaultMessage={`Meet the DzCode i/o Mobile App and
-              Stay up-to-date with state of dz open-source on iOS and
-              Android`}
-        />
+        <T landing-mobile-subtitle />
       </Typography>
       <Grid container className={classes.mobileApps} spacing={4}>
         {mobileApps.map((mobileApp, i) => (

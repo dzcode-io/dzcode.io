@@ -29,7 +29,7 @@ export const ArticlesPage: FC = () => {
 
   return (
     <ErrorBoundary>
-      <Grid container className="articles">
+      <Grid container className="articles" dir="ltr">
         {/* Sidebar */}
         <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
           {sidebarTree === "ERROR" ? (
