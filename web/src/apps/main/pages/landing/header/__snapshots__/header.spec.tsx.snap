@@ -18,41 +18,33 @@ exports[`header component should render header component 1`] = `
           <h1
             class="MuiTypography-root makeStyles-title-3 MuiTypography-body1"
           >
-            Algerian 
-            <span
-              class="makeStyles-greenHighlight-1"
-            >
-              Open Source
+            <span>
+              <span
+                class="makeStyles-greenHighlight-1"
+              >
+                Open-Source
+              </span>
+               Algerian Comunity
             </span>
-             Community
           </h1>
           <p
             class="MuiTypography-root makeStyles-description-6 MuiTypography-body1 MuiTypography-colorTextPrimary"
           >
-            Whether you are a maintainer or an open-source enthusiast DzCode helps you
-             
-            <a
-              href="/Projects"
-            >
-              find
-            </a>
-            ,
-             
-            <a
-              href="/Contribute"
-            >
-              contribute
-               
-            </a>
-            and
-            <a
-              href="/Projects"
-            >
-              list
-               
-            </a>
-            open-source projects that solve Algerian
-              problems.
+            <span>
+              DzCode i/o helps you find, 
+              <a
+                href="/Contribute"
+              >
+                contribute
+              </a>
+               and add to the 
+              <a
+                href="/Projects"
+              >
+                list
+              </a>
+               of open-source projects that solve Algerian problems.
+            </span>
           </p>
           <div
             class="MuiBox-root MuiBox-root-9"
@@ -84,7 +76,7 @@ exports[`header component should render header component 1`] = `
                 <span
                   class="MuiButton-label"
                 >
-                  Have a question ?
+                  Do you have a question?
                 </span>
               </button>
             </a>
