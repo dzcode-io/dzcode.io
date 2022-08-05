@@ -24,8 +24,9 @@ const apps = glob
   .sync("src/apps/*/entry/app-config.ts")
   .map((path) => path.substring(9, path.indexOf("/", 9)));
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-let bundleInfo: { version: string } = { version: require("./package.json").version as string };
+let bundleInfo: { version: string } = {
+  version: `v${require("./package.json").version as string}`, // eslint-disable-line @typescript-eslint/no-var-requires
+};
 try {
   bundleInfo = JSON.parse(readFileSync(".bundle-info.json").toString()) as typeof bundleInfo;
 } catch (error) {
