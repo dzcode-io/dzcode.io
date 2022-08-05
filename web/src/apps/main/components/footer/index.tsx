@@ -1,11 +1,10 @@
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
-import { FormattedMessage } from "react-intl";
-import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
+import { T } from "src/apps/main/components/t";
 import { StateInterface } from "src/apps/main/redux";
 import { FooterComponentState } from "src/apps/main/redux/reducers/footer-component";
 import { LinkV2 } from "src/components/link-v2";
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Footer: FC = () => {
   const classes = useStyles();
-  const intl = useIntl();
+
   const { sections } = useSelector<StateInterface, FooterComponentState>(
     (state: StateInterface) => state.footerComponent,
   );
@@ -48,31 +47,13 @@ export const Footer: FC = () => {
               sections.map((category, i) => (
                 <Grid direction="column" container item xs={12} md={4} key={i}>
                   <Typography variant="h6" className={classes.categoryTitle}>
-                    {intl.formatMessage({
-                      id: `footer.${category.title.toLowerCase().replace(" ", ".")}`,
-                      defaultMessage: category.title,
-                    })}
+                    <T k={category.title} />
                   </Typography>
                   {category.links.map((link, i) => {
                     return (
-                      <LinkV2
-                        key={i}
-                        href={
-                          link.id && link.id !== "home.path"
-                            ? `/${intl.formatMessage({
-                                id: link.id,
-                                defaultMessage: link.href.replace("/", ""),
-                              })}`
-                            : link.href
-                        }
-                      >
+                      <LinkV2 key={i} href={link.href}>
                         <Typography variant="subtitle2" className={classes.linkText}>
-                          {link.id
-                            ? intl.formatMessage({
-                                id: link.id.replace("-", ".") || link.text.replace(" ", "."),
-                                defaultMessage: link.text,
-                              })
-                            : link.text}
+                          <T k={link.text} />
                         </Typography>
                       </LinkV2>
                     );
@@ -82,17 +63,27 @@ export const Footer: FC = () => {
           </Grid>
           <Grid item xs={12} md={3} className={classes.contactDetails}>
             <Typography variant="h6" className={classes.categoryTitle}>
-              <FormattedMessage id="footer.contact.info" defaultMessage="Contact Information" />
+              <T footer-contact-information />
             </Typography>
             <a href="tel:+21367-626-1157">
-              <Typography className={classes.linkText}>+213 06-76-26-11-57</Typography>
+              <Typography
+                className={classes.linkText}
+                style={{ direction: "ltr", display: "inline-block" }}
+              >
+                {"+213 06-76-26-11-57"}
+              </Typography>
             </a>
             <a href="mailto:contact@dzcode.io">
-              <Typography className={classes.linkText}>contact@dzcode.io</Typography>
+              <Typography className={classes.linkText}>{"contact@dzcode.io"}</Typography>
             </a>
             <Typography className={classes.linkText}>
-              Copyright © {new Date(Date.now()).getFullYear() + " "}
-              <LinkV2 href="https://twitter.com/dzcode_io">@dzCode_io</LinkV2>
+              <T footer-category-link-text-copyright /> {new Date().getFullYear() + " "}
+              <LinkV2
+                href="https://twitter.com/dzcode_io"
+                style={{ direction: "ltr", display: "inline-block" }}
+              >
+                {"@dzCode_io"}
+              </LinkV2>
             </Typography>
           </Grid>
         </Grid>

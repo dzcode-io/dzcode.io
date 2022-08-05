@@ -8,10 +8,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { FC, Fragment, useState } from "react";
-import { FormattedMessage } from "react-intl";
-import { useIntl } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
 import { animated, useSpring } from "react-spring";
+import { T } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import logo from "src/assets/svg/logo-wide.svg";
@@ -67,7 +66,7 @@ const useStyles = makeStyles((theme) =>
       borderBottom: `1px solid ${theme.palette.background.paper}`,
     },
     toolbarTitle: {
-      marginRight: "auto",
+      flex: 1,
     },
     toolbarVersion: {
       margin: "auto 1rem",
@@ -104,7 +103,7 @@ const useStyles = makeStyles((theme) =>
     logo: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: "start",
       height: "100%",
     },
     logoImg: {
@@ -118,13 +117,13 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const Navbar: FC = () => {
-  const { settings, navbarComponent } = useSelector<StateInterface, StateInterface>(
-    (state) => state,
-  );
+  const {
+    settings,
+    navbarComponent: { sections },
+  } = useSelector<StateInterface, StateInterface>((state) => state);
 
   const dispatch = useDispatch<Dispatch<SettingsState>>();
   const classes = useStyles();
-  const intl = useIntl();
   const [visible, setVisible] = useState(true);
   useScrollPosition(({ prevPos, currPos }) => {
     const isVisible = currPos.y <= -120 ? currPos.y > prevPos.y : true;
@@ -203,18 +202,14 @@ export const Navbar: FC = () => {
             </Typography>
           </Hidden>
 
-          {navbarComponent.sections
-            ? navbarComponent.sections.map((section, index) => (
+          {sections
+            ? sections.map((section, index) => (
                 <Fragment key={section.title}>
                   {index > 0 && (
                     <Divider className={classes.divider} orientation="vertical" flexItem />
                   )}
-                  <LinkV2
-                    color="inherit"
-                    href={`/${intl.formatMessage(section.message)}`}
-                    className={classes.toolbarLink}
-                  >
-                    <FormattedMessage id={section.message.id} defaultMessage={section.title} />
+                  <LinkV2 color="inherit" href={section.url} className={classes.toolbarLink}>
+                    <T k={section.title} />
                   </LinkV2>
                 </Fragment>
               ))
