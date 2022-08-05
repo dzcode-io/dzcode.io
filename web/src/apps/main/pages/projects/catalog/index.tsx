@@ -3,8 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
-import { FormattedMessage } from "react-intl";
 import { Card } from "src/apps/main/components/card";
+import { T, t } from "src/apps/main/components/t";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +28,7 @@ export const Catalog: FC<CatalogProps> = ({ projectsList }) => {
   return (
     <>
       <Typography variant="h4" className={classes.header}>
-        <FormattedMessage id="faq.projectspage.header" defaultMessage="Open Source Projects" />
+        <T projects-title />
       </Typography>
       <Grid container className={classes.root} spacing={4} justifyContent="space-around">
         {projectsList
@@ -40,7 +40,7 @@ export const Catalog: FC<CatalogProps> = ({ projectsList }) => {
                     title: project.title || "",
                     description: project.description || "",
                     link: `https://www.github.com/${project.githubURI}`,
-                    actionLabel: "Go To Code",
+                    actionLabel: t("projects-card-cta-button"),
                   }}
                 />
               </Grid>

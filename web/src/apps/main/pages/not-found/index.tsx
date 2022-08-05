@@ -3,9 +3,16 @@ import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { FC } from "react";
+import { useSelector } from "react-redux";
+import { T, t } from "src/apps/main/components/t";
 import svg from "src/assets/svg/404.svg";
 import { LinkV2 } from "src/components/link-v2";
+
+import { Markdown } from "../../components/markdown";
+import { StateInterface } from "../../redux";
+import { SettingsState } from "../../redux/reducers/settings";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,18 +31,21 @@ const useStyles = makeStyles((theme) => ({
 
 const NotFound: FC = () => {
   const classes = useStyles();
+  const { language } = useSelector<StateInterface, SettingsState>((state) => state.settings);
 
   return (
     <ErrorBoundary>
       <div className={classes.root}>
         <img className={classes.image} src={svg} alt="DzCode i/o: 404 page not found" />
         <Typography className={classes.text}>
-          Finally someone saw the 404 page that{" "}
-          <LinkV2 href="https://github.com/NurElHuda">Nour</LinkV2> developed 😅
+          <Markdown t={t("notfound-subtitle")} />
         </Typography>
         <LinkV2 href="/">
-          <Button startIcon={<ArrowBackIcon />} size="large">
-            Go Back Home
+          <Button
+            startIcon={language.code === "ar" ? <ArrowForwardIcon /> : <ArrowBackIcon />}
+            size="large"
+          >
+            <T notfound-back-home />
           </Button>
         </LinkV2>
       </div>

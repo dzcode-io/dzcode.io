@@ -1,14 +1,6 @@
 import { Action } from "src/apps/main/redux";
 
-import { faqData } from "./faq-data";
-
-export type FAQData = Array<{
-  title: string;
-  questions: Array<{
-    question: string;
-    answer: string;
-  }>;
-}>;
+import { FAQData, faqData } from "./faq-data";
 
 export interface FaqPageState {
   faqData: FAQData;

@@ -3,6 +3,7 @@ import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { t } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { fetchTeamList } from "src/apps/main/redux/actions/team-page";
 import { TeamPageState } from "src/apps/main/redux/reducers/team-page";
@@ -28,8 +29,8 @@ export const TeamPage: FC = () => {
       >
         {teamList === "ERROR" ? (
           <TryAgain
-            error="Ops, an error occurred while loading the projects, please try again..."
-            action="Try Again"
+            error={t("team-error")}
+            action={t("team-try-again")}
             onClick={() => dispatch(fetchTeamList())}
           />
         ) : (

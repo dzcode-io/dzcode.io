@@ -1,16 +1,9 @@
 import { Action } from "src/apps/main/redux";
 
-import { sections } from "./sections";
+import { Section, sections } from "./sections";
 
 export interface FooterComponentState {
-  sections: Array<{
-    title: string;
-    links: Array<{
-      id?: string;
-      href: string;
-      text: string;
-    }>;
-  }>;
+  sections: Section[];
 }
 
 export const footerComponent = (

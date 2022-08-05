@@ -14,9 +14,11 @@ import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { t } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { fetchContributions, updateFilterValue } from "src/apps/main/redux/actions/contribute-page";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
+import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import { elapsedTime } from "src/common/utils/elapsed-time";
 import { LinkV2 } from "src/components/link-v2";
 
@@ -36,15 +38,13 @@ const useStyles = makeStyles((theme) => ({
     flex: "1",
     display: "flex",
     flexDirection: "column",
+    direction: "ltr",
   },
   chip: {
     flex: "1",
     background: "#ddd9",
     marginTop: theme.spacing(1),
     marginRight: theme.spacing(1),
-  },
-  contribute: {
-    marginRight: "auto",
   },
 }));
 
@@ -53,6 +53,9 @@ export const Contributions: FC = () => {
   const { contributions } = useSelector<StateInterface, ContributePageState>(
     (state) => state.contributePage,
   );
+  const {
+    language: { code: languageCode },
+  } = useSelector<StateInterface, SettingsState>((state) => state.settings);
   const dispatch = useDispatch<Dispatch<ContributePageState>>();
 
   return (
@@ -104,17 +107,26 @@ export const Contributions: FC = () => {
                       color: type === "issue" ? "#56d364" : "#a371f7",
                     }}
                   >
-                    <LinkV2 href={link} className={classes.contribute}>
+                    <LinkV2
+                      href={link}
+                      style={
+                        languageCode !== "ar" ? { marginRight: "auto" } : { marginLeft: "auto" }
+                      }
+                    >
                       <Button
                         size="small"
                         style={{
                           color: type === "issue" ? "#56d364" : "#a371f7",
                         }}
                       >
-                        {type === "issue" ? "Read Issue" : "Review Changes"}
+                        {type === "issue"
+                          ? t("contribute-read-issue")
+                          : t("contribute-review-changes")}
                       </Button>
                     </LinkV2>
-                    <Typography variant="caption">{elapsedTime(updatedAt)}</Typography>
+                    <Typography variant="caption">
+                      {elapsedTime(updatedAt, t("elapsed-time-suffixes"))}
+                    </Typography>
                     {commentsCount > 0 && (
                       <Badge badgeContent={commentsCount}>
                         <QuestionAnswerIcon />

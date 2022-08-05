@@ -40,6 +40,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             >
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -90,7 +91,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
-                            An open-source online community of algerian developers, no organization or any political party is involved, only us dz developers.
+                            An open-source online community of Algerian developers, collaborating on solving Algerian technical problems.
                           </span>
                         </div>
                       </div>
@@ -100,6 +101,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               </div>
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -113,7 +115,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
                     >
-                      What are the Goals of DzCode i/o ?
+                      What are the goals of DzCode i/o ?
                     </p>
                   </div>
                   <div
@@ -155,21 +157,21 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                               <a
                                 href="/Articles"
                               >
-                                Articles
+                                articles
                               </a>
-                              ), there are many algerian developers that accumulated lots experiences, dzcode.io gives them the chance to share it with the right audience.
+                              ), there are many Algerian developers that accumulated lots of experiences, here comes dzcode.io to give them the chance to share these experiences with the right people.
                             </li>
                             <li>
-                              Guide new developers to build their career (with detailed 
+                              Guide new developers to build their careers (with some educational resources and 
                               <a
                                 href="/Learn"
                               >
-                                documentation
+                                articles
                               </a>
-                              ), and understand the software market, instead of wasting their time on other useless resources.
+                              ), and to understand the software market, instead of wasting their time on other resources they won't be needing.
                             </li>
                             <li>
-                              Fix some common algerian software problems, in form of ready to use open-source 
+                              Fix some common Algerian software problems, in form of ready-to-use open-source 
                               <a
                                 href="/Projects"
                               >
@@ -186,6 +188,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               </div>
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -199,7 +202,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
                     >
-                      What benefit will i get from it ?
+                      What would I benefit from DzCode i/o?
                     </p>
                   </div>
                   <div
@@ -235,114 +238,17 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                         <div
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
-                          <div>
-                            <p
-                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
-                            >
-                              There are couple of benefits, to name few:
-                            </p>
-                            <ul>
-                              <li>
-                                You will meet other algerian developers, experienced and juniors, where you can grow your network!
-                              </li>
-                              <li>
-                                You'll get to experience a professional environment, which is completely different than the one you used to in school.
-                              </li>
-                              <li>
-                                Your contribution will be shown on your Github profile, and that is a big plus in your professional career!
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
-              >
-                <div
-                  aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
-                  role="button"
-                  tabindex="0"
-                >
-                  <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
-                  >
-                    <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
-                    >
-                      dzcode, dzcode.io or DzCode i/o ?
-                    </p>
-                  </div>
-                  <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
-                      data-testid="ExpandMoreIcon"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
-                  style="min-height: 0px;"
-                >
-                  <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
-                  >
-                    <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
-                    >
-                      <div
-                        class="MuiAccordion-region"
-                        role="region"
-                      >
-                        <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
-                        >
-                          <div>
-                            <p
-                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
-                            >
-                              You may get confused with the different terms, so here's the official breakdown:
-                            </p>
-                            <ul>
-                              <li>
-                                <strong>
-                                  DzCode i/o
-                                </strong>
-                                 (with capital C) is the official name of the community.
-                              </li>
-                              <li>
-                                <strong>
-                                  dzcode.io
-                                </strong>
-                                 is the website of the DzCode i/o, this has been voted for 
-                                <a
-                                  href="https://www.facebook.com/groups/dzdevs/permalink/3052880478141052/"
-                                >
-                                  here
-                                </a>
-                                .
-                              </li>
-                              <li>
-                                <strong>
-                                  dzcode
-                                </strong>
-                                 is a short name, not official, but it's usually used to refer DzCode i/o.
-                              </li>
-                            </ul>
-                          </div>
+                          <ul>
+                            <li>
+                              You will meet other Algerian developers, experienced and noobs, and there you can expand your professional network!
+                            </li>
+                            <li>
+                              You'll get to experience a professional environment, which is completely different than the one you used to in school, uni, or on YouTube 😄.
+                            </li>
+                            <li>
+                              Your contribution will be shown on your Github profile, and that is a big plus in your CV!
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -372,6 +278,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             >
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -385,7 +292,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
                     >
-                      How to join DzCode i/o ?
+                      How do I join DzCode i/o ?
                     </p>
                   </div>
                   <div
@@ -422,7 +329,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
-                            We're most active in slack, it's highly recommended to 
+                            We're most active in slack, we recommend you 
                             <a
                               href="https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ"
                             >
@@ -438,6 +345,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               </div>
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -451,7 +359,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
                     >
-                      I want to code, where should I start ?
+                      I want to code, where should I start?
                     </p>
                   </div>
                   <div
@@ -487,27 +395,15 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                         <div
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
-                          <div>
-                            <p
-                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+                          <span>
+                            Go to 
+                            <a
+                              href="/Contribute"
                             >
-                              Go to 
-                              <a
-                                href="/Contribute"
-                              >
-                                /Contribute
-                              </a>
-                               page, you will see list projects with their open tasks, pick whatever you like and start coding 🔥.
-                            </p>
-                            <p
-                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
-                            >
-                              <strong>
-                                Note
-                              </strong>
-                               : Please make sure to inform the project maintainer to reserve the task for you, you can do that by commenting on the issue ticket.
-                            </p>
-                          </div>
+                              /Contribute
+                            </a>
+                             page, you will see a list of projects with available tasks for you to pick from whatever you like and start programming 🔥.
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -516,6 +412,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               </div>
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -529,7 +426,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
                     >
-                      I like the idea, what are the different ways i can contribute to DzCode i/o ?
+                      I like the idea, what are the different ways I can contribute to DzCode i/o ?
                     </p>
                   </div>
                   <div
@@ -569,7 +466,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             <p
                               class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
                             >
-                              Apart from checking out the 
+                              Besides the open tasks on 
                               <a
                                 href="/Contribute"
                               >
@@ -579,7 +476,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             </p>
                             <ul>
                               <li>
-                                Adding your open-source projects to dzcode.io website, you can do that 
+                                Adding your open-source projects to the dzcode.io website, you can do that 
                                 <a
                                   href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
                                 >
@@ -588,11 +485,11 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                                 .
                               </li>
                               <li>
-                                Writing about your experience in form of articles, it's as easy as following the steps 
+                                Writing about your programming experience in form of articles, to do that, simply follow 
                                 <a
                                   href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
                                 >
-                                  here
+                                  these simple steps
                                 </a>
                                 .
                               </li>
@@ -627,6 +524,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             >
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -677,11 +575,11 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
-                            See this 
+                            Follow 
                             <a
                               href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
                             >
-                              tutorial
+                              these steps
                             </a>
                             .
                           </span>
@@ -693,6 +591,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               </div>
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -706,7 +605,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
                     >
-                      The Articles should they be in English ?
+                      The articles should they be in English?
                     </p>
                   </div>
                   <div
@@ -743,7 +642,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
-                            Yes, to reach a wide range of audience we will add a feature to allow article localization and multiple language articles in the future.
+                            You can write in both English and Arabic
                           </span>
                         </div>
                       </div>
@@ -753,6 +652,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               </div>
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -766,7 +666,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
                     >
-                      Can I write about anything ?
+                      Can I write about anything?
                     </p>
                   </div>
                   <div
@@ -803,7 +703,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
-                            As long as its IT related yes you can write about anything.
+                            As long as it's IT-related yes you can write about anything.
                           </span>
                         </div>
                       </div>
@@ -834,6 +734,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
             >
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -884,11 +785,11 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
-                            See this 
+                            Follow 
                             <a
                               href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
                             >
-                              tutorial
+                              these steps
                             </a>
                             .
                           </span>
@@ -900,6 +801,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               </div>
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -950,7 +852,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                           class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
-                            It has to solve an Algerian problem, or, to be written by an Algerian Developer.
+                            It has to solve an Algerian problem, or, be written by an Algerian Developer.
                           </span>
                         </div>
                       </div>
@@ -960,6 +862,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
               </div>
               <div
                 class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
@@ -973,7 +876,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <p
                       class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
                     >
-                      Why should i add my project to dzcode.io ?
+                      Why should I add my project to dzcode.io?
                     </p>
                   </div>
                   <div
@@ -1011,10 +914,10 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                         >
                           <ul>
                             <li>
-                              Your project will potentially get noticed by more algerian developers.
+                              Your project will potentially get noticed by more Algerian developers.
                             </li>
                             <li>
-                              You will get potential contribution from other DZ developers, and eventually better shape your piece of software.
+                              You will get potential contributions from other developers, which will eventually make your piece of software better.
                             </li>
                           </ul>
                         </div>
@@ -1035,6 +938,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
         class="MuiTypography-root MuiTypography-h6 muiltr-1kgxqm0-MuiTypography-root"
       >
         Still need help? send us an email at 
+         
         <a
           href="mailto:contact@dzcode.io"
         >
