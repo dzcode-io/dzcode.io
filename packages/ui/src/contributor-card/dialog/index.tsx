@@ -8,6 +8,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import { FC } from "react";
 
 interface ContributionItemProps {
   description: string;
@@ -36,7 +37,7 @@ interface ContributionListProps {
 const ContributionList = ({ title, items }: ContributionListProps) => {
   return (
     <>
-      <Typography variant="h4" component="h2" textAlign="center">
+      <Typography variant="h4" component="h2" textAlign="center" margin={2}>
         {title}
       </Typography>
       <List>
@@ -48,66 +49,39 @@ const ContributionList = ({ title, items }: ContributionListProps) => {
 };
 
 export interface ContributionsDialogProps {
+  repositoriesText: string;
   open: boolean;
-  projects?: Array<{
-    slug: string;
-    image?: string;
-    title: string;
-    description?: string;
-    content?: string;
-    authors?: string[];
-    contributors?: string[];
-    views?: number;
-    githubURI?: string;
-  }>;
   repositories?: { provider: string; owner: string; repository: string }[];
   onClose: () => void;
 }
 
-export function ContributionsDialog(props: ContributionsDialogProps) {
-  const { onClose, open, projects, repositories } = props;
-
-  const handleClose = () => {
-    onClose();
-  };
-
+export const ContributionsDialog: FC<ContributionsDialogProps> = ({
+  onClose,
+  open,
+  repositories,
+  repositoriesText,
+}) => {
   return (
     <Dialog
       maxWidth="sm"
       fullWidth
-      onClose={handleClose}
+      onClose={onClose}
       aria-labelledby="contribution"
       data-testid="contribution-dialog"
       open={open}
     >
       <Grid container rowSpacing={2}>
         <Grid item xs={12}>
-          <DialogTitle
-            id="contribution"
-            sx={{ textAlign: "center", fontSize: "typography.h2.fontSize" }}
-          >
-            Contributions
-          </DialogTitle>
-        </Grid>
-        <Grid item xs={12}>
           {repositories && repositories.length > 0 && (
             <ContributionList
-              title="Repositories"
+              title={repositoriesText}
               items={repositories.map((repository) => ({
                 label: repository.repository,
               }))}
             />
           )}
         </Grid>
-        <Grid item xs={12}>
-          {projects && projects.length > 0 && (
-            <ContributionList
-              title="Projects"
-              items={projects.map((project) => ({ label: project.title }))}
-            />
-          )}
-        </Grid>
       </Grid>
     </Dialog>
   );
-}
+};

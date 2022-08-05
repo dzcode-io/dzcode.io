@@ -1,16 +1,16 @@
 import { render, screen } from "@testing-library/react";
 
-import { createProjects } from "../__mocks__/create-projects";
-import { createRepositories } from "../__mocks__/create-repositories";
-import { ContributionsDialog } from ".";
+import { createProjects } from "../../__mocks__/create-projects";
+import { createRepositories } from "../../__mocks__/create-repositories";
+import { ContributionsDialog, ContributionsDialogProps } from ".";
 
 it("should render a closed dialog on first mount", async () => {
   const onClose = jest.fn();
-  const props = {
+  const props: ContributionsDialogProps = {
     onClose: onClose,
     open: false,
-    projects: createProjects(2),
     repositories: createRepositories(2),
+    repositoriesText: "Repositories",
   };
 
   const { container } = render(<ContributionsDialog {...props} />);
@@ -19,11 +19,11 @@ it("should render a closed dialog on first mount", async () => {
 
 it("should handle users with no projects", async () => {
   const onClose = jest.fn();
-  const props = {
+  const props: ContributionsDialogProps = {
     onClose: onClose,
     open: true,
-    projects: [],
     repositories: createRepositories(2),
+    repositoriesText: "Repositories",
   };
 
   render(<ContributionsDialog {...props} />);
@@ -33,11 +33,11 @@ it("should handle users with no projects", async () => {
 
 it("should handle users with no repositories", async () => {
   const onClose = jest.fn();
-  const props = {
+  const props: ContributionsDialogProps = {
     onClose: onClose,
     open: true,
-    projects: createProjects(2),
     repositories: [],
+    repositoriesText: "Repositories",
   };
 
   render(<ContributionsDialog {...props} />);
@@ -47,11 +47,11 @@ it("should handle users with no repositories", async () => {
 
 it("should render a dialog", async () => {
   const onClose = jest.fn();
-  const props = {
+  const props: ContributionsDialogProps = {
     onClose: onClose,
     open: true,
-    projects: createProjects(2),
     repositories: createRepositories(2),
+    repositoriesText: "Repositories",
   };
 
   render(<ContributionsDialog {...props} />);
