@@ -6,6 +6,7 @@ import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, useRouteMatch } from "react-router-dom";
 import { Sidebar } from "src/apps/main/components/sidebar";
+import { t } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { fetchDocumentationList } from "src/apps/main/redux/actions/documentation-page";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
@@ -29,13 +30,13 @@ export const LearnPage: FC = () => {
 
   return (
     <ErrorBoundary>
-      <Grid container className="learn">
+      <Grid container className="learn" dir="ltr">
         {/* Sidebar */}
         <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
           {sidebarTree === "ERROR" ? (
             <TryAgain
-              error="Ops, an error occurred while loading the documentation list, please try again..."
-              action="Try Again"
+              error={t("team-error")}
+              action={t("team-try-again")}
               onClick={() => dispatch(fetchDocumentationList())}
             />
           ) : (

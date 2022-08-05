@@ -5,7 +5,6 @@ import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ListIcon from "@material-ui/icons/List";
 import { FC } from "react";
-import { FormattedMessage } from "react-intl";
 import learnLanding from "src/apps/main/assets/svg/learn-landing.svg";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,18 +39,10 @@ export const Landing: FC<LandingProps> = ({ onShowSidebar }) => {
     <div className={classes.root}>
       <img src={learnLanding} className={classes.image} alt="Dzcode i/o: Learn" />
       <Typography className={classes.text}>
-        <FormattedMessage
-          id="faq.learnpage.header"
-          defaultMessage="Welcome to the learning section of Dzcode i/o"
-        />
+        {"Welcome to the learning section of Dzcode i/o"}
       </Typography>
       {md ? (
-        <Typography className={classes.text}>
-          <FormattedMessage
-            id="faq.sidebar.select"
-            defaultMessage="👈 Please select from the left sidebar"
-          />
-        </Typography>
+        <Typography className={classes.text}>{"👈 Please select from the left sidebar"}</Typography>
       ) : (
         <Button
           className={classes.button}
@@ -59,7 +50,7 @@ export const Landing: FC<LandingProps> = ({ onShowSidebar }) => {
           size="large"
           onClick={() => onShowSidebar()}
         >
-          Materials list
+          {"Materials list"}
         </Button>
       )}
     </div>
