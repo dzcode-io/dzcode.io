@@ -37,10 +37,6 @@ export const settings = (
           exact: false,
           strict: false,
         });
-        console.log({
-          payload: action.payload.language.code,
-          match: match?.params.lang,
-        });
 
         const langPrefix =
           action.payload.language.code === "en" ? "" : `/${action.payload.language.code}`;
