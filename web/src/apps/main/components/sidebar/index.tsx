@@ -10,9 +10,9 @@ import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import TreeItem from "@material-ui/lab/TreeItem";
 import TreeView from "@material-ui/lab/TreeView";
 import { FC, Fragment } from "react";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { SpeedDial } from "src/apps/main/components/speed-dial";
 import { SidebarTreeItem } from "src/apps/main/types";
-import { LinkV2 } from "src/components/link-v2";
 
 const useStyles = makeStyles((theme) =>
   createStyles({

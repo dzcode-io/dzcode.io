@@ -7,9 +7,9 @@ import androidDark from "src/apps/main/assets/png/android-dark.png";
 import androidLight from "src/apps/main/assets/png/android-light.png";
 import iosDark from "src/apps/main/assets/png/ios-dark.png";
 import iosLight from "src/apps/main/assets/png/ios-light.png";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { T } from "src/apps/main/components/t";
 import { StateInterface } from "src/apps/main/redux";
-import { LinkV2 } from "src/components/link-v2";
 import { fullstackConfig } from "src/config";
 
 const useStyles = makeStyles((theme) => ({

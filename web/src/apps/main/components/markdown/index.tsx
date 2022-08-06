@@ -6,8 +6,8 @@ import { useSelector } from "react-redux";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import prism from "react-syntax-highlighter/dist/cjs/styles/prism/prism";
 import tomorrow from "react-syntax-highlighter/dist/cjs/styles/prism/tomorrow";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { StateInterface } from "src/apps/main/redux";
-import { LinkV2 } from "src/components/link-v2";
 
 export const Markdown: FC<ReactMarkdown> = ({ children, t, ...markdownProps }) => {
   const theme = useTheme();

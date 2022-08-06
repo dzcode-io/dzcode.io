@@ -8,7 +8,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
-import { LinkV2 } from "src/components/link-v2";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 
 interface CardInfo {
   image: string;
