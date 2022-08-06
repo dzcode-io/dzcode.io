@@ -8,10 +8,10 @@ import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
 import { useDispatch } from "react-redux";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { Dispatch } from "src/apps/main/redux";
 import { fetchCurrentArticleContributors } from "src/apps/main/redux/actions/articles-page";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
-import { LinkV2 } from "src/components/link-v2";
 
 const useStyles = makeStyles((theme) => ({
   avatarsContainer: {

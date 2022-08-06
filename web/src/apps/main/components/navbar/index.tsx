@@ -10,11 +10,11 @@ import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { FC, Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { animated, useSpring } from "react-spring";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { T } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import logo from "src/assets/svg/logo-wide.svg";
-import { LinkV2 } from "src/components/link-v2";
 
 import { IOSSwitch } from "./ios-switch";
 import { LanguageSwitch } from "./lang-switch";

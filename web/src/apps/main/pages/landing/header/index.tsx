@@ -6,9 +6,9 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import image from "src/apps/main/assets/svg/dzcode.svg";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { Markdown } from "src/apps/main/components/markdown";
 import { T, t } from "src/apps/main/components/t";
-import { LinkV2 } from "src/components/link-v2";
 
 export const Header: FC = () => {
   const useStyles = makeStyles((theme) => ({

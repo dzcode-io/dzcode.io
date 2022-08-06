@@ -1,13 +1,17 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { LanguageEntity } from "@dzcode.io/models/dist/language";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
+import { matchPath } from "react-router-dom";
 import { ThunkResult } from "src/apps/main/redux";
 import { DocumentationState } from "src/apps/main/redux/reducers/documentation";
 import { LearnPageState } from "src/apps/main/redux/reducers/learn-page";
 import { SidebarTreeItem } from "src/apps/main/types";
 import { hasInCollection } from "src/common/utils";
 import { fetchV2 } from "src/common/utils/fetch";
+import { history } from "src/common/utils/history";
+import { urlLanguageRegEx } from "src/common/utils/language";
 
 /**
  * Fetches the list of documents for the sidebar
@@ -163,9 +167,11 @@ const fetchCurrentDocumentAuthors =
  */
 export const fetchCurrentDocument =
   (): ThunkResult<LearnPageState | DocumentationState> => async (dispatch, getState) => {
-    const slug = location.pathname
-      .substring(location.pathname.indexOf("/", 1) + 1)
-      .replace(/\/$/, "");
+    const match = matchPath<{ lang?: LanguageEntity["code"]; slug: string }>(
+      history.location.pathname,
+      { path: `${urlLanguageRegEx}/Learn/:slug(.*)` },
+    );
+    const slug = match?.params.slug || "";
     const cashedDocument = hasInCollection<Document>(getState().documentation.list, "slug", slug, [
       ["content"],
     ]);

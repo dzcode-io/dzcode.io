@@ -14,13 +14,13 @@ import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { t } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { fetchContributions, updateFilterValue } from "src/apps/main/redux/actions/contribute-page";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
 import { SettingsState } from "src/apps/main/redux/reducers/settings";
 import { elapsedTime } from "src/common/utils/elapsed-time";
-import { LinkV2 } from "src/components/link-v2";
 
 const useStyles = makeStyles((theme) => ({
   root: {

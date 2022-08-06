@@ -25,7 +25,9 @@ export const LearnPage: FC = () => {
     dispatch(fetchDocumentationList());
   }, []);
 
-  const { path } = useRouteMatch();
+  const { path: pathRegex } = useRouteMatch();
+  const path = "/Learn";
+
   const loadedCurrentDocument = isLoaded(currentDocument);
 
   return (
@@ -54,11 +56,11 @@ export const LearnPage: FC = () => {
         <Grid item xs md={7}>
           <Route
             exact
-            path={`${path}`}
+            path={pathRegex}
             render={() => <Landing onShowSidebar={() => setOpen(true)} />}
           />
           <Route
-            path={`${path}/:documentSlug`}
+            path={`${pathRegex}/:documentSlug`}
             render={() => <Content key={location.pathname} />}
           />
         </Grid>

@@ -2,9 +2,10 @@ import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { mainStore } from "src/apps/main/redux";
 import { getEnv } from "src/common/utils";
+import { history } from "src/common/utils/history";
 
 import { App } from "./app";
 
@@ -23,7 +24,7 @@ if (env !== "development") {
 
 render(
   <Provider store={mainStore}>
-    <Router>
+    <Router history={history}>
       <App />
     </Router>
   </Provider>,

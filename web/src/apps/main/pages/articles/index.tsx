@@ -24,7 +24,8 @@ export const ArticlesPage: FC = () => {
     dispatch(fetchArticlesList());
   }, []);
 
-  const { path } = useRouteMatch();
+  const { path: pathRegex } = useRouteMatch();
+  const path = "/Articles";
   const loadedCurrentArticle = isLoaded(currentArticle);
 
   return (
@@ -53,10 +54,13 @@ export const ArticlesPage: FC = () => {
         <Grid item xs md={7}>
           <Route
             exact
-            path={`${path}`}
+            path={pathRegex}
             render={() => <Landing onShowSidebar={() => setOpen(true)} />}
           />
-          <Route path={`${path}/:articleSlug`} render={() => <Content key={location.pathname} />} />
+          <Route
+            path={`${pathRegex}/:articleSlug`}
+            render={() => <Content key={location.pathname} />}
+          />
         </Grid>
       </Grid>
     </ErrorBoundary>

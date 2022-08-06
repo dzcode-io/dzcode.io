@@ -6,9 +6,9 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { T, t } from "src/apps/main/components/t";
 import svg from "src/assets/svg/404.svg";
-import { LinkV2 } from "src/components/link-v2";
 
 import { Markdown } from "../../components/markdown";
 import { StateInterface } from "../../redux";

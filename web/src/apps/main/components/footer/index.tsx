@@ -4,10 +4,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { T } from "src/apps/main/components/t";
 import { StateInterface } from "src/apps/main/redux";
 import { FooterComponentState } from "src/apps/main/redux/reducers/footer-component";
-import { LinkV2 } from "src/components/link-v2";
 
 const useStyles = makeStyles((theme) => ({
   root: {
