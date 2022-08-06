@@ -1,20 +1,26 @@
-import { createWriteStream } from "fs";
-import { SitemapStream } from "sitemap";
-const distFolder = "./bundle";
 import { getCollection } from "@dzcode.io/data/dist/get/collection";
+import { allLanguages } from "@dzcode.io/models/dist/language";
+import { createWriteStream } from "fs";
 import { join } from "path";
+import { SitemapStream } from "sitemap";
+
+const distFolder = "./bundle";
 
 // Static URLs
 console.log("Getting Static URLs ...");
-const urls = ["/", "/Contribute", "/Learn", "/Projects", "/Articles", "/FAQ"];
+const urls = ["/", "/Contribute", "/Learn", "/Projects", "/Articles", "/FAQ", "/Team"].reduce(
+  (pV, uri) => [...pV, ...allLanguages.map(({ code }) => (code === "en" ? uri : `/${code}${uri}`))],
+  [] as string[],
+);
 console.log("✅", urls.length, "URLs Found");
 
 // Dynamic URLs
+// @TODO-ZM: to localize this
 console.log("Getting Dynamic URLs ...");
 [
   { file: "articles", slug: "Articles" },
   { file: "documentation", slug: "Learn" },
-  { file: "projects", slug: "Projects" },
+  // { file: "projects", slug: "Projects" }, // @TODO-ZM: to put back when we have proper project details page
 ].forEach((collectionInfo) => {
   const collection = getCollection<Record<string, string>>(
     join(__dirname, "../../../data"),
