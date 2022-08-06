@@ -14,6 +14,7 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { Authors } from "src/apps/main/components/authors";
 import { Contributors } from "src/apps/main/components/contributors";
@@ -104,6 +105,10 @@ export const Content: FC = () => {
         />
       ) : currentArticle ? (
         <>
+          <Helmet>
+            <title>{`${currentArticle.title} | DzCode i/o`}</title>
+            <meta name="description" content={currentArticle.description} />
+          </Helmet>
           {/* Image */}
           {currentArticle.image && (
             <img
