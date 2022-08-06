@@ -25,9 +25,9 @@ export const translationFunctionFactory =
     dictionary: T,
     getLanguageCode: () => keyof T[keyof T],
     fallbackText?: string,
-  ): ((k: keyof T, r?: Record<string, string>) => string) =>
-  (k, r = {}) => {
-    const languageCode = getLanguageCode();
+  ): ((k: keyof T, r?: Record<string, string>, overrideLanguage?: keyof T[keyof T]) => string) =>
+  (k, r = {}, overrideLanguage) => {
+    const languageCode = overrideLanguage || getLanguageCode();
     return replace(dictionary, languageCode, fallbackText, k, r);
   };
 
