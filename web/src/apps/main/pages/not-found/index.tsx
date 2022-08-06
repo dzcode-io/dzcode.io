@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { FC } from "react";
+import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { LinkV2 } from "src/apps/main/components/link-v2";
 import { T, t } from "src/apps/main/components/t";
@@ -35,6 +36,10 @@ const NotFound: FC = () => {
 
   return (
     <ErrorBoundary>
+      <Helmet>
+        <title>{t("notfound-title")}</title>
+        <meta name="description" content={t("notfound-description")} />
+      </Helmet>
       <div className={classes.root}>
         <img className={classes.image} src={svg} alt="DzCode i/o: 404 page not found" />
         <Typography className={classes.text}>

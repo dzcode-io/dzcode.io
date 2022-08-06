@@ -3,9 +3,11 @@ import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import Grid from "@material-ui/core/Grid";
 import { FC, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, useRouteMatch } from "react-router-dom";
 import { Sidebar } from "src/apps/main/components/sidebar";
+import { t } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { fetchArticlesList } from "src/apps/main/redux/actions/articles-page";
 import { ArticlesPageState } from "src/apps/main/redux/reducers/articles-page";
@@ -30,6 +32,10 @@ export const ArticlesPage: FC = () => {
 
   return (
     <ErrorBoundary>
+      <Helmet>
+        <title>{t("articles-title")}</title>
+        <meta name="description" content={t("articles-description")} />
+      </Helmet>
       <Grid container className="articles" dir="ltr">
         {/* Sidebar */}
         <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>

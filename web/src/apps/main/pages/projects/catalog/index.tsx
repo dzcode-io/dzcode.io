@@ -28,7 +28,7 @@ export const Catalog: FC<CatalogProps> = ({ projectsList }) => {
   return (
     <>
       <Typography variant="h4" className={classes.header}>
-        <T projects-title />
+        <T projects-header-title />
       </Typography>
       <Grid container className={classes.root} spacing={4} justifyContent="space-around">
         {projectsList

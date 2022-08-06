@@ -15,7 +15,7 @@ export const Catalog: FC<CatalogProps> = ({ teamList }) => {
     <Grid container alignItems="center" justifyContent="center" sx={{ my: 2 }} rowGap={4}>
       <Grid item xs={12}>
         <Typography variant="h4" sx={{ textAlign: "center" }}>
-          <T team-title />
+          <T team-header-title />
         </Typography>
       </Grid>
       {teamList
