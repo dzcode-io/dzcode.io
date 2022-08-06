@@ -1,4 +1,7 @@
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
+import { matchPath } from "react-router-dom";
+import { history } from "src/common/utils/history";
+import { urlLanguageRegEx } from "src/common/utils/language";
 
 export interface SettingsState {
   darkMode: boolean;
@@ -29,6 +32,27 @@ export const settings = (
       if (action.payload.language) {
         localStorage.setItem("languageCode", action.payload.language.code);
         document.body.setAttribute("dir", action.payload.language.code === "ar" ? "rtl" : "ltr");
+        const match = matchPath<{ lang?: LanguageEntity["code"] }>(history.location.pathname, {
+          path: urlLanguageRegEx,
+          exact: false,
+          strict: false,
+        });
+        console.log({
+          payload: action.payload.language.code,
+          match: match?.params.lang,
+        });
+
+        const langPrefix =
+          action.payload.language.code === "en" ? "" : `/${action.payload.language.code}`;
+
+        if (match?.params.lang || langPrefix) {
+          history.push({
+            ...history.location,
+            pathname: match?.params.lang
+              ? history.location.pathname.replace(`/${match.params.lang}`, langPrefix)
+              : `${langPrefix}${history.location.pathname}`,
+          });
+        }
       }
       return { ...state, ...action.payload };
     default:
