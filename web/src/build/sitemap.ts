@@ -47,9 +47,17 @@ writeStream.on("error", (err) => {
 writeStream.on("ready", () => {
   sitemap.pipe(writeStream);
   urls.forEach((url) => {
-    sitemap.write(url, undefined, (err) => {
-      if (err) console.log("Sitemap generation error", err);
-    });
+    const lang = allLanguages.find(({ code }) => `/${code}/` === url.substring(0, 4))?.code || "en";
+    sitemap.write(
+      {
+        url,
+        links: [{ lang, url }],
+      },
+      undefined,
+      (err) => {
+        if (err) console.log("Sitemap generation error", err);
+      },
+    );
   });
 
   sitemap.end();
