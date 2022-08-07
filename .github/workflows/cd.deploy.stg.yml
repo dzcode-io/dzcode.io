@@ -63,6 +63,7 @@ jobs:
 
         env:
           CI: true
+          STAGE: "staging"
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
           SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

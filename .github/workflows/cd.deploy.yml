@@ -70,6 +70,7 @@ jobs:
 
         env:
           CI: true
+          STAGE: "production"
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
           SSH_ADDRESS_PRD: ${{ secrets.SSH_ADDRESS_PRD }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

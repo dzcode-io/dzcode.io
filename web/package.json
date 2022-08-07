@@ -82,6 +82,7 @@
     "postcss-preset-env": "^7.0.1",
     "pug": "^3.0.0",
     "pug-loader": "^2.4.0",
+    "robotstxt-webpack-plugin": "^7.0.0",
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "sitemap": "^6.3.5",
