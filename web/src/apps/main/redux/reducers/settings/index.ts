@@ -26,10 +26,11 @@ export const settings = (
 ) => {
   switch (action.type) {
     case "UPDATE_SETTINGS":
-      if (action.payload.darkMode) {
+      if ("darkMode" in action.payload) {
         localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
+        console.log(action.payload.darkMode ? "on" : "off");
       }
-      if (action.payload.language) {
+      if ("language" in action.payload) {
         localStorage.setItem("languageCode", action.payload.language.code);
         document.body.setAttribute("dir", action.payload.language.code === "ar" ? "rtl" : "ltr");
         const match = matchPath<{ lang?: LanguageEntity["code"] }>(history.location.pathname, {
