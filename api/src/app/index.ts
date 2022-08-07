@@ -19,6 +19,7 @@ import { LoggerMiddleware } from "./middlewares/logger";
 import { SecurityMiddleware } from "./middlewares/security";
 import { SentryErrorHandlerMiddleware } from "./middlewares/sentry-error-handler";
 import { SentryRequestHandlerMiddleware } from "./middlewares/sentry-request-handler";
+const robots = require("express-robots-txt"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 // Use typedi container
 useContainer(Container);
@@ -58,6 +59,8 @@ export const routingControllersOptions: RoutingControllersOptions = {
 const app: Application = createExpressServer(routingControllersOptions);
 
 const logger = Container.get(LoggerService);
+
+app.use(robots({ UserAgent: "*", Disallow: "/" }));
 
 // Start it
 app.listen(PORT, () => {

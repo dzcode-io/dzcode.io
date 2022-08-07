@@ -1,4 +1,5 @@
 import { fsConfig } from "@dzcode.io/utils/dist/config";
+import { Environment } from "@dzcode.io/utils/dist/config/environment";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import { readFileSync } from "fs";
 import glob from "glob";
@@ -10,9 +11,14 @@ import { Configuration as WPC } from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { Configuration as WPDSC } from "webpack-dev-server";
 
+const RobotstxtPlugin = require("robotstxt-webpack-plugin"); // eslint-disable-line @typescript-eslint/no-var-requires
+
+// @TODO-ZM: to combine isProduction and isDevelopment and stage
+
 // setting up project configurations and some env variables
 const ANALYZE = process.env.ANALYZE === "true";
 const isProduction = process.env.NODE_ENV === "production" || ANALYZE;
+const stage = (process.env.STAGE as Environment) || "production";
 const isDevelopment = process.env.NODE_ENV === "development" && !ANALYZE;
 const { web } = fsConfig("development");
 const distFolder = "./bundle";
@@ -157,6 +163,15 @@ export default {
           new BundleAnalyzerPlugin(),
         ]
       : []),
+    new RobotstxtPlugin({
+      policy: [
+        {
+          userAgent: "*",
+          allow: stage === "production" ? "/" : undefined,
+          disallow: stage !== "production" ? "/" : undefined,
+        },
+      ],
+    }),
     ...apps.reduce<WPC["plugins"][]>(
       (pV, app) => [...pV, ...require(`./src/apps/${app}/entry/webpack.plugins`)],
       [],
