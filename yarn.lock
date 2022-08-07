@@ -9711,6 +9711,11 @@ express-rate-limit@^5.2.6:
   resolved "https://registry.yarnpkg.com/express-rate-limit/-/express-rate-limit-5.5.1.tgz#110c23f6a65dfa96ab468eda95e71697bc6987a2"
   integrity sha512-MTjE2eIbHv5DyfuFz4zLYWxpqVhEhkTiwFGuB74Q9CSou2WHO52nlE5y3Zlg6SIsiYUIPj6ifFxnkPz6O3sIUg==
 
+express-robots-txt@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/express-robots-txt/-/express-robots-txt-1.0.0.tgz#354dde6f241c3d4ed39f74cfd0604dd92daea497"
+  integrity sha512-ZzXTJgvHY6N8MIPzWidIrOGngkNJ8nrSP9Ox0nztVkQxvpwcX8egJvhM6tBUojf9xDmnSc7J5RlWQJJK91N3aA==
+
 express-session@^1.17.1:
   version "1.17.2"
   resolved "https://registry.yarnpkg.com/express-session/-/express-session-1.17.2.tgz#397020374f9bf7997f891b85ea338767b30d0efd"
