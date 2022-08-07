@@ -1,7 +1,9 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Grid from "@material-ui/core/Grid";
 import { FC, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch } from "react-redux";
+import { t } from "src/apps/main/components/t";
 import { ContributePageState } from "src/apps/main/redux/reducers/contribute-page";
 
 import { Dispatch } from "../../redux";
@@ -17,6 +19,10 @@ export const ContributePage: FC = () => {
 
   return (
     <ErrorBoundary>
+      <Helmet>
+        <title>{t("contribute-title")}</title>
+        <meta name="description" content={t("contribute-description")} />
+      </Helmet>
       <Grid container className="contribute-page" spacing={1}>
         {/* Filters */}
         <Grid item xs={false} md={3}>

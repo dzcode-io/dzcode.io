@@ -4,6 +4,7 @@ import { Grid } from "@dzcode.io/ui/dist/grid";
 import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { Typography } from "@dzcode.io/ui/dist/typography";
 import type { FC } from "react";
+import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { Markdown } from "src/apps/main/components/markdown";
 import { T, t } from "src/apps/main/components/t";
@@ -15,6 +16,10 @@ const FaqCards = () => {
 
   return (
     <Grid container rowSpacing={5}>
+      <Helmet>
+        <title>{t("faq-title")}</title>
+        <meta name="description" content={t("faq-description")} />
+      </Helmet>
       {faqData.map(({ title, questions }, index) => (
         <Grid item xs={12} key={`faq.title.${index}`}>
           <FaqCard
@@ -35,7 +40,7 @@ const FaqCards = () => {
 const PageTitle = () => {
   return (
     <Typography variant="h4" component="h1" textAlign="center">
-      <T faq-title />
+      <T faq-header-title />
     </Typography>
   );
 };

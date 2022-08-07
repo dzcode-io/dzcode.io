@@ -4,10 +4,12 @@ import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Container from "@material-ui/core/Container";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import { Footer } from "src/apps/main/components/footer";
 import { Navbar } from "src/apps/main/components/navbar";
+import { t } from "src/apps/main/components/t";
 import { Theme } from "src/apps/main/components/theme";
 import { getEnv } from "src/common/utils";
 import { urlLanguageRegEx } from "src/common/utils/language";
@@ -83,6 +85,9 @@ export const App: FC = () => {
   return (
     <Theme>
       <ErrorBoundary>
+        <Helmet>
+          <title>{t("landing-title")}</title>
+        </Helmet>
         <div
           style={{
             display: "flex",

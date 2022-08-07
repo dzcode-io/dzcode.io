@@ -1,6 +1,7 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { FC, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { t } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
@@ -21,6 +22,10 @@ export const ProjectsPage: FC = () => {
 
   return (
     <ErrorBoundary>
+      <Helmet>
+        <title>{t("projects-title")}</title>
+        <meta name="description" content={t("projects-description")} />
+      </Helmet>
       <div>
         {projectsList == "ERROR" ? (
           <TryAgain

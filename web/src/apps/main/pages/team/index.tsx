@@ -2,6 +2,7 @@ import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { FC, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { t } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
@@ -23,6 +24,10 @@ export const TeamPage: FC = () => {
 
   return (
     <ErrorBoundary>
+      <Helmet>
+        <title>{t("team-title")}</title>
+        <meta name="description" content={t("team-description")} />
+      </Helmet>
       <ThemeProvider
         direction={language.code === "ar" ? "rtl" : "ltr"}
         mode={darkMode ? "dark" : "light"}

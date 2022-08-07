@@ -39,7 +39,15 @@ export const dictionary = {
     ar: "حقوق النشر ©",
   },
 
-  "faq-title": { en: "Frequently Asked Questions", ar: "اللاسئلة الاكثر طرحا" },
+  "faq-title": {
+    en: "Frequently Asked Questions | DzCode i/o",
+    ar: "اللاسئلة الاكثر طرحا | DzCode i / o",
+  },
+  "faq-description": {
+    en: "Frequently asked questions about DzCode i/o",
+    ar: "الأسئلة المتداولة حول DzCode i / o",
+  },
+  "faq-header-title": { en: "Frequently Asked Questions", ar: "اللاسئلة الاكثر طرحا" },
   "faq-need-help": {
     en: "Still need help? send us an email at ",
     ar: "هل ما زلت بحاجة إلى المساعدة؟ أرسل إلينا بريدًا إلكترونيًا على ",
@@ -188,6 +196,14 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
 - ستحصل على مساهمات محتملة من مطورين آخرين ، مما سيجعل برنامجك في النهاية أفضل.
 `,
   },
+  "landing-title": {
+    en: "Algeria Codes | DzCode i/o",
+    ar: "الجزائر تبرمج | DzCode i / o",
+  },
+  "landing-description": {
+    en: "DzCode i/o is community of developers that tries to solve technical problems in Algeria via open-source software, this website helps you find, contribute and add to the list of open-source projects that solve some technical problems in Algerian.",
+    ar: "DzCode i / o هو مجتمع من المطورين الذين يحاولون حل المشاكل التقنية في الجزائر عبر برمجيات مفتوحة المصدر ، وهذا الموقع يساعدك في العثور على ، والمساهمة والإضافة إلى قائمة المشاريع مفتوحة المصدر التي تحل بعض المشاكل التقنية في الجزائر.",
+  },
   "landing-heading-title": {
     en: `<span class="CLASS"}>Open-Source</span> Algerian Comunity`,
     ar: `مجموعة جزائرية للبرامج <span class="CLASS"}>مفتوحة المصدر</span>`,
@@ -212,6 +228,14 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Meet the DzCode i/o mobile app and stay up-to-date with the state of Algerian open-source software on iOS and Android.",
     ar: "تعرف على تطبيق DzCode i / o للجوال وابق على اطلاع دائم بأحدث البرامج مفتوحة المصدر الجزائرية على iOS و Android.",
   },
+  "team-title": {
+    en: "Meet the team! | DzCode i/o",
+    ar: "تعرّف على الفريق! | DzCode i / o",
+  },
+  "team-description": {
+    en: "Meet and connect with all the contributors of all the listed projects on dzcode.io website",
+    ar: "تعرف على جميع المساهمين في جميع المشاريع المدرجة وتواصل معهم على موقع dzcode.io الإلكتروني",
+  },
   "team-error": {
     en: "Oops, an error occurred while loading the articles list, please try again...",
     ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة المقالات ، يرجى المحاولة مرة أخرى ...",
@@ -220,7 +244,7 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Try Again",
     ar: "حاول مرة أخري",
   },
-  "team-title": {
+  "team-header-title": {
     en: "Get to know our team 💻",
     ar: "تعرف على فريقنا 💻",
   },
@@ -232,6 +256,14 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Repositories",
     ar: "مستودعات",
   },
+  "projects-title": {
+    en: "Browse a growing list of Algerian open-source projects | DzCode i/o",
+    ar: "تصفح قائمة المشاريع الجزائرية مفتوحة المصدر | DzCode i / o",
+  },
+  "projects-description": {
+    en: "Browse a growing list of Algerian open-source projects and be up-to-date with the state of open-source software in Algeria, you can also add your project to the list!",
+    ar: "تصفح قائمة متزايدة من المشاريع الجزائرية مفتوحة المصدر وكن على اطلاع دائم بأحدث البرامج مفتوحة المصدر في الجزائر ، كما يمكنك إضافة مشروعك إلى القائمة!",
+  },
   "projects-error": {
     en: "Oops, an error occurred while loading the projects list, please try again...",
     ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة المشاريع ، يرجى المحاولة مرة أخرى ...",
@@ -240,13 +272,21 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Try Again",
     ar: "حاول مرة أخري",
   },
-  "projects-title": {
+  "projects-header-title": {
     en: "Open Source Projects",
     ar: "مشاريع مفتوحة المصدر",
   },
   "projects-card-cta-button": {
     en: "Go to code",
     ar: "إلى الكود",
+  },
+  "notfound-title": {
+    en: "A broken link? | DzCode i/o",
+    ar: "عنوان url معطل؟ | DzCode i / o",
+  },
+  "notfound-description": {
+    en: "A broken link?",
+    ar: "عنوان url معطل؟",
   },
   "notfound-subtitle": {
     en: `Finally someone saw the 404 page <a href="https://github.com/NurElHuda">Nour</a> built 😄`,
@@ -255,6 +295,14 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "notfound-back-home": {
     en: "Go Back Home",
     ar: "ارجع إلى الصفحة الرئيسية",
+  },
+  "contribute-title": {
+    en: "Contribute to algerian open-source projects | DzCode i/o",
+    ar: "ساهم في المشاريع الجزائرية مفتوحة المصدر | DzCode i / o",
+  },
+  "contribute-description": {
+    en: "Browse and contribute to Algerian open-source projects",
+    ar: "تصفح وساهم في مشاريع جزائرية مفتوحة المصدر",
   },
   "contribute-filter-projects": {
     en: "Project",
@@ -279,5 +327,21 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "elapsed-time-suffixes": {
     en: "y|mo|d|h|min|Just now",
     ar: " عام| شهر| يوم| ساعة| دقيقة| الآن",
+  },
+  "articles-title": {
+    en: "Read and discuss articles written by algerian developers | DzCode i/o",
+    ar: "اقرأ وناقش المقالات التي كتبها المطورون الجزائريون | DzCode i / o",
+  },
+  "articles-description": {
+    en: "Browse, read or modify a growing list of articles written by Algerian developers, or Add your own article to the list!",
+    ar: "تصفح أو اقرأ أو عدل قائمة متزايدة من المقالات التي كتبها مطورون جزائريون ، أو أضف مقالك الخاص إلى القائمة!",
+  },
+  "learn-title": {
+    en: "Learn about software development through open-source | DzCode i/o",
+    ar: "تعرف على البرمجة من خلال البرامج مفتوحة المصدر | DzCode i / o",
+  },
+  "learn-description": {
+    en: "Learn and share your knowledge with other Algerian developers!",
+    ar: "تعلم وشارك معرفتك مع مطورين جزائريين آخرين!",
   },
 };
