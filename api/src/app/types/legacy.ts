@@ -63,3 +63,17 @@ export interface GithubIssue {
     html_url: "https://github.com/ZibanPirate/l2t/pull/9";
   };
 }
+
+export interface GithubMilestone {
+  html_url: string;
+  number: number;
+  title: string;
+  description: string;
+  state: "closed" | "open";
+  open_issues: number;
+  closed_issues: number;
+  created_at: string;
+  updated_at: string;
+  closed_at: string | null;
+  due_on: string | null;
+}
