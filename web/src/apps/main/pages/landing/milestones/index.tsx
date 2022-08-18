@@ -1,7 +1,7 @@
 import { MilestoneEntity } from "@dzcode.io/models/dist/milestone";
+import { CircularProgress } from "@dzcode.io/ui/dist/circular-progress";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import CodeIcon from "@mui/icons-material/Code";
 import Timeline from "@mui/lab/Timeline";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
@@ -12,6 +12,7 @@ import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import Typography from "@mui/material/Typography";
 import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { LinkV2 } from "src/apps/main/components/link-v2";
 import { T, t } from "src/apps/main/components/t";
 import { Dispatch, StateInterface } from "src/apps/main/redux";
 import { fetchDzCodeMilestones } from "src/apps/main/redux/actions/landing-page";
@@ -70,7 +71,7 @@ export const MilestonesSection: FC = () => {
         />
       ) : milestones ? (
         <Timeline position="alternate" sx={{ margin: 3 }}>
-          {milestones.map((milestone, milestoneIndex) => (
+          {milestones.map((milestone) => (
             <TimelineItem key={milestone.id}>
               {milestone.closedAt || milestone.dueAt ? (
                 <TimelineOppositeContent sx={{ m: "auto 0" }} align="right" variant="body2">
@@ -79,14 +80,24 @@ export const MilestonesSection: FC = () => {
               ) : null}
               <TimelineSeparator>
                 <TimelineConnector sx={{ bgcolor: milestoneColors[milestone.status] }} />
-                <TimelineDot sx={{ bgcolor: milestoneColors[milestone.status] }}>
-                  {milestones[milestoneIndex - 1]?.closedAt && !milestone.closedAt && <CodeIcon />}
-                </TimelineDot>
+                {milestone.status === "in-progress" ? (
+                  <CircularProgress
+                    style={{ margin: 8 }}
+                    value={
+                      milestone.closedIssuesCount /
+                        (milestone.closedIssuesCount + milestone.openIssuesCount) || 0
+                    }
+                  />
+                ) : (
+                  <TimelineDot sx={{ bgcolor: milestoneColors[milestone.status] }} />
+                )}
                 <TimelineConnector sx={{ bgcolor: milestone.closedAt ? "success.main" : "grey" }} />
               </TimelineSeparator>
               <TimelineContent sx={{ py: "12px", px: 2 }}>
                 <Typography variant="h6" component="span">
-                  {milestone.title}
+                  <LinkV2 style={{ color: "inherit" }} href={milestone.url}>
+                    {milestone.title}
+                  </LinkV2>
                 </Typography>
                 {milestone.description && <Typography>{milestone.description}</Typography>}
               </TimelineContent>
