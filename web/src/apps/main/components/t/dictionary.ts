@@ -228,6 +228,22 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Meet the DzCode i/o mobile app and stay up-to-date with the state of Algerian open-source software on iOS and Android.",
     ar: "تعرف على تطبيق DzCode i / o للجوال وابق على اطلاع دائم بأحدث البرامج مفتوحة المصدر الجزائرية على iOS و Android.",
   },
+  "landing-milestones-error": {
+    en: "Oops, an error occurred while loading the milestones list, please try again...",
+    ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة خارطة الطريق ، يرجى المحاولة مرة أخرى ...",
+  },
+  "landing-milestones-try-again": {
+    en: "Try Again",
+    ar: "حاول مرة أخري",
+  },
+  "landing-milestones-title": {
+    en: "Project roadmap",
+    ar: "خارطة طريق المشروع",
+  },
+  "landing-milestones-subtitle": {
+    en: "See how and when new features are released and share your ideas and feedback to help us better shape dzcode roadmap",
+    ar: "تعرف على كيفية ووقت إصدار الميزات الجديدة وشارك بأفكارك وملاحظاتك لمساعدتنا في تشكيل خارطة طريق dzcode بشكل أفضل",
+  },
   "team-title": {
     en: "Meet the team! | DzCode i/o",
     ar: "تعرّف على الفريق! | DzCode i / o",

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import { t } from "src/apps/main/components/t";
 
 import { Header } from "./header";
+import { MilestonesSection } from "./milestones";
 import { Mobile } from "./mobile";
 
 export const LandingPage: FC = () => {
@@ -15,6 +16,7 @@ export const LandingPage: FC = () => {
       </Helmet>
       <Header />
       <Mobile />
+      <MilestonesSection />
     </ErrorBoundary>
   );
 };

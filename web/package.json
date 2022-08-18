@@ -17,6 +17,8 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "@mui/lab": "^5.0.0-alpha.95",
+    "@mui/material": "^5.10.1",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@sentry/browser": "^6.11.0",
     "@sentry/react": "^6.11.0",
