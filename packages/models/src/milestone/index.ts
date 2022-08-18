@@ -22,7 +22,7 @@ export class MilestoneEntity extends BaseEntity {
   closedIssuesCount!: number;
 
   @IsString()
-  status!: "open" | "closed";
+  status!: "open" | "closed" | "in-progress";
 
   @IsDateString()
   createdAt!: string;
