@@ -6,6 +6,7 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import Skeleton from "@mui/material/Skeleton";
 import Step from "@mui/material/Step";
 import StepContent from "@mui/material/StepContent";
 import StepIcon from "@mui/material/StepIcon";
@@ -113,7 +114,27 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
       </Stepper>
     )
   ) : (
-    // @TODO-ZM: render a skeleton
-    <div>Loading ...</div>
+    <Timeline dir="ltr" position="alternate" sx={{ marginTop: 3, marginBottom: 3 }}>
+      {[1, 2, 3].map((id) => (
+        <TimelineItem key={id}>
+          <TimelineOppositeContent sx={{ m: "auto 0" }} align="right" variant="body2">
+            <Skeleton width={40} sx={{ display: "inline-block" }} />
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineConnector sx={{ bgcolor: milestoneColors.open }} />
+            <TimelineDot sx={{ bgcolor: milestoneColors.open }} />
+            <TimelineConnector sx={{ bgcolor: milestoneColors.open }} />
+          </TimelineSeparator>
+          <TimelineContent sx={{ py: "12px", px: 2 }}>
+            <Typography variant="h6" component="span" sx={{ cursor: "pointer" }}>
+              <Skeleton width={80} sx={{ display: "inline-block" }} />
+            </Typography>
+            <Typography>
+              <Skeleton width={100} sx={{ display: "inline-block" }} />
+            </Typography>
+          </TimelineContent>
+        </TimelineItem>
+      ))}
+    </Timeline>
   );
 };
