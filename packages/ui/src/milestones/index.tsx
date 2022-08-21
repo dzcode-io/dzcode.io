@@ -48,7 +48,7 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
 
   return milestones ? (
     large ? (
-      <Timeline position="alternate" sx={{ marginTop: 3, marginBottom: 3 }}>
+      <Timeline dir="ltr" position="alternate" sx={{ marginTop: 3, marginBottom: 3 }}>
         {milestones.map(({ id, title, description, date, state, progress }, milestoneIndex) => (
           <TimelineItem key={id}>
             {date ? (
@@ -81,7 +81,7 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
         ))}
       </Timeline>
     ) : (
-      <Stepper orientation="vertical" connector={null} sx={{ margin: 3 }}>
+      <Stepper dir="ltr" orientation="vertical" connector={null} sx={{ margin: 3 }}>
         {milestones.map(({ id, title, description, date, state, progress }, milestoneIndex) => (
           <Step key={id} active={true} color="primary">
             <StepLabel

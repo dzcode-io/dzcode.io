@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("lg")]: {
       minHeight: "40vh",
     },
-    direction: "ltr",
   },
   title: {
     textAlign: "center",
