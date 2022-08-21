@@ -46,7 +46,8 @@ export class MilestoneController {
           description: githubMilestone.description,
           url: githubMilestone.html_url,
           status:
-            githubMilestones[githubMilestoneIndex - 1]?.state === "closed" &&
+            (!githubMilestones[githubMilestoneIndex - 1] ||
+              githubMilestones[githubMilestoneIndex - 1].state === "closed") &&
             githubMilestone.state === "open"
               ? "in-progress"
               : githubMilestone.state,
