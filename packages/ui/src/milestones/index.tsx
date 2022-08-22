@@ -45,7 +45,6 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
   const large = useMediaQuery("(min-width:600px)");
   const theme = useTheme();
 
-  console.log(theme.palette);
 
   return milestones ? (
     large ? (
