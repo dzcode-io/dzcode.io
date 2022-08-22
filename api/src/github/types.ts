@@ -61,6 +61,8 @@ export interface GitHubListRepositoryIssuesInput {
 
 export type GitHubListRepositoryLanguagesInput = GitHubListRepositoryIssuesInput;
 
+export type GitHubListRepositoryMilestonesInput = GitHubListRepositoryIssuesInput;
+
 export interface GitHubRateLimitApiResponse {
   resources: {
     core: {

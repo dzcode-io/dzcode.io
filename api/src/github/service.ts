@@ -1,6 +1,6 @@
 import { Service } from "typedi";
 
-import { GithubIssue, GithubUser } from "../app/types/legacy";
+import { GithubIssue, GithubMilestone, GithubUser } from "../app/types/legacy";
 import { ConfigService } from "../config/service";
 import { FetchService } from "../fetch/service";
 import {
@@ -8,6 +8,7 @@ import {
   GetUserInput,
   GitHubListRepositoryIssuesInput,
   GitHubListRepositoryLanguagesInput,
+  GitHubListRepositoryMilestonesInput,
   GitHubRateLimitApiResponse,
   GitHubUserApiResponse,
   ListContributorsResponse,
@@ -106,6 +107,20 @@ export class GithubService {
       used,
       ratio: used / limit,
     };
+  };
+
+  public listRepositoryMilestones = async ({
+    owner,
+    repo,
+  }: GitHubListRepositoryMilestonesInput): Promise<GithubMilestone[]> => {
+    const milestones = await this.fetchService.get<GithubMilestone[]>(
+      `${this.apiURL}/repos/${owner}/${repo}/milestones`,
+      {
+        headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
+        params: { state: "all", per_page: 100 }, // eslint-disable-line camelcase
+      },
+    );
+    return milestones;
   };
 
   private githubToken = this.configService.env().GITHUB_TOKEN;

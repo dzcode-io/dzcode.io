@@ -12,6 +12,7 @@ import { ContributorController } from "../contributor/controller";
 import { GithubController } from "../github/controller";
 import { GithubUserController } from "../github-user/controller";
 import { LoggerService } from "../logger/service";
+import { MilestoneController } from "../milestone/controller";
 import { TeamController } from "../team/controller";
 import { DocsMiddleware } from "./middlewares/docs";
 import { ErrorMiddleware } from "./middlewares/error";
@@ -44,6 +45,7 @@ export const routingControllersOptions: RoutingControllersOptions = {
     GithubUserController,
     TeamController,
     GithubController,
+    MilestoneController,
   ],
   middlewares: [
     SentryRequestHandlerMiddleware,

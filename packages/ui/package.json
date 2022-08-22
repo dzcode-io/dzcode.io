@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.6.0",
     "@fontsource/roboto": "^4.5.1",
     "@mui/icons-material": "^5.2.0",
+    "@mui/lab": "^5.0.0-alpha.95",
     "@mui/material": "^5.2.2",
     "@sentry/react": "^6.11.0",
     "@sentry/tracing": "^6.11.0",

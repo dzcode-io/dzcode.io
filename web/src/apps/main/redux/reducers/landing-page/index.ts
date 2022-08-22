@@ -1,9 +1,17 @@
+import { GetMilestonesResponseDto } from "@dzcode.io/api/dist/milestone/types";
+import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { Action } from "src/apps/main/redux";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface LandingPageState {}
+export interface LandingPageState {
+  milestones: LOADABLE<GetMilestonesResponseDto["milestones"]>;
+}
 
-export const landingPage = (state: LandingPageState = {}, action: Action<LandingPageState>) => {
+export const landingPage = (
+  state: LandingPageState = {
+    milestones: null,
+  },
+  action: Action<LandingPageState>,
+) => {
   switch (action.type) {
     case "UPDATE_LANDING_PAGE":
       return { ...state, ...action.payload };
