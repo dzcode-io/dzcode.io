@@ -40,7 +40,6 @@ const milestoneColors: Record<MilestoneItem["state"], string> = {
   "in-progress": "primary.main",
 };
 
-// @TODO-ZM: move this to @dzcode.io/ui and move deps with it (@mui/lab & @mui/material)
 export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => null }) => {
   const large = useMediaQuery("(min-width:600px)");
   const theme = useTheme();
