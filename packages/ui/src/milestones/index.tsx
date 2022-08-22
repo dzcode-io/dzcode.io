@@ -44,7 +44,6 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
   const large = useMediaQuery("(min-width:600px)");
   const theme = useTheme();
 
-
   return milestones ? (
     large ? (
       <Timeline dir="ltr" position="alternate" sx={{ marginTop: 3, marginBottom: 3 }}>
