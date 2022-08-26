@@ -171,7 +171,9 @@ export const fetchCurrentDocument =
       history.location.pathname,
       { path: `${urlLanguageRegEx}/Learn/:slug(.*)` },
     );
-    const slug = match?.params.slug || "";
+
+    const slug = match?.params.slug.replace(/\/$/, "") || "";
+
     const cashedDocument = hasInCollection<Document>(getState().documentation.list, "slug", slug, [
       ["content"],
     ]);
