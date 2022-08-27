@@ -62,7 +62,8 @@ const app: Application = createExpressServer(routingControllersOptions);
 
 const logger = Container.get(LoggerService);
 
-app.use(robots({ UserAgent: "*", Disallow: "/" }));
+// @TODO-ZM: move this to ./middlewares
+app.use(robots({ UserAgent: "*", Disallow: "/docs" }));
 
 // Start it
 app.listen(PORT, () => {
