@@ -172,7 +172,7 @@ export const fetchCurrentArticle =
       history.location.pathname,
       { path: `${urlLanguageRegEx}/Articles/:slug(.*)` },
     );
-    const slug = match?.params.slug || "";
+    const slug = match?.params.slug.replace(/\/$/, "") || "";
 
     const cashedArticle = hasInCollection<Article>(getState().articles.list, "slug", slug, [
       ["content"],
