@@ -38,7 +38,7 @@ export const fetchDocument = createAsyncThunk("learnScreen/fetchDocument", async
 
 const learnScreenSlice = createSlice({
   name: "learnScreen",
-  initialState: initialState,
+  initialState,
   reducers: {},
   extraReducers(builder) {
     builder

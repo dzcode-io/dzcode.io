@@ -7,22 +7,22 @@ import { useSelector } from "react-redux";
 
 import { ErrorBoundary } from "../../components/error-boundary";
 import { StateInterface } from "../../redux";
-import { FaqScreenState } from "../../redux/reducers/faq-screen";
 import { GeneralState } from "../../redux/reducers/general";
+import { selectFaqData } from "../../store/faq-screen/selectors/data";
 import { globalStyles } from "../../styles/global";
 import { openLink } from "../../utils/link";
 import { faqStyles } from "./styles";
 
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();
-  const { faqData } = useSelector<StateInterface, FaqScreenState>((state) => state.faqScreen);
+  const data = useSelector(selectFaqData);
   const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
 
   return (
     <ErrorBoundary>
       <SafeAreaView style={globalStyles.mainView}>
         <ScrollView>
-          {faqData.map(({ title, questions }, index) => (
+          {data.map(({ title, questions }, index) => (
             <View key={`category-${index}`}>
               <Text style={faqStyles.title}>{title}</Text>
               <List.Section>

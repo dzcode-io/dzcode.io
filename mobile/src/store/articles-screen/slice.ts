@@ -41,7 +41,7 @@ export const fetchArticle = createAsyncThunk(
 
 const articlesScreenSlice = createSlice({
   name: "articlesScreen",
-  initialState: initialState,
+  initialState,
   reducers: {},
   extraReducers(builder) {
     builder

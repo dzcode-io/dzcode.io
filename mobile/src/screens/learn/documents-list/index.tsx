@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { Dispatch, StateInterface } from "../../../redux";
 import { AppDispatch } from "../../../store";
 import { selectDocuments } from "../../../store/learn-screen/selectors/documents";
 import { selectLearnStatus } from "../../../store/learn-screen/selectors/status";

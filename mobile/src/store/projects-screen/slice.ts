@@ -25,7 +25,7 @@ export const fetchProjects = createAsyncThunk("projectsScreen/fetchProjects", as
 
 const projectsScreenSlice = createSlice({
   name: "projectsScreen",
-  initialState: initialState,
+  initialState,
   reducers: {},
   extraReducers(builder) {
     builder
