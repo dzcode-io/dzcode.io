@@ -32,12 +32,12 @@ const routes: Route[] = [
     label: "Learn",
     component: DocumentsStack,
   },
-  // {
-  //   name: "projects",
-  //   title: "Projects Gallery",
-  //   label: "DZ Open-Source Projects",
-  //   component: ProjectsScreen,
-  // },
+  {
+    name: "projects",
+    title: "Projects Gallery",
+    label: "DZ Open-Source Projects",
+    component: ProjectsScreen,
+  },
   {
     name: "articles",
     title: "Articles",
