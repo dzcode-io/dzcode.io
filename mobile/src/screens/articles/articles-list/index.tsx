@@ -8,19 +8,21 @@ import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
-import { fetchArticles } from "../../../redux/actions/articles-screen";
 import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
+import { AppDispatch } from "../../../store";
+import { selectArticles } from "../../../store/articles-screen/selectors/articles";
+import { selectArticlesStatus } from "../../../store/articles-screen/selectors/status";
+import { fetchArticles } from "../../../store/articles-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { articlesListStyles } from "./styles";
 
 export const ArticlesListScreen: FC = () => {
-  const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
-    (state) => state.articlesScreen,
-  );
+  const articles = useSelector(selectArticles);
+  const status = useSelector(selectArticlesStatus);
 
   const navigation = useNavigation();
 
-  const dispatch = useDispatch<Dispatch<ArticlesScreenState>>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchArticles());
@@ -29,17 +31,17 @@ export const ArticlesListScreen: FC = () => {
   return (
     <ErrorBoundary>
       <SafeAreaView style={globalStyles.mainView}>
-        {articles === "ERROR" ? (
+        {status === "error" ? (
           <TryAgain
             error="Ops, an error occurred while loading the articles, please try again..."
             action="Try Again"
-            onClick={() => dispatch(fetchArticles(true))}
+            onClick={() => dispatch(fetchArticles())}
           />
         ) : articles ? (
           <FlatList
             data={articles}
             onRefresh={() => dispatch(fetchArticles())}
-            refreshing={refreshing}
+            refreshing={status === "loading"}
             ItemSeparatorComponent={() => <Divider />}
             keyExtractor={(item, index) => `item-${index}`}
             renderItem={({ item }) => (

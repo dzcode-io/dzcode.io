@@ -18,6 +18,7 @@ import { Dispatch, mainStore, StateInterface } from "../redux";
 import { init } from "../redux/actions/general";
 import { GeneralState } from "../redux/reducers/general";
 import { Navigation } from "../screens/navigation";
+import { store } from "../store";
 import { Colors } from "../styles/colors";
 import { getEnv } from "../utils/env";
 
@@ -98,7 +99,7 @@ const AppComponent: FC = () => {
 };
 
 export const App = () => (
-  <Provider store={mainStore}>
+  <Provider store={store}>
     <AppComponent />
   </Provider>
 );

@@ -20,36 +20,36 @@ interface Route {
 }
 
 const routes: Route[] = [
-  {
-    name: "contribute" as const,
-    title: "Contribution Gallery",
-    label: "Contribute",
-    component: ContributeScreen,
-  },
-  {
-    name: "learn",
-    title: "Read & Learn",
-    label: "Learn",
-    component: DocumentsStack,
-  },
-  {
-    name: "projects",
-    title: "Projects Gallery",
-    label: "DZ Open-Source Projects",
-    component: ProjectsScreen,
-  },
+  // {
+  //   name: "contribute" as const,
+  //   title: "Contribution Gallery",
+  //   label: "Contribute",
+  //   component: ContributeScreen,
+  // },
+  // {
+  //   name: "learn",
+  //   title: "Read & Learn",
+  //   label: "Learn",
+  //   component: DocumentsStack,
+  // },
+  // {
+  //   name: "projects",
+  //   title: "Projects Gallery",
+  //   label: "DZ Open-Source Projects",
+  //   component: ProjectsScreen,
+  // },
   {
     name: "articles",
     title: "Articles",
     label: "Read Articles",
     component: ArticlesStack,
   },
-  {
-    name: "faq",
-    title: "Frequently Asked Questions",
-    label: "Have a Question?",
-    component: FAQScreen,
-  },
+  // {
+  //   name: "faq",
+  //   title: "Frequently Asked Questions",
+  //   label: "Have a Question?",
+  //   component: FAQScreen,
+  // },
 ];
 
 export const Navigation: FC = () => {
