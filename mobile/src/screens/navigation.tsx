@@ -44,12 +44,12 @@ const routes: Route[] = [
     label: "Read Articles",
     component: ArticlesStack,
   },
-  // {
-  //   name: "faq",
-  //   title: "Frequently Asked Questions",
-  //   label: "Have a Question?",
-  //   component: FAQScreen,
-  // },
+  {
+    name: "faq",
+    title: "Frequently Asked Questions",
+    label: "Have a Question?",
+    component: FAQScreen,
+  },
 ];
 
 export const Navigation: FC = () => {
