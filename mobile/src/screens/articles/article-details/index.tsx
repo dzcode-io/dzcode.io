@@ -12,9 +12,11 @@ import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
-import { fetchArticle } from "../../../redux/actions/articles-screen";
 import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
 import { GeneralState } from "../../../redux/reducers/general";
+import { selectArticles } from "../../../store/articles-screen/selectors/articles";
+import { selectArticlesStatus } from "../../../store/articles-screen/selectors/status";
+import { fetchArticle } from "../../../store/articles-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { openLink } from "../../../utils/link";
 import { articleDetailsStyles } from "./styles";
@@ -30,9 +32,9 @@ interface RouteParams {
 export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   route,
 }: ArticleDetailsScreenProps) => {
-  const { articles, refreshing } = useSelector<StateInterface, ArticlesScreenState>(
-    (state) => state.articlesScreen,
-  );
+  const articles = useSelector(selectArticles);
+  const status = useSelector(selectArticlesStatus);
+
   const loadedArticles = isLoaded(articles);
   const currentArticle = (
     loadedArticles?.filter((article) => (article as Article).content) as Article[]
@@ -51,7 +53,7 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   return (
     <ErrorBoundary>
       <SafeAreaView style={globalStyles.mainView}>
-        {refreshing ? (
+        {status === "loading" ? (
           <View style={globalStyles.centerView}>
             <DZCodeLoading />
           </View>
