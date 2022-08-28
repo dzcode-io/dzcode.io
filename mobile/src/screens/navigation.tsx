@@ -26,12 +26,12 @@ const routes: Route[] = [
   //   label: "Contribute",
   //   component: ContributeScreen,
   // },
-  // {
-  //   name: "learn",
-  //   title: "Read & Learn",
-  //   label: "Learn",
-  //   component: DocumentsStack,
-  // },
+  {
+    name: "learn",
+    title: "Read & Learn",
+    label: "Learn",
+    component: DocumentsStack,
+  },
   // {
   //   name: "projects",
   //   title: "Projects Gallery",

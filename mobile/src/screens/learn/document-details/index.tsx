@@ -11,9 +11,11 @@ import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
 import { Dispatch, StateInterface } from "../../../redux";
-import { fetchDocument } from "../../../redux/actions/learn-screen";
 import { GeneralState } from "../../../redux/reducers/general";
 import { LearnScreenState } from "../../../redux/reducers/learn-screen";
+import { selectDocuments } from "../../../store/learn-screen/selectors/documents";
+import { selectLearnStatus } from "../../../store/learn-screen/selectors/status";
+import { fetchDocument } from "../../../store/learn-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { documentDetailsStyles } from "./styles";
 
@@ -28,9 +30,8 @@ interface RouteParams {
 export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   route,
 }: DocumentDetailsScreenProps) => {
-  const { documents, refreshing } = useSelector<StateInterface, LearnScreenState>(
-    (state) => state.learnScreen,
-  );
+  const documents = useSelector(selectDocuments);
+  const status = useSelector(selectLearnStatus);
   const loadedDocuments = isLoaded(documents);
   const currentDocument = (
     loadedDocuments?.filter((document) => (document as Document).content) as Document[]
@@ -47,7 +48,7 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   return (
     <ErrorBoundary>
       <SafeAreaView style={globalStyles.mainView}>
-        {refreshing ? (
+        {status === "loading" ? (
           <View style={globalStyles.centerView}>
             <DZCodeLoading />
           </View>
