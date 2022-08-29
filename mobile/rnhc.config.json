@@ -4,7 +4,5 @@
   "withProps": true,
   "defaultExports": false,
   "componentsRoot": "./src/components",
-  "screensRoot": "./src/screens",
-  "reduxRoot": "./src/redux",
-  "applyReduxThunk": true
+  "screensRoot": "./src/screens"
 }
