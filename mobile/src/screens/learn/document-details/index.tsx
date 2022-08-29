@@ -10,9 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { Dispatch, StateInterface } from "../../../redux";
-import { GeneralState } from "../../../redux/reducers/general";
-import { LearnScreenState } from "../../../redux/reducers/learn-screen";
+import { AppDispatch } from "../../../store";
+import { selectTheme } from "../../../store/general/selectors/theme";
 import { selectDocuments } from "../../../store/learn-screen/selectors/documents";
 import { selectLearnStatus } from "../../../store/learn-screen/selectors/status";
 import { fetchDocument } from "../../../store/learn-screen/slice";
@@ -37,9 +36,9 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
     loadedDocuments?.filter((document) => (document as Document).content) as Document[]
   ).find((document) => document.slug === route.params.document.slug);
 
-  const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
+  const theme = useSelector(selectTheme);
 
-  const dispatch = useDispatch<Dispatch<LearnScreenState>>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchDocument(route.params.document.slug));

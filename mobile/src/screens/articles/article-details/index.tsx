@@ -11,12 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { Dispatch, StateInterface } from "../../../redux";
-import { ArticlesScreenState } from "../../../redux/reducers/articles-screen";
-import { GeneralState } from "../../../redux/reducers/general";
+import { AppDispatch } from "../../../store";
 import { selectArticles } from "../../../store/articles-screen/selectors/articles";
 import { selectArticlesStatus } from "../../../store/articles-screen/selectors/status";
 import { fetchArticle } from "../../../store/articles-screen/slice";
+import { selectTheme } from "../../../store/general/selectors/theme";
 import { globalStyles } from "../../../styles/global";
 import { openLink } from "../../../utils/link";
 import { articleDetailsStyles } from "./styles";
@@ -40,9 +39,9 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
     loadedArticles?.filter((article) => (article as Article).content) as Article[]
   ).find((article) => article.slug === route.params.article.slug);
 
-  const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
+  const theme = useSelector(selectTheme);
 
-  const dispatch = useDispatch<Dispatch<ArticlesScreenState>>();
+  const dispatch = useDispatch<AppDispatch>();
 
   const navigation = useNavigation();
 

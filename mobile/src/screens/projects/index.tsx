@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorBoundary } from "../../components/error-boundary";
 import { DZCodeLoading } from "../../components/loading";
 import { TryAgain } from "../../components/try-again";
-import { Dispatch, StateInterface } from "../../redux";
-import { ProjectsScreenState } from "../../redux/reducers/projects-screen";
 import { AppDispatch } from "../../store";
 import { selectProjects } from "../../store/projects-screen/selectors/projects";
 import { selectProjectsStatus } from "../../store/projects-screen/selectors/status";

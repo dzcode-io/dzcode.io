@@ -6,9 +6,8 @@ import { List, Text } from "react-native-paper";
 import { useSelector } from "react-redux";
 
 import { ErrorBoundary } from "../../components/error-boundary";
-import { StateInterface } from "../../redux";
-import { GeneralState } from "../../redux/reducers/general";
 import { selectFaqData } from "../../store/faq-screen/selectors/data";
+import { selectTheme } from "../../store/general/selectors/theme";
 import { globalStyles } from "../../styles/global";
 import { openLink } from "../../utils/link";
 import { faqStyles } from "./styles";
@@ -16,7 +15,7 @@ import { faqStyles } from "./styles";
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();
   const data = useSelector(selectFaqData);
-  const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
+  const theme = useSelector(selectTheme);
 
   return (
     <ErrorBoundary>

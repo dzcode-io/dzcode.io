@@ -14,11 +14,10 @@ import { Theme as PT } from "react-native-paper/lib/typescript/types";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import * as Sentry from "sentry-expo";
 
-import { Dispatch, mainStore, StateInterface } from "../redux";
-import { init } from "../redux/actions/general";
-import { GeneralState } from "../redux/reducers/general";
 import { Navigation } from "../screens/navigation";
-import { store } from "../store";
+import { AppDispatch, store } from "../store";
+import { selectTheme } from "../store/general/selectors/theme";
+import { init } from "../store/general/slice";
 import { Colors } from "../styles/colors";
 import { getEnv } from "../utils/env";
 
@@ -76,11 +75,11 @@ const darkTheme = {
 };
 
 const AppComponent: FC = () => {
-  const { theme: themeName } = useSelector<StateInterface, GeneralState>((state) => state.general);
-  const dispatch = useDispatch<Dispatch<GeneralState>>();
+  const themeName = useSelector(selectTheme);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(init());
+    dispatch(init(null));
   }, []);
 
   const themes = {
