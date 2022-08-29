@@ -65,6 +65,7 @@ export const ContributeScreen: FC = () => {
                   updatedAt={item.updatedAt}
                   commentsCount={item.commentsCount}
                   onChipPress={async (optionName) => {
+                    setUpdate(false);
                     const filterName = item.labels.includes(optionName) ? "labels" : "languages";
                     dispatch(
                       updateFilterValue({
@@ -132,6 +133,7 @@ export const ContributeScreen: FC = () => {
                           <Checkbox
                             status={checked ? "checked" : "unchecked"}
                             onPress={() => {
+                              setUpdate(false);
                               dispatch(
                                 updateFilterValue({
                                   filterName,
@@ -143,6 +145,7 @@ export const ContributeScreen: FC = () => {
                           />
                         )}
                         onPress={() => {
+                          setUpdate(false);
                           dispatch(
                             updateFilterValue({
                               filterName,
