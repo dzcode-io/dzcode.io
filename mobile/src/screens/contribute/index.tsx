@@ -1,5 +1,5 @@
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,33 +7,43 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorBoundary } from "../../components/error-boundary";
 import { DZCodeLoading } from "../../components/loading";
 import { TryAgain } from "../../components/try-again";
-import { Dispatch, StateInterface } from "../../redux";
-import { fetchContributions, updateFilterValue } from "../../redux/actions/contribute-screen";
-import { ContributeScreenState } from "../../redux/reducers/contribute-screen";
+import { AppDispatch } from "../../store";
+import { selectContributions } from "../../store/contribute-screen/selectors/contributions";
+import { selectFilters } from "../../store/contribute-screen/selectors/filters";
+import { selectContributeStatus } from "../../store/contribute-screen/selectors/status";
+import { fetchContributions, updateFilterValue } from "../../store/contribute-screen/slice";
 import { globalStyles } from "../../styles/global";
 import { CardItemMemoed } from "./card-item";
 import { contributeStyles } from "./styles";
 
 export const ContributeScreen: FC = () => {
-  const { contributions, refreshing, filters } = useSelector<StateInterface, ContributeScreenState>(
-    (state) => state.contributeScreen,
-  );
+  const contributions = useSelector(selectContributions);
+  const filters = useSelector(selectFilters);
+  const status = useSelector(selectContributeStatus);
+  const [update, setUpdate] = useState(false);
 
   const { colors } = useTheme();
 
-  const dispatch = useDispatch<Dispatch<ContributeScreenState>>();
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(fetchContributions());
+    dispatch(fetchContributions(filters));
   }, []);
+
+  useEffect(() => {
+    if (update) {
+      dispatch(fetchContributions(filters));
+      setUpdate(false);
+    }
+  }, [update]);
 
   return (
     <ErrorBoundary>
       <SafeAreaView style={globalStyles.mainView}>
-        {contributions === "ERROR" ? (
+        {status === "error" ? (
           <TryAgain
             error="Ops, an error occurred while loading the contribution cards, please try again..."
             action="Try Again"
-            onClick={() => dispatch(fetchContributions(true))}
+            onClick={() => dispatch(fetchContributions(filters))}
           />
         ) : contributions ? (
           // Cards
@@ -42,9 +52,9 @@ export const ContributeScreen: FC = () => {
               style={contributeStyles.listView}
               data={contributions}
               onRefresh={() => {
-                dispatch(fetchContributions());
+                dispatch(fetchContributions(filters));
               }}
-              refreshing={refreshing}
+              refreshing={status === "loading"}
               keyExtractor={(item, index) => `item-${index}`}
               renderItem={({ item }) => (
                 <CardItemMemoed
@@ -56,7 +66,13 @@ export const ContributeScreen: FC = () => {
                   commentsCount={item.commentsCount}
                   onChipPress={async (optionName) => {
                     const filterName = item.labels.includes(optionName) ? "labels" : "languages";
-                    dispatch(updateFilterValue(filterName, optionName, true, true, true));
+                    dispatch(
+                      updateFilterValue({
+                        filterName,
+                        optionName,
+                      }),
+                    );
+                    setUpdate(true);
                   }}
                   onPress={() => {
                     try {
@@ -116,12 +132,24 @@ export const ContributeScreen: FC = () => {
                           <Checkbox
                             status={checked ? "checked" : "unchecked"}
                             onPress={() => {
-                              dispatch(updateFilterValue(filterName, optionName, "reverse"));
+                              dispatch(
+                                updateFilterValue({
+                                  filterName,
+                                  optionName,
+                                }),
+                              );
+                              setUpdate(true);
                             }}
                           />
                         )}
                         onPress={() => {
-                          dispatch(updateFilterValue(filterName, optionName, "reverse"));
+                          dispatch(
+                            updateFilterValue({
+                              filterName,
+                              optionName,
+                            }),
+                          );
+                          setUpdate(true);
                         }}
                       />
                     ))}

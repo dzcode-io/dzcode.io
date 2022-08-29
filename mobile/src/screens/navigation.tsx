@@ -20,12 +20,12 @@ interface Route {
 }
 
 const routes: Route[] = [
-  // {
-  //   name: "contribute" as const,
-  //   title: "Contribution Gallery",
-  //   label: "Contribute",
-  //   component: ContributeScreen,
-  // },
+  {
+    name: "contribute" as const,
+    title: "Contribution Gallery",
+    label: "Contribute",
+    component: ContributeScreen,
+  },
   {
     name: "learn",
     title: "Read & Learn",
