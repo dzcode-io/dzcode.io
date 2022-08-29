@@ -18646,10 +18646,10 @@ react-native-gesture-handler@^1.10.3:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-help-create@^2.3.4:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/react-native-help-create/-/react-native-help-create-2.3.4.tgz#8f4f0a95afcbca42b1010db249e96a9ce7b14bc5"
-  integrity sha512-6LlAvWZ0U8n4jGbZrdD/0e8ldCdLxo2YaVgHMWHijxkOZ81keo/NLPrP1WFxGixm6lUpAShG68rS9QrswJbTcA==
+react-native-help-create@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-help-create/-/react-native-help-create-2.6.0.tgz#3407f2e183ce3d30657e52953c9e7276d57f5832"
+  integrity sha512-TPQDhN4YTkEyO1IAay1Fyu6oRRVvnUFhmE10vQR978PfGlH89vjbA09p27VcPEm6ZWDkgbcUtU1Tvz98NA4QyQ==
   dependencies:
     file-system "^2.2.2"
     yargs "^16.2.0"
