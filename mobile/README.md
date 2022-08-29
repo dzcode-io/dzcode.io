@@ -14,7 +14,7 @@ To get started you may check out the [README.md](../README.md#get-started) file.
 
 - The `<path>` is the path to the file you want to create (e.g. `foo/bar`).
 
-- The `<navigation-type>` can be either one of the following: `stack`, `drawer` or `tab`.
+- The `<navigation-type>` can be either one of the following: `stack`, `native-stack`, `drawer`, `bottom-tabs`, `material-bottom-tabs` or `material-top-tabs` .
 
 - If one of the implementation already exists, it will not be overwritten by default. You can use the `--overwrite` flag to overwrite the file (this helpful when updating the navigation files).
 
