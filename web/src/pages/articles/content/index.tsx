@@ -70,8 +70,6 @@ export const Content: FC = () => {
 
   useEffect(() => {
     dispatch(fetchCurrentArticle());
-
-    setTimeout(() => window.FB && window.FB.XFBML.parse(), 3000);
   }, []);
 
   const classes = useStyles();

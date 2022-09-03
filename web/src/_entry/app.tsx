@@ -68,7 +68,6 @@ export const App: FC = () => {
       if (window.ga) {
         window.ga("set", "page", location.pathname);
         window.ga("send", "pageview");
-        window.fbq("track", "PageView");
       }
     }
 
