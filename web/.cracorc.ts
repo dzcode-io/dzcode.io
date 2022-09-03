@@ -1,6 +1,6 @@
 import type { CracoConfig } from "@craco/craco";
 import jest from "@dzcode.io/tooling/jest.config";
-import { Environment } from "@dzcode.io/utils/dist/config/environment";
+import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
 import { readFileSync } from "fs-extra";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { resolve } from "path";
@@ -11,7 +11,11 @@ import { dynamicPages, PageInfo, staticPages } from "./src/build/pages";
 
 const RobotstxtPlugin = require("robotstxt-webpack-plugin"); // eslint-disable-line @typescript-eslint/no-var-requires
 
-const stage = (process.env.STAGE || "development") as Environment;
+let stage = process.env.STAGE as Environment;
+if (!environments.includes(stage)) {
+  console.log(`⚠️  No STAGE provided, falling back to "development"`);
+  stage = "development";
+}
 const ANALYZE = process.env.ANALYZE === "true";
 
 let bundleInfo: { version: string } = {
@@ -27,7 +31,11 @@ const distFolder = "./bundle";
 const publicResourcesPath = `w/${bundleInfo.version}`;
 const publicPath = "/";
 
-type HtmlWebpackPluginTemplate = PageInfo & { themeColor: string; stage: Environment };
+type HtmlWebpackPluginTemplate = PageInfo & {
+  themeColor: string;
+  stage: Environment;
+  gaCode: string;
+};
 
 module.exports = {
   webpack: {
@@ -48,6 +56,7 @@ module.exports = {
                 ...pageInfo,
                 stage,
                 themeColor: "#43a047",
+                gaCode: "UA-163554556-1",
               } as HtmlWebpackPluginTemplate,
               favicon: "./src/assets/ico/favicon.ico",
             }),
