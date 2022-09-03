@@ -21,6 +21,7 @@ api/nodemon.json
 
 # web
 web/bundle
+web/build
 
 # mobile
 mobile/.expo

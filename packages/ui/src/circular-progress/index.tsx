@@ -3,10 +3,21 @@ import MUICircularProgress, { CircularProgressProps } from "@mui/material/Circul
 import Typography from "@mui/material/Typography";
 import type { FC } from "react";
 
-export const CircularProgress: FC<CircularProgressProps & { value: number }> = (props) => {
+export const CircularProgress: FC<CircularProgressProps & { value: number }> = ({
+  value,
+  ...props
+}) => {
   return (
-    <Box sx={{ position: "relative", display: "inline-flex" }}>
-      <MUICircularProgress variant="determinate" {...props} value={props.value * 100} />
+    <Box sx={{ position: "relative", display: "inline-flex" }} {...props}>
+      <MUICircularProgress
+        variant="determinate"
+        sx={{
+          color: (theme) => theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
+          position: "absolute",
+        }}
+        value={100}
+      />
+      <MUICircularProgress variant="determinate" value={value * 100} />
       <Box
         sx={{
           top: 0,
@@ -19,9 +30,7 @@ export const CircularProgress: FC<CircularProgressProps & { value: number }> = (
           justifyContent: "center",
         }}
       >
-        <Typography component="div" variant="caption">{`${Math.round(
-          props.value * 100,
-        )}%`}</Typography>
+        <Typography component="div" variant="caption">{`${Math.round(value * 100)}%`}</Typography>
       </Box>
     </Box>
   );

@@ -1,0 +1,5 @@
+// This file is required by CRA, even though we don't need it in this project
+// https://github.com/facebook/create-react-app/blob/3880ba6cfd98d9f2843217fd9061e385274b452f/packages/react-scripts/scripts/start.js#L50
+// https://github.com/facebook/create-react-app/blob/3880ba6cfd98d9f2843217fd9061e385274b452f/packages/react-scripts/scripts/build.js#L50
+
+import "src/_entry";

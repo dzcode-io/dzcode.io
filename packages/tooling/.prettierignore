@@ -20,3 +20,4 @@ nodemon.json
 *.lock
 *.snap
 *.prettierignore
+*.browserslistrc
