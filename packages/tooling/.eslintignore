@@ -8,6 +8,9 @@ oracle-cloud/build
 # data
 firebase
 
+# web
+bundle
+
 *.*
 !*.ts
 !*.tsx

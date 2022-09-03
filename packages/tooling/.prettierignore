@@ -8,6 +8,9 @@ oracle-cloud/build
 # data
 firebase
 
+# web
+bundle
+
 ./.*
 .gitignore
 nodemon.json
@@ -20,3 +23,5 @@ nodemon.json
 *.lock
 *.snap
 *.prettierignore
+*.browserslistrc
+*.eslintignore

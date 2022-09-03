@@ -7,32 +7,6 @@
     "name": "Zakaria Mansouri",
     "url": "https://zakiii.com/"
   },
-  "devDependencies": {
-    "@prettier/plugin-pug": "^1.17.3",
-    "@sentry/cli": "^1.71.0",
-    "@types/jest": "^26.0.14",
-    "@types/node": "^16.11.10",
-    "@types/semver": "^7.3.9",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.3.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-react": "^7.27.1",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
-    "eslint-plugin-unicorn": "^39.0.0",
-    "jest": "^26.6.3",
-    "jest-mock-extended": "^2.0.4",
-    "lint-staged": "^12.1.2",
-    "nodemon": "^2.0.15",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.4.1",
-    "rimraf": "^3.0.2",
-    "semver": "^7.3.5",
-    "ts-jest": "^26.5.6",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.2"
-  },
   "license": "MIT",
   "lint-staged": {
     "*.*": [
