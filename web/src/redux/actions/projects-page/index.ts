@@ -1,6 +1,5 @@
 import * as Sentry from "@sentry/browser";
-import { ThunkResult } from "src/redux";
-import { ProjectsPageState } from "src/redux/reducers/projects-page";
+import { slices, store } from "src/redux/store";
 import { fetchV2 } from "src/utils/fetch";
 
 /**
@@ -29,22 +28,15 @@ const shuffleProjects = <T>(array: T[]) => {
 /**
  * fetchProjectsList fetch an array from data api and pass it to the store
  */
-export const fetchProjectsList = (): ThunkResult<ProjectsPageState> => async (dispatch) => {
+export const fetchProjectsList = async (): Promise<void> => {
   try {
-    dispatch({
-      type: "UPDATE_PROJECTS_PAGE",
-      payload: { projectsList: null },
-    });
+    store.dispatch(slices.projectsPage.actions.set({ projectsList: null }));
     const projectsList = await fetchV2("data:projects/list.c.json", {});
-    dispatch({
-      type: "UPDATE_PROJECTS_PAGE",
-      payload: { projectsList: shuffleProjects(projectsList) },
-    });
+    store.dispatch(
+      slices.projectsPage.actions.set({ projectsList: shuffleProjects(projectsList) }),
+    );
   } catch (error) {
-    dispatch({
-      type: "UPDATE_PROJECTS_PAGE",
-      payload: { projectsList: "ERROR" },
-    });
+    store.dispatch(slices.projectsPage.actions.set({ projectsList: "Error" }));
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };

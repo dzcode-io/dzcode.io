@@ -2,22 +2,17 @@ import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
 import { t } from "src/components/t";
-import { Dispatch, StateInterface } from "src/redux";
 import { fetchProjectsList } from "src/redux/actions/projects-page";
-import { ProjectsPageState } from "src/redux/reducers/projects-page";
+import { useSliceSelector } from "src/redux/store/selectors";
 
 import { Catalog } from "./catalog";
 
 export const ProjectsPage: FC = () => {
-  const { projectsList } = useSelector<StateInterface, ProjectsPageState>(
-    (state) => state.projectsPage,
-  );
-  const dispatch = useDispatch<Dispatch<ProjectsPageState>>();
+  const { projectsList } = useSliceSelector("projectsPage");
 
   useEffect(() => {
-    dispatch(fetchProjectsList());
+    fetchProjectsList();
   }, []);
 
   return (
@@ -31,7 +26,7 @@ export const ProjectsPage: FC = () => {
           <TryAgain
             error={t("projects-error")}
             action={t("projects-try-again")}
-            onClick={() => dispatch(fetchProjectsList())}
+            onClick={() => fetchProjectsList()}
           />
         ) : (
           <Catalog projectsList={projectsList} />
