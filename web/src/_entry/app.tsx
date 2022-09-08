@@ -39,10 +39,10 @@ const routes: RouteInterface[] = [
   //   import: import("src/pages/articles"),
   //   path: "/Articles",
   // },
-  // {
-  //   import: import("src/pages/faq"),
-  //   path: "/FAQ",
-  // },
+  {
+    import: import("src/pages/faq"),
+    path: "/FAQ",
+  },
   // {
   //   import: import("src/pages/contribute"),
   //   path: "/Contribute",

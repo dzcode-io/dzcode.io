@@ -25,4 +25,7 @@ const rootReducer = combineReducers(reducers);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = configureStore({ reducer: rootReducer, enhancers: composeEnhancers });
+export const createStore = () =>
+  configureStore({ reducer: rootReducer, enhancers: composeEnhancers });
+
+export const store = createStore();

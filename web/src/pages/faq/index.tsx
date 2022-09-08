@@ -5,14 +5,12 @@ import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { Typography } from "@dzcode.io/ui/dist/typography";
 import type { FC } from "react";
 import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
 import { Markdown } from "src/components/markdown";
 import { T, t } from "src/components/t";
-import { StateInterface } from "src/redux";
-import { FaqPageState } from "src/redux/reducers/faq-page";
+import { useSliceSelector } from "src/redux/store/selectors";
 
 const FaqCards = () => {
-  const { faqData } = useSelector<StateInterface, FaqPageState>((state) => state.faqPage);
+  const { faqData } = useSliceSelector("faqPage");
 
   return (
     <Grid container rowSpacing={5}>
@@ -54,9 +52,7 @@ const PageFooter = () => {
 };
 
 export const FaqPage: FC = () => {
-  const {
-    settings: { darkMode, language },
-  } = useSelector<StateInterface, StateInterface>((state) => state);
+  const { darkMode, language } = useSliceSelector("settings");
 
   return (
     <ErrorBoundary>

@@ -1,18 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createMainStore } from "src/redux";
+import { createStore } from "src/redux/store";
 
 import { t } from "../../components/t";
 import { FaqPage } from ".";
 
 describe("src/pages/landing/index.tsx", () => {
   test("Render FAQ page", async () => {
-    const mainStore = createMainStore();
+    const store = createStore();
     const faqIndex = 0;
 
     const { container } = render(
-      <Provider store={mainStore}>
+      <Provider store={store}>
         <Router>
           <FaqPage />
         </Router>
@@ -20,12 +20,10 @@ describe("src/pages/landing/index.tsx", () => {
     );
 
     const firstQuestionTitle = await screen.findByText(
-      t(mainStore.getState().faqPage.faqData[0].title),
+      t(store.getState().faqPage.faqData[0].title),
     );
 
-    expect(firstQuestionTitle.innerHTML).toBe(
-      t(mainStore.getState().faqPage.faqData[faqIndex].title),
-    );
+    expect(firstQuestionTitle.innerHTML).toBe(t(store.getState().faqPage.faqData[faqIndex].title));
     expect(container).toMatchSnapshot();
   });
 });
