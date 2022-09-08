@@ -6,7 +6,6 @@ import { contributePage } from "./contribute-page";
 import { documentation } from "./documentation";
 import { faqPage } from "./faq-page";
 import { footerComponent } from "./footer-component";
-import { landingPage } from "./landing-page";
 import { learnPage } from "./learn-page";
 import { navbarComponent } from "./navbar-component";
 import { projectsPage } from "./projects-page";
@@ -19,7 +18,6 @@ export const mainReducer = combineReducers({
   articles,
   articlesPage,
   projectsPage,
-  landingPage,
   settings,
   faqPage,
   navbarComponent,

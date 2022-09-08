@@ -3,11 +3,10 @@ import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { T, t } from "src/components/t";
-import { Dispatch, StateInterface } from "src/redux";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
-import { LandingPageState } from "src/redux/reducers/landing-page";
+import { useSliceSelector } from "src/redux/store/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,13 +28,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const MilestonesSection: FC = () => {
   const classes = useStyles();
-  const dispatch = useDispatch<Dispatch<LandingPageState>>();
-  const { milestones } = useSelector<StateInterface, LandingPageState>(
-    (state) => state.landingPage,
-  );
+  const dispatch = useDispatch();
+  const { milestones } = useSliceSelector("landingPage");
 
   useEffect(() => {
-    dispatch(fetchDzCodeMilestones());
+    fetchDzCodeMilestones();
   }, []);
 
   return (

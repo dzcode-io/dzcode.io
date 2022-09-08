@@ -5,18 +5,17 @@ import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Container from "@material-ui/core/Container";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import { Footer } from "src/components/footer";
 import { Loading } from "src/components/loading";
 import { Navbar } from "src/components/navbar";
 import { t } from "src/components/t";
 import { Theme } from "src/components/theme";
+import { slices } from "src/redux/store";
+import { useSliceSelector } from "src/redux/store/selectors";
 import { getEnv } from "src/utils";
 import { urlLanguageRegEx } from "src/utils/language";
-
-import { Dispatch, StateInterface } from "../redux";
-import { SettingsState } from "../redux/reducers/settings";
 
 interface RouteInterface extends RouteProps {
   import: Promise<{ default: ComponentType }>;
@@ -28,30 +27,30 @@ const routes: RouteInterface[] = [
     path: "/",
     exact: true,
   },
-  {
-    import: import("src/pages/learn"),
-    path: "/Learn",
-  },
-  {
-    import: import("src/pages/projects"),
-    path: "/Projects",
-  },
-  {
-    import: import("src/pages/articles"),
-    path: "/Articles",
-  },
-  {
-    import: import("src/pages/faq"),
-    path: "/FAQ",
-  },
-  {
-    import: import("src/pages/contribute"),
-    path: "/Contribute",
-  },
-  {
-    import: import("src/pages/team"),
-    path: "/Team",
-  },
+  // {
+  //   import: import("src/pages/learn"),
+  //   path: "/Learn",
+  // },
+  // {
+  //   import: import("src/pages/projects"),
+  //   path: "/Projects",
+  // },
+  // {
+  //   import: import("src/pages/articles"),
+  //   path: "/Articles",
+  // },
+  // {
+  //   import: import("src/pages/faq"),
+  //   path: "/FAQ",
+  // },
+  // {
+  //   import: import("src/pages/contribute"),
+  //   path: "/Contribute",
+  // },
+  // {
+  //   import: import("src/pages/team"),
+  //   path: "/Team",
+  // },
   {
     import: import("src/pages/not-found"),
   },
@@ -60,8 +59,8 @@ const routes: RouteInterface[] = [
 export const App: FC = () => {
   const location = useLocation();
   const match = useRouteMatch<{ lang?: LanguageEntity["code"] }>(urlLanguageRegEx);
-  const { language } = useSelector<StateInterface, SettingsState>((state) => state.settings);
-  const dispatch = useDispatch<Dispatch<SettingsState>>();
+  const { language } = useSliceSelector("settings");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (getEnv() !== "development") {
@@ -74,10 +73,7 @@ export const App: FC = () => {
     const urlLanguage =
       allLanguages.find(({ code }) => code === match?.params.lang) || allLanguages[0];
     if (urlLanguage.code !== language.code) {
-      dispatch({
-        type: "UPDATE_SETTINGS",
-        payload: { language: urlLanguage },
-      });
+      dispatch(slices.settings.actions.set({ language: urlLanguage }));
     }
   }, [location]);
 

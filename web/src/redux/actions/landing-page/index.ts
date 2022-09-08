@@ -1,25 +1,15 @@
 import * as Sentry from "@sentry/browser";
-import { ThunkResult } from "src/redux";
-import { LandingPageState } from "src/redux/reducers/landing-page";
+import { slices, store } from "src/redux/store";
 import { fetchV2 } from "src/utils/fetch";
 
-export const fetchDzCodeMilestones = (): ThunkResult<LandingPageState> => async (dispatch) => {
+export const fetchDzCodeMilestones = async (): Promise<void> => {
   try {
-    dispatch({
-      type: "UPDATE_LANDING_PAGE",
-      payload: { milestones: null },
-    });
+    store.dispatch(slices.landingPage.actions.set({ milestones: null }));
     const { milestones } = await fetchV2("api:MileStones/dzcode", {});
 
-    dispatch({
-      type: "UPDATE_LANDING_PAGE",
-      payload: { milestones },
-    });
+    store.dispatch(slices.landingPage.actions.set({ milestones }));
   } catch (error) {
-    dispatch({
-      type: "UPDATE_LANDING_PAGE",
-      payload: { milestones: "ERROR" },
-    });
+    store.dispatch(slices.landingPage.actions.set({ milestones: "ERROR" }));
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };

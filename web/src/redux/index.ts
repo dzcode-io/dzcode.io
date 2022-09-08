@@ -3,9 +3,7 @@ import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
 
 import { mainReducer } from "./reducers";
 
-const composeEnhancers =
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = compose;
 
 /**
  * the main redux state, with all the reducers

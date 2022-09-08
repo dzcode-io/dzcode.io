@@ -3,11 +3,9 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import { LinkV2 } from "src/components/link-v2";
 import { T } from "src/components/t";
-import { StateInterface } from "src/redux";
-import { FooterComponentState } from "src/redux/reducers/footer-component";
+import { useSliceSelector } from "src/redux/store/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,9 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export const Footer: FC = () => {
   const classes = useStyles();
 
-  const { sections } = useSelector<StateInterface, FooterComponentState>(
-    (state: StateInterface) => state.footerComponent,
-  );
+  const { sections } = useSliceSelector("footerComponent");
 
   return (
     <footer className={classes.root}>
