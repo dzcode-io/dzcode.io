@@ -1,7 +1,7 @@
 import { GetMilestonesResponseDto } from "@dzcode.io/api/dist/milestone/types";
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { createSlice } from "@reduxjs/toolkit";
-import { setReducer } from "src/redux/store/utils";
+import { setReducerFactory } from "src/redux/store/utils";
 
 export interface LandingPageState {
   milestones: LOADABLE<GetMilestonesResponseDto["milestones"]>;
@@ -13,6 +13,6 @@ export const landingPage = createSlice({
     milestones: null,
   } as LandingPageState,
   reducers: {
-    set: setReducer,
+    set: setReducerFactory(),
   },
 });

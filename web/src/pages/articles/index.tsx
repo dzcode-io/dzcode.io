@@ -4,26 +4,21 @@ import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import Grid from "@material-ui/core/Grid";
 import { FC, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
 import { Route, useRouteMatch } from "react-router-dom";
 import { Sidebar } from "src/components/sidebar";
 import { t } from "src/components/t";
-import { Dispatch, StateInterface } from "src/redux";
 import { fetchArticlesList } from "src/redux/actions/articles-page";
-import { ArticlesPageState } from "src/redux/reducers/articles-page";
+import { useSliceSelector } from "src/redux/store/selectors";
 
 import { Content } from "./content";
 import { Landing } from "./landing";
 
 export const ArticlesPage: FC = () => {
-  const { currentArticle, expanded, sidebarTree } = useSelector<StateInterface, ArticlesPageState>(
-    (state) => state.articlesPage,
-  );
-  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+  const { currentArticle, expanded, sidebarTree } = useSliceSelector("articlesPage");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchArticlesList());
+    fetchArticlesList();
   }, []);
 
   const { path: pathRegex } = useRouteMatch();
@@ -43,7 +38,7 @@ export const ArticlesPage: FC = () => {
             <TryAgain
               error="Ops, an error occurred while loading the articles list, please try again..."
               action="Try Again"
-              onClick={() => dispatch(fetchArticlesList())}
+              onClick={() => fetchArticlesList()}
             />
           ) : (
             <Sidebar

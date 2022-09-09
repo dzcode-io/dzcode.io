@@ -36,7 +36,7 @@ export const fetchProjectsList = async (): Promise<void> => {
       slices.projectsPage.actions.set({ projectsList: shuffleProjects(projectsList) }),
     );
   } catch (error) {
-    store.dispatch(slices.projectsPage.actions.set({ projectsList: "Error" }));
+    store.dispatch(slices.projectsPage.actions.set({ projectsList: "ERROR" }));
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };

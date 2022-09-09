@@ -15,6 +15,7 @@ export type ActionType = {
 export type State = ReturnType<typeof rootReducer>;
 // -----------------------------------------------------------------------------
 
+// @TODO-ZM: make `actions` too
 export const slices = slicesImport;
 
 const reducers = (Object.keys(slicesImport) as SlicesKey[]).reduce(

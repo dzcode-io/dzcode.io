@@ -5,3 +5,5 @@ export { navbarComponent } from "src/redux/store/slices/navbar-component";
 export { footerComponent } from "src/redux/store/slices/footer-component";
 export { faqPage } from "src/redux/store/slices/faq-page";
 export { projectsPage } from "src/redux/store/slices/projects-page";
+export { articlesPage } from "src/redux/store/slices/articles-page";
+export { articles } from "src/redux/store/slices/articles";
