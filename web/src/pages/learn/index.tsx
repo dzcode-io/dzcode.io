@@ -4,26 +4,21 @@ import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import Grid from "@material-ui/core/Grid";
 import { FC, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
 import { Route, useRouteMatch } from "react-router-dom";
 import { Sidebar } from "src/components/sidebar";
 import { t } from "src/components/t";
-import { Dispatch, StateInterface } from "src/redux";
 import { fetchDocumentationList } from "src/redux/actions/documentation-page";
-import { LearnPageState } from "src/redux/reducers/learn-page";
+import { useSliceSelector } from "src/redux/store/selectors";
 
 import { Content } from "./content";
 import { Landing } from "./landing";
 
 export const LearnPage: FC = () => {
-  const { currentDocument, expanded, sidebarTree } = useSelector<StateInterface, LearnPageState>(
-    (state) => state.learnPage,
-  );
-  const dispatch = useDispatch<Dispatch<LearnPageState>>();
+  const { currentDocument, expanded, sidebarTree } = useSliceSelector("learnPage");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchDocumentationList());
+    fetchDocumentationList();
   }, []);
 
   const { path: pathRegex } = useRouteMatch();
@@ -44,7 +39,7 @@ export const LearnPage: FC = () => {
             <TryAgain
               error={t("team-error")}
               action={t("team-try-again")}
-              onClick={() => dispatch(fetchDocumentationList())}
+              onClick={() => fetchDocumentationList()}
             />
           ) : (
             <Sidebar

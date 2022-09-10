@@ -15,14 +15,12 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
 import { Authors } from "src/components/authors";
 import { Contributors } from "src/components/contributors";
 import { Markdown } from "src/components/markdown";
 import { SpeedDial, SpeedDialAction } from "src/components/speed-dial";
-import { Dispatch, StateInterface } from "src/redux";
 import { fetchCurrentDocument } from "src/redux/actions/documentation-page";
-import { LearnPageState } from "src/redux/reducers/learn-page";
+import { useSliceSelector } from "src/redux/store/selectors";
 
 const actions = ({ slug }: Document): SpeedDialAction[] => [
   {
@@ -63,13 +61,10 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const Content: FC = () => {
-  const { currentDocument } = useSelector<StateInterface, LearnPageState>(
-    (state) => state.learnPage,
-  );
-  const dispatch = useDispatch<Dispatch<LearnPageState>>();
+  const { currentDocument } = useSliceSelector("learnPage");
 
   useEffect(() => {
-    dispatch(fetchCurrentDocument());
+    fetchCurrentDocument();
   }, []);
 
   const classes = useStyles();
@@ -99,7 +94,7 @@ export const Content: FC = () => {
         <TryAgain
           error="Ops, an error occurred while loading the selected document, please try again..."
           action="Try Again"
-          onClick={() => dispatch(fetchCurrentDocument())}
+          onClick={() => fetchCurrentDocument()}
         />
       ) : currentDocument ? (
         <>

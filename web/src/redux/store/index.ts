@@ -15,8 +15,10 @@ export type ActionType = {
 export type State = ReturnType<typeof rootReducer>;
 // -----------------------------------------------------------------------------
 
-// @TODO-ZM: make `actions` too
+// @TODO-ZM: export `actions` instead, and make it work without dispatch
 export const slices = slicesImport;
+// @TODO-ZM: state getter where it chases the state when no action has been fired
+// @TODO-ZM: enforce not using useSelector
 
 const reducers = (Object.keys(slicesImport) as SlicesKey[]).reduce(
   (pV, sliceKey) => ({ ...pV, [sliceKey]: slicesImport[sliceKey].reducer }),
@@ -29,4 +31,5 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const createStore = () =>
   configureStore({ reducer: rootReducer, enhancers: composeEnhancers });
 
+// @TODO-ZM: don't export store change it from `const` to `let`, and only export createStore(), which creates a store, returns it and also assign it to let store.
 export const store = createStore();

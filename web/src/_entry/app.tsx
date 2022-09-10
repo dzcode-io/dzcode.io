@@ -27,10 +27,10 @@ const routes: RouteInterface[] = [
     path: "/",
     exact: true,
   },
-  // {
-  //   import: import("src/pages/learn"),
-  //   path: "/Learn",
-  // },
+  {
+    import: import("src/pages/learn"),
+    path: "/Learn",
+  },
   {
     import: import("src/pages/projects"),
     path: "/Projects",
