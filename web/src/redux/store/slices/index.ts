@@ -9,3 +9,4 @@ export { articlesPage } from "src/redux/store/slices/articles-page";
 export { articles } from "src/redux/store/slices/articles";
 export { learnPage } from "src/redux/store/slices/learn-page";
 export { documentation } from "src/redux/store/slices/documentation";
+export { teamPage } from "src/redux/store/slices/team-page";

@@ -47,10 +47,10 @@ const routes: RouteInterface[] = [
   //   import: import("src/pages/contribute"),
   //   path: "/Contribute",
   // },
-  // {
-  //   import: import("src/pages/team"),
-  //   path: "/Team",
-  // },
+  {
+    import: import("src/pages/team"),
+    path: "/Team",
+  },
   {
     import: import("src/pages/not-found"),
   },
