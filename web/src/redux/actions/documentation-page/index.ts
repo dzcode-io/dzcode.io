@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { matchPath } from "react-router-dom";
 import { SidebarTreeItem } from "src/components/sidebar";
-import { actions, store } from "src/redux";
+import { actions, getState } from "src/redux";
 import { hasInCollection } from "src/utils";
 import { fetchV2 } from "src/utils/fetch";
 import { history } from "src/utils/history";
@@ -17,7 +17,7 @@ import { urlLanguageRegEx } from "src/utils/language";
 export const fetchDocumentationList = async (): Promise<void> => {
   try {
     actions.learnPage.set({ sidebarTree: null });
-    const currentLanguage = store.getState().settings.language;
+    const currentLanguage = getState().settings.language;
 
     const documentationList = await fetchV2("data:documentation/list.c.json", {
       query: [["language", currentLanguage.code]],
@@ -51,7 +51,7 @@ export const fetchDocumentationList = async (): Promise<void> => {
  * Fetches the contributors of the an current document
  */
 const fetchCurrentDocumentContributors = async (): Promise<void> => {
-  const { currentDocument } = store.getState().learnPage;
+  const { currentDocument } = getState().learnPage;
   const loadedCurrentDocument = isLoaded(currentDocument);
 
   // Don't re-fetch data again
@@ -64,7 +64,7 @@ const fetchCurrentDocumentContributors = async (): Promise<void> => {
     });
     //  getting the current document from a fresh state
     const freshCurrentDocument =
-      isLoaded(store.getState().learnPage.currentDocument) || loadedCurrentDocument;
+      isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
 
     // update our page state
     actions.learnPage.set({
@@ -79,7 +79,7 @@ const fetchCurrentDocumentContributors = async (): Promise<void> => {
     actions.documentation.set({ list: [{ ...freshCurrentDocument, contributors }] });
   } catch (error) {
     const freshCurrentDocument =
-      isLoaded(store.getState().learnPage.currentDocument) || loadedCurrentDocument;
+      isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
     actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, contributors: "ERROR" } });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
@@ -89,7 +89,7 @@ const fetchCurrentDocumentContributors = async (): Promise<void> => {
  * Fetches the authors of the an current document
  */
 const fetchCurrentDocumentAuthors = async (): Promise<void> => {
-  const { currentDocument } = store.getState().learnPage;
+  const { currentDocument } = getState().learnPage;
   const loadedCurrentDocument = isLoaded(currentDocument);
 
   // Don't re-fetch data again
@@ -111,14 +111,14 @@ const fetchCurrentDocumentAuthors = async (): Promise<void> => {
     });
     //  getting the current document from a fresh state
     const freshCurrentDocument =
-      isLoaded(store.getState().learnPage.currentDocument) || loadedCurrentDocument;
+      isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
     // update our page state
     actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, githubAuthors } });
     // update our cache state
     actions.documentation.set({ list: [{ ...freshCurrentDocument, githubAuthors }] });
   } catch (error) {
     const freshCurrentDocument =
-      isLoaded(store.getState().learnPage.currentDocument) || loadedCurrentDocument;
+      isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
     actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, githubAuthors: "ERROR" } });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
@@ -135,12 +135,9 @@ export const fetchCurrentDocument = async (): Promise<void> => {
 
   const slug = match?.params.slug.replace(/\/$/, "") || "";
 
-  const cashedDocument = hasInCollection<Document>(
-    store.getState().documentation.list,
-    "slug",
-    slug,
-    [["content"]],
-  );
+  const cashedDocument = hasInCollection<Document>(getState().documentation.list, "slug", slug, [
+    ["content"],
+  ]);
   if (cashedDocument) {
     // update our page state
     actions.learnPage.set({ currentDocument: cashedDocument });
@@ -151,7 +148,7 @@ export const fetchCurrentDocument = async (): Promise<void> => {
   } else {
     actions.learnPage.set({ currentDocument: null });
     try {
-      const currentLanguage = store.getState().settings.language;
+      const currentLanguage = getState().settings.language;
       const currentDocument = await fetchV2(`data:documentation/:slug.json`, {
         params: { slug },
         query: [["language", currentLanguage.code]],

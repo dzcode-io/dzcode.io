@@ -1,14 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createStore } from "src/redux";
+import { getStore } from "src/redux";
 
 import { t } from "../../components/t";
 import { FaqPage } from ".";
 
 describe("src/pages/landing/index.tsx", () => {
   test("Render FAQ page", async () => {
-    const store = createStore();
+    const store = getStore();
     const faqIndex = 0;
 
     const { container } = render(

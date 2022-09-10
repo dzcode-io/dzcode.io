@@ -3,7 +3,7 @@ import { Integrations } from "@sentry/tracing";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
-import { store } from "src/redux";
+import { getStore } from "src/redux";
 import { getEnv } from "src/utils";
 import { history } from "src/utils/history";
 
@@ -23,7 +23,7 @@ if (env !== "development") {
 }
 
 render(
-  <Provider store={store}>
+  <Provider store={getStore(true)}>
     <Router history={history}>
       <App />
     </Router>

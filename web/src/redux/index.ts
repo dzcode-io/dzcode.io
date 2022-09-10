@@ -26,11 +26,19 @@ const rootReducer = combineReducers(reducers);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const createStore = () =>
-  configureStore({ reducer: rootReducer, enhancers: composeEnhancers });
+const createStore = () => configureStore({ reducer: rootReducer, enhancers: composeEnhancers });
 
-// @TODO-ZM: don't export store change it from `const` to `let`, and only export createStore(), which creates a store, returns it and also assign it to let store.
-export const store = createStore();
+let store = createStore();
+
+export const getStore = (cache = false) => {
+  if (!cache) {
+    store = createStore();
+  }
+  return store;
+};
+
+// @TODO-ZM: cache this, and add a subscriber that refreshes the cache whenever new actions get dispatched
+export const getState = store.getState;
 
 export const actions = (Object.keys(slices) as SlicesKey[]).reduce(
   (pV, sliceKey) => ({

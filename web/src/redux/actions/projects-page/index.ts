@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/browser";
-import { actions, store } from "src/redux";
+import { actions } from "src/redux";
 import { fetchV2 } from "src/utils/fetch";
 
 /**

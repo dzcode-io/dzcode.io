@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { matchPath } from "react-router-dom";
 import { SidebarTreeItem } from "src/components/sidebar";
-import { actions, store } from "src/redux";
+import { actions, getState } from "src/redux";
 import { hasInCollection } from "src/utils";
 import { fetchV2 } from "src/utils/fetch";
 import { history } from "src/utils/history";
@@ -17,7 +17,7 @@ import { urlLanguageRegEx } from "src/utils/language";
 export const fetchArticlesList = async (): Promise<void> => {
   try {
     actions.articlesPage.set({ sidebarTree: null });
-    const currentLanguage = store.getState().settings.language;
+    const currentLanguage = getState().settings.language;
 
     const articlesList = await fetchV2("data:articles/list.c.json", {
       query: [["language", currentLanguage.code]],
@@ -51,7 +51,7 @@ export const fetchArticlesList = async (): Promise<void> => {
  * Fetches the contributors of the an current article
  */
 export const fetchCurrentArticleContributors = async (): Promise<void> => {
-  const { currentArticle } = store.getState().articlesPage;
+  const { currentArticle } = getState().articlesPage;
   const loadedCurrentArticle = isLoaded(currentArticle);
 
   // Don't re-fetch data again
@@ -64,7 +64,7 @@ export const fetchCurrentArticleContributors = async (): Promise<void> => {
     });
     //  getting the current article from a fresh state
     const freshCurrentArticle =
-      isLoaded(store.getState().articlesPage.currentArticle) || loadedCurrentArticle;
+      isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
 
     // update our page state
 
@@ -82,7 +82,7 @@ export const fetchCurrentArticleContributors = async (): Promise<void> => {
     actions.articles.set({ list: [{ ...freshCurrentArticle, contributors }] });
   } catch (error) {
     const freshCurrentArticle =
-      isLoaded(store.getState().articlesPage.currentArticle) || loadedCurrentArticle;
+      isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
 
     actions.articlesPage.set({ currentArticle: { ...freshCurrentArticle, contributors: "ERROR" } });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
@@ -93,7 +93,7 @@ export const fetchCurrentArticleContributors = async (): Promise<void> => {
  * Fetches the authors of the current article
  */
 export const fetchCurrentArticleAuthors = async (): Promise<void> => {
-  const { currentArticle } = store.getState().articlesPage;
+  const { currentArticle } = getState().articlesPage;
   const loadedCurrentArticle = isLoaded(currentArticle);
 
   // Don't re-fetch data again
@@ -115,14 +115,14 @@ export const fetchCurrentArticleAuthors = async (): Promise<void> => {
     });
     //  getting the current article from a fresh state
     const freshCurrentArticle =
-      isLoaded(store.getState().articlesPage.currentArticle) || loadedCurrentArticle;
+      isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
     // update our page state
     actions.articlesPage.set({ currentArticle: { ...freshCurrentArticle, githubAuthors } });
     // update our cache state
     actions.articles.set({ list: [{ ...freshCurrentArticle, githubAuthors }] });
   } catch (error) {
     const freshCurrentArticle =
-      isLoaded(store.getState().articlesPage.currentArticle) || loadedCurrentArticle;
+      isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
     actions.articlesPage.set({
       currentArticle: { ...freshCurrentArticle, githubAuthors: "ERROR" },
     });
@@ -140,7 +140,7 @@ export const fetchCurrentArticle = async (): Promise<void> => {
   );
   const slug = match?.params.slug.replace(/\/$/, "") || "";
 
-  const cashedArticle = hasInCollection<Article>(store.getState().articles.list, "slug", slug, [
+  const cashedArticle = hasInCollection<Article>(getState().articles.list, "slug", slug, [
     ["content"],
   ]);
   if (cashedArticle) {
@@ -154,7 +154,7 @@ export const fetchCurrentArticle = async (): Promise<void> => {
   } else {
     actions.articlesPage.set({ currentArticle: null });
 
-    const currentLanguage = store.getState().settings.language.code;
+    const currentLanguage = getState().settings.language.code;
 
     try {
       const currentArticle = await fetchV2(`data:articles/:slug.json`, {

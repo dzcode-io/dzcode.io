@@ -1,6 +1,6 @@
 import debounce from "@material-ui/core/utils/debounce";
 import * as Sentry from "@sentry/browser";
-import { actions, store } from "src/redux";
+import { actions, getState } from "src/redux";
 import { fetchV2 } from "src/utils/fetch";
 
 /**
@@ -9,7 +9,7 @@ import { fetchV2 } from "src/utils/fetch";
 export const fetchContributions = async (): Promise<void> => {
   actions.contributePage.set({ contributions: null });
   try {
-    const { contributePage } = store.getState();
+    const { contributePage } = getState();
     const query: [string, string][] = [];
     contributePage.filters.forEach((filter) => {
       filter.options.forEach((option) => {
@@ -62,7 +62,7 @@ export const updateFilterValue = async (
   updateImmediately = false,
   overwrite = false,
 ): Promise<void> => {
-  const { filters } = store.getState().contributePage;
+  const { filters } = getState().contributePage;
   const newFilters = filters.map((filter) => {
     if (filter.name !== filterName) {
       return {
