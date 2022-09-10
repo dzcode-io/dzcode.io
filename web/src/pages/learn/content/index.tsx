@@ -20,7 +20,7 @@ import { Contributors } from "src/components/contributors";
 import { Markdown } from "src/components/markdown";
 import { SpeedDial, SpeedDialAction } from "src/components/speed-dial";
 import { fetchCurrentDocument } from "src/redux/actions/documentation-page";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 
 const actions = ({ slug }: Document): SpeedDialAction[] => [
   {

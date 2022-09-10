@@ -7,7 +7,7 @@ import type { FC } from "react";
 import { Helmet } from "react-helmet";
 import { Markdown } from "src/components/markdown";
 import { T, t } from "src/components/t";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 
 const FaqCards = () => {
   const { faqData } = useSliceSelector("faqPage");

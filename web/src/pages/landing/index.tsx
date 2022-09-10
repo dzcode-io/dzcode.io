@@ -3,7 +3,7 @@ import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { FC } from "react";
 import { Helmet } from "react-helmet";
 import { t } from "src/components/t";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 
 import { Header } from "./header";
 import { MilestonesSection } from "./milestones";

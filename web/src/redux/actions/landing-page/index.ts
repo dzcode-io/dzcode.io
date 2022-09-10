@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/browser";
-import { slices, store } from "src/redux/store";
+import { slices, store } from "src/redux";
 import { fetchV2 } from "src/utils/fetch";
 
 export const fetchDzCodeMilestones = async (): Promise<void> => {

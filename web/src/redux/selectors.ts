@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { SlicesKey, State } from "src/redux/store";
+import { SlicesKey, State } from "src/redux";
 
 export const useSliceSelector = <K extends SlicesKey>(
   sliceKey: K,

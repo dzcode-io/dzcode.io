@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
 import { LinkV2 } from "src/components/link-v2";
 import { T } from "src/components/t";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {

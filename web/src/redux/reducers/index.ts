@@ -1,23 +1,13 @@
-import { combineReducers } from "redux";
-
-import { articles } from "./articles";
-import { articlesPage } from "./articles-page";
-import { contributePage } from "./contribute-page";
-import { documentation } from "./documentation";
-import { footerComponent } from "./footer-component";
-import { learnPage } from "./learn-page";
-import { navbarComponent } from "./navbar-component";
-import { settings } from "./settings";
-import { teamPage } from "./team-page";
-
-export const mainReducer = combineReducers({
-  documentation,
-  learnPage,
-  articles,
-  articlesPage,
-  settings,
-  navbarComponent,
-  footerComponent,
-  contributePage,
-  teamPage,
-});
+export { _subscribers } from "src/redux/reducers/_subscribers";
+export { landingPage } from "src/redux/reducers/landing-page";
+export { settings } from "src/redux/reducers/settings";
+export { navbarComponent } from "src/redux/reducers/navbar-component";
+export { footerComponent } from "src/redux/reducers/footer-component";
+export { faqPage } from "src/redux/reducers/faq-page";
+export { projectsPage } from "src/redux/reducers/projects-page";
+export { articlesPage } from "src/redux/reducers/articles-page";
+export { articles } from "src/redux/reducers/articles";
+export { learnPage } from "src/redux/reducers/learn-page";
+export { documentation } from "src/redux/reducers/documentation";
+export { teamPage } from "src/redux/reducers/team-page";
+export { contributePage } from "src/redux/reducers/contribute-page";

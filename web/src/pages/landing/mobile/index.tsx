@@ -2,7 +2,6 @@ import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import androidDark from "src/assets/png/android-dark.png";
 import androidLight from "src/assets/png/android-light.png";
 import iosDark from "src/assets/png/ios-dark.png";
@@ -10,7 +9,7 @@ import iosLight from "src/assets/png/ios-light.png";
 import { LinkV2 } from "src/components/link-v2";
 import { T } from "src/components/t";
 import { fullstackConfig } from "src/config";
-import { StateInterface } from "src/redux";
+import { useSliceSelector } from "src/redux/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,14 +51,14 @@ const useStyles = makeStyles((theme) => ({
 
 export const Mobile: FC = () => {
   const classes = useStyles();
-  const { settings } = useSelector<StateInterface, StateInterface>((state) => state);
+  const { darkMode } = useSliceSelector("settings");
   const mobileApps = [
     {
-      image: settings.darkMode ? androidDark : androidLight,
+      image: darkMode ? androidDark : androidLight,
       href: fullstackConfig.mobile.android.url,
     },
     {
-      image: settings.darkMode ? iosDark : iosLight,
+      image: darkMode ? iosDark : iosLight,
       href: fullstackConfig.mobile.ios.url,
     },
   ];

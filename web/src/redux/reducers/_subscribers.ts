@@ -1,5 +1,5 @@
 import { Action, createSlice } from "@reduxjs/toolkit";
-import { ActionType } from "src/redux/store";
+import { ActionType } from "src/redux";
 
 const subscribers: Partial<Record<ActionType, Array<(...args: any[]) => void>>> = {};
 

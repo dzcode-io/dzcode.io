@@ -13,8 +13,8 @@ import { animated, useSpring } from "react-spring";
 import logo from "src/assets/svg/logo-wide.svg";
 import { LinkV2 } from "src/components/link-v2";
 import { T } from "src/components/t";
-import { slices } from "src/redux/store";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { slices } from "src/redux";
+import { useSliceSelector } from "src/redux/selectors";
 
 import { IOSSwitch } from "./ios-switch";
 import { LanguageSwitch } from "./lang-switch";

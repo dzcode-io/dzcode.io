@@ -1,19 +1,21 @@
-import { Action } from "src/redux";
-
-import { Section, sections } from "./sections";
+import { createSlice } from "@reduxjs/toolkit";
+import { DictionaryKeys } from "src/components/t/dictionary";
+import { sections } from "src/redux/reducers/footer-component/sections";
 
 export interface FooterComponentState {
-  sections: Section[];
+  sections: Array<{
+    title: DictionaryKeys<"footer-category-title">;
+    links: Array<{
+      text: DictionaryKeys<"footer-category-link-text">;
+      href: string;
+    }>;
+  }>;
 }
 
-export const footerComponent = (
-  state: FooterComponentState = {
+export const footerComponent = createSlice({
+  name: "footerComponent",
+  initialState: {
     sections,
-  },
-  action: Action<FooterComponentState>,
-) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+  } as FooterComponentState,
+  reducers: {},
+});

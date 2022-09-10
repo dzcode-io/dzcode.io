@@ -1,46 +1,35 @@
-import { applyMiddleware, compose, createStore } from "redux";
-import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { combineReducers, compose, configureStore } from "@reduxjs/toolkit";
+import * as slicesImport from "src/redux/reducers";
 
-import { mainReducer } from "./reducers";
-
-const composeEnhancers = compose;
-
-/**
- * the main redux state, with all the reducers
- */
-export const mainStore = createStore(mainReducer, composeEnhancers(applyMiddleware(thunk)));
-
-/**
- * Creates a new redux state each time this function is called, this is used only for unit tests, to ensure that we have fresh state on each individual test
- */
-export const createMainStore = () => {
-  return createStore(mainReducer, composeEnhancers(applyMiddleware(thunk)));
+// -----------------------------------------------------------------------------
+export type Slices = typeof slicesImport;
+export type SlicesKey = keyof typeof slicesImport;
+export type Reducers = { [K in keyof Slices]: Slices[K]["reducer"] };
+export type Actions = { [K in keyof Slices]: Slices[K]["actions"] };
+export type ActionTypesRecord = {
+  [K in keyof Actions]: `${keyof Actions[K] & string}`;
 };
+export type ActionType = {
+  [K in keyof Actions]: `${K}/${keyof Actions[K] & string}`;
+}[SlicesKey];
+export type State = ReturnType<typeof rootReducer>;
+// -----------------------------------------------------------------------------
 
-export type StateInterface = ReturnType<typeof mainStore.getState>;
+// @TODO-ZM: export `actions` instead, and make it work without dispatch
+export const slices = slicesImport;
+// @TODO-ZM: state getter where it chases the state when no action has been fired
+// @TODO-ZM: enforce not using useSelector
 
-export type ActionType =
-  | "UPDATE_DOCUMENTATION"
-  | "UPDATE_LEARN_PAGE"
-  | "UPDATE_ARTICLES"
-  | "UPDATE_ARTICLES_PAGE"
-  | "UPDATE_PROJECTS"
-  | "UPDATE_PROJECTS_PAGE"
-  | "UPDATE_LANDING_PAGE"
-  | "UPDATE_SETTINGS"
-  | "UPDATE_CONTRIBUTE_PAGE"
-  | "UPDATE_TEAM_PAGE";
+const reducers = (Object.keys(slicesImport) as SlicesKey[]).reduce(
+  (pV, sliceKey) => ({ ...pV, [sliceKey]: slicesImport[sliceKey].reducer }),
+  {} as Reducers,
+);
+const rootReducer = combineReducers(reducers);
 
-export interface Action<T> {
-  type: ActionType;
-  payload: Partial<T>;
-}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export type ThunkResult<A = Record<string, unknown>, E = Record<string, unknown>> = ThunkAction<
-  void,
-  StateInterface,
-  E,
-  Action<A>
->;
+export const createStore = () =>
+  configureStore({ reducer: rootReducer, enhancers: composeEnhancers });
 
-export type Dispatch<A> = ThunkDispatch<StateInterface, Record<string, unknown>, Action<A>>;
+// @TODO-ZM: don't export store change it from `const` to `let`, and only export createStore(), which creates a store, returns it and also assign it to let store.
+export const store = createStore();

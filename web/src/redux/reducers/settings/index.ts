@@ -1,5 +1,7 @@
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { matchPath } from "react-router-dom";
+import { setReducer } from "src/redux/utils";
 import { history } from "src/utils/history";
 import { urlLanguageRegEx } from "src/utils/language";
 
@@ -8,8 +10,9 @@ export interface SettingsState {
   language: LanguageEntity;
 }
 
-export const settings = (
-  state: SettingsState = {
+export const settings = createSlice({
+  name: "settings",
+  initialState: {
     darkMode: localStorage.getItem("darkMode") !== "off",
     language: (() => {
       const persistedLanguageCode = localStorage.getItem("languageCode");
@@ -18,19 +21,14 @@ export const settings = (
       document.body.setAttribute("dir", initialLanguage?.code === "ar" ? "rtl" : "ltr");
       return initialLanguage;
     })(),
-  },
-  action: {
-    type: string;
-    payload: SettingsState;
-  },
-) => {
-  switch (action.type) {
-    case "UPDATE_SETTINGS":
-      if ("darkMode" in action.payload) {
+  } as SettingsState,
+  reducers: {
+    set: (state, action: PayloadAction<Partial<SettingsState>>) => {
+      setReducer(state, action);
+      if (typeof action.payload.darkMode !== "undefined") {
         localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
-        console.log(action.payload.darkMode ? "on" : "off");
       }
-      if ("language" in action.payload) {
+      if (typeof action.payload.language !== "undefined") {
         localStorage.setItem("languageCode", action.payload.language.code);
         document.body.setAttribute("dir", action.payload.language.code === "ar" ? "rtl" : "ltr");
         const match = matchPath<{ lang?: LanguageEntity["code"] }>(history.location.pathname, {
@@ -50,8 +48,6 @@ export const settings = (
           history.push({ ...history.location, pathname });
         }
       }
-      return { ...state, ...action.payload };
-    default:
-      return state;
-  }
-};
+    },
+  },
+});

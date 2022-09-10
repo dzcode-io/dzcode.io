@@ -8,7 +8,7 @@ import { Route, useRouteMatch } from "react-router-dom";
 import { Sidebar } from "src/components/sidebar";
 import { t } from "src/components/t";
 import { fetchArticlesList } from "src/redux/actions/articles-page";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 
 import { Content } from "./content";
 import { Landing } from "./landing";

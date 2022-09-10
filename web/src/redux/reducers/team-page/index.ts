@@ -1,7 +1,7 @@
 import { GetTeamResponseDto } from "@dzcode.io/api/dist/team/types";
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { createSlice } from "@reduxjs/toolkit";
-import { setReducerFactory } from "src/redux/store/utils";
+import { setReducerFactory } from "src/redux/utils";
 
 export interface TeamPageState {
   teamList: LOADABLE<GetTeamResponseDto["contributors"]>;

@@ -3,7 +3,7 @@ import { Integrations } from "@sentry/tracing";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
-import { store } from "src/redux/store";
+import { store } from "src/redux";
 import { getEnv } from "src/utils";
 import { history } from "src/utils/history";
 

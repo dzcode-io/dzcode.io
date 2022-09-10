@@ -12,8 +12,8 @@ import { Loading } from "src/components/loading";
 import { Navbar } from "src/components/navbar";
 import { t } from "src/components/t";
 import { Theme } from "src/components/theme";
-import { slices } from "src/redux/store";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { slices } from "src/redux";
+import { useSliceSelector } from "src/redux/selectors";
 import { getEnv } from "src/utils";
 import { urlLanguageRegEx } from "src/utils/language";
 

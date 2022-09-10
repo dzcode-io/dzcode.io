@@ -16,7 +16,7 @@ import { SpeedDial } from "src/components/speed-dial";
 import { t } from "src/components/t";
 import type { DictionaryKeys } from "src/components/t/dictionary";
 import { updateFilterValue } from "src/redux/actions/contribute-page";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 
 const useStyles = makeStyles((theme) => ({
   filter: {

@@ -4,7 +4,7 @@ import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { t } from "src/components/t";
 import { fetchProjectsList } from "src/redux/actions/projects-page";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 
 import { Catalog } from "./catalog";
 

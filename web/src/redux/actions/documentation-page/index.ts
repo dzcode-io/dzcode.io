@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { matchPath } from "react-router-dom";
 import { SidebarTreeItem } from "src/components/sidebar";
-import { slices, store } from "src/redux/store";
+import { slices, store } from "src/redux";
 import { hasInCollection } from "src/utils";
 import { fetchV2 } from "src/utils/fetch";
 import { history } from "src/utils/history";

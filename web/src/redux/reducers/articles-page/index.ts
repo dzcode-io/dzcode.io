@@ -1,7 +1,8 @@
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
+import { createSlice } from "@reduxjs/toolkit";
 import { SidebarTreeItem } from "src/components/sidebar";
-import { Action } from "src/redux";
+import { setReducerFactory } from "src/redux/utils";
 
 export interface ArticlesPageState {
   sidebarTree: LOADABLE<SidebarTreeItem[]>;
@@ -9,18 +10,14 @@ export interface ArticlesPageState {
   currentArticle: LOADABLE<Article>;
 }
 
-export const articlesPage = (
-  state: ArticlesPageState = {
+export const articlesPage = createSlice({
+  name: "articlesPage",
+  initialState: {
     sidebarTree: null,
     expanded: [],
     currentArticle: null,
+  } as ArticlesPageState,
+  reducers: {
+    set: setReducerFactory(),
   },
-  action: Action<ArticlesPageState>,
-) => {
-  switch (action.type) {
-    case "UPDATE_ARTICLES_PAGE":
-      return { ...state, ...action.payload };
-    default:
-      return state;
-  }
-};
+});

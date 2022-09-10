@@ -6,7 +6,7 @@ import { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { T, t } from "src/components/t";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {

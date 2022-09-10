@@ -4,8 +4,8 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { FC, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { slices } from "src/redux/store";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { slices } from "src/redux";
+import { useSliceSelector } from "src/redux/selectors";
 
 export const LanguageSwitch: FC = () => {
   const settings = useSliceSelector("settings");

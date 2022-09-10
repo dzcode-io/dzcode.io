@@ -1,5 +1,4 @@
 import { linkFactory } from "@dzcode.io/ui/dist/link-factory";
+import { store } from "src/redux";
 
-import { mainStore } from "../../redux";
-
-export const LinkV2 = linkFactory(() => mainStore.getState().settings.language.code, "en");
+export const LinkV2 = linkFactory(() => store.getState().settings.language.code, "en");

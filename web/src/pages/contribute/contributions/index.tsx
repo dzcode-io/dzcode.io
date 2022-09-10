@@ -16,7 +16,7 @@ import { FC } from "react";
 import { LinkV2 } from "src/components/link-v2";
 import { t } from "src/components/t";
 import { fetchContributions, updateFilterValue } from "src/redux/actions/contribute-page";
-import { useSliceSelector } from "src/redux/store/selectors";
+import { useSliceSelector } from "src/redux/selectors";
 import { elapsedTime } from "src/utils/elapsed-time";
 
 const useStyles = makeStyles((theme) => ({
