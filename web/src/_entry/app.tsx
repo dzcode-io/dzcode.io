@@ -5,14 +5,13 @@ import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import Container from "@material-ui/core/Container";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useDispatch } from "react-redux";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import { Footer } from "src/components/footer";
 import { Loading } from "src/components/loading";
 import { Navbar } from "src/components/navbar";
 import { t } from "src/components/t";
 import { Theme } from "src/components/theme";
-import { slices } from "src/redux";
+import { actions } from "src/redux";
 import { useSliceSelector } from "src/redux/selectors";
 import { getEnv } from "src/utils";
 import { urlLanguageRegEx } from "src/utils/language";
@@ -60,7 +59,6 @@ export const App: FC = () => {
   const location = useLocation();
   const match = useRouteMatch<{ lang?: LanguageEntity["code"] }>(urlLanguageRegEx);
   const { language } = useSliceSelector("settings");
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (getEnv() !== "development") {
@@ -73,7 +71,7 @@ export const App: FC = () => {
     const urlLanguage =
       allLanguages.find(({ code }) => code === match?.params.lang) || allLanguages[0];
     if (urlLanguage.code !== language.code) {
-      dispatch(slices.settings.actions.set({ language: urlLanguage }));
+      actions.settings.set({ language: urlLanguage });
     }
   }, [location]);
 

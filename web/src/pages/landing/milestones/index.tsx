@@ -3,7 +3,6 @@ import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { T, t } from "src/components/t";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
 import { useSliceSelector } from "src/redux/selectors";
@@ -28,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const MilestonesSection: FC = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const { milestones } = useSliceSelector("landingPage");
 
   useEffect(() => {
@@ -47,7 +45,7 @@ export const MilestonesSection: FC = () => {
         <TryAgain
           error={t("landing-milestones-error")}
           action={t("landing-milestones-try-again")}
-          onClick={() => dispatch(fetchDzCodeMilestones())}
+          onClick={() => fetchDzCodeMilestones()}
         />
       ) : (
         <Milestones

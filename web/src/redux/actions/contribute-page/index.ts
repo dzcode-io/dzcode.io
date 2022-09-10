@@ -1,13 +1,13 @@
 import debounce from "@material-ui/core/utils/debounce";
 import * as Sentry from "@sentry/browser";
-import { slices, store } from "src/redux";
+import { actions, store } from "src/redux";
 import { fetchV2 } from "src/utils/fetch";
 
 /**
  * fetchContributions fetch an array from api and pass it to the store
  */
 export const fetchContributions = async (): Promise<void> => {
-  store.dispatch(slices.contributePage.actions.set({ contributions: null }));
+  actions.contributePage.set({ contributions: null });
   try {
     const { contributePage } = store.getState();
     const query: [string, string][] = [];
@@ -43,9 +43,9 @@ export const fetchContributions = async (): Promise<void> => {
         ),
       })),
     }));
-    store.dispatch(slices.contributePage.actions.set({ contributions, filters: newFilters }));
+    actions.contributePage.set({ contributions, filters: newFilters });
   } catch (error) {
-    store.dispatch(slices.contributePage.actions.set({ contributions: "ERROR" }));
+    actions.contributePage.set({ contributions: "ERROR" });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -89,7 +89,7 @@ export const updateFilterValue = async (
       };
     }
   });
-  store.dispatch(slices.contributePage.actions.set({ filters: newFilters }));
+  actions.contributePage.set({ filters: newFilters });
   if (!updateImmediately) {
     debouncedFetchContributions();
   } else {

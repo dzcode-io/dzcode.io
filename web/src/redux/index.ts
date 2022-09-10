@@ -1,9 +1,9 @@
 import { combineReducers, compose, configureStore } from "@reduxjs/toolkit";
-import * as slicesImport from "src/redux/reducers";
+import * as slices from "src/redux/reducers";
 
 // -----------------------------------------------------------------------------
-export type Slices = typeof slicesImport;
-export type SlicesKey = keyof typeof slicesImport;
+export type Slices = typeof slices;
+export type SlicesKey = keyof typeof slices;
 export type Reducers = { [K in keyof Slices]: Slices[K]["reducer"] };
 export type Actions = { [K in keyof Slices]: Slices[K]["actions"] };
 export type ActionTypesRecord = {
@@ -15,13 +15,11 @@ export type ActionType = {
 export type State = ReturnType<typeof rootReducer>;
 // -----------------------------------------------------------------------------
 
-// @TODO-ZM: export `actions` instead, and make it work without dispatch
-export const slices = slicesImport;
 // @TODO-ZM: state getter where it chases the state when no action has been fired
 // @TODO-ZM: enforce not using useSelector
 
-const reducers = (Object.keys(slicesImport) as SlicesKey[]).reduce(
-  (pV, sliceKey) => ({ ...pV, [sliceKey]: slicesImport[sliceKey].reducer }),
+const reducers = (Object.keys(slices) as SlicesKey[]).reduce(
+  (pV, sliceKey) => ({ ...pV, [sliceKey]: slices[sliceKey].reducer }),
   {} as Reducers,
 );
 const rootReducer = combineReducers(reducers);
@@ -33,3 +31,18 @@ export const createStore = () =>
 
 // @TODO-ZM: don't export store change it from `const` to `let`, and only export createStore(), which creates a store, returns it and also assign it to let store.
 export const store = createStore();
+
+export const actions = (Object.keys(slices) as SlicesKey[]).reduce(
+  (pV, sliceKey) => ({
+    ...pV,
+    [sliceKey]: Object.keys(slices[sliceKey].actions).reduce(
+      (contextualActions, actionName) => ({
+        ...contextualActions,
+        [actionName]: (...args: any[]) =>
+          store.dispatch((slices[sliceKey].actions as any)[actionName](...args)),
+      }),
+      {},
+    ),
+  }),
+  {} as Actions,
+);

@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { matchPath } from "react-router-dom";
 import { SidebarTreeItem } from "src/components/sidebar";
-import { slices, store } from "src/redux";
+import { actions, store } from "src/redux";
 import { hasInCollection } from "src/utils";
 import { fetchV2 } from "src/utils/fetch";
 import { history } from "src/utils/history";
@@ -16,7 +16,7 @@ import { urlLanguageRegEx } from "src/utils/language";
  */
 export const fetchArticlesList = async (): Promise<void> => {
   try {
-    store.dispatch(slices.articlesPage.actions.set({ sidebarTree: null }));
+    actions.articlesPage.set({ sidebarTree: null });
     const currentLanguage = store.getState().settings.language;
 
     const articlesList = await fetchV2("data:articles/list.c.json", {
@@ -40,9 +40,9 @@ export const fetchArticlesList = async (): Promise<void> => {
       },
     );
 
-    store.dispatch(slices.articlesPage.actions.set({ sidebarTree: tree, expanded: ids }));
+    actions.articlesPage.set({ sidebarTree: tree, expanded: ids });
   } catch (error) {
-    store.dispatch(slices.articlesPage.actions.set({ sidebarTree: "ERROR" }));
+    actions.articlesPage.set({ sidebarTree: "ERROR" });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -58,11 +58,7 @@ export const fetchCurrentArticleContributors = async (): Promise<void> => {
   if (!loadedCurrentArticle || isLoaded(loadedCurrentArticle.contributors)) return;
 
   try {
-    store.dispatch(
-      slices.articlesPage.actions.set({
-        currentArticle: { ...loadedCurrentArticle, contributors: null },
-      }),
-    );
+    actions.articlesPage.set({ currentArticle: { ...loadedCurrentArticle, contributors: null } });
     const { contributors } = await fetchV2("api:Contributors", {
       query: [["path", `articles/${loadedCurrentArticle.slug}`]],
     });
@@ -71,29 +67,24 @@ export const fetchCurrentArticleContributors = async (): Promise<void> => {
       isLoaded(store.getState().articlesPage.currentArticle) || loadedCurrentArticle;
 
     // update our page state
-    store.dispatch(
-      slices.articlesPage.actions.set({
-        currentArticle: {
-          ...freshCurrentArticle,
-          // Filter the author out the contributors
-          contributors: contributors.filter(
-            ({ login }) => !freshCurrentArticle.authors?.includes(login),
-          ),
-        },
-      }),
-    );
+
+    actions.articlesPage.set({
+      currentArticle: {
+        ...freshCurrentArticle,
+        // Filter the author out the contributors
+        contributors: contributors.filter(
+          ({ login }) => !freshCurrentArticle.authors?.includes(login),
+        ),
+      },
+    });
+
     // update our cache state
-    store.dispatch(
-      slices.articles.actions.set({ list: [{ ...freshCurrentArticle, contributors }] }),
-    );
+    actions.articles.set({ list: [{ ...freshCurrentArticle, contributors }] });
   } catch (error) {
     const freshCurrentArticle =
       isLoaded(store.getState().articlesPage.currentArticle) || loadedCurrentArticle;
-    store.dispatch(
-      slices.articlesPage.actions.set({
-        currentArticle: { ...freshCurrentArticle, contributors: "ERROR" },
-      }),
-    );
+
+    actions.articlesPage.set({ currentArticle: { ...freshCurrentArticle, contributors: "ERROR" } });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -109,11 +100,7 @@ export const fetchCurrentArticleAuthors = async (): Promise<void> => {
   if (!loadedCurrentArticle || isLoaded(loadedCurrentArticle.githubAuthors)) return;
 
   try {
-    store.dispatch(
-      slices.articlesPage.actions.set({
-        currentArticle: { ...loadedCurrentArticle, githubAuthors: null },
-      }),
-    );
+    actions.articlesPage.set({ currentArticle: { ...loadedCurrentArticle, githubAuthors: null } });
 
     const githubAuthors = (
       await Promise.all(
@@ -130,23 +117,15 @@ export const fetchCurrentArticleAuthors = async (): Promise<void> => {
     const freshCurrentArticle =
       isLoaded(store.getState().articlesPage.currentArticle) || loadedCurrentArticle;
     // update our page state
-    store.dispatch(
-      slices.articlesPage.actions.set({
-        currentArticle: { ...freshCurrentArticle, githubAuthors },
-      }),
-    );
+    actions.articlesPage.set({ currentArticle: { ...freshCurrentArticle, githubAuthors } });
     // update our cache state
-    store.dispatch(
-      slices.articles.actions.set({ list: [{ ...freshCurrentArticle, githubAuthors }] }),
-    );
+    actions.articles.set({ list: [{ ...freshCurrentArticle, githubAuthors }] });
   } catch (error) {
     const freshCurrentArticle =
       isLoaded(store.getState().articlesPage.currentArticle) || loadedCurrentArticle;
-    store.dispatch(
-      slices.articlesPage.actions.set({
-        currentArticle: { ...freshCurrentArticle, githubAuthors: "ERROR" },
-      }),
-    );
+    actions.articlesPage.set({
+      currentArticle: { ...freshCurrentArticle, githubAuthors: "ERROR" },
+    });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -166,14 +145,14 @@ export const fetchCurrentArticle = async (): Promise<void> => {
   ]);
   if (cashedArticle) {
     // update our page state
-    store.dispatch(slices.articlesPage.actions.set({ currentArticle: cashedArticle }));
+    actions.articlesPage.set({ currentArticle: cashedArticle });
 
     // Fetch authors
     fetchCurrentArticleAuthors();
     // Fetch contributors
     fetchCurrentArticleContributors();
   } else {
-    store.dispatch(slices.articlesPage.actions.set({ currentArticle: null }));
+    actions.articlesPage.set({ currentArticle: null });
 
     const currentLanguage = store.getState().settings.language.code;
 
@@ -184,15 +163,15 @@ export const fetchCurrentArticle = async (): Promise<void> => {
       });
 
       // update our page state
-      store.dispatch(slices.articlesPage.actions.set({ currentArticle }));
+      actions.articlesPage.set({ currentArticle });
       // update our cache state
-      store.dispatch(slices.articles.actions.set({ list: [currentArticle] }));
+      actions.articles.set({ list: [currentArticle] });
       // Fetch authors
       fetchCurrentArticleAuthors();
       // Fetch contributors
       fetchCurrentArticleContributors();
     } catch (error) {
-      store.dispatch(slices.articlesPage.actions.set({ currentArticle: "ERROR" }));
+      actions.articlesPage.set({ currentArticle: "ERROR" });
       Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
     }
   }

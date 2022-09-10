@@ -1,4 +1,4 @@
-import { Action, CaseReducer, PayloadAction } from "@reduxjs/toolkit";
+import { Action, PayloadAction } from "@reduxjs/toolkit";
 import { ActionTypesRecord, SlicesKey } from "src/redux";
 
 export const keyMatcher =

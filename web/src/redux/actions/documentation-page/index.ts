@@ -5,7 +5,7 @@ import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { matchPath } from "react-router-dom";
 import { SidebarTreeItem } from "src/components/sidebar";
-import { slices, store } from "src/redux";
+import { actions, store } from "src/redux";
 import { hasInCollection } from "src/utils";
 import { fetchV2 } from "src/utils/fetch";
 import { history } from "src/utils/history";
@@ -16,7 +16,7 @@ import { urlLanguageRegEx } from "src/utils/language";
  */
 export const fetchDocumentationList = async (): Promise<void> => {
   try {
-    store.dispatch(slices.learnPage.actions.set({ sidebarTree: null }));
+    actions.learnPage.set({ sidebarTree: null });
     const currentLanguage = store.getState().settings.language;
 
     const documentationList = await fetchV2("data:documentation/list.c.json", {
@@ -40,9 +40,9 @@ export const fetchDocumentationList = async (): Promise<void> => {
       },
     );
 
-    store.dispatch(slices.learnPage.actions.set({ sidebarTree: tree, expanded: ids }));
+    actions.learnPage.set({ sidebarTree: tree, expanded: ids });
   } catch (error) {
-    store.dispatch(slices.learnPage.actions.set({ sidebarTree: "ERROR" }));
+    actions.learnPage.set({ sidebarTree: "ERROR" });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -58,11 +58,7 @@ const fetchCurrentDocumentContributors = async (): Promise<void> => {
   if (!loadedCurrentDocument || isLoaded(loadedCurrentDocument.contributors)) return;
 
   try {
-    store.dispatch(
-      slices.learnPage.actions.set({
-        currentDocument: { ...loadedCurrentDocument, contributors: null },
-      }),
-    );
+    actions.learnPage.set({ currentDocument: { ...loadedCurrentDocument, contributors: null } });
     const { contributors } = await fetchV2("api:Contributors", {
       query: [["path", `documentation/${loadedCurrentDocument.slug}`]],
     });
@@ -71,28 +67,20 @@ const fetchCurrentDocumentContributors = async (): Promise<void> => {
       isLoaded(store.getState().learnPage.currentDocument) || loadedCurrentDocument;
 
     // update our page state
-    store.dispatch(
-      slices.learnPage.actions.set({
-        currentDocument: {
-          ...freshCurrentDocument,
-          contributors: contributors.filter(
-            ({ login }) => !freshCurrentDocument.authors?.includes(login),
-          ),
-        },
-      }),
-    );
+    actions.learnPage.set({
+      currentDocument: {
+        ...freshCurrentDocument,
+        contributors: contributors.filter(
+          ({ login }) => !freshCurrentDocument.authors?.includes(login),
+        ),
+      },
+    });
     // update our cache state
-    store.dispatch(
-      slices.documentation.actions.set({ list: [{ ...freshCurrentDocument, contributors }] }),
-    );
+    actions.documentation.set({ list: [{ ...freshCurrentDocument, contributors }] });
   } catch (error) {
     const freshCurrentDocument =
       isLoaded(store.getState().learnPage.currentDocument) || loadedCurrentDocument;
-    store.dispatch(
-      slices.learnPage.actions.set({
-        currentDocument: { ...freshCurrentDocument, contributors: "ERROR" },
-      }),
-    );
+    actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, contributors: "ERROR" } });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -108,11 +96,7 @@ const fetchCurrentDocumentAuthors = async (): Promise<void> => {
   if (!loadedCurrentDocument || isLoaded(loadedCurrentDocument.githubAuthors)) return;
 
   try {
-    store.dispatch(
-      slices.learnPage.actions.set({
-        currentDocument: { ...loadedCurrentDocument, githubAuthors: null },
-      }),
-    );
+    actions.learnPage.set({ currentDocument: { ...loadedCurrentDocument, githubAuthors: null } });
 
     const githubAuthors = (
       await Promise.all(
@@ -129,21 +113,13 @@ const fetchCurrentDocumentAuthors = async (): Promise<void> => {
     const freshCurrentDocument =
       isLoaded(store.getState().learnPage.currentDocument) || loadedCurrentDocument;
     // update our page state
-    store.dispatch(
-      slices.learnPage.actions.set({ currentDocument: { ...freshCurrentDocument, githubAuthors } }),
-    );
+    actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, githubAuthors } });
     // update our cache state
-    store.dispatch(
-      slices.documentation.actions.set({ list: [{ ...freshCurrentDocument, githubAuthors }] }),
-    );
+    actions.documentation.set({ list: [{ ...freshCurrentDocument, githubAuthors }] });
   } catch (error) {
     const freshCurrentDocument =
       isLoaded(store.getState().learnPage.currentDocument) || loadedCurrentDocument;
-    store.dispatch(
-      slices.learnPage.actions.set({
-        currentDocument: { ...freshCurrentDocument, githubAuthors: "ERROR" },
-      }),
-    );
+    actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, githubAuthors: "ERROR" } });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -167,13 +143,13 @@ export const fetchCurrentDocument = async (): Promise<void> => {
   );
   if (cashedDocument) {
     // update our page state
-    store.dispatch(slices.learnPage.actions.set({ currentDocument: cashedDocument }));
+    actions.learnPage.set({ currentDocument: cashedDocument });
     // Fetch authors
     fetchCurrentDocumentAuthors();
     // Fetch contributors
     fetchCurrentDocumentContributors();
   } else {
-    store.dispatch(slices.learnPage.actions.set({ currentDocument: null }));
+    actions.learnPage.set({ currentDocument: null });
     try {
       const currentLanguage = store.getState().settings.language;
       const currentDocument = await fetchV2(`data:documentation/:slug.json`, {
@@ -182,15 +158,15 @@ export const fetchCurrentDocument = async (): Promise<void> => {
       });
 
       // update our page state
-      store.dispatch(slices.learnPage.actions.set({ currentDocument }));
+      actions.learnPage.set({ currentDocument });
       // update our cache state
-      store.dispatch(slices.documentation.actions.set({ list: [currentDocument] }));
+      actions.documentation.set({ list: [currentDocument] });
       // Fetch authors
       fetchCurrentDocumentAuthors();
       // Fetch contributors
       fetchCurrentDocumentContributors();
     } catch (error) {
-      store.dispatch(slices.learnPage.actions.set({ currentDocument: "ERROR" }));
+      actions.learnPage.set({ currentDocument: "ERROR" });
       Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
     }
   }

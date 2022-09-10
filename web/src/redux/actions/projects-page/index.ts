@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/browser";
-import { slices, store } from "src/redux";
+import { actions, store } from "src/redux";
 import { fetchV2 } from "src/utils/fetch";
 
 /**
@@ -30,13 +30,11 @@ const shuffleProjects = <T>(array: T[]) => {
  */
 export const fetchProjectsList = async (): Promise<void> => {
   try {
-    store.dispatch(slices.projectsPage.actions.set({ projectsList: null }));
+    actions.projectsPage.set({ projectsList: null });
     const projectsList = await fetchV2("data:projects/list.c.json", {});
-    store.dispatch(
-      slices.projectsPage.actions.set({ projectsList: shuffleProjects(projectsList) }),
-    );
+    actions.projectsPage.set({ projectsList: shuffleProjects(projectsList) });
   } catch (error) {
-    store.dispatch(slices.projectsPage.actions.set({ projectsList: "ERROR" }));
+    actions.projectsPage.set({ projectsList: "ERROR" });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };

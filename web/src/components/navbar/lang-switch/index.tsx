@@ -3,14 +3,12 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { FC, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { slices } from "src/redux";
+import { actions } from "src/redux";
 import { useSliceSelector } from "src/redux/selectors";
 
 export const LanguageSwitch: FC = () => {
   const settings = useSliceSelector("settings");
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  const dispatch = useDispatch();
   const anchorButton = useRef(null);
 
   return (
@@ -28,7 +26,7 @@ export const LanguageSwitch: FC = () => {
             key={language.label}
             style={{ margin: 5 }}
             onClick={() => {
-              dispatch(slices.settings.actions.set({ language }));
+              actions.settings.set({ language });
               setDropDownOpen(false);
             }}
           >
