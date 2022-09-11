@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 
 import { fetchV2 } from "../../utils/fetch";
+import { RootState } from "..";
 import { documentsAdapter } from "./adapters/documents";
+import { selectDocuments } from "./selectors";
 
 interface LearnScreenState {
   status: "idle" | "loading" | "error";
@@ -67,6 +70,11 @@ const learnScreenSlice = createSlice({
         state.error = action.payload.message;
       });
   },
+});
+
+export const useLearnSliceSelector = () => ({
+  ...useSelector((state: RootState) => state.learnScreen),
+  documents: useSelector(selectDocuments),
 });
 
 export default learnScreenSlice;

@@ -10,11 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { AppDispatch } from "../../../store";
-import { selectTheme } from "../../../store/general/selectors/theme";
-import { selectDocuments } from "../../../store/learn-screen/selectors/documents";
-import { selectLearnStatus } from "../../../store/learn-screen/selectors/status";
-import { fetchDocument } from "../../../store/learn-screen/slice";
+import { AppDispatch } from "../../../redux";
+import { useGeneralSliceSelector } from "../../../redux/general/slice";
+import { fetchDocument, useLearnSliceSelector } from "../../../redux/learn-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { documentDetailsStyles } from "./styles";
 
@@ -29,14 +27,13 @@ interface RouteParams {
 export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   route,
 }: DocumentDetailsScreenProps) => {
-  const documents = useSelector(selectDocuments);
-  const status = useSelector(selectLearnStatus);
+  const { documents, status } = useLearnSliceSelector();
   const loadedDocuments = isLoaded(documents);
   const currentDocument = (
     loadedDocuments?.filter((document) => (document as Document).content) as Document[]
   ).find((document) => document.slug === route.params.document.slug);
 
-  const theme = useSelector(selectTheme);
+  const { theme } = useGeneralSliceSelector();
 
   const dispatch = useDispatch<AppDispatch>();
 

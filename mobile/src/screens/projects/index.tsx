@@ -1,20 +1,17 @@
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ErrorBoundary } from "../../components/error-boundary";
 import { DZCodeLoading } from "../../components/loading";
 import { TryAgain } from "../../components/try-again";
-import { AppDispatch } from "../../store";
-import { selectProjects } from "../../store/projects-screen/selectors/projects";
-import { selectProjectsStatus } from "../../store/projects-screen/selectors/status";
-import { fetchProjects } from "../../store/projects-screen/slice";
+import { AppDispatch } from "../../redux";
+import { fetchProjects, useProjectsSliceSelector } from "../../redux/projects-screen/slice";
 import { globalStyles } from "../../styles/global";
 import { CardItemMemoed } from "./card-item";
 
 export const ProjectsScreen: FC = () => {
-  const projects = useSelector(selectProjects);
-  const status = useSelector(selectProjectsStatus);
+  const { projects, status } = useProjectsSliceSelector();
 
   const dispatch = useDispatch<AppDispatch>();
 

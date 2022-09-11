@@ -1,8 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 
 import { fetchV2 } from "../../utils/fetch";
 import { shuffleArray } from "../../utils/shuffle";
+import { RootState } from "..";
 import { projectsAdapter } from "./adapters/projects";
+import { selectProjects } from "./selectors";
 
 interface ProjectsScreenState {
   status: "idle" | "loading" | "error";
@@ -42,6 +45,11 @@ const projectsScreenSlice = createSlice({
         state.error = action.payload.message;
       });
   },
+});
+
+export const useProjectsSliceSelector = () => ({
+  ...useSelector((state: RootState) => state.projectsScreen),
+  projects: useSelector(selectProjects),
 });
 
 export default projectsScreenSlice;

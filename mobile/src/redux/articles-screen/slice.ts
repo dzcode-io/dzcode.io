@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 
 import { fetchV2 } from "../../utils/fetch";
+import { RootState } from "..";
 import { articlesAdapter } from "./adapters/articles";
+import { selectArticles } from "./selectors";
 
 interface ArticlesScreenState {
   status: "idle" | "loading" | "error";
@@ -70,6 +73,11 @@ const articlesScreenSlice = createSlice({
         state.error = action.payload.message;
       });
   },
+});
+
+export const useArticlesSliceSelector = () => ({
+  ...useSelector((state: RootState) => state.articlesScreen),
+  articles: useSelector(selectArticles),
 });
 
 export default articlesScreenSlice;

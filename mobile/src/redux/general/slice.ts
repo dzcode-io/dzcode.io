@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Debounce from "debounce";
 import { Appearance } from "react-native";
+import { useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "..";
 
@@ -52,5 +53,9 @@ const generalSlice = createSlice({
 });
 
 export const { setTheme } = generalSlice.actions;
+
+export const useGeneralSliceSelector = () => ({
+  ...useSelector((state: RootState) => state.general),
+});
 
 export default generalSlice;

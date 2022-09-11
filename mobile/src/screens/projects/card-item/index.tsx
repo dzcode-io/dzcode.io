@@ -1,9 +1,8 @@
 import { Project } from "@dzcode.io/api/dist/app/types/legacy";
 import React, { FC, memo } from "react";
 import { Button, Card, Paragraph, Title } from "react-native-paper";
-import { useSelector } from "react-redux";
 
-import { selectTheme } from "../../../store/general/selectors/theme";
+import { useGeneralSliceSelector } from "../../../redux/general/slice";
 import { Colors } from "../../../styles/colors";
 import { openLink } from "../../../utils/link";
 import { cardStyles } from "./styles";
@@ -15,7 +14,7 @@ interface CardItemProps {
 const CardItem: FC<CardItemProps> = ({
   project: { title, description, githubURI, image },
 }: CardItemProps) => {
-  const theme = useSelector(selectTheme);
+  const { theme } = useGeneralSliceSelector();
   return (
     <Card style={cardStyles.mainView}>
       <Card.Cover

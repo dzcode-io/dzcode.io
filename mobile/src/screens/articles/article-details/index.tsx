@@ -6,16 +6,14 @@ import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { Text } from "react-native-paper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { AppDispatch } from "../../../store";
-import { selectArticles } from "../../../store/articles-screen/selectors/articles";
-import { selectArticlesStatus } from "../../../store/articles-screen/selectors/status";
-import { fetchArticle } from "../../../store/articles-screen/slice";
-import { selectTheme } from "../../../store/general/selectors/theme";
+import { AppDispatch } from "../../../redux";
+import { fetchArticle, useArticlesSliceSelector } from "../../../redux/articles-screen/slice";
+import { useGeneralSliceSelector } from "../../../redux/general/slice";
 import { globalStyles } from "../../../styles/global";
 import { openLink } from "../../../utils/link";
 import { articleDetailsStyles } from "./styles";
@@ -31,15 +29,14 @@ interface RouteParams {
 export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   route,
 }: ArticleDetailsScreenProps) => {
-  const articles = useSelector(selectArticles);
-  const status = useSelector(selectArticlesStatus);
+  const { articles, status } = useArticlesSliceSelector();
 
   const loadedArticles = isLoaded(articles);
   const currentArticle = (
     loadedArticles?.filter((article) => (article as Article).content) as Article[]
   ).find((article) => article.slug === route.params.article.slug);
 
-  const theme = useSelector(selectTheme);
+  const { theme } = useGeneralSliceSelector();
 
   const dispatch = useDispatch<AppDispatch>();
 

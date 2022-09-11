@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+
+import { RootState } from "..";
 
 export type FAQData = Array<{
   title: string;
@@ -118,6 +121,10 @@ const faqScreenSlice = createSlice({
   name: "faqScreen",
   initialState,
   reducers: {},
+});
+
+export const useFaqSliceSelector = () => ({
+  ...useSelector((state: RootState) => state.faqScreen),
 });
 
 export default faqScreenSlice;

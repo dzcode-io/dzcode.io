@@ -2,21 +2,18 @@ import { useNavigation } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { AppDispatch } from "../../../store";
-import { selectArticles } from "../../../store/articles-screen/selectors/articles";
-import { selectArticlesStatus } from "../../../store/articles-screen/selectors/status";
-import { fetchArticles } from "../../../store/articles-screen/slice";
+import { AppDispatch } from "../../../redux";
+import { fetchArticles, useArticlesSliceSelector } from "../../../redux/articles-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { articlesListStyles } from "./styles";
 
 export const ArticlesListScreen: FC = () => {
-  const articles = useSelector(selectArticles);
-  const status = useSelector(selectArticlesStatus);
+  const { articles, status } = useArticlesSliceSelector();
 
   const navigation = useNavigation();
 

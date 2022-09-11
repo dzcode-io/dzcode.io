@@ -3,19 +3,18 @@ import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { List, Text } from "react-native-paper";
-import { useSelector } from "react-redux";
 
 import { ErrorBoundary } from "../../components/error-boundary";
-import { selectFaqData } from "../../store/faq-screen/selectors/data";
-import { selectTheme } from "../../store/general/selectors/theme";
+import { useFaqSliceSelector } from "../../redux/faq-screen/slice";
+import { useGeneralSliceSelector } from "../../redux/general/slice";
 import { globalStyles } from "../../styles/global";
 import { openLink } from "../../utils/link";
 import { faqStyles } from "./styles";
 
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();
-  const data = useSelector(selectFaqData);
-  const theme = useSelector(selectTheme);
+  const { data } = useFaqSliceSelector();
+  const { theme } = useGeneralSliceSelector();
 
   return (
     <ErrorBoundary>

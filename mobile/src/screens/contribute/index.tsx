@@ -2,24 +2,23 @@ import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ErrorBoundary } from "../../components/error-boundary";
 import { DZCodeLoading } from "../../components/loading";
 import { TryAgain } from "../../components/try-again";
-import { AppDispatch } from "../../store";
-import { selectContributions } from "../../store/contribute-screen/selectors/contributions";
-import { selectFilters } from "../../store/contribute-screen/selectors/filters";
-import { selectContributeStatus } from "../../store/contribute-screen/selectors/status";
-import { fetchContributions, updateFilterValue } from "../../store/contribute-screen/slice";
+import { AppDispatch } from "../../redux";
+import {
+  fetchContributions,
+  updateFilterValue,
+  useContributeSliceSelector,
+} from "../../redux/contribute-screen/slice";
 import { globalStyles } from "../../styles/global";
 import { CardItemMemoed } from "./card-item";
 import { contributeStyles } from "./styles";
 
 export const ContributeScreen: FC = () => {
-  const contributions = useSelector(selectContributions);
-  const filters = useSelector(selectFilters);
-  const status = useSelector(selectContributeStatus);
+  const { contributions, filters, status } = useContributeSliceSelector();
   const [update, setUpdate] = useState(false);
 
   const { colors } = useTheme();

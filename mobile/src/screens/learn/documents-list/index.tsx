@@ -2,21 +2,18 @@ import { useNavigation } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { AppDispatch } from "../../../store";
-import { selectDocuments } from "../../../store/learn-screen/selectors/documents";
-import { selectLearnStatus } from "../../../store/learn-screen/selectors/status";
-import { fetchDocuments } from "../../../store/learn-screen/slice";
+import { AppDispatch } from "../../../redux";
+import { fetchDocuments, useLearnSliceSelector } from "../../../redux/learn-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { documentsListStyles } from "./styles";
 
 export const DocumentsListScreen: FC = () => {
-  const documents = useSelector(selectDocuments);
-  const status = useSelector(selectLearnStatus);
+  const { documents, status } = useLearnSliceSelector();
 
   const navigation = useNavigation();
 
