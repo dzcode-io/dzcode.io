@@ -51,7 +51,7 @@ export const Filters: FC = () => {
               label={optionLabel}
               className={classes.option}
               onChange={(e, checked) => {
-                updateFilterValue(filterName, optionName, checked);
+                updateFilterValue({ filterName, optionName, value: checked });
               }}
             />
           ))}

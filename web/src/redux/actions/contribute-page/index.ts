@@ -52,16 +52,24 @@ export const fetchContributions = async (): Promise<void> => {
 
 const debouncedFetchContributions = debounce(fetchContributions, 500);
 
+type UpdateFilterValueParam = {
+  filterName: string;
+  optionName: string;
+  value: boolean;
+  updateImmediately?: boolean;
+  overwrite?: boolean;
+};
+
 /**
  * updateFilters update filters state and trigger a debounced fetchContributions action
  */
-export const updateFilterValue = async (
-  filterName: string,
-  optionName: string,
-  value: boolean,
+export const updateFilterValue = async ({
+  filterName,
+  optionName,
+  value,
   updateImmediately = false,
   overwrite = false,
-): Promise<void> => {
+}: UpdateFilterValueParam): Promise<void> => {
   const { filters } = getState().contributePage;
   const newFilters = filters.map((filter) => {
     if (filter.name !== filterName) {

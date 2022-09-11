@@ -89,7 +89,13 @@ export const Contributions: FC = () => {
                             size="small"
                             variant="default"
                             onClick={() => {
-                              updateFilterValue(filterName, optionName, true, true, true);
+                              updateFilterValue({
+                                filterName,
+                                optionName,
+                                value: true,
+                                updateImmediately: true,
+                                overwrite: true,
+                              });
                             }}
                           />
                         )),
