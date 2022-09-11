@@ -30,8 +30,12 @@ const createStore = () => configureStore({ reducer: rootReducer, enhancers: comp
 
 let store = createStore();
 
-export const getStore = (cache = false) => {
-  if (!cache) {
+type GetStoreParam = {
+  cacheStore?: boolean;
+};
+
+export const getStore = ({ cacheStore = false }: GetStoreParam = {}) => {
+  if (!cacheStore) {
     store = createStore();
   }
   return store;

@@ -23,7 +23,7 @@ if (env !== "development") {
 }
 
 render(
-  <Provider store={getStore(true)}>
+  <Provider store={getStore({ cacheStore: true })}>
     <Router history={history}>
       <App />
     </Router>
