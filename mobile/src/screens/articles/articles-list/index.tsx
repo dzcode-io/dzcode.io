@@ -8,7 +8,8 @@ import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
 import { AppDispatch } from "../../../redux";
-import { fetchArticles, useArticlesSliceSelector } from "../../../redux/articles-screen/slice";
+import { fetchArticles } from "../../../redux/actions/articles-screen";
+import { useArticlesSliceSelector } from "../../../redux/reducers/articles-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { articlesListStyles } from "./styles";
 

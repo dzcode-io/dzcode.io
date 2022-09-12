@@ -1,4 +1,4 @@
-import { RootState } from "../..";
+import { RootState } from "../../..";
 import { documentsAdapter } from "../adapters/documents";
 
 export const { selectAll: selectDocuments } = documentsAdapter.getSelectors(

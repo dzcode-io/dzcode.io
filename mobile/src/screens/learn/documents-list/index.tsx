@@ -8,7 +8,8 @@ import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
 import { AppDispatch } from "../../../redux";
-import { fetchDocuments, useLearnSliceSelector } from "../../../redux/learn-screen/slice";
+import { fetchDocuments } from "../../../redux/actions/learn-screen";
+import { useLearnSliceSelector } from "../../../redux/reducers/learn-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { documentsListStyles } from "./styles";
 
@@ -38,7 +39,7 @@ export const DocumentsListScreen: FC = () => {
             onRefresh={() => dispatch(fetchDocuments())}
             refreshing={status === "loading"}
             ItemSeparatorComponent={() => <Divider />}
-            keyExtractor={(item, index) => `item-${index}`}
+            keyExtractor={(_, index) => `item-${index}`}
             renderItem={({ item }) => (
               <Button
                 style={documentsListStyles.button}

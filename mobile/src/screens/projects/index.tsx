@@ -6,7 +6,8 @@ import { ErrorBoundary } from "../../components/error-boundary";
 import { DZCodeLoading } from "../../components/loading";
 import { TryAgain } from "../../components/try-again";
 import { AppDispatch } from "../../redux";
-import { fetchProjects, useProjectsSliceSelector } from "../../redux/projects-screen/slice";
+import { fetchProjects } from "../../redux/actions/projects-screen";
+import { useProjectsSliceSelector } from "../../redux/reducers/projects-screen/slice";
 import { globalStyles } from "../../styles/global";
 import { CardItemMemoed } from "./card-item";
 
@@ -33,7 +34,7 @@ export const ProjectsScreen: FC = () => {
             data={projects}
             onRefresh={() => dispatch(fetchProjects())}
             refreshing={status === "loading"}
-            keyExtractor={(item, index) => `item-${index}`}
+            keyExtractor={(_, index) => `item-${index}`}
             renderItem={({ item }) => <CardItemMemoed project={item} />}
           />
         ) : (

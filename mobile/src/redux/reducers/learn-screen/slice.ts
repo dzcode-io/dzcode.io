@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
-import { fetchV2 } from "../../utils/fetch";
-import { RootState } from "..";
+import { RootState } from "../..";
+import { fetchDocument, fetchDocuments } from "../../actions/learn-screen";
 import { documentsAdapter } from "./adapters/documents";
 import { selectDocuments } from "./selectors";
 
@@ -14,29 +14,6 @@ interface LearnScreenState {
 const initialState = documentsAdapter.getInitialState<LearnScreenState>({
   status: "idle",
   error: null,
-});
-
-export const fetchDocuments = createAsyncThunk("learnScreen/fetchDocuments", async () => {
-  try {
-    const documents = await fetchV2("data:documentation/list.c.json", {
-      query: [["language", "en"]],
-    });
-    return documents;
-  } catch (error: any) {
-    return error.message;
-  }
-});
-
-export const fetchDocument = createAsyncThunk("learnScreen/fetchDocument", async (slug: string) => {
-  try {
-    const document = await fetchV2("data:documentation/:slug.json", {
-      params: { slug },
-      query: [["language", "en"]],
-    });
-    return document;
-  } catch (error: any) {
-    return error.message;
-  }
 });
 
 const learnScreenSlice = createSlice({

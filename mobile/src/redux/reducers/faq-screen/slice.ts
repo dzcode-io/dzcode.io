@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
-import { RootState } from "..";
+import { RootState } from "../..";
 
 export type FAQData = Array<{
   title: string;

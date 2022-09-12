@@ -1,9 +1,8 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
-import { fetchV2 } from "../../utils/fetch";
-import { shuffleArray } from "../../utils/shuffle";
-import { RootState } from "..";
+import { RootState } from "../..";
+import { fetchProjects } from "../../actions/projects-screen";
 import { projectsAdapter } from "./adapters/projects";
 import { selectProjects } from "./selectors";
 
@@ -15,15 +14,6 @@ interface ProjectsScreenState {
 const initialState = projectsAdapter.getInitialState<ProjectsScreenState>({
   status: "idle",
   error: null,
-});
-
-export const fetchProjects = createAsyncThunk("projectsScreen/fetchProjects", async () => {
-  try {
-    const projects = await fetchV2("data:projects/list.c.json", {});
-    return shuffleArray(projects);
-  } catch (error: any) {
-    return error.message;
-  }
 });
 
 const projectsScreenSlice = createSlice({

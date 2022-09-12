@@ -1,4 +1,4 @@
-import { RootState } from "../..";
+import { RootState } from "../../..";
 import { contributionsAdapter } from "../adapters/contributions";
 import { filtersAdapter } from "../adapters/filters";
 

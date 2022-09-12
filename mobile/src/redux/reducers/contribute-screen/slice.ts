@@ -4,8 +4,9 @@ import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { createAsyncThunk, createSlice, EntityState, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
-import { fetchV2 } from "../../utils/fetch";
-import { AppDispatch, RootState, store } from "..";
+import { fetchV2 } from "../../../utils/fetch";
+import { AppDispatch, RootState, store } from "../..";
+import { fetchContributions } from "../../actions/contribute-screen";
 import { contributionsAdapter } from "./adapters/contributions";
 import { filtersAdapter } from "./adapters/filters";
 import { selectContributions, selectFilters } from "./selectors";
@@ -23,50 +24,6 @@ const initialState: ContributeScreenState = {
   status: "idle",
   error: null,
 };
-
-export const fetchContributions = createAsyncThunk(
-  "contributeScreen/fetchContributions",
-  async (filtersParam: FilterDto[]) => {
-    try {
-      const query: [string, string][] = [];
-      filtersParam.forEach((filter) => {
-        filter.options.forEach((option) => {
-          if (option.checked) query.push([filter.name, option.name]);
-        });
-      });
-      const { contributions, filters } = await fetchV2("api:Contributions", {
-        query,
-      });
-      const checkedFilters: Array<{
-        filterName: string;
-        optionName: string;
-      }> = [];
-      filtersParam.forEach((filter) => {
-        filter.options.forEach((option) => {
-          if (option.checked) {
-            checkedFilters.push({
-              filterName: filter.name,
-              optionName: option.name,
-            });
-          }
-        });
-      });
-      const newFilters = filters.map((filter) => ({
-        ...filter,
-        options: filter.options.map((option) => ({
-          ...option,
-          checked: checkedFilters.some(
-            ({ filterName, optionName }) =>
-              filterName === filter.name && optionName === option.name,
-          ),
-        })),
-      }));
-      return { contributions, filters: newFilters };
-    } catch (error: any) {
-      return error.message;
-    }
-  },
-);
 
 const contributeScreenSlice = createSlice({
   name: "contributeScreen",

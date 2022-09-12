@@ -15,7 +15,8 @@ import { Provider, useDispatch } from "react-redux";
 import * as Sentry from "sentry-expo";
 
 import { AppDispatch, store } from "../redux";
-import { init, useGeneralSliceSelector } from "../redux/general/slice";
+import { init } from "../redux/actions/general";
+import { useGeneralSliceSelector } from "../redux/reducers/general/slice";
 import { Navigation } from "../screens/navigation";
 import { Colors } from "../styles/colors";
 import { getEnv } from "../utils/env";
