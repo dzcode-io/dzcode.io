@@ -17,10 +17,10 @@ import { TeamController } from "../team/controller";
 import { DocsMiddleware } from "./middlewares/docs";
 import { ErrorMiddleware } from "./middlewares/error";
 import { LoggerMiddleware } from "./middlewares/logger";
+import { RobotsMiddleware } from "./middlewares/robots";
 import { SecurityMiddleware } from "./middlewares/security";
 import { SentryErrorHandlerMiddleware } from "./middlewares/sentry-error-handler";
 import { SentryRequestHandlerMiddleware } from "./middlewares/sentry-request-handler";
-const robots = require("express-robots-txt"); // eslint-disable-line @typescript-eslint/no-var-requires
 
 // Use typedi container
 useContainer(Container);
@@ -54,6 +54,7 @@ export const routingControllersOptions: RoutingControllersOptions = {
     ErrorMiddleware,
     LoggerMiddleware,
     DocsMiddleware,
+    RobotsMiddleware,
   ],
   defaultErrorHandler: false,
   cors: Container.get(SecurityMiddleware).cors(),
@@ -61,9 +62,6 @@ export const routingControllersOptions: RoutingControllersOptions = {
 const app: Application = createExpressServer(routingControllersOptions);
 
 const logger = Container.get(LoggerService);
-
-// @TODO-ZM: move this to ./middlewares
-app.use(robots({ UserAgent: "*", Disallow: "/docs" }));
 
 // Start it
 app.listen(PORT, () => {
