@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { ErrorBoundary } from "components/error-boundary";
+import { ErrorBoundary } from "components";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";

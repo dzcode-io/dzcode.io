@@ -1,7 +1,5 @@
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { ErrorBoundary } from "components/error-boundary";
-import { DZCodeLoading } from "components/loading";
-import { TryAgain } from "components/try-again";
+import { DZCodeLoading, ErrorBoundary, TryAgain } from "components";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";

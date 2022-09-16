@@ -1,9 +1,7 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import { Route } from "@react-navigation/routers";
-import { ErrorBoundary } from "components/error-boundary";
-import { DZCodeLoading } from "components/loading";
-import { TryAgain } from "components/try-again";
+import { DZCodeLoading, ErrorBoundary, TryAgain } from "components";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";

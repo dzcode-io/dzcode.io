@@ -1,7 +1,6 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DrawerActions } from "@react-navigation/native";
-import { AppBar } from "components/app-bar";
-import { DrawerContent } from "components/drawer-content";
+import { AppBar, DrawerContent } from "components";
 import React, { FC } from "react";
 
 import { Navigation as ArticlesStack } from "./articles/navigation";

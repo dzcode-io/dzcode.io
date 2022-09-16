@@ -1,6 +1,4 @@
-import { ErrorBoundary } from "components/error-boundary";
-import { DZCodeLoading } from "components/loading";
-import { TryAgain } from "components/try-again";
+import { DZCodeLoading, ErrorBoundary, TryAgain } from "components";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch } from "react-redux";
