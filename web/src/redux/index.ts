@@ -1,48 +1,60 @@
-import { applyMiddleware, compose, createStore } from "redux";
-import thunk, { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { combineReducers, compose, configureStore } from "@reduxjs/toolkit";
+import * as slices from "src/redux/reducers";
 
-import { mainReducer } from "./reducers";
+// -----------------------------------------------------------------------------
+export type Slices = typeof slices;
+export type SlicesKey = keyof typeof slices;
+export type Reducers = { [K in keyof Slices]: Slices[K]["reducer"] };
+export type Actions = { [K in keyof Slices]: Slices[K]["actions"] };
+export type ActionTypesRecord = {
+  [K in keyof Actions]: `${keyof Actions[K] & string}`;
+};
+export type ActionType = {
+  [K in keyof Actions]: `${K}/${keyof Actions[K] & string}`;
+}[SlicesKey];
+export type State = ReturnType<typeof rootReducer>;
+// -----------------------------------------------------------------------------
 
-const composeEnhancers =
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// @TODO-ZM: state getter where it chases the state when no action has been fired
+// @TODO-ZM: enforce not using useSelector
 
-/**
- * the main redux state, with all the reducers
- */
-export const mainStore = createStore(mainReducer, composeEnhancers(applyMiddleware(thunk)));
+const reducers = (Object.keys(slices) as SlicesKey[]).reduce(
+  (pV, sliceKey) => ({ ...pV, [sliceKey]: slices[sliceKey].reducer }),
+  {} as Reducers,
+);
+const rootReducer = combineReducers(reducers);
 
-/**
- * Creates a new redux state each time this function is called, this is used only for unit tests, to ensure that we have fresh state on each individual test
- */
-export const createMainStore = () => {
-  return createStore(mainReducer, composeEnhancers(applyMiddleware(thunk)));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const createStore = () => configureStore({ reducer: rootReducer, enhancers: composeEnhancers });
+
+let store = createStore();
+
+type GetStoreParam = {
+  cacheStore?: boolean;
 };
 
-export type StateInterface = ReturnType<typeof mainStore.getState>;
+export const getStore = ({ cacheStore = false }: GetStoreParam = {}) => {
+  if (!cacheStore) {
+    store = createStore();
+  }
+  return store;
+};
 
-export type ActionType =
-  | "UPDATE_DOCUMENTATION"
-  | "UPDATE_LEARN_PAGE"
-  | "UPDATE_ARTICLES"
-  | "UPDATE_ARTICLES_PAGE"
-  | "UPDATE_PROJECTS"
-  | "UPDATE_PROJECTS_PAGE"
-  | "UPDATE_LANDING_PAGE"
-  | "UPDATE_SETTINGS"
-  | "UPDATE_CONTRIBUTE_PAGE"
-  | "UPDATE_TEAM_PAGE";
+// @TODO-ZM: cache this, and add a subscriber that refreshes the cache whenever new actions get dispatched
+export const getState = store.getState;
 
-export interface Action<T> {
-  type: ActionType;
-  payload: Partial<T>;
-}
-
-export type ThunkResult<A = Record<string, unknown>, E = Record<string, unknown>> = ThunkAction<
-  void,
-  StateInterface,
-  E,
-  Action<A>
->;
-
-export type Dispatch<A> = ThunkDispatch<StateInterface, Record<string, unknown>, Action<A>>;
+export const actions = (Object.keys(slices) as SlicesKey[]).reduce(
+  (pV, sliceKey) => ({
+    ...pV,
+    [sliceKey]: Object.keys(slices[sliceKey].actions).reduce(
+      (contextualActions, actionName) => ({
+        ...contextualActions,
+        [actionName]: (...args: any[]) =>
+          store.dispatch((slices[sliceKey].actions as any)[actionName](...args)),
+      }),
+      {},
+    ),
+  }),
+  {} as Actions,
+);

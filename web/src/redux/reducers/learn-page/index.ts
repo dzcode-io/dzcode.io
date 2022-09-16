@@ -1,7 +1,8 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
+import { createSlice } from "@reduxjs/toolkit";
 import { SidebarTreeItem } from "src/components/sidebar";
-import { Action } from "src/redux";
+import { setReducerFactory } from "src/redux/utils";
 
 export interface LearnPageState {
   sidebarTree: LOADABLE<SidebarTreeItem[]>;
@@ -9,18 +10,14 @@ export interface LearnPageState {
   currentDocument: LOADABLE<Document>;
 }
 
-export const learnPage = (
-  state: LearnPageState = {
+export const learnPage = createSlice({
+  name: "learnPage",
+  initialState: {
     sidebarTree: null,
     expanded: [],
     currentDocument: null,
+  } as LearnPageState,
+  reducers: {
+    set: setReducerFactory(),
   },
-  action: Action<LearnPageState>,
-) => {
-  switch (action.type) {
-    case "UPDATE_LEARN_PAGE":
-      return { ...state, ...action.payload };
-    default:
-      return state;
-  }
-};
+});

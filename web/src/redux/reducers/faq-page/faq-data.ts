@@ -1,14 +1,6 @@
-import { DictionaryKeys } from "src/components/t/dictionary";
+import { FaqPageState } from "src/redux/reducers/faq-page";
 
-export type FAQData = Array<{
-  title: DictionaryKeys<`faq-topic-${number}`>;
-  questions: Array<{
-    question: DictionaryKeys<`faq-topic-${number}-question-${number}`>;
-    answer: DictionaryKeys<`faq-topic-${number}-answer-${number}`>;
-  }>;
-}>;
-
-export const faqData: FAQData = [
+export const faqData: FaqPageState["faqData"] = [
   {
     title: "faq-topic-1",
     questions: [

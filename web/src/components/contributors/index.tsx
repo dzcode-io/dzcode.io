@@ -7,11 +7,8 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
-import { useDispatch } from "react-redux";
 import { LinkV2 } from "src/components/link-v2";
-import { Dispatch } from "src/redux";
 import { fetchCurrentArticleContributors } from "src/redux/actions/articles-page";
-import { ArticlesPageState } from "src/redux/reducers/articles-page";
 
 const useStyles = makeStyles((theme) => ({
   avatarsContainer: {
@@ -30,7 +27,6 @@ interface ContributorsProps {
 
 export const Contributors: FC<ContributorsProps> = ({ contributors }) => {
   const classes = useStyles();
-  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
 
   return (
     <div>
@@ -38,7 +34,7 @@ export const Contributors: FC<ContributorsProps> = ({ contributors }) => {
         <TryAgain
           error="Ops, an error occurred while loading the contributors for the selected article, please try again..."
           action="Try Again"
-          onClick={() => dispatch(fetchCurrentArticleContributors())}
+          onClick={() => fetchCurrentArticleContributors()}
         />
       ) : (
         <>

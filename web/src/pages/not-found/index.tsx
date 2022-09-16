@@ -6,14 +6,12 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { FC } from "react";
 import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
 import svg from "src/assets/svg/404.svg";
 import { LinkV2 } from "src/components/link-v2";
 import { T, t } from "src/components/t";
+import { useSliceSelector } from "src/redux/selectors";
 
 import { Markdown } from "../../components/markdown";
-import { StateInterface } from "../../redux";
-import { SettingsState } from "../../redux/reducers/settings";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NotFound: FC = () => {
   const classes = useStyles();
-  const { language } = useSelector<StateInterface, SettingsState>((state) => state.settings);
+  const { language } = useSliceSelector("settings");
 
   return (
     <ErrorBoundary>

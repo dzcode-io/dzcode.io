@@ -1,25 +1,15 @@
 import * as Sentry from "@sentry/browser";
-import { ThunkResult } from "src/redux";
-import { TeamPageState } from "src/redux/reducers/team-page";
+import { actions } from "src/redux";
 import { fetchV2 } from "src/utils/fetch";
 
-export const fetchTeamList = (): ThunkResult<TeamPageState> => async (dispatch) => {
+export const fetchTeamList = async (): Promise<void> => {
   try {
-    dispatch({
-      type: "UPDATE_TEAM_PAGE",
-      payload: { teamList: null },
-    });
+    actions.teamPage.set({ teamList: null });
     const { contributors } = await fetchV2("api:Team", {});
 
-    dispatch({
-      type: "UPDATE_TEAM_PAGE",
-      payload: { teamList: contributors },
-    });
+    actions.teamPage.set({ teamList: contributors });
   } catch (error) {
-    dispatch({
-      type: "UPDATE_TEAM_PAGE",
-      payload: { teamList: "ERROR" },
-    });
+    actions.teamPage.set({ teamList: "ERROR" });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };

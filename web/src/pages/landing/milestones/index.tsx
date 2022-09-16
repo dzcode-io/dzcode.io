@@ -3,11 +3,9 @@ import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { T, t } from "src/components/t";
-import { Dispatch, StateInterface } from "src/redux";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
-import { LandingPageState } from "src/redux/reducers/landing-page";
+import { useSliceSelector } from "src/redux/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,13 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
 export const MilestonesSection: FC = () => {
   const classes = useStyles();
-  const dispatch = useDispatch<Dispatch<LandingPageState>>();
-  const { milestones } = useSelector<StateInterface, LandingPageState>(
-    (state) => state.landingPage,
-  );
+  const { milestones } = useSliceSelector("landingPage");
 
   useEffect(() => {
-    dispatch(fetchDzCodeMilestones());
+    fetchDzCodeMilestones();
   }, []);
 
   return (
@@ -50,7 +45,7 @@ export const MilestonesSection: FC = () => {
         <TryAgain
           error={t("landing-milestones-error")}
           action={t("landing-milestones-try-again")}
-          onClick={() => dispatch(fetchDzCodeMilestones())}
+          onClick={() => fetchDzCodeMilestones()}
         />
       ) : (
         <Milestones

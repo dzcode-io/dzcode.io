@@ -2,18 +2,15 @@ import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { FC } from "react";
 import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
 import { t } from "src/components/t";
+import { useSliceSelector } from "src/redux/selectors";
 
-import { StateInterface } from "../../redux";
 import { Header } from "./header";
 import { MilestonesSection } from "./milestones";
 import { Mobile } from "./mobile";
 
 export const LandingPage: FC = () => {
-  const {
-    settings: { darkMode, language },
-  } = useSelector<StateInterface, StateInterface>((state) => state);
+  const { darkMode, language } = useSliceSelector("settings");
 
   return (
     <ErrorBoundary>

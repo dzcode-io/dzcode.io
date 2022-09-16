@@ -1,24 +1,20 @@
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
-import { Action } from "src/redux";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { updateCollection } from "src/utils";
 
 export interface ArticlesState {
   list: Article[];
 }
 
-export const articles = (
-  state: ArticlesState = {
+// @TODO-ZM: use RTK EntityAdapter
+export const articles = createSlice({
+  name: "articles",
+  initialState: {
     list: [],
+  } as ArticlesState,
+  reducers: {
+    set: (state: ArticlesState, action: PayloadAction<Partial<ArticlesState>>) => {
+      state.list = updateCollection<Article>(state.list, action.payload.list || [], "slug");
+    },
   },
-  action: Action<ArticlesState>,
-) => {
-  switch (action.type) {
-    case "UPDATE_ARTICLES":
-      return {
-        ...state,
-        list: updateCollection<Article>(state.list, action.payload.list || [], "slug"),
-      };
-    default:
-      return state;
-  }
-};
+});

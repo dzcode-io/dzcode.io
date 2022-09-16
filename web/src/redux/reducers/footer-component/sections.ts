@@ -1,15 +1,7 @@
-import { DictionaryKeys } from "src/components/t/dictionary";
 import { fullstackConfig } from "src/config";
+import { FooterComponentState } from "src/redux/reducers/footer-component";
 
-export interface Section {
-  title: DictionaryKeys<"footer-category-title">;
-  links: Array<{
-    text: DictionaryKeys<"footer-category-link-text">;
-    href: string;
-  }>;
-}
-
-export const sections: Section[] = [
+export const sections: FooterComponentState["sections"] = [
   {
     title: "footer-category-title-helpful-links",
     links: [

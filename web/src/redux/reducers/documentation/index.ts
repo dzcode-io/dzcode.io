@@ -1,24 +1,20 @@
-import { Document } from "@dzcode.io/api/dist/app/types/legacy";
-import { Action } from "src/redux";
+import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { updateCollection } from "src/utils";
 
 export interface DocumentationState {
-  list: Document[];
+  list: Article[];
 }
 
-export const documentation = (
-  state: DocumentationState = {
+// @TODO-ZM: use RTK EntityAdapter
+export const documentation = createSlice({
+  name: "documentation",
+  initialState: {
     list: [],
+  } as DocumentationState,
+  reducers: {
+    set: (state: DocumentationState, action: PayloadAction<Partial<DocumentationState>>) => {
+      state.list = updateCollection<Article>(state.list, action.payload.list || [], "slug");
+    },
   },
-  action: Action<DocumentationState>,
-) => {
-  switch (action.type) {
-    case "UPDATE_DOCUMENTATION":
-      return {
-        ...state,
-        list: updateCollection<Document>(state.list, action.payload.list || [], "slug"),
-      };
-    default:
-      return state;
-  }
-};
+});

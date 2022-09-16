@@ -12,13 +12,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MenuIcon from "@material-ui/icons/Menu";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import { FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { SpeedDial } from "src/components/speed-dial";
 import { t } from "src/components/t";
 import type { DictionaryKeys } from "src/components/t/dictionary";
-import { Dispatch, StateInterface } from "src/redux";
 import { updateFilterValue } from "src/redux/actions/contribute-page";
-import { ContributePageState } from "src/redux/reducers/contribute-page";
+import { useSliceSelector } from "src/redux/selectors";
 
 const useStyles = makeStyles((theme) => ({
   filter: {
@@ -36,10 +34,7 @@ const useStyles = makeStyles((theme) => ({
 export const Filters: FC = () => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
-  const { filters } = useSelector<StateInterface, ContributePageState>(
-    (state) => state.contributePage,
-  );
-  const dispatch = useDispatch<Dispatch<ContributePageState>>();
+  const { filters } = useSliceSelector("contributePage");
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
   const renderFilters = () =>
@@ -56,7 +51,7 @@ export const Filters: FC = () => {
               label={optionLabel}
               className={classes.option}
               onChange={(e, checked) => {
-                dispatch(updateFilterValue(filterName, optionName, checked));
+                updateFilterValue({ filterName, optionName, value: checked });
               }}
             />
           ))}

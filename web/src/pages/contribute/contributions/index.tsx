@@ -13,13 +13,10 @@ import MergeTypeIcon from "@material-ui/icons/MergeType";
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { LinkV2 } from "src/components/link-v2";
 import { t } from "src/components/t";
-import { Dispatch, StateInterface } from "src/redux";
 import { fetchContributions, updateFilterValue } from "src/redux/actions/contribute-page";
-import { ContributePageState } from "src/redux/reducers/contribute-page";
-import { SettingsState } from "src/redux/reducers/settings";
+import { useSliceSelector } from "src/redux/selectors";
 import { elapsedTime } from "src/utils/elapsed-time";
 
 const useStyles = makeStyles((theme) => ({
@@ -50,13 +47,10 @@ const useStyles = makeStyles((theme) => ({
 
 export const Contributions: FC = () => {
   const classes = useStyles();
-  const { contributions } = useSelector<StateInterface, ContributePageState>(
-    (state) => state.contributePage,
-  );
+  const { contributions } = useSliceSelector("contributePage");
   const {
     language: { code: languageCode },
-  } = useSelector<StateInterface, SettingsState>((state) => state.settings);
-  const dispatch = useDispatch<Dispatch<ContributePageState>>();
+  } = useSliceSelector("settings");
 
   return (
     <>
@@ -65,7 +59,7 @@ export const Contributions: FC = () => {
           <TryAgain
             error="Ops, an error occurred while loading the contribution cards, please try again..."
             action="Try Again"
-            onClick={() => dispatch(fetchContributions())}
+            onClick={() => fetchContributions()}
           />
         ) : contributions ? (
           contributions.map(
@@ -95,7 +89,13 @@ export const Contributions: FC = () => {
                             size="small"
                             variant="default"
                             onClick={() => {
-                              dispatch(updateFilterValue(filterName, optionName, true, true, true));
+                              updateFilterValue({
+                                filterName,
+                                optionName,
+                                value: true,
+                                updateImmediately: true,
+                                overwrite: true,
+                              });
                             }}
                           />
                         )),

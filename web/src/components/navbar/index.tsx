@@ -8,13 +8,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { FC, Fragment, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { animated, useSpring } from "react-spring";
 import logo from "src/assets/svg/logo-wide.svg";
 import { LinkV2 } from "src/components/link-v2";
 import { T } from "src/components/t";
-import { Dispatch, StateInterface } from "src/redux";
-import { SettingsState } from "src/redux/reducers/settings";
+import { actions } from "src/redux";
+import { useSliceSelector } from "src/redux/selectors";
 
 import { IOSSwitch } from "./ios-switch";
 import { LanguageSwitch } from "./lang-switch";
@@ -117,12 +116,9 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const Navbar: FC = () => {
-  const {
-    settings,
-    navbarComponent: { sections },
-  } = useSelector<StateInterface, StateInterface>((state) => state);
+  const settings = useSliceSelector("settings", () => false);
+  const { sections } = useSliceSelector("navbarComponent");
 
-  const dispatch = useDispatch<Dispatch<SettingsState>>();
   const classes = useStyles();
   const [visible, setVisible] = useState(true);
   useScrollPosition(({ prevPos, currPos }) => {
@@ -166,10 +162,7 @@ export const Navbar: FC = () => {
               <IOSSwitch
                 checked={settings.darkMode ? true : false}
                 onChange={() => {
-                  dispatch({
-                    type: "UPDATE_SETTINGS",
-                    payload: { darkMode: !settings.darkMode },
-                  });
+                  actions.settings.set({ darkMode: !settings.darkMode });
                 }}
                 name="darkMode"
               />

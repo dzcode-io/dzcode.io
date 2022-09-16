@@ -15,14 +15,12 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from "react-redux";
 import { Authors } from "src/components/authors";
 import { Contributors } from "src/components/contributors";
 import { Markdown } from "src/components/markdown";
 import { SpeedDial, SpeedDialAction } from "src/components/speed-dial";
-import { Dispatch, StateInterface } from "src/redux";
 import { fetchCurrentArticle } from "src/redux/actions/articles-page";
-import { ArticlesPageState } from "src/redux/reducers/articles-page";
+import { useSliceSelector } from "src/redux/selectors";
 
 const actions = ({ slug }: Article): SpeedDialAction[] => [
   {
@@ -63,13 +61,10 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const Content: FC = () => {
-  const { currentArticle } = useSelector<StateInterface, ArticlesPageState>(
-    (state) => state.articlesPage,
-  );
-  const dispatch = useDispatch<Dispatch<ArticlesPageState>>();
+  const { currentArticle } = useSliceSelector("articlesPage");
 
   useEffect(() => {
-    dispatch(fetchCurrentArticle());
+    fetchCurrentArticle();
   }, []);
 
   const classes = useStyles();
@@ -99,7 +94,7 @@ export const Content: FC = () => {
         <TryAgain
           error="Ops, an error occurred while loading the selected article, please try again..."
           action="Try Again"
-          onClick={() => dispatch(fetchCurrentArticle())}
+          onClick={() => fetchCurrentArticle()}
         />
       ) : currentArticle ? (
         <>
