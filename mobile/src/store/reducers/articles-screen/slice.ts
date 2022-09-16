@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { RootState } from "store";
+import { fetchArticle, fetchArticles } from "store/actions/articles-screen";
 
-import { RootState } from "../..";
-import { fetchArticle, fetchArticles } from "../../actions/articles-screen";
 import { articlesAdapter } from "./adapters/articles";
 import { selectArticles } from "./selectors";
 

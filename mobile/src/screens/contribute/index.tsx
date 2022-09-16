@@ -1,19 +1,19 @@
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import { ErrorBoundary } from "components/error-boundary";
+import { DZCodeLoading } from "components/loading";
+import { TryAgain } from "components/try-again";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { useDispatch } from "react-redux";
-
-import { ErrorBoundary } from "../../components/error-boundary";
-import { DZCodeLoading } from "../../components/loading";
-import { TryAgain } from "../../components/try-again";
-import { AppDispatch } from "../../redux";
-import { fetchContributions } from "../../redux/actions/contribute-screen";
+import { AppDispatch } from "store";
+import { fetchContributions } from "store/actions/contribute-screen";
 import {
   updateFilterValue,
   useContributeSliceSelector,
-} from "../../redux/reducers/contribute-screen/slice";
-import { globalStyles } from "../../styles/global";
+} from "store/reducers/contribute-screen/slice";
+import { globalStyles } from "styles/global";
+
 import { CardItemMemoed } from "./card-item";
 import { contributeStyles } from "./styles";
 

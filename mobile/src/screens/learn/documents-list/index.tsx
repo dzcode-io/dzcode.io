@@ -1,16 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
+import { ErrorBoundary } from "components/error-boundary";
+import { DZCodeLoading } from "components/loading";
+import { TryAgain } from "components/try-again";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "store";
+import { fetchDocuments } from "store/actions/learn-screen";
+import { useLearnSliceSelector } from "store/reducers/learn-screen/slice";
+import { globalStyles } from "styles/global";
 
-import { ErrorBoundary } from "../../../components/error-boundary";
-import { DZCodeLoading } from "../../../components/loading";
-import { TryAgain } from "../../../components/try-again";
-import { AppDispatch } from "../../../redux";
-import { fetchDocuments } from "../../../redux/actions/learn-screen";
-import { useLearnSliceSelector } from "../../../redux/reducers/learn-screen/slice";
-import { globalStyles } from "../../../styles/global";
 import { documentsListStyles } from "./styles";
 
 export const DocumentsListScreen: FC = () => {

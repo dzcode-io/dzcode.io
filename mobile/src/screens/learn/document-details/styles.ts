@@ -1,11 +1,10 @@
 import { StyleSheet } from "react-native";
-
 import {
   LARGE_LOGO_HEIGHT,
   LARGE_MARGIN_SIZE,
   MEDIUM_MARGIN_SIZE,
   MEDIUM_TEXT_SIZE,
-} from "../../../utils/constants";
+} from "utils/constants";
 
 export const documentDetailsStyles = StyleSheet.create({
   image: {

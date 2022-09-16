@@ -1,4 +1,5 @@
-import { RootState } from "../../..";
+import { RootState } from "store";
+
 import { projectsAdapter } from "../adapters/projects";
 
 export const { selectAll: selectProjects } = projectsAdapter.getSelectors(

@@ -21,6 +21,23 @@ module.exports = function (api) {
           "window.bundleInfo": bundleInfo,
         },
       ],
+      [
+        "module-resolver",
+        {
+          root: ["./src"],
+          alias: {
+            assets: "./src/assets",
+            components: "./src/components",
+            config: "./src/config",
+            entry: "./src/entry",
+            screens: "./src/screens",
+            store: "./src/store",
+            styles: "./src/styles",
+            types: "./src/types",
+            utils: "./src/utils",
+          },
+        },
+      ],
     ],
     env: {
       production: {

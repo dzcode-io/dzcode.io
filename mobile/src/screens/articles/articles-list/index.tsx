@@ -1,16 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
+import { ErrorBoundary } from "components/error-boundary";
+import { DZCodeLoading } from "components/loading";
+import { TryAgain } from "components/try-again";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "store";
+import { fetchArticles } from "store/actions/articles-screen";
+import { useArticlesSliceSelector } from "store/reducers/articles-screen/slice";
+import { globalStyles } from "styles/global";
 
-import { ErrorBoundary } from "../../../components/error-boundary";
-import { DZCodeLoading } from "../../../components/loading";
-import { TryAgain } from "../../../components/try-again";
-import { AppDispatch } from "../../../redux";
-import { fetchArticles } from "../../../redux/actions/articles-screen";
-import { useArticlesSliceSelector } from "../../../redux/reducers/articles-screen/slice";
-import { globalStyles } from "../../../styles/global";
 import { articlesListStyles } from "./styles";
 
 export const ArticlesListScreen: FC = () => {

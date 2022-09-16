@@ -1,14 +1,14 @@
+import { ErrorBoundary } from "components/error-boundary";
+import { DZCodeLoading } from "components/loading";
+import { TryAgain } from "components/try-again";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "store";
+import { fetchProjects } from "store/actions/projects-screen";
+import { useProjectsSliceSelector } from "store/reducers/projects-screen/slice";
+import { globalStyles } from "styles/global";
 
-import { ErrorBoundary } from "../../components/error-boundary";
-import { DZCodeLoading } from "../../components/loading";
-import { TryAgain } from "../../components/try-again";
-import { AppDispatch } from "../../redux";
-import { fetchProjects } from "../../redux/actions/projects-screen";
-import { useProjectsSliceSelector } from "../../redux/reducers/projects-screen/slice";
-import { globalStyles } from "../../styles/global";
 import { CardItemMemoed } from "./card-item";
 
 export const ProjectsScreen: FC = () => {

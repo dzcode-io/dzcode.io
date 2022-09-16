@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { RootState } from "store";
+import { fetchDocument, fetchDocuments } from "store/actions/learn-screen";
 
-import { RootState } from "../..";
-import { fetchDocument, fetchDocuments } from "../../actions/learn-screen";
 import { documentsAdapter } from "./adapters/documents";
 import { selectDocuments } from "./selectors";
 
