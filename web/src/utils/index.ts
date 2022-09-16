@@ -31,7 +31,6 @@ export const updateCollection = <T>(
     let updated: T | null = null;
     for (const updateIndex in clonedUC) {
       // check if it's there and it's not undefined as well
-      // @TODO-ZM: remove this code
       // eslint-disable-next-line no-prototype-builtins
       if (clonedUC.hasOwnProperty(updateIndex) && clonedUC[updateIndex]) {
         const update = clonedUC[updateIndex];

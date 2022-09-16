@@ -15,9 +15,6 @@ export type ActionType = {
 export type State = ReturnType<typeof rootReducer>;
 // -----------------------------------------------------------------------------
 
-// @TODO-ZM: state getter where it chases the state when no action has been fired
-// @TODO-ZM: enforce not using useSelector
-
 const reducers = (Object.keys(slices) as SlicesKey[]).reduce(
   (pV, sliceKey) => ({ ...pV, [sliceKey]: slices[sliceKey].reducer }),
   {} as Reducers,
