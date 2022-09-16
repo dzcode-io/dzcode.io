@@ -18,7 +18,6 @@ export const drawerStyles = StyleSheet.create({
     marginBottom: 0,
   },
   version: {
-    resizeMode: "stretch",
     margin: MEDIUM_MARGIN_SIZE,
     marginBottom: LARGE_MARGIN_SIZE,
     textAlign: "center",

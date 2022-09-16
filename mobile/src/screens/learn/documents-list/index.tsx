@@ -2,25 +2,23 @@ import { useNavigation } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { Dispatch, StateInterface } from "../../../redux";
+import { AppDispatch } from "../../../redux";
 import { fetchDocuments } from "../../../redux/actions/learn-screen";
-import { LearnScreenState } from "../../../redux/reducers/learn-screen";
+import { useLearnSliceSelector } from "../../../redux/reducers/learn-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { documentsListStyles } from "./styles";
 
 export const DocumentsListScreen: FC = () => {
-  const { documents, refreshing } = useSelector<StateInterface, LearnScreenState>(
-    (state) => state.learnScreen,
-  );
+  const { documents, status } = useLearnSliceSelector();
 
   const navigation = useNavigation();
 
-  const dispatch = useDispatch<Dispatch<LearnScreenState>>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchDocuments());
@@ -29,19 +27,19 @@ export const DocumentsListScreen: FC = () => {
   return (
     <ErrorBoundary>
       <SafeAreaView style={globalStyles.mainView}>
-        {documents === "ERROR" ? (
+        {status === "error" ? (
           <TryAgain
             error="Ops, an error occurred while loading the documentation, please try again..."
             action="Try Again"
-            onClick={() => dispatch(fetchDocuments(true))}
+            onClick={() => dispatch(fetchDocuments())}
           />
         ) : documents ? (
           <FlatList
             data={documents}
             onRefresh={() => dispatch(fetchDocuments())}
-            refreshing={refreshing}
+            refreshing={status === "loading"}
             ItemSeparatorComponent={() => <Divider />}
-            keyExtractor={(item, index) => `item-${index}`}
+            keyExtractor={(_, index) => `item-${index}`}
             renderItem={({ item }) => (
               <Button
                 style={documentsListStyles.button}

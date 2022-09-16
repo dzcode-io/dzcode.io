@@ -1,22 +1,20 @@
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ErrorBoundary } from "../../components/error-boundary";
 import { DZCodeLoading } from "../../components/loading";
 import { TryAgain } from "../../components/try-again";
-import { Dispatch, StateInterface } from "../../redux";
+import { AppDispatch } from "../../redux";
 import { fetchProjects } from "../../redux/actions/projects-screen";
-import { ProjectsScreenState } from "../../redux/reducers/projects-screen";
+import { useProjectsSliceSelector } from "../../redux/reducers/projects-screen/slice";
 import { globalStyles } from "../../styles/global";
 import { CardItemMemoed } from "./card-item";
 
 export const ProjectsScreen: FC = () => {
-  const { projects, refreshing } = useSelector<StateInterface, ProjectsScreenState>(
-    (state) => state.projectsScreen,
-  );
+  const { projects, status } = useProjectsSliceSelector();
 
-  const dispatch = useDispatch<Dispatch<ProjectsScreenState>>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchProjects());
@@ -25,7 +23,7 @@ export const ProjectsScreen: FC = () => {
   return (
     <ErrorBoundary>
       <SafeAreaView style={globalStyles.mainView}>
-        {projects === "ERROR" ? (
+        {status === "error" ? (
           <TryAgain
             error="Ops, an error occurred while loading the projects, please try again..."
             action="Try Again"
@@ -35,8 +33,8 @@ export const ProjectsScreen: FC = () => {
           <FlatList
             data={projects}
             onRefresh={() => dispatch(fetchProjects())}
-            refreshing={refreshing}
-            keyExtractor={(item, index) => `item-${index}`}
+            refreshing={status === "loading"}
+            keyExtractor={(_, index) => `item-${index}`}
             renderItem={({ item }) => <CardItemMemoed project={item} />}
           />
         ) : (

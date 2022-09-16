@@ -10,10 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ErrorBoundary } from "../../../components/error-boundary";
 import { DZCodeLoading } from "../../../components/loading";
 import { TryAgain } from "../../../components/try-again";
-import { Dispatch, StateInterface } from "../../../redux";
+import { AppDispatch } from "../../../redux";
 import { fetchDocument } from "../../../redux/actions/learn-screen";
-import { GeneralState } from "../../../redux/reducers/general";
-import { LearnScreenState } from "../../../redux/reducers/learn-screen";
+import { useGeneralSliceSelector } from "../../../redux/reducers/general/slice";
+import { useLearnSliceSelector } from "../../../redux/reducers/learn-screen/slice";
 import { globalStyles } from "../../../styles/global";
 import { documentDetailsStyles } from "./styles";
 
@@ -28,17 +28,15 @@ interface RouteParams {
 export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   route,
 }: DocumentDetailsScreenProps) => {
-  const { documents, refreshing } = useSelector<StateInterface, LearnScreenState>(
-    (state) => state.learnScreen,
-  );
+  const { documents, status } = useLearnSliceSelector();
   const loadedDocuments = isLoaded(documents);
   const currentDocument = (
     loadedDocuments?.filter((document) => (document as Document).content) as Document[]
   ).find((document) => document.slug === route.params.document.slug);
 
-  const { theme } = useSelector<StateInterface, GeneralState>((state) => state.general);
+  const { theme } = useGeneralSliceSelector();
 
-  const dispatch = useDispatch<Dispatch<LearnScreenState>>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchDocument(route.params.document.slug));
@@ -47,7 +45,7 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   return (
     <ErrorBoundary>
       <SafeAreaView style={globalStyles.mainView}>
-        {refreshing ? (
+        {status === "loading" ? (
           <View style={globalStyles.centerView}>
             <DZCodeLoading />
           </View>

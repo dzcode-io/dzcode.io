@@ -1,19 +1,23 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import Debounce from "debounce";
 import { Appearance } from "react-native";
 
-import { ThunkResult } from "../..";
-import { GeneralState, getThemeFromSystem } from "../../reducers/general";
+import { AppDispatch, RootState } from "../..";
+import { getThemeFromSystem, setTheme } from "../../reducers/general/slice";
 
-/**
- * @function init
- * @description Initiate some watchers and load state from Async Storage
- */
-export const init = (): ThunkResult<GeneralState> => async (dispatch, getState) => {
+export const init = createAsyncThunk<
+  any,
+  any,
+  {
+    dispatch: AppDispatch;
+    state: RootState;
+  }
+>("general/init", (_, { getState, dispatch }) => {
   const applyThemeDebounced: Appearance.AppearanceListener = Debounce(() => {
     const theme = getThemeFromSystem();
     const currentTheme = getState().general.theme;
     if (theme === currentTheme) return;
-    dispatch({ type: "UPDATE_GENERAL", payload: { theme } });
+    dispatch(setTheme(theme));
   }, 200);
   Appearance.addChangeListener(applyThemeDebounced);
-};
+});

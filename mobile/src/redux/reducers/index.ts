@@ -1,17 +1,15 @@
-import { combineReducers } from "redux";
+import articlesScreenSlice from "./articles-screen/slice";
+import contributeScreenSlice from "./contribute-screen/slice";
+import faqScreenSlice from "./faq-screen/slice";
+import generalSlice from "./general/slice";
+import learnScreenSlice from "./learn-screen/slice";
+import projectsScreenSlice from "./projects-screen/slice";
 
-import { articlesScreen } from "./articles-screen";
-import { contributeScreen } from "./contribute-screen";
-import { faqScreen } from "./faq-screen";
-import { general } from "./general";
-import { learnScreen } from "./learn-screen";
-import { projectsScreen } from "./projects-screen";
-
-export const mainReducer = combineReducers({
-  articlesScreen,
-  contributeScreen,
-  faqScreen,
-  learnScreen,
-  projectsScreen,
-  general,
-});
+export const reducer = {
+  articlesScreen: articlesScreenSlice.reducer,
+  contributeScreen: contributeScreenSlice.reducer,
+  faqScreen: faqScreenSlice.reducer,
+  learnScreen: learnScreenSlice.reducer,
+  projectsScreen: projectsScreenSlice.reducer,
+  general: generalSlice.reducer,
+};
