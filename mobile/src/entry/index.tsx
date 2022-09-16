@@ -12,13 +12,13 @@ import {
 } from "react-native-paper";
 import { Theme as PT } from "react-native-paper/lib/typescript/types";
 import { Provider, useDispatch } from "react-redux";
-import { Navigation } from "screens/navigation";
 import * as Sentry from "sentry-expo";
-import { AppDispatch, store } from "store";
-import { init } from "store/actions/general";
-import { useGeneralSliceSelector } from "store/reducers/general/slice";
-import { Colors } from "styles/colors";
-import { getEnv } from "utils/env";
+import { AppDispatch, store } from "src/redux";
+import { init } from "src/redux/actions/general";
+import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
+import { Navigation } from "src/screens/navigation";
+import { Colors } from "src/styles/colors";
+import { getEnv } from "src/utils/env";
 
 const env = getEnv();
 

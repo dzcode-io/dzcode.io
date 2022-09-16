@@ -1,13 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
-import { ErrorBoundary } from "components";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { List, Text } from "react-native-paper";
-import { useFaqSliceSelector } from "store/reducers/faq-screen/slice";
-import { useGeneralSliceSelector } from "store/reducers/general/slice";
-import { globalStyles } from "styles/global";
-import { openLink } from "utils/link";
+import { ErrorBoundary } from "src/components/error-boundary";
+import { useFaqSliceSelector } from "src/redux/reducers/faq-screen/slice";
+import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
+import { globalStyles } from "src/styles/global";
+import { openLink } from "src/utils/link";
 
 import { faqStyles } from "./styles";
 

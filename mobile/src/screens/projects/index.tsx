@@ -1,11 +1,13 @@
-import { DZCodeLoading, ErrorBoundary, TryAgain } from "components";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "store";
-import { fetchProjects } from "store/actions/projects-screen";
-import { useProjectsSliceSelector } from "store/reducers/projects-screen/slice";
-import { globalStyles } from "styles/global";
+import { ErrorBoundary } from "src/components/error-boundary";
+import { DZCodeLoading } from "src/components/loading";
+import { TryAgain } from "src/components/try-again";
+import { AppDispatch } from "src/redux";
+import { fetchProjects } from "src/redux/actions/projects-screen";
+import { useProjectsSliceSelector } from "src/redux/reducers/projects-screen/slice";
+import { globalStyles } from "src/styles/global";
 
 import { CardItemMemoed } from "./card-item";
 

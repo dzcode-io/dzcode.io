@@ -4,7 +4,7 @@ import {
   MEDIUM_LOGO_WIDTH,
   MEDIUM_MARGIN_SIZE,
   MEDIUM_TEXT_SIZE,
-} from "utils/constants";
+} from "src/utils/constants";
 
 export const contributeStyles = StyleSheet.create({
   dzcodeLoading: {

@@ -24,17 +24,9 @@ module.exports = function (api) {
       [
         "module-resolver",
         {
-          root: ["./src"],
+          root: ["./"],
           alias: {
-            assets: "./src/assets",
-            components: "./src/components",
-            config: "./src/config",
-            entry: "./src/entry",
-            screens: "./src/screens",
-            store: "./src/store",
-            styles: "./src/styles",
-            types: "./src/types",
-            utils: "./src/utils",
+            src: "./src",
           },
         },
       ],

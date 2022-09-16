@@ -4,7 +4,7 @@ import {
   LARGE_MARGIN_SIZE,
   MEDIUM_MARGIN_SIZE,
   MEDIUM_TEXT_SIZE,
-} from "utils/constants";
+} from "src/utils/constants";
 
 export const documentDetailsStyles = StyleSheet.create({
   image: {

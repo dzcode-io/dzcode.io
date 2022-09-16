@@ -1,13 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
-import { DZCodeLoading, ErrorBoundary, TryAgain } from "components";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "store";
-import { fetchDocuments } from "store/actions/learn-screen";
-import { useLearnSliceSelector } from "store/reducers/learn-screen/slice";
-import { globalStyles } from "styles/global";
+import { ErrorBoundary } from "src/components/error-boundary";
+import { DZCodeLoading } from "src/components/loading";
+import { TryAgain } from "src/components/try-again";
+import { AppDispatch } from "src/redux";
+import { fetchDocuments } from "src/redux/actions/learn-screen";
+import { useLearnSliceSelector } from "src/redux/reducers/learn-screen/slice";
+import { globalStyles } from "src/styles/global";
 
 import { documentsListStyles } from "./styles";
 

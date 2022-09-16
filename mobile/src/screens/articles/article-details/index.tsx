@@ -2,18 +2,20 @@ import { Article } from "@dzcode.io/api/dist/app/types/legacy";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import { useNavigation } from "@react-navigation/native";
 import { Route } from "@react-navigation/routers";
-import { DZCodeLoading, ErrorBoundary, TryAgain } from "components";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { Text } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "store";
-import { fetchArticle } from "store/actions/articles-screen";
-import { useArticlesSliceSelector } from "store/reducers/articles-screen/slice";
-import { useGeneralSliceSelector } from "store/reducers/general/slice";
-import { globalStyles } from "styles/global";
-import { openLink } from "utils/link";
+import { ErrorBoundary } from "src/components/error-boundary";
+import { DZCodeLoading } from "src/components/loading";
+import { TryAgain } from "src/components/try-again";
+import { AppDispatch } from "src/redux";
+import { fetchArticle } from "src/redux/actions/articles-screen";
+import { useArticlesSliceSelector } from "src/redux/reducers/articles-screen/slice";
+import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
+import { globalStyles } from "src/styles/global";
+import { openLink } from "src/utils/link";
 
 import { articleDetailsStyles } from "./styles";
 

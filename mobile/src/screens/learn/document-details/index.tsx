@@ -1,17 +1,19 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import { Route } from "@react-navigation/routers";
-import { DZCodeLoading, ErrorBoundary, TryAgain } from "components";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { Text } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "store";
-import { fetchDocument } from "store/actions/learn-screen";
-import { useGeneralSliceSelector } from "store/reducers/general/slice";
-import { useLearnSliceSelector } from "store/reducers/learn-screen/slice";
-import { globalStyles } from "styles/global";
+import { ErrorBoundary } from "src/components/error-boundary";
+import { DZCodeLoading } from "src/components/loading";
+import { TryAgain } from "src/components/try-again";
+import { AppDispatch } from "src/redux";
+import { fetchDocument } from "src/redux/actions/learn-screen";
+import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
+import { useLearnSliceSelector } from "src/redux/reducers/learn-screen/slice";
+import { globalStyles } from "src/styles/global";
 
 import { documentDetailsStyles } from "./styles";
 
