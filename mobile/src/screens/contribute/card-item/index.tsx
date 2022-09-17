@@ -5,8 +5,8 @@ import React, { FC, memo } from "react";
 import { FlatList } from "react-native";
 import { View } from "react-native";
 import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
+import { Colors } from "src/styles/colors";
 
-import { Colors } from "../../../styles/colors";
 import { cardStyles } from "./styles";
 
 interface CardItemProps

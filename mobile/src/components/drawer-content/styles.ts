@@ -1,12 +1,11 @@
 import { StyleSheet } from "react-native";
-
 import {
   LARGE_LOGO_WIDTH,
   LARGE_MARGIN_SIZE,
   MEDIUM_MARGIN_SIZE,
   SMALL_LOGO_HEIGHT,
   SMALL_MARGIN_SIZE,
-} from "../../utils/constants";
+} from "src/utils/constants";
 
 export const drawerStyles = StyleSheet.create({
   logoView: {

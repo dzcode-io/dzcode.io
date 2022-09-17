@@ -21,6 +21,15 @@ module.exports = function (api) {
           "window.bundleInfo": bundleInfo,
         },
       ],
+      [
+        "module-resolver",
+        {
+          root: ["../"],
+          alias: {
+            src: "./src",
+          },
+        },
+      ],
     ],
     env: {
       production: {

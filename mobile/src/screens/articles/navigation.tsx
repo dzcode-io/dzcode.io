@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
+import { ErrorBoundary } from "src/components/error-boundary";
 
-import { ErrorBoundary } from "../../components/error-boundary";
 import { ArticleDetailsScreen } from "./article-details";
 import { ArticlesListScreen } from "./articles-list";
 

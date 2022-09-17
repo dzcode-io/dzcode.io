@@ -1,6 +1,5 @@
 import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
-
-import { fullstackConfig } from "../../config";
+import { fullstackConfig } from "src/config";
 
 interface Endpoint {
   params?: Record<string, string>;

@@ -1,12 +1,11 @@
 import { FilterDto } from "@dzcode.io/api/dist/contribution/types";
 import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { createAsyncThunk, createSlice, EntityState, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, EntityState, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { RootState } from "src/redux";
+import { fetchContributions } from "src/redux/actions/contribute-screen";
 
-import { fetchV2 } from "../../../utils/fetch";
-import { AppDispatch, RootState, store } from "../..";
-import { fetchContributions } from "../../actions/contribute-screen";
 import { contributionsAdapter } from "./adapters/contributions";
 import { filtersAdapter } from "./adapters/filters";
 import { selectContributions, selectFilters } from "./selectors";

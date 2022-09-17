@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "unicorn", "simple-import-sort"],
+  "plugins": ["@typescript-eslint", "unicorn", "simple-import-sort", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -27,6 +27,7 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "camelcase": "warn",
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "import/no-relative-parent-imports": "error"
   }
 }

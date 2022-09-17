@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
-
-import { SMALL_LOGO_HEIGHT, SMALL_PADDING_SIZE } from "../../../utils/constants";
+import { SMALL_LOGO_HEIGHT, SMALL_PADDING_SIZE } from "src/utils/constants";
 
 export const articlesListStyles = StyleSheet.create({
   button: {

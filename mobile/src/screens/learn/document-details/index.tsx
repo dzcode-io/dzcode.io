@@ -5,16 +5,16 @@ import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { Text } from "react-native-paper";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { ErrorBoundary } from "src/components/error-boundary";
+import { DZCodeLoading } from "src/components/loading";
+import { TryAgain } from "src/components/try-again";
+import { AppDispatch } from "src/redux";
+import { fetchDocument } from "src/redux/actions/learn-screen";
+import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
+import { useLearnSliceSelector } from "src/redux/reducers/learn-screen/slice";
+import { globalStyles } from "src/styles/global";
 
-import { ErrorBoundary } from "../../../components/error-boundary";
-import { DZCodeLoading } from "../../../components/loading";
-import { TryAgain } from "../../../components/try-again";
-import { AppDispatch } from "../../../redux";
-import { fetchDocument } from "../../../redux/actions/learn-screen";
-import { useGeneralSliceSelector } from "../../../redux/reducers/general/slice";
-import { useLearnSliceSelector } from "../../../redux/reducers/learn-screen/slice";
-import { globalStyles } from "../../../styles/global";
 import { documentDetailsStyles } from "./styles";
 
 interface DocumentDetailsScreenProps {

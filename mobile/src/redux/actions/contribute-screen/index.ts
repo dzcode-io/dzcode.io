@@ -1,7 +1,6 @@
 import { FilterDto } from "@dzcode.io/api/dist/contribution/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-import { fetchV2 } from "../../../utils/fetch";
+import { fetchV2 } from "src/utils/fetch";
 
 export const fetchContributions = createAsyncThunk(
   "contributeScreen/fetchContributions",

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { RootState } from "src/redux";
+import { fetchProjects } from "src/redux/actions/projects-screen";
 
-import { RootState } from "../..";
-import { fetchProjects } from "../../actions/projects-screen";
 import { projectsAdapter } from "./adapters/projects";
 import { selectProjects } from "./selectors";
 

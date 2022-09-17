@@ -3,17 +3,17 @@ import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { useDispatch } from "react-redux";
-
-import { ErrorBoundary } from "../../components/error-boundary";
-import { DZCodeLoading } from "../../components/loading";
-import { TryAgain } from "../../components/try-again";
-import { AppDispatch } from "../../redux";
-import { fetchContributions } from "../../redux/actions/contribute-screen";
+import { ErrorBoundary } from "src/components/error-boundary";
+import { DZCodeLoading } from "src/components/loading";
+import { TryAgain } from "src/components/try-again";
+import { AppDispatch } from "src/redux";
+import { fetchContributions } from "src/redux/actions/contribute-screen";
 import {
   updateFilterValue,
   useContributeSliceSelector,
-} from "../../redux/reducers/contribute-screen/slice";
-import { globalStyles } from "../../styles/global";
+} from "src/redux/reducers/contribute-screen/slice";
+import { globalStyles } from "src/styles/global";
+
 import { CardItemMemoed } from "./card-item";
 import { contributeStyles } from "./styles";
 

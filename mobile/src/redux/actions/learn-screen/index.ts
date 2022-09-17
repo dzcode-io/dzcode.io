@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-import { fetchV2 } from "../../../utils/fetch";
+import { fetchV2 } from "src/utils/fetch";
 
 export const fetchDocuments = createAsyncThunk("learnScreen/fetchDocuments", async () => {
   try {

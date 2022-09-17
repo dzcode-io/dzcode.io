@@ -1,4 +1,5 @@
-import { RootState } from "../../..";
+import { RootState } from "src/redux";
+
 import { contributionsAdapter } from "../adapters/contributions";
 import { filtersAdapter } from "../adapters/filters";
 

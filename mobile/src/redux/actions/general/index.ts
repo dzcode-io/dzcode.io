@@ -1,9 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Debounce from "debounce";
 import { Appearance } from "react-native";
-
-import { AppDispatch, RootState } from "../..";
-import { getThemeFromSystem, setTheme } from "../../reducers/general/slice";
+import { AppDispatch, RootState } from "src/redux";
+import { getThemeFromSystem, setTheme } from "src/redux/reducers/general/slice";
 
 export const init = createAsyncThunk<
   any,

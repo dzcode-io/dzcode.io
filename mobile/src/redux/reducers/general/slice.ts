@@ -1,9 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Debounce from "debounce";
+import { createSlice } from "@reduxjs/toolkit";
 import { Appearance } from "react-native";
 import { useSelector } from "react-redux";
-
-import { AppDispatch, RootState } from "../..";
+import { RootState } from "src/redux";
 
 interface GeneralState {
   theme: "dark" | "light";
