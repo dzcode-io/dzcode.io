@@ -1,6 +1,5 @@
 import { IsDateString, IsNumber, IsOptional, IsString, IsUrl } from "class-validator";
-
-import { BaseEntity } from "../_base";
+import { BaseEntity } from "src/_base";
 
 export class MilestoneEntity extends BaseEntity {
   @IsString()

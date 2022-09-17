@@ -1,8 +1,7 @@
 import { Type } from "class-transformer";
 import { IsDateString, IsNumber, IsString, IsUrl, ValidateNested } from "class-validator";
-
-import { BaseEntity, Model } from "../_base";
-import { ProjectReferenceEntity } from "../project-reference";
+import { BaseEntity, Model } from "src/_base";
+import { ProjectReferenceEntity } from "src/project-reference";
 
 export class ContributionEntity extends BaseEntity {
   @IsString()
