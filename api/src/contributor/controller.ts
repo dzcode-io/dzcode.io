@@ -1,9 +1,9 @@
 import { Controller, Get, QueryParam } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
+import { GithubService } from "src/github/service";
+import { GithubUserDto } from "src/github-user/types";
 import { Service } from "typedi";
 
-import { GithubService } from "../github/service";
-import { GithubUserDto } from "../github-user/types";
 import { GetContributorsResponseDto } from "./types";
 
 @Service()

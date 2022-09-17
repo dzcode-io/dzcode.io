@@ -1,10 +1,10 @@
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
+import { GetContributionsResponseDto } from "src/contribution/types";
+import { GetContributorsResponseDto } from "src/contributor/types";
+import { GetUserResponseDto } from "src/github-user/types";
+import { GetMilestonesResponseDto } from "src/milestone/types";
+import { GetTeamResponseDto } from "src/team/types";
 
-import { GetContributionsResponseDto } from "../contribution/types";
-import { GetContributorsResponseDto } from "../contributor/types";
-import { GetUserResponseDto } from "../github-user/types";
-import { GetMilestonesResponseDto } from "../milestone/types";
-import { GetTeamResponseDto } from "../team/types";
 import { Article, Document, Project } from "./types/legacy";
 
 export interface Endpoints {

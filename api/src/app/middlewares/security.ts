@@ -3,10 +3,9 @@ import { RequestHandler, Router } from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
+import { ENVDto } from "src/config/dto";
+import { ConfigService } from "src/config/service";
 import { Service } from "typedi";
-
-import { ENVDto } from "../../config/dto";
-import { ConfigService } from "../../config/service";
 
 @Service()
 @Middleware({ type: "before" })

@@ -1,7 +1,6 @@
 import { IsNumber, IsString, ValidateNested } from "class-validator";
-
-import { GeneralResponseDto } from "../app/types";
-import { GithubUser } from "../app/types/legacy";
+import { GeneralResponseDto } from "src/app/types";
+import { GithubUser } from "src/app/types/legacy";
 
 export class GithubUserDto implements GithubUser {
   @IsString()

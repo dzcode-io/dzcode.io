@@ -1,9 +1,8 @@
 import { RequestHandler, Router } from "express";
 import { ExpressMiddlewareInterface, Middleware } from "routing-controllers";
+import { ConfigService } from "src/config/service";
 import { serve, setup } from "swagger-ui-express";
 import { Service } from "typedi";
-
-import { ConfigService } from "../../config/service";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { defaultMetadataStorage } = require("class-transformer/cjs/storage");
 import { validationMetadatasToSchemas } from "class-validator-jsonschema";

@@ -1,8 +1,8 @@
 import { Controller, Get } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
+import { GithubService } from "src/github/service";
 import { Service } from "typedi";
 
-import { GithubService } from "../github/service";
 import { GetRateLimitResponseDto } from "./types";
 
 @Service()

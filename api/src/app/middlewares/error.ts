@@ -1,9 +1,8 @@
 import { ErrorRequestHandler } from "express";
 import { ExpressErrorMiddlewareInterface, Middleware } from "routing-controllers";
+import { GeneralResponseDto } from "src/app/types";
+import { LoggerService } from "src/logger/service";
 import { Service } from "typedi";
-
-import { LoggerService } from "../../logger/service";
-import { GeneralResponseDto } from "../types";
 
 @Service()
 @Middleware({ type: "after" })

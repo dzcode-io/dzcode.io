@@ -1,7 +1,7 @@
 import { mock } from "jest-mock-extended";
+import { githubUserMock, githubUserMock2, githubUserMock3 } from "src/_test/mocks";
+import { GithubService } from "src/github/service";
 
-import { githubUserMock, githubUserMock2, githubUserMock3 } from "../_test/mocks";
-import { GithubService } from "../github/service";
 import { ContributorController } from "./controller";
 import { GetContributorsResponseDto } from "./types";
 

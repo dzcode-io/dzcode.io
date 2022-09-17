@@ -4,9 +4,8 @@ import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { join } from "path";
+import { GithubService } from "src/github/service";
 import { Service } from "typedi";
-
-import { GithubService } from "../github/service";
 
 @Service()
 export class TeamRepository {
