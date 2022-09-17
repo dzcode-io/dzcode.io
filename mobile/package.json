@@ -84,7 +84,7 @@
   },
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
-    "build:alone:watch": "tsc --watch --preserveWatchOutput",
+    "build:alone:watch": "ttsc --watch --preserveWatchOutput",
     "build:android": "expo build:android --no-wait -t app-bundle",
     "build:ios": "expo build:ios --no-wait -t archive",
     "build:production": "yarn build:ios --release-channel production && yarn build:android --release-channel production",
