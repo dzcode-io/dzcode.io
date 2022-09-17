@@ -1,7 +1,6 @@
 import { RootState } from "src/redux";
-
-import { contributionsAdapter } from "../adapters/contributions";
-import { filtersAdapter } from "../adapters/filters";
+import { contributionsAdapter } from "src/redux/reducers/contribute-screen/adapters/contributions";
+import { filtersAdapter } from "src/redux/reducers/contribute-screen/adapters/filters";
 
 export const { selectAll: selectContributions } = contributionsAdapter.getSelectors(
   (state: RootState) => state.contributeScreen.contributions,
