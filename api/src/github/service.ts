@@ -1,8 +1,8 @@
+import { GithubIssue, GithubMilestone, GithubUser } from "src/app/types/legacy";
+import { ConfigService } from "src/config/service";
+import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
 
-import { GithubIssue, GithubMilestone, GithubUser } from "../app/types/legacy";
-import { ConfigService } from "../config/service";
-import { FetchService } from "../fetch/service";
 import {
   GeneralGithubQuery,
   GetUserInput,

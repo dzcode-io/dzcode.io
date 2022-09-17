@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { createContributors } from "src/__mocks__/create-contributors";
 
-import { createContributors } from "../__mocks__/create-contributors";
 import { ContributorCard, ContributorSkeleton } from ".";
 
 it("should render a contributor skeleton ", async () => {

@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
+import { createRepositories } from "src/__mocks__/create-repositories";
 
-import { createProjects } from "../../__mocks__/create-projects";
-import { createRepositories } from "../../__mocks__/create-repositories";
 import { ContributionsDialog, ContributionsDialogProps } from ".";
 
 it("should render a closed dialog on first mount", async () => {

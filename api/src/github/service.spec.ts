@@ -1,8 +1,8 @@
 import { mock } from "jest-mock-extended";
+import { githubUserMock } from "src/_test/mocks";
+import { ConfigService } from "src/config/service";
+import { FetchService } from "src/fetch/service";
 
-import { githubUserMock } from "../_test/mocks";
-import { ConfigService } from "../config/service";
-import { FetchService } from "../fetch/service";
 import { GithubService } from "./service";
 import { GeneralGithubQuery, ListContributorsResponse } from "./types";
 

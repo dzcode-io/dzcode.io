@@ -1,8 +1,7 @@
 import { Type } from "class-transformer";
 import { IsString, IsUrl, ValidateNested } from "class-validator";
-
-import { BaseEntity, Model } from "../_base";
-import { RepositoryReferenceEntity } from "../repository-reference";
+import { BaseEntity, Model } from "src/_base";
+import { RepositoryReferenceEntity } from "src/repository-reference";
 
 export class ContributorEntity extends BaseEntity {
   @IsString()

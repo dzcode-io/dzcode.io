@@ -1,6 +1,5 @@
 import { IsString } from "class-validator";
-
-import { BaseEntity } from "../_base";
+import { BaseEntity } from "src/_base";
 
 export class RepositoryReferenceEntity extends BaseEntity {
   @IsString()

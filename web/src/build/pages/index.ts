@@ -1,6 +1,6 @@
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
 
-import { AllDictionaryKeys } from "../../components/t/dictionary";
+import { AllDictionaryKeys } from "../../components/t/dictionary"; // eslint-disable-line no-restricted-imports
 
 export interface PageInfo {
   uri: string;

@@ -16,8 +16,7 @@ import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import type { FC } from "react";
-
-import { CircularProgress } from "../circular-progress";
+import { CircularProgress } from "src/circular-progress";
 
 type MilestoneItem = {
   id: string;

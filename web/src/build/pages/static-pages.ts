@@ -1,7 +1,7 @@
 import { allLanguages } from "@dzcode.io/models/dist/language";
 import { translationFunctionFactory } from "@dzcode.io/ui/dist/translation-factory";
 
-import { dictionary } from "../../components/t/dictionary";
+import { dictionary } from "../../components/t/dictionary"; // eslint-disable-line no-restricted-imports
 import { PageInfo, PageInfoWithLocalKeys } from ".";
 
 const t = translationFunctionFactory(dictionary, () => "en");

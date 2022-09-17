@@ -1,4 +1,5 @@
-import { runDTOTestCases } from "../_test";
+import { runDTOTestCases } from "src/_test";
+
 import { RepositoryEntity } from ".";
 
 runDTOTestCases(
