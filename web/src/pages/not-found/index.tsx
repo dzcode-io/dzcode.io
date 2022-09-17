@@ -8,10 +8,9 @@ import { FC } from "react";
 import { Helmet } from "react-helmet";
 import svg from "src/assets/svg/404.svg";
 import { LinkV2 } from "src/components/link-v2";
+import { Markdown } from "src/components/markdown";
 import { T, t } from "src/components/t";
 import { useSliceSelector } from "src/redux/selectors";
-
-import { Markdown } from "../../components/markdown";
 
 const useStyles = makeStyles((theme) => ({
   root: {

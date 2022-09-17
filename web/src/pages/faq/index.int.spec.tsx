@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
+import { t } from "src/components/t";
 import { getStore } from "src/redux";
 
-import { t } from "../../components/t";
 import { FaqPage } from ".";
 
 describe("src/pages/landing/index.tsx", () => {

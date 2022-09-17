@@ -1,6 +1,5 @@
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
-
-import { AllDictionaryKeys } from "../../components/t/dictionary";
+import { AllDictionaryKeys } from "src/components/t/dictionary";
 
 export interface PageInfo {
   uri: string;
