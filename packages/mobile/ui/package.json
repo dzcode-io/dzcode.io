@@ -1,0 +1,43 @@
+{
+  "name": "@dzcode.io.mobile/ui",
+  "description": "dzcode.io mobile ui library",
+  "version": "4.0.0",
+  "author": {
+    "email": "omarbelghaouti@gmail.com",
+    "name": "Omar Belghaouti",
+    "url": "https://omar-belghaouti.web.app"
+  },
+  "dependencies": {
+    "react-native-paper": "^4.9.2"
+  },
+  "devDependencies": {
+    "@dzcode.io/models": "*",
+    "@dzcode.io/tooling": "*"
+  },
+  "license": "MIT",
+  "lint-staged": {
+    "*.*": [
+      "yarn lint:eslint --fix",
+      "yarn lint:prettier --write"
+    ]
+  },
+  "main": "dist",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build:alone --scope=@dzcode.io.mobile/ui --include-dependencies --stream",
+    "build:alone": "ttsc",
+    "build:alone:watch": "ttsc --watch --preserveWatchOutput",
+    "build:watch": "yarn build & yarn lerna run build:alone:watch --scope=@dzcode.io.mobile/ui --include-dependencies --parallel",
+    "clean": "lerna run clean:alone --scope=@dzcode.io.mobile/ui --include-dependencies --stream",
+    "clean:alone": "rimraf dist coverage",
+    "lint": "yarn build && yarn lint:alone",
+    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
+    "lint:eslint": "eslint --config ../../tooling/.eslintrc.json --ignore-path ../../tooling/.eslintignore --report-unused-disable-directives",
+    "lint:fix": "yarn build && yarn lint:fix:alone",
+    "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
+    "lint:prettier": "prettier  --config ../../tooling/.prettierrc --ignore-path ../../tooling/.prettierignore --loglevel warn",
+    "test": "yarn build && yarn test:alone",
+    "test:alone": "jest --config ../../tooling/jest.config.ts --rootDir . --env=jsdom",
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
+  }
+}
