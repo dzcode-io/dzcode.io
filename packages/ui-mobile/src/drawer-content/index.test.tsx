@@ -5,7 +5,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { DrawerContent } from ".";
 
-describe("AppBar", () => {
+describe("DrawerContent", () => {
   it("should render", () => {
     const props: DrawerContentComponentProps<DrawerContentOptions> = {
       progress: {

@@ -4,7 +4,7 @@ import { View } from "react-native";
 
 import { ErrorBoundary } from ".";
 
-describe("AppBar", () => {
+describe("ErrorBoundary", () => {
   it("should render", () => {
     const { container } = render(
       <ErrorBoundary>
