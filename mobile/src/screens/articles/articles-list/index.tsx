@@ -1,11 +1,11 @@
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
+import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import { useNavigation } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { TryAgain } from "src/components/try-again";
 import { AppDispatch } from "src/redux";
 import { fetchArticles } from "src/redux/actions/articles-screen";
 import { useArticlesSliceSelector } from "src/redux/reducers/articles-screen/slice";

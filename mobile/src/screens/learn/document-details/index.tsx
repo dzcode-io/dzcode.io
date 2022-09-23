@@ -1,6 +1,7 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
+import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import { Route } from "@react-navigation/routers";
 import React, { FC, useEffect } from "react";
@@ -8,7 +9,6 @@ import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { Text } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { TryAgain } from "src/components/try-again";
 import { AppDispatch } from "src/redux";
 import { fetchDocument } from "src/redux/actions/learn-screen";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";

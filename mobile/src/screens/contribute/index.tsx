@@ -1,11 +1,11 @@
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
+import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { TryAgain } from "src/components/try-again";
 import { AppDispatch } from "src/redux";
 import { fetchContributions } from "src/redux/actions/contribute-screen";
 import {
