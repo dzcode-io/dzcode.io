@@ -76,7 +76,7 @@
   },
   "workspaces": [
     "packages/*",
-    "packages/*/*",
+    "packages/mobile/*",
     "api",
     "data",
     "web",
