@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { Appbar, useTheme } from "react-native-paper";
 
 interface AppbarProps {

@@ -1,4 +1,4 @@
-import { AppBar } from "@dzcode.io.mobile/ui/dist";
+import { AppBar } from "@dzcode.io.mobile/ui/dist/app-bar";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DrawerActions } from "@react-navigation/native";
 import React, { FC } from "react";
