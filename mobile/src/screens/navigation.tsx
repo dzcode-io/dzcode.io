@@ -1,7 +1,7 @@
+import { AppBar } from "@dzcode.io.mobile/ui/dist";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DrawerActions } from "@react-navigation/native";
 import React, { FC } from "react";
-import { AppBar } from "src/components/app-bar";
 import { DrawerContent } from "src/components/drawer-content";
 
 import { Navigation as ArticlesStack } from "./articles/navigation";
