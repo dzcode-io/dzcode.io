@@ -1,5 +1,5 @@
 {
-  "name": "@dzcode.io.mobile/ui",
+  "name": "@dzcode.io/ui-mobile",
   "description": "dzcode.io mobile ui library",
   "version": "4.0.0",
   "author": {
@@ -26,11 +26,11 @@
   "main": "dist",
   "private": true,
   "scripts": {
-    "build": "lerna run build:alone --scope=@dzcode.io.mobile/ui --include-dependencies --stream",
+    "build": "lerna run build:alone --scope=@dzcode.io/ui-mobile --include-dependencies --stream",
     "build:alone": "ttsc",
     "build:alone:watch": "ttsc --watch --preserveWatchOutput",
-    "build:watch": "yarn build & yarn lerna run build:alone:watch --scope=@dzcode.io.mobile/ui --include-dependencies --parallel",
-    "clean": "lerna run clean:alone --scope=@dzcode.io.mobile/ui --include-dependencies --stream",
+    "build:watch": "yarn build & yarn lerna run build:alone:watch --scope=@dzcode.io/ui-mobile --include-dependencies --parallel",
+    "clean": "lerna run clean:alone --scope=@dzcode.io/ui-mobile --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",

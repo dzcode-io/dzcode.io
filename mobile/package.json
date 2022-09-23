@@ -7,9 +7,9 @@
     "url": "https://omar-belghaouti.web.app"
   },
   "dependencies": {
-    "@dzcode.io.mobile/ui": "*",
     "@dzcode.io/api": "*",
     "@dzcode.io/models": "*",
+    "@dzcode.io/ui-mobile": "*",
     "@dzcode.io/utils": "*",
     "@expo/vector-icons": "^13.0.0",
     "@gorhom/bottom-sheet": "^4",
