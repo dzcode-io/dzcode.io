@@ -126,6 +126,8 @@ export const ContributeScreen: FC = () => {
                   <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
                     {options.map(({ label: optionLabel, name: optionName, checked }) => (
                       <List.Item
+                        hasTVPreferredFocus
+                        tvParallaxProperties
                         key={`filter-${filterName}-${optionName}`}
                         title={optionLabel}
                         right={() => (

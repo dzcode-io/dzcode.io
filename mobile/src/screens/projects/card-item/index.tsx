@@ -18,6 +18,8 @@ const CardItem: FC<CardItemProps> = ({
   return (
     <Card style={cardStyles.mainView}>
       <Card.Cover
+        height
+        width
         source={{ uri: image }}
         style={{
           backgroundColor: theme === "dark" ? Colors.darkGrey : Colors.light,
