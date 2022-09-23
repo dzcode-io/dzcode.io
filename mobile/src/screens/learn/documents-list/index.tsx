@@ -1,9 +1,9 @@
+import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { useNavigation } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { Button, Divider } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { ErrorBoundary } from "src/components/error-boundary";
 import { DZCodeLoading } from "src/components/loading";
 import { TryAgain } from "src/components/try-again";
 import { AppDispatch } from "src/redux";

@@ -1,4 +1,5 @@
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import { useNavigation } from "@react-navigation/native";
 import { Route } from "@react-navigation/routers";
@@ -7,7 +8,6 @@ import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { Text } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { ErrorBoundary } from "src/components/error-boundary";
 import { DZCodeLoading } from "src/components/loading";
 import { TryAgain } from "src/components/try-again";
 import { AppDispatch } from "src/redux";

@@ -1,6 +1,6 @@
+import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
-import { ErrorBoundary } from "src/components/error-boundary";
 
 import { DocumentDetailsScreen } from "./document-details";
 import { DocumentsListScreen } from "./documents-list";
