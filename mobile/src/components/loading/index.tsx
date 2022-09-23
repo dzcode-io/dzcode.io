@@ -24,7 +24,7 @@ export const DZCodeLoading: FC<DZCodeLoadingProps> = ({ style }: DZCodeLoadingPr
 
   return (
     <Animated.Image
-      source={require("../../assets/png/favicon.png")}
+      source={require("@dzcode.io/ui-mobile/assets/png/favicon.png")}
       style={[
         dzcodeLoadingStyles.imageView,
         {

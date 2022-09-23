@@ -1,8 +1,8 @@
 import { AppBar } from "@dzcode.io/ui-mobile/dist/app-bar";
+import { DrawerContent } from "@dzcode.io/ui-mobile/dist/drawer-content";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { DrawerActions } from "@react-navigation/native";
 import React, { FC } from "react";
-import { DrawerContent } from "src/components/drawer-content";
 
 import { Navigation as ArticlesStack } from "./articles/navigation";
 import { ContributeScreen } from "./contribute";
@@ -68,7 +68,7 @@ export const Navigation: FC = () => {
           />
         ),
       }}
-      drawerContent={(props) => <DrawerContent {...props} />}
+      drawerContent={(props) => <DrawerContent {...props} version={window.bundleInfo.version} />}
     >
       {routes.map(({ name, component, label }) => (
         <Screen key={name} name={name} component={component} options={{ title: label }} />

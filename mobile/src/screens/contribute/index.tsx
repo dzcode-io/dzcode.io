@@ -87,7 +87,7 @@ export const ContributeScreen: FC = () => {
           ) : (
             <View style={globalStyles.centerView}>
               <Image
-                source={require("../../assets/png/info.png")}
+                source={require("@dzcode.io/ui-mobile/assets/png/info.png")}
                 style={contributeStyles.emptyStateLogo}
               />
               <Text style={contributeStyles.emptyStateText}>There is no contribution</Text>

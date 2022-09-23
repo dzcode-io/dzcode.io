@@ -1,3 +1,4 @@
+/* @eslint-disable @typescript-eslint/no-var-requires */
 import {
   DrawerContentComponentProps,
   DrawerContentOptions,
@@ -10,14 +11,16 @@ import { Text } from "react-native-paper";
 
 import { drawerStyles } from "./styles";
 
-export const DrawerContent: FC<DrawerContentComponentProps<DrawerContentOptions>> = (props) => {
+export const DrawerContent: FC<
+  DrawerContentComponentProps<DrawerContentOptions> & { version: string }
+> = (props) => {
   return (
     <DrawerContentScrollView {...props}>
       <SafeAreaView>
         {/* dzcode.io logo */}
         <View>
           <Image source={require("../../assets/png/logo.png")} style={drawerStyles.logoView} />
-          <Text style={drawerStyles.version}>{window.bundleInfo.version}</Text>
+          <Text style={drawerStyles.version}>{props.version}</Text>
         </View>
         {/* Drawer items */}
         <DrawerItemList {...props} />
