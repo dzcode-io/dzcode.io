@@ -9,6 +9,7 @@
   "dependencies": {
     "@dzcode.io/api": "*",
     "@dzcode.io/models": "*",
+    "@dzcode.io/ui-mobile": "*",
     "@dzcode.io/utils": "*",
     "@expo/vector-icons": "^13.0.0",
     "@gorhom/bottom-sheet": "^4",

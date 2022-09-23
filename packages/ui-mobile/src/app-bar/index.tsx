@@ -12,7 +12,12 @@ export const AppBar: FC<AppbarProps> = ({ title, openDrawer }) => {
   return (
     <Appbar.Header theme={{ colors: { primary: theme?.colors.surface } }}>
       {/* Appbar content */}
-      <Appbar.Action icon="menu" onPress={() => openDrawer()} />
+      <Appbar.Action
+        icon="menu"
+        onPress={() => openDrawer()}
+        hasTVPreferredFocus
+        tvParallaxProperties
+      />
       <Appbar.Content title={title} />
     </Appbar.Header>
   );
