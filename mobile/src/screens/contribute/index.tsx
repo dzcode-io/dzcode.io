@@ -1,11 +1,11 @@
+import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
+import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
+import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { useDispatch } from "react-redux";
-import { ErrorBoundary } from "src/components/error-boundary";
-import { DZCodeLoading } from "src/components/loading";
-import { TryAgain } from "src/components/try-again";
 import { AppDispatch } from "src/redux";
 import { fetchContributions } from "src/redux/actions/contribute-screen";
 import {
@@ -87,7 +87,7 @@ export const ContributeScreen: FC = () => {
           ) : (
             <View style={globalStyles.centerView}>
               <Image
-                source={require("../../assets/png/info.png")}
+                source={require("@dzcode.io/ui-mobile/assets/png/info.png")}
                 style={contributeStyles.emptyStateLogo}
               />
               <Text style={contributeStyles.emptyStateText}>There is no contribution</Text>
@@ -126,6 +126,8 @@ export const ContributeScreen: FC = () => {
                   <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
                     {options.map(({ label: optionLabel, name: optionName, checked }) => (
                       <List.Item
+                        hasTVPreferredFocus
+                        tvParallaxProperties
                         key={`filter-${filterName}-${optionName}`}
                         title={optionLabel}
                         right={() => (

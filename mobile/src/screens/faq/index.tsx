@@ -1,9 +1,9 @@
+import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { useNavigation } from "@react-navigation/native";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
 import { List, Text } from "react-native-paper";
-import { ErrorBoundary } from "src/components/error-boundary";
 import { useFaqSliceSelector } from "src/redux/reducers/faq-screen/slice";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { globalStyles } from "src/styles/global";

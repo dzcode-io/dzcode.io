@@ -1,9 +1,9 @@
+import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
+import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
+import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { ErrorBoundary } from "src/components/error-boundary";
-import { DZCodeLoading } from "src/components/loading";
-import { TryAgain } from "src/components/try-again";
 import { AppDispatch } from "src/redux";
 import { fetchProjects } from "src/redux/actions/projects-screen";
 import { useProjectsSliceSelector } from "src/redux/reducers/projects-screen/slice";

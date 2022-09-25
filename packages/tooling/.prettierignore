@@ -25,3 +25,4 @@ nodemon.json
 *.prettierignore
 *.browserslistrc
 *.eslintignore
+*.ttf
