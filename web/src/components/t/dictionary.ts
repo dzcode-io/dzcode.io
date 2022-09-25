@@ -361,4 +361,7 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Learn and share your knowledge with other Algerian developers!",
     ar: "تعلم وشارك معرفتك مع مطورين جزائريين آخرين!",
   },
+  "ui-theme-DARK": { en: "Dark", ar: "داكن" },
+  "ui-theme-LIGHT": { en: "Light", ar: "فاتح" },
+  "ui-theme-AUTO": { en: "Auto", ar: "تلقائي" },
 };

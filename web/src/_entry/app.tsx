@@ -1,16 +1,15 @@
 import "./style.scss";
 
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
-import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import Container from "@material-ui/core/Container";
+import { Navbar } from "@dzcode.io/ui/dist/v2/navbar";
+import { Stack } from "@dzcode.io/ui/dist/v2/stack";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
+import logo from "src/assets/svg/logo-wide.svg";
 import { Footer } from "src/components/footer";
 import { Loading } from "src/components/loading";
-import { Navbar } from "src/components/navbar";
 import { t } from "src/components/t";
-import { Theme } from "src/components/theme";
 import { actions } from "src/redux";
 import { useSliceSelector } from "src/redux/selectors";
 import { getEnv } from "src/utils";
@@ -76,36 +75,31 @@ export const App: FC = () => {
   }, [location]);
 
   return (
-    <Theme>
-      <ErrorBoundary>
-        <Helmet>
-          <title>{t("landing-title")}</title>
-        </Helmet>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
-          }}
-        >
-          <Navbar />
-          <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
-            <Suspense fallback={<Loading />}>
-              <Switch>
-                {routes.map(({ import: im, path, ...route }, index) => (
-                  <Route
-                    {...route}
-                    path={path ? `${urlLanguageRegEx}${path}` : undefined}
-                    key={`route-${index}`}
-                    component={lazy(() => im)}
-                  />
-                ))}
-              </Switch>
-            </Suspense>
-          </Container>
-          <Footer />
-        </div>
-      </ErrorBoundary>
-    </Theme>
+    <>
+      <Helmet>
+        <title>{t("landing-title")}</title>
+      </Helmet>
+      <Stack direction="vertical">
+        <Navbar
+          version={window.bundleInfo.version}
+          selectedLanguageCode="en"
+          themeName="LIGHT"
+          logo={logo}
+        />
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            {routes.map(({ import: im, path, ...route }, index) => (
+              <Route
+                {...route}
+                path={path ? `${urlLanguageRegEx}${path}` : undefined}
+                key={`route-${index}`}
+                component={lazy(() => im)}
+              />
+            ))}
+          </Switch>
+        </Suspense>
+        <Footer />
+      </Stack>
+    </>
   );
 };

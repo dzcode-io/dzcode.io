@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import { createContext, FC, VFC } from "react";
 
 type BaseDictionary = Record<string, Record<string, string>>;
 
@@ -44,4 +44,21 @@ const replace = <T extends BaseDictionary>(
     value = value.replace(RegExp(`${rKey}`), r[rKey]);
   });
   return value;
+};
+
+export const TranslationContext = createContext<(key: string) => string>(
+  () => "MISSING_TRANSLATION_CONTEXT",
+);
+
+export const translationProviderFactory = <T extends BaseDictionary>(
+  dictionary: T,
+  getLanguageCode: () => keyof T[keyof T],
+  fallbackText = "MISSING_TRANSLATION",
+): FC => {
+  const t = translationFunctionFactory(dictionary, getLanguageCode, fallbackText);
+
+  // eslint-disable-next-line react/display-name
+  return ({ children }) => (
+    <TranslationContext.Provider value={t}>{children}</TranslationContext.Provider>
+  );
 };
