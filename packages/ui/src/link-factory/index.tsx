@@ -1,22 +1,49 @@
-import { FC, HTMLProps } from "react";
-import { Link as ReactRouterLink, LinkProps } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
+import { AnchorHTMLAttributes, CSSProperties, FC } from "react";
+import { Link as ReactRouterLink } from "react-router-dom";
+
+export type LinkProps = {
+  // @TODO-ZM: make this required
+  variant?: "v1" | "v2";
+  margin?: number;
+  // @TODO-ZM: to remove these
+  className?: string;
+  style?: any;
+  color?: any;
+} & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "target" | "href">;
+
+const variantToLinkDisplay: Record<Required<LinkProps>["variant"], CSSProperties["display"]> = {
+  v1: undefined,
+  v2: "flex",
+};
 
 export const linkFactory =
-  (getLanguageCode: () => string, defaultLanguageCode: string): FC<HTMLProps<HTMLAnchorElement>> =>
+  (getLanguageCode: () => string, defaultLanguageCode: string): FC<LinkProps> =>
+  // @TODO-ZM: remove default variant
   // eslint-disable-next-line react/display-name
-  (props) => {
+  ({ variant = "v1", margin, href, ...props }) => {
     const languageCode = getLanguageCode();
+    const theme = useTheme();
+    const themedMargin = typeof margin === "number" ? theme.spacing(margin) : undefined;
 
-    if (props.href && (props.href.startsWith("/") || props.href.startsWith(location.origin))) {
+    const style: CSSProperties = {
+      cursor: "pointer",
+      margin: themedMargin,
+      display: variantToLinkDisplay[variant],
+    };
+
+    if (href?.startsWith("/") || href?.startsWith(location.origin)) {
       return (
         <ReactRouterLink
-          {...(props as LinkProps)}
-          to={defaultLanguageCode === languageCode ? props.href : `/${languageCode}${props.href}`}
+          style={style}
+          {...props}
+          to={defaultLanguageCode === languageCode ? href : `/${languageCode}${href}`}
         />
       );
     } else {
-      return <a {...props} />;
+      return <a style={style} target="" href={href} {...props} />;
     }
   };
 
+// @TODO-ZM: update this, to get the Language from React Context
 export const Link = linkFactory(() => "en", "en");
