@@ -1,7 +1,8 @@
 import MUIStack, { StackProps as MUIStackProps } from "@mui/material/Stack";
 import type { FC } from "react";
 
-export interface StackProps extends Pick<MUIStackProps, "alignItems"> {
+export interface StackProps
+  extends Pick<MUIStackProps, "alignItems" | "justifyContent" | "overflow"> {
   direction: "vertical" | "horizontal";
 }
 

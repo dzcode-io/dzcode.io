@@ -1,5 +1,5 @@
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
-import type { FC } from "react";
+import { FC, Fragment } from "react";
 import { useTranslation } from "src/hooks/use-translation";
 import { Link } from "src/link-factory";
 import { Button } from "src/v2/button";
@@ -7,6 +7,7 @@ import { Divider } from "src/v2/divider";
 import { Dropdown } from "src/v2/dropdown";
 import { Flex } from "src/v2/flex";
 import { Image } from "src/v2/image";
+import { MediaQuery } from "src/v2/media-query";
 import { Stack } from "src/v2/stack";
 import { Text } from "src/v2/text";
 
@@ -41,10 +42,19 @@ export const Navbar: FC<NavBarProps> = ({
 }) => {
   const { t } = useTranslation();
 
+  const Logo: FC = () => (
+    <Link href="/" variant="v2" margin={1}>
+      <Image src={logo} height={24} />
+    </Link>
+  );
+
   return (
     <Stack direction="vertical" alignItems="stretch">
       <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
         <Stack direction="horizontal" alignItems="center">
+          <MediaQuery upTo="md">
+            <Logo />
+          </MediaQuery>
           <Link
             margin={1}
             variant="v1"
@@ -100,20 +110,23 @@ export const Navbar: FC<NavBarProps> = ({
       </Flex>
       <Flex color="BACKGROUND_2">
         <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
-          <Stack direction="horizontal" alignItems="center">
+          <Stack direction="horizontal" overflow="auto">
             {/* @TODO-ZM: 24 is an arbitrary number, use a regulated number */}
-            <Link href="/" variant="v2" margin={1}>
-              <Image src={logo} height={24} />
-            </Link>
+            <MediaQuery downTo="md">
+              <Logo />
+            </MediaQuery>
             <Flex grow={1} />
             {links.map(({ text, href }, index) => (
-              <>
+              <Fragment key={`navbar-link-${index}`}>
                 <Button margin={1} variant="v1" href={href}>
                   {t(text)}
                 </Button>
                 {index < links.length - 1 && <Divider margin={1} orientation="vertical" />}
-              </>
+              </Fragment>
             ))}
+            <MediaQuery upTo="md">
+              <Flex grow={1} />
+            </MediaQuery>
           </Stack>
         </Flex>
       </Flex>
