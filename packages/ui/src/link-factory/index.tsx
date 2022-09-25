@@ -12,9 +12,9 @@ export type LinkProps = {
   color?: any;
 } & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "target" | "href">;
 
-const variantToLinkDisplay: Record<Required<LinkProps>["variant"], CSSProperties["display"]> = {
-  v1: undefined,
-  v2: "flex",
+const variantToLinkStyle: Record<Required<LinkProps>["variant"], CSSProperties> = {
+  v1: {},
+  v2: { display: "flex", flexShrink: 0 },
 };
 
 export const linkFactory =
@@ -29,7 +29,7 @@ export const linkFactory =
     const style: CSSProperties = {
       cursor: "pointer",
       margin: themedMargin,
-      display: variantToLinkDisplay[variant],
+      ...variantToLinkStyle[variant],
     };
 
     if (href?.startsWith("/") || href?.startsWith(location.origin)) {
@@ -41,7 +41,7 @@ export const linkFactory =
         />
       );
     } else {
-      return <a style={style} target="" href={href} {...props} />;
+      return <a style={style} href={href} {...props} />;
     }
   };
 

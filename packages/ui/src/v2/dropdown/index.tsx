@@ -5,20 +5,24 @@ import { FC, ReactNode, useState } from "react";
 import { Button } from "src/v2/button";
 import { Stack } from "src/v2/stack";
 
-export interface DropdownProps {
+export interface DropdownProps<C = string> {
   items: Array<{
-    code: string;
+    code: C;
     text: ReactNode;
   }>;
   text: string;
-  onSelect?: (code: string) => void;
+  onSelect?: (code: C) => void;
 }
 
-export const Dropdown: FC<DropdownProps> = ({ items, text, onSelect }) => {
+export const Dropdown = <C extends string>({
+  items,
+  text,
+  onSelect,
+}: DropdownProps<C>): ReturnType<FC<DropdownProps<C>>> => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClose = (code: string) => {
+  const handleClose = (code: C) => {
     setAnchorEl(null);
     onSelect?.(code);
   };

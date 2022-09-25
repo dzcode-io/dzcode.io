@@ -25,7 +25,7 @@ export const Button: FC<ButtonProps> = ({ children, variant, margin, ...props })
   switch (variant) {
     case "v1":
       return (
-        <Link {...props} margin={margin}>
+        <Link {...props} variant="v2" margin={margin}>
           {children}
         </Link>
       );

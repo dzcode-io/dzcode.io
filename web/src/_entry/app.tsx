@@ -57,7 +57,8 @@ const routes: RouteInterface[] = [
 export const App: FC = () => {
   const location = useLocation();
   const match = useRouteMatch<{ lang?: LanguageEntity["code"] }>(urlLanguageRegEx);
-  const { language } = useSliceSelector("settings");
+  const { language, themeName } = useSliceSelector("settings");
+  const { links } = useSliceSelector("navbarComponent");
 
   useEffect(() => {
     if (getEnv() !== "development") {
@@ -82,9 +83,18 @@ export const App: FC = () => {
       <Stack direction="vertical">
         <Navbar
           version={window.bundleInfo.version}
-          selectedLanguageCode="en"
-          themeName="LIGHT"
+          selectedLanguageCode={language.code}
+          themeName={themeName}
           logo={logo}
+          links={links}
+          onLanguageChanged={(selectedLanguageCode) => {
+            actions.settings.set({
+              language: allLanguages.find(({ code }) => code === selectedLanguageCode),
+            });
+          }}
+          onThemeChanged={(selectedThemeName) => {
+            actions.settings.set({ themeName: selectedThemeName });
+          }}
         />
         <Suspense fallback={<Loading />}>
           <Switch>
