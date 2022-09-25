@@ -35,6 +35,10 @@
           {
             "group": ["../*"],
             "message": "Usage of relative parent imports is not allowed."
+          },
+          {
+            "group": ["@dzcode.io/*/src/*"],
+            "message": "Importing from src directory of packages is is not allowed, please import from `/dist` instead."
           }
         ]
       }
