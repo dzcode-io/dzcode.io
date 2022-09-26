@@ -1,19 +1,26 @@
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
-import { createStackNavigator } from "@react-navigation/stack";
+import { StackNav } from "@dzcode.io/ui-mobile/dist/stack-nav";
+import { Route } from "@dzcode.io/ui-mobile/dist/types";
 import React, { FC } from "react";
 
 import { DocumentDetailsScreen } from "./document-details";
 import { DocumentsListScreen } from "./documents-list";
 
-const { Navigator, Screen } = createStackNavigator();
+const routes: Route[] = [
+  {
+    name: "documents-list",
+    component: DocumentsListScreen,
+  },
+  {
+    name: "document-details",
+    component: DocumentDetailsScreen,
+  },
+];
 
 export const Navigation: FC = () => {
   return (
     <ErrorBoundary>
-      <Navigator initialRouteName={"documents-list"} headerMode={"none"}>
-        <Screen name="documents-list" component={DocumentsListScreen} />
-        <Screen name="document-details" component={DocumentDetailsScreen} />
-      </Navigator>
+      <StackNav routes={routes} headerMode={"none"} initialRouteName={"documents-list"} />
     </ErrorBoundary>
   );
 };

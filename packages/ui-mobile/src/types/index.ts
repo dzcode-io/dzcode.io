@@ -1,6 +1,6 @@
 export interface Route {
   name: string;
-  title: string;
-  label: string;
-  component: React.ComponentType;
+  title?: string;
+  label?: string;
+  component: React.ComponentType<any>;
 }
