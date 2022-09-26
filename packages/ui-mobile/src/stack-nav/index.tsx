@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { StackHeaderMode } from "@react-navigation/stack/lib/typescript/src/types";
-import React, { FC } from "react";
+import React, { VFC } from "react";
 import { Route } from "src/types";
 
 const { Navigator, Screen } = createStackNavigator();
@@ -11,7 +11,7 @@ interface StackNavProps {
   headerMode?: StackHeaderMode;
 }
 
-export const StackNav: FC<StackNavProps> = ({ routes, initialRouteName, headerMode }) => {
+export const StackNav: VFC<StackNavProps> = ({ routes, initialRouteName, headerMode }) => {
   return (
     <Navigator initialRouteName={initialRouteName} headerMode={headerMode}>
       {routes.map(({ name, component, label }) => (
