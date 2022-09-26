@@ -56,7 +56,7 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
             ) : null}
             <TimelineSeparator>
               <TimelineConnector sx={{ bgcolor: milestoneColors[state] }} />
-              {state === "in-progress" ? (
+              {state === "in-progress" || (progress && progress < 1) ? (
                 <CircularProgress style={{ margin: 8 }} value={progress || 0} />
               ) : (
                 <TimelineDot sx={{ bgcolor: milestoneColors[state] }} />
