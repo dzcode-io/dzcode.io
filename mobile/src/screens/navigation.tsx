@@ -1,6 +1,7 @@
 import { AppBar } from "@dzcode.io/ui-mobile/dist/app-bar";
 import { DrawerContent } from "@dzcode.io/ui-mobile/dist/drawer-content";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { DrawerNav } from "@dzcode.io/ui-mobile/dist/drawer-nav";
+import { Route } from "@dzcode.io/ui-mobile/dist/types";
 import { DrawerActions } from "@react-navigation/native";
 import React, { FC } from "react";
 
@@ -9,15 +10,6 @@ import { ContributeScreen } from "./contribute";
 import { FAQScreen } from "./faq";
 import { Navigation as DocumentsStack } from "./learn/navigation";
 import { ProjectsScreen } from "./projects";
-
-const { Navigator, Screen } = createDrawerNavigator();
-
-interface Route {
-  name: string;
-  title: string;
-  label: string;
-  component: React.ComponentType;
-}
 
 const routes: Route[] = [
   {
@@ -54,25 +46,16 @@ const routes: Route[] = [
 
 export const Navigation: FC = () => {
   return (
-    <Navigator
+    <DrawerNav
+      routes={routes}
       initialRouteName="contribute"
-      drawerType="back"
-      screenOptions={{
-        headerShown: true,
-        header: (props) => (
-          <AppBar
-            title={routes.find(({ name }) => name === props.scene.route.name)?.title || ""}
-            openDrawer={() =>
-              props.scene.descriptor.navigation.dispatch(DrawerActions.openDrawer())
-            }
-          />
-        ),
-      }}
+      header={(props) => (
+        <AppBar
+          title={routes.find(({ name }) => name === props.scene.route.name)?.title || ""}
+          openDrawer={() => props.scene.descriptor.navigation.dispatch(DrawerActions.openDrawer())}
+        />
+      )}
       drawerContent={(props) => <DrawerContent {...props} version={window.bundleInfo.version} />}
-    >
-      {routes.map(({ name, component, label }) => (
-        <Screen key={name} name={name} component={component} options={{ title: label }} />
-      ))}
-    </Navigator>
+    />
   );
 };

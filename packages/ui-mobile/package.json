@@ -8,8 +8,12 @@
     "url": "https://omar-belghaouti.web.app"
   },
   "dependencies": {
-    "react-native-paper": "^4.9.2",
-    "react-native-vector-icons": "^8.1.0"
+    "@react-navigation/bottom-tabs": "5.11.2",
+    "@react-navigation/drawer": "^5.12.5",
+    "@react-navigation/native": "~5.8.10",
+    "@react-navigation/stack": "~5.12.8",
+    "react-native-markdown-display": "^7.0.0-alpha.2",
+    "react-native-paper": "^4.9.2"
   },
   "devDependencies": {
     "@dzcode.io/models": "*",
