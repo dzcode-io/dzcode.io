@@ -1,5 +1,5 @@
+import { Colors } from "@dzcode.io/ui-mobile/dist/styles/colors";
 import { StyleSheet } from "react-native";
-import { Colors } from "src/styles/colors";
 import { MEDIUM_MARGIN_SIZE, SMALL_MARGIN_SIZE } from "src/utils/constants";
 
 export const cardStyles = StyleSheet.create({

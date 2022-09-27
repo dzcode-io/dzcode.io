@@ -1,11 +1,11 @@
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { Colors } from "@dzcode.io/ui-mobile/dist/styles/colors";
 import { calculateDateBetween } from "@dzcode.io/utils/dist/date/difference";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { FC, memo } from "react";
 import { FlatList } from "react-native";
 import { View } from "react-native";
 import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
-import { Colors } from "src/styles/colors";
 
 import { cardStyles } from "./styles";
 
