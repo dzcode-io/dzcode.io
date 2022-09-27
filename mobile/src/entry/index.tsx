@@ -7,7 +7,7 @@ import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/themes";
 
 import { Navigation } from "src/screens/navigation";
 import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation-container";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Provider as ThemeProvider } from "react-native-paper";
 import { getEnv } from "src/utils/env";
 import { init } from "src/redux/actions/general";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
@@ -39,11 +39,11 @@ const AppComponent: FC = () => {
   const theme = themes[themeName];
 
   return (
-    <PaperProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <NavigationContainer theme={theme}>
         <Navigation />
       </NavigationContainer>
-    </PaperProvider>
+    </ThemeProvider>
   );
 };
 
