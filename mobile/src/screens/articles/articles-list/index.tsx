@@ -1,10 +1,11 @@
+import { Button } from "@dzcode.io/ui-mobile/dist/button";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { useNavigation } from "@dzcode.io/ui-mobile/dist/hooks";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
-import { Button, Divider } from "react-native-paper";
+import { Divider } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
 import { fetchArticles } from "src/redux/actions/articles-screen";

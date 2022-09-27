@@ -1,7 +1,8 @@
 import { Project } from "@dzcode.io/api/dist/app/types/legacy";
+import { Button } from "@dzcode.io/ui-mobile/dist/button";
 import { Colors } from "@dzcode.io/ui-mobile/dist/styles/colors";
 import React, { FC, memo } from "react";
-import { Button, Card, Paragraph, Title } from "react-native-paper";
+import { Card, Paragraph, Title } from "react-native-paper";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { openLink } from "src/utils/link";
 
