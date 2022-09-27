@@ -8,6 +8,7 @@
     "url": "https://omar-belghaouti.web.app"
   },
   "dependencies": {
+    "@dzcode.io/api": "*",
     "@react-navigation/bottom-tabs": "5.11.2",
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "~5.8.10",
