@@ -3,6 +3,7 @@ import { Badge } from "@dzcode.io/ui-mobile/dist/badge";
 import { Button } from "@dzcode.io/ui-mobile/dist/button";
 import { Card } from "@dzcode.io/ui-mobile/dist/card";
 import { Chip } from "@dzcode.io/ui-mobile/dist/chip";
+import { Paragraph } from "@dzcode.io/ui-mobile/dist/paragraph";
 import { Colors } from "@dzcode.io/ui-mobile/dist/styles/colors";
 import { Text } from "@dzcode.io/ui-mobile/dist/text";
 import { calculateDateBetween } from "@dzcode.io/utils/dist/date/difference";
@@ -10,7 +11,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { FC, memo } from "react";
 import { FlatList } from "react-native";
 import { View } from "react-native";
-import { Paragraph, Title } from "react-native-paper";
+import { Title } from "react-native-paper";
 
 import { cardStyles } from "./styles";
 
