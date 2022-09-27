@@ -1,12 +1,13 @@
 import { Checkbox } from "@dzcode.io/ui-mobile/dist/checkbox";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
+import { List } from "@dzcode.io/ui-mobile/dist/list";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { Text } from "@dzcode.io/ui-mobile/dist/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
-import { List, useTheme } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
 import { fetchContributions } from "src/redux/actions/contribute-screen";
