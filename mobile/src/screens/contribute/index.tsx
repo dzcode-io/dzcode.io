@@ -1,4 +1,5 @@
 import { Checkbox } from "@dzcode.io/ui-mobile/dist/checkbox";
+import { ContributeCard } from "@dzcode.io/ui-mobile/dist/contribute-card";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { useTheme } from "@dzcode.io/ui-mobile/dist/hooks";
 import { List } from "@dzcode.io/ui-mobile/dist/list";
@@ -17,7 +18,6 @@ import {
 } from "src/redux/reducers/contribute-screen/slice";
 import { globalStyles } from "src/styles/global";
 
-import { CardItemMemoed } from "./card-item";
 import { contributeStyles } from "./styles";
 
 export const ContributeScreen: FC = () => {
@@ -59,7 +59,7 @@ export const ContributeScreen: FC = () => {
               refreshing={status === "loading"}
               keyExtractor={(item, index) => `item-${index}`}
               renderItem={({ item }) => (
-                <CardItemMemoed
+                <ContributeCard
                   title={item.title}
                   subtitle={item.project.name}
                   labels={[...item.labels, ...item.languages]}
