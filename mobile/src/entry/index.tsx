@@ -1,7 +1,7 @@
+import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme-provider";
 import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/themes";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
-import { Provider as PaperProvider } from "react-native-paper";
 import { Provider, useDispatch } from "react-redux";
 import * as Sentry from "sentry-expo";
 import { AppDispatch, store } from "src/redux";
@@ -37,11 +37,11 @@ const AppComponent: FC = () => {
   const theme = themes[themeName];
 
   return (
-    <PaperProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <NavigationContainer theme={theme}>
         <Navigation />
       </NavigationContainer>
-    </PaperProvider>
+    </ThemeProvider>
   );
 };
 
