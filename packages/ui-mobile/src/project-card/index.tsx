@@ -1,23 +1,24 @@
 import { Project } from "@dzcode.io/api/dist/app/types/legacy";
-import { Button } from "@dzcode.io/ui-mobile/dist/button";
-import { Card } from "@dzcode.io/ui-mobile/dist/card";
-import { Paragraph } from "@dzcode.io/ui-mobile/dist/paragraph";
-import { Colors } from "@dzcode.io/ui-mobile/dist/styles/colors";
-import { Title } from "@dzcode.io/ui-mobile/dist/title";
 import React, { FC, memo } from "react";
-import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
-import { openLink } from "src/utils/link";
+import { Button } from "src/button";
+import { Card } from "src/card";
+import { Paragraph } from "src/paragraph";
+import { Colors } from "src/styles/colors";
+import { Title } from "src/title";
 
 import { cardStyles } from "./styles";
 
-interface CardItemProps {
+interface ProjectCardProps {
   project: Pick<Project, "title" | "description" | "image" | "githubURI">;
+  theme: "dark" | "light";
+  openLink: (url: string) => void;
 }
 
-const CardItem: FC<CardItemProps> = ({
+const CardItem: FC<ProjectCardProps> = ({
   project: { title, description, githubURI, image },
-}: CardItemProps) => {
-  const { theme } = useGeneralSliceSelector();
+  theme,
+  openLink,
+}: ProjectCardProps) => {
   return (
     <Card style={cardStyles.mainView}>
       <Card.Cover
@@ -45,4 +46,4 @@ const CardItem: FC<CardItemProps> = ({
   );
 };
 
-export const CardItemMemoed = memo(CardItem);
+export const ProjectCard = memo(CardItem);
