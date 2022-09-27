@@ -1,8 +1,7 @@
-import { Checkbox } from "@dzcode.io/ui-mobile/dist/checkbox";
 import { ContributeCard } from "@dzcode.io/ui-mobile/dist/contribute-card";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
+import { Filters } from "@dzcode.io/ui-mobile/dist/filters";
 import { useTheme } from "@dzcode.io/ui-mobile/dist/hooks";
-import { List } from "@dzcode.io/ui-mobile/dist/list";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { Text } from "@dzcode.io/ui-mobile/dist/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
@@ -124,45 +123,19 @@ export const ContributeScreen: FC = () => {
         >
           {filters ? (
             <BottomSheetScrollView>
-              <List.AccordionGroup>
-                {filters.map(({ name: filterName, label: filterLabel, options }) => (
-                  <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
-                    {options.map(({ label: optionLabel, name: optionName, checked }) => (
-                      <List.Item
-                        hasTVPreferredFocus
-                        tvParallaxProperties
-                        key={`filter-${filterName}-${optionName}`}
-                        title={optionLabel}
-                        right={() => (
-                          <Checkbox
-                            status={checked ? "checked" : "unchecked"}
-                            onPress={() => {
-                              setUpdate(false);
-                              dispatch(
-                                updateFilterValue({
-                                  filterName,
-                                  optionName,
-                                }),
-                              );
-                              setUpdate(true);
-                            }}
-                          />
-                        )}
-                        onPress={() => {
-                          setUpdate(false);
-                          dispatch(
-                            updateFilterValue({
-                              filterName,
-                              optionName,
-                            }),
-                          );
-                          setUpdate(true);
-                        }}
-                      />
-                    ))}
-                  </List.Accordion>
-                ))}
-              </List.AccordionGroup>
+              <Filters
+                filters={filters}
+                onCheckboxPress={(filterName, optionName) => {
+                  setUpdate(false);
+                  dispatch(
+                    updateFilterValue({
+                      filterName,
+                      optionName,
+                    }),
+                  );
+                  setUpdate(true);
+                }}
+              />
             </BottomSheetScrollView>
           ) : (
             <View style={globalStyles.centerView}>

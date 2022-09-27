@@ -1,15 +1,16 @@
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
+import { useNavigation } from "@dzcode.io/ui-mobile/dist/hooks";
 import { List } from "@dzcode.io/ui-mobile/dist/list";
 import { Text } from "@dzcode.io/ui-mobile/dist/text";
-import { useNavigation } from "@react-navigation/native";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
-import { List } from "react-native-paper";
 import { useFaqSliceSelector } from "src/redux/reducers/faq-screen/slice";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
-import { useNavigation } from "@dzcode.io/ui-mobile/dist/hooks";
 import { globalStyles } from "src/styles/global";
+import { openLink } from "src/utils/link";
+
+import { faqStyles } from "./styles";
 
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();

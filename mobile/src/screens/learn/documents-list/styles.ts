@@ -1,5 +1,5 @@
+import { SMALL_LOGO_HEIGHT, SMALL_PADDING_SIZE } from "@dzcode.io/ui-mobile/dist/utils/constants";
 import { StyleSheet } from "react-native";
-import { SMALL_LOGO_HEIGHT, SMALL_PADDING_SIZE } from "src/utils/constants";
 
 export const documentsListStyles = StyleSheet.create({
   button: {

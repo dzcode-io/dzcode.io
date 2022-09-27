@@ -2,7 +2,7 @@ import { AppBar } from "@dzcode.io/ui-mobile/dist/app-bar";
 import { DrawerActions } from "@dzcode.io/ui-mobile/dist/drawer-actions";
 import { DrawerContent } from "@dzcode.io/ui-mobile/dist/drawer-content";
 import { DrawerNav } from "@dzcode.io/ui-mobile/dist/drawer-nav";
-import { Route } from "@dzcode.io/ui-mobile/dist/types";
+import type { Route } from "@dzcode.io/ui-mobile/dist/types";
 import React, { FC } from "react";
 
 import { Navigation as ArticlesStack } from "./articles/navigation";
