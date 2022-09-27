@@ -3,8 +3,8 @@ import { Button } from "@dzcode.io/ui-mobile/dist/button";
 import { Card } from "@dzcode.io/ui-mobile/dist/card";
 import { Paragraph } from "@dzcode.io/ui-mobile/dist/paragraph";
 import { Colors } from "@dzcode.io/ui-mobile/dist/styles/colors";
+import { Title } from "@dzcode.io/ui-mobile/dist/title";
 import React, { FC, memo } from "react";
-import { Title } from "react-native-paper";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { openLink } from "src/utils/link";
 
