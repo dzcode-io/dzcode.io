@@ -1,23 +1,13 @@
-import {
-  DarkTheme as NavigationDarkTheme,
-  DefaultTheme as NavigationDefaultTheme,
-  NavigationContainer,
-  Theme as NT,
-} from "@react-navigation/native";
+import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/themes";
+import { NavigationContainer } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
-import {
-  DarkTheme as PaperDarkTheme,
-  DefaultTheme as PaperDefaultTheme,
-  Provider as PaperProvider,
-} from "react-native-paper";
-import { Theme as PT } from "react-native-paper/lib/typescript/types";
+import { Provider as PaperProvider } from "react-native-paper";
 import { Provider, useDispatch } from "react-redux";
 import * as Sentry from "sentry-expo";
 import { AppDispatch, store } from "src/redux";
 import { init } from "src/redux/actions/general";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { Navigation } from "src/screens/navigation";
-import { Colors } from "src/styles/colors";
 import { getEnv } from "src/utils/env";
 
 const env = getEnv();
@@ -31,47 +21,6 @@ if (env !== "development") {
     release: `mobile@${window.bundleInfo.version}`,
   });
 }
-
-// define combined default theme
-const CombinedDefaultTheme: PT & NT = {
-  ...PaperDefaultTheme,
-  ...NavigationDefaultTheme,
-  colors: {
-    ...PaperDefaultTheme.colors,
-    ...NavigationDefaultTheme.colors,
-  },
-};
-
-// define combined dark theme
-const CombinedDarkTheme = {
-  ...PaperDarkTheme,
-  ...NavigationDarkTheme,
-  colors: {
-    ...PaperDarkTheme.colors,
-    ...NavigationDarkTheme.colors,
-    background: Colors.dark,
-  },
-};
-
-// default theme
-const defaultTheme = {
-  ...CombinedDefaultTheme,
-  colors: {
-    ...CombinedDefaultTheme.colors,
-    primary: Colors.primary,
-    accent: Colors.accent,
-  },
-};
-
-// dark theme
-const darkTheme = {
-  ...CombinedDarkTheme,
-  colors: {
-    ...CombinedDarkTheme.colors,
-    primary: Colors.primary,
-    accent: Colors.accent,
-  },
-};
 
 const AppComponent: FC = () => {
   const { theme: themeName } = useGeneralSliceSelector();
