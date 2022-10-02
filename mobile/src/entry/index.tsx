@@ -1,7 +1,7 @@
+import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation-container";
 import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
-  NavigationContainer,
   Theme as NT,
 } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
