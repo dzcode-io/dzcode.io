@@ -1,16 +1,14 @@
-import * as Sentry from "sentry-expo";
-
-import { AppDispatch, store } from "src/redux";
-import { Provider, useDispatch } from "react-redux";
-import React, { FC, useEffect } from "react";
-import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/themes";
-
-import { Navigation } from "src/screens/navigation";
 import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation-container";
-import { Provider as ThemeProvider } from "react-native-paper";
-import { getEnv } from "src/utils/env";
+import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme-provider";
+import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/themes";
+import React, { FC, useEffect } from "react";
+import { Provider, useDispatch } from "react-redux";
+import * as Sentry from "sentry-expo";
+import { AppDispatch, store } from "src/redux";
 import { init } from "src/redux/actions/general";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
+import { Navigation } from "src/screens/navigation";
+import { getEnv } from "src/utils/env";
 
 const env = getEnv();
 
