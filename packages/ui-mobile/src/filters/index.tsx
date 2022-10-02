@@ -1,10 +1,10 @@
-import { FilterDto } from "@dzcode.io/api/dist/contribution/types";
 import React, { VFC } from "react";
 import { Checkbox } from "src/checkbox";
 import { List } from "src/list";
+import type { Filter } from "src/types";
 
 interface FiltersProps {
-  filters: FilterDto[];
+  filters: Filter[];
   onCheckboxPress: (filterName: string, optionName: string) => void;
 }
 

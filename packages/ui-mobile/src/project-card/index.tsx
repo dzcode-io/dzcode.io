@@ -1,10 +1,10 @@
-import { Project } from "@dzcode.io/api/dist/app/types/legacy";
 import React, { FC, memo } from "react";
 import { Button } from "src/button";
 import { Card } from "src/card";
 import { Paragraph } from "src/paragraph";
 import { Colors } from "src/styles/colors";
 import { Title } from "src/title";
+import { Project } from "src/types";
 
 import { cardStyles } from "./styles";
 
