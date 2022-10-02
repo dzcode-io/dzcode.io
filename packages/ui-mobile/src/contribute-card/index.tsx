@@ -4,19 +4,25 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { FC, memo } from "react";
 import { FlatList } from "react-native";
 import { View } from "react-native";
-import { Badge, Button, Card, Chip, Paragraph, Text, Title } from "react-native-paper";
+import { Badge } from "src/badge";
+import { Button } from "src/button";
+import { Card } from "src/card";
+import { Chip } from "src/chip";
+import { Paragraph } from "src/paragraph";
 import { Colors } from "src/styles/colors";
+import { Text } from "src/text";
+import { Title } from "src/title";
 
 import { cardStyles } from "./styles";
 
-interface CardItemProps
+interface ContributeCardProps
   extends Pick<ContributionEntity, "title" | "labels" | "type" | "updatedAt" | "commentsCount"> {
   subtitle: string;
   onChipPress: (item: string) => void;
   onPress: () => void;
 }
 
-export const CardItem: FC<CardItemProps> = ({
+export const CardItem: FC<ContributeCardProps> = ({
   title,
   subtitle,
   labels,
@@ -25,7 +31,7 @@ export const CardItem: FC<CardItemProps> = ({
   commentsCount,
   onChipPress,
   onPress,
-}: CardItemProps) => {
+}: ContributeCardProps) => {
   return (
     <Card style={cardStyles.mainView}>
       <Card.Content>
@@ -91,4 +97,4 @@ export const CardItem: FC<CardItemProps> = ({
   );
 };
 
-export const CardItemMemoed = memo(CardItem);
+export const ContributeCard = memo(CardItem);

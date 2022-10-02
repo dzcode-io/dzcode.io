@@ -1,4 +1,3 @@
-// colors used in the app
 export const Colors = {
   primary: "#43a047",
   accent: "#50C255",

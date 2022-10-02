@@ -1,10 +1,13 @@
+import { ContributeCard } from "@dzcode.io/ui-mobile/dist/contribute-card";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
+import { Filters } from "@dzcode.io/ui-mobile/dist/filters";
+import { useTheme } from "@dzcode.io/ui-mobile/dist/hooks";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
+import { Text } from "@dzcode.io/ui-mobile/dist/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
-import { Checkbox, List, Text, useTheme } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
 import { fetchContributions } from "src/redux/actions/contribute-screen";
@@ -14,7 +17,6 @@ import {
 } from "src/redux/reducers/contribute-screen/slice";
 import { globalStyles } from "src/styles/global";
 
-import { CardItemMemoed } from "./card-item";
 import { contributeStyles } from "./styles";
 
 export const ContributeScreen: FC = () => {
@@ -56,7 +58,7 @@ export const ContributeScreen: FC = () => {
               refreshing={status === "loading"}
               keyExtractor={(item, index) => `item-${index}`}
               renderItem={({ item }) => (
-                <CardItemMemoed
+                <ContributeCard
                   title={item.title}
                   subtitle={item.project.name}
                   labels={[...item.labels, ...item.languages]}
@@ -121,45 +123,19 @@ export const ContributeScreen: FC = () => {
         >
           {filters ? (
             <BottomSheetScrollView>
-              <List.AccordionGroup>
-                {filters.map(({ name: filterName, label: filterLabel, options }) => (
-                  <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
-                    {options.map(({ label: optionLabel, name: optionName, checked }) => (
-                      <List.Item
-                        hasTVPreferredFocus
-                        tvParallaxProperties
-                        key={`filter-${filterName}-${optionName}`}
-                        title={optionLabel}
-                        right={() => (
-                          <Checkbox
-                            status={checked ? "checked" : "unchecked"}
-                            onPress={() => {
-                              setUpdate(false);
-                              dispatch(
-                                updateFilterValue({
-                                  filterName,
-                                  optionName,
-                                }),
-                              );
-                              setUpdate(true);
-                            }}
-                          />
-                        )}
-                        onPress={() => {
-                          setUpdate(false);
-                          dispatch(
-                            updateFilterValue({
-                              filterName,
-                              optionName,
-                            }),
-                          );
-                          setUpdate(true);
-                        }}
-                      />
-                    ))}
-                  </List.Accordion>
-                ))}
-              </List.AccordionGroup>
+              <Filters
+                filters={filters}
+                onCheckboxPress={(filterName, optionName) => {
+                  setUpdate(false);
+                  dispatch(
+                    updateFilterValue({
+                      filterName,
+                      optionName,
+                    }),
+                  );
+                  setUpdate(true);
+                }}
+              />
             </BottomSheetScrollView>
           ) : (
             <View style={globalStyles.centerView}>
