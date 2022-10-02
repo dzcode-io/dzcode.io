@@ -13,7 +13,7 @@ import { ProjectsScreen } from "./projects";
 
 const routes: Route[] = [
   {
-    name: "contribute" as const,
+    name: "contribute",
     title: "Contribution Gallery",
     label: "Contribute",
     component: ContributeScreen,

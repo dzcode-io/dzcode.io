@@ -1,9 +1,9 @@
 import { Article } from "@dzcode.io/api/dist/app/types/legacy";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
+import { useNavigation } from "@dzcode.io/ui-mobile/dist/hooks";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
-import { useNavigation } from "@react-navigation/native";
 import { Route } from "@react-navigation/routers";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";

@@ -1,5 +1,5 @@
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@dzcode.io/ui-mobile/dist/hooks";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
