@@ -3,8 +3,8 @@ import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { Text } from "@dzcode.io/ui-mobile/dist/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
+import { RouteParam } from "@dzcode.io/ui-mobile/dist/types";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
-import { Route } from "@react-navigation/routers";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
@@ -18,7 +18,7 @@ import { globalStyles } from "src/styles/global";
 import { documentDetailsStyles } from "./styles";
 
 interface DocumentDetailsScreenProps {
-  route: Route<"DocumentDetails", RouteParams>;
+  route: RouteParam<"DocumentDetails", RouteParams>;
 }
 
 interface RouteParams {

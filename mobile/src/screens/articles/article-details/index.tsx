@@ -4,8 +4,8 @@ import { useNavigation } from "@dzcode.io/ui-mobile/dist/hooks";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { Text } from "@dzcode.io/ui-mobile/dist/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
+import { RouteParam } from "@dzcode.io/ui-mobile/dist/types";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
-import { Route } from "@react-navigation/routers";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";
@@ -20,7 +20,7 @@ import { openLink } from "src/utils/link";
 import { articleDetailsStyles } from "./styles";
 
 interface ArticleDetailsScreenProps {
-  route: Route<"article-details", RouteParams>;
+  route: RouteParam<"article-details", RouteParams>;
 }
 
 interface RouteParams {
