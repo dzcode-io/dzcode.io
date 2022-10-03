@@ -1,12 +1,11 @@
 import { BottomSheet } from "@dzcode.io/ui-mobile/dist/bottom-sheet";
+import { BottomSheetScrollView } from "@dzcode.io/ui-mobile/dist/bottom-sheet-scroll-view";
 import { ContributeCard } from "@dzcode.io/ui-mobile/dist/contribute-card";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { Filters } from "@dzcode.io/ui-mobile/dist/filters";
-import { useTheme } from "@dzcode.io/ui-mobile/dist/hooks";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { Text } from "@dzcode.io/ui-mobile/dist/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
-import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";
 import { useDispatch } from "react-redux";
@@ -23,8 +22,6 @@ import { contributeStyles } from "./styles";
 export const ContributeScreen: FC = () => {
   const { contributions, filters, status } = useContributeSliceSelector();
   const [update, setUpdate] = useState(false);
-
-  const { colors } = useTheme();
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
