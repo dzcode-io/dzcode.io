@@ -1,6 +1,7 @@
 import "./style.scss";
 
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
+import { Flex, MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/v2/flex";
 import { Navbar } from "@dzcode.io/ui/dist/v2/navbar";
 import { Stack } from "@dzcode.io/ui/dist/v2/stack";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
@@ -96,18 +97,20 @@ export const App: FC = () => {
             actions.settings.set({ themeName: selectedThemeName });
           }}
         />
-        <Suspense fallback={<Loading />}>
-          <Switch>
-            {routes.map(({ import: im, path, ...route }, index) => (
-              <Route
-                {...route}
-                path={path ? `${urlLanguageRegEx}${path}` : undefined}
-                key={`route-${index}`}
-                component={lazy(() => im)}
-              />
-            ))}
-          </Switch>
-        </Suspense>
+        <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              {routes.map(({ import: im, path, ...route }, index) => (
+                <Route
+                  {...route}
+                  path={path ? `${urlLanguageRegEx}${path}` : undefined}
+                  key={`route-${index}`}
+                  component={lazy(() => im)}
+                />
+              ))}
+            </Switch>
+          </Suspense>
+        </Flex>
         <Footer />
       </Stack>
     </>

@@ -206,8 +206,8 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     ar: "DzCode i / o هو مجتمع من المطورين الذين يحاولون حل المشاكل التقنية في الجزائر عبر برمجيات مفتوحة المصدر ، وهذا الموقع يساعدك في العثور على ، والمساهمة والإضافة إلى قائمة المشاريع مفتوحة المصدر التي تحل بعض المشاكل التقنية في الجزائر.",
   },
   "landing-heading-title": {
-    en: `<span class="CLASS"}>Open-Source</span> Algerian Comunity`,
-    ar: `مجموعة جزائرية للبرامج <span class="CLASS"}>مفتوحة المصدر</span>`,
+    en: `<span style="color:COLOR">Open-Source</span> Algerian Community`,
+    ar: `مجموعة جزائرية للبرامج <span style="color:COLOR">مفتوحة المصدر</span>`,
   },
   "landing-heading-subtitle": {
     en: `DzCode i/o helps you find, <a href="/Contribute">contribute</a> and add to the <a href="/Projects">list</a> of open-source projects that solve Algerian problems.`,

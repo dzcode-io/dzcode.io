@@ -5,7 +5,8 @@ import { Link as ReactRouterLink } from "react-router-dom";
 export type LinkProps = {
   // @TODO-ZM: make this required
   variant?: "v1" | "v2";
-  margin?: number;
+  // @TODO-ZM: dry Margin interface and code
+  margin?: number | number[];
   // @TODO-ZM: to remove these
   className?: string;
   style?: any;
@@ -24,11 +25,21 @@ export const linkFactory =
   ({ variant = "v1", margin, href, ...props }) => {
     const languageCode = getLanguageCode();
     const theme = useTheme();
-    const themedMargin = typeof margin === "number" ? theme.spacing(margin) : undefined;
+
+    // @TODO-ZM: dry Margin code
+    let themedMargin: string | undefined;
+    switch (typeof margin) {
+      case "number":
+        themedMargin = theme.spacing(margin);
+        break;
+      case "object":
+        themedMargin = margin.map((value) => theme.spacing(value)).join(" ");
+        break;
+    }
 
     const style: CSSProperties = {
       cursor: "pointer",
-      margin: themedMargin,
+      margin: themedMargin ? `${themedMargin}` : undefined,
       ...variantToLinkStyle[variant],
     };
 
