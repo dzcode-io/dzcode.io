@@ -1,0 +1,10 @@
+{
+  "name": "PHP JSON Tongue",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "elaborate-code",
+      "repository": "php-json-tongue"
+    }
+  ]
+}
