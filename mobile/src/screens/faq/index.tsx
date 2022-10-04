@@ -1,12 +1,11 @@
 import { useNavigation } from "@dzcode.io/ui-mobile/dist/_hooks/use-navigation";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { List } from "@dzcode.io/ui-mobile/dist/list";
+import { Markdown } from "@dzcode.io/ui-mobile/dist/markdown";
 import { Text } from "@dzcode.io/ui-mobile/dist/text/text";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
-import Markdown from "react-native-markdown-display";
 import { useFaqSliceSelector } from "src/redux/reducers/faq-screen/slice";
-import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { globalStyles } from "src/styles/global";
 import { openLink } from "src/utils/link";
 
@@ -15,7 +14,6 @@ import { faqStyles } from "./styles";
 export const FAQScreen: FC = () => {
   const navigation = useNavigation();
   const { data } = useFaqSliceSelector();
-  const { theme } = useGeneralSliceSelector();
 
   return (
     <ErrorBoundary>
@@ -27,36 +25,7 @@ export const FAQScreen: FC = () => {
               <List.Section>
                 {questions.map(({ question, answer }, index) => (
                   <List.Accordion key={`question-${index}`} title={question}>
-                    <Markdown
-                      style={{
-                        text: {
-                          color: theme === "dark" ? "white" : "black",
-                        },
-                        /* eslint-disable camelcase */
-                        bullet_list: {
-                          color: theme === "dark" ? "white" : "black",
-                        },
-                        ordered_list: {
-                          color: theme === "dark" ? "white" : "black",
-                        },
-                        /* eslint-enable camelcase */
-                        fence: {
-                          color: theme === "dark" ? "white" : "black",
-                          backgroundColor: theme === "dark" ? "black" : "white",
-                        },
-                        blockquote: {
-                          color: theme === "dark" ? "white" : "black",
-                          backgroundColor: theme === "dark" ? "black" : "white",
-                        },
-                        body: faqStyles.description,
-                      }}
-                      onLinkPress={(url) => {
-                        openLink(url, navigation);
-                        return true;
-                      }}
-                    >
-                      {answer}
-                    </Markdown>
+                    <Markdown content={answer} onLinkPress={(url) => openLink(url, navigation)} />
                   </List.Accordion>
                 ))}
               </List.Section>
