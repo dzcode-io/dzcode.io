@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/native";
 import { DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme } from "react-native-paper";
 import { Theme as PT } from "react-native-paper/lib/typescript/types";
-import { Colors } from "src/styles/colors";
+import { Colors } from "src/theme/style/color";
 
 // define combined default theme
 const CombinedDefaultTheme: PT & NT = {

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "src/styles/colors";
-import { MEDIUM_MARGIN_SIZE, SMALL_MARGIN_SIZE } from "src/utils/constants";
+import { MEDIUM_MARGIN_SIZE, SMALL_MARGIN_SIZE } from "src/_utils/constants";
+import { Colors } from "src/theme/style/color";
 
 export const cardStyles = StyleSheet.create({
   mainView: {

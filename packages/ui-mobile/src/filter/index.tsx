@@ -1,14 +1,14 @@
 import React, { VFC } from "react";
+import type { Filter } from "src/_types/filter";
 import { Checkbox } from "src/checkbox";
 import { List } from "src/list";
-import type { Filter } from "src/types";
 
-interface FiltersProps {
+interface FilterProps {
   filters: Filter[];
   onCheckboxPress: (filterName: string, optionName: string) => void;
 }
 
-export const Filters: VFC<FiltersProps> = ({ filters, onCheckboxPress }) => {
+export const Filters: VFC<FilterProps> = ({ filters, onCheckboxPress }) => {
   return (
     <List.AccordionGroup>
       {filters.map(({ name: filterName, label: filterLabel, options }) => (

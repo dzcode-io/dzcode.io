@@ -2,9 +2,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { act, render } from "@testing-library/react-native";
 import React, { FC } from "react";
 import { View } from "react-native";
-import { Route } from "src/types";
+import type { Route } from "src/_types/route";
 
-import { StackNav } from ".";
+import { DrawerNav } from ".";
 
 const Home: FC = () => <View />;
 
@@ -17,11 +17,11 @@ const routes: Route[] = [
   },
 ];
 
-describe("StackNav", () => {
+describe("DrawerNav", () => {
   it("should render", async () => {
     const { container } = render(
       <NavigationContainer>
-        <StackNav routes={routes} />
+        <DrawerNav routes={routes} />
       </NavigationContainer>,
     );
     await act(async () => {

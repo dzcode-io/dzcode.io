@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { StackHeaderMode } from "@react-navigation/stack/lib/typescript/src/types";
 import React, { VFC } from "react";
-import { Route } from "src/types";
+import type { Route } from "src/_types/route";
 
 const { Navigator, Screen } = createStackNavigator();
 

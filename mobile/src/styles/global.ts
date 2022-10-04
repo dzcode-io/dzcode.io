@@ -1,4 +1,4 @@
-import { LARGE_TEXT_SIZE } from "@dzcode.io/ui-mobile/dist/utils/constants";
+import { LARGE_TEXT_SIZE } from "@dzcode.io/ui-mobile/dist/_utils/constants";
 import { StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({

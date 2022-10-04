@@ -1,6 +1,6 @@
 import { default as BottomSheetWrapper } from "@gorhom/bottom-sheet";
 import React, { FC } from "react";
-import { useTheme } from "src/hooks";
+import { useTheme } from "src/_hooks/use-theme";
 
 import { bottomSheetStyles } from "./styles";
 

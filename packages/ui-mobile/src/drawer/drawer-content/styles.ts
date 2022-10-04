@@ -5,7 +5,7 @@ import {
   MEDIUM_MARGIN_SIZE,
   SMALL_LOGO_HEIGHT,
   SMALL_MARGIN_SIZE,
-} from "src/utils/constants";
+} from "src/_utils/constants";
 
 export const drawerStyles = StyleSheet.create({
   logoView: {

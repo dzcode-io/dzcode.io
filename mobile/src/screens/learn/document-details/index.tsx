@@ -1,10 +1,10 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import type { RouteParam } from "@dzcode.io/ui-mobile/dist/_types/route-param";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { Markdown } from "@dzcode.io/ui-mobile/dist/markdown";
-import { Text } from "@dzcode.io/ui-mobile/dist/text";
+import { Text } from "@dzcode.io/ui-mobile/dist/text/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
-import { RouteParam } from "@dzcode.io/ui-mobile/dist/types";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";

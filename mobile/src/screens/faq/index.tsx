@@ -1,7 +1,7 @@
+import { useNavigation } from "@dzcode.io/ui-mobile/dist/_hooks/use-navigation";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
-import { useNavigation } from "@dzcode.io/ui-mobile/dist/hooks";
 import { List } from "@dzcode.io/ui-mobile/dist/list";
-import { Text } from "@dzcode.io/ui-mobile/dist/text";
+import { Text } from "@dzcode.io/ui-mobile/dist/text/text";
 import React, { FC } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
 import Markdown from "react-native-markdown-display";

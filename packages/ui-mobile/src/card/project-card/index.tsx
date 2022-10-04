@@ -1,10 +1,10 @@
 import React, { FC, memo } from "react";
+import { Project } from "src/_types/project";
 import { Button } from "src/button";
-import { Card } from "src/card";
-import { Paragraph } from "src/paragraph";
-import { Colors } from "src/styles/colors";
-import { Title } from "src/title";
-import { Project } from "src/types";
+import { Card } from "src/card/card";
+import { Paragraph } from "src/text/paragraph";
+import { Title } from "src/text/title";
+import { Colors } from "src/theme/style/color";
 
 import { cardStyles } from "./styles";
 
