@@ -1,19 +1,20 @@
 import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
+import { Markdown } from "@dzcode.io/ui-mobile/dist/markdown";
 import { Text } from "@dzcode.io/ui-mobile/dist/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import { RouteParam } from "@dzcode.io/ui-mobile/dist/types";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
-import Markdown from "react-native-markdown-display";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
 import { fetchDocument } from "src/redux/actions/learn-screen";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { useLearnSliceSelector } from "src/redux/reducers/learn-screen/slice";
 import { globalStyles } from "src/styles/global";
+import { openLink } from "src/utils/link";
 
 import { documentDetailsStyles } from "./styles";
 
@@ -55,35 +56,10 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
             <Text style={documentDetailsStyles.authorsText}>{route.params.document.title}</Text>
             <Text style={documentDetailsStyles.descriptionText}>{currentDocument.description}</Text>
             <Markdown
-              style={{
-                text: {
-                  color: theme === "dark" ? "white" : "black",
-                },
-                /* eslint-disable camelcase */
-                bullet_list: {
-                  color: theme === "dark" ? "white" : "black",
-                },
-                ordered_list: {
-                  color: theme === "dark" ? "white" : "black",
-                },
-                fence: {
-                  color: theme === "dark" ? "white" : "black",
-                  backgroundColor: theme === "dark" ? "black" : "white",
-                },
-                blockquote: {
-                  color: theme === "dark" ? "white" : "black",
-                  backgroundColor: theme === "dark" ? "black" : "white",
-                },
-                code_inline: {
-                  color: theme === "dark" ? "white" : "black",
-                  backgroundColor: theme === "dark" ? "black" : "white",
-                },
-                body: documentDetailsStyles.mdBody,
-                /* eslint-enable camelcase */
-              }}
-            >
-              {currentDocument.content}
-            </Markdown>
+              content={currentDocument.content!}
+              theme={theme}
+              onLinkPress={(url) => openLink(url)}
+            />
             <Text style={documentDetailsStyles.authorsText}>
               Authors: {currentDocument.authors?.join(", ")}
             </Text>

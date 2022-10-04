@@ -11,3 +11,13 @@ jest.mock("react-native-reanimated", () => {
 
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
+
+jest.mock("@gorhom/bottom-sheet", () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const react = require("react-native");
+  return {
+    __esModule: true,
+    default: react.View,
+    BottomSheetScrollView: react.ScrollView,
+  };
+});

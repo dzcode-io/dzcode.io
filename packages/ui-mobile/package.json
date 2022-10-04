@@ -8,6 +8,8 @@
     "url": "https://omar-belghaouti.web.app"
   },
   "dependencies": {
+    "@expo-google-fonts/roboto": "^0.2.2",
+    "@gorhom/bottom-sheet": "^4",
     "@react-navigation/bottom-tabs": "5.11.2",
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/native": "~5.8.10",
