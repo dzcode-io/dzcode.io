@@ -1,0 +1,10 @@
+{
+  "name": "Laravel Algerian provinces",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "elaborate-code",
+      "repository": "laravel-algerian-provinces"
+    }
+  ]
+}
