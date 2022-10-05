@@ -42,3 +42,7 @@ tooling:
 # Add 'ui' to any changes within 'ui' folder or any subfolders
 ui:
   - packages/ui/**/*
+
+# Add 'ui-mobile' to any changes within 'ui-mobile' folder or any subfolders
+ui-mobile:
+  - packages/ui-mobile/**/*
