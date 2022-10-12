@@ -3,7 +3,7 @@ import {
   LARGE_MARGIN_SIZE,
   MEDIUM_MARGIN_SIZE,
   MEDIUM_TEXT_SIZE,
-} from "@dzcode.io/ui-mobile/dist/utils/constants";
+} from "@dzcode.io/ui-mobile/dist/_utils/constants";
 import { StyleSheet } from "react-native";
 
 export const articleDetailsStyles = StyleSheet.create({

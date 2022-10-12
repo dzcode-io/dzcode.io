@@ -6,12 +6,12 @@ import { FlatList } from "react-native";
 import { View } from "react-native";
 import { Badge } from "src/badge";
 import { Button } from "src/button";
-import { Card } from "src/card";
+import { Card } from "src/card/card";
 import { Chip } from "src/chip";
-import { Paragraph } from "src/paragraph";
-import { Colors } from "src/styles/colors";
-import { Text } from "src/text";
-import { Title } from "src/title";
+import { Paragraph } from "src/text/paragraph";
+import { Text } from "src/text/text";
+import { Title } from "src/text/title";
+import { Colors } from "src/theme/style/color";
 
 import { cardStyles } from "./styles";
 

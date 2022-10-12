@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/drawer";
 import { DrawerHeaderProps } from "@react-navigation/drawer/lib/typescript/src/types";
 import React, { VFC } from "react";
-import { Route } from "src/types";
+import type { Route } from "src/_types/route";
 
 const { Navigator, Screen } = createDrawerNavigator();
 

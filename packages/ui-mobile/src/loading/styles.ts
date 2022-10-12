@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { SMALL_LOGO_HEIGHT, SMALL_LOGO_WIDTH } from "src/utils/constants";
+import { SMALL_LOGO_HEIGHT, SMALL_LOGO_WIDTH } from "src/_utils/constants";
 
 export const dzcodeLoadingStyles = StyleSheet.create({
   imageView: {

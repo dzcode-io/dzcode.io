@@ -1,6 +1,6 @@
-import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation-container";
-import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme-provider";
-import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/themes";
+import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation/navigation-container";
+import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/theme";
+import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme/theme-provider";
 import React, { FC, useEffect } from "react";
 import { Provider, useDispatch } from "react-redux";
 import * as Sentry from "sentry-expo";

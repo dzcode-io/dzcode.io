@@ -1,8 +1,8 @@
+import type { Route } from "@dzcode.io/ui-mobile/dist/_types/route";
 import { AppBar } from "@dzcode.io/ui-mobile/dist/app-bar";
-import { DrawerActions } from "@dzcode.io/ui-mobile/dist/drawer-actions";
-import { DrawerContent } from "@dzcode.io/ui-mobile/dist/drawer-content";
-import { DrawerNav } from "@dzcode.io/ui-mobile/dist/drawer-nav";
-import type { Route } from "@dzcode.io/ui-mobile/dist/types";
+import { DrawerActions } from "@dzcode.io/ui-mobile/dist/drawer/drawer-actions";
+import { DrawerContent } from "@dzcode.io/ui-mobile/dist/drawer/drawer-content";
+import { DrawerNav } from "@dzcode.io/ui-mobile/dist/navigation/drawer-nav";
 import React, { FC } from "react";
 
 import { Navigation as ArticlesStack } from "./articles/navigation";

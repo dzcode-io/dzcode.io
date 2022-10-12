@@ -2,8 +2,8 @@ import { Roboto_400Regular, Roboto_700Bold, useFonts } from "@expo-google-fonts/
 import React, { VFC } from "react";
 import { View } from "react-native";
 import { default as MarkdownDisplay, MarkdownIt } from "react-native-markdown-display";
+import { LARGE_MARGIN_SIZE } from "src/_utils/constants";
 import { DZCodeLoading } from "src/loading";
-import { LARGE_MARGIN_SIZE } from "src/utils/constants";
 
 interface MarkdownProps {
   content: string;

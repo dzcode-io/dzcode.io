@@ -1,5 +1,5 @@
-import { Colors } from "@dzcode.io/ui-mobile/dist/styles/colors";
-import { MEDIUM_PADDING_SIZE, MEDIUM_TEXT_SIZE } from "@dzcode.io/ui-mobile/dist/utils/constants";
+import { MEDIUM_PADDING_SIZE, MEDIUM_TEXT_SIZE } from "@dzcode.io/ui-mobile/dist/_utils/constants";
+import { Colors } from "@dzcode.io/ui-mobile/dist/theme/style/color";
 import { StyleSheet } from "react-native";
 
 export const faqStyles = StyleSheet.create({

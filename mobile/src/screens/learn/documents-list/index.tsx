@@ -1,7 +1,7 @@
+import { useNavigation } from "@dzcode.io/ui-mobile/dist/_hooks/use-navigation";
 import { Button } from "@dzcode.io/ui-mobile/dist/button";
 import { Divider } from "@dzcode.io/ui-mobile/dist/divider";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
-import { useNavigation } from "@dzcode.io/ui-mobile/dist/hooks";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import React, { FC, useEffect } from "react";

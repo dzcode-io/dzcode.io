@@ -1,10 +1,10 @@
-import { BottomSheet } from "@dzcode.io/ui-mobile/dist/bottom-sheet";
-import { BottomSheetScrollView } from "@dzcode.io/ui-mobile/dist/bottom-sheet-scroll-view";
-import { ContributeCard } from "@dzcode.io/ui-mobile/dist/contribute-card";
+import { BottomSheet } from "@dzcode.io/ui-mobile/dist/bottom-sheet/bottom-sheet";
+import { BottomSheetScrollView } from "@dzcode.io/ui-mobile/dist/bottom-sheet/bottom-sheet-scroll-view";
+import { ContributeCard } from "@dzcode.io/ui-mobile/dist/card/contribute-card";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
-import { Filters } from "@dzcode.io/ui-mobile/dist/filters";
+import { Filters } from "@dzcode.io/ui-mobile/dist/filter";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
-import { Text } from "@dzcode.io/ui-mobile/dist/text";
+import { Text } from "@dzcode.io/ui-mobile/dist/text/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import React, { FC, useEffect, useState } from "react";
 import { FlatList, Image, Linking, SafeAreaView, View } from "react-native";

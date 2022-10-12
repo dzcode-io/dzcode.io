@@ -1,6 +1,6 @@
+import { ProjectCard } from "@dzcode.io/ui-mobile/dist/card/project-card";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
-import { ProjectCard } from "@dzcode.io/ui-mobile/dist/project-card";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
