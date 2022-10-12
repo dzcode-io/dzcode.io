@@ -17,6 +17,7 @@ interface NavBarProps {
   // @TODO-ZM: dry theme names
   themeName: "DARK" | "LIGHT" | "AUTO";
   logo: string;
+  logoExtended: string;
   links: Array<{ text: string; href: string }>;
   onLanguageChanged: (languageCode: LanguageEntity["code"]) => void;
   onThemeChanged: (themeName: NavBarProps["themeName"]) => void;
@@ -29,23 +30,21 @@ const themNameToText: Record<NavBarProps["themeName"], string> = {
   AUTO: "🌗",
 };
 
+const logoAspectRation = 100 / 17.5; // Width / Height
+// @TODO-ZM: 24 is an arbitrary number, use a regulated number
+const logoSize = { width: 24 * logoAspectRation, height: 24 };
+
 export const Navbar: FC<NavBarProps> = ({
   version,
   selectedLanguageCode,
   themeName,
   logo,
+  logoExtended,
   links,
   onLanguageChanged,
   onThemeChanged,
 }) => {
   const { t } = useTranslation();
-
-  const Logo: FC = () => (
-    // @TODO-ZM: 24 is an arbitrary number, use a regulated number
-    <Link href="/" variant="v2" margin={1}>
-      <Image src={logo} height={24} />
-    </Link>
-  );
 
   return (
     <Flex position="absolute">
@@ -53,7 +52,13 @@ export const Navbar: FC<NavBarProps> = ({
         <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
           <Stack direction="horizontal" alignItems="center">
             <MediaQuery upTo="md">
-              <Logo />
+              <Link href="/" variant="v2" margin={1}>
+                <Flex {...logoSize} position="relative">
+                  <Flex position="absolute" bottom={0} display="flex">
+                    <Image src={logoExtended} width={logoSize.width} />
+                  </Flex>
+                </Flex>
+              </Link>
             </MediaQuery>
             <Link
               margin={1}
@@ -114,7 +119,9 @@ export const Navbar: FC<NavBarProps> = ({
           <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
             <Stack direction="horizontal" overflow="auto">
               <MediaQuery downTo="md">
-                <Logo />
+                <Link href="/" variant="v2" margin={1}>
+                  <Image src={logo} width={logoSize.width} />
+                </Link>
               </MediaQuery>
               <Flex grow={1} />
               {links.map(({ text, href }, index) => (

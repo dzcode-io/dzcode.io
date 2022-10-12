@@ -8,6 +8,7 @@ import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import logo from "src/assets/svg/logo-wide.svg";
+import logoExtended from "src/assets/svg/logo-wide-extended.svg";
 import { Footer } from "src/components/footer";
 import { Loading } from "src/components/loading";
 import { t } from "src/components/t";
@@ -87,6 +88,7 @@ export const App: FC = () => {
           selectedLanguageCode={language.code}
           themeName={themeName}
           logo={logo}
+          logoExtended={logoExtended}
           links={links}
           onLanguageChanged={(selectedLanguageCode) => {
             actions.settings.set({
