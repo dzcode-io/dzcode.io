@@ -11,6 +11,13 @@ import { Text } from "react-native-paper";
 
 import { drawerStyles } from "./styles";
 
+/**
+ * DrawerContent component used to display the drawer content in the app
+ * @prop {DrawerContentComponentProps<DrawerContentOptions> & { version: string }} props - the props of the drawer content
+ * @example
+ * <DrawerContent {...props} version={version} />
+ * @see https://reactnavigation.org/docs/drawer-navigator/#custom-drawer-content
+ */
 export const DrawerContent: FC<
   DrawerContentComponentProps<DrawerContentOptions> & { version: string }
 > = (props) => {
