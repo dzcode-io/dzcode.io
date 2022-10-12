@@ -10,18 +10,26 @@ import type { Route } from "src/_types/route";
 const { Navigator, Screen } = createDrawerNavigator();
 
 interface DrawerNavProps {
+  /**
+   * the routes of the drawer navigation
+   */
   routes: Route[];
+  /**
+   * the initial route name of the drawer navigation
+   */
   initialRouteName?: string;
+  /**
+   * the header of the drawer navigation
+   */
   header?: (props: DrawerHeaderProps) => React.ReactNode;
+  /**
+   * the drawer content of the drawer navigation
+   */
   drawerContent?: (props: DrawerContentComponentProps<DrawerContentOptions>) => React.ReactNode;
 }
 
 /**
  * DrawerNav component used to create a drawer navigation
- * @prop {Route[]} routes - the routes of the drawer navigation
- * @prop {string} initialRouteName - the initial route name of the drawer navigation
- * @prop {(props: DrawerHeaderProps) => React.ReactNode} header - the header of the drawer navigation
- * @prop {(props: DrawerContentComponentProps<DrawerContentOptions>) => React.ReactNode} drawerContent - the drawer content of the drawer navigation
  * @example
  * <DrawerNav
  *    routes={routes}

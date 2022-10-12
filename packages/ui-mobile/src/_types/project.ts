@@ -8,13 +8,40 @@
  * };
  */
 export interface Project {
+  /**
+   * the slug of the project
+   */
   slug: string;
+  /**
+   * the image url of the project
+   */
   image?: string;
+  /**
+   * the title of the project
+   */
   title: string;
+  /**
+   * the description of the project
+   */
   description?: string;
+  /**
+   * the content of the project
+   */
   content?: string;
+  /**
+   * the author of the project
+   */
   authors?: string[];
+  /**
+   * the contributors of the project
+   */
   contributors?: string[];
+  /**
+   * the number of views of the project
+   */
   views?: number;
+  /**
+   * the github uri of the project
+   */
   githubURI?: string;
 }

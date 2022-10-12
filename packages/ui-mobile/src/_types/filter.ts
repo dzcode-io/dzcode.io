@@ -16,7 +16,16 @@ import { Option } from "./option";
  * };
  */
 export interface Filter {
+  /**
+   * the label of the filter
+   */
   label: string;
+  /**
+   * the name of the filter
+   */
   name: string;
+  /**
+   * the options of the filter
+   */
   options: Option[];
 }

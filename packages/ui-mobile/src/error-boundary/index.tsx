@@ -3,14 +3,19 @@ import React, { FC, PropsWithChildren } from "react";
 import { Linking, View } from "react-native";
 import { Button, Headline } from "react-native-paper";
 
-type ErrorBoundaryProps = PropsWithChildren<{
+interface ErrorBoundaryProps {
+  /**
+   * the children of the error boundary
+   */
+  children?: React.ReactNode;
+  /**
+   * the message to display when an error is caught
+   */
   message?: string;
-}>;
+}
 
 /**
  * ErrorBoundary component used to display a fallback UI when an error is caught
- * @prop {React.ReactNode} children - the children of the error boundary
- * @prop {string} message - the message to display when an error is caught
  * @example
  * <ErrorBoundary>
  *    <Text>Content</Text>

@@ -4,11 +4,13 @@ import { Animated, ImageStyle } from "react-native";
 import { dzcodeLoadingStyles } from "./styles";
 
 interface DZCodeLoadingProps {
+  /**
+   * the style of the dzcode.io logo
+   */
   style?: ImageStyle;
 }
 /**
  * DZCodeLoading component used to display the dzcode.io loading logo in the app
- * @prop {ImageStyle} style - the style of the dzcode.io logo
  * @example
  * <DZCodeLoading style={{ width: 100, height: 100 }} />
  * @see https://reactnative.dev/docs/image#style

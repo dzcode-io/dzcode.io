@@ -17,8 +17,17 @@ import { cardStyles } from "./styles";
 
 interface ContributeCardProps
   extends Pick<ContributionEntity, "title" | "labels" | "type" | "updatedAt" | "commentsCount"> {
+  /**
+   * the subtitle of the contribute card
+   */
   subtitle: string;
+  /**
+   * the function that is called when a chip is pressed
+   */
   onChipPress: (item: string) => void;
+  /**
+   * the function that is called when the contribute card is pressed
+   */
   onPress: () => void;
 }
 
@@ -99,14 +108,6 @@ const CardItem: FC<ContributeCardProps> = ({
 
 /**
  * ContributeCard component used to display the contribute card in the app
- * @prop {string} title - the title of the contribute card
- * @prop {string} subtitle - the subtitle of the contribute card
- * @prop {string[]} labels - the labels of the contribute card
- * @prop {string} type - the type of the contribute card
- * @prop {string} updatedAt - the updatedAt of the contribute card
- * @prop {number} commentsCount - the commentsCount of the contribute card
- * @prop {VoidFunction} onChipPress - a function that is called when a chip is pressed
- * @prop {VoidFunction} onPress - a function that is called when the contribute card is pressed
  * @example
  * <ContributeCard
  *    title="Add a new feature"

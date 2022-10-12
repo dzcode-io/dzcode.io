@@ -4,15 +4,21 @@ import { useTheme } from "src/_hooks/use-theme";
 
 import { bottomSheetStyles } from "./styles";
 
+interface BottomSheetProps {
+  /**
+   * the children of the bottom sheet
+   */
+  children: React.ReactNode;
+}
+
 /**
  * BottomSheet component used to display the bottom sheet in the app
- * @prop {React.ReactNode} children - the children of the bottom sheet
  * @example
  * <BottomSheet>
  *  <Text>Bottom Sheet Content</Text>
  * </BottomSheet>
  */
-export const BottomSheet: FC = ({ children }) => {
+export const BottomSheet: FC<BottomSheetProps> = ({ children }) => {
   const { colors } = useTheme();
   return (
     <BottomSheetWrapper

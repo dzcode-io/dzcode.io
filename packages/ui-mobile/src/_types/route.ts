@@ -25,8 +25,20 @@
  * };
  */
 export interface Route {
+  /**
+   * the name of the route
+   */
   name: string;
+  /**
+   * the title of the route
+   */
   title?: string;
+  /**
+   * the label of the route
+   */
   label?: string;
+  /**
+   * the component of the route
+   */
   component: React.ComponentType<any>;
 }

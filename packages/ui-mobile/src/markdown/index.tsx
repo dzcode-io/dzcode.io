@@ -6,16 +6,22 @@ import { LARGE_MARGIN_SIZE } from "src/_utils/constants";
 import { DZCodeLoading } from "src/loading";
 
 interface MarkdownProps {
+  /**
+   * the markdown content to display
+   */
   content: string;
+  /**
+   * the theme of the markdown
+   */
   theme?: "dark" | "light";
+  /**
+   * the function to open the link
+   */
   onLinkPress?: (url: string) => void;
 }
 
 /**
  * Markdown component used to display markdown content
- * @prop {string} content - the markdown content to display
- * @prop {string} theme - the theme of the markdown
- * @prop {Function} onLinkPress - the function to open the link
  * @example
  * <Markdown
  *    content={"# Hello world"}

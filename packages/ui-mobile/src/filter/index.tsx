@@ -4,14 +4,18 @@ import { Checkbox } from "src/checkbox";
 import { List } from "src/list";
 
 interface FilterProps {
+  /**
+   * the filters to display
+   */
   filters: Filter[];
+  /**
+   * the function to call when a checkbox is pressed
+   */
   onCheckboxPress: (filterName: string, optionName: string) => void;
 }
 
 /**
  * Filters component used to display the list of filters coming from `@dzcode.io/api` in the app
- * @prop {Filter[]} filters - the filters to display
- * @prop {Function} onCheckboxPress - the function to call when a checkbox is pressed
  * @example
  * <Filters
  *    filters={filters}

@@ -8,7 +8,16 @@
  * };
  */
 export interface Option {
+  /**
+   * the label of the option
+   */
   label: string;
+  /**
+   * the name of the option
+   */
   name: string;
+  /**
+   * whether the option is checked or not
+   */
   checked?: boolean;
 }
