@@ -7,6 +7,15 @@ type ErrorBoundaryProps = PropsWithChildren<{
   message?: string;
 }>;
 
+/**
+ * ErrorBoundary component used to display a fallback UI when an error is caught
+ * @prop {React.ReactNode} children - the children of the error boundary
+ * @prop {string} message - the message to display when an error is caught
+ * @example
+ * <ErrorBoundary>
+ *    <Text>Content</Text>
+ * </ErrorBoundary>
+ */
 export const ErrorBoundary: FC<ErrorBoundaryProps> = ({
   children,
   message = "Ops, something broke, we're checking on our end...",
