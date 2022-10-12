@@ -28,7 +28,11 @@ const CombinedDarkTheme = {
   },
 };
 
-// default theme
+/**
+ * default theme for the app
+ * @see https://callstack.github.io/react-native-paper/theming.html
+ * @see https://reactnavigation.org/docs/themes/
+ */
 export const defaultTheme = {
   ...CombinedDefaultTheme,
   colors: {
@@ -38,7 +42,11 @@ export const defaultTheme = {
   },
 };
 
-// dark theme
+/**
+ * dark theme for the app
+ * @see https://callstack.github.io/react-native-paper/theming.html
+ * @see https://reactnavigation.org/docs/themes/
+ */
 export const darkTheme = {
   ...CombinedDarkTheme,
   colors: {
