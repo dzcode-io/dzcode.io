@@ -11,6 +11,18 @@ interface MarkdownProps {
   onLinkPress?: (url: string) => void;
 }
 
+/**
+ * Markdown component used to display markdown content
+ * @prop {string} content - the markdown content to display
+ * @prop {string} theme - the theme of the markdown
+ * @prop {Function} onLinkPress - the function to open the link
+ * @example
+ * <Markdown
+ *    content={"# Hello world"}
+ *    theme="dark"
+ *    onLinkPress={url => Linking.openURL(url)}
+ * />
+ */
 export const Markdown: VFC<MarkdownProps> = ({ content, theme = "light", onLinkPress }) => {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
