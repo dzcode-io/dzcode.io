@@ -11,6 +11,18 @@ interface StackNavProps {
   headerMode?: StackHeaderMode;
 }
 
+/**
+ * StackNav component used to create a stack navigation
+ * @prop {Route[]} routes - the routes of the stack navigation
+ * @prop {string} initialRouteName - the initial route name of the stack navigation
+ * @prop {StackHeaderMode} headerMode - the header mode of the stack navigation
+ * @example
+ * <StackNav
+ *    routes={routes}
+ *    initialRouteName="contribute"
+ *    headerMode="none"
+ * />
+ */
 export const StackNav: VFC<StackNavProps> = ({ routes, initialRouteName, headerMode }) => {
   return (
     <Navigator initialRouteName={initialRouteName} headerMode={headerMode}>
