@@ -22,7 +22,7 @@ interface ContributeCardProps
   onPress: () => void;
 }
 
-export const CardItem: FC<ContributeCardProps> = ({
+const CardItem: FC<ContributeCardProps> = ({
   title,
   subtitle,
   labels,
@@ -97,4 +97,26 @@ export const CardItem: FC<ContributeCardProps> = ({
   );
 };
 
+/**
+ * ContributeCard component used to display the contribute card in the app
+ * @prop {string} title - the title of the contribute card
+ * @prop {string} subtitle - the subtitle of the contribute card
+ * @prop {string[]} labels - the labels of the contribute card
+ * @prop {string} type - the type of the contribute card
+ * @prop {string} updatedAt - the updatedAt of the contribute card
+ * @prop {number} commentsCount - the commentsCount of the contribute card
+ * @prop {VoidFunction} onChipPress - a function that is called when a chip is pressed
+ * @prop {VoidFunction} onPress - a function that is called when the contribute card is pressed
+ * @example
+ * <ContributeCard
+ *    title="Add a new feature"
+ *    subtitle="dzcode.io"
+ *    labels={["enhancement", "good first issue"]}
+ *    type="issue"
+ *    updatedAt="2021-01-01T00:00:00.000Z"
+ *    commentsCount={0}
+ *    onChipPress={(item) => console.log(item)}
+ *    onPress={() => console.log("pressed")}
+ * />
+ */
 export const ContributeCard = memo(CardItem);
