@@ -8,6 +8,16 @@ interface FilterProps {
   onCheckboxPress: (filterName: string, optionName: string) => void;
 }
 
+/**
+ * Filters component used to display the list of filters coming from `@dzcode.io/api` in the app
+ * @prop {Filter[]} filters - the filters to display
+ * @prop {Function} onCheckboxPress - the function to call when a checkbox is pressed
+ * @example
+ * <Filters
+ *    filters={filters}
+ *    onCheckboxPress={(filterName, optionName) => console.log(filterName, optionName)}
+ * />
+ */
 export const Filters: VFC<FilterProps> = ({ filters, onCheckboxPress }) => {
   return (
     <List.AccordionGroup>
