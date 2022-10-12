@@ -2,6 +2,18 @@ import React, { FC } from "react";
 import { View } from "react-native";
 import { Button, Headline } from "react-native-paper";
 
+/**
+ * TryAgain component used to display a button to try again when an error is caught
+ * @prop {VoidFunction} onClick - the function to call when the button is clicked
+ * @prop {string} error - the error message to display
+ * @prop {string} action - the action to display on the button
+ * @example
+ * <TryAgain
+ *    onClick={() => {}}
+ *    error="Ops, something broke, we're checking on our end..."
+ *    action="Try again"
+ * />
+ */
 export const TryAgain: FC<{
   onClick: () => void;
   error: string;
