@@ -1,13 +1,15 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { useColors } from "@dzcode.io/ui/dist/hooks/use-colors";
+import { Milestones } from "@dzcode.io/ui/dist/milestones";
 import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
+import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { Button } from "@dzcode.io/ui/dist/v2/button";
 import { Image } from "@dzcode.io/ui/dist/v2/image";
 import { Markdown } from "@dzcode.io/ui/dist/v2/markdown";
 import { MediaQuery } from "@dzcode.io/ui/dist/v2/media-query";
 import { Stack } from "@dzcode.io/ui/dist/v2/stack";
 import { Text } from "@dzcode.io/ui/dist/v2/text";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import androidDark from "src/assets/png/android-dark.png";
 import androidLight from "src/assets/png/android-light.png";
@@ -17,10 +19,13 @@ import headerImage from "src/assets/svg/dzcode.svg";
 import { LinkV2 } from "src/components/link-v2";
 import { T, t } from "src/components/t";
 import { fullstackConfig } from "src/config";
+import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
 import { useSliceSelector } from "src/redux/selectors";
 
 export const LandingPage: FC = () => {
   const { darkMode, language } = useSliceSelector("settings");
+  const { milestones } = useSliceSelector("landingPage");
+
   const { from } = useColors();
 
   const mobileApps = [
@@ -33,6 +38,10 @@ export const LandingPage: FC = () => {
       href: fullstackConfig.mobile.ios.url,
     },
   ];
+
+  useEffect(() => {
+    fetchDzCodeMilestones();
+  }, []);
 
   return (
     <ErrorBoundary>
@@ -79,7 +88,38 @@ export const LandingPage: FC = () => {
             </MediaQuery>
           </Stack>
           <Stack direction="vertical" alignItems="center">
-            <Text variant="v3" margin={[0, 3]}>
+            <Text variant="v3" margin={[3, 3, 0, 3]}>
+              <T landing-milestones-title />
+            </Text>
+            <Text variant="v2" margin={3}>
+              <T landing-milestones-subtitle />
+            </Text>
+            {milestones === "ERROR" ? (
+              <TryAgain
+                error={t("landing-milestones-error")}
+                action={t("landing-milestones-try-again")}
+                onClick={() => fetchDzCodeMilestones()}
+              />
+            ) : (
+              <Milestones
+                milestones={milestones?.map(({ id, title, description, ...milestone }) => ({
+                  id,
+                  title,
+                  description,
+                  state: milestone.status,
+                  progress:
+                    milestone.closedIssuesCount /
+                    (milestone.openIssuesCount + milestone.closedIssuesCount),
+                  date: milestone.closedAt || milestone.dueAt,
+                }))}
+                onClick={(milestoneIndex) => {
+                  window.open(milestones?.[milestoneIndex].url, "_blank");
+                }}
+              />
+            )}
+          </Stack>
+          <Stack direction="vertical" margin={[0, 0, 3, 0]} alignItems="center">
+            <Text variant="v3" margin={[3, 3, 0, 3]}>
               <T landing-mobile-title />
             </Text>
             <Text variant="v2" margin={3}>
