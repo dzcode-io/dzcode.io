@@ -3,7 +3,10 @@ import { useTheme } from "@mui/material/styles";
 import type { FC } from "react";
 
 export interface StackProps
-  extends Pick<MUIStackProps, "alignItems" | "justifyContent" | "overflow" | "height"> {
+  extends Pick<
+    MUIStackProps,
+    "alignItems" | "justifyContent" | "overflow" | "height" | "width" | "flexWrap"
+  > {
   direction: "vertical" | "horizontal";
   // @TODO-ZM: dry Margin interface and code
   margin?: number | number[];

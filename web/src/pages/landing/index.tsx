@@ -9,13 +9,30 @@ import { Stack } from "@dzcode.io/ui/dist/v2/stack";
 import { Text } from "@dzcode.io/ui/dist/v2/text";
 import { FC } from "react";
 import { Helmet } from "react-helmet";
+import androidDark from "src/assets/png/android-dark.png";
+import androidLight from "src/assets/png/android-light.png";
+import iosDark from "src/assets/png/ios-dark.png";
+import iosLight from "src/assets/png/ios-light.png";
 import headerImage from "src/assets/svg/dzcode.svg";
+import { LinkV2 } from "src/components/link-v2";
 import { T, t } from "src/components/t";
+import { fullstackConfig } from "src/config";
 import { useSliceSelector } from "src/redux/selectors";
 
 export const LandingPage: FC = () => {
   const { darkMode, language } = useSliceSelector("settings");
   const { from } = useColors();
+
+  const mobileApps = [
+    {
+      image: darkMode ? androidDark : androidLight,
+      href: fullstackConfig.mobile.android.url,
+    },
+    {
+      image: darkMode ? iosDark : iosLight,
+      href: fullstackConfig.mobile.ios.url,
+    },
+  ];
 
   return (
     <ErrorBoundary>
@@ -61,8 +78,27 @@ export const LandingPage: FC = () => {
               <Image src={headerImage} width="40%" margin={3} />
             </MediaQuery>
           </Stack>
-          <div>Mobile</div>
-          <div>Milestones</div>
+          <Stack direction="vertical" alignItems="center">
+            <Text variant="v3" margin={[0, 3]}>
+              <T landing-mobile-title />
+            </Text>
+            <Text variant="v2" margin={3}>
+              <T landing-mobile-subtitle />
+            </Text>
+            <Stack
+              direction="horizontal"
+              justifyContent="space-around"
+              alignItems="center"
+              width="100%"
+              flexWrap="wrap"
+            >
+              {mobileApps.map((mobileApp, index) => (
+                <LinkV2 key={`mobile-app-${index}`} href={mobileApp.href} variant="v2">
+                  <Image src={mobileApp.image} height="480" />
+                </LinkV2>
+              ))}
+            </Stack>
+          </Stack>
         </Stack>
       </ThemeProvider>
     </ErrorBoundary>
