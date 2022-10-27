@@ -1,0 +1,10 @@
+{
+  "name": "MERN Auth Roles Boilerplate",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "adelpro",
+      "repository": "MERN-auth-roles-boilerplate" 
+    }
+  ]
+}
