@@ -1,0 +1,10 @@
+{
+  "name": "QuranIPFS",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "adelpro",
+      "repository": "Quranipfs"
+    }
+  ]
+}
