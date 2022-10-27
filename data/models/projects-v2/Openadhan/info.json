@@ -1,0 +1,10 @@
+{
+  "name": "Openadhan",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "adelpro",
+      "repository": "Openadhan"
+    }
+  ]
+}
