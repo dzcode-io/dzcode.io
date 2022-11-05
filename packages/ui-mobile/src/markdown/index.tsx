@@ -6,11 +6,29 @@ import { LARGE_MARGIN_SIZE } from "src/_utils/constants";
 import { DZCodeLoading } from "src/loading";
 
 interface MarkdownProps {
+  /**
+   * the markdown content to display
+   */
   content: string;
+  /**
+   * the theme of the markdown
+   */
   theme?: "dark" | "light";
+  /**
+   * the function to open the link
+   */
   onLinkPress?: (url: string) => void;
 }
 
+/**
+ * Markdown component used to display markdown content
+ * @example
+ * <Markdown
+ *    content={"# Hello world"}
+ *    theme="dark"
+ *    onLinkPress={url => Linking.openURL(url)}
+ * />
+ */
 export const Markdown: VFC<MarkdownProps> = ({ content, theme = "light", onLinkPress }) => {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,

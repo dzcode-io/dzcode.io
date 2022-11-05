@@ -17,12 +17,21 @@ import { cardStyles } from "./styles";
 
 interface ContributeCardProps
   extends Pick<ContributionEntity, "title" | "labels" | "type" | "updatedAt" | "commentsCount"> {
+  /**
+   * the subtitle of the contribute card
+   */
   subtitle: string;
+  /**
+   * the function that is called when a chip is pressed
+   */
   onChipPress: (item: string) => void;
+  /**
+   * the function that is called when the contribute card is pressed
+   */
   onPress: () => void;
 }
 
-export const CardItem: FC<ContributeCardProps> = ({
+const CardItem: FC<ContributeCardProps> = ({
   title,
   subtitle,
   labels,
@@ -97,4 +106,18 @@ export const CardItem: FC<ContributeCardProps> = ({
   );
 };
 
+/**
+ * ContributeCard component used to display the contribute card in the app
+ * @example
+ * <ContributeCard
+ *    title="Add a new feature"
+ *    subtitle="dzcode.io"
+ *    labels={["enhancement", "good first issue"]}
+ *    type="issue"
+ *    updatedAt="2021-01-01T00:00:00.000Z"
+ *    commentsCount={0}
+ *    onChipPress={(item) => console.log(item)}
+ *    onPress={() => console.log("pressed")}
+ * />
+ */
 export const ContributeCard = memo(CardItem);

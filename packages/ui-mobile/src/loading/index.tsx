@@ -4,8 +4,17 @@ import { Animated, ImageStyle } from "react-native";
 import { dzcodeLoadingStyles } from "./styles";
 
 interface DZCodeLoadingProps {
+  /**
+   * the style of the dzcode.io logo
+   */
   style?: ImageStyle;
 }
+/**
+ * DZCodeLoading component used to display the dzcode.io loading logo in the app
+ * @example
+ * <DZCodeLoading style={{ width: 100, height: 100 }} />
+ * @see https://reactnative.dev/docs/image#style
+ */
 
 export const DZCodeLoading: VFC<DZCodeLoadingProps> = ({ style }: DZCodeLoadingProps) => {
   const [rotateAnimValue, setRotateAnimValue] = useState(new Animated.Value(0));

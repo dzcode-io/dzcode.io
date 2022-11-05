@@ -46,4 +46,16 @@ const CardItem: FC<ProjectCardProps> = ({
   );
 };
 
+/**
+ * ProjectCard component used to display the project card in the app
+ * @prop {Project} project - the project to display
+ * @prop {string} theme - the theme of the card
+ * @prop {Function} openLink - the function to open the link
+ * @example
+ * <ProjectCard
+ *    project={project}
+ *    theme="dark"
+ *    openLink={url => Linking.openURL(url)}
+ * />
+ */
 export const ProjectCard = memo(CardItem);

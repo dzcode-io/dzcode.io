@@ -11,9 +11,20 @@ import { Text } from "react-native-paper";
 
 import { drawerStyles } from "./styles";
 
-export const DrawerContent: FC<
-  DrawerContentComponentProps<DrawerContentOptions> & { version: string }
-> = (props) => {
+interface DrawerContentProps extends DrawerContentComponentProps<DrawerContentOptions> {
+  /**
+   * the version of the app
+   */
+  version: string;
+}
+
+/**
+ * DrawerContent component used to display the drawer content in the app
+ * @example
+ * <DrawerContent {...props} version={version} />
+ * @see https://reactnavigation.org/docs/drawer-navigator/
+ */
+export const DrawerContent: FC<DrawerContentProps> = (props) => {
   return (
     <DrawerContentScrollView {...props}>
       <SafeAreaView>
