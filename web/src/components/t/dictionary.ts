@@ -34,10 +34,9 @@ export const dictionary = {
   "footer-category-link-text-youTube": { en: "YouTube", ar: "يوتيوب" },
   "footer-category-link-text-twitter": { en: "Twitter", ar: "تويتر" },
   "footer-category-link-text-linkedIn": { en: "LinkedIn", ar: "لينكد إن" },
-  "footer-contact-information": { en: "FAQ", ar: "اسئلة / اجوبة" },
-  "footer-category-link-text-copyright": {
-    en: "Copyright ©",
-    ar: "حقوق النشر ©",
+  "footer-bottom-text": {
+    en: `Copyright © CURRENT_YEAR <a dir="ltr" href="https://twitter.com/dzcode_io">@dzCode_io</a>`,
+    ar: `حقوق النشر © CURRENT_YEAR <a dir="ltr" href="https://twitter.com/dzcode_io">@dzCode_io</a>`,
   },
 
   "faq-title": {

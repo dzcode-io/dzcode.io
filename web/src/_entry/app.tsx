@@ -2,6 +2,7 @@ import "./style.scss";
 
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
 import { Flex, MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/v2/flex";
+import { Footer } from "@dzcode.io/ui/dist/v2/footer";
 import { Navbar } from "@dzcode.io/ui/dist/v2/navbar";
 import { Stack } from "@dzcode.io/ui/dist/v2/stack";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
@@ -9,7 +10,6 @@ import { Helmet } from "react-helmet";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import logo from "src/assets/svg/logo-wide.svg";
 import logoExtended from "src/assets/svg/logo-wide-extended.svg";
-import { Footer } from "src/components/footer";
 import { Loading } from "src/components/loading";
 import { t } from "src/components/t";
 import { actions } from "src/redux";
@@ -61,6 +61,7 @@ export const App: FC = () => {
   const match = useRouteMatch<{ lang?: LanguageEntity["code"] }>(urlLanguageRegEx);
   const { language, themeName } = useSliceSelector("settings");
   const { links } = useSliceSelector("navbarComponent");
+  const { sections } = useSliceSelector("footerComponent");
 
   useEffect(() => {
     if (getEnv() !== "development") {
@@ -113,7 +114,7 @@ export const App: FC = () => {
             </Switch>
           </Suspense>
         </Flex>
-        <Footer />
+        <Footer sections={sections} bottomText="footer-bottom-text" />
       </Stack>
     </>
   );

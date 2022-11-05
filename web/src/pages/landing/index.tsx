@@ -118,7 +118,7 @@ export const LandingPage: FC = () => {
               />
             )}
           </Stack>
-          <Stack direction="vertical" margin={[0, 0, 3, 0]} alignItems="center">
+          <Stack direction="vertical" margin={[0, 0, 3 + 3, 0]} alignItems="center">
             <Text variant="v3" margin={[3, 3, 0, 3]}>
               <T landing-mobile-title />
             </Text>
