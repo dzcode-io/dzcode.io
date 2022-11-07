@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { useTranslation } from "src/hooks/use-translation";
-import { Link } from "src/link-factory";
+import { useTranslation } from "src/_hooks/use-translation";
+import { Link } from "src/link";
 import { Divider } from "src/v2/divider";
 import { Flex } from "src/v2/flex";
 import { Markdown } from "src/v2/markdown";

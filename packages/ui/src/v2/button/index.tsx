@@ -1,7 +1,7 @@
 import MUIButton, { ButtonProps as MUIButtonProps } from "@mui/material/Button";
 import { useTheme } from "@mui/material/styles";
 import { FC, MouseEvent } from "react";
-import { Link } from "src/link-factory";
+import { Link } from "src/link";
 
 export interface ButtonProps {
   variant: "v1" | "v2" | "v3";

@@ -1,3 +1,4 @@
+import { Link } from "@dzcode.io/ui/dist/link";
 import Button from "@material-ui/core/Button";
 import MuiCard from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -8,7 +9,6 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
-import { LinkV2 } from "src/components/link-v2";
 
 interface CardInfo {
   image: string;
@@ -56,11 +56,11 @@ export const Card: FC<CardProps> = ({ info }) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <LinkV2 href={info.link}>
+            <Link href={info.link}>
               <Button size="small" color="primary">
                 {info.actionLabel}
               </Button>
-            </LinkV2>
+            </Link>
           </CardActions>
         </>
       ) : (

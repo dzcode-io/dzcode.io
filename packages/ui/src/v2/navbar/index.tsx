@@ -1,7 +1,7 @@
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
 import { FC, Fragment } from "react";
-import { useTranslation } from "src/hooks/use-translation";
-import { Link } from "src/link-factory";
+import { useTranslation } from "src/_hooks/use-translation";
+import { Link } from "src/link";
 import { Button } from "src/v2/button";
 import { Divider } from "src/v2/divider";
 import { Dropdown } from "src/v2/dropdown";

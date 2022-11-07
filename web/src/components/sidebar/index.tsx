@@ -1,3 +1,4 @@
+import { Link } from "@dzcode.io/ui/dist/link";
 import Drawer from "@material-ui/core/Drawer";
 import createStyles from "@material-ui/core/styles/createStyles";
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -10,7 +11,6 @@ import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import TreeItem from "@material-ui/lab/TreeItem";
 import TreeView from "@material-ui/lab/TreeView";
 import { FC, Fragment } from "react";
-import { LinkV2 } from "src/components/link-v2";
 import { SpeedDial } from "src/components/speed-dial";
 
 export interface SidebarTreeItem {
@@ -80,7 +80,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       nodeId={node.id}
       label={
         node.id && node.children ? (
-          <LinkV2
+          <Link
             className={classes.treeItem}
             href={`${props.path}/${node.id}`}
             style={{
@@ -90,7 +90,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
             }}
           >
             {node.content}
-          </LinkV2>
+          </Link>
         ) : (
           <div className={classes.treeItem}>{node.content}</div>
         )

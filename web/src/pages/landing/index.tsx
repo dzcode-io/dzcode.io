@@ -1,5 +1,6 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { useColors } from "@dzcode.io/ui/dist/hooks/use-colors";
+import { Link } from "@dzcode.io/ui/dist/link";
 import { Milestones } from "@dzcode.io/ui/dist/milestones";
 import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
@@ -16,7 +17,6 @@ import androidLight from "src/assets/png/android-light.png";
 import iosDark from "src/assets/png/ios-dark.png";
 import iosLight from "src/assets/png/ios-light.png";
 import headerImage from "src/assets/svg/dzcode.svg";
-import { LinkV2 } from "src/components/link-v2";
 import { T, t } from "src/components/t";
 import { fullstackConfig } from "src/config";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
@@ -133,9 +133,9 @@ export const LandingPage: FC = () => {
               flexWrap="wrap"
             >
               {mobileApps.map((mobileApp, index) => (
-                <LinkV2 key={`mobile-app-${index}`} href={mobileApp.href} variant="v2">
+                <Link key={`mobile-app-${index}`} href={mobileApp.href} variant="v2">
                   <Image src={mobileApp.image} height="480" />
-                </LinkV2>
+                </Link>
               ))}
             </Stack>
           </Stack>

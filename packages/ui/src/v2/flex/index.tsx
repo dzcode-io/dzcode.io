@@ -1,5 +1,5 @@
 import type { CSSProperties, FC } from "react";
-import { Color, useColors } from "src/hooks/use-colors";
+import { Color, useColors } from "src/_hooks/use-colors";
 
 // @TODO-ZM: dry this
 export const MAX_CONTAINER_WIDTH = 1200;

@@ -1,12 +1,15 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
+import { LinkProvider } from "@dzcode.io/ui/dist/link";
 import { Theme } from "@dzcode.io/ui/dist/v2/theme";
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
+import { FC } from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
 import { TranslationProvider } from "src/components/t";
 import { getStore } from "src/redux";
+import { useSliceSelector } from "src/redux/selectors";
 import { getEnv } from "src/utils";
 import { history } from "src/utils/history";
 
@@ -25,13 +28,23 @@ if (env !== "development") {
   });
 }
 
+const AssumeRedux: FC = () => {
+  const { language } = useSliceSelector("settings");
+
+  return (
+    <LinkProvider prefix={language.code === "en" ? undefined : language.code} history={history}>
+      <App />
+    </LinkProvider>
+  );
+};
+
 render(
   <Provider store={getStore({ cacheStore: true })}>
     <Router history={history}>
       <TranslationProvider>
         <ErrorBoundary>
           <Theme>
-            <App />
+            <AssumeRedux />
           </Theme>
         </ErrorBoundary>
       </TranslationProvider>
