@@ -210,7 +210,7 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   },
   "landing-heading-subtitle": {
     en: `DzCode i/o helps you find, <a href="/Contribute">contribute</a> and add to the <a href="/Projects">list</a> of open-source projects that solve Algerian problems.`,
-    ar: `يساعدك DzCode i / o في العثور على والمساهمة والإضافة إلى قائمة المشاريع مفتوحة المصدر التي تحل مشاكل الجزائر.`,
+    ar: `يساعدك DzCode i / o في العثور على و<a href="/Contribute">المساهمة</a> والإضافة إلى <a href="/Projects">قائمة</a> المشاريع مفتوحة المصدر التي تحل مشاكل الجزائر.`,
   },
   "landing-cta-button": {
     en: "Make a Contribution",

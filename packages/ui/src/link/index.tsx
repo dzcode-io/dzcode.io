@@ -1,3 +1,4 @@
+import MUILink, { LinkProps as MUILinkProps } from "@mui/material/Link";
 import { useTheme } from "@mui/material/styles";
 import { AnchorHTMLAttributes, createContext, CSSProperties, FC, useContext } from "react";
 import { Link as ReactRouterLink, Router, RouterProps as RRDRouterProps } from "react-router-dom";
@@ -29,7 +30,8 @@ export type LinkProps = {
   className?: string;
   style?: any;
   color?: any;
-} & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "target" | "href">;
+} & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "target" | "href"> &
+  Pick<MUILinkProps, "underline">;
 
 const variantToLinkStyle: Record<Required<LinkProps>["variant"], CSSProperties> = {
   v1: {},
@@ -37,7 +39,13 @@ const variantToLinkStyle: Record<Required<LinkProps>["variant"], CSSProperties> 
 };
 
 // @TODO-ZM: remove default variant
-export const Link: FC<LinkProps> = ({ variant = "v1", margin, href, ...props }) => {
+export const Link: FC<LinkProps> = ({
+  variant = "v1",
+  margin,
+  href,
+  underline = "hover",
+  ...props
+}) => {
   const { prefix } = useContext<LinkContextValue>(LinkContext);
 
   const theme = useTheme();
@@ -60,8 +68,17 @@ export const Link: FC<LinkProps> = ({ variant = "v1", margin, href, ...props }) 
   };
 
   if (href?.startsWith("/") || href?.startsWith(location.origin)) {
-    return <ReactRouterLink style={style} {...props} to={prefix ? `/${prefix}${href}` : href} />;
+    return (
+      <ReactRouterLink
+        component={(reactRouterLinkProps) => (
+          <MUILink {...reactRouterLinkProps} underline={underline} />
+        )}
+        style={style}
+        {...props}
+        to={prefix ? `/${prefix}${href}` : href}
+      />
+    );
   } else {
-    return <a style={style} href={href} {...props} />;
+    return <MUILink style={style} href={href} {...props} underline={underline} />;
   }
 };
