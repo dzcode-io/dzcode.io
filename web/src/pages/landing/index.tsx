@@ -1,4 +1,5 @@
 import { useColors } from "@dzcode.io/ui/dist/_hooks/use-colors";
+import { useTheme } from "@dzcode.io/ui/dist/_hooks/use-theme";
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { Link } from "@dzcode.io/ui/dist/link";
 import { Milestones } from "@dzcode.io/ui/dist/milestones";
@@ -22,18 +23,18 @@ import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
 import { useSliceSelector } from "src/redux/selectors";
 
 export const LandingPage: FC = () => {
-  const { darkMode } = useSliceSelector("settings");
   const { milestones } = useSliceSelector("landingPage");
+  const { isDarkMode } = useTheme();
 
   const { from } = useColors();
 
   const mobileApps = [
     {
-      image: darkMode ? androidDark : androidLight,
+      image: isDarkMode ? androidDark : androidLight,
       href: fullstackConfig.mobile.android.url,
     },
     {
-      image: darkMode ? iosDark : iosLight,
+      image: isDarkMode ? iosDark : iosLight,
       href: fullstackConfig.mobile.ios.url,
     },
   ];

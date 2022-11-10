@@ -6,8 +6,6 @@ import { history } from "src/utils/history";
 import { urlLanguageRegEx } from "src/utils/language";
 
 export interface SettingsState {
-  // @TODO-ZM: remove darkMode in favor of themeName
-  darkMode: boolean;
   // @TODO-ZM: dry theme names
   themeName: "DARK" | "LIGHT" | "AUTO";
   language: LanguageEntity;
@@ -16,7 +14,6 @@ export interface SettingsState {
 export const settings = createSlice({
   name: "settings",
   initialState: {
-    darkMode: localStorage.getItem("darkMode") !== "off",
     language: (() => {
       const persistedLanguageCode = localStorage.getItem("languageCode");
       const initialLanguage =
@@ -30,13 +27,8 @@ export const settings = createSlice({
     set: (state, action: PayloadAction<Partial<SettingsState>>) => {
       if (typeof action.payload.themeName !== "undefined") {
         localStorage.setItem("themeName", action.payload.themeName);
-        // @TODO-ZM: remove darkMode in favor of themeName
-        action.payload.darkMode = action.payload.themeName === "DARK" ? true : false;
       }
       setReducer(state, action);
-      if (typeof action.payload.darkMode !== "undefined") {
-        localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
-      }
       if (typeof action.payload.language !== "undefined") {
         localStorage.setItem("languageCode", action.payload.language.code);
         document.body.setAttribute("dir", action.payload.language.code === "ar" ? "rtl" : "ltr");
