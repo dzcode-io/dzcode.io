@@ -99,6 +99,7 @@ export const App: FC = () => {
           onThemeChanged={(selectedThemeName) => {
             actions.settings.set({ themeName: selectedThemeName });
           }}
+          fixed={location.pathname === "/"}
         />
         <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
           <Suspense fallback={<Loading />}>

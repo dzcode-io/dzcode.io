@@ -21,6 +21,7 @@ interface NavBarProps {
   links: Array<{ text: string; href: string }>;
   onLanguageChanged: (languageCode: LanguageEntity["code"]) => void;
   onThemeChanged: (themeName: NavBarProps["themeName"]) => void;
+  fixed: boolean;
 }
 
 // @TODO-ZM: dry theme names
@@ -43,11 +44,12 @@ export const Navbar: FC<NavBarProps> = ({
   links,
   onLanguageChanged,
   onThemeChanged,
+  fixed,
 }) => {
   const { t } = useTranslation();
 
   return (
-    <Flex position="absolute">
+    <Flex position={fixed ? "absolute" : "initial"}>
       <Stack direction="vertical" alignItems="stretch">
         <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
           <Stack direction="horizontal" alignItems="center">
