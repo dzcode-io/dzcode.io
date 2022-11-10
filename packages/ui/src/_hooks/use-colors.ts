@@ -1,17 +1,20 @@
-export type Color = "BACKGROUND_2" | "PRIMARY";
-import { useTheme } from "@mui/material/styles";
+import grey from "@mui/material/colors/grey";
+import { PaletteOptions, useTheme } from "@mui/material/styles";
 
-// @TODO-ZM: theme this
+export type Color = "BACKGROUND_2" | "PRIMARY";
+
 export const useColors = () => {
   const theme = useTheme();
+  const modeIndex = (["light", "dark"] as PaletteOptions["mode"][]).indexOf(theme.palette.mode);
+
   return {
     from: (color?: Color) => {
       switch (color) {
         case "BACKGROUND_2":
-          return "#f5f5f5";
+          return [grey["300"], grey["900"]][modeIndex];
 
         case "PRIMARY":
-          return "#41aa55";
+          return theme.palette.primary.main;
 
         default:
           return "transparent";

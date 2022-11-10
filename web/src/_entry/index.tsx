@@ -29,12 +29,14 @@ if (env !== "development") {
 }
 
 const AssumeRedux: FC = () => {
-  const { language } = useSliceSelector("settings");
+  const { language, themeName } = useSliceSelector("settings");
 
   return (
-    <LinkProvider prefix={language.code === "en" ? undefined : language.code} history={history}>
-      <App />
-    </LinkProvider>
+    <Theme themeName={themeName}>
+      <LinkProvider prefix={language.code === "en" ? undefined : language.code} history={history}>
+        <App />
+      </LinkProvider>
+    </Theme>
   );
 };
 
@@ -43,9 +45,7 @@ render(
     <Router history={history}>
       <TranslationProvider>
         <ErrorBoundary>
-          <Theme>
-            <AssumeRedux />
-          </Theme>
+          <AssumeRedux />
         </ErrorBoundary>
       </TranslationProvider>
     </Router>
