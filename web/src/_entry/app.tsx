@@ -1,16 +1,17 @@
 import "./style.scss";
 
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
-import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import Container from "@material-ui/core/Container";
+import { Flex, MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/v2/flex";
+import { Footer } from "@dzcode.io/ui/dist/v2/footer";
+import { Navbar } from "@dzcode.io/ui/dist/v2/navbar";
+import { Stack } from "@dzcode.io/ui/dist/v2/stack";
 import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
-import { Footer } from "src/components/footer";
+import logo from "src/assets/svg/logo-wide.svg";
+import logoExtended from "src/assets/svg/logo-wide-extended.svg";
 import { Loading } from "src/components/loading";
-import { Navbar } from "src/components/navbar";
 import { t } from "src/components/t";
-import { Theme } from "src/components/theme";
 import { actions } from "src/redux";
 import { useSliceSelector } from "src/redux/selectors";
 import { getEnv } from "src/utils";
@@ -58,7 +59,9 @@ const routes: RouteInterface[] = [
 export const App: FC = () => {
   const location = useLocation();
   const match = useRouteMatch<{ lang?: LanguageEntity["code"] }>(urlLanguageRegEx);
-  const { language } = useSliceSelector("settings");
+  const { language, themeName } = useSliceSelector("settings");
+  const { links } = useSliceSelector("navbarComponent");
+  const { sections } = useSliceSelector("footerComponent");
 
   useEffect(() => {
     if (getEnv() !== "development") {
@@ -76,36 +79,44 @@ export const App: FC = () => {
   }, [location]);
 
   return (
-    <Theme>
-      <ErrorBoundary>
-        <Helmet>
-          <title>{t("landing-title")}</title>
-        </Helmet>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "100vh",
+    <>
+      <Helmet>
+        <title>{t("landing-title")}</title>
+      </Helmet>
+      <Stack direction="vertical">
+        <Navbar
+          version={window.bundleInfo.version}
+          selectedLanguageCode={language.code}
+          themeName={themeName}
+          logo={logo}
+          logoExtended={logoExtended}
+          links={links}
+          onLanguageChanged={(selectedLanguageCode) => {
+            actions.settings.set({
+              language: allLanguages.find(({ code }) => code === selectedLanguageCode),
+            });
           }}
-        >
-          <Navbar />
-          <Container maxWidth="lg" style={{ paddingTop: "130px" }}>
-            <Suspense fallback={<Loading />}>
-              <Switch>
-                {routes.map(({ import: im, path, ...route }, index) => (
-                  <Route
-                    {...route}
-                    path={path ? `${urlLanguageRegEx}${path}` : undefined}
-                    key={`route-${index}`}
-                    component={lazy(() => im)}
-                  />
-                ))}
-              </Switch>
-            </Suspense>
-          </Container>
-          <Footer />
-        </div>
-      </ErrorBoundary>
-    </Theme>
+          onThemeChanged={(selectedThemeName) => {
+            actions.settings.set({ themeName: selectedThemeName });
+          }}
+          fixed={location.pathname === "/"}
+        />
+        <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              {routes.map(({ import: im, path, ...route }, index) => (
+                <Route
+                  {...route}
+                  path={path ? `${urlLanguageRegEx}${path}` : undefined}
+                  key={`route-${index}`}
+                  component={lazy(() => im)}
+                />
+              ))}
+            </Switch>
+          </Suspense>
+        </Flex>
+        <Footer sections={sections} bottomText="footer-bottom-text" />
+      </Stack>
+    </>
   );
 };

@@ -1,7 +1,6 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { FaqCard } from "@dzcode.io/ui/dist/faq-card";
 import { Grid } from "@dzcode.io/ui/dist/grid";
-import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { Typography } from "@dzcode.io/ui/dist/typography";
 import type { FC } from "react";
 import { Helmet } from "react-helmet";
@@ -52,26 +51,19 @@ const PageFooter = () => {
 };
 
 export const FaqPage: FC = () => {
-  const { darkMode, language } = useSliceSelector("settings");
-
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        direction={language.code === "ar" ? "rtl" : "ltr"}
-        mode={darkMode ? "dark" : "light"}
-      >
-        <Grid container gap={6} sx={{ mb: 6, mt: { xs: 0, lg: 2 } }}>
-          <Grid item xs={12}>
-            <PageTitle />
-          </Grid>
-          <Grid item xs={12}>
-            <FaqCards />
-          </Grid>
-          <Grid item xs={12}>
-            <PageFooter />
-          </Grid>
+      <Grid container gap={6} sx={{ mb: 6, mt: { xs: 0, lg: 2 } }}>
+        <Grid item xs={12}>
+          <PageTitle />
         </Grid>
-      </ThemeProvider>
+        <Grid item xs={12}>
+          <FaqCards />
+        </Grid>
+        <Grid item xs={12}>
+          <PageFooter />
+        </Grid>
+      </Grid>
     </ErrorBoundary>
   );
 };

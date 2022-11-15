@@ -1,7 +1,7 @@
 import { ErrorBoundary as SentryErrorBoundary } from "@sentry/react";
 import { FC, PropsWithChildren } from "react";
 import { Grid } from "src/grid";
-import { Link } from "src/link-factory";
+import { Link } from "src/link";
 import { Typography } from "src/typography";
 
 type ErrorBoundaryProps = PropsWithChildren<{

@@ -34,10 +34,9 @@ export const dictionary = {
   "footer-category-link-text-youTube": { en: "YouTube", ar: "يوتيوب" },
   "footer-category-link-text-twitter": { en: "Twitter", ar: "تويتر" },
   "footer-category-link-text-linkedIn": { en: "LinkedIn", ar: "لينكد إن" },
-  "footer-contact-information": { en: "FAQ", ar: "اسئلة / اجوبة" },
-  "footer-category-link-text-copyright": {
-    en: "Copyright ©",
-    ar: "حقوق النشر ©",
+  "footer-bottom-text": {
+    en: `Copyright © CURRENT_YEAR <a dir="ltr" href="https://twitter.com/dzcode_io">@dzCode_io</a>`,
+    ar: `حقوق النشر © CURRENT_YEAR <a dir="ltr" href="https://twitter.com/dzcode_io">@dzCode_io</a>`,
   },
 
   "faq-title": {
@@ -206,12 +205,12 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     ar: "DzCode i / o هو مجتمع من المطورين الذين يحاولون حل المشاكل التقنية في الجزائر عبر برمجيات مفتوحة المصدر ، وهذا الموقع يساعدك في العثور على ، والمساهمة والإضافة إلى قائمة المشاريع مفتوحة المصدر التي تحل بعض المشاكل التقنية في الجزائر.",
   },
   "landing-heading-title": {
-    en: `<span class="CLASS"}>Open-Source</span> Algerian Comunity`,
-    ar: `مجموعة جزائرية للبرامج <span class="CLASS"}>مفتوحة المصدر</span>`,
+    en: `<span style="color:COLOR">Open-Source</span> Algerian Community`,
+    ar: `مجموعة جزائرية للبرامج <span style="color:COLOR">مفتوحة المصدر</span>`,
   },
   "landing-heading-subtitle": {
     en: `DzCode i/o helps you find, <a href="/Contribute">contribute</a> and add to the <a href="/Projects">list</a> of open-source projects that solve Algerian problems.`,
-    ar: `يساعدك DzCode i / o في العثور على والمساهمة والإضافة إلى قائمة المشاريع مفتوحة المصدر التي تحل مشاكل الجزائر.`,
+    ar: `يساعدك DzCode i / o في العثور على و<a href="/Contribute">المساهمة</a> والإضافة إلى <a href="/Projects">قائمة</a> المشاريع مفتوحة المصدر التي تحل مشاكل الجزائر.`,
   },
   "landing-cta-button": {
     en: "Make a Contribution",
@@ -361,4 +360,7 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Learn and share your knowledge with other Algerian developers!",
     ar: "تعلم وشارك معرفتك مع مطورين جزائريين آخرين!",
   },
+  "ui-theme-DARK": { en: "Dark", ar: "داكن" },
+  "ui-theme-LIGHT": { en: "Light", ar: "فاتح" },
+  "ui-theme-AUTO": { en: "Auto", ar: "تلقائي" },
 };

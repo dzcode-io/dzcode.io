@@ -1,5 +1,4 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import { ThemeProvider } from "@dzcode.io/ui/dist/theme/theme-provider";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
@@ -11,7 +10,6 @@ import { Catalog } from "./catalog";
 
 export const TeamPage: FC = () => {
   const { teamList } = useSliceSelector("teamPage");
-  const { darkMode, language } = useSliceSelector("settings");
 
   useEffect(() => {
     fetchTeamList();
@@ -23,20 +21,15 @@ export const TeamPage: FC = () => {
         <title>{t("team-title")}</title>
         <meta name="description" content={t("team-description")} />
       </Helmet>
-      <ThemeProvider
-        direction={language.code === "ar" ? "rtl" : "ltr"}
-        mode={darkMode ? "dark" : "light"}
-      >
-        {teamList === "ERROR" ? (
-          <TryAgain
-            error={t("team-error")}
-            action={t("team-try-again")}
-            onClick={() => fetchTeamList()}
-          />
-        ) : (
-          <Catalog teamList={teamList} />
-        )}
-      </ThemeProvider>
+      {teamList === "ERROR" ? (
+        <TryAgain
+          error={t("team-error")}
+          action={t("team-try-again")}
+          onClick={() => fetchTeamList()}
+        />
+      ) : (
+        <Catalog teamList={teamList} />
+      )}
     </ErrorBoundary>
   );
 };

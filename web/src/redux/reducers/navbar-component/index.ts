@@ -2,22 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 import { DictionaryKeys } from "src/components/t/dictionary";
 
 export interface NavbarComponentState {
-  sections: Array<{
-    title: DictionaryKeys<"navbar">;
-    url: string;
+  links: Array<{
+    text: DictionaryKeys<"navbar">;
+    href: string;
   }>;
 }
 
 export const navbarComponent = createSlice({
   name: "navbarComponent",
   initialState: {
-    sections: [
-      { url: "/Contribute", title: "navbar-section-contribute" },
-      { url: "/Team", title: "navbar-section-connect" },
-      { url: "/Learn", title: "navbar-section-learn" },
-      { url: "/Projects", title: "navbar-section-projects" },
-      { url: "/Articles", title: "navbar-section-articles" },
-      { url: "/FAQ", title: "navbar-section-faq" },
+    links: [
+      { href: "/Contribute", text: "navbar-section-contribute" },
+      { href: "/Team", text: "navbar-section-connect" },
+      { href: "/Learn", text: "navbar-section-learn" },
+      { href: "/Projects", text: "navbar-section-projects" },
+      { href: "/Articles", text: "navbar-section-articles" },
+      { href: "/FAQ", text: "navbar-section-faq" },
     ],
   } as NavbarComponentState,
   reducers: {},

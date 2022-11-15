@@ -3,66 +3,66 @@
 exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
 <div>
   <div
-    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-undefined muiltr-11kqawl-MuiGrid-root"
+    class="MuiGrid-root MuiGrid-container css-11kqawl-MuiGrid-root"
   >
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
     >
       <h1
-        class="MuiTypography-root MuiTypography-h4 muiltr-149xwtl-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-h4 css-149xwtl-MuiTypography-root"
       >
         Frequently Asked Questions
       </h1>
     </div>
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
     >
       <div
-        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-undefined muiltr-18p4n9n-MuiGrid-root"
+        class="MuiGrid-root MuiGrid-container css-18p4n9n-MuiGrid-root"
       >
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 muiltr-mhc70k-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
             >
               <h2
-                class="MuiTypography-root MuiTypography-h5 muiltr-ph2xsj-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h5 css-ph2xsj-MuiTypography-root"
               >
                 General
               </h2>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
             >
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       What exactly is DzCode i/o ?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -74,21 +74,21 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
                             An open-source online community of Algerian developers, collaborating on solving Algerian technical problems.
@@ -100,30 +100,30 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 </div>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       What are the goals of DzCode i/o ?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -135,27 +135,29 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <ul>
                             <li>
                               Share our experiences (in form of 
                               <a
+                                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                 href="/Articles"
+                                style="cursor: pointer; flex-shrink: 0;"
                               >
                                 articles
                               </a>
@@ -164,7 +166,9 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             <li>
                               Guide new developers to build their careers (with some educational resources and 
                               <a
+                                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                 href="/Learn"
+                                style="cursor: pointer; flex-shrink: 0;"
                               >
                                 articles
                               </a>
@@ -173,7 +177,9 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             <li>
                               Fix some common Algerian software problems, in form of ready-to-use open-source 
                               <a
+                                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                 href="/Projects"
+                                style="cursor: pointer; flex-shrink: 0;"
                               >
                                 softwares
                               </a>
@@ -187,30 +193,30 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 </div>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       What would I benefit from DzCode i/o?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -222,21 +228,21 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <ul>
                             <li>
@@ -259,48 +265,48 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 muiltr-mhc70k-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
             >
               <h2
-                class="MuiTypography-root MuiTypography-h5 muiltr-ph2xsj-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h5 css-ph2xsj-MuiTypography-root"
               >
                 Participation
               </h2>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
             >
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       How do I join DzCode i/o ?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -312,26 +318,28 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
                             We're most active in slack, we recommend you 
                             <a
+                              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                               href="https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ"
+                              style="cursor: pointer; flex-shrink: 0;"
                             >
                               join us there
                             </a>
@@ -344,30 +352,30 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 </div>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       I want to code, where should I start?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -379,26 +387,28 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
                             Go to 
                             <a
+                              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                               href="/Contribute"
+                              style="cursor: pointer; flex-shrink: 0;"
                             >
                               /Contribute
                             </a>
@@ -411,30 +421,30 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 </div>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       I like the idea, what are the different ways I can contribute to DzCode i/o ?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -446,21 +456,21 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <div>
                             <p
@@ -468,7 +478,9 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             >
                               Besides the open tasks on 
                               <a
+                                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                 href="/Contribute"
+                                style="cursor: pointer; flex-shrink: 0;"
                               >
                                 /Contribute
                               </a>
@@ -478,7 +490,9 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                               <li>
                                 Adding your open-source projects to the dzcode.io website, you can do that 
                                 <a
+                                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                   href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
+                                  style="cursor: pointer; flex-shrink: 0;"
                                 >
                                   here
                                 </a>
@@ -487,7 +501,9 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                               <li>
                                 Writing about your programming experience in form of articles, to do that, simply follow 
                                 <a
+                                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                   href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
+                                  style="cursor: pointer; flex-shrink: 0;"
                                 >
                                   these simple steps
                                 </a>
@@ -505,48 +521,48 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 muiltr-mhc70k-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
             >
               <h2
-                class="MuiTypography-root MuiTypography-h5 muiltr-ph2xsj-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h5 css-ph2xsj-MuiTypography-root"
               >
                 Articles
               </h2>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
             >
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       How to write an article in dzcode.io
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -558,26 +574,28 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
                             Follow 
                             <a
+                              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                               href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
+                              style="cursor: pointer; flex-shrink: 0;"
                             >
                               these steps
                             </a>
@@ -590,30 +608,30 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 </div>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       The articles should they be in English?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -625,21 +643,21 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
                             You can write in both English and Arabic
@@ -651,30 +669,30 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 </div>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       Can I write about anything?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -686,21 +704,21 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
                             As long as it's IT-related yes you can write about anything.
@@ -715,48 +733,48 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 muiltr-mhc70k-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
             >
               <h2
-                class="MuiTypography-root MuiTypography-h5 muiltr-ph2xsj-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h5 css-ph2xsj-MuiTypography-root"
               >
                 Projects
               </h2>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
             >
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       How to add my open-source project to dzcode.io
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -768,26 +786,28 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
                             Follow 
                             <a
+                              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                               href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
+                              style="cursor: pointer; flex-shrink: 0;"
                             >
                               these steps
                             </a>
@@ -800,30 +820,30 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 </div>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       What makes my project eligible to be added to dzcode.io
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -835,21 +855,21 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <span>
                             It has to solve an Algerian problem, or, be written by an Algerian Developer.
@@ -861,30 +881,30 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                 </div>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters muiltr-1e8kryb-MuiPaper-root-MuiAccordion-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-10evgf8-MuiPaper-root-MuiAccordion-root"
                 style="margin-top: -1px;"
               >
                 <div
                   aria-expanded="false"
-                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters muiltr-1tmu6hb-MuiButtonBase-root-MuiAccordionSummary-root"
+                  class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root"
                   role="button"
                   tabindex="0"
                 >
                   <div
-                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters muiltr-o4b71y-MuiAccordionSummary-content"
+                    class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
                   >
                     <p
-                      class="MuiTypography-root MuiTypography-body1 muiltr-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
                     >
                       Why should I add my project to dzcode.io?
                     </p>
                   </div>
                   <div
-                    class="MuiAccordionSummary-expandIconWrapper muiltr-19hn6xk-MuiAccordionSummary-expandIconWrapper"
+                    class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium muiltr-i4bv87-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ExpandMoreIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -896,21 +916,21 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden muiltr-bz4dnt-MuiCollapse-root"
+                  class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
                   style="min-height: 0px;"
                 >
                   <div
-                    class="MuiCollapse-wrapper MuiCollapse-vertical muiltr-smkl36-MuiCollapse-wrapper"
+                    class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
                   >
                     <div
-                      class="MuiCollapse-wrapperInner MuiCollapse-vertical muiltr-9l5vo-MuiCollapse-wrapperInner"
+                      class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                     >
                       <div
                         class="MuiAccordion-region"
                         role="region"
                       >
                         <div
-                          class="MuiAccordionDetails-root muiltr-15v22id-MuiAccordionDetails-root"
+                          class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
                         >
                           <ul>
                             <li>
@@ -932,10 +952,10 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
       </div>
     </div>
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 muiltr-1em9ut6-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
     >
       <h2
-        class="MuiTypography-root MuiTypography-h6 muiltr-1kgxqm0-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-h6 css-1kgxqm0-MuiTypography-root"
       >
         Still need help? send us an email at 
          

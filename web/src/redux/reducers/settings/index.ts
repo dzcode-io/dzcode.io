@@ -6,14 +6,14 @@ import { history } from "src/utils/history";
 import { urlLanguageRegEx } from "src/utils/language";
 
 export interface SettingsState {
-  darkMode: boolean;
+  // @TODO-ZM: dry theme names
+  themeName: "DARK" | "LIGHT" | "AUTO";
   language: LanguageEntity;
 }
 
 export const settings = createSlice({
   name: "settings",
   initialState: {
-    darkMode: localStorage.getItem("darkMode") !== "off",
     language: (() => {
       const persistedLanguageCode = localStorage.getItem("languageCode");
       const initialLanguage =
@@ -21,13 +21,14 @@ export const settings = createSlice({
       document.body.setAttribute("dir", initialLanguage?.code === "ar" ? "rtl" : "ltr");
       return initialLanguage;
     })(),
+    themeName: localStorage.getItem("themeName") || "AUTO",
   } as SettingsState,
   reducers: {
     set: (state, action: PayloadAction<Partial<SettingsState>>) => {
-      setReducer(state, action);
-      if (typeof action.payload.darkMode !== "undefined") {
-        localStorage.setItem("darkMode", action.payload.darkMode ? "on" : "off");
+      if (typeof action.payload.themeName !== "undefined") {
+        localStorage.setItem("themeName", action.payload.themeName);
       }
+      setReducer(state, action);
       if (typeof action.payload.language !== "undefined") {
         localStorage.setItem("languageCode", action.payload.language.code);
         document.body.setAttribute("dir", action.payload.language.code === "ar" ? "rtl" : "ltr");

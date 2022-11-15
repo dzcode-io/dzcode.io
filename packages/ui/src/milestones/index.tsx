@@ -83,7 +83,7 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
           <Step key={id} active={true} color="primary">
             <StepLabel
               StepIconComponent={() =>
-                state === "in-progress" ? (
+                state === "in-progress" || (progress && progress < 1) ? (
                   <CircularProgress style={{ marginLeft: -8 }} value={progress || 0} />
                 ) : (
                   <StepIcon icon={<CircleIcon sx={{ color: milestoneColors[state] }} />} />

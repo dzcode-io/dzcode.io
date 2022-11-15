@@ -1,3 +1,4 @@
+import { Link } from "@dzcode.io/ui/dist/link";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
@@ -13,7 +14,6 @@ import MergeTypeIcon from "@material-ui/icons/MergeType";
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { FC } from "react";
-import { LinkV2 } from "src/components/link-v2";
 import { t } from "src/components/t";
 import { fetchContributions, updateFilterValue } from "src/redux/actions/contribute-page";
 import { useSliceSelector } from "src/redux/selectors";
@@ -107,7 +107,7 @@ export const Contributions: FC = () => {
                       color: type === "issue" ? "#56d364" : "#a371f7",
                     }}
                   >
-                    <LinkV2
+                    <Link
                       href={link}
                       style={
                         languageCode !== "ar" ? { marginRight: "auto" } : { marginLeft: "auto" }
@@ -123,7 +123,7 @@ export const Contributions: FC = () => {
                           ? t("contribute-read-issue")
                           : t("contribute-review-changes")}
                       </Button>
-                    </LinkV2>
+                    </Link>
                     <Typography variant="caption">
                       {elapsedTime(updatedAt, t("elapsed-time-suffixes"))}
                     </Typography>
