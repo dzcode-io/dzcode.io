@@ -157,7 +157,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                               <a
                                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                 href="/Articles"
-                                style="cursor: pointer;"
+                                style="cursor: pointer; flex-shrink: 0;"
                               >
                                 articles
                               </a>
@@ -168,7 +168,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                               <a
                                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                 href="/Learn"
-                                style="cursor: pointer;"
+                                style="cursor: pointer; flex-shrink: 0;"
                               >
                                 articles
                               </a>
@@ -179,7 +179,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                               <a
                                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                 href="/Projects"
-                                style="cursor: pointer;"
+                                style="cursor: pointer; flex-shrink: 0;"
                               >
                                 softwares
                               </a>
@@ -339,7 +339,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             <a
                               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                               href="https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ"
-                              style="cursor: pointer;"
+                              style="cursor: pointer; flex-shrink: 0;"
                             >
                               join us there
                             </a>
@@ -408,7 +408,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             <a
                               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                               href="/Contribute"
-                              style="cursor: pointer;"
+                              style="cursor: pointer; flex-shrink: 0;"
                             >
                               /Contribute
                             </a>
@@ -480,7 +480,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                               <a
                                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                 href="/Contribute"
-                                style="cursor: pointer;"
+                                style="cursor: pointer; flex-shrink: 0;"
                               >
                                 /Contribute
                               </a>
@@ -492,7 +492,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                                 <a
                                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                   href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
-                                  style="cursor: pointer;"
+                                  style="cursor: pointer; flex-shrink: 0;"
                                 >
                                   here
                                 </a>
@@ -503,7 +503,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                                 <a
                                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                                   href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
-                                  style="cursor: pointer;"
+                                  style="cursor: pointer; flex-shrink: 0;"
                                 >
                                   these simple steps
                                 </a>
@@ -595,7 +595,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             <a
                               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                               href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
-                              style="cursor: pointer;"
+                              style="cursor: pointer; flex-shrink: 0;"
                             >
                               these steps
                             </a>
@@ -807,7 +807,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                             <a
                               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
                               href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
-                              style="cursor: pointer;"
+                              style="cursor: pointer; flex-shrink: 0;"
                             >
                               these steps
                             </a>
