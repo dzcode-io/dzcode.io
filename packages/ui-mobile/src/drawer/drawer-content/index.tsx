@@ -19,7 +19,7 @@ export const DrawerContent: FC<
       <SafeAreaView>
         {/* dzcode.io logo */}
         <View>
-          <Image source={require("../../assets/png/logo.png")} style={drawerStyles.logoView} />
+          <Image source={require("../../../assets/png/logo.png")} style={drawerStyles.logoView} />
           <Text style={drawerStyles.version}>{props.version}</Text>
         </View>
         {/* Drawer items */}
