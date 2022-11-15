@@ -68,7 +68,7 @@ export const Navbar: FC<NavBarProps> = ({
               href={`https://github.com/dzcode-io/dzcode.io/releases/tag/${version}`}
               target="_blank"
             >
-              {version}
+              {version.length > 10 ? `${version.substring(0, 8)}...` : version}
             </Link>
             <Flex grow={1} />
             <Dropdown

@@ -64,6 +64,7 @@ export const Link: FC<LinkProps> = ({
   const style: CSSProperties = {
     cursor: "pointer",
     margin: themedMargin ? `${themedMargin}` : undefined,
+    flexShrink: 0,
     ...variantToLinkStyle[variant],
   };
 
