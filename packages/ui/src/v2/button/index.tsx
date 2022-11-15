@@ -43,11 +43,11 @@ export const Button: FC<ButtonProps> = ({ children, variant, margin, ...props })
 
     default:
       return (
-        // @TODO-ZM: overwrite default MUI link component
         <MUIButton
           sx={{ margin: themedMargin ? `${themedMargin} !important` : undefined }}
           {...props}
           variant={variantToMUIButtonVariant[variant]}
+          LinkComponent={Link}
         >
           {children}
         </MUIButton>
