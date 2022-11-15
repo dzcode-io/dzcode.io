@@ -70,11 +70,10 @@ export const Link: FC<LinkProps> = ({
 
   if (href?.startsWith("/") || href?.startsWith(location.origin)) {
     return (
-      <ReactRouterLink
-        component={(reactRouterLinkProps) => (
-          <MUILink {...reactRouterLinkProps} underline={underline} />
-        )}
+      <MUILink
+        component={ReactRouterLink}
         style={style}
+        underline={underline}
         {...props}
         to={prefix ? `/${prefix}${href}` : href}
       />
