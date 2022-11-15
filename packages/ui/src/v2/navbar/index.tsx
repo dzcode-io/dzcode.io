@@ -1,4 +1,5 @@
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { FC, Fragment } from "react";
 import { useTranslation } from "src/_hooks/use-translation";
 import { Link } from "src/link";
@@ -68,7 +69,10 @@ export const Navbar: FC<NavBarProps> = ({
               href={`https://github.com/dzcode-io/dzcode.io/releases/tag/${version}`}
               target="_blank"
             >
-              {version.length > 10 ? `${version.substring(0, 8)}...` : version}
+              <MediaQuery upTo="sm">
+                {version.length > 10 ? `${version.substring(0, 8)}...` : version}
+              </MediaQuery>
+              <MediaQuery downTo="sm">{version}</MediaQuery>
             </Link>
             <Flex grow={1} />
             <Dropdown
