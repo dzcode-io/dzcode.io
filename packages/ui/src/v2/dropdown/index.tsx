@@ -22,9 +22,11 @@ export const Dropdown = <C extends string>({
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClose = (code: C) => {
+  const handleClose = (code?: C) => {
     setAnchorEl(null);
-    onSelect?.(code);
+    if (code) {
+      onSelect?.(code);
+    }
   };
   return (
     <>
