@@ -59,6 +59,7 @@ const routes: RouteInterface[] = [
 export const App: FC = () => {
   const location = useLocation();
   const match = useRouteMatch<{ lang?: LanguageEntity["code"] }>(urlLanguageRegEx);
+  const landingPageMatch = useRouteMatch<{ lang?: LanguageEntity["code"] }>(`${urlLanguageRegEx}/`);
   const { language, themeName } = useSliceSelector("settings");
   const { links } = useSliceSelector("navbarComponent");
   const { sections } = useSliceSelector("footerComponent");
@@ -99,7 +100,7 @@ export const App: FC = () => {
           onThemeChanged={(selectedThemeName) => {
             actions.settings.set({ themeName: selectedThemeName });
           }}
-          fixed={location.pathname === "/"}
+          fixed={!!landingPageMatch?.isExact}
         />
         <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
           <Suspense fallback={<Loading />}>

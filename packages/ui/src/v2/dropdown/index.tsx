@@ -22,9 +22,11 @@ export const Dropdown = <C extends string>({
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClose = (code: C) => {
+  const handleClose = (code?: C) => {
     setAnchorEl(null);
-    onSelect?.(code);
+    if (code) {
+      onSelect?.(code);
+    }
   };
   return (
     <>
@@ -32,7 +34,7 @@ export const Dropdown = <C extends string>({
         {text}
       </Button>
       <GlobalStyles styles="ul { padding: 0 !important; }" />
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+      <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
         <Stack direction="vertical">
           {items.map((item, index) => (
             <MenuItem key={`item-${index}`} onClick={() => handleClose(item.code)}>
