@@ -10,6 +10,11 @@
       "provider": "github",
       "owner": "abderrahmaneMustapha",
       "repository": "leblad-py"
+    },
+    {
+      "provider": "github",
+      "owner": "omdxp",
+      "repository": "leblad"
     }
   ]
 }
