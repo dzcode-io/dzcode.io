@@ -32,7 +32,7 @@ export const Dropdown = <C extends string>({
         {text}
       </Button>
       <GlobalStyles styles="ul { padding: 0 !important; }" />
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+      <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
         <Stack direction="vertical">
           {items.map((item, index) => (
             <MenuItem key={`item-${index}`} onClick={() => handleClose(item.code)}>
