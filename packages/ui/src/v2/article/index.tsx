@@ -21,9 +21,16 @@ export interface ArticleProps extends Pick<StackProps, "margin"> {
     authors: ArticleAuthor[];
     contributors: ArticleAuthor[];
   } | null;
+  authorsText: string;
+  contributorsText: string;
 }
 
-export const Article: VFC<ArticleProps> = ({ article, ...props }) => {
+export const Article: VFC<ArticleProps> = ({
+  article,
+  authorsText,
+  contributorsText,
+  ...props
+}) => {
   return article ? (
     <Stack direction="vertical" {...props}>
       <Image src={article?.image} width="100%" />
@@ -38,8 +45,7 @@ export const Article: VFC<ArticleProps> = ({ article, ...props }) => {
       {article.authors.length > 0 && (
         <>
           <Text variant="v2" margin={[1, 0]}>
-            {/* @TODO-ZM: localize this */}
-            Written by
+            {authorsText}
           </Text>
           <Stack direction="horizontal" gap={3}>
             {article.authors.map((author, index) => (
@@ -53,8 +59,7 @@ export const Article: VFC<ArticleProps> = ({ article, ...props }) => {
       {article.contributors.length > 0 && (
         <>
           <Text variant="v2" margin={[1, 0]}>
-            {/* @TODO-ZM: localize this */}
-            With the help of
+            {contributorsText}
           </Text>
           <Stack direction="horizontal" gap={3}>
             {article.contributors.map((contributor, index) => (

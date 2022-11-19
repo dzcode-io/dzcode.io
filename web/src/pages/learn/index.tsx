@@ -13,7 +13,7 @@ import { FC, useEffect, VFC } from "react";
 import { Helmet } from "react-helmet";
 import { useRouteMatch } from "react-router-dom";
 import learnLanding from "src/assets/svg/learn-landing.svg";
-import { t } from "src/components/t";
+import { T, t } from "src/components/t";
 import { fetchCurrentDocument, fetchDocumentationList } from "src/redux/actions/documentation-page";
 import { useSliceSelector } from "src/redux/selectors";
 
@@ -25,24 +25,24 @@ export const LearnPage: FC = () => {
 
   useEffect(() => {
     fetchDocumentationList();
-  }, []);
+  }, []); // @TODO-ZM: add language as dependency
 
   useEffect(() => {
     if (urlParams.articleId) {
       fetchCurrentDocument();
     }
-  }, [urlParams.articleId]);
+  }, [urlParams.articleId]); // @TODO-ZM: add language as dependency
 
   const loadedSidebarTree = isLoaded(sidebarTree);
 
   const Sidebar: VFC = () => (
-    <Stack direction="vertical" grow={0.25}>
+    <Stack direction="vertical">
       {sidebarTree === "ERROR" ? (
         <TryAgain
-          // @TODO-ZM: use correct dictionary keys
-          error={t("team-error")}
-          action={t("team-try-again")}
+          error={t("learn-list-error")}
+          action={t("global-try-again")}
           onClick={() => fetchDocumentationList()}
+          margin={[6, 1, 1]}
         />
       ) : (
         <Treeview
@@ -60,31 +60,32 @@ export const LearnPage: FC = () => {
   );
 
   const Content: VFC = () => (
-    <Stack direction="vertical" grow={0.75}>
+    <Stack direction="vertical" grow={1}>
+      <MediaQuery upTo="md">
+        <Button variant="v1" margin={[1, 1, 0]} href="/Learn">
+          <T learn-content-back />
+        </Button>
+      </MediaQuery>
       {currentDocument === "ERROR" ? (
         <TryAgain
-          // @TODO-ZM: localize these
-          error="Ops, an error occurred while loading the selected document, please try again..."
-          action="Try Again"
+          error={t("learn-content-error")}
+          action={t("global-try-again")}
           onClick={() => fetchCurrentDocument()}
-          margin={[6, 0, 0]}
+          margin={[6, 1, 1]}
         />
       ) : (
-        <>
-          <MediaQuery upTo="md">
-            <Button variant="v1" margin={[1, 1, 0]} href="/Learn">
-              {/* @TODO-ZM: localize this */}
-              Back
-            </Button>
-          </MediaQuery>
-          <Article article={currentDocument} margin={[1, 1, 3]} />
-        </>
+        <Article
+          article={currentDocument}
+          margin={[1, 1, 3]}
+          authorsText={t("learn-content-authors")}
+          contributorsText={t("learn-content-contributors")}
+        />
       )}
     </Stack>
   );
 
   const BlankContent: VFC = () => (
-    <Stack grow={0.75} direction="vertical" alignItems="center" justifyContent="start">
+    <Stack grow={1} direction="vertical" alignItems="center" justifyContent="start">
       <Image src={learnLanding} width={300} margin={[6, 0, 0]} />
       {loadedSidebarTree?.[0] && (
         <Button variant="v3" href={loadedSidebarTree[0].link} margin={[6, 0, 0]}>

@@ -2,6 +2,8 @@ export type AllDictionaryKeys = keyof typeof dictionary;
 
 export type DictionaryKeys<G extends string> = AllDictionaryKeys & (`${G}-${string}` | `${G}`);
 
+// @TODO-ZM: use a de-deduplication tool for repeated text
+
 export const dictionary = {
   "navbar-section-contribute": { en: "Contribute", ar: "اساهم" },
   "navbar-section-connect": { en: "Connect", ar: "اتواصل" },
@@ -360,7 +362,31 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Learn and share your knowledge with other Algerian developers!",
     ar: "تعلم وشارك معرفتك مع مطورين جزائريين آخرين!",
   },
+  "learn-list-error": {
+    en: "Oops, an error occurred while loading the articles list, please try again...",
+    ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة المقالات ، يرجى المحاولة مرة أخرى ...",
+  },
+  "learn-content-error": {
+    en: "Ops, an error occurred while loading the selected article, please try again...",
+    ar: "عفوًا ، حدث خطأ أثناء تحميل المقالة ، يرجى المحاولة مرة أخرى ...",
+  },
+  "learn-content-back": {
+    en: "Back to the list",
+    ar: "عد إلى القائمة",
+  },
+  "learn-content-authors": {
+    en: "This article is written by",
+    ar: "هذا المقال كتبه",
+  },
+  "learn-content-contributors": {
+    en: "With the help of",
+    ar: "بمساعدة",
+  },
   "ui-theme-DARK": { en: "Dark", ar: "داكن" },
   "ui-theme-LIGHT": { en: "Light", ar: "فاتح" },
   "ui-theme-AUTO": { en: "Auto", ar: "تلقائي" },
+  "global-try-again": {
+    en: "Try Again",
+    ar: "حاول مرة أخري",
+  },
 };
