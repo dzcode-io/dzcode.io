@@ -68,8 +68,15 @@ export const Article: VFC<ArticleProps> = ({ article, ...props }) => {
     </Stack>
   ) : (
     <Stack direction="vertical" {...props}>
-      {/* @TODO-ZM: loading skeleton */}
-      <Skeleton height={30} />
+      <Skeleton height={200} variant="rectangular" />
+      <Text variant="v3" margin={[3, 0, 0]}>
+        <Skeleton />
+        <Skeleton width="75%" />
+      </Text>
+      <Divider orientation="horizontal" margin={[2, 3, 2, 0]} />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton width="75%" />
     </Stack>
   );
 };
