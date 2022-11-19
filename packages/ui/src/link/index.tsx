@@ -34,7 +34,7 @@ export type LinkProps = {
   Pick<MUILinkProps, "underline">;
 
 const variantToLinkStyle: Record<Required<LinkProps>["variant"], CSSProperties> = {
-  v1: {},
+  v1: { wordBreak: "break-word" },
   v2: { display: "flex", flexShrink: 0 },
 };
 

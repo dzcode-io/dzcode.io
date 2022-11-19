@@ -14,6 +14,7 @@ export const customTheme = (mode: PaletteOptions["mode"]) => {
       background: {
         default: [grey["100"], common.black][modeIndex],
       },
+      divider: [grey["400"], grey["600"]][modeIndex],
     },
   });
 };
