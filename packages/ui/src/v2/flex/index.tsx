@@ -34,7 +34,7 @@ export const Flex: FC<FlexProps> = ({
         width,
         backgroundColor: from(color),
         ...(max ? { maxWidth: max.width, maxHeight: max.height } : {}),
-        ...(min ? { maxWidth: min.width, minHeight: min.height } : {}),
+        ...(min ? { minWidth: min.width, minHeight: min.height } : {}),
         position,
         ...css,
       }}
