@@ -67,6 +67,7 @@ export const LearnPage: FC = () => {
           error="Ops, an error occurred while loading the selected document, please try again..."
           action="Try Again"
           onClick={() => fetchCurrentDocument()}
+          margin={[6, 0, 0]}
         />
       ) : (
         <>
