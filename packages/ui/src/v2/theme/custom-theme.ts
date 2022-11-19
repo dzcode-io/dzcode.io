@@ -1,11 +1,12 @@
 import common from "@mui/material/colors/common";
 import grey from "@mui/material/colors/grey";
-import { createTheme, PaletteOptions } from "@mui/material/styles";
+import { createTheme, Direction, PaletteOptions } from "@mui/material/styles";
 
-export const customTheme = (mode: PaletteOptions["mode"]) => {
+export const customTheme = (mode: PaletteOptions["mode"], direction: Direction) => {
   const modeIndex = (["light", "dark"] as PaletteOptions["mode"][]).indexOf(mode);
 
   return createTheme({
+    direction,
     palette: {
       mode,
       primary: {

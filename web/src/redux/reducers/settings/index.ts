@@ -31,7 +31,6 @@ export const settings = createSlice({
       setReducer(state, action);
       if (typeof action.payload.language !== "undefined") {
         localStorage.setItem("languageCode", action.payload.language.code);
-        document.body.setAttribute("dir", action.payload.language.code === "ar" ? "rtl" : "ltr");
         const match = matchPath<{ lang?: LanguageEntity["code"] }>(history.location.pathname, {
           path: urlLanguageRegEx,
           exact: false,

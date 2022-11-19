@@ -8,6 +8,7 @@ runDTOTestCases(
     code: "en",
     label: "English",
     shortLabel: "EN",
+    direction: "ltr",
   },
   {},
 );
