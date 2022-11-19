@@ -29,7 +29,7 @@ const routes: RouteInterface[] = [
   },
   {
     import: import("src/pages/learn"),
-    path: "/Learn",
+    path: "/Learn/:articleId*",
   },
   {
     import: import("src/pages/projects"),
@@ -84,7 +84,7 @@ export const App: FC = () => {
       <Helmet>
         <title>{t("landing-title")}</title>
       </Helmet>
-      <Stack direction="vertical">
+      <Stack direction="vertical" min={{ height: "100vh" }}>
         <Navbar
           version={window.bundleInfo.version}
           selectedLanguageCode={language.code}
@@ -102,7 +102,7 @@ export const App: FC = () => {
           }}
           fixed={!!landingPageMatch?.isExact}
         />
-        <Flex max={{ width: MAX_CONTAINER_WIDTH }}>
+        <Flex max={{ width: MAX_CONTAINER_WIDTH }} grow={1} display="flex">
           <Suspense fallback={<Loading />}>
             <Switch>
               {routes.map(({ import: im, path, ...route }, index) => (
@@ -110,6 +110,7 @@ export const App: FC = () => {
                   {...route}
                   path={path ? `${urlLanguageRegEx}${path}` : undefined}
                   key={`route-${index}`}
+                  // @TODO-ZM: fix lazy re-render: https://github.com/facebook/react/issues/14299#issuecomment-730192566
                   component={lazy(() => im)}
                 />
               ))}
