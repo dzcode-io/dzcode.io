@@ -1,4 +1,3 @@
-import { Document } from "@dzcode.io/api/dist/app/types/legacy";
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import * as Sentry from "@sentry/browser";
@@ -55,13 +54,19 @@ const fetchCurrentDocumentContributors = async (): Promise<void> => {
   const loadedCurrentDocument = isLoaded(currentDocument);
 
   // Don't re-fetch data again
-  if (!loadedCurrentDocument || isLoaded(loadedCurrentDocument.contributors)) return;
+  if (!loadedCurrentDocument || loadedCurrentDocument.contributors.length > 0) return;
 
   try {
-    actions.learnPage.set({ currentDocument: { ...loadedCurrentDocument, contributors: null } });
-    const { contributors } = await fetchV2("api:Contributors", {
-      query: [["path", `documentation/${loadedCurrentDocument.slug}`]],
+    const { contributors: legacyContributors } = await fetchV2("api:Contributors", {
+      query: [["path", `documentation/${loadedCurrentDocument.id}`]],
     });
+    // @TODO-ZM: simplify this once ./data is migrated to ./api
+    const contributors = legacyContributors.map(({ id, html_url, login, avatar_url }) => ({
+      id: `${id}`,
+      link: html_url,
+      name: login,
+      image: avatar_url,
+    }));
     //  getting the current document from a fresh state
     const freshCurrentDocument =
       isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
@@ -71,55 +76,13 @@ const fetchCurrentDocumentContributors = async (): Promise<void> => {
       currentDocument: {
         ...freshCurrentDocument,
         contributors: contributors.filter(
-          ({ login }) => !freshCurrentDocument.authors?.includes(login),
+          ({ link: l1 }) => !freshCurrentDocument.authors.some(({ link: l2 }) => l1 === l2),
         ),
       },
     });
     // update our cache state
     actions.documentation.set({ list: [{ ...freshCurrentDocument, contributors }] });
   } catch (error) {
-    const freshCurrentDocument =
-      isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
-    actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, contributors: "ERROR" } });
-    Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
-  }
-};
-
-/**
- * Fetches the authors of the an current document
- */
-const fetchCurrentDocumentAuthors = async (): Promise<void> => {
-  const { currentDocument } = getState().learnPage;
-  const loadedCurrentDocument = isLoaded(currentDocument);
-
-  // Don't re-fetch data again
-  if (!loadedCurrentDocument || isLoaded(loadedCurrentDocument.githubAuthors)) return;
-
-  try {
-    actions.learnPage.set({ currentDocument: { ...loadedCurrentDocument, githubAuthors: null } });
-
-    const githubAuthors = (
-      await Promise.all(
-        loadedCurrentDocument.authors?.map((author) => {
-          return fetchV2("api:GithubUsers/:login", {
-            params: { login: author },
-          });
-        }) || [],
-      )
-    ).map((response) => {
-      return response.user;
-    });
-    //  getting the current document from a fresh state
-    const freshCurrentDocument =
-      isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
-    // update our page state
-    actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, githubAuthors } });
-    // update our cache state
-    actions.documentation.set({ list: [{ ...freshCurrentDocument, githubAuthors }] });
-  } catch (error) {
-    const freshCurrentDocument =
-      isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
-    actions.learnPage.set({ currentDocument: { ...freshCurrentDocument, githubAuthors: "ERROR" } });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -127,39 +90,54 @@ const fetchCurrentDocumentAuthors = async (): Promise<void> => {
 /**
  * Fetches the content of the current document
  */
+// @TODO-ZM: remove this once ./data is migrated to ./api
+
 export const fetchCurrentDocument = async (): Promise<void> => {
   const match = matchPath<{ lang?: LanguageEntity["code"]; slug: string }>(
     history.location.pathname,
     { path: `${urlLanguageRegEx}/Learn/:slug(.*)` },
   );
 
-  const slug = match?.params.slug.replace(/\/$/, "") || "";
+  const currentSlug = match?.params.slug.replace(/\/$/, "") || "";
 
-  const cashedDocument = hasInCollection<Document>(getState().documentation.list, "slug", slug, [
+  const cashedDocument = hasInCollection(getState().documentation.list, "slug", currentSlug, [
     ["content"],
   ]);
   if (cashedDocument) {
     // update our page state
     actions.learnPage.set({ currentDocument: cashedDocument });
-    // Fetch authors
-    fetchCurrentDocumentAuthors();
     // Fetch contributors
     fetchCurrentDocumentContributors();
   } else {
     actions.learnPage.set({ currentDocument: null });
     try {
       const currentLanguage = getState().settings.language;
-      const currentDocument = await fetchV2(`data:documentation/:slug.json`, {
-        params: { slug },
+      const legacyCurrentDocument = await fetchV2(`data:documentation/:slug.json`, {
+        params: { slug: currentSlug },
         query: [["language", currentLanguage.code]],
       });
 
       // update our page state
+      // @TODO-ZM: simplify this once ./data is migrated to ./api
+      const { title, description, content, image, slug } = legacyCurrentDocument;
+      const currentDocument = {
+        id: slug,
+        image: image || "",
+        title,
+        description: description || "",
+        content: content || "",
+        authors:
+          legacyCurrentDocument.authors?.map((author) => ({
+            id: author,
+            name: author,
+            link: `https://github.com/${author}`,
+            image: `https://github.com/${author}.png`,
+          })) || [],
+        contributors: [],
+      };
       actions.learnPage.set({ currentDocument });
       // update our cache state
       actions.documentation.set({ list: [currentDocument] });
-      // Fetch authors
-      fetchCurrentDocumentAuthors();
       // Fetch contributors
       fetchCurrentDocumentContributors();
     } catch (error) {

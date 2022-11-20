@@ -1,4 +1,5 @@
 import { Link } from "@dzcode.io/ui/dist/link";
+import { TreeItem } from "@dzcode.io/utils/dist/ts";
 import Drawer from "@material-ui/core/Drawer";
 import createStyles from "@material-ui/core/styles/createStyles";
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -8,17 +9,15 @@ import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";
 import Skeleton from "@material-ui/lab/Skeleton";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
-import TreeItem from "@material-ui/lab/TreeItem";
+import MUITreeItem from "@material-ui/lab/TreeItem";
 import TreeView from "@material-ui/lab/TreeView";
 import { FC, Fragment } from "react";
 import { SpeedDial } from "src/components/speed-dial";
 
-export interface SidebarTreeItem {
-  id: string;
+export type SidebarTreeItem = TreeItem<{
   content: string;
   link?: string;
-  children?: SidebarTreeItem[];
-}
+}>;
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -75,7 +74,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
   );
 
   const renderTree = (node: SidebarTreeItem) => (
-    <TreeItem
+    <MUITreeItem
       key={node.id}
       nodeId={node.id}
       label={
@@ -97,7 +96,7 @@ export const Sidebar: FC<SidebarProps> = (props) => {
       }
     >
       {node.children ? node.children.map((treeItem) => renderTree(treeItem)) : null}
-    </TreeItem>
+    </MUITreeItem>
   );
 
   if (md) {

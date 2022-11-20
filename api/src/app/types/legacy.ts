@@ -1,5 +1,6 @@
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 
+// @NOTE-ZM: delete
 export interface Document {
   slug: string;
   image?: string;

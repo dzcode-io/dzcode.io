@@ -32,7 +32,7 @@ const AssumeRedux: FC = () => {
   const { language, themeName } = useSliceSelector("settings");
 
   return (
-    <Theme themeName={themeName}>
+    <Theme themeName={themeName} direction={language.direction}>
       <LinkProvider prefix={language.code === "en" ? undefined : language.code} history={history}>
         <App />
       </LinkProvider>

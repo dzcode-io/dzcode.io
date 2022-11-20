@@ -1,15 +1,29 @@
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
-import { PaletteOptions, ThemeProvider } from "@mui/material/styles";
+import { Direction, PaletteOptions, ThemeProvider } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import type { FC } from "react";
+import rtlPlugin from "stylis-plugin-rtl";
 
 import { customTheme } from "./custom-theme";
 
 type ThemeProps = {
   themeName: "DARK" | "LIGHT" | "AUTO";
+  direction: Direction;
 };
 
-export const Theme: FC<ThemeProps> = ({ children, themeName }) => {
+const caches = {
+  ltr: createCache({
+    key: "muiltr",
+  }),
+  rtl: createCache({
+    key: "muirtl",
+    stylisPlugins: [rtlPlugin],
+  }),
+};
+
+export const Theme: FC<ThemeProps> = ({ children, themeName, direction }) => {
   const systemPrefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const mode: PaletteOptions["mode"] =
     themeName === "AUTO"
@@ -19,10 +33,14 @@ export const Theme: FC<ThemeProps> = ({ children, themeName }) => {
       : themeName === "DARK"
       ? "dark"
       : "light";
+  document.body.dir = direction;
+
   return (
-    <ThemeProvider theme={customTheme(mode)}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
+    <CacheProvider value={caches[direction]}>
+      <ThemeProvider theme={customTheme(mode, direction)}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </CacheProvider>
   );
 };

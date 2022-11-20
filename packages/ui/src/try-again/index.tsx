@@ -1,20 +1,21 @@
-import { FC } from "react";
-import { Button } from "src/button";
-import { Grid } from "src/grid";
-import { Typography } from "src/typography";
+import { VFC } from "react";
+import { Button } from "src/v2/button";
+import { Stack } from "src/v2/stack";
+import { Text } from "src/v2/text";
 
-export const TryAgain: FC<{
+export const TryAgain: VFC<{
   onClick: () => void;
   error: string;
   action: string;
-  stretch?: boolean;
-}> = ({ error, action, onClick, stretch = false }) => {
+  // @TODO-ZM: dry Margin interface and code
+  margin?: number | number[];
+}> = ({ error, action, onClick, margin }) => {
   return (
-    <Grid style={{ flex: stretch ? 1 : "initial" }}>
-      <Typography textAlign="center">{error}</Typography>
-      <div style={{ textAlign: "center", margin: "1rem auto" }}>
-        <Button onClick={onClick}>{action}</Button>
-      </div>
-    </Grid>
+    <Stack direction="vertical" margin={margin} alignItems="center">
+      <Text variant="v2">{error}</Text>
+      <Button variant="v2" margin={[3, 0, 0]} onClick={onClick}>
+        {action}
+      </Button>
+    </Stack>
   );
 };
