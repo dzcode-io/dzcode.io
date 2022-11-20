@@ -3,6 +3,7 @@ import { Link } from "@dzcode.io/ui/dist/link";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { Article } from "@dzcode.io/ui/dist/v2/article";
 import { Button } from "@dzcode.io/ui/dist/v2/button";
+import { Divider } from "@dzcode.io/ui/dist/v2/divider";
 import { MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/v2/flex";
 import { Image } from "@dzcode.io/ui/dist/v2/image";
 import { MediaQuery } from "@dzcode.io/ui/dist/v2/media-query";
@@ -36,7 +37,7 @@ export const LearnPage: FC = () => {
   const loadedSidebarTree = isLoaded(sidebarTree);
 
   const Sidebar: VFC = () => (
-    <Stack direction="vertical">
+    <Stack direction="vertical" margin={[3, 0, 0]}>
       {sidebarTree === "ERROR" ? (
         <TryAgain
           error={t("learn-list-error")}
@@ -49,11 +50,22 @@ export const LearnPage: FC = () => {
           items={sidebarTree}
           min={{ width: MAX_CONTAINER_WIDTH / 4 }}
           margin={1}
-          itemRender={(item) => (
+          itemRender={(item, { isSelected }) => (
             <Link margin={1} href={item.link}>
-              {item.content}
+              <Stack direction="horizontal">
+                {isSelected && (
+                  <Divider
+                    orientation="vertical"
+                    thickness={3}
+                    margin={[0, 1, 0, 0]}
+                    color="PRIMARY"
+                  />
+                )}
+                {item.content}
+              </Stack>
             </Link>
           )}
+          selectedItemId={urlParams.articleId}
         />
       )}
     </Stack>
