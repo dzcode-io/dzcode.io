@@ -1,70 +1,140 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
+import { Link } from "@dzcode.io/ui/dist/link";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
+import { Article } from "@dzcode.io/ui/dist/v2/article";
+import { Button } from "@dzcode.io/ui/dist/v2/button";
+import { Divider } from "@dzcode.io/ui/dist/v2/divider";
+import { MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/v2/flex";
+import { Image } from "@dzcode.io/ui/dist/v2/image";
+import { MediaQuery } from "@dzcode.io/ui/dist/v2/media-query";
+import { Stack } from "@dzcode.io/ui/dist/v2/stack";
+import { Treeview } from "@dzcode.io/ui/dist/v2/treeview";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
-import Grid from "@material-ui/core/Grid";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, VFC } from "react";
 import { Helmet } from "react-helmet";
-import { Route, useRouteMatch } from "react-router-dom";
-import { Sidebar } from "src/components/sidebar";
-import { t } from "src/components/t";
-import { fetchArticlesList } from "src/redux/actions/articles-page";
+import { useRouteMatch } from "react-router-dom";
+import articlesLanding from "src/assets/svg/articles-landing.svg";
+import { T, t } from "src/components/t";
+import { fetchArticlesList, fetchCurrentArticle } from "src/redux/actions/articles-page";
 import { useSliceSelector } from "src/redux/selectors";
 
-import { Content } from "./content";
-import { Landing } from "./landing";
-
 export const ArticlesPage: FC = () => {
-  const { currentArticle, expanded, sidebarTree } = useSliceSelector("articlesPage");
-  const [open, setOpen] = useState(false);
+  const { currentArticle, sidebarTree } = useSliceSelector("articlesPage");
+  const { params: urlParams } = useRouteMatch<{ articleId?: string }>();
+
+  const loadedCurrentArticle = isLoaded(currentArticle);
 
   useEffect(() => {
     fetchArticlesList();
-  }, []);
+  }, []); // @TODO-ZM: add language as dependency
 
-  const { path: pathRegex } = useRouteMatch();
-  const path = "/Articles";
-  const loadedCurrentArticle = isLoaded(currentArticle);
+  useEffect(() => {
+    if (urlParams.articleId) {
+      fetchCurrentArticle();
+    }
+  }, [urlParams.articleId]); // @TODO-ZM: add language as dependency
+
+  const loadedSidebarTree = isLoaded(sidebarTree);
+
+  const Sidebar: VFC = () => (
+    <Stack direction="vertical" margin={[3, 0, 0]}>
+      {sidebarTree === "ERROR" ? (
+        <TryAgain
+          error={t("articles-list-error")}
+          action={t("global-try-again")}
+          onClick={() => fetchArticlesList()}
+          margin={[6, 1, 1]}
+        />
+      ) : (
+        <Treeview
+          items={sidebarTree}
+          min={{ width: MAX_CONTAINER_WIDTH / 4 }}
+          margin={1}
+          itemRender={(item, { isSelected }) => (
+            <Link margin={1} href={item.link}>
+              <Stack direction="horizontal">
+                {isSelected && (
+                  <Divider
+                    orientation="vertical"
+                    thickness={3}
+                    margin={[0, 1, 0, 0]}
+                    color="PRIMARY"
+                  />
+                )}
+                {item.content}
+              </Stack>
+            </Link>
+          )}
+          selectedItemId={urlParams.articleId}
+        />
+      )}
+    </Stack>
+  );
+
+  const Content: VFC = () => (
+    <Stack direction="vertical" grow={1}>
+      <MediaQuery upTo="md">
+        <Button variant="v1" margin={[1, 1, 0]} href="/Articles">
+          <T articles-content-back />
+        </Button>
+      </MediaQuery>
+      {currentArticle === "ERROR" ? (
+        <TryAgain
+          error={t("articles-content-error")}
+          action={t("global-try-again")}
+          onClick={() => fetchCurrentArticle()}
+          margin={[6, 1, 1]}
+        />
+      ) : (
+        <Article
+          article={currentArticle}
+          margin={[1, 1, 3]}
+          authorsText={t("articles-content-authors")}
+          contributorsText={t("articles-content-contributors")}
+        />
+      )}
+    </Stack>
+  );
+
+  const BlankContent: VFC = () => (
+    <Stack grow={1} direction="vertical" alignItems="center" justifyContent="start">
+      <Image src={articlesLanding} width={300} margin={[6, 0, 0]} />
+      {loadedSidebarTree?.[0] && (
+        <Button variant="v3" href={loadedSidebarTree[0].link} margin={[6, 0, 0]}>
+          {loadedSidebarTree[0].content}
+        </Button>
+      )}
+    </Stack>
+  );
 
   return (
-    <ErrorBoundary>
-      <Helmet>
-        <title>{t("articles-title")}</title>
-        <meta name="description" content={t("articles-description")} />
-      </Helmet>
-      <Grid container className="articles" dir="ltr">
-        {/* Sidebar */}
-        <Grid item xs={false} md={3} style={{ paddingTop: "1rem" }}>
-          {sidebarTree === "ERROR" ? (
-            <TryAgain
-              error="Ops, an error occurred while loading the articles list, please try again..."
-              action="Try Again"
-              onClick={() => fetchArticlesList()}
-            />
-          ) : (
-            <Sidebar
-              tree={sidebarTree}
-              path={path}
-              expanded={expanded}
-              selected={loadedCurrentArticle ? loadedCurrentArticle.slug : ""}
-              isOpen={open}
-              onChange={(isOpen) => setOpen(isOpen)}
-            />
-          )}
-        </Grid>
-        {/* Content */}
-        <Grid item xs md={7}>
-          <Route
-            exact
-            path={pathRegex}
-            render={() => <Landing onShowSidebar={() => setOpen(true)} />}
+    <>
+      <ErrorBoundary>
+        <Helmet>
+          <title>{`${
+            (urlParams.articleId && loadedCurrentArticle?.title) || t("articles-title")
+          } | DzCode i/o`}</title>
+          <meta
+            name="description"
+            content={
+              (urlParams.articleId && loadedCurrentArticle?.description) ||
+              t("articles-description")
+            }
           />
-          <Route
-            path={`${pathRegex}/:articleSlug`}
-            render={() => <Content key={location.pathname} />}
-          />
-        </Grid>
-      </Grid>
-    </ErrorBoundary>
+        </Helmet>
+      </ErrorBoundary>
+      <Stack direction="horizontal" grow={1}>
+        <MediaQuery downTo={urlParams.articleId ? "md" : undefined}>
+          <Sidebar />
+        </MediaQuery>
+        {urlParams.articleId && <Content />}
+        {!urlParams.articleId && (
+          <MediaQuery downTo={"md"}>
+            <BlankContent />
+          </MediaQuery>
+        )}
+      </Stack>
+    </>
   );
 };
 

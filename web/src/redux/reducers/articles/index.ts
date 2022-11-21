@@ -1,9 +1,10 @@
-import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { Model } from "@dzcode.io/models/dist/_base";
+import { ArticleEntity } from "@dzcode.io/models/dist/article";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { updateCollection } from "src/utils";
 
 export interface ArticlesState {
-  list: Article[];
+  list: Model<ArticleEntity, "authors" | "contributors">[];
 }
 
 // @TODO-ZM: use RTK EntityAdapter
@@ -14,7 +15,7 @@ export const articles = createSlice({
   } as ArticlesState,
   reducers: {
     set: (state: ArticlesState, action: PayloadAction<Partial<ArticlesState>>) => {
-      state.list = updateCollection<Article>(state.list, action.payload.list || [], "slug");
+      state.list = updateCollection(state.list, action.payload.list || [], "slug");
     },
   },
 });
