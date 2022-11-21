@@ -1,5 +1,6 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { Link } from "@dzcode.io/ui/dist/link";
+import { Markdown } from "@dzcode.io/ui/dist/v2/markdown";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
@@ -8,7 +9,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { FC } from "react";
 import { Helmet } from "react-helmet";
 import svg from "src/assets/svg/404.svg";
-import { Markdown } from "src/components/markdown";
 import { T, t } from "src/components/t";
 import { useSliceSelector } from "src/redux/selectors";
 

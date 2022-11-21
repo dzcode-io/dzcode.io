@@ -43,7 +43,9 @@ export const Stack: FC<StackProps> = ({
       sx={{
         flexGrow: grow,
         margin: themedMargin ? `${themedMargin} !important` : undefined,
-        ...(max ? { maxWidth: max.width, maxHeight: max.height } : {}),
+        ...(max
+          ? { maxWidth: max.width, maxHeight: max.height }
+          : { maxWidth: "100%", maxHeight: "100%" }),
         ...(min ? { minWidth: min.width, minHeight: min.height } : {}),
       }}
       direction={direction === "vertical" ? "column" : "row"}

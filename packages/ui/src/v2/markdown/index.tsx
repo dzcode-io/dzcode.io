@@ -46,6 +46,7 @@ export const Markdown: FC<MarkdownProps> = ({ children, t }) => {
                 borderRadius: "6px",
                 background: from("BACKGROUND_CODE"),
                 padding: ".2rem .3rem",
+                maxWidth: "100%",
               },
             },
           },
@@ -59,8 +60,8 @@ export const Markdown: FC<MarkdownProps> = ({ children, t }) => {
                     borderWidth: 1,
                     borderStyle: "solid",
                     borderColor: from("DIVIDER"),
+                    maxWidth: "100%",
                   }}
-                  wrapLongLines={true}
                   {...props}
                   language={props.className ? props.className.replace("lang-", "") : null}
                   style={isDarkMode ? tomorrow : prism}
