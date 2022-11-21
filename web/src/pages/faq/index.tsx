@@ -1,69 +1,46 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import { FaqCard } from "@dzcode.io/ui/dist/faq-card";
-import { Grid } from "@dzcode.io/ui/dist/grid";
-import { Typography } from "@dzcode.io/ui/dist/typography";
+import { Accordion } from "@dzcode.io/ui/dist/v2/accordion";
 import { Markdown } from "@dzcode.io/ui/dist/v2/markdown";
-import type { FC } from "react";
+import { Stack } from "@dzcode.io/ui/dist/v2/stack";
+import { Text } from "@dzcode.io/ui/dist/v2/text";
+import { FC, Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { T, t } from "src/components/t";
 import { useSliceSelector } from "src/redux/selectors";
 
-const FaqCards = () => {
+export const FaqPage: FC = () => {
   const { faqData } = useSliceSelector("faqPage");
 
   return (
-    <Grid container rowSpacing={5}>
+    <ErrorBoundary>
       <Helmet>
         <title>{t("faq-title")}</title>
         <meta name="description" content={t("faq-description")} />
       </Helmet>
-      {faqData.map(({ title, questions }, index) => (
-        <Grid item xs={12} key={`faq.title.${index}`}>
-          <FaqCard
-            title={<T k={title} />}
-            questions={questions.map(({ question, answer }) => {
-              return {
-                question: <T k={question} />,
-                answer: <Markdown t={t(answer)} />,
-              };
-            })}
-          />
-        </Grid>
-      ))}
-    </Grid>
-  );
-};
-
-const PageTitle = () => {
-  return (
-    <Typography variant="h4" component="h1" textAlign="center">
-      <T faq-header-title />
-    </Typography>
-  );
-};
-
-const PageFooter = () => {
-  return (
-    <Typography variant="h6" component="h2" textAlign="center">
-      <T faq-need-help /> <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>
-    </Typography>
-  );
-};
-
-export const FaqPage: FC = () => {
-  return (
-    <ErrorBoundary>
-      <Grid container gap={6} sx={{ mb: 6, mt: { xs: 0, lg: 2 } }}>
-        <Grid item xs={12}>
-          <PageTitle />
-        </Grid>
-        <Grid item xs={12}>
-          <FaqCards />
-        </Grid>
-        <Grid item xs={12}>
-          <PageFooter />
-        </Grid>
-      </Grid>
+      <Stack direction="vertical" alignItems="center" width="100%">
+        <Text variant="v3" margin={[3, 1, 0]}>
+          <T faq-header-title />
+        </Text>
+        {faqData.map(({ title, questions }, index) => (
+          <Fragment key={`faq-item-${index}`}>
+            <Text variant="v4" margin={[3, 1]}>
+              <T k={title} />
+            </Text>
+            <Stack direction="vertical" width="100%">
+              <Accordion
+                items={questions.map(({ question, answer }) => ({
+                  title: <T k={question} />,
+                  description: <Markdown t={t(answer)} />,
+                }))}
+                margin={[0, 1]}
+              />
+            </Stack>
+          </Fragment>
+        ))}
+        <Text variant="v2" margin={[3, 1]}>
+          <T faq-need-help /> <a href="mailto:contact@dzcode.io">contact@dzcode.io</a>
+        </Text>
+      </Stack>
     </ErrorBoundary>
   );
 };

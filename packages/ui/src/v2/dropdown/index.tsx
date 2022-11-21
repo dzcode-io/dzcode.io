@@ -33,7 +33,7 @@ export const Dropdown = <C extends string>({
       <Button variant="v2" onClick={(event) => setAnchorEl(event.currentTarget)}>
         {text}
       </Button>
-      <GlobalStyles styles="ul { padding: 0 !important; }" />
+      <GlobalStyles styles=".MuiMenu-list { padding: 0 !important; }" />
       <Menu anchorEl={anchorEl} open={open} onClose={() => handleClose()}>
         <Stack direction="vertical">
           {items.map((item, index) => (
