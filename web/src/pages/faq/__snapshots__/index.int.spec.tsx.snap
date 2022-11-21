@@ -474,7 +474,7 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                         >
                           <div>
                             <p
-                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"
+                              class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph css-z2eky3-MuiTypography-root"
                             >
                               Besides the open tasks on 
                               <a

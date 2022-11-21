@@ -354,6 +354,27 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Browse, read or modify a growing list of articles written by Algerian developers, or Add your own article to the list!",
     ar: "تصفح أو اقرأ أو عدل قائمة متزايدة من المقالات التي كتبها مطورون جزائريون ، أو أضف مقالك الخاص إلى القائمة!",
   },
+  "articles-list-error": {
+    en: "Oops, an error occurred while loading the articles list, please try again...",
+    ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة المقالات ، يرجى المحاولة مرة أخرى ...",
+  },
+  "articles-content-error": {
+    en: "Ops, an error occurred while loading the selected article, please try again...",
+    ar: "عفوًا ، حدث خطأ أثناء تحميل المقالة ، يرجى المحاولة مرة أخرى ...",
+  },
+  "articles-content-back": {
+    en: "Back to the list",
+    ar: "عد إلى القائمة",
+  },
+  "articles-content-authors": {
+    en: "This article is written by",
+    ar: "هذا المقال كتبه",
+  },
+  "articles-content-contributors": {
+    en: "With the help of",
+    ar: "بمساعدة",
+  },
+
   "learn-title": {
     en: "Learn about software development through open-source | DzCode i/o",
     ar: "تعرف على البرمجة من خلال البرامج مفتوحة المصدر | DzCode i / o",

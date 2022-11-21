@@ -1,11 +1,10 @@
-import { Article } from "@dzcode.io/api/dist/app/types/legacy";
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { matchPath } from "react-router-dom";
-import { SidebarTreeItem } from "src/components/sidebar";
 import { actions, getState } from "src/redux";
+import { SidebarTreeItem } from "src/types/sidebar";
 import { hasInCollection } from "src/utils";
 import { fetchV2 } from "src/utils/fetch";
 import { history } from "src/utils/history";
@@ -50,82 +49,40 @@ export const fetchArticlesList = async (): Promise<void> => {
 /**
  * Fetches the contributors of the an current article
  */
-export const fetchCurrentArticleContributors = async (): Promise<void> => {
+const fetchCurrentArticleContributors = async (): Promise<void> => {
   const { currentArticle } = getState().articlesPage;
   const loadedCurrentArticle = isLoaded(currentArticle);
 
   // Don't re-fetch data again
-  if (!loadedCurrentArticle || isLoaded(loadedCurrentArticle.contributors)) return;
+  if (!loadedCurrentArticle || loadedCurrentArticle.contributors.length > 0) return;
 
   try {
-    actions.articlesPage.set({ currentArticle: { ...loadedCurrentArticle, contributors: null } });
-    const { contributors } = await fetchV2("api:Contributors", {
-      query: [["path", `articles/${loadedCurrentArticle.slug}`]],
+    const { contributors: legacyContributors } = await fetchV2("api:Contributors", {
+      query: [["path", `articles/${loadedCurrentArticle.id}`]],
     });
+    // @TODO-ZM: simplify this once ./data is migrated to ./api
+    const contributors = legacyContributors.map(({ id, html_url, login, avatar_url }) => ({
+      id: `${id}`,
+      link: html_url,
+      name: login,
+      image: avatar_url,
+    }));
     //  getting the current article from a fresh state
     const freshCurrentArticle =
       isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
 
     // update our page state
-
     actions.articlesPage.set({
       currentArticle: {
         ...freshCurrentArticle,
-        // Filter the author out the contributors
         contributors: contributors.filter(
-          ({ login }) => !freshCurrentArticle.authors?.includes(login),
+          ({ link: l1 }) => !freshCurrentArticle.authors.some(({ link: l2 }) => l1 === l2),
         ),
       },
     });
-
     // update our cache state
     actions.articles.set({ list: [{ ...freshCurrentArticle, contributors }] });
   } catch (error) {
-    const freshCurrentArticle =
-      isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
-
-    actions.articlesPage.set({ currentArticle: { ...freshCurrentArticle, contributors: "ERROR" } });
-    Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
-  }
-};
-
-/**
- * Fetches the authors of the current article
- */
-export const fetchCurrentArticleAuthors = async (): Promise<void> => {
-  const { currentArticle } = getState().articlesPage;
-  const loadedCurrentArticle = isLoaded(currentArticle);
-
-  // Don't re-fetch data again
-  if (!loadedCurrentArticle || isLoaded(loadedCurrentArticle.githubAuthors)) return;
-
-  try {
-    actions.articlesPage.set({ currentArticle: { ...loadedCurrentArticle, githubAuthors: null } });
-
-    const githubAuthors = (
-      await Promise.all(
-        loadedCurrentArticle.authors?.map((author) => {
-          return fetchV2("api:GithubUsers/:login", {
-            params: { login: author },
-          });
-        }) || [],
-      )
-    ).map((response) => {
-      return response.user;
-    });
-    //  getting the current article from a fresh state
-    const freshCurrentArticle =
-      isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
-    // update our page state
-    actions.articlesPage.set({ currentArticle: { ...freshCurrentArticle, githubAuthors } });
-    // update our cache state
-    actions.articles.set({ list: [{ ...freshCurrentArticle, githubAuthors }] });
-  } catch (error) {
-    const freshCurrentArticle =
-      isLoaded(getState().articlesPage.currentArticle) || loadedCurrentArticle;
-    actions.articlesPage.set({
-      currentArticle: { ...freshCurrentArticle, githubAuthors: "ERROR" },
-    });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
   }
 };
@@ -133,41 +90,54 @@ export const fetchCurrentArticleAuthors = async (): Promise<void> => {
 /**
  * Fetches the content of the current article
  */
+// @TODO-ZM: remove this once ./data is migrated to ./api
+
 export const fetchCurrentArticle = async (): Promise<void> => {
   const match = matchPath<{ lang?: LanguageEntity["code"]; slug: string }>(
     history.location.pathname,
     { path: `${urlLanguageRegEx}/Articles/:slug(.*)` },
   );
-  const slug = match?.params.slug.replace(/\/$/, "") || "";
 
-  const cashedArticle = hasInCollection<Article>(getState().articles.list, "slug", slug, [
+  const currentSlug = match?.params.slug.replace(/\/$/, "") || "";
+
+  const cashedArticle = hasInCollection(getState().articles.list, "slug", currentSlug, [
     ["content"],
   ]);
   if (cashedArticle) {
     // update our page state
     actions.articlesPage.set({ currentArticle: cashedArticle });
-
-    // Fetch authors
-    fetchCurrentArticleAuthors();
     // Fetch contributors
     fetchCurrentArticleContributors();
   } else {
     actions.articlesPage.set({ currentArticle: null });
-
-    const currentLanguage = getState().settings.language.code;
-
     try {
-      const currentArticle = await fetchV2(`data:articles/:slug.json`, {
-        params: { slug },
-        query: [["language", currentLanguage]],
+      const currentLanguage = getState().settings.language;
+      const legacyCurrentArticle = await fetchV2(`data:articles/:slug.json`, {
+        params: { slug: currentSlug },
+        query: [["language", currentLanguage.code]],
       });
 
       // update our page state
+      // @TODO-ZM: simplify this once ./data is migrated to ./api
+      const { title, description, content, image, slug } = legacyCurrentArticle;
+      const currentArticle = {
+        id: slug,
+        image: image || "",
+        title,
+        description: description || "",
+        content: content || "",
+        authors:
+          legacyCurrentArticle.authors?.map((author) => ({
+            id: author,
+            name: author,
+            link: `https://github.com/${author}`,
+            image: `https://github.com/${author}.png`,
+          })) || [],
+        contributors: [],
+      };
       actions.articlesPage.set({ currentArticle });
       // update our cache state
       actions.articles.set({ list: [currentArticle] });
-      // Fetch authors
-      fetchCurrentArticleAuthors();
       // Fetch contributors
       fetchCurrentArticleContributors();
     } catch (error) {

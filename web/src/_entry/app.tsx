@@ -37,7 +37,7 @@ const routes: RouteInterface[] = [
   },
   {
     import: import("src/pages/articles"),
-    path: "/Articles",
+    path: "/Articles/:articleId*",
   },
   {
     import: import("src/pages/faq"),

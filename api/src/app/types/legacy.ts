@@ -13,6 +13,7 @@ export interface Document {
   views?: number;
 }
 
+// @NOTE-ZM: delete
 export interface Article {
   slug: string;
   image?: string;
