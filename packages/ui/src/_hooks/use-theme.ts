@@ -4,5 +4,6 @@ export const useTheme = () => {
   const theme = muiUseTheme();
   return {
     isDarkMode: theme.palette.mode === "dark",
+    spacing: (amount: number) => theme.spacing(amount),
   };
 };
