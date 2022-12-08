@@ -5,11 +5,12 @@ import { Flex, MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/v2/flex";
 import { Footer } from "@dzcode.io/ui/dist/v2/footer";
 import { Navbar } from "@dzcode.io/ui/dist/v2/navbar";
 import { Stack } from "@dzcode.io/ui/dist/v2/stack";
-import { ComponentType, FC, lazy, Suspense, useEffect } from "react";
+import { FC, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
 import logo from "src/assets/svg/logo-wide.svg";
 import logoExtended from "src/assets/svg/logo-wide-extended.svg";
+import { L } from "src/components/l";
 import { Loading } from "src/components/loading";
 import { t } from "src/components/t";
 import { actions } from "src/redux";
@@ -18,41 +19,41 @@ import { getEnv } from "src/utils";
 import { urlLanguageRegEx } from "src/utils/language";
 
 interface RouteInterface extends RouteProps {
-  import: Promise<{ default: ComponentType }>;
+  pageName: string;
 }
 
 const routes: RouteInterface[] = [
   {
-    import: import("src/pages/landing"),
+    pageName: "landing",
     path: "/",
     exact: true,
   },
   {
-    import: import("src/pages/learn"),
+    pageName: "learn",
     path: "/Learn/:articleId*",
   },
   {
-    import: import("src/pages/projects"),
+    pageName: "projects",
     path: "/Projects",
   },
   {
-    import: import("src/pages/articles"),
+    pageName: "articles",
     path: "/Articles/:articleId*",
   },
   {
-    import: import("src/pages/faq"),
+    pageName: "faq",
     path: "/FAQ",
   },
   {
-    import: import("src/pages/contribute"),
+    pageName: "contribute",
     path: "/Contribute",
   },
   {
-    import: import("src/pages/team"),
+    pageName: "team",
     path: "/Team",
   },
   {
-    import: import("src/pages/not-found"),
+    pageName: "not-found",
   },
 ];
 
@@ -105,13 +106,12 @@ export const App: FC = () => {
         <Flex max={{ width: MAX_CONTAINER_WIDTH }} grow={1} display="flex">
           <Suspense fallback={<Loading />}>
             <Switch>
-              {routes.map(({ import: im, path, ...route }, index) => (
+              {routes.map(({ pageName, path, ...route }, index) => (
                 <Route
                   {...route}
                   path={path ? `${urlLanguageRegEx}${path}` : undefined}
                   key={`route-${index}`}
-                  // @TODO-ZM: fix lazy re-render: https://github.com/facebook/react/issues/14299#issuecomment-730192566
-                  component={lazy(() => im)}
+                  render={() => <L page={pageName} />}
                 />
               ))}
             </Switch>
