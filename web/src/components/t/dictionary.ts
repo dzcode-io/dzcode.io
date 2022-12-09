@@ -307,6 +307,7 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     ar: "عنوان url معطل؟",
   },
   "notfound-subtitle": {
+    // @TODO-ZM: link to /contibutors/github/NurElHuda later when we have contibutors page
     en: `Finally someone saw the 404 page <a href="https://github.com/NurElHuda">Nour</a> built 😄`,
     ar: `أخيرًا شاهد شخص ما صفحة 404 التي أنشأتها <a href="https://github.com/NurElHuda">نور</a> 😄`,
   },
