@@ -8,7 +8,7 @@ export const dynamicPages: PageInfo[] = [];
 [
   { file: "articles", slug: "Articles" },
   { file: "documentation", slug: "Learn" },
-  { file: "projects", slug: "Projects" },
+  // { file: "projects", slug: "Projects" }, // @TODO-ZM: to put back when we have proper project details page
 ].forEach((collectionInfo) => {
   const collection = getCollection<Record<string, string>>(
     join(__dirname, "../../../../data"),

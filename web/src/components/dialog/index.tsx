@@ -56,7 +56,7 @@ export function SimpleDialog(props: SimpleDialogProps) {
                         <Edit />
                       </Avatar>
                     </ListItemAvatar>
-                    <ListItemText primary={project.title} />
+                    <ListItemText primary={project.name} />
                   </ListItem>
                 ))
               : repositories
