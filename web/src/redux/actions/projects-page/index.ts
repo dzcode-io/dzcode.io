@@ -31,7 +31,7 @@ const shuffleProjects = <T>(array: T[]) => {
 export const fetchProjectsList = async (): Promise<void> => {
   try {
     actions.projectsPage.set({ projectsList: null });
-    const projectsList = await fetchV2("data:projects/list.c.json", {});
+    const projectsList = await fetchV2("data:projects-v2/list.c.json", {});
     actions.projectsPage.set({ projectsList: shuffleProjects(projectsList) });
   } catch (error) {
     actions.projectsPage.set({ projectsList: "ERROR" });

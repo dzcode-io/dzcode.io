@@ -7,6 +7,7 @@ import { GetTeamResponseDto } from "src/team/types";
 
 import { Article, Document, Project } from "./types/legacy";
 
+// @TODO-ZM: remove old endpoints
 export interface Endpoints {
   "data:articles/list.c.json": {
     response: Pick<Article, "title" | "slug">[];
@@ -29,11 +30,8 @@ export interface Endpoints {
     params: { slug: string };
     query: [["language", LanguageEntity["code"]]];
   };
-  "data:projects/list.c.json": {
-    response: Pick<Project, "title" | "description" | "image" | "githubURI">[];
-  };
-  "data:projects/top-projects.c.json": {
-    response: Pick<Project, "title" | "description" | "image" | "githubURI">[];
+  "data:projects-v2/list.c.json": {
+    response: Project[];
   };
   "api:Contributions": {
     response: GetContributionsResponseDto;

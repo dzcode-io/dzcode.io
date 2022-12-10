@@ -1,0 +1,4 @@
+{
+  "items": "all",
+  "include": ["name", "repositories"]
+}

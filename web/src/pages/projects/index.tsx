@@ -1,12 +1,13 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
+import { ProjectCard } from "@dzcode.io/ui/dist/v2/card/project";
+import { Stack } from "@dzcode.io/ui/dist/v2/stack";
+import { Text } from "@dzcode.io/ui/dist/v2/text";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { t } from "src/components/t";
+import { T, t } from "src/components/t";
 import { fetchProjectsList } from "src/redux/actions/projects-page";
 import { useSliceSelector } from "src/redux/selectors";
-
-import { Catalog } from "./catalog";
 
 export const ProjectsPage: FC = () => {
   const { projectsList } = useSliceSelector("projectsPage");
@@ -21,7 +22,10 @@ export const ProjectsPage: FC = () => {
         <title>{t("projects-title")}</title>
         <meta name="description" content={t("projects-description")} />
       </Helmet>
-      <div>
+      <Stack direction="vertical" alignItems="center" width="100%">
+        <Text variant="v3" margin={[3, 1, 0]}>
+          <T projects-header-title />
+        </Text>
         {projectsList == "ERROR" ? (
           <TryAgain
             error={t("projects-error")}
@@ -29,9 +33,21 @@ export const ProjectsPage: FC = () => {
             onClick={() => fetchProjectsList()}
           />
         ) : (
-          <Catalog projectsList={projectsList} />
+          <Stack
+            direction="horizontal"
+            flexWrap="wrap"
+            margin={[3, 1]}
+            justifyContent="space-evenly"
+            gap={3}
+          >
+            {projectsList
+              ? projectsList.map((project, index) => (
+                  <ProjectCard key={`project-${index}`} project={project} />
+                ))
+              : "@TODO: Loading"}
+          </Stack>
         )}
-      </div>
+      </Stack>
     </ErrorBoundary>
   );
 };

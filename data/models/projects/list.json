@@ -1,4 +1,0 @@
-{
-  "items": "all",
-  "include": ["title", "description", "image", "githubURI"]
-}

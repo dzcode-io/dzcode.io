@@ -1,0 +1,10 @@
+{
+  "name": "AiPalettes",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "bondbenz",
+      "repository": "aipalettes"
+    }
+  ]
+}

@@ -1,10 +1,11 @@
-import { Project } from "@dzcode.io/api/dist/app/types/legacy";
+import { Model } from "@dzcode.io/models/dist/_base";
+import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 
 export interface ProjectsPageState {
-  projectsList: LOADABLE<Pick<Project, "title" | "description" | "image" | "githubURI">[]>;
+  projectsList: LOADABLE<Model<ProjectReferenceEntity, "repositories">[]>;
 }
 
 export const projectsPage = createSlice({
