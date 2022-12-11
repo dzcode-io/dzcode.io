@@ -40,6 +40,7 @@ export class TeamRepository {
           owner,
           repo: repository,
         });
+        // @TODO-ZM: filter out bots
         committers.forEach(({ avatar_url: avatarUrl, id, login, contributions }) => {
           const uuid = `${provider}/${id}`;
           // add new contributor if doesn't exists

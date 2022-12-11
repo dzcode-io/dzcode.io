@@ -19,7 +19,7 @@ const caches = {
   }),
   rtl: createCache({
     key: "muirtl",
-    stylisPlugins: [rtlPlugin],
+    stylisPlugins: [rtlPlugin as never],
   }),
 };
 
