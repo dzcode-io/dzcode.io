@@ -87,7 +87,7 @@
     "bundle:alone": "cross-env TS_NODE_SKIP_PROJECT=true NODE_ENV=production craco build",
     "bundle:analyze": "yarn clean && cross-env ANALYZE=true yarn bundle",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
-    "clean:alone": "rimraf dist coverage bundle",
+    "clean:alone": "rimraf dist coverage bundle node_modules/.cache",
     "deploy": "yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
     "deploy:stg": "yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
     "generate:bundle-info": "ts-node ../packages/tooling/bundle-info.ts",

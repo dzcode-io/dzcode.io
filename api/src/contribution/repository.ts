@@ -41,6 +41,7 @@ export class ContributionRepository {
                   owner,
                   repo,
                 });
+                // @TODO-ZM: filter out the ones created by bots
                 return issuesIncludingPRs.map<Model<ContributionEntity, "project">>(
                   ({
                     number,
