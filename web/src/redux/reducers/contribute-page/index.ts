@@ -6,7 +6,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 
 export interface ContributePageState {
-  filters: FilterDto[];
+  filters: LOADABLE<FilterDto[]>;
   contributions: LOADABLE<Model<ContributionEntity, "project">[]>;
 }
 

@@ -23555,10 +23555,10 @@ stylehacks@^5.0.1:
     browserslist "^4.16.0"
     postcss-selector-parser "^6.0.4"
 
-stylis-plugin-rtl@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-2.1.1.tgz#16707809c878494835f77e5d4aadaae3db639b5e"
-  integrity sha512-q6xIkri6fBufIO/sV55md2CbgS5c6gg9EhSVATtHHCdOnbN/jcI0u3lYhNVeuI65c4lQPo67g8xmq5jrREvzlg==
+stylis-plugin-rtl@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/stylis-plugin-rtl/-/stylis-plugin-rtl-2.0.2.tgz#d07fc6f3f9818ccc1de6b2d57d67e679b14116e5"
+  integrity sha512-3xKsCTUs/Ab6Kp/NjwTEvcS6eI2ZbIORJssvw2S+H20DlUIp8ZC3drQ/0V3G5P559A4xGwA+XV6ZSJHhEoRvhw==
   dependencies:
     cssjanus "^2.0.1"
 

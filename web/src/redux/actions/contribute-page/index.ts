@@ -1,3 +1,4 @@
+import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import debounce from "@material-ui/core/utils/debounce";
 import * as Sentry from "@sentry/browser";
 import { actions, getState } from "src/redux";
@@ -10,8 +11,9 @@ export const fetchContributions = async (): Promise<void> => {
   actions.contributePage.set({ contributions: null });
   try {
     const { contributePage } = getState();
+    const loadedFilters = isLoaded(contributePage.filters);
     const query: [string, string][] = [];
-    contributePage.filters.forEach((filter) => {
+    loadedFilters?.forEach((filter) => {
       filter.options.forEach((option) => {
         if (option.checked) query.push([filter.name, option.name]);
       });
@@ -24,7 +26,7 @@ export const fetchContributions = async (): Promise<void> => {
       filterName: string;
       optionName: string;
     }> = [];
-    contributePage.filters.forEach((filter) => {
+    loadedFilters?.forEach((filter) => {
       filter.options.forEach((option) => {
         if (option.checked) {
           checkedFilters.push({
@@ -71,7 +73,10 @@ export const updateFilterValue = async ({
   overwrite = false,
 }: UpdateFilterValueParam): Promise<void> => {
   const { filters } = getState().contributePage;
-  const newFilters = filters.map((filter) => {
+  const loadedFilters = isLoaded(filters);
+  if (!loadedFilters) return;
+
+  const newFilters = loadedFilters.map((filter) => {
     if (filter.name !== filterName) {
       return {
         ...filter,

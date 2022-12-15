@@ -1,6 +1,11 @@
+import type { PyramidSplitString } from "@dzcode.io/utils/dist/ts";
+
 export type AllDictionaryKeys = keyof typeof dictionary;
 
-export type DictionaryKeys<G extends string> = AllDictionaryKeys & (`${G}-${string}` | `${G}`);
+export type DictionaryGroups = PyramidSplitString<AllDictionaryKeys, "-">[number];
+
+export type DictionaryKeys<G extends DictionaryGroups> = AllDictionaryKeys &
+  (`${G}-${string}` | `${G}`);
 
 // @TODO-ZM: use a de-deduplication tool for repeated text
 
@@ -410,5 +415,18 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "global-try-again": {
     en: "Try Again",
     ar: "حاول مرة أخري",
+  },
+  // @TODO-ZM: add other languages
+  "global-programming-language-javascript": {
+    en: "Javascript",
+    ar: "جافا سكريبت",
+  },
+  "global-programming-language-typescript": {
+    en: "Typescript",
+    ar: "تايب سكريبت",
+  },
+  "global-contribution-label-bug": {
+    en: "Bug",
+    ar: "خطأ",
   },
 };

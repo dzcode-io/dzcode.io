@@ -9,6 +9,7 @@ import { Text } from "src/v2/text";
 interface AccordionProps {
   items: Array<{
     title: ReactNode;
+    // @TODO-ZM: renamed this to body
     description: ReactNode;
   }>;
   margin?: number | number[];

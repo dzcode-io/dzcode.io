@@ -6,7 +6,7 @@ import { join } from "path";
 import { GithubService } from "src/github/service";
 import { Service } from "typedi";
 
-import { FilterDto, GetContributionsResponseDto, OptionDto } from "./types";
+import { allFilterNames, FilterDto, GetContributionsResponseDto, OptionDto } from "./types";
 
 @Service()
 export class ContributionRepository {
@@ -82,22 +82,18 @@ export class ContributionRepository {
       (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
     );
 
-    const filters: FilterDto[] = [
-      { label: "Project", name: "projects", options: [] },
-      { label: "Language", name: "languages", options: [] },
-      { label: "Label", name: "labels", options: [] },
-    ];
+    const filters: FilterDto[] = allFilterNames.map((name) => ({ name, options: [] }));
 
     contributions.forEach(({ project, languages, labels }) => {
       this.pushUniqueOption([{ name: project.slug, label: project.name }], filters[0].options);
 
       this.pushUniqueOption(
-        languages.map((language) => ({ name: language, label: language })),
+        languages.map((language) => ({ name: language })),
         filters[1].options,
       );
 
       this.pushUniqueOption(
-        labels.map((label) => ({ name: label, label: label })),
+        labels.map((label) => ({ name: label })),
         filters[2].options,
       );
     });

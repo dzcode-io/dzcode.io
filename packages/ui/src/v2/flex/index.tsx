@@ -7,7 +7,16 @@ export const MAX_CONTAINER_WIDTH = 1200;
 export interface FlexProps
   extends Pick<
     CSSProperties,
-    "position" | "width" | "height" | "position" | "top" | "bottom" | "left" | "right" | "display"
+    | "position"
+    | "width"
+    | "height"
+    | "position"
+    | "top"
+    | "bottom"
+    | "left"
+    | "right"
+    | "display"
+    | "margin"
   > {
   grow?: number;
   max?: Pick<CSSProperties, "width" | "height">;

@@ -1,7 +1,8 @@
+import { LanguageEntity } from "@dzcode.io/models/dist/language";
 import { createContext, FC, VFC } from "react";
 
 type BaseDictionary = Record<string, Record<string, string>>;
-export type TranslationFunction = ReturnType<typeof translationFunctionFactory>;
+type TranslationFunction = ReturnType<typeof translationFunctionFactory>;
 
 export const translationFactory =
   <T extends BaseDictionary>(
@@ -30,10 +31,11 @@ export const translationFunctionFactory =
     k: keyof T,
     r?: Record<string, string | number>,
     overrideLanguage?: keyof T[keyof T],
+    individualFallbackText?: string,
   ) => string) =>
-  (k, r = {}, overrideLanguage) => {
+  (k, r = {}, overrideLanguage, individualFallbackText = fallbackText) => {
     const languageCode = overrideLanguage || getLanguageCode();
-    return replace(dictionary, languageCode, fallbackText, k, r);
+    return replace(dictionary, languageCode, individualFallbackText, k, r);
   };
 
 const replace = <T extends BaseDictionary>(
@@ -51,19 +53,30 @@ const replace = <T extends BaseDictionary>(
   return value;
 };
 
-export const TranslationContext = createContext<TranslationFunction>(
-  () => "MISSING_TRANSLATION_CONTEXT",
-);
+export interface TranslationContextValue {
+  t: TranslationFunction;
+  language?: LanguageEntity;
+}
+export const TranslationContext = createContext<TranslationContextValue>({
+  t: () => "MISSING_TRANSLATION_CONTEXT",
+  language: undefined,
+});
+
+export interface TranslationProviderProps {
+  language: LanguageEntity;
+}
 
 export const translationProviderFactory = <T extends BaseDictionary>(
   dictionary: T,
   getLanguageCode: () => keyof T[keyof T],
   fallbackText = "MISSING_TRANSLATION",
-): FC => {
+): FC<TranslationProviderProps> => {
   const t = translationFunctionFactory(dictionary, getLanguageCode, fallbackText);
 
   // eslint-disable-next-line react/display-name
-  return ({ children }) => (
-    <TranslationContext.Provider value={t}>{children}</TranslationContext.Provider>
-  );
+  return ({ children, language }) => {
+    return (
+      <TranslationContext.Provider value={{ t, language }}>{children}</TranslationContext.Provider>
+    );
+  };
 };

@@ -4,10 +4,10 @@ import { faqData } from "src/redux/reducers/faq-page/faq-data";
 
 export interface FaqPageState {
   faqData: Array<{
-    title: DictionaryKeys<`faq-topic-${number}`>;
+    title: DictionaryKeys<"faq-topic">;
     questions: Array<{
-      question: DictionaryKeys<`faq-topic-${number}-question-${number}`>;
-      answer: DictionaryKeys<`faq-topic-${number}-answer-${number}`>;
+      question: DictionaryKeys<"faq-topic">;
+      answer: DictionaryKeys<"faq-topic">;
     }>;
   }>;
 }
