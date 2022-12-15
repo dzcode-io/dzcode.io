@@ -37,7 +37,7 @@ export const LearnPage: FC = () => {
   const loadedSidebarTree = isLoaded(sidebarTree);
 
   const Sidebar: VFC = () => (
-    <Stack direction="vertical" margin={[3, 0, 0]}>
+    <Stack direction="vertical" margin={[3, 0]}>
       {sidebarTree === "ERROR" ? (
         <TryAgain
           error={t("learn-list-error")}
