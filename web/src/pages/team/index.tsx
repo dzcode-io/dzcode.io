@@ -9,7 +9,7 @@ import { T, t } from "src/components/t";
 import { fetchTeamList } from "src/redux/actions/team-page";
 import { useSliceSelector } from "src/redux/selectors";
 
-export const TeamPage: FC = () => {
+const TeamPage: FC = () => {
   const { teamList } = useSliceSelector("teamPage");
 
   useEffect(() => {
@@ -51,4 +51,6 @@ export const TeamPage: FC = () => {
     </ErrorBoundary>
   );
 };
+
+// ts-prune-ignore-next
 export default TeamPage;

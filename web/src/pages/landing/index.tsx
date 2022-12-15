@@ -22,7 +22,7 @@ import { fullstackConfig } from "src/config";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
 import { useSliceSelector } from "src/redux/selectors";
 
-export const LandingPage: FC = () => {
+const LandingPage: FC = () => {
   const { milestones } = useSliceSelector("landingPage");
   const { isDarkMode } = useTheme();
 
@@ -140,4 +140,5 @@ export const LandingPage: FC = () => {
   );
 };
 
+// ts-prune-ignore-next
 export default LandingPage;

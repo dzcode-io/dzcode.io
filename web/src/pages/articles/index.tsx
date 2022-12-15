@@ -18,7 +18,7 @@ import { T, t } from "src/components/t";
 import { fetchArticlesList, fetchCurrentArticle } from "src/redux/actions/articles-page";
 import { useSliceSelector } from "src/redux/selectors";
 
-export const ArticlesPage: FC = () => {
+const ArticlesPage: FC = () => {
   const { currentArticle, sidebarTree } = useSliceSelector("articlesPage");
   const { params: urlParams } = useRouteMatch<{ articleId?: string }>();
 
@@ -138,4 +138,5 @@ export const ArticlesPage: FC = () => {
   );
 };
 
+// ts-prune-ignore-next
 export default ArticlesPage;

@@ -9,7 +9,7 @@ import { t, tKey } from "src/components/t";
 import { fetchContributions, updateFilterValue } from "src/redux/actions/contribute-page";
 import { useSliceSelector } from "src/redux/selectors";
 
-export const ContributePage: FC = () => {
+const ContributePage: FC = () => {
   const { filters, contributions } = useSliceSelector("contributePage");
 
   useEffect(() => {
@@ -101,4 +101,5 @@ export const ContributePage: FC = () => {
   );
 };
 
+// ts-prune-ignore-next
 export default ContributePage;

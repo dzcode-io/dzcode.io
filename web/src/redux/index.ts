@@ -2,13 +2,10 @@ import { combineReducers, compose, configureStore } from "@reduxjs/toolkit";
 import * as slices from "src/redux/reducers";
 
 // -----------------------------------------------------------------------------
-export type Slices = typeof slices;
+type Slices = typeof slices;
 export type SlicesKey = keyof typeof slices;
-export type Reducers = { [K in keyof Slices]: Slices[K]["reducer"] };
-export type Actions = { [K in keyof Slices]: Slices[K]["actions"] };
-export type ActionTypesRecord = {
-  [K in keyof Actions]: `${keyof Actions[K] & string}`;
-};
+type Reducers = { [K in keyof Slices]: Slices[K]["reducer"] };
+type Actions = { [K in keyof Slices]: Slices[K]["actions"] };
 export type ActionType = {
   [K in keyof Actions]: `${K}/${keyof Actions[K] & string}`;
 }[SlicesKey];

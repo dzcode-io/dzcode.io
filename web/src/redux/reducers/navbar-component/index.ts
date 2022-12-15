@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DictionaryKeys } from "src/components/t/dictionary";
 
+// ts-prune-ignore-next
 export interface NavbarComponentState {
   links: Array<{
     text: DictionaryKeys<"navbar">;

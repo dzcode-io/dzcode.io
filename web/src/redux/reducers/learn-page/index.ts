@@ -5,6 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 import { SidebarTreeItem } from "src/types/sidebar";
 
+// ts-prune-ignore-next
 export interface LearnPageState {
   sidebarTree: LOADABLE<SidebarTreeItem[]>;
   // @TODO-ZM: remove this

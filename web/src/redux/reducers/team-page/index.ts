@@ -3,6 +3,7 @@ import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 
+// ts-prune-ignore-next
 export interface TeamPageState {
   teamList: LOADABLE<GetTeamResponseDto["contributors"]>;
 }

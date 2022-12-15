@@ -29,4 +29,5 @@ const NotFound: FC = () => {
   );
 };
 
+// ts-prune-ignore-next
 export default NotFound;

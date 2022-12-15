@@ -3,6 +3,7 @@ import { ArticleEntity } from "@dzcode.io/models/dist/article";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { updateCollection } from "src/utils";
 
+// ts-prune-ignore-next
 export interface ArticlesState {
   list: Model<ArticleEntity, "authors" | "contributors">[];
 }

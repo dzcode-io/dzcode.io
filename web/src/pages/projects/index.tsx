@@ -9,7 +9,7 @@ import { T, t } from "src/components/t";
 import { fetchProjectsList } from "src/redux/actions/projects-page";
 import { useSliceSelector } from "src/redux/selectors";
 
-export const ProjectsPage: FC = () => {
+const ProjectsPage: FC = () => {
   const { projectsList } = useSliceSelector("projectsPage");
 
   useEffect(() => {
@@ -51,4 +51,6 @@ export const ProjectsPage: FC = () => {
     </ErrorBoundary>
   );
 };
+
+// ts-prune-ignore-next
 export default ProjectsPage;

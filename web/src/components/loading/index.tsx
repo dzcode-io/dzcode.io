@@ -22,5 +22,3 @@ export const Loading: FC = () => {
     </div>
   );
 };
-
-export default Loading;

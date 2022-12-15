@@ -18,7 +18,7 @@ import { T, t } from "src/components/t";
 import { fetchCurrentDocument, fetchDocumentationList } from "src/redux/actions/documentation-page";
 import { useSliceSelector } from "src/redux/selectors";
 
-export const LearnPage: FC = () => {
+const LearnPage: FC = () => {
   const { currentDocument, sidebarTree } = useSliceSelector("learnPage");
   const { params: urlParams } = useRouteMatch<{ articleId?: string }>();
 
@@ -137,4 +137,5 @@ export const LearnPage: FC = () => {
   );
 };
 
+// ts-prune-ignore-next
 export default LearnPage;
