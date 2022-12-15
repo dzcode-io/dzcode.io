@@ -16,7 +16,7 @@ import androidDark from "src/assets/png/android-dark.png";
 import androidLight from "src/assets/png/android-light.png";
 import iosDark from "src/assets/png/ios-dark.png";
 import iosLight from "src/assets/png/ios-light.png";
-import headerImage from "src/assets/svg/dzcode.svg";
+import headerImage from "src/assets/svg/landing-headers.svg";
 import { T, t } from "src/components/t";
 import { fullstackConfig } from "src/config";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
