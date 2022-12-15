@@ -1,0 +1,4 @@
+{
+  "@TODO-ZM": "@TODO-ZM: move this to packages/tooling",
+  "ignore": "node_modules|coverage|dist|oracle-cloud/build|firebase|bundle"
+}

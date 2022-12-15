@@ -1,11 +1,11 @@
 import "./style.scss";
 
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
-import { Flex, MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/v2/flex";
-import { Footer } from "@dzcode.io/ui/dist/v2/footer";
-import { Loading } from "@dzcode.io/ui/dist/v2/loading";
-import { Navbar } from "@dzcode.io/ui/dist/v2/navbar";
-import { Stack } from "@dzcode.io/ui/dist/v2/stack";
+import { Flex, MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/flex";
+import { Footer } from "@dzcode.io/ui/dist/footer";
+import { Loading } from "@dzcode.io/ui/dist/loading";
+import { Navbar } from "@dzcode.io/ui/dist/navbar";
+import { Stack } from "@dzcode.io/ui/dist/stack";
 import { FC, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";

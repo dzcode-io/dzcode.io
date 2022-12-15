@@ -1,8 +1,8 @@
+import { Accordion } from "@dzcode.io/ui/dist/accordion";
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import { Accordion } from "@dzcode.io/ui/dist/v2/accordion";
-import { Markdown } from "@dzcode.io/ui/dist/v2/markdown";
-import { Stack } from "@dzcode.io/ui/dist/v2/stack";
-import { Text } from "@dzcode.io/ui/dist/v2/text";
+import { Markdown } from "@dzcode.io/ui/dist/markdown";
+import { Stack } from "@dzcode.io/ui/dist/stack";
+import { Text } from "@dzcode.io/ui/dist/text";
 import { FC, Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { T, t } from "src/components/t";

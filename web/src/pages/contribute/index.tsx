@@ -1,8 +1,8 @@
+import { ContributionCard } from "@dzcode.io/ui/dist/card/contribution";
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
+import { Filter } from "@dzcode.io/ui/dist/filter";
+import { Stack } from "@dzcode.io/ui/dist/stack";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
-import { ContributionCard } from "@dzcode.io/ui/dist/v2/card/contribution";
-import { Filter } from "@dzcode.io/ui/dist/v2/filter";
-import { Stack } from "@dzcode.io/ui/dist/v2/stack";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { t, tKey } from "src/components/t";

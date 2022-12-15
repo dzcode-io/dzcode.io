@@ -8,6 +8,7 @@ export const CircularProgress: FC<CircularProgressProps & { value: number }> = (
   ...props
 }) => {
   return (
+    // @TODO-ZM: cleanup this rushed component
     <Box sx={{ position: "relative", display: "inline-flex" }} {...props}>
       <MUICircularProgress
         variant="determinate"
