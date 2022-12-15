@@ -1,5 +1,4 @@
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
-import debounce from "@material-ui/core/utils/debounce";
 import * as Sentry from "@sentry/browser";
 import { actions, getState } from "src/redux";
 import { fetchV2 } from "src/utils/fetch";
@@ -52,8 +51,6 @@ export const fetchContributions = async (): Promise<void> => {
   }
 };
 
-const debouncedFetchContributions = debounce(fetchContributions, 500);
-
 type UpdateFilterValueParam = {
   filterName: string;
   optionName: string;
@@ -104,7 +101,8 @@ export const updateFilterValue = async ({
   });
   actions.contributePage.set({ filters: newFilters });
   if (!updateImmediately) {
-    debouncedFetchContributions();
+    // @TODO-ZM: debounce this properly
+    fetchContributions();
   } else {
     fetchContributions();
   }

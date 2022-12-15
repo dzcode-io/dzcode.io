@@ -3,15 +3,16 @@ import "./style.scss";
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
 import { Flex, MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/v2/flex";
 import { Footer } from "@dzcode.io/ui/dist/v2/footer";
+import { Loading } from "@dzcode.io/ui/dist/v2/loading";
 import { Navbar } from "@dzcode.io/ui/dist/v2/navbar";
 import { Stack } from "@dzcode.io/ui/dist/v2/stack";
 import { FC, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
+import logoWide from "src/assets/svg/logo-wide.svg";
 import logo from "src/assets/svg/logo-wide.svg";
 import logoExtended from "src/assets/svg/logo-wide-extended.svg";
 import { L } from "src/components/l";
-import { Loading } from "src/components/loading";
 import { t } from "src/components/t";
 import { actions } from "src/redux";
 import { useSliceSelector } from "src/redux/selectors";
@@ -104,7 +105,7 @@ export const App: FC = () => {
           fixed={!!landingPageMatch?.isExact}
         />
         <Flex max={{ width: MAX_CONTAINER_WIDTH }} grow={1} display="flex">
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<Loading logo={logoWide} />}>
             <Switch>
               {routes.map(({ pageName, path, ...route }, index) => (
                 <Route

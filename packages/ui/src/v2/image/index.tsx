@@ -1,15 +1,20 @@
 import { useTheme } from "@mui/material/styles";
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 
-export interface ImageProps {
+export interface ImageProps
+  extends Pick<CSSProperties, "width" | "height" | "maxWidth" | "maxHeight"> {
   src: string;
-  width?: number | string;
-  height?: number | string;
   // @TODO-ZM: dry Margin interface and code
   margin?: number | number[];
 }
 
-export const Image: FC<ImageProps> = ({ src, width = "auto", height = "auto", margin }) => {
+export const Image: FC<ImageProps> = ({
+  src,
+  margin,
+  width = "auto",
+  height = "auto",
+  ...cssProps
+}) => {
   const theme = useTheme();
   // @TODO-ZM: dry Margin code
   let themedMargin: string | undefined;
@@ -22,5 +27,5 @@ export const Image: FC<ImageProps> = ({ src, width = "auto", height = "auto", ma
       break;
   }
 
-  return <img src={src} width={width} height={height} style={{ margin: themedMargin }} />;
+  return <img src={src} style={{ margin: themedMargin, width, height, ...cssProps }} />;
 };
