@@ -26,9 +26,9 @@ export const generateContributionMock = (index: number): ContributionEntity => {
 export const bulkGenerateContributionMock = (from: number, to: number) => {
   const contributionsMock: ContributionEntity[] = [];
   const filtersMock: FilterDto[] = [
-    { label: "Project", name: "projects", options: [] },
-    { label: "Language", name: "languages", options: [] },
-    { label: "Label", name: "labels", options: [] },
+    { name: "projects", options: [] },
+    { name: "languages", options: [] },
+    { name: "labels", options: [] },
   ];
 
   const pushUniqueOption = (options: OptionDto[], filterOptions: OptionDto[]) => {

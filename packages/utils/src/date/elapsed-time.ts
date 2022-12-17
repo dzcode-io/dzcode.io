@@ -1,4 +1,5 @@
-export const elapsedTime = (time: string | number | Date, localizedSuffixes: string) => {
+// @TODO-ZM: move localization logic into the Dictionary files
+export const getElapsedTime = (time: string | number | Date, localizedSuffixes: string) => {
   const timePassed = new Date().getTime() - new Date(time).getTime();
   const years = Math.floor(timePassed / 31536000000);
   const months = Math.floor((timePassed - years * 31536000000) / 2628000000);

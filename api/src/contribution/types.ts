@@ -1,12 +1,13 @@
 import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { Transform, TransformFnParams, Type } from "class-transformer";
-import { IsBoolean, IsOptional, IsString, ValidateNested } from "class-validator";
+import { IsBoolean, IsIn, IsOptional, IsString, ValidateNested } from "class-validator";
 import { GeneralResponseDto } from "src/app/types";
 
 export class OptionDto {
   @IsString()
-  label!: string;
+  @IsOptional()
+  label?: string;
 
   @IsString()
   name!: string;
@@ -16,12 +17,11 @@ export class OptionDto {
   checked?: boolean;
 }
 
-export class FilterDto {
-  @IsString()
-  label!: string;
+export const allFilterNames = ["projects", "languages", "labels"] as const;
 
-  @IsString()
-  name!: string;
+export class FilterDto {
+  @IsIn(allFilterNames)
+  name!: typeof allFilterNames[number];
 
   @ValidateNested({ each: true })
   @Type(() => OptionDto)

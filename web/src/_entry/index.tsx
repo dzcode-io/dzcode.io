@@ -32,22 +32,22 @@ const AssumeRedux: FC = () => {
   const { language, themeName } = useSliceSelector("settings");
 
   return (
-    <Theme themeName={themeName} direction={language.direction}>
-      <LinkProvider prefix={language.code === "en" ? undefined : language.code} history={history}>
-        <App />
-      </LinkProvider>
-    </Theme>
+    <TranslationProvider language={language}>
+      <Theme themeName={themeName} direction={language.direction}>
+        <LinkProvider prefix={language.code === "en" ? undefined : language.code} history={history}>
+          <App />
+        </LinkProvider>
+      </Theme>
+    </TranslationProvider>
   );
 };
 
 render(
   <Provider store={getStore({ cacheStore: true })}>
     <Router history={history}>
-      <TranslationProvider>
-        <ErrorBoundary>
-          <AssumeRedux />
-        </ErrorBoundary>
-      </TranslationProvider>
+      <ErrorBoundary>
+        <AssumeRedux />
+      </ErrorBoundary>
     </Router>
   </Provider>,
   document.getElementById("app-container"),
