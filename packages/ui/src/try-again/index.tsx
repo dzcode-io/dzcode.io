@@ -1,7 +1,7 @@
 import { VFC } from "react";
-import { Button } from "src/v2/button";
-import { Stack } from "src/v2/stack";
-import { Text } from "src/v2/text";
+import { Button } from "src/button";
+import { Stack } from "src/stack";
+import { Text } from "src/text";
 
 export const TryAgain: VFC<{
   onClick: () => void;

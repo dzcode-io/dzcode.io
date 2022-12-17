@@ -1,28 +1,28 @@
 import { useColors } from "@dzcode.io/ui/dist/_hooks/use-colors";
 import { useTheme } from "@dzcode.io/ui/dist/_hooks/use-theme";
+import { Button } from "@dzcode.io/ui/dist/button";
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
+import { Image } from "@dzcode.io/ui/dist/image";
 import { Link } from "@dzcode.io/ui/dist/link";
+import { Markdown } from "@dzcode.io/ui/dist/markdown";
+import { MediaQuery } from "@dzcode.io/ui/dist/media-query";
 import { Milestones } from "@dzcode.io/ui/dist/milestones";
+import { Stack } from "@dzcode.io/ui/dist/stack";
+import { Text } from "@dzcode.io/ui/dist/text";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
-import { Button } from "@dzcode.io/ui/dist/v2/button";
-import { Image } from "@dzcode.io/ui/dist/v2/image";
-import { Markdown } from "@dzcode.io/ui/dist/v2/markdown";
-import { MediaQuery } from "@dzcode.io/ui/dist/v2/media-query";
-import { Stack } from "@dzcode.io/ui/dist/v2/stack";
-import { Text } from "@dzcode.io/ui/dist/v2/text";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import androidDark from "src/assets/png/android-dark.png";
 import androidLight from "src/assets/png/android-light.png";
 import iosDark from "src/assets/png/ios-dark.png";
 import iosLight from "src/assets/png/ios-light.png";
-import headerImage from "src/assets/svg/dzcode.svg";
+import headerImage from "src/assets/svg/landing-headers.svg";
 import { T, t } from "src/components/t";
 import { fullstackConfig } from "src/config";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
 import { useSliceSelector } from "src/redux/selectors";
 
-export const LandingPage: FC = () => {
+const LandingPage: FC = () => {
   const { milestones } = useSliceSelector("landingPage");
   const { isDarkMode } = useTheme();
 
@@ -140,4 +140,5 @@ export const LandingPage: FC = () => {
   );
 };
 
+// ts-prune-ignore-next
 export default LandingPage;

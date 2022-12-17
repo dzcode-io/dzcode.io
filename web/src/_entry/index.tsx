@@ -1,6 +1,6 @@
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { LinkProvider } from "@dzcode.io/ui/dist/link";
-import { Theme } from "@dzcode.io/ui/dist/v2/theme";
+import { Theme } from "@dzcode.io/ui/dist/theme";
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
 import { FC } from "react";

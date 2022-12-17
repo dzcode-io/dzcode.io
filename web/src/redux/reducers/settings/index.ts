@@ -5,6 +5,7 @@ import { setReducer } from "src/redux/utils";
 import { history } from "src/utils/history";
 import { urlLanguageRegEx } from "src/utils/language";
 
+// ts-prune-ignore-next
 export interface SettingsState {
   // @TODO-ZM: dry theme names
   themeName: "DARK" | "LIGHT" | "AUTO";

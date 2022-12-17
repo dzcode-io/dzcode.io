@@ -5,6 +5,7 @@ import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 
+// ts-prune-ignore-next
 export interface ContributePageState {
   filters: LOADABLE<FilterDto[]>;
   contributions: LOADABLE<Model<ContributionEntity, "project">[]>;

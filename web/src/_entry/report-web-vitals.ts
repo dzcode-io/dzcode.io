@@ -12,4 +12,5 @@ const reportWebVitals = (onPerfEntry?: ReportHandler) => {
   }
 };
 
+// ts-prune-ignore-next
 export default reportWebVitals;

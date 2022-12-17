@@ -1,9 +1,9 @@
+import { Button } from "@dzcode.io/ui/dist/button";
 import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import { Button } from "@dzcode.io/ui/dist/v2/button";
-import { Image } from "@dzcode.io/ui/dist/v2/image";
-import { Markdown } from "@dzcode.io/ui/dist/v2/markdown";
-import { Stack } from "@dzcode.io/ui/dist/v2/stack";
-import { Text } from "@dzcode.io/ui/dist/v2/text";
+import { Image } from "@dzcode.io/ui/dist/image";
+import { Markdown } from "@dzcode.io/ui/dist/markdown";
+import { Stack } from "@dzcode.io/ui/dist/stack";
+import { Text } from "@dzcode.io/ui/dist/text";
 import { FC } from "react";
 import { Helmet } from "react-helmet";
 import svg from "src/assets/svg/404.svg";
@@ -29,4 +29,5 @@ const NotFound: FC = () => {
   );
 };
 
+// ts-prune-ignore-next
 export default NotFound;

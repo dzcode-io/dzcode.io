@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`should render a closed dialog on first mount 1`] = `<div />`;
