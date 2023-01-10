@@ -1,13 +1,12 @@
 import MUIChip, { ChipProps as MUIChipProps } from "@mui/material/Chip";
-import { useTheme } from "@mui/material/styles";
 import { VFC } from "react";
+import { useTheme } from "src/_hooks/use-theme";
+import { BaseUIProps } from "src/_types";
 
-export interface ChipProps {
+export interface ChipProps extends BaseUIProps {
   label: string;
   variant: "v1";
   onClick?: () => void;
-  // @TODO-ZM: dry Margin interface and code
-  margin?: number | number[];
 }
 
 const variantToMUIChipSize: Record<ChipProps["variant"], MUIChipProps["size"]> = {
@@ -15,24 +14,9 @@ const variantToMUIChipSize: Record<ChipProps["variant"], MUIChipProps["size"]> =
 };
 
 export const Chip: VFC<ChipProps> = ({ margin, variant, ...props }) => {
-  const theme = useTheme();
-
-  // @TODO-ZM: dry Margin code
-  let themedMargin: string | undefined;
-  switch (typeof margin) {
-    case "number":
-      themedMargin = theme.spacing(margin);
-      break;
-    case "object":
-      themedMargin = margin.map((value) => theme.spacing(value)).join(" ");
-      break;
-  }
+  const { toCSSMargin } = useTheme();
 
   return (
-    <MUIChip
-      sx={{ margin: themedMargin ? `${themedMargin} !important` : undefined }}
-      size={variantToMUIChipSize[variant]}
-      {...props}
-    />
+    <MUIChip sx={{ margin: toCSSMargin(margin) }} size={variantToMUIChipSize[variant]} {...props} />
   );
 };
