@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { useTranslation } from "src/_hooks/use-translation";
+import { BaseUIProps } from "src/_types";
 import { Accordion } from "src/accordion";
 import { Checkbox } from "src/checkbox";
 
-export interface FilterProps {
+export interface FilterProps extends BaseUIProps {
   items: Array<{
     name: string;
     options: Array<{
@@ -18,8 +19,6 @@ export interface FilterProps {
     contributionLabelKeyPrefix: string;
   };
   onOptionClick: (filterName: string, optionName: string, checked: boolean) => void;
-  // @TODO-ZM: dry Margin interface and code
-  margin?: number | number[];
 }
 
 export const Filter: FC<FilterProps> = ({ items, local, onOptionClick, margin }) => {

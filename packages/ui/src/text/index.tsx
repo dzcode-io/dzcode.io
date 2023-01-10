@@ -1,11 +1,10 @@
-import { useTheme } from "@mui/material/styles";
 import MUITypography, { TypographyProps } from "@mui/material/Typography";
 import type { CSSProperties, FC } from "react";
+import { useTheme } from "src/_hooks/use-theme";
+import { BaseUIProps } from "src/_types";
 
-export interface TextProps extends Pick<CSSProperties, "wordWrap" | "flexShrink"> {
+export interface TextProps extends BaseUIProps, Pick<CSSProperties, "wordWrap" | "flexShrink"> {
   variant: "v1" | "v2" | "v3" | "v4";
-  // @TODO-ZM: dry Margin interface and code
-  margin?: number | number[];
 }
 
 const variantToMUITypographyVariant: Record<TextProps["variant"], TypographyProps["variant"]> = {
@@ -16,22 +15,12 @@ const variantToMUITypographyVariant: Record<TextProps["variant"], TypographyProp
 };
 
 export const Text: FC<TextProps> = ({ children, variant, margin, ...cssProps }) => {
-  const theme = useTheme();
-  // @TODO-ZM: dry Margin code
-  let themedMargin: string | undefined;
-  switch (typeof margin) {
-    case "number":
-      themedMargin = theme.spacing(margin);
-      break;
-    case "object":
-      themedMargin = margin.map((value) => theme.spacing(value)).join(" ");
-      break;
-  }
+  const { toCSSMargin } = useTheme();
 
   return (
     <MUITypography
       sx={{
-        margin: themedMargin ? `${themedMargin} !important` : undefined,
+        margin: toCSSMargin(margin),
         ...cssProps,
       }}
       variant={variantToMUITypographyVariant[variant]}

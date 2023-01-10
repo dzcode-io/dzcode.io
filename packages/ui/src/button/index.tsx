@@ -1,14 +1,13 @@
 import MUIButton, { ButtonProps as MUIButtonProps } from "@mui/material/Button";
-import { useTheme } from "@mui/material/styles";
 import { FC, MouseEvent } from "react";
+import { useTheme } from "src/_hooks/use-theme";
+import { BaseUIProps } from "src/_types";
 import { Link } from "src/link";
 
-export interface ButtonProps {
+export interface ButtonProps extends BaseUIProps {
   variant: "v1" | "v2" | "v3";
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   href?: string;
-  // @TODO-ZM: dry Margin interface and code
-  margin?: number | number[];
 }
 
 const variantToMUIButtonVariant: Record<
@@ -20,18 +19,7 @@ const variantToMUIButtonVariant: Record<
 };
 
 export const Button: FC<ButtonProps> = ({ children, variant, margin, ...props }) => {
-  const theme = useTheme();
-
-  // @TODO-ZM: dry Margin code
-  let themedMargin: string | undefined;
-  switch (typeof margin) {
-    case "number":
-      themedMargin = theme.spacing(margin);
-      break;
-    case "object":
-      themedMargin = margin.map((value) => theme.spacing(value)).join(" ");
-      break;
-  }
+  const { toCSSMargin } = useTheme();
 
   switch (variant) {
     case "v1":
@@ -44,7 +32,7 @@ export const Button: FC<ButtonProps> = ({ children, variant, margin, ...props })
     default:
       return (
         <MUIButton
-          sx={{ margin: themedMargin ? `${themedMargin} !important` : undefined }}
+          sx={{ margin: toCSSMargin(margin) }}
           {...props}
           variant={variantToMUIButtonVariant[variant]}
           LinkComponent={Link}
