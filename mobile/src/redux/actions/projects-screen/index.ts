@@ -5,9 +5,6 @@ import { shuffleArray } from "src/utils/shuffle";
 export const fetchProjects = createAsyncThunk("projectsScreen/fetchProjects", async () => {
   try {
     const projects = await fetchV2("data:projects-v2/list.c.json", {});
-    console.log("====================================");
-    console.log(projects);
-    console.log("====================================");
     return shuffleArray(projects);
   } catch (error: any) {
     return error.message;
