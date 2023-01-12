@@ -11,13 +11,12 @@ import { cardStyles } from "./styles";
 
 interface ProjectCardProps {
   project: Model<ProjectReferenceEntity, "repositories">;
-  theme: "dark" | "light";
   openLink: (url: string) => void;
 }
 
 const CardItem: FC<ProjectCardProps> = ({
-  project: { name, repositories, slug },
-  theme,
+  project: { name, repositories },
+
   openLink,
 }: ProjectCardProps) => {
   const width = Dimensions.get("window").width;
