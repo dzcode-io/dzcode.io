@@ -9,13 +9,13 @@ import { Colors } from "src/theme/style/color";
 import { cardStyles } from "./styles";
 
 interface ProjectCardProps {
-  project: Pick<Project, "title" | "description" | "image" | "githubURI">;
+  project: Project;
   theme: "dark" | "light";
   openLink: (url: string) => void;
 }
 
 const CardItem: FC<ProjectCardProps> = ({
-  project: { title, description, githubURI, image },
+  project: { name, description, githubURI, image },
   theme,
   openLink,
 }: ProjectCardProps) => {
@@ -30,7 +30,7 @@ const CardItem: FC<ProjectCardProps> = ({
         }}
       />
       <Card.Content>
-        <Title>{title}</Title>
+        <Title>{name}</Title>
         <Paragraph>{description}</Paragraph>
       </Card.Content>
       <Card.Actions>
