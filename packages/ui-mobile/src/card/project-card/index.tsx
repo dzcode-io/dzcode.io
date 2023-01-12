@@ -1,3 +1,5 @@
+import { Model } from "@dzcode.io/models/dist/_base";
+import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
 import React, { FC, memo } from "react";
 import { Project } from "src/_types/project";
 import { Button } from "src/button";
@@ -9,38 +11,32 @@ import { Colors } from "src/theme/style/color";
 import { cardStyles } from "./styles";
 
 interface ProjectCardProps {
-  project: Project;
+  project: Model<ProjectReferenceEntity, "repositories">;
   theme: "dark" | "light";
   openLink: (url: string) => void;
 }
 
 const CardItem: FC<ProjectCardProps> = ({
-  project: { name, description, githubURI, image },
+  project: { name, repositories, slug },
   theme,
   openLink,
 }: ProjectCardProps) => {
   return (
     <Card style={cardStyles.mainView}>
-      <Card.Cover
-        height={true}
-        width={true}
-        source={{ uri: image }}
-        style={{
-          backgroundColor: theme === "dark" ? Colors.darkGrey : Colors.light,
-        }}
-      />
       <Card.Content>
         <Title>{name}</Title>
-        <Paragraph>{description}</Paragraph>
       </Card.Content>
       <Card.Actions>
-        <Button
-          mode="text"
-          onPress={() => githubURI && openLink("https://www.github.com/" + githubURI)}
-          color={Colors.primary}
-        >
-          Go to code
-        </Button>
+        <Paragraph>
+          {repositories.map((repository, index) => (
+            <Button
+              key={`repository-${index}`}
+              onPress={() =>
+                openLink(`https://github.com/${repository.owner}/${repository.repository}`)
+              }
+            >{`${repository.owner}/${repository.repository}`}</Button>
+          ))}
+        </Paragraph>
       </Card.Actions>
     </Card>
   );
