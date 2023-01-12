@@ -1,12 +1,11 @@
 import { Model } from "@dzcode.io/models/dist/_base";
 import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
 import React, { FC, memo } from "react";
-import { Project } from "src/_types/project";
+import { Dimensions } from "react-native";
 import { Button } from "src/button";
 import { Card } from "src/card/card";
 import { Paragraph } from "src/text/paragraph";
 import { Title } from "src/text/title";
-import { Colors } from "src/theme/style/color";
 
 import { cardStyles } from "./styles";
 
@@ -21,6 +20,7 @@ const CardItem: FC<ProjectCardProps> = ({
   theme,
   openLink,
 }: ProjectCardProps) => {
+  const width = Dimensions.get("window").width;
   return (
     <Card style={cardStyles.mainView}>
       <Card.Content>
@@ -28,14 +28,21 @@ const CardItem: FC<ProjectCardProps> = ({
       </Card.Content>
       <Card.Actions>
         <Paragraph>
-          {repositories.map((repository, index) => (
-            <Button
-              key={`repository-${index}`}
-              onPress={() =>
-                openLink(`https://github.com/${repository.owner}/${repository.repository}`)
-              }
-            >{`${repository.owner}/${repository.repository}`}</Button>
-          ))}
+          {repositories.map((repository, index) => {
+            let link = `${repository.owner}/${repository.repository}`;
+            link = link.length >= width / 10 ? link.slice(0, width / 10) + "..." : link;
+            return (
+              <Button
+                key={`repository-${index}`}
+                onPress={() =>
+                  openLink(`https://github.com/${repository.owner}/${repository.repository}`)
+                }
+                uppercase={false}
+              >
+                {link}
+              </Button>
+            );
+          })}
         </Paragraph>
       </Card.Actions>
     </Card>
