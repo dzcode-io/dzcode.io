@@ -1,46 +1,48 @@
+import { Model } from "@dzcode.io/models/dist/_base";
+import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
 import React, { FC, memo } from "react";
-import { Project } from "src/_types/project";
+import { Dimensions } from "react-native";
 import { Button } from "src/button";
 import { Card } from "src/card/card";
 import { Paragraph } from "src/text/paragraph";
 import { Title } from "src/text/title";
-import { Colors } from "src/theme/style/color";
 
 import { cardStyles } from "./styles";
 
 interface ProjectCardProps {
-  project: Pick<Project, "title" | "description" | "image" | "githubURI">;
-  theme: "dark" | "light";
+  project: Model<ProjectReferenceEntity, "repositories">;
   openLink: (url: string) => void;
 }
 
 const CardItem: FC<ProjectCardProps> = ({
-  project: { title, description, githubURI, image },
-  theme,
+  project: { name, repositories },
+
   openLink,
 }: ProjectCardProps) => {
+  const width = Dimensions.get("window").width;
   return (
     <Card style={cardStyles.mainView}>
-      <Card.Cover
-        height={true}
-        width={true}
-        source={{ uri: image }}
-        style={{
-          backgroundColor: theme === "dark" ? Colors.darkGrey : Colors.light,
-        }}
-      />
       <Card.Content>
-        <Title>{title}</Title>
-        <Paragraph>{description}</Paragraph>
+        <Title>{name}</Title>
       </Card.Content>
       <Card.Actions>
-        <Button
-          mode="text"
-          onPress={() => githubURI && openLink("https://www.github.com/" + githubURI)}
-          color={Colors.primary}
-        >
-          Go to code
-        </Button>
+        <Paragraph>
+          {repositories.map((repository, index) => {
+            let link = `${repository.owner}/${repository.repository}`;
+            link = link.length >= width / 10 ? link.slice(0, width / 10) + "..." : link;
+            return (
+              <Button
+                key={`repository-${index}`}
+                onPress={() =>
+                  openLink(`https://github.com/${repository.owner}/${repository.repository}`)
+                }
+                uppercase={false}
+              >
+                {link}
+              </Button>
+            );
+          })}
+        </Paragraph>
       </Card.Actions>
     </Card>
   );
@@ -48,13 +50,11 @@ const CardItem: FC<ProjectCardProps> = ({
 
 /**
  * ProjectCard component used to display the project card in the app
- * @prop {Project} project - the project to display
- * @prop {string} theme - the theme of the card
+ * @prop {Model<ProjectReferenceEntity, "repositories">} project - the project to display
  * @prop {Function} openLink - the function to open the link
  * @example
  * <ProjectCard
  *    project={project}
- *    theme="dark"
  *    openLink={url => Linking.openURL(url)}
  * />
  */

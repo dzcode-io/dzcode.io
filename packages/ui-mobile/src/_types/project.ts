@@ -17,9 +17,9 @@ export interface Project {
    */
   image?: string;
   /**
-   * the title of the project
+   * the name of the project
    */
-  title: string;
+  name: string;
   /**
    * the description of the project
    */

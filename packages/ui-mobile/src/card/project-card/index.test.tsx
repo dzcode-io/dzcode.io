@@ -9,12 +9,16 @@ describe("ProjectCard", () => {
       <ProjectCard
         openLink={() => undefined}
         project={{
-          title: "title",
-          description: "description",
-          githubURI: "githubURI",
-          image: "image",
+          name: "test",
+          repositories: [
+            {
+              owner: "test",
+              provider: "github",
+              repository: "test",
+            },
+          ],
+          slug: "test",
         }}
-        theme={"dark"}
       />,
     );
     expect(container).toBeTruthy();

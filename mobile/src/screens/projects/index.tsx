@@ -39,7 +39,7 @@ export const ProjectsScreen: FC = () => {
             refreshing={status === "loading"}
             keyExtractor={(_, index) => `item-${index}`}
             renderItem={({ item }) => (
-              <ProjectCard project={item} openLink={(url) => openLink(url)} theme={theme} />
+              <ProjectCard project={item} openLink={(url) => openLink(url)} />
             )}
           />
         ) : (
