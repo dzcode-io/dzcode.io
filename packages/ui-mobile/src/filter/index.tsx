@@ -25,14 +25,14 @@ interface FilterProps {
 export const Filters: VFC<FilterProps> = ({ filters, onCheckboxPress }) => {
   return (
     <List.AccordionGroup>
-      {filters.map(({ name: filterName, label: filterLabel, options }) => (
-        <List.Accordion key={`filter-${filterName}`} title={filterLabel} id={filterName}>
+      {filters.map(({ name: filterName, options }) => (
+        <List.Accordion key={`filter-${filterName}`} title={filterName} id={filterName}>
           {options.map(({ label: optionLabel, name: optionName, checked }) => (
             <List.Item
               hasTVPreferredFocus
               tvParallaxProperties
               key={`filter-${filterName}-${optionName}`}
-              title={optionLabel}
+              title={optionLabel || optionName}
               right={() => (
                 <Checkbox
                   status={checked ? "checked" : "unchecked"}

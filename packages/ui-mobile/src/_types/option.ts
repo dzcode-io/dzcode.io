@@ -11,7 +11,7 @@ export interface Option {
   /**
    * the label of the option
    */
-  label: string;
+  label?: string;
   /**
    * the name of the option
    */
