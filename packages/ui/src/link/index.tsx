@@ -61,13 +61,13 @@ export const Link: FC<LinkProps> = ({
     return (
       <MUILink
         component={ReactRouterLink}
-        style={style}
+        sx={style}
         underline={underline}
         {...props}
         to={prefix ? `/${prefix}${href}` : href}
       />
     );
   } else {
-    return <MUILink style={style} href={href} {...props} underline={underline} />;
+    return <MUILink sx={style} href={href} {...props} underline={underline} />;
   }
 };
