@@ -1,26 +1,27 @@
-import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { calculateDateBetween } from "@dzcode.io/utils/dist/date/difference";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { FC, memo } from "react";
-import { FlatList } from "react-native";
-import { View } from "react-native";
+import React, { FC, memo } from "react";
+
 import { Badge } from "src/badge";
 import { Button } from "src/button";
 import { Card } from "src/card/card";
 import { Chip } from "src/chip";
+import { Colors } from "src/theme/style/color";
+import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { Divider } from "src/divider";
+import { FlatList } from "react-native";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { Model } from "@dzcode.io/models/dist/_base";
 import { Paragraph } from "src/text/paragraph";
 import { Text } from "src/text/text";
 import { Title } from "src/text/title";
-import { Colors } from "src/theme/style/color";
-
+import { View } from "react-native";
+import { calculateDateBetween } from "@dzcode.io/utils/dist/date/difference";
 import { cardStyles } from "./styles";
 
-interface ContributeCardProps
-  extends Pick<ContributionEntity, "title" | "labels" | "type" | "updatedAt" | "commentsCount"> {
+interface ContributeCardProps {
   /**
-   * the subtitle of the contribute card
+   * the contribution item
    */
-  subtitle: string;
+  item: Model<ContributionEntity, "project">;
   /**
    * the function that is called when a chip is pressed
    */
@@ -32,25 +33,39 @@ interface ContributeCardProps
 }
 
 const CardItem: FC<ContributeCardProps> = ({
-  title,
-  subtitle,
-  labels,
-  type,
-  updatedAt,
-  commentsCount,
+  item,
   onChipPress,
   onPress,
 }: ContributeCardProps) => {
   return (
     <Card style={cardStyles.mainView}>
       <Card.Content>
-        <Title>{title}</Title>
-        <Paragraph style={cardStyles.subtitleText}>{subtitle}</Paragraph>
+        <Title>{item.title}</Title>
+        <Divider style={cardStyles.divider1} />
+        {item.labels.length > 0 && (
+          <FlatList
+            style={cardStyles.flatListView}
+            horizontal
+            data={item.labels}
+            keyExtractor={(label: string) => label}
+            renderItem={({ item }) => (
+              <Chip
+                onPress={() => onChipPress(item)}
+                style={cardStyles.chipView}
+              >
+                {item}
+              </Chip>
+            )}
+          />
+        )}
+        <Paragraph style={cardStyles.subtitleText}>
+          {item.project.name}
+        </Paragraph>
         <FlatList
           style={cardStyles.flatListView}
           horizontal
-          data={labels}
-          keyExtractor={(label: string) => label}
+          data={item.languages}
+          keyExtractor={(language: string) => language}
           renderItem={({ item }) => (
             <Chip onPress={() => onChipPress(item)} style={cardStyles.chipView}>
               {item}
@@ -59,47 +74,29 @@ const CardItem: FC<ContributeCardProps> = ({
         />
       </Card.Content>
       <Card.Actions style={cardStyles.cardActionsView}>
-        <Button color={type === "issue" ? Colors.accent : Colors.violet} onPress={onPress}>
-          {type === "issue" ? "Read issue" : "Review changes"}
-        </Button>
+        <Title
+          style={{
+            color: Colors.accent,
+          }}
+          onPress={onPress}
+        >
+          {item.type === "issue" ? "Learn more" : "Review changes"}
+        </Title>
         <View style={cardStyles.row}>
-          <Text style={{ color: type === "issue" ? Colors.accent : Colors.violet }}>
-            {calculateDateBetween(new Date(updatedAt), new Date())}
-          </Text>
-          {commentsCount > 0 && (
-            <View style={cardStyles.marginLeft}>
-              <MaterialCommunityIcons
-                name="comment-multiple"
-                color={type === "issue" ? Colors.accent : Colors.violet}
-                size={25}
-              />
-              <Badge
-                style={[
-                  cardStyles.badgeView,
-                  {
-                    color: type === "issue" ? Colors.accent : Colors.violet,
-                  },
-                ]}
-              >
-                {commentsCount}
-              </Badge>
+          {item.commentsCount > 0 && (
+            <View style={cardStyles.marginRight}>
+              <MaterialIcons name="notes" color={Colors.white} size={25} />
+              <Badge style={cardStyles.badgeView}>{item.commentsCount}</Badge>
             </View>
           )}
-          {type === "issue" ? (
-            <MaterialCommunityIcons
-              name="alert-circle-outline"
-              color={Colors.accent}
-              size={25}
-              style={cardStyles.marginLeft}
-            />
-          ) : (
-            <MaterialCommunityIcons
-              name="call-merge"
-              color={Colors.violet}
-              size={25}
-              style={cardStyles.marginLeft}
-            />
-          )}
+          <Divider style={cardStyles.divider2} />
+          <Text
+            style={{
+              color: Colors.white,
+            }}
+          >
+            {calculateDateBetween(new Date(item.updatedAt), new Date())}
+          </Text>
         </View>
       </Card.Actions>
     </Card>

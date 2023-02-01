@@ -57,12 +57,7 @@ export const ContributeScreen: FC = () => {
               keyExtractor={(item, index) => `item-${index}`}
               renderItem={({ item }) => (
                 <ContributeCard
-                  title={item.title}
-                  subtitle={item.project.name}
-                  labels={[...item.labels, ...item.languages]}
-                  type={item.type}
-                  updatedAt={item.updatedAt}
-                  commentsCount={item.commentsCount}
+                  item={item}
                   onChipPress={async (optionName) => {
                     setUpdate(false);
                     const filterName = item.labels.includes(optionName) ? "labels" : "languages";
