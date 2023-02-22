@@ -1,0 +1,10 @@
+{
+  "name": "Mylinks",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "bacloud23",
+      "repository": "mylinks"
+    }
+  ]
+}
