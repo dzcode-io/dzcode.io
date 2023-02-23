@@ -1,0 +1,10 @@
+{
+  "name": "WeatherVenue",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "bacloud23",
+      "repository": "WeatherVenue"
+    }
+  ]
+}
