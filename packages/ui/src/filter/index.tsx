@@ -39,7 +39,7 @@ export const Filter: FC<FilterProps> = ({ items, local, onOptionClick, margin })
       items={
         items?.map((item) => ({
           title: t(`${local.filterLabelKeyPrefix}-${item.name}`),
-          description: item.options.map((option) => (
+          body: item.options.map((option) => (
             <Checkbox
               key={`option-${option.name}`}
               label={option.label || localize(item.name, option.name)}
