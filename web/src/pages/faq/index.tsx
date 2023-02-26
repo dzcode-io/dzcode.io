@@ -30,7 +30,7 @@ export const FaqPage: FC = () => {
               <Accordion
                 items={questions.map(({ question, answer }) => ({
                   title: <T k={question} />,
-                  description: <Markdown t={t(answer)} />,
+                  body: <Markdown t={t(answer)} />,
                 }))}
                 margin={[0, 1]}
               />
