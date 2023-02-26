@@ -18,6 +18,7 @@ import iosDark from "src/assets/png/ios-dark.png";
 import iosLight from "src/assets/png/ios-light.png";
 import headerImage from "src/assets/svg/landing-headers.svg";
 import { T, t } from "src/components/t";
+import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fullstackConfig } from "src/config";
 import { fetchDzCodeMilestones } from "src/redux/actions/landing-page";
 import { useSliceSelector } from "src/redux/selectors";
@@ -44,7 +45,7 @@ const LandingPage: FC = () => {
   }, []);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
       <Helmet>
         <title>{t("landing-title")}</title>
         <meta name="description" content={t("landing-description")} />

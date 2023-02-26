@@ -6,13 +6,14 @@ import { Text } from "@dzcode.io/ui/dist/text";
 import { FC, Fragment } from "react";
 import { Helmet } from "react-helmet";
 import { T, t } from "src/components/t";
+import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { useSliceSelector } from "src/redux/selectors";
 
 export const FaqPage: FC = () => {
   const { faqData } = useSliceSelector("faqPage");
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
       <Helmet>
         <title>{t("faq-title")}</title>
         <meta name="description" content={t("faq-description")} />
