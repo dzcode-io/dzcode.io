@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet";
 import { useRouteMatch } from "react-router-dom";
 import learnLanding from "src/assets/svg/learn-landing.svg";
 import { T, t } from "src/components/t";
+import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fetchCurrentDocument, fetchDocumentationList } from "src/redux/actions/documentation-page";
 import { useSliceSelector } from "src/redux/selectors";
 
@@ -109,7 +110,7 @@ const LearnPage: FC = () => {
 
   return (
     <>
-      <ErrorBoundary>
+      <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
         <Helmet>
           <title>{`${
             (urlParams.articleId && loadedCurrentDocument?.title) || t("learn-title")

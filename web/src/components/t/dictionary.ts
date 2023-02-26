@@ -412,6 +412,10 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "ui-theme-DARK": { en: "Dark", ar: "داكن" },
   "ui-theme-LIGHT": { en: "Light", ar: "فاتح" },
   "ui-theme-AUTO": { en: "Auto", ar: "تلقائي" },
+  "global-error-email-us": {
+    en: "Email us 📩",
+    ar: "راسلنا 📩",
+  },
   "global-try-again": {
     en: "Try Again",
     ar: "حاول مرة أخري",

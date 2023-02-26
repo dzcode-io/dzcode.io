@@ -6,6 +6,7 @@ import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { T, t } from "src/components/t";
+import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fetchTeamList } from "src/redux/actions/team-page";
 import { useSliceSelector } from "src/redux/selectors";
 
@@ -17,7 +18,7 @@ const TeamPage: FC = () => {
   }, []);
 
   return (
-    <ErrorBoundary>
+    <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
       <Helmet>
         <title>{t("team-title")}</title>
         <meta name="description" content={t("team-description")} />
