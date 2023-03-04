@@ -107,14 +107,23 @@ const CardItem: FC<ContributeCardProps> = ({
  * ContributeCard component used to display the contribute card in the app
  * @example
  * <ContributeCard
- *    title="Add a new feature"
- *    subtitle="dzcode.io"
- *    labels={["enhancement", "good first issue"]}
- *    type="issue"
- *    updatedAt="2021-01-01T00:00:00.000Z"
- *    commentsCount={0}
- *    onChipPress={(item) => console.log(item)}
- *    onPress={() => console.log("pressed")}
- * />
+      onChipPress={() => {}}
+      onPress={() => {}}
+      item={{
+        title: "test",
+        project: {
+          name: "test",
+          slug: "test",
+        },
+        type: "issue",
+        labels: [],
+        commentsCount: 0,
+        createdAt: "2023-03-04T00:00:00.000Z",
+        updatedAt: "2023-03-04T00:00:00.000Z",
+        id: "",
+        languages: [],
+        url: "",
+      }}
+    />
  */
 export const ContributeCard = memo(CardItem);
