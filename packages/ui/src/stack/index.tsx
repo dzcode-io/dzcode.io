@@ -20,6 +20,7 @@ export const Stack: FC<StackProps> = ({
   children,
   direction,
   margin,
+  padding,
   max,
   min,
   grow,
@@ -33,6 +34,7 @@ export const Stack: FC<StackProps> = ({
       sx={{
         flexGrow: grow,
         margin: toCSSMargin(margin),
+        padding: toCSSMargin(padding),
         ...(max
           ? { maxWidth: max.width, maxHeight: max.height }
           : { maxWidth: "100%", maxHeight: "100%" }),

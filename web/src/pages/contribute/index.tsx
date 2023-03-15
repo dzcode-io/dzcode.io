@@ -3,12 +3,15 @@ import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { Filter } from "@dzcode.io/ui/dist/filter";
 import { Stack } from "@dzcode.io/ui/dist/stack";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
+import { arrayOf } from "@dzcode.io/utils/dist/array";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { t, tKey } from "src/components/t";
 import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fetchContributions, updateFilterValue } from "src/redux/actions/contribute-page";
 import { useSliceSelector } from "src/redux/selectors";
+
+const loadingItems = arrayOf(3);
 
 const ContributePage: FC = () => {
   const { filters, contributions } = useSliceSelector("contributePage");
@@ -25,12 +28,12 @@ const ContributePage: FC = () => {
       </Helmet>
       <Stack
         direction="vertical"
-        alignItems="center"
+        alignItems="stretch"
         justifyContent="start"
         width="100%"
         flexWrap="wrap"
       >
-        <Stack direction="vertical" width="100%">
+        <Stack direction="vertical">
           {filters === "ERROR" ? (
             <TryAgain
               // @TODO-ZM: localize these
@@ -61,40 +64,44 @@ const ContributePage: FC = () => {
               action="Try Again"
               onClick={() => fetchContributions()}
             />
-          ) : contributions ? (
+          ) : (
             <Stack
-              margin={[3, 1, 3]}
+              margin={[3, 0]}
+              padding={[0, 1]}
               direction="horizontal"
               flexWrap="wrap"
               justifyContent="space-between"
               gap={1}
+              width="100%"
             >
-              {contributions.map((contribution, index) => (
-                <ContributionCard
-                  key={`contribution-${index}`}
-                  contribution={contribution}
-                  local={{
-                    readIssue: tKey("contribute-read-issue"),
-                    reviewChanges: tKey("contribute-review-changes"),
-                    elapsedTime: tKey("elapsed-time-suffixes"),
-                    filterLabelKeyPrefix: tKey("contribute-filter"),
-                    programmingLanguageKeyPrefix: tKey("global-programming-language"),
-                    contributionLabelKeyPrefix: tKey("global-contribution-label"),
-                  }}
-                  onChipClick={(filterName, optionName) =>
-                    updateFilterValue({
-                      filterName,
-                      optionName,
-                      value: true,
-                      updateImmediately: true,
-                      overwrite: true,
-                    })
-                  }
-                />
-              ))}
+              {contributions
+                ? contributions.map((contribution, index) => (
+                    <ContributionCard
+                      key={`contribution-${index}`}
+                      contribution={contribution}
+                      local={{
+                        readIssue: tKey("contribute-read-issue"),
+                        reviewChanges: tKey("contribute-review-changes"),
+                        elapsedTime: tKey("elapsed-time-suffixes"),
+                        filterLabelKeyPrefix: tKey("contribute-filter"),
+                        programmingLanguageKeyPrefix: tKey("global-programming-language"),
+                        contributionLabelKeyPrefix: tKey("global-contribution-label"),
+                      }}
+                      onChipClick={(filterName, optionName) =>
+                        updateFilterValue({
+                          filterName,
+                          optionName,
+                          value: true,
+                          updateImmediately: true,
+                          overwrite: true,
+                        })
+                      }
+                    />
+                  ))
+                : loadingItems.map((index) => (
+                    <ContributionCard key={`loading-${index}`} contribution={null} />
+                  ))}
             </Stack>
-          ) : (
-            "@TODO-ZM: Loading"
           )}
         </Stack>
       </Stack>
