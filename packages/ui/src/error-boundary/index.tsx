@@ -14,6 +14,7 @@ type ErrorBoundaryProps = PropsWithChildren<{
 
 export const ErrorBoundary: FC<ErrorBoundaryProps> = ({
   children,
+  // @TODO-ZM: localize this
   message = "Ops, something broke, we're checking on our end...",
   local,
 }) => {

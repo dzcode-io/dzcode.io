@@ -1,8 +1,12 @@
+import { arrayOf } from "@dzcode.io/utils/dist/array";
 import { FC } from "react";
 import { useTranslation } from "src/_hooks/use-translation";
 import { BaseUIProps } from "src/_types";
 import { Accordion } from "src/accordion";
 import { Checkbox } from "src/checkbox";
+import { Skeleton } from "src/skeleton";
+
+const loadingItems = arrayOf(3);
 
 export interface FilterProps extends BaseUIProps {
   items: Array<{
@@ -47,7 +51,7 @@ export const Filter: FC<FilterProps> = ({ items, local, onOptionClick, margin })
               onChange={(e, checked) => onOptionClick(item.name, option.name, checked)}
             />
           )),
-        })) || [] // @TODO-ZM: map to Skeleton components here
+        })) || loadingItems.map((_, i) => ({ title: <Skeleton width={100} />, body: null }))
       }
     />
   );

@@ -1,10 +1,10 @@
 import MUIChip, { ChipProps as MUIChipProps } from "@mui/material/Chip";
-import { VFC } from "react";
+import { ReactNode, VFC } from "react";
 import { useTheme } from "src/_hooks/use-theme";
 import { BaseUIProps } from "src/_types";
 
 export interface ChipProps extends BaseUIProps {
-  label: string;
+  label: ReactNode;
   variant: "v1";
   onClick?: () => void;
 }

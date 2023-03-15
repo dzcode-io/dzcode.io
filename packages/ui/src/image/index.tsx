@@ -11,6 +11,7 @@ export interface ImageProps
 export const Image: FC<ImageProps> = ({
   src,
   margin,
+  padding,
   width = "auto",
   height = "auto",
   ...cssProps
@@ -18,6 +19,10 @@ export const Image: FC<ImageProps> = ({
   const { toCSSMargin } = useTheme();
 
   return (
-    <img src={src} {...{ width, height }} style={{ margin: toCSSMargin(margin), ...cssProps }} />
+    <img
+      src={src}
+      {...{ width, height }}
+      style={{ margin: toCSSMargin(margin), padding: toCSSMargin(padding), ...cssProps }}
+    />
   );
 };

@@ -14,7 +14,7 @@ export interface ContributePageState {
 export const contributePage = createSlice({
   name: "contributePage",
   initialState: {
-    filters: [],
+    filters: null,
     contributions: null,
   } as ContributePageState,
   reducers: {

@@ -28,6 +28,9 @@ export class ContributionController {
             return contribution.project.slug === project;
           })),
     );
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     return {
       contributions,
       filters,
