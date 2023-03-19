@@ -3,12 +3,15 @@ import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { Stack } from "@dzcode.io/ui/dist/stack";
 import { Text } from "@dzcode.io/ui/dist/text";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
+import { arrayOf } from "@dzcode.io/utils/dist/array";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { T, t, tKey } from "src/components/t";
 import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fetchTeamList } from "src/redux/actions/team-page";
 import { useSliceSelector } from "src/redux/selectors";
+
+const loadingItems = arrayOf(3);
 
 const TeamPage: FC = () => {
   const { teamList } = useSliceSelector("teamPage");
@@ -49,7 +52,9 @@ const TeamPage: FC = () => {
                     local={{ repository: tKey("team-card-repositories") }}
                   />
                 ))
-              : "@TODO-ZM: Loading"}
+              : loadingItems.map((index) => (
+                  <ContributorCard key={`loading-${index}`} contributor={null} />
+                ))}
           </Stack>
         )}
       </Stack>
