@@ -8,6 +8,7 @@ export interface ImageProps
   src: string;
 }
 
+// @TODO-ZM: standardize image sizes
 export const Image: FC<ImageProps> = ({
   src,
   margin,
