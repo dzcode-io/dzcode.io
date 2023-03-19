@@ -35,6 +35,7 @@ export const ProjectCard: FC<ProjectCard> = ({ project }) => {
   const repositoriesInMarkdown = project.repositories
     .map((repo) => `- [${repo.owner}/${repo.repository}](${getRepositoryURL(repo)})`)
     .join("\n");
+
   return (
     <Paper sx={{ flexGrow: 1 }} variant="outlined">
       <Stack direction="vertical" height="100%" justifyContent="space-between">

@@ -1,45 +1,48 @@
 import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { getRepositoryURL } from "@dzcode.io/models/dist/repository-reference/utils";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import { FC } from "react";
-import { Button } from "src/button";
-import { Divider } from "src/divider";
+import { useTranslation } from "src/_hooks/use-translation";
 import { Image } from "src/image";
+import { Markdown } from "src/markdown";
+import { Paper } from "src/paper";
 import { Stack } from "src/stack";
 import { Text } from "src/text";
 
 interface ContributorCard {
   contributor: Model<ContributorEntity, "repositories">;
+  // @TODO-ZM: make local dynamic based on counts
+  local: {
+    repository: string;
+  };
 }
 
-export const ContributorCard: FC<ContributorCard> = ({ contributor }) => {
+export const ContributorCard: FC<ContributorCard> = ({ contributor, local }) => {
+  const { t } = useTranslation();
+
+  const repositoriesInMarkdown = contributor.repositories
+    .map((repo) => `- [${repo.owner}/${repo.repository}](${getRepositoryURL(repo)})`)
+    .join("\n");
+
   return (
-    // @TODO-ZM: cleanup this rushed component
-    <Card sx={{ width: 300 }} variant="outlined">
-      <CardContent>
-        <Stack direction="vertical" alignItems="center">
-          {/* @TODO-ZM: standardize image sizes */}
+    <Paper sx={{ flexGrow: 1 }} variant="outlined">
+      <Stack direction="vertical" height="100%" justifyContent="space-between">
+        <Stack direction="horizontal" alignItems="center" gap={1} margin={[1, 1, 0]}>
           <Image src={contributor.avatarUrl} width={100} height={100} />
-          <Text variant="v2" margin={[1, 0, 0]}>
-            {contributor.username}
-          </Text>
-          <Divider orientation="horizontal" margin={[1, 3]} />
+          <Stack direction="vertical">
+            <Text variant="v3" wordWrap="break-word">
+              {contributor.username}
+            </Text>
+            <Text variant="v1" wordWrap="break-word">
+              {contributor.repositories.length} {t(local.repository)}
+            </Text>
+          </Stack>
         </Stack>
-        <Stack direction="vertical">
-          <ul dir="ltr">
-            {contributor.repositories.map((repository, index) => (
-              <li key={`repository-${index}`}>
-                <Button
-                  variant="v1"
-                  href={getRepositoryURL(repository)}
-                >{`${repository.owner}/${repository.repository}`}</Button>
-              </li>
-            ))}
-          </ul>
+
+        <Stack direction="vertical" margin={[0, 1]} grow={1}>
+          <Markdown>{repositoriesInMarkdown}</Markdown>
         </Stack>
-      </CardContent>
-    </Card>
+      </Stack>
+    </Paper>
   );
 };

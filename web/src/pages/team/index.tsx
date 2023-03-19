@@ -5,7 +5,7 @@ import { Text } from "@dzcode.io/ui/dist/text";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { T, t } from "src/components/t";
+import { T, t, tKey } from "src/components/t";
 import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fetchTeamList } from "src/redux/actions/team-page";
 import { useSliceSelector } from "src/redux/selectors";
@@ -43,7 +43,11 @@ const TeamPage: FC = () => {
           >
             {teamList
               ? teamList.map((contributor, index) => (
-                  <ContributorCard key={`contributor-${index}`} contributor={contributor} />
+                  <ContributorCard
+                    key={`contributor-${index}`}
+                    contributor={contributor}
+                    local={{ repository: tKey("team-card-repositories") }}
+                  />
                 ))
               : "@TODO-ZM: Loading"}
           </Stack>
