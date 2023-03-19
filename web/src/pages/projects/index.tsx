@@ -3,12 +3,15 @@ import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
 import { Stack } from "@dzcode.io/ui/dist/stack";
 import { Text } from "@dzcode.io/ui/dist/text";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
+import { arrayOf } from "@dzcode.io/utils/dist/array";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { T, t } from "src/components/t";
 import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fetchProjectsList } from "src/redux/actions/projects-page";
 import { useSliceSelector } from "src/redux/selectors";
+
+const loadingItems = arrayOf(4);
 
 const ProjectsPage: FC = () => {
   const { projectsList } = useSliceSelector("projectsPage");
@@ -45,7 +48,9 @@ const ProjectsPage: FC = () => {
               ? projectsList.map((project, index) => (
                   <ProjectCard key={`project-${index}`} project={project} />
                 ))
-              : "@TODO-ZM: Loading"}
+              : loadingItems.map((index) => (
+                  <ProjectCard key={`loading-${index}`} project={null} />
+                ))}
           </Stack>
         )}
       </Stack>
