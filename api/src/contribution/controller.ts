@@ -28,6 +28,7 @@ export class ContributionController {
             return contribution.project.slug === project;
           })),
     );
+
     return {
       contributions,
       filters,

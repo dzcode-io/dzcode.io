@@ -138,9 +138,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                       <li>
                         Share our experiences (in form of 
                         <a
-                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                           href="/Articles"
-                          style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                         >
                           articles
                         </a>
@@ -149,9 +148,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                       <li>
                         Guide new developers to build their careers (with some educational resources and 
                         <a
-                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                           href="/Learn"
-                          style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                         >
                           articles
                         </a>
@@ -160,9 +158,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                       <li>
                         Fix some common Algerian software problems, in form of ready-to-use open-source 
                         <a
-                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                           href="/Projects"
-                          style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                         >
                           softwares
                         </a>
@@ -312,9 +309,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <span>
                       We're most active in slack, we recommend you 
                       <a
-                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                         href="https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ"
-                        style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                       >
                         join us there
                       </a>
@@ -381,9 +377,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <span>
                       Go to 
                       <a
-                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                         href="/Contribute"
-                        style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                       >
                         /Contribute
                       </a>
@@ -453,9 +448,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                       >
                         Besides the open tasks on 
                         <a
-                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                           href="/Contribute"
-                          style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                         >
                           /Contribute
                         </a>
@@ -465,9 +459,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                         <li>
                           Adding your open-source projects to the dzcode.io website, you can do that 
                           <a
-                            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                             href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
-                            style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                           >
                             here
                           </a>
@@ -476,9 +469,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                         <li>
                           Writing about your programming experience in form of articles, to do that, simply follow 
                           <a
-                            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                             href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
-                            style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                           >
                             these simple steps
                           </a>
@@ -560,9 +552,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <span>
                       Follow 
                       <a
-                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                         href="/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io"
-                        style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                       >
                         these steps
                       </a>
@@ -764,9 +755,8 @@ exports[`src/pages/landing/index.tsx Render FAQ page 1`] = `
                     <span>
                       Follow 
                       <a
-                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-17dcqu8-MuiTypography-root-MuiLink-root"
+                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineHover css-i89191-MuiTypography-root-MuiLink-root"
                         href="/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io"
-                        style="cursor: pointer; flex-shrink: 0; word-break: break-word;"
                       >
                         these steps
                       </a>

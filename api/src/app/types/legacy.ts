@@ -1,7 +1,7 @@
 import { RepositoryReferenceEntity } from "@dzcode.io/models/dist/repository-reference";
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 
-// @NOTE-ZM: delete
+// @TODO-ZM: delete
 export interface Document {
   slug: string;
   image?: string;
@@ -14,7 +14,7 @@ export interface Document {
   views?: number;
 }
 
-// @NOTE-ZM: delete
+// @TODO-ZM: delete
 export interface Article {
   slug: string;
   image?: string;
@@ -27,7 +27,7 @@ export interface Article {
   views?: number;
 }
 
-// @NOTE-ZM: delete
+// @TODO-ZM: delete
 export interface Project {
   slug: string;
   name: string;

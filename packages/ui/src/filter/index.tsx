@@ -1,9 +1,14 @@
+import { arrayOf } from "@dzcode.io/utils/dist/array";
 import { FC } from "react";
 import { useTranslation } from "src/_hooks/use-translation";
+import { BaseUIProps } from "src/_types";
 import { Accordion } from "src/accordion";
 import { Checkbox } from "src/checkbox";
+import { Skeleton } from "src/skeleton";
 
-export interface FilterProps {
+const loadingItems = arrayOf(3);
+
+export interface FilterProps extends BaseUIProps {
   items: Array<{
     name: string;
     options: Array<{
@@ -18,8 +23,6 @@ export interface FilterProps {
     contributionLabelKeyPrefix: string;
   };
   onOptionClick: (filterName: string, optionName: string, checked: boolean) => void;
-  // @TODO-ZM: dry Margin interface and code
-  margin?: number | number[];
 }
 
 export const Filter: FC<FilterProps> = ({ items, local, onOptionClick, margin }) => {
@@ -40,7 +43,7 @@ export const Filter: FC<FilterProps> = ({ items, local, onOptionClick, margin })
       items={
         items?.map((item) => ({
           title: t(`${local.filterLabelKeyPrefix}-${item.name}`),
-          description: item.options.map((option) => (
+          body: item.options.map((option) => (
             <Checkbox
               key={`option-${option.name}`}
               label={option.label || localize(item.name, option.name)}
@@ -48,7 +51,7 @@ export const Filter: FC<FilterProps> = ({ items, local, onOptionClick, margin })
               onChange={(e, checked) => onOptionClick(item.name, option.name, checked)}
             />
           )),
-        })) || [] // @TODO-ZM: map to Skeleton components here
+        })) || loadingItems.map((_, i) => ({ title: <Skeleton width={100} />, body: null }))
       }
     />
   );

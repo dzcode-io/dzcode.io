@@ -8,6 +8,7 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
 import { TranslationProvider } from "src/components/t";
+import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { getStore } from "src/redux";
 import { useSliceSelector } from "src/redux/selectors";
 import { getEnv } from "src/utils";
@@ -45,7 +46,7 @@ const AssumeRedux: FC = () => {
 render(
   <Provider store={getStore({ cacheStore: true })}>
     <Router history={history}>
-      <ErrorBoundary>
+      <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
         <AssumeRedux />
       </ErrorBoundary>
     </Router>

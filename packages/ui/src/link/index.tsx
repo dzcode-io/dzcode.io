@@ -1,7 +1,8 @@
 import MUILink, { LinkProps as MUILinkProps } from "@mui/material/Link";
-import { useTheme } from "@mui/material/styles";
 import { AnchorHTMLAttributes, createContext, CSSProperties, FC, useContext } from "react";
 import { Link as ReactRouterLink, Router, RouterProps as RRDRouterProps } from "react-router-dom";
+import { useTheme } from "src/_hooks/use-theme";
+import { BaseUIProps } from "src/_types";
 
 export type LinkContextValue = {
   prefix?: string;
@@ -24,13 +25,12 @@ export const LinkProvider: FC<LinkContextValue & { history: RRDRouterProps["hist
 export type LinkProps = {
   // @TODO-ZM: make this required
   variant?: "v1" | "v2";
-  // @TODO-ZM: dry Margin interface and code
-  margin?: number | number[];
   // @TODO-ZM: to remove these
   className?: string;
   style?: any;
   color?: any;
-} & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "target" | "href"> &
+} & BaseUIProps &
+  Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "target" | "href"> &
   Pick<MUILinkProps, "underline">;
 
 const variantToLinkStyle: Record<Required<LinkProps>["variant"], CSSProperties> = {
@@ -48,22 +48,11 @@ export const Link: FC<LinkProps> = ({
 }) => {
   const { prefix } = useContext<LinkContextValue>(LinkContext);
 
-  const theme = useTheme();
-
-  // @TODO-ZM: dry Margin code
-  let themedMargin: string | undefined;
-  switch (typeof margin) {
-    case "number":
-      themedMargin = theme.spacing(margin);
-      break;
-    case "object":
-      themedMargin = margin.map((value) => theme.spacing(value)).join(" ");
-      break;
-  }
+  const { toCSSMargin } = useTheme();
 
   const style: CSSProperties = {
     cursor: "pointer",
-    margin: themedMargin ? `${themedMargin}` : undefined,
+    margin: toCSSMargin(margin),
     flexShrink: 0,
     ...variantToLinkStyle[variant],
   };
@@ -72,13 +61,13 @@ export const Link: FC<LinkProps> = ({
     return (
       <MUILink
         component={ReactRouterLink}
-        style={style}
+        sx={style}
         underline={underline}
         {...props}
         to={prefix ? `/${prefix}${href}` : href}
       />
     );
   } else {
-    return <MUILink style={style} href={href} {...props} underline={underline} />;
+    return <MUILink sx={style} href={href} {...props} underline={underline} />;
   }
 };

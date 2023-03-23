@@ -8,10 +8,11 @@ import { FC } from "react";
 import { Helmet } from "react-helmet";
 import svg from "src/assets/svg/404.svg";
 import { T, t } from "src/components/t";
+import { AllDictionaryKeys } from "src/components/t/dictionary";
 
 const NotFound: FC = () => {
   return (
-    <ErrorBoundary>
+    <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
       <Helmet>
         <title>{t("notfound-title")}</title>
         <meta name="description" content={t("notfound-description")} />

@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet";
 import { useRouteMatch } from "react-router-dom";
 import articlesLanding from "src/assets/svg/articles-landing.svg";
 import { T, t } from "src/components/t";
+import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fetchArticlesList, fetchCurrentArticle } from "src/redux/actions/articles-page";
 import { useSliceSelector } from "src/redux/selectors";
 
@@ -109,7 +110,7 @@ const ArticlesPage: FC = () => {
 
   return (
     <>
-      <ErrorBoundary>
+      <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
         <Helmet>
           <title>{`${
             (urlParams.articleId && loadedCurrentArticle?.title) || t("articles-title")

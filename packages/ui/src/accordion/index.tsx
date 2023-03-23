@@ -9,8 +9,7 @@ import { Text } from "src/text";
 interface AccordionProps {
   items: Array<{
     title: ReactNode;
-    // @TODO-ZM: renamed this to body
-    description: ReactNode;
+    body: ReactNode;
   }>;
   margin?: number | number[];
 }
@@ -18,12 +17,12 @@ interface AccordionProps {
 export const Accordion: VFC<AccordionProps> = ({ items, ...props }) => {
   return (
     <Stack direction="vertical" grow={1} {...props}>
-      {items.map(({ title, description }, index) => (
+      {items.map(({ title, body }, index) => (
         <MUIAccordion key={`accordion-item-${index}`} variant="outlined" style={{ marginTop: -1 }}>
           <MUIAccordionSummary expandIcon={<ExpandMore />}>
             <Text variant="v2">{title}</Text>
           </MUIAccordionSummary>
-          <MUIAccordionDetails>{description}</MUIAccordionDetails>
+          <MUIAccordionDetails>{body}</MUIAccordionDetails>
         </MUIAccordion>
       ))}
     </Stack>
