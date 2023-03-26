@@ -12,13 +12,13 @@ export class MilestoneController {
 
   @Get("/dzcode")
   @OpenAPI({
-    summary: "Return a list of milestones for all dzcode.io repo",
+    summary: "Return a list of milestones for dzcode.io repository",
   })
   @ResponseSchema(GetMilestonesResponseDto)
   public async getMilestones(): Promise<GetMilestonesResponseDto> {
     const githubMilestones = await this.githubService.listRepositoryMilestones({
       owner: "dzcode-io",
-      repo: "dzcode.io",
+      repository: "dzcode.io",
     });
     return {
       milestones: githubMilestones

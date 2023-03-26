@@ -24,11 +24,11 @@ export class GithubService {
 
   public listContributors = async ({
     owner,
-    repo,
+    repository,
     path,
   }: GeneralGithubQuery): Promise<GithubUser[]> => {
     const commits = await this.fetchService.get<ListContributorsResponse>(
-      `${this.apiURL}/repos/${owner}/${repo}/commits`,
+      `${this.apiURL}/repos/${owner}/${repository}/commits`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
         params: { path, state: "all", per_page: 100 }, // eslint-disable-line camelcase
@@ -58,10 +58,10 @@ export class GithubService {
 
   public listRepositoryIssues = async ({
     owner,
-    repo,
+    repository,
   }: GitHubListRepositoryIssuesInput): Promise<GithubIssue[]> => {
     const issues = await this.fetchService.get<GithubIssue[]>(
-      `${this.apiURL}/repos/${owner}/${repo}/issues`,
+      `${this.apiURL}/repos/${owner}/${repository}/issues`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
         params: { sort: "updated", per_page: 100 }, // eslint-disable-line camelcase
@@ -72,10 +72,10 @@ export class GithubService {
 
   public listRepositoryLanguages = async ({
     owner,
-    repo,
+    repository,
   }: GitHubListRepositoryLanguagesInput): Promise<string[]> => {
     const languages = await this.fetchService.get<Record<string, number>>(
-      `${this.apiURL}/repos/${owner}/${repo}/languages`,
+      `${this.apiURL}/repos/${owner}/${repository}/languages`,
       { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
     return Object.keys(languages);
@@ -83,17 +83,22 @@ export class GithubService {
 
   public listRepositoryContributors = async ({
     owner,
-    repo,
+    repository,
   }: Omit<GeneralGithubQuery, "path">): Promise<ListRepositoryContributorsResponse> => {
     const contributors = await this.fetchService.get<ListRepositoryContributorsResponse>(
-      `${this.apiURL}/repos/${owner}/${repo}/contributors`,
+      `${this.apiURL}/repos/${owner}/${repository}/contributors`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
         params: { state: "all", per_page: 100 }, // eslint-disable-line camelcase
       },
     );
 
-    return contributors.filter(({ type }) => type === "User");
+    return (
+      contributors
+        // @TODO-ZM: filter out bots
+        .filter(({ type }) => type === "User")
+        .sort((a, b) => b.contributions - a.contributions)
+    );
   };
 
   public getRateLimit = async (): Promise<{ limit: number; used: number; ratio: number }> => {
@@ -111,10 +116,10 @@ export class GithubService {
 
   public listRepositoryMilestones = async ({
     owner,
-    repo,
+    repository,
   }: GitHubListRepositoryMilestonesInput): Promise<GithubMilestone[]> => {
     const milestones = await this.fetchService.get<GithubMilestone[]>(
-      `${this.apiURL}/repos/${owner}/${repo}/milestones`,
+      `${this.apiURL}/repos/${owner}/${repository}/milestones`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
         params: { state: "all", per_page: 100 }, // eslint-disable-line camelcase

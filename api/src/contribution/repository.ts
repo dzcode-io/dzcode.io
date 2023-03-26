@@ -1,8 +1,6 @@
-import { getCollection } from "@dzcode.io/data/dist/get/collection";
 import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
-import { join } from "path";
+import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { Service } from "typedi";
 
@@ -10,36 +8,32 @@ import { allFilterNames, FilterDto, GetContributionsResponseDto, OptionDto } fro
 
 @Service()
 export class ContributionRepository {
-  constructor(private readonly githubService: GithubService) {
-    const projects = getCollection<Model<ProjectReferenceEntity, "repositories">>(
-      join(__dirname, "../../../data"),
-      "projects-v2",
-      "list.json",
-    );
-    this.projects = projects !== 404 ? projects : [];
-  }
-
-  private projects: Model<ProjectReferenceEntity, "repositories">[];
+  constructor(
+    private readonly githubService: GithubService,
+    private readonly dataService: DataService,
+  ) {}
 
   public async find(
     filterFn?: (value: ContributionEntity, index: number, array: ContributionEntity[]) => boolean,
   ): Promise<Pick<GetContributionsResponseDto, "contributions" | "filters">> {
+    const projects = await this.dataService.listProjects();
+
     let contributions = (
       await Promise.all(
-        this.projects.reduce<Promise<Model<ContributionEntity, "project">[]>[]>(
+        projects.reduce<Promise<Model<ContributionEntity, "project">[]>[]>(
           (pV, { repositories, name, slug }) => [
             ...pV,
             ...repositories
               .filter(({ provider }) => provider === "github")
-              .map(async ({ owner, repository: repo }) => {
+              .map(async ({ owner, repository }) => {
                 const issuesIncludingPRs = await this.githubService.listRepositoryIssues({
                   owner,
-                  repo,
+                  repository,
                 });
 
                 const languages = await this.githubService.listRepositoryLanguages({
                   owner,
-                  repo,
+                  repository,
                 });
                 // @TODO-ZM: filter out the ones created by bots
                 return issuesIncludingPRs.map<Model<ContributionEntity, "project">>(

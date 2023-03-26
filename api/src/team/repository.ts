@@ -1,28 +1,22 @@
-import { getCollection } from "@dzcode.io/data/dist/get/collection";
 import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
-import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
-import { join } from "path";
+import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { Service } from "typedi";
 
 @Service()
 export class TeamRepository {
-  constructor(private readonly githubService: GithubService) {
-    const projects = getCollection<Model<ProjectReferenceEntity, "repositories">>(
-      join(__dirname, "../../../data"),
-      "projects-v2",
-      "list.json",
-    );
-    this.projects = projects !== 404 ? projects : [];
-  }
-
-  private projects: Model<ProjectReferenceEntity, "repositories">[];
+  constructor(
+    private readonly githubService: GithubService,
+    private readonly dataService: DataService,
+  ) {}
 
   public async find(): Promise<Model<ContributorEntity, "repositories">[]> {
+    const projects = await this.dataService.listProjects();
+
     // flatten repositories into one array
-    const repositories = this.projects.reduce<RepositoryEntity[]>(
+    const repositories = projects.reduce<RepositoryEntity[]>(
       (repositories, project) => [...repositories, ...project.repositories],
       [],
     );
@@ -38,9 +32,8 @@ export class TeamRepository {
       repositories.map(async ({ provider, owner, repository }) => {
         const committers = await this.githubService.listRepositoryContributors({
           owner,
-          repo: repository,
+          repository,
         });
-        // @TODO-ZM: filter out bots
         committers.forEach(({ avatar_url: avatarUrl, id, login, contributions }) => {
           const uuid = `${provider}/${id}`;
           // add new contributor if doesn't exists
