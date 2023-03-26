@@ -11,6 +11,7 @@ import { GithubController } from "src/github/controller";
 import { GithubUserController } from "src/github-user/controller";
 import { LoggerService } from "src/logger/service";
 import { MilestoneController } from "src/milestone/controller";
+import { ProjectController } from "src/project/controller";
 import { TeamController } from "src/team/controller";
 import Container from "typedi";
 
@@ -46,6 +47,7 @@ export const routingControllersOptions: RoutingControllersOptions = {
     TeamController,
     GithubController,
     MilestoneController,
+    ProjectController,
   ],
   middlewares: [
     SentryRequestHandlerMiddleware,

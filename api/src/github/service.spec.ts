@@ -9,7 +9,7 @@ import { GeneralGithubQuery, ListContributorsResponse } from "./types";
 describe("GithubService", () => {
   const githubQuery: GeneralGithubQuery = {
     owner: "test-owner",
-    repo: "test-repo",
+    repository: "test-repo",
     path: "test/path",
   };
   const contributorsMock: ListContributorsResponse = [

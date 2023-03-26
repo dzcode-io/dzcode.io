@@ -23,13 +23,13 @@ export class ContributorController {
       // current place for data:
       this.githubService.listContributors({
         owner: "dzcode-io",
-        repo: "dzcode.io",
+        repository: "dzcode.io",
         path: `data/models/${path}`,
       }),
       // also check old place for data, to not lose contribution effort:
       this.githubService.listContributors({
         owner: "dzcode-io",
-        repo: "dzcode.io",
+        repository: "dzcode.io",
         path: `data/${path}`,
       }),
     ]);

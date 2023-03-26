@@ -10,7 +10,7 @@ export type ListRepositoryContributorsResponse = Array<GithubUser & { contributi
 
 export interface GeneralGithubQuery {
   owner: string;
-  repo: string;
+  repository: string;
   path: string;
 }
 
@@ -55,7 +55,7 @@ export interface GitHubUserApiResponse {
 
 export interface GitHubListRepositoryIssuesInput {
   owner: string;
-  repo: string;
+  repository: string;
 }
 
 export type GitHubListRepositoryLanguagesInput = GitHubListRepositoryIssuesInput;
