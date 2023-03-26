@@ -1,7 +1,8 @@
+import { green } from "@mui/material/colors";
 import grey from "@mui/material/colors/grey";
 import { PaletteOptions, useTheme } from "@mui/material/styles";
 
-export type Color = "BACKGROUND_2" | "PRIMARY" | "DIVIDER" | "BACKGROUND_CODE";
+export type Color = "BACKGROUND_2" | "PRIMARY" | "DIVIDER" | "BACKGROUND_CODE" | "CONTRIBUTION";
 
 export const useColors = () => {
   const theme = useTheme();
@@ -21,6 +22,9 @@ export const useColors = () => {
 
         case "BACKGROUND_CODE":
           return [grey["300"], grey["800"]][modeIndex];
+
+        case "CONTRIBUTION":
+          return [green["300"], green["800"]][modeIndex];
 
         default:
           return "transparent";

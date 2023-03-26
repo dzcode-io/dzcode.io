@@ -3,9 +3,10 @@ import { GetContributionsResponseDto } from "src/contribution/types";
 import { GetContributorsResponseDto } from "src/contributor/types";
 import { GetUserResponseDto } from "src/github-user/types";
 import { GetMilestonesResponseDto } from "src/milestone/types";
+import { GetProjectsResponseDto } from "src/project/types";
 import { GetTeamResponseDto } from "src/team/types";
 
-import { Article, Document, Project } from "./types/legacy";
+import { Article, Document } from "./types/legacy";
 
 // @TODO-ZM: remove old endpoints
 export interface Endpoints {
@@ -30,8 +31,8 @@ export interface Endpoints {
     params: { slug: string };
     query: [["language", LanguageEntity["code"]]];
   };
-  "data:projects-v2/list.c.json": {
-    response: Project[];
+  "api:Projects": {
+    response: GetProjectsResponseDto;
   };
   "api:Contributions": {
     response: GetContributionsResponseDto;
