@@ -9,6 +9,13 @@ RepositoryEntity {
   "owner": "dzcode-io",
   "provider": "github",
   "repository": "leblad",
+  "stats": RepositoryStatsEntity {
+    "contributionCount": 10,
+    "languages": Array [
+      "TypeScript",
+      "Rust",
+    ],
+  },
 }
 `;
 
@@ -27,7 +34,7 @@ Array [
   ValidationError {
     "children": Array [],
     "constraints": Object {
-      "isString": "provider must be a string",
+      "isIn": "provider must be one of the following values: github, gitlab",
     },
     "property": "provider",
     "target": RepositoryEntity {},
