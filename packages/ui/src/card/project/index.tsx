@@ -94,8 +94,8 @@ export const ProjectCard: FC<ProjectCard> = ({ project, local }) => {
                 {repository.contributors.map((contributor, index) => (
                   <Avatar
                     key={`contributor-${index}`}
-                    src={"https://avatars.githubusercontent.com/u/20110076?v=4"}
-                    sx={{ width: 30, height: 30 }}
+                    src={contributor.avatarUrl}
+                    sx={{ width: 30, height: 30, backgroundColor: from("BACKGROUND_2") }}
                   />
                 ))}
               </AvatarGroup>
