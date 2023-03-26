@@ -31,8 +31,8 @@ const shuffleProjects = <T>(array: T[]) => {
 export const fetchProjectsList = async (): Promise<void> => {
   try {
     actions.projectsPage.set({ projectsList: null });
-    const projectsList = await fetchV2("data:projects-v2/list.c.json", {});
-    actions.projectsPage.set({ projectsList: shuffleProjects(projectsList) });
+    const { projects } = await fetchV2("api:Projects", {});
+    actions.projectsPage.set({ projectsList: shuffleProjects(projects) });
   } catch (error) {
     actions.projectsPage.set({ projectsList: "ERROR" });
     Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });

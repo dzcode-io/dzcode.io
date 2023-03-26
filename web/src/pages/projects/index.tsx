@@ -6,7 +6,7 @@ import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { arrayOf } from "@dzcode.io/utils/dist/array";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { T, t } from "src/components/t";
+import { T, t, tKey } from "src/components/t";
 import { AllDictionaryKeys } from "src/components/t/dictionary";
 import { fetchProjectsList } from "src/redux/actions/projects-page";
 import { useSliceSelector } from "src/redux/selectors";
@@ -46,7 +46,15 @@ const ProjectsPage: FC = () => {
           >
             {projectsList
               ? projectsList.map((project, index) => (
-                  <ProjectCard key={`project-${index}`} project={project} />
+                  <ProjectCard
+                    key={`project-${index}`}
+                    project={project}
+                    local={{
+                      filterLabelKeyPrefix: tKey("contribute-filter"),
+                      programmingLanguageKeyPrefix: tKey("global-programming-language"),
+                      contributionLabelKeyPrefix: tKey("global-contribution-label"),
+                    }}
+                  />
                 ))
               : loadingItems.map((index) => (
                   <ProjectCard key={`loading-${index}`} project={null} />

@@ -1,12 +1,11 @@
-import { Model } from "@dzcode.io/models/dist/_base";
-import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
+import { GetProjectsResponseDto } from "@dzcode.io/api/dist/project/types";
 import { LOADABLE } from "@dzcode.io/utils/dist/loadable";
 import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 
 // ts-prune-ignore-next
 export interface ProjectsPageState {
-  projectsList: LOADABLE<Model<ProjectReferenceEntity, "repositories">[]>;
+  projectsList: LOADABLE<GetProjectsResponseDto["projects"]>;
 }
 
 export const projectsPage = createSlice({
