@@ -39,9 +39,14 @@ jobs:
           wait-on-timeout: 120
           browser: ${{ matrix.browser }}
           project: ./web
-
-      - name: "Artifacts"
-        uses: actions/upload-artifact@v3
+    
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: cypress-videos
