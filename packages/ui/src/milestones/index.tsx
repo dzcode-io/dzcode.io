@@ -69,6 +69,7 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
                 component="span"
                 onClick={() => onClick(milestoneIndex, milestones[milestoneIndex])}
                 sx={{ cursor: "pointer" }}
+                data-testid="roadmap-item-title"
               >
                 {title}
               </Typography>
@@ -99,7 +100,12 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
                 {title}
               </Typography>
             </StepLabel>
-            <StepContent sx={{ borderLeftColor: milestoneColors[state], paddingBottom: 2 }}>
+            <StepContent
+              sx={{
+                borderLeftColor: milestoneColors[state],
+                paddingBottom: 2,
+              }}
+            >
               {date && (
                 <Typography variant="body2">{new Date(date).toLocaleDateString()}</Typography>
               )}

@@ -51,6 +51,8 @@
     "@types/webpack-bundle-analyzer": "^4.4.2",
     "babel-plugin-typescript-to-proptypes": "^1.4.2",
     "cpx": "^1.5.0",
+    "cypress": "^12.8.1",
+    "eslint-plugin-cypress": "^2.12.1",
     "firebase-tools": "^9.1.0",
     "fs-extra": "^10.0.0",
     "glob": "^7.1.6",
@@ -59,6 +61,7 @@
     "robotstxt-webpack-plugin": "^8.0.0",
     "sass": "^1.30.0",
     "sitemap": "^7.1.1",
+    "wait-on": "^7.0.1",
     "webpack-bundle-analyzer": "^4.6.1"
   },
   "engines": {
@@ -87,6 +90,7 @@
     "clean:alone": "rimraf dist coverage bundle node_modules/.cache",
     "deploy": "yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
     "deploy:stg": "yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "e2e:dev": "yarn wait-on http://localhost:3000/ && yarn cypress open",
     "generate:bundle-info": "ts-node ../packages/tooling/bundle-info.ts",
     "generate:sentry-release": "ts-node ../packages/tooling/sentry-release.ts web bundle",
     "generate:sitemap": "cross-env TS_NODE_SKIP_PROJECT=true ts-node src/build/sitemap.ts",
