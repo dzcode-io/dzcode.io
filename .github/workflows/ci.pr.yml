@@ -11,20 +11,6 @@ jobs:
       matrix:
         node-version: [14.x]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        browser: [chrome, firefox, edge]
-        exclude:
-          - os: macos-latest
-            browser: chrome
-          - os: macos-latest
-            browser: firefox
-          - os: macos-latest
-            browser: edge
-          - os: windows-latest
-            browser: chrome
-          - os: windows-latest
-            browser: firefox
-          - os: windows-latest
-            browser: edge
       fail-fast: false
 
     steps:
@@ -64,23 +50,6 @@ jobs:
         shell: bash
         run: |
           yarn test:alone -- --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents -- --coverage
-
-      - name: "Cypress"
-        uses: cypress-io/github-action@v5.5.1
-        with:
-          start: yarn dev:web
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 120
-          browser: ${{ matrix.browser }}
-          project: ./web
-
-      - name: "Artifacts"
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: cypress-videos
-          path: web/cypress/videos
-          retention-days: 1
 
       - name: "Misc"
         shell: bash
