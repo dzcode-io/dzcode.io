@@ -23,7 +23,7 @@ jobs:
             browser: chrome
           - os: windows-latest
             browser: firefox
-          - os: ubuntu-latest
+          - os: windows-latest
             browser: edge
       fail-fast: false
 
@@ -73,6 +73,14 @@ jobs:
           wait-on-timeout: 120
           browser: ${{ matrix.browser }}
           project: ./web
+
+      - name: "Artifacts"
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: cypress-videos
+          path: web/cypress/videos
+          retention-days: 1
 
       - name: "Misc"
         shell: bash
