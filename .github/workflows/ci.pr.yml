@@ -69,6 +69,8 @@ jobs:
         uses: cypress-io/github-action@v5.5.1
         with:
           start: yarn dev:web
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 120
           browser: ${{ matrix.browser }}
           project: ./web
 
