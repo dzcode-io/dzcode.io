@@ -69,7 +69,6 @@ export const Milestones: FC<MilestonesProps> = ({ milestones, onClick = () => nu
                 component="span"
                 onClick={() => onClick(milestoneIndex, milestones[milestoneIndex])}
                 sx={{ cursor: "pointer" }}
-                data-testid="roadmap-item-title"
               >
                 {title}
               </Typography>
