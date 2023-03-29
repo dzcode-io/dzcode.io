@@ -63,7 +63,7 @@
     "dev:web": "yarn dev:all --scope=@dzcode.io/{web,api,data}",
     "e2e:all": "npm-run-all \"build --include-dependencies {@}\" --parallel \"build:watch --include-dependencies {@}\" \"start:dev {@}\" \"e2e:dev --scope=@dzcode.io/web\" --",
     "e2e:dev": "lerna run e2e:dev --parallel",
-    "e2e:web": "yarn e2e:all --scope=@dzcode.io/{web,api,data}",
+    "e2e:web": "BROWSER=none yarn e2e:all --scope=@dzcode.io/{web,api,data}",
     "generate:bundle-info": "lerna run generate:bundle-info --parallel --",
     "generate:sentry-release": "lerna run generate:sentry-release --concurrency 1 --stream --",
     "lint": "yarn build && yarn lint:alone",
