@@ -52,7 +52,6 @@
     "babel-plugin-typescript-to-proptypes": "^1.4.2",
     "cpx": "^1.5.0",
     "cypress": "^12.8.1",
-    "eslint-plugin-cypress": "^2.12.1",
     "firebase-tools": "^9.1.0",
     "fs-extra": "^10.0.0",
     "glob": "^7.1.6",
