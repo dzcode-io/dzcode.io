@@ -5,8 +5,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "plugin:react/recommended",
-    "plugin:cypress/recommended"
+    "plugin:react/recommended"
   ],
   "parserOptions": { "ecmaFeatures": { "jsx": true } },
   "settings": { "react": { "version": "detect" } },
