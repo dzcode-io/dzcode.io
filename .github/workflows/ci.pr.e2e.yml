@@ -35,7 +35,7 @@ jobs:
         uses: cypress-io/github-action@v5.5.1
         with:
           start: yarn dev:web
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://localhost:8080'
           wait-on-timeout: 120
           browser: ${{ matrix.browser }}
           project: ./web
@@ -44,13 +44,13 @@ jobs:
         if: failure()
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: web/src/_e2e-test/screenshots
           
       - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: cypress-videos
-          path: web/cypress/videos
+          path: web/src/_e2e-test/videos
           retention-days: 1
 
         env:

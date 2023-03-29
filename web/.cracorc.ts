@@ -1,10 +1,11 @@
 import type { CracoConfig } from "@craco/craco";
 import jest from "@dzcode.io/tooling/jest.config";
+import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
 import { readFileSync } from "fs-extra";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import { join, normalize } from "path";
 import { resolve } from "path";
-import { basename, join, normalize } from "path";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 import { dynamicPages, PageInfo, staticPages } from "./src/build/pages";
@@ -38,6 +39,9 @@ type HtmlWebpackPluginTemplate = PageInfo & {
 };
 
 module.exports = {
+  devServer: {
+    port: fsConfig("development").web.port,
+  },
   webpack: {
     alias: {
       src: resolve(__dirname, "src/"),
