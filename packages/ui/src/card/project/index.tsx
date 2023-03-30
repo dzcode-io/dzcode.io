@@ -51,7 +51,7 @@ export const ProjectCard: FC<ProjectCard> = ({ project, local }) => {
             <Stack direction="horizontal" gap={1} alignItems="center">
               <Skeleton width={30} height={30} variant="circular" />
               <Divider orientation="vertical" margin={1} />
-              {loadingLanguages.map((index: any) => (
+              {loadingLanguages.map((index) => (
                 <Chip key={`loading-${index}`} label={<Flex width={20} />} variant="v1" />
               ))}
             </Stack>
@@ -63,9 +63,9 @@ export const ProjectCard: FC<ProjectCard> = ({ project, local }) => {
   const localize = (filterName: string, optionName: string): string => {
     const keyPrefix =
       filterName === "labels"
-        ? local?.contributionLabelKeyPrefix
+        ? local.contributionLabelKeyPrefix
         : filterName === "languages"
-        ? local?.programmingLanguageKeyPrefix
+        ? local.programmingLanguageKeyPrefix
         : null;
     if (!keyPrefix) return filterName;
     return t(`${keyPrefix}-${optionName.toLowerCase()}`, undefined, undefined, optionName);
@@ -79,7 +79,7 @@ export const ProjectCard: FC<ProjectCard> = ({ project, local }) => {
         </Text>
         <Divider orientation="horizontal" margin={[1, 0]} width="40%" />
 
-        {project.repositories.map((repository: any, index: number) => (
+        {project.repositories.map((repository, index) => (
           <Stack key={`repository-${index}`} direction="vertical" margin={[0, 1, 1, 1]} grow={1}>
             <Link href={getRepositoryURL(repository)}>
               {repository.owner}/{repository.repository}
@@ -88,20 +88,14 @@ export const ProjectCard: FC<ProjectCard> = ({ project, local }) => {
               <AvatarGroup
                 max={3}
                 componentsProps={{
-                  additionalAvatar: {
-                    sx: { width: 30, height: 30, fontSize: "small" },
-                  },
+                  additionalAvatar: { sx: { width: 30, height: 30, fontSize: "small" } },
                 }}
               >
-                {repository.contributors.map((contributor: any, index: number) => (
+                {repository.contributors.map((contributor, index) => (
                   <Avatar
                     key={`contributor-${index}`}
                     src={contributor.avatarUrl}
-                    sx={{
-                      width: 30,
-                      height: 30,
-                      backgroundColor: from("BACKGROUND_2"),
-                    }}
+                    sx={{ width: 30, height: 30, backgroundColor: from("BACKGROUND_2") }}
                   />
                 ))}
               </AvatarGroup>
@@ -118,7 +112,7 @@ export const ProjectCard: FC<ProjectCard> = ({ project, local }) => {
                 <>
                   <Divider orientation="vertical" margin={1} />
                   <Stack direction="horizontal" gap={1} flexWrap="wrap" alignItems="center">
-                    {repository.stats.languages.map((optionName: string, index: number) => (
+                    {repository.stats.languages.map((optionName, index) => (
                       <Chip
                         key={`language-${index}`}
                         label={localize("languages", optionName)}
