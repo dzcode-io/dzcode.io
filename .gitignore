@@ -22,6 +22,9 @@ api/nodemon.json
 # web
 web/bundle
 web/build
+web/src/_e2e-test/downloads
+web/src/_e2e-test/videos
+web/src/_e2e-test/screenshots
 
 # mobile
 mobile/.expo
