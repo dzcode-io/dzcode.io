@@ -61,10 +61,10 @@ const LandingPage: FC = () => {
             </Text>
             <MediaQuery downTo="sm">
               <Stack direction="horizontal" alignItems="center">
-                <Button variant="v3" href="/Contribute">
+                <Button variant="v3" href="/Contribute" data-testid="contribute-button">
                   <T landing-cta-button />
                 </Button>
-                <Button variant="v1" margin={[0, 3]} href="/FAQ">
+                <Button variant="v1" margin={[0, 3]} href="/FAQ" data-testid="faq-button">
                   <T landing-help-button />
                 </Button>
               </Stack>

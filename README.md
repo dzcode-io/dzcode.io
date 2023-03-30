@@ -78,6 +78,16 @@ In [`./api`](./api), keep in mind that you have limited calls to Github Api (60 
 GITHUB_TOKEN=Paste_You_Token_Here
 ```
 
+### Run e2e locally
+
+Make **sure** you are in the project **root**, then:
+
+- run web e2e tests by:
+
+```sh
+yarn e2e:web
+```
+
 ## Contributing
 
 To get started see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/main/.github/CONTRIBUTING.md).
