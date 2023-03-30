@@ -105,5 +105,5 @@ module.exports = {
       ["babel-plugin-typescript-to-proptypes", { comments: true }],
     ],
   },
-  jest,
+  jest: { configure: jest },
 } as CracoConfig;
