@@ -4,6 +4,7 @@ import { fsConfig } from "@dzcode.io/utils/dist/config";
 import * as Sentry from "@sentry/node";
 import { Application } from "express";
 import { createExpressServer, RoutingControllersOptions, useContainer } from "routing-controllers";
+import { ArticleController } from "src/article/controller";
 import { ConfigService } from "src/config/service";
 import { ContributionController } from "src/contribution/controller";
 import { ContributorController } from "src/contributor/controller";
@@ -48,6 +49,7 @@ export const routingControllersOptions: RoutingControllersOptions = {
     GithubController,
     MilestoneController,
     ProjectController,
+    ArticleController,
   ],
   middlewares: [
     SentryRequestHandlerMiddleware,

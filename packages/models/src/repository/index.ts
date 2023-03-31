@@ -28,6 +28,7 @@ export class RepositoryEntity extends BaseEntity {
   @Type(() => RepositoryStatsEntity)
   stats?: Model<RepositoryStatsEntity>;
 
+  // @TODO-ZM: use AccountEntity instead of ContributorEntity
   @ValidateNested({ each: true })
   @Type(() => ContributorEntity)
   contributors?: Model<ContributorEntity>[];
