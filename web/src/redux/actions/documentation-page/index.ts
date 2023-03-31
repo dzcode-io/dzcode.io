@@ -58,6 +58,8 @@ const fetchCurrentDocumentContributors = async (): Promise<void> => {
 
   try {
     const { contributors: legacyContributors } = await fetchV2("api:Contributors", {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       query: [["path", `documentation/${loadedCurrentDocument.id}`]],
     });
     // @TODO-ZM: simplify this once ./data is migrated to ./api
@@ -135,8 +137,12 @@ export const fetchCurrentDocument = async (): Promise<void> => {
           })) || [],
         contributors: [],
       };
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       actions.learnPage.set({ currentDocument });
       // update our cache state
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       actions.documentation.set({ list: [currentDocument] });
       // Fetch contributors
       fetchCurrentDocumentContributors();
