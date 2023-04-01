@@ -83,7 +83,6 @@
     "packages/*",
     "api",
     "data",
-    "web",
-    "mobile"
+    "web"
   ]
 }
