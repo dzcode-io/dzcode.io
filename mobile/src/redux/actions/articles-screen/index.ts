@@ -3,7 +3,7 @@ import { fetchV2 } from "src/utils/fetch";
 
 export const fetchArticles = createAsyncThunk("articlesScreen/fetchArticles", async () => {
   try {
-    const articles = await fetchV2("data:articles/list.c.json", {
+    const { articles } = await fetchV2("api:Articles", {
       query: [["language", "en"]],
     });
     return articles;
@@ -16,9 +16,8 @@ export const fetchArticle = createAsyncThunk(
   "articlesScreen/fetchArticle",
   async (slug: string) => {
     try {
-      const article = await fetchV2(`data:articles/:slug.json`, {
+      const { article } = await fetchV2(`api:Articles/:slug`, {
         params: { slug },
-        query: [["language", "en"]],
       });
       return article;
     } catch (error: any) {
