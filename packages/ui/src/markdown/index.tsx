@@ -7,9 +7,10 @@ import prism from "react-syntax-highlighter/dist/cjs/styles/prism/prism";
 import tomorrow from "react-syntax-highlighter/dist/cjs/styles/prism/tomorrow";
 import { useColors } from "src/_hooks/use-colors";
 import { useTheme } from "src/_hooks/use-theme";
+import { ChildrenProp } from "src/_types";
 import { Link } from "src/link";
 
-export interface MarkdownProps {
+export interface MarkdownProps extends ChildrenProp {
   t?: string;
 }
 

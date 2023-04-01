@@ -14,9 +14,9 @@ import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import type { FC } from "react";
 import { CircularProgress } from "src/circular-progress";
+import { useMediaQuery } from "usehooks-ts";
 
 type MilestoneItem = {
   id: string;

@@ -2,16 +2,17 @@ import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Direction, PaletteOptions, ThemeProvider } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import type { FC } from "react";
+import { ChildrenProp } from "src/_types";
 import rtlPlugin from "stylis-plugin-rtl";
+import { useMediaQuery } from "usehooks-ts";
 
 import { customTheme } from "./custom-theme";
 
-type ThemeProps = {
+interface ThemeProps extends ChildrenProp {
   themeName: "DARK" | "LIGHT" | "AUTO";
   direction: Direction;
-};
+}
 
 const caches = {
   ltr: createCache({

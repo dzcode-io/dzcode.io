@@ -16,14 +16,15 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.95",
     "@mui/material": "^5.10.5",
-    "@sentry/react": "^6.11.0",
-    "@sentry/tracing": "^6.11.0",
+    "@sentry/react": "^7.46.0",
+    "@sentry/tracing": "^7.46.0",
     "markdown-to-jsx": "^7.1.0",
     "react": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "react-syntax-highlighter": "^15.4.3",
     "stylis": "^4.1.3",
-    "stylis-plugin-rtl": "2.0.2"
+    "stylis-plugin-rtl": "2.0.2",
+    "usehooks-ts": "latest"
   },
   "devDependencies": {
     "@dzcode.io/models": "*",

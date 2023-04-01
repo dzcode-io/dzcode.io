@@ -10,7 +10,7 @@ import { Stack } from "@dzcode.io/ui/dist/stack";
 import { Treeview } from "@dzcode.io/ui/dist/treeview";
 import { TryAgain } from "@dzcode.io/ui/dist/try-again";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
-import { FC, useEffect, VFC } from "react";
+import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useRouteMatch } from "react-router-dom";
 import articlesLanding from "src/assets/svg/articles-landing.svg";
@@ -37,7 +37,7 @@ const ArticlesPage: FC = () => {
 
   const loadedSidebarTree = isLoaded(sidebarTree);
 
-  const Sidebar: VFC = () => (
+  const Sidebar: FC = () => (
     <Stack direction="vertical" margin={[3, 0]}>
       {sidebarTree === "ERROR" ? (
         <TryAgain
@@ -72,7 +72,7 @@ const ArticlesPage: FC = () => {
     </Stack>
   );
 
-  const Content: VFC = () => (
+  const Content: FC = () => (
     <Stack direction="vertical" grow={1}>
       <MediaQuery upTo="md">
         <Button variant="v1" margin={[1, 1, 0]} href="/Articles">
@@ -97,7 +97,7 @@ const ArticlesPage: FC = () => {
     </Stack>
   );
 
-  const BlankContent: VFC = () => (
+  const BlankContent: FC = () => (
     <Stack grow={1} direction="vertical" alignItems="center" justifyContent="start">
       <Image src={articlesLanding} width={300} margin={[6, 0, 0]} />
       {loadedSidebarTree?.[0] && (

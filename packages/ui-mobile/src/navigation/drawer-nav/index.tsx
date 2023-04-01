@@ -4,7 +4,7 @@ import {
   DrawerContentOptions,
 } from "@react-navigation/drawer";
 import { DrawerHeaderProps } from "@react-navigation/drawer/lib/typescript/src/types";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import type { Route } from "src/_types/route";
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -44,7 +44,7 @@ interface DrawerNavProps {
  * />
  * @see https://reactnavigation.org/docs/drawer-navigator/
  */
-export const DrawerNav: VFC<DrawerNavProps> = ({
+export const DrawerNav: FC<DrawerNavProps> = ({
   routes,
   initialRouteName,
   header,

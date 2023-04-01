@@ -1,10 +1,10 @@
-import { VFC } from "react";
+import { FC } from "react";
 import { BaseUIProps } from "src/_types";
 import { Button } from "src/button";
 import { Stack } from "src/stack";
 import { Text } from "src/text";
 
-export const TryAgain: VFC<
+export const TryAgain: FC<
   {
     onClick: () => void;
     error: string;

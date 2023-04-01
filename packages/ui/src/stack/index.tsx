@@ -1,10 +1,11 @@
 import MUIStack, { StackProps as MUIStackProps } from "@mui/material/Stack";
 import type { CSSProperties, FC } from "react";
 import { useTheme } from "src/_hooks/use-theme";
-import { BaseUIProps } from "src/_types";
+import { BaseUIProps, ChildrenProp } from "src/_types";
 
 export interface StackProps
   extends BaseUIProps,
+    ChildrenProp,
     Pick<
       MUIStackProps,
       "alignItems" | "justifyContent" | "overflow" | "height" | "width" | "flexWrap" | "gap"

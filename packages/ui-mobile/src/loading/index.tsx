@@ -1,4 +1,4 @@
-import React, { useEffect, useState, VFC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Animated, ImageStyle } from "react-native";
 
 import { dzcodeLoadingStyles } from "./styles";
@@ -16,7 +16,7 @@ interface DZCodeLoadingProps {
  * @see https://reactnative.dev/docs/image#style
  */
 
-export const DZCodeLoading: VFC<DZCodeLoadingProps> = ({ style }: DZCodeLoadingProps) => {
+export const DZCodeLoading: FC<DZCodeLoadingProps> = ({ style }: DZCodeLoadingProps) => {
   const [rotateAnimValue, setRotateAnimValue] = useState(new Animated.Value(0));
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { Roboto_400Regular, Roboto_700Bold, useFonts } from "@expo-google-fonts/roboto";
-import React, { VFC } from "react";
+import React, { FC } from "react";
 import { View } from "react-native";
 import { default as MarkdownDisplay, MarkdownIt } from "react-native-markdown-display";
 import { LARGE_MARGIN_SIZE } from "src/_utils/constants";
@@ -29,7 +29,7 @@ interface MarkdownProps {
  *    onLinkPress={url => Linking.openURL(url)}
  * />
  */
-export const Markdown: VFC<MarkdownProps> = ({ content, theme = "light", onLinkPress }) => {
+export const Markdown: FC<MarkdownProps> = ({ content, theme = "light", onLinkPress }) => {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold,

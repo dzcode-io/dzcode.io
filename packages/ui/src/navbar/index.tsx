@@ -1,5 +1,4 @@
 import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { FC, Fragment } from "react";
 import { useTranslation } from "src/_hooks/use-translation";
 import { Button } from "src/button";
@@ -11,6 +10,7 @@ import { Link } from "src/link";
 import { MediaQuery } from "src/media-query";
 import { Stack } from "src/stack";
 import { Text } from "src/text";
+import { useMediaQuery } from "usehooks-ts";
 
 interface NavBarProps {
   version: string;

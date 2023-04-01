@@ -1,6 +1,6 @@
 import { TreeItem } from "@dzcode.io/utils/dist/ts";
 import Skeleton from "@mui/material/Skeleton";
-import { ReactElement, VFC } from "react";
+import { FC, ReactElement } from "react";
 import { Stack, StackProps } from "src/stack";
 
 export interface TreeviewProps<T extends Record<string, unknown>>
@@ -18,7 +18,7 @@ export const Treeview = <T extends Record<string, unknown>>({
   selectedItemId: selectedItem,
   ...props
 }: TreeviewProps<T>): ReturnType<VFC<TreeviewProps<T>>> => {
-  const RecursiveTreeitem: VFC<{ item: TreeItem<T>; root?: boolean }> = ({ item, root }) => (
+  const RecursiveTreeitem: FC<{ item: TreeItem<T>; root?: boolean }> = ({ item, root }) => (
     <Stack direction="vertical" margin={!root ? [0, 0, 0, shift] : undefined}>
       {itemRender(item, { isSelected: item.id === selectedItem })}
       <Stack direction="vertical">

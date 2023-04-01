@@ -1,5 +1,5 @@
 import MUIChip, { ChipProps as MUIChipProps } from "@mui/material/Chip";
-import { ReactNode, VFC } from "react";
+import { FC, ReactNode } from "react";
 import { useTheme } from "src/_hooks/use-theme";
 import { BaseUIProps } from "src/_types";
 
@@ -13,7 +13,7 @@ const variantToMUIChipSize: Record<ChipProps["variant"], MUIChipProps["size"]> =
   v1: "small",
 };
 
-export const Chip: VFC<ChipProps> = ({ margin, variant, ...props }) => {
+export const Chip: FC<ChipProps> = ({ margin, variant, ...props }) => {
   const { toCSSMargin } = useTheme();
 
   return (

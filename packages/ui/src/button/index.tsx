@@ -1,10 +1,10 @@
 import MUIButton, { ButtonProps as MUIButtonProps } from "@mui/material/Button";
 import { FC, MouseEvent } from "react";
 import { useTheme } from "src/_hooks/use-theme";
-import { BaseUIProps } from "src/_types";
+import { BaseUIProps, ChildrenProp } from "src/_types";
 import { Link } from "src/link";
 
-export interface ButtonProps extends BaseUIProps {
+export interface ButtonProps extends BaseUIProps, ChildrenProp {
   variant: "v1" | "v2" | "v3";
   onClick?: (event: MouseEvent<HTMLElement>) => void;
   href?: string;

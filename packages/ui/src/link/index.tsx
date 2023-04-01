@@ -2,7 +2,7 @@ import MUILink, { LinkProps as MUILinkProps } from "@mui/material/Link";
 import { AnchorHTMLAttributes, createContext, CSSProperties, FC, useContext } from "react";
 import { Link as ReactRouterLink, Router, RouterProps as RRDRouterProps } from "react-router-dom";
 import { useTheme } from "src/_hooks/use-theme";
-import { BaseUIProps } from "src/_types";
+import { BaseUIProps, ChildrenProp } from "src/_types";
 
 export type LinkContextValue = {
   prefix?: string;
@@ -10,11 +10,9 @@ export type LinkContextValue = {
 
 const LinkContext = createContext<LinkContextValue>({ prefix: "" });
 
-export const LinkProvider: FC<LinkContextValue & { history: RRDRouterProps["history"] }> = ({
-  children,
-  prefix,
-  history,
-}) => {
+export const LinkProvider: FC<
+  LinkContextValue & { history: RRDRouterProps["history"] } & ChildrenProp
+> = ({ children, prefix, history }) => {
   return (
     <Router history={history}>
       <LinkContext.Provider value={{ prefix }}>{children}</LinkContext.Provider>
@@ -30,6 +28,7 @@ export type LinkProps = {
   style?: any;
   color?: any;
 } & BaseUIProps &
+  ChildrenProp &
   Pick<AnchorHTMLAttributes<HTMLAnchorElement>, "target" | "href"> &
   Pick<MUILinkProps, "underline">;
 
