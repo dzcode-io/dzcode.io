@@ -3,12 +3,14 @@ import {
   DefaultTheme as NavigationDefaultTheme,
   Theme as NT,
 } from "@react-navigation/native";
-import { DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme } from "react-native-paper";
-import { Theme as PT } from "react-native-paper/lib/typescript/types";
+import {
+  DefaultTheme as PaperDefaultTheme,
+  MD3DarkTheme as PaperDarkTheme,
+} from "react-native-paper";
 import { Colors } from "src/theme/style/color";
 
 // define combined default theme
-const CombinedDefaultTheme: PT & NT = {
+const CombinedDefaultTheme = {
   ...PaperDefaultTheme,
   ...NavigationDefaultTheme,
   colors: {

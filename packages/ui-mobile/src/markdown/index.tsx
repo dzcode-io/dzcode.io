@@ -1,5 +1,5 @@
 import { Roboto_400Regular, Roboto_700Bold, useFonts } from "@expo-google-fonts/roboto";
-import React, { FC } from "react";
+import { FC } from "react";
 import { View } from "react-native";
 import { default as MarkdownDisplay, MarkdownIt } from "react-native-markdown-display";
 import { LARGE_MARGIN_SIZE } from "src/_utils/constants";
@@ -49,6 +49,8 @@ export const Markdown: FC<MarkdownProps> = ({ content, theme = "light", onLinkPr
     );
   } else {
     return (
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       <MarkdownDisplay
         markdownit={MarkdownIt({ typographer: true, linkify: true })}
         style={{

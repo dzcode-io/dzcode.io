@@ -5,7 +5,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import React, { FC } from "react";
+import { FC } from "react";
 import { Image, SafeAreaView, View } from "react-native";
 import { Text } from "react-native-paper";
 

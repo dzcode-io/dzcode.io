@@ -74,7 +74,8 @@
     "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
     "lint:tsc": "tsc --noEmit",
-    "start:dev": "expo start",
+    "start:dev": "echo \"\\033[0;32mPlease run in a separate terminal session the following command:  \"yarn --cwd=mobile start:expo",
+    "start:expo": "expo start --port 1010",
     "test": "yarn build && yarn test:alone",
     "test:alone": "jest --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"

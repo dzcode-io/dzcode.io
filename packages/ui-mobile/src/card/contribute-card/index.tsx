@@ -1,7 +1,7 @@
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { calculateDateBetween } from "@dzcode.io/utils/dist/date/difference";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import React, { FC, memo } from "react";
+import { FC, memo } from "react";
 import { FlatList } from "react-native";
 import { View } from "react-native";
 import { Badge } from "src/badge";

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import type { Filter } from "src/_types/filter";
 import { Checkbox } from "src/checkbox";
 import { List } from "src/list";
@@ -30,7 +30,7 @@ export const Filters: FC<FilterProps> = ({ filters, onCheckboxPress }) => {
           {options.map(({ label: optionLabel, name: optionName, checked }) => (
             <List.Item
               hasTVPreferredFocus
-              tvParallaxProperties
+              tvParallaxProperties={{ enabled: true }}
               key={`filter-${filterName}-${optionName}`}
               title={optionLabel || optionName}
               right={() => (

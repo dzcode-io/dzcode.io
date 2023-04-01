@@ -1,6 +1,6 @@
 import { Model } from "@dzcode.io/models/dist/_base";
 import { ProjectReferenceEntity } from "@dzcode.io/models/dist/project-reference";
-import React, { FC, memo } from "react";
+import { FC, memo } from "react";
 import { Dimensions } from "react-native";
 import { Button } from "src/button";
 import { Card } from "src/card/card";

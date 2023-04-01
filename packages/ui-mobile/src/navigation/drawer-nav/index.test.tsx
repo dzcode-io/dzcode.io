@@ -1,6 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { act, render } from "@testing-library/react-native";
-import React, { FC } from "react";
+import { FC } from "react";
 import { View } from "react-native";
 import type { Route } from "src/_types/route";
 

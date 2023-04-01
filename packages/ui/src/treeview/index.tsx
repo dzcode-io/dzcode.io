@@ -17,7 +17,7 @@ export const Treeview = <T extends Record<string, unknown>>({
   shift = 1,
   selectedItemId: selectedItem,
   ...props
-}: TreeviewProps<T>): ReturnType<VFC<TreeviewProps<T>>> => {
+}: TreeviewProps<T>): ReturnType<FC<TreeviewProps<T>>> => {
   const RecursiveTreeitem: FC<{ item: TreeItem<T>; root?: boolean }> = ({ item, root }) => (
     <Stack direction="vertical" margin={!root ? [0, 0, 0, shift] : undefined}>
       {itemRender(item, { isSelected: item.id === selectedItem })}

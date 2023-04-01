@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { View } from "react-native";
 import { Button, Headline } from "react-native-paper";
 

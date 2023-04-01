@@ -1,5 +1,5 @@
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
-import { createContext, FC, FC } from "react";
+import { createContext, FC } from "react";
 import { ChildrenProp } from "src/_types";
 
 type BaseDictionary = Record<string, Record<string, string>>;
