@@ -32,7 +32,7 @@ interface StackNavProps {
  */
 export const StackNav: FC<StackNavProps> = ({ routes, initialRouteName, headerMode }) => {
   return (
-    <Navigator initialRouteName={initialRouteName} headerMode={headerMode}>
+    <Navigator initialRouteName={initialRouteName} screenOptions={{ headerMode }}>
       {routes.map(({ name, component, label }) => (
         <Screen key={name} name={name} component={component} options={{ title: label }} />
       ))}

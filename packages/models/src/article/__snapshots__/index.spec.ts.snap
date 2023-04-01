@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should match snapshot when providing all fields: errors 1`] = `Array []`;
+exports[`should match snapshot when providing all fields: errors 1`] = `[]`;
 
 exports[`should match snapshot when providing all fields: output 1`] = `
 ArticleEntity {
-  "authors": Array [],
+  "authors": [],
   "content": "test-content",
-  "contributors": Array [],
+  "contributors": [],
   "description": "test-description",
   "id": "learn/Getting_Started",
   "image": "https://images.unsplash.com/photo-1520338661084-680395057c93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=formatfit=crop&w=800&q=100",
@@ -14,13 +14,13 @@ ArticleEntity {
 }
 `;
 
-exports[`should match snapshot when providing required fields only: errors 1`] = `Array []`;
+exports[`should match snapshot when providing required fields only: errors 1`] = `[]`;
 
 exports[`should match snapshot when providing required fields only: output 1`] = `
 ArticleEntity {
-  "authors": Array [],
+  "authors": [],
   "content": "test-content",
-  "contributors": Array [],
+  "contributors": [],
   "description": "test-description",
   "id": "learn/Getting_Started",
   "image": "https://images.unsplash.com/photo-1520338661084-680395057c93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=formatfit=crop&w=800&q=100",
@@ -29,10 +29,10 @@ ArticleEntity {
 `;
 
 exports[`should show an error that matches snapshot when passing empty object: errors 1`] = `
-Array [
+[
   ValidationError {
-    "children": Array [],
-    "constraints": Object {
+    "children": [],
+    "constraints": {
       "isString": "id must be a string",
     },
     "property": "id",
@@ -40,8 +40,8 @@ Array [
     "value": undefined,
   },
   ValidationError {
-    "children": Array [],
-    "constraints": Object {
+    "children": [],
+    "constraints": {
       "isString": "image must be a string",
     },
     "property": "image",
@@ -49,8 +49,8 @@ Array [
     "value": undefined,
   },
   ValidationError {
-    "children": Array [],
-    "constraints": Object {
+    "children": [],
+    "constraints": {
       "isString": "title must be a string",
     },
     "property": "title",
@@ -58,8 +58,8 @@ Array [
     "value": undefined,
   },
   ValidationError {
-    "children": Array [],
-    "constraints": Object {
+    "children": [],
+    "constraints": {
       "isString": "description must be a string",
     },
     "property": "description",
@@ -67,8 +67,8 @@ Array [
     "value": undefined,
   },
   ValidationError {
-    "children": Array [],
-    "constraints": Object {
+    "children": [],
+    "constraints": {
       "isString": "content must be a string",
     },
     "property": "content",

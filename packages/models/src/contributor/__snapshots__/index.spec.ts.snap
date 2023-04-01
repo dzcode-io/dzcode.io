@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should match snapshot when providing all fields: errors 1`] = `Array []`;
+exports[`should match snapshot when providing all fields: errors 1`] = `[]`;
 
 exports[`should match snapshot when providing all fields: output 1`] = `
 ContributorEntity {
   "avatarUrl": "https://avatars.githubusercontent.com/u/20110076?v=4",
   "id": "github/20110076",
-  "repositories": Array [],
+  "repositories": [],
   "username": "ZibanPirate",
 }
 `;
 
-exports[`should match snapshot when providing required fields only: errors 1`] = `Array []`;
+exports[`should match snapshot when providing required fields only: errors 1`] = `[]`;
 
 exports[`should match snapshot when providing required fields only: output 1`] = `
 ContributorEntity {
@@ -22,10 +22,10 @@ ContributorEntity {
 `;
 
 exports[`should show an error that matches snapshot when passing empty object: errors 1`] = `
-Array [
+[
   ValidationError {
-    "children": Array [],
-    "constraints": Object {
+    "children": [],
+    "constraints": {
       "isString": "id must be a string",
     },
     "property": "id",
@@ -33,8 +33,8 @@ Array [
     "value": undefined,
   },
   ValidationError {
-    "children": Array [],
-    "constraints": Object {
+    "children": [],
+    "constraints": {
       "isString": "username must be a string",
     },
     "property": "username",
@@ -42,8 +42,8 @@ Array [
     "value": undefined,
   },
   ValidationError {
-    "children": Array [],
-    "constraints": Object {
+    "children": [],
+    "constraints": {
       "isUrl": "avatarUrl must be an URL address",
     },
     "property": "avatarUrl",

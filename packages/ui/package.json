@@ -30,7 +30,7 @@
     "@dzcode.io/models": "*",
     "@dzcode.io/tooling": "*",
     "@testing-library/jest-dom": "^5.16.0",
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/loadable__component": "^5.13.4",
     "@types/markdown-to-jsx": "^6.11.3",

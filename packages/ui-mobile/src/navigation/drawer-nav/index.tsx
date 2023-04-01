@@ -1,8 +1,4 @@
-import {
-  createDrawerNavigator,
-  DrawerContentComponentProps,
-  DrawerContentOptions,
-} from "@react-navigation/drawer";
+import { createDrawerNavigator, DrawerContentComponentProps } from "@react-navigation/drawer";
 import { DrawerHeaderProps } from "@react-navigation/drawer/lib/typescript/src/types";
 import { FC } from "react";
 import type { Route } from "src/_types/route";
@@ -25,7 +21,7 @@ interface DrawerNavProps {
   /**
    * the drawer content of the drawer navigation
    */
-  drawerContent?: (props: DrawerContentComponentProps<DrawerContentOptions>) => React.ReactNode;
+  drawerContent?: (props: DrawerContentComponentProps) => React.ReactNode;
 }
 
 /**
@@ -53,7 +49,6 @@ export const DrawerNav: FC<DrawerNavProps> = ({
   return (
     <Navigator
       initialRouteName={initialRouteName}
-      drawerType="back"
       screenOptions={{
         headerShown: true,
         header,

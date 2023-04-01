@@ -32,10 +32,10 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.5",
+    "@craco/craco": "^7.1.0",
+    "@craco/types": "^7.1.0",
     "@dzcode.io/tooling": "*",
-    "@testing-library/react": "^11.2.6",
-    "@types/craco__craco": "^6.4.0",
+    "@testing-library/react": "^14.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.1.4",
     "@types/markdown-to-jsx": "^6.11.3",

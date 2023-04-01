@@ -1,7 +1,6 @@
 /* @eslint-disable @typescript-eslint/no-var-requires */
 import {
   DrawerContentComponentProps,
-  DrawerContentOptions,
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
@@ -11,7 +10,7 @@ import { Text } from "react-native-paper";
 
 import { drawerStyles } from "./styles";
 
-interface DrawerContentProps extends DrawerContentComponentProps<DrawerContentOptions> {
+interface DrawerContentProps extends DrawerContentComponentProps {
   /**
    * the version of the app
    */

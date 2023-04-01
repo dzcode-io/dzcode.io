@@ -1,4 +1,4 @@
-import type { CracoConfig } from "@craco/craco";
+import { CracoConfig } from "@craco/types";
 import jest from "@dzcode.io/tooling/jest.config";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
@@ -84,7 +84,9 @@ module.exports = {
       ].filter(Boolean),
     },
     configure: (webpackConfig, context) => {
-      context.paths.appBuild = distFolder;
+      if (context.paths) {
+        context.paths.appBuild = distFolder;
+      }
       webpackConfig.output = {
         ...webpackConfig.output,
         chunkFilename: join(publicResourcesPath, "chunk.[contenthash].js"),
