@@ -1,28 +1,39 @@
 {
   "expo": {
-    "name": "dzcode",
+    "name": "DzCode i/o",
     "slug": "dzcode",
-    "version": "1.0.0",
+    "version": "4.15.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./src/assets/png/icon.png",
+    "scheme": "dzcode",
+    "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/png/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "io.dzcode.mobile",
+      "buildNumber": "4.15.1",
+      "userInterfaceStyle": "automatic"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./src/assets/png/adaptive-icon.png",
+        "backgroundColor": "#000"
+      },
+      "permissions": [],
+      "package": "io.dzcode.mobile",
+      "versionCode": 4151,
+      "userInterfaceStyle": "automatic"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/assets/png/favicon.png"
     }
   }
 }
