@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
         os: [ubuntu-latest]
         browser: [chrome, firefox, edge]
       fail-fast: false
@@ -35,17 +35,17 @@ jobs:
         uses: cypress-io/github-action@v5.5.1
         with:
           start: yarn dev:web
-          wait-on: 'http://localhost:8080'
+          wait-on: "http://localhost:8080"
           wait-on-timeout: 120
           browser: ${{ matrix.browser }}
           project: ./web
-    
+
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-screenshots
           path: web/src/_e2e-test/screenshots
-          
+
       - uses: actions/upload-artifact@v3
         if: always()
         with:

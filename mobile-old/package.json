@@ -60,7 +60,7 @@
     "react-test-renderer": "^17.0.2"
   },
   "engines": {
-    "node": ">=14",
+    "node": ">=18",
     "yarn": ">=1.4.2"
   },
   "license": "MIT",
