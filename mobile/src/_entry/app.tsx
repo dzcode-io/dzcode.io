@@ -1,6 +1,6 @@
 // import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation/navigation-container";
-// import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/theme";
-// import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme/theme-provider";
+import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/theme";
+import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme/theme-provider";
 import { FC, useEffect } from "react";
 import { Text } from "react-native";
 import { Provider, useDispatch } from "react-redux";
@@ -31,20 +31,21 @@ const AssumeRedux: FC = () => {
     dispatch(init(null));
   }, []);
 
-  // const themes = {
-  //   dark: darkTheme,
-  //   light: defaultTheme,
-  // };
-  // const theme = themes[themeName];
+  const themes = {
+    dark: darkTheme,
+    light: defaultTheme,
+  };
+  const theme = themes[themeName];
 
   return (
     <>
-      {/* <ThemeProvider theme={theme}> */}
-      <Text>AssumeRedux</Text>
-      {/* <NavigationContainer theme={theme}> */}
-      {/* <Navigation /> */}
-      {/* </NavigationContainer> */}
-      {/* </ThemeProvider> */}
+      <ThemeProvider theme={theme}>
+        {/* @TODO-ZM: to add ErrorBoundary */}
+        <Text style={{ alignSelf: "center", marginTop: 200 }}>AssumeRedux</Text>
+        {/* <NavigationContainer theme={theme}> */}
+        {/* <Navigation /> */}
+        {/* </NavigationContainer> */}
+      </ThemeProvider>
     </>
   );
 };
