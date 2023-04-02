@@ -34,6 +34,19 @@
     },
     "web": {
       "favicon": "./src/assets/png/favicon.png"
+    },
+    "plugins": ["sentry-expo"],
+    "hooks": {
+      "postExport": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "zakman.dev",
+            "project": "dzcode",
+            "authToken": false
+          }
+        }
+      ]
     }
   }
 }

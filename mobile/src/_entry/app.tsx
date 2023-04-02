@@ -3,24 +3,24 @@ import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/theme";
 import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme/theme-provider";
 import { FC, useEffect } from "react";
 import { Provider, useDispatch } from "react-redux";
-// import * as Sentry from "sentry-expo";
+import * as Sentry from "sentry-expo";
 import { AppDispatch, store } from "src/redux";
 import { init } from "src/redux/actions/general";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { Navigation } from "src/screens/navigation";
-// import { getEnv } from "src/utils/env";
+import { getEnv } from "src/utils/env";
 
-// const env = getEnv();
+const env = getEnv();
 
-// if (env !== "development") {
-//   Sentry.init({
-//     dsn: "https://aa3f0c7f4b234747a706fb60d84a190d@o953637.ingest.sentry.io/5904343",
-//     enableInExpoDevelopment: true,
-//     environment: env,
-//     debug: env !== "production",
-//     release: `mobile@${window.bundleInfo.version}`,
-//   });
-// }
+if (env !== "development") {
+  Sentry.init({
+    dsn: "https://aa3f0c7f4b234747a706fb60d84a190d@o953637.ingest.sentry.io/5904343",
+    enableInExpoDevelopment: true,
+    environment: env,
+    debug: env !== "production",
+    release: `mobile@${window.bundleInfo.version}`,
+  });
+}
 
 const AssumeRedux: FC = () => {
   const { theme: themeName } = useGeneralSliceSelector();
