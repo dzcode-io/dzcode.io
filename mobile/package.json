@@ -34,7 +34,7 @@
       "yarn lint:prettier --write"
     ]
   },
-  "main": "index.js",
+  "main": "src/_entry/index.js",
   "private": true,
   "repository": {
     "type": "git",
@@ -74,10 +74,10 @@
     "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
     "lint:tsc": "tsc --noEmit",
-    "start:dev": "echo \"\\033[0;32mPlease run in a separate terminal session the following command:  \"yarn --cwd=mobile start:expo",
+    "start:dev": "echo \" \n\\033[0;32mPlease run in a separate terminal session the following command:\n \n\\033[0;32myarn --cwd=mobile start:expo\n \n \"",
     "start:expo": "expo start --port 1010",
     "test": "yarn build && yarn test:alone",
-    "test:alone": "echo \"skiped for now\"",
+    "test:alone": "echo \"skipped for now\"",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }
