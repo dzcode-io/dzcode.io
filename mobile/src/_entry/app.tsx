@@ -1,20 +1,56 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+// import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation/navigation-container";
+// import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/theme";
+// import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme/theme-provider";
+import { FC, useEffect } from "react";
+import { Text } from "react-native";
+import { Provider, useDispatch } from "react-redux";
+// import * as Sentry from "sentry-expo";
+import { AppDispatch, store } from "src/redux";
+import { init } from "src/redux/actions/general";
+import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
+// import { Navigation } from "src/screens/navigation";
+// import { getEnv } from "src/utils/env";
 
-export const App = () => {
+// const env = getEnv();
+
+// if (env !== "development") {
+//   Sentry.init({
+//     dsn: "https://aa3f0c7f4b234747a706fb60d84a190d@o953637.ingest.sentry.io/5904343",
+//     enableInExpoDevelopment: true,
+//     environment: env,
+//     debug: env !== "production",
+//     release: `mobile@${window.bundleInfo.version}`,
+//   });
+// }
+
+const AssumeRedux: FC = () => {
+  const { theme: themeName } = useGeneralSliceSelector();
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(init(null));
+  }, []);
+
+  // const themes = {
+  //   dark: darkTheme,
+  //   light: defaultTheme,
+  // };
+  // const theme = themes[themeName];
+
   return (
-    <View style={styles.container}>
-      <Text>moved entry</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      {/* <ThemeProvider theme={theme}> */}
+      <Text>AssumeRedux</Text>
+      {/* <NavigationContainer theme={theme}> */}
+      {/* <Navigation /> */}
+      {/* </NavigationContainer> */}
+      {/* </ThemeProvider> */}
+    </>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export const App = () => (
+  <Provider store={store}>
+    <AssumeRedux />
+  </Provider>
+);

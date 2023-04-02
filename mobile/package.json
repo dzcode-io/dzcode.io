@@ -11,16 +11,23 @@
     "@dzcode.io/models": "*",
     "@dzcode.io/ui-mobile": "*",
     "@dzcode.io/utils": "*",
+    "debounce": "^1.2.1",
     "expo": "~48.0.9",
     "expo-status-bar": "~1.4.4",
+    "expo-updates": "~0.16.3",
     "react": "18.2.0",
-    "react-native": "0.71.4"
+    "react-native": "0.71.4",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@dzcode.io/tooling": "*",
+    "@types/debounce": "^1.2.0",
     "@types/react": "~18.0.14",
     "babel-plugin-transform-define": "^2.0.0",
+    "internal-ip": "^6.2.0",
     "typescript": "^4.9.4"
   },
   "engines": {
