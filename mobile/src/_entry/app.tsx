@@ -1,14 +1,13 @@
-// import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation/navigation-container";
+import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation/navigation-container";
 import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/theme";
 import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme/theme-provider";
 import { FC, useEffect } from "react";
-import { Text } from "react-native";
 import { Provider, useDispatch } from "react-redux";
 // import * as Sentry from "sentry-expo";
 import { AppDispatch, store } from "src/redux";
 import { init } from "src/redux/actions/general";
 import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
-// import { Navigation } from "src/screens/navigation";
+import { Navigation } from "src/screens/navigation";
 // import { getEnv } from "src/utils/env";
 
 // const env = getEnv();
@@ -41,10 +40,9 @@ const AssumeRedux: FC = () => {
     <>
       <ThemeProvider theme={theme}>
         {/* @TODO-ZM: to add ErrorBoundary */}
-        <Text style={{ alignSelf: "center", marginTop: 200 }}>AssumeRedux</Text>
-        {/* <NavigationContainer theme={theme}> */}
-        {/* <Navigation /> */}
-        {/* </NavigationContainer> */}
+        <NavigationContainer theme={theme}>
+          <Navigation />
+        </NavigationContainer>
       </ThemeProvider>
     </>
   );
