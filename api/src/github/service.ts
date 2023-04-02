@@ -67,6 +67,9 @@ export class GithubService {
         params: { sort: "updated", per_page: 100 }, // eslint-disable-line camelcase
       },
     );
+
+    // @TODO-ZM: validate responses using DTOs, for all fetchService methods
+    if (!Array.isArray(issues)) return [];
     return issues;
   };
 
@@ -92,6 +95,9 @@ export class GithubService {
         params: { state: "all", per_page: 100 }, // eslint-disable-line camelcase
       },
     );
+
+    // @TODO-ZM: validate responses using DTOs, for all fetchService methods
+    if (!Array.isArray(contributors)) return [];
 
     return (
       contributors
