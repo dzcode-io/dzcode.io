@@ -17,7 +17,7 @@ import { documentsListStyles } from "./styles";
 export const DocumentsListScreen: FC = () => {
   const { documents, status } = useLearnSliceSelector();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   const dispatch = useDispatch<AppDispatch>();
 
