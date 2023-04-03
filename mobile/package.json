@@ -34,13 +34,14 @@
     "@types/react": "~18.0.14",
     "@types/react-test-renderer": "^18.0.0",
     "babel-plugin-transform-define": "^2.0.0",
+    "eas-cli": "^3.8.1",
     "internal-ip": "^6.2.0",
     "jest-expo": "^48.0.2",
     "react-test-renderer": "^18.2.0",
     "typescript": "^4.9.4"
   },
   "engines": {
-    "node": ">=18",
+    "node": ">=16",
     "yarn": ">=1.4.2"
   },
   "license": "MIT",
@@ -59,8 +60,8 @@
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/mobile --include-dependencies --stream",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
-    "build:android": "expo build:android --no-wait -t app-bundle",
-    "build:ios": "expo build:ios --no-wait -t archive",
+    "build:android": "eas build -p android --no-wait --non-interactive",
+    "build:ios": "eas build -p ios --no-wait --non-interactive",
     "build:production": "yarn build:ios --release-channel production && yarn build:android --release-channel production",
     "build:stage": "yarn build:ios --release-channel stage && yarn build:android --release-channel stage",
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/mobile --include-dependencies --parallel",
@@ -79,8 +80,8 @@
     "delete:component": "rnhc delete -c",
     "delete:navigation": "rnhc delete -n",
     "delete:screen": "rnhc delete -s",
-    "deploy": "expo publish --release-channel production",
-    "deploy:stg": "expo publish --release-channel stage",
+    "deploy": "eas update --branch production",
+    "deploy:stg": "eas update --branch stage",
     "generate:bundle-info": "ts-node ../packages/tooling/bundle-info.ts",
     "generate:sentry-release": "ts-node ../packages/tooling/sentry-release.ts mobile dist",
     "lint": "yarn build && yarn lint:alone",
