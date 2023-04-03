@@ -20,7 +20,7 @@ const project = scope;
 
 if (scope === "mobile") {
   console.log(`Creating, publishing and deploying a new Sentry release ...`);
-  const mobileScript = `SENTRY_AUTH_TOKEN=${authToken} SENTRY_ORG=${org} SENTRY_PROJECT=${project} SENTRY_RELEASE=${scope}@${version} SENTRY_DEPLOY_ENV=${environment} SENTRY_DIST=0 expo export --dump-sourcemap --public-url "https://www.dzcode.io/"`;
+  const mobileScript = `SENTRY_AUTH_TOKEN=${authToken} SENTRY_ORG=${org} SENTRY_PROJECT=${project} SENTRY_RELEASE=${scope}@${version} SENTRY_DEPLOY_ENV=${environment} SENTRY_DIST=0 expo export --dump-sourcemap`;
   console.log(`running:\n${mobileScript}`);
   const mobileScriptStdout = String(execSync(mobileScript));
   console.log(mobileScriptStdout);
