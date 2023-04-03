@@ -1,9 +1,12 @@
 import MUITypography, { TypographyProps } from "@mui/material/Typography";
 import type { CSSProperties, FC } from "react";
 import { useTheme } from "src/_hooks/use-theme";
-import { BaseUIProps } from "src/_types";
+import { BaseUIProps, ChildrenProp } from "src/_types";
 
-export interface TextProps extends BaseUIProps, Pick<CSSProperties, "wordWrap" | "flexShrink"> {
+export interface TextProps
+  extends BaseUIProps,
+    ChildrenProp,
+    Pick<CSSProperties, "wordWrap" | "flexShrink"> {
   variant: "v1" | "v2" | "v3" | "v4";
 }
 

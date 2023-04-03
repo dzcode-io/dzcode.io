@@ -20,7 +20,7 @@ const routes: Route[] = [
 export const Navigation: FC = () => {
   return (
     <ErrorBoundary>
-      <StackNav routes={routes} headerMode={"none"} initialRouteName={"documents-list"} />
+      <StackNav routes={routes} initialRouteName={"documents-list"} />
     </ErrorBoundary>
   );
 };

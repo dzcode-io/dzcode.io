@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Appbar, useTheme } from "react-native-paper";
 
 interface AppBarProps {
@@ -36,7 +36,7 @@ export const AppBar: FC<AppBarProps> = ({ title, openDrawer }) => {
         icon="menu"
         onPress={() => openDrawer()}
         hasTVPreferredFocus
-        tvParallaxProperties
+        tvParallaxProperties={{ enabled: true }}
       />
       <Appbar.Content title={title} />
     </Appbar.Header>

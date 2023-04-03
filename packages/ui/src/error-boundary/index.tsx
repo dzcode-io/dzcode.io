@@ -1,16 +1,17 @@
 import { ErrorBoundary as SentryErrorBoundary } from "@sentry/react";
-import { FC, PropsWithChildren } from "react";
+import { FC } from "react";
 import { useTranslation } from "src/_hooks/use-translation";
+import { ChildrenProp } from "src/_types";
 import { Link } from "src/link";
 import { Stack } from "src/stack";
 import { Text } from "src/text";
 
-type ErrorBoundaryProps = PropsWithChildren<{
+interface ErrorBoundaryProps extends ChildrenProp {
   message?: string;
   local: {
     emailUs: string;
   };
-}>;
+}
 
 export const ErrorBoundary: FC<ErrorBoundaryProps> = ({
   children,

@@ -2,7 +2,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import MUIAccordion from "@mui/material/Accordion";
 import MUIAccordionDetails from "@mui/material/AccordionDetails";
 import MUIAccordionSummary from "@mui/material/AccordionSummary";
-import { ReactNode, VFC } from "react";
+import { FC, ReactNode } from "react";
 import { Stack } from "src/stack";
 import { Text } from "src/text";
 
@@ -14,7 +14,7 @@ interface AccordionProps {
   margin?: number | number[];
 }
 
-export const Accordion: VFC<AccordionProps> = ({ items, ...props }) => {
+export const Accordion: FC<AccordionProps> = ({ items, ...props }) => {
   return (
     <Stack direction="vertical" grow={1} {...props}>
       {items.map(({ title, body }, index) => (

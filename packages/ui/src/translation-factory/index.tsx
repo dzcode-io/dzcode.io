@@ -1,5 +1,6 @@
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
-import { createContext, FC, VFC } from "react";
+import { createContext, FC } from "react";
+import { ChildrenProp } from "src/_types";
 
 type BaseDictionary = Record<string, Record<string, string>>;
 type TranslationFunction = ReturnType<typeof translationFunctionFactory>;
@@ -9,7 +10,7 @@ export const translationFactory =
     dictionary: T,
     getLanguageCode: () => keyof T[keyof T],
     fallbackText = "MISSING_TRANSLATION",
-  ): VFC<
+  ): FC<
     Partial<Record<keyof T, boolean>> & {
       k?: keyof T;
       r?: Record<string, string>;
@@ -62,7 +63,7 @@ export const TranslationContext = createContext<TranslationContextValue>({
   language: undefined,
 });
 
-export interface TranslationProviderProps {
+export interface TranslationProviderProps extends ChildrenProp {
   language: LanguageEntity;
 }
 

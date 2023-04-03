@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import { FC } from "react";
 import type { Filter } from "src/_types/filter";
 import { Checkbox } from "src/checkbox";
 import { List } from "src/list";
@@ -22,7 +22,7 @@ interface FilterProps {
  *    onCheckboxPress={(filterName, optionName) => console.log(filterName, optionName)}
  * />
  */
-export const Filters: VFC<FilterProps> = ({ filters, onCheckboxPress }) => {
+export const Filters: FC<FilterProps> = ({ filters, onCheckboxPress }) => {
   return (
     <List.AccordionGroup>
       {filters.map(({ name: filterName, options }) => (
@@ -30,7 +30,7 @@ export const Filters: VFC<FilterProps> = ({ filters, onCheckboxPress }) => {
           {options.map(({ label: optionLabel, name: optionName, checked }) => (
             <List.Item
               hasTVPreferredFocus
-              tvParallaxProperties
+              tvParallaxProperties={{ enabled: true }}
               key={`filter-${filterName}-${optionName}`}
               title={optionLabel || optionName}
               right={() => (

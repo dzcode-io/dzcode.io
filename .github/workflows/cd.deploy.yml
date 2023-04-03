@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
         os: [ubuntu-latest]
 
     env:
@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: "Git"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_ZAK_PAT }}
@@ -34,12 +34,12 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
       - name: "Nodejs"
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
       - name: "Expo"
-        uses: expo/expo-github-action@v6
+        uses: expo/expo-github-action@v8
         with:
           expo-version: 4.x
           token: ${{ secrets.EXPO_TOKEN }}

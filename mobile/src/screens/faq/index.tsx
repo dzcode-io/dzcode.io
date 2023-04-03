@@ -12,7 +12,7 @@ import { openLink } from "src/utils/link";
 import { faqStyles } from "./styles";
 
 export const FAQScreen: FC = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const { data } = useFaqSliceSelector();
 
   return (

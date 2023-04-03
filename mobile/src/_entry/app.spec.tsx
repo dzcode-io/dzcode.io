@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import renderer from "react-test-renderer";
 
-import { App } from ".";
+import { App } from "./app";
 
 jest.useFakeTimers();
 

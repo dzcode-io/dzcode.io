@@ -17,7 +17,7 @@ import { articlesListStyles } from "./styles";
 export const ArticlesListScreen: FC = () => {
   const { articles, status } = useArticlesSliceSelector();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   const dispatch = useDispatch<AppDispatch>();
 

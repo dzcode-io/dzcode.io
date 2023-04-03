@@ -1,23 +1,25 @@
 import type { CSSProperties, FC } from "react";
 import { Color, useColors } from "src/_hooks/use-colors";
+import { ChildrenProp } from "src/_types";
 
 // @TODO-ZM: dry this
 export const MAX_CONTAINER_WIDTH = 1200;
 
 export interface FlexProps
-  extends Pick<
-    CSSProperties,
-    | "position"
-    | "width"
-    | "height"
-    | "position"
-    | "top"
-    | "bottom"
-    | "left"
-    | "right"
-    | "display"
-    | "margin"
-  > {
+  extends ChildrenProp,
+    Pick<
+      CSSProperties,
+      | "position"
+      | "width"
+      | "height"
+      | "position"
+      | "top"
+      | "bottom"
+      | "left"
+      | "right"
+      | "display"
+      | "margin"
+    > {
   grow?: number;
   max?: Pick<CSSProperties, "width" | "height">;
   min?: Pick<CSSProperties, "width" | "height">;

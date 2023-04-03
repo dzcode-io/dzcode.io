@@ -51,8 +51,8 @@ export const Navigation: FC = () => {
       initialRouteName="contribute"
       header={(props) => (
         <AppBar
-          title={routes.find(({ name }) => name === props.scene.route.name)?.title || ""}
-          openDrawer={() => props.scene.descriptor.navigation.dispatch(DrawerActions.openDrawer())}
+          title={routes.find(({ name }) => name === props.route.name)?.title || ""}
+          openDrawer={() => props.navigation.dispatch(DrawerActions.openDrawer())}
         />
       )}
       drawerContent={(props) => <DrawerContent {...props} version={window.bundleInfo.version} />}

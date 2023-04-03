@@ -1,5 +1,5 @@
 import { ErrorBoundary as SentryErrorBoundary } from "@sentry/react-native";
-import React, { FC, PropsWithChildren } from "react";
+import { FC } from "react";
 import { Linking, View } from "react-native";
 import { Button, Headline } from "react-native-paper";
 

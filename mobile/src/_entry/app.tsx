@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@dzcode.io/ui-mobile/dist/navigation/navigation-container";
 import { darkTheme, defaultTheme } from "@dzcode.io/ui-mobile/dist/theme";
 import { ThemeProvider } from "@dzcode.io/ui-mobile/dist/theme/theme-provider";
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { Provider, useDispatch } from "react-redux";
 import * as Sentry from "sentry-expo";
 import { AppDispatch, store } from "src/redux";
@@ -22,7 +22,7 @@ if (env !== "development") {
   });
 }
 
-const AppComponent: FC = () => {
+const AssumeRedux: FC = () => {
   const { theme: themeName } = useGeneralSliceSelector();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -46,7 +46,8 @@ const AppComponent: FC = () => {
 };
 
 export const App = () => (
+  // @TODO-ZM: to add ErrorBoundary
   <Provider store={store}>
-    <AppComponent />
+    <AssumeRedux />
   </Provider>
 );

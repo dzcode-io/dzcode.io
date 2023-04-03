@@ -1,13 +1,11 @@
-import { DrawerContentComponentProps, DrawerContentOptions } from "@react-navigation/drawer";
 import { render } from "@testing-library/react-native";
-import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { DrawerContent } from ".";
 
 describe("DrawerContent", () => {
   it("should render", () => {
-    const props: DrawerContentComponentProps<DrawerContentOptions> = {
+    const props = {
       progress: {
         " __value": 0,
         isNativelyInitialized: jest.fn(),
@@ -69,7 +67,7 @@ describe("DrawerContent", () => {
     };
     const { container } = render(
       <SafeAreaProvider>
-        <DrawerContent {...props} version="1.0.0" />
+        <DrawerContent {...(props as any)} version="1.0.0" />
       </SafeAreaProvider>,
     );
     expect(container).toBeTruthy();

@@ -1,5 +1,5 @@
 import { Skeleton } from "@mui/material";
-import { VFC } from "react";
+import { FC } from "react";
 import { Divider } from "src/divider";
 import { Image } from "src/image";
 import { Link } from "src/link";
@@ -25,12 +25,7 @@ export interface ArticleProps extends Pick<StackProps, "margin"> {
   contributorsText: string;
 }
 
-export const Article: VFC<ArticleProps> = ({
-  article,
-  authorsText,
-  contributorsText,
-  ...props
-}) => {
+export const Article: FC<ArticleProps> = ({ article, authorsText, contributorsText, ...props }) => {
   return article ? (
     <Stack direction="vertical" {...props}>
       <Image src={article?.image} width="100%" />

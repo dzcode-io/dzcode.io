@@ -41,7 +41,7 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   useEffect(() => {
     dispatch(fetchArticle(route.params.article.slug));

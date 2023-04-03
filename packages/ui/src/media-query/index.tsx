@@ -1,8 +1,9 @@
 import { Breakpoint, useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import type { FC } from "react";
+import { ChildrenProp } from "src/_types";
+import { useMediaQuery } from "usehooks-ts";
 
-interface MediaQueryProps {
+interface MediaQueryProps extends ChildrenProp {
   upTo?: Breakpoint;
   downTo?: Breakpoint;
 }
@@ -10,9 +11,13 @@ interface MediaQueryProps {
 export const MediaQuery: FC<MediaQueryProps> = ({ children, upTo, downTo }) => {
   const theme = useTheme();
   const minMatches =
-    typeof upTo !== "undefined" ? useMediaQuery(theme.breakpoints.down(upTo)) : true;
+    typeof upTo !== "undefined"
+      ? useMediaQuery(theme.breakpoints.down(upTo).replace("@media ", ""))
+      : true;
   const maxMatches =
-    typeof downTo !== "undefined" ? useMediaQuery(theme.breakpoints.up(downTo)) : true;
+    typeof downTo !== "undefined"
+      ? useMediaQuery(theme.breakpoints.up(downTo).replace("@media ", ""))
+      : true;
   if (minMatches && maxMatches) {
     return <>{children}</>;
   } else {

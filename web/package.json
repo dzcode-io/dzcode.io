@@ -16,14 +16,14 @@
     "@dzcode.io/utils": "*",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@reduxjs/toolkit": "^1.8.5",
-    "@sentry/browser": "^6.11.0",
-    "@sentry/react": "^6.11.0",
-    "@sentry/tracing": "^6.11.0",
+    "@sentry/browser": "^7.46.0",
+    "@sentry/react": "^7.46.0",
+    "@sentry/tracing": "^7.46.0",
     "immutable": "^4.1.0",
     "l2t": "^1.1.0",
     "markdown-to-jsx": "^7.1.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.0.1",
+    "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
@@ -32,10 +32,10 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.5",
+    "@craco/craco": "^7.1.0",
+    "@craco/types": "^7.1.0",
     "@dzcode.io/tooling": "*",
-    "@testing-library/react": "^11.2.6",
-    "@types/craco__craco": "^6.4.0",
+    "@testing-library/react": "^14.0.0",
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.1.4",
     "@types/markdown-to-jsx": "^6.11.3",
@@ -64,7 +64,7 @@
     "webpack-bundle-analyzer": "^4.6.1"
   },
   "engines": {
-    "node": ">=14",
+    "node": ">=16",
     "yarn": ">=1.4.2"
   },
   "license": "MIT",
