@@ -8,8 +8,8 @@ ArticleEntity {
   "content": "test-content",
   "contributors": [],
   "description": "test-description",
-  "id": "learn/Getting_Started",
   "image": "https://images.unsplash.com/photo-1520338661084-680395057c93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=formatfit=crop&w=800&q=100",
+  "slug": "learn/Getting_Started",
   "title": "Getting Started",
 }
 `;
@@ -22,8 +22,8 @@ ArticleEntity {
   "content": "test-content",
   "contributors": [],
   "description": "test-description",
-  "id": "learn/Getting_Started",
   "image": "https://images.unsplash.com/photo-1520338661084-680395057c93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=formatfit=crop&w=800&q=100",
+  "slug": "learn/Getting_Started",
   "title": "Getting Started",
 }
 `;
@@ -33,27 +33,9 @@ exports[`should show an error that matches snapshot when passing empty object: e
   ValidationError {
     "children": [],
     "constraints": {
-      "isString": "id must be a string",
-    },
-    "property": "id",
-    "target": ArticleEntity {},
-    "value": undefined,
-  },
-  ValidationError {
-    "children": [],
-    "constraints": {
       "isString": "image must be a string",
     },
     "property": "image",
-    "target": ArticleEntity {},
-    "value": undefined,
-  },
-  ValidationError {
-    "children": [],
-    "constraints": {
-      "isString": "title must be a string",
-    },
-    "property": "title",
     "target": ArticleEntity {},
     "value": undefined,
   },
@@ -72,6 +54,24 @@ exports[`should show an error that matches snapshot when passing empty object: e
       "isString": "content must be a string",
     },
     "property": "content",
+    "target": ArticleEntity {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": [],
+    "constraints": {
+      "isString": "slug must be a string",
+    },
+    "property": "slug",
+    "target": ArticleEntity {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": [],
+    "constraints": {
+      "isString": "title must be a string",
+    },
+    "property": "title",
     "target": ArticleEntity {},
     "value": undefined,
   },

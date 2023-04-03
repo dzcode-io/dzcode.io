@@ -3,5 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": "."
-  }
+  },
+  "include": ["src"],
+  "exclude": ["src/_e2e-test"]
 }
