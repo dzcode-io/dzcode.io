@@ -10,7 +10,6 @@ interface MediaQueryProps extends ChildrenProp {
 
 export const MediaQuery: FC<MediaQueryProps> = ({ children, upTo, downTo }) => {
   const theme = useTheme();
-  console.log("zako", { string: theme.breakpoints.down(500), upTo, downTo });
   const minMatches =
     typeof upTo !== "undefined"
       ? useMediaQuery(theme.breakpoints.down(upTo).replace("@media ", ""))

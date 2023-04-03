@@ -37,18 +37,16 @@ const AssumeRedux: FC = () => {
   const theme = themes[themeName];
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        {/* @TODO-ZM: to add ErrorBoundary */}
-        <NavigationContainer theme={theme}>
-          <Navigation />
-        </NavigationContainer>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <NavigationContainer theme={theme}>
+        <Navigation />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
 export const App = () => (
+  // @TODO-ZM: to add ErrorBoundary
   <Provider store={store}>
     <AssumeRedux />
   </Provider>

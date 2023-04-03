@@ -81,14 +81,11 @@
     "version:apply": "ts-node packages/tooling/version-apply.ts",
     "version:push": "ts-node packages/tooling/version-push.ts"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "api",
-      "data",
-      "web",
-      "mobile"
-    ],
-    "nohoist": []
-  }
+  "workspaces": [
+    "packages/*",
+    "api",
+    "data",
+    "web",
+    "mobile"
+  ]
 }
