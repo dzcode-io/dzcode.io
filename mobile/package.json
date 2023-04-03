@@ -51,7 +51,7 @@
       "yarn lint:prettier --write"
     ]
   },
-  "main": "src/_entry/index.js",
+  "main": "index.js",
   "private": true,
   "repository": {
     "type": "git",
