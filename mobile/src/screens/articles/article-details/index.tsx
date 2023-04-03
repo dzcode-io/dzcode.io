@@ -13,7 +13,6 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
 import { fetchArticle } from "src/redux/actions/articles-screen";
 import { useArticlesSliceSelector } from "src/redux/reducers/articles-screen/slice";
-import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { globalStyles } from "src/styles/global";
 import { openLink } from "src/utils/link";
 
@@ -31,16 +30,11 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   route,
 }: ArticleDetailsScreenProps) => {
   const { articles, status } = useArticlesSliceSelector();
-
   const loadedArticles = isLoaded(articles);
   const currentArticle = (
     loadedArticles?.filter((article) => (article as Article).content) as Article[]
   ).find((article) => article.slug === route.params.article.slug);
-
-  const { theme } = useGeneralSliceSelector();
-
   const dispatch = useDispatch<AppDispatch>();
-
   const navigation = useNavigation<any>();
 
   useEffect(() => {
@@ -61,7 +55,6 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
             <Text style={articleDetailsStyles.descriptionText}>{currentArticle.description}</Text>
             <Markdown
               content={currentArticle.content!}
-              theme={theme}
               onLinkPress={(url) => openLink(url, navigation)}
             />
             <Text style={articleDetailsStyles.authorsText}>
