@@ -5,7 +5,6 @@ import { getRepositoryURL } from "@dzcode.io/models/dist/repository-reference/ut
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { FC, memo } from "react";
 import { Dimensions } from "react-native";
-import { FlatList } from "react-native";
 import { ScrollView } from "react-native";
 import { View } from "react-native";
 import { useTheme } from "src/_hooks/use-theme";

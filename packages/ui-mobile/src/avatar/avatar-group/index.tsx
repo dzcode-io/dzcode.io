@@ -3,7 +3,6 @@ import React from "react";
 import type { ViewStyle } from "react-native";
 import { View } from "react-native";
 import { useTheme } from "src/_hooks/use-theme";
-import { MEDIUM_MARGIN_SIZE, MEDIUM_TEXT_SIZE } from "src/_utils/constants";
 import { Avatar } from "src/avatar/avatar";
 
 import { avatarGroupStyles } from "./styles";
@@ -24,15 +23,13 @@ export const AvatarGroup: FC<AvatarGroupProps> = ({ max = 3, avatarUris, style }
           return (
             <View
               key={uri}
-              style={{
-                zIndex: 99 - index,
-                marginRight: -MEDIUM_MARGIN_SIZE * 1.5,
-                borderWidth: 5,
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 64,
-                borderColor: colors.background,
-              }}
+              style={[
+                avatarGroupStyles.avatarContainer,
+                {
+                  zIndex: 99 - index,
+                  borderColor: colors.background,
+                },
+              ]}
             >
               <Avatar.Image
                 source={{ uri }}
@@ -46,22 +43,17 @@ export const AvatarGroup: FC<AvatarGroupProps> = ({ max = 3, avatarUris, style }
           return (
             <View
               key={uri}
-              style={{
-                zIndex: 99 - index,
-                marginRight: -MEDIUM_MARGIN_SIZE * 1.5,
-                borderWidth: 5,
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 64,
-                borderColor: colors.background,
-              }}
+              style={[
+                avatarGroupStyles.avatarContainer,
+                {
+                  zIndex: 99 - index,
+                  borderColor: colors.background,
+                },
+              ]}
             >
               <Avatar.Text
                 label={`+${rest}`}
-                labelStyle={{
-                  fontSize: MEDIUM_TEXT_SIZE,
-                  fontWeight: "bold",
-                }}
+                labelStyle={avatarGroupStyles.avatarLabelText}
                 style={{
                   backgroundColor: colors.outline,
                 }}
