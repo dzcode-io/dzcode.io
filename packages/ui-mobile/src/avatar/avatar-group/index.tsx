@@ -8,11 +8,27 @@ import { Avatar } from "src/avatar/avatar";
 import { avatarGroupStyles } from "./styles";
 
 interface AvatarGroupProps {
+  /**
+   * max number of avatars to be shown (defaults to 3)
+   */
   max?: number;
+  /**
+   * list of avatar uris
+   */
   avatarUris: string[];
+  /**
+   * style for avatar group container
+   */
   style?: ViewStyle;
 }
 
+/**
+ * AvatarGroup component to display group of avatars
+ * @example
+ * <AvatarGroup
+ *    avatarUris={["https://avatars.githubusercontent.com/u/20110076?v=4"]}
+ * />
+ */
 export const AvatarGroup: FC<AvatarGroupProps> = ({ max = 3, avatarUris, style }) => {
   const { colors } = useTheme();
   const rest = avatarUris.length - max + 1;
