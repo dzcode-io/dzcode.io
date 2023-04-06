@@ -5,6 +5,10 @@ import { App } from "./app";
 
 jest.useFakeTimers();
 
+jest.mock("@sentry/react-native", () => ({ init: () => jest.fn() }));
+
+jest.mock("expo-status-bar");
+
 const mock = jest.requireMock("react-native-reanimated");
 jest.mock("react-native-reanimated", () => ({
   ...mock,
