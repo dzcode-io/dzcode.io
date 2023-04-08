@@ -1,4 +1,4 @@
-import { Article } from "@dzcode.io/api/dist/app/types/legacy";
+import { ArticleEntity } from "@dzcode.io/models/dist/article";
 import { useNavigation } from "@dzcode.io/ui-mobile/dist/_hooks/use-navigation";
 import type { RouteParam } from "@dzcode.io/ui-mobile/dist/_types/route-param";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
@@ -8,12 +8,11 @@ import { Text } from "@dzcode.io/ui-mobile/dist/text/text";
 import { TryAgain } from "@dzcode.io/ui-mobile/dist/try-again";
 import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import React, { FC, useEffect } from "react";
-import { Image, SafeAreaView, ScrollView, View } from "react-native";
+import { Image, SafeAreaView, ScrollView, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
 import { fetchArticle } from "src/redux/actions/articles-screen";
 import { useArticlesSliceSelector } from "src/redux/reducers/articles-screen/slice";
-import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { globalStyles } from "src/styles/global";
 import { openLink } from "src/utils/link";
 
@@ -24,23 +23,18 @@ interface ArticleDetailsScreenProps {
 }
 
 interface RouteParams {
-  article: Article;
+  article: ArticleEntity;
 }
 
 export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
   route,
 }: ArticleDetailsScreenProps) => {
   const { articles, status } = useArticlesSliceSelector();
-
   const loadedArticles = isLoaded(articles);
   const currentArticle = (
-    loadedArticles?.filter((article) => (article as Article).content) as Article[]
+    loadedArticles?.filter((article) => (article as ArticleEntity).content) as ArticleEntity[]
   ).find((article) => article.slug === route.params.article.slug);
-
-  const { theme } = useGeneralSliceSelector();
-
   const dispatch = useDispatch<AppDispatch>();
-
   const navigation = useNavigation<any>();
 
   useEffect(() => {
@@ -61,12 +55,42 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
             <Text style={articleDetailsStyles.descriptionText}>{currentArticle.description}</Text>
             <Markdown
               content={currentArticle.content!}
-              theme={theme}
               onLinkPress={(url) => openLink(url, navigation)}
             />
-            <Text style={articleDetailsStyles.authorsText}>
-              Authors: {currentArticle.authors?.join(", ")}
-            </Text>
+            {currentArticle.authors.length > 0 &&
+              currentArticle.authors.find((a) => !a.id.includes("undefined")) && (
+                <>
+                  <Text style={articleDetailsStyles.authorsText}>This article is written by</Text>
+                  <View style={articleDetailsStyles.authorAvatars}>
+                    {currentArticle.authors?.map((author) => (
+                      <TouchableOpacity key={author.id} onPress={() => openLink(author.link)}>
+                        <Image
+                          source={{ uri: author?.image }}
+                          style={articleDetailsStyles.avatar}
+                        />
+                      </TouchableOpacity>
+                    ))}
+                  </View>
+                </>
+              )}
+            {currentArticle.contributors.length > 0 && (
+              <>
+                <Text style={articleDetailsStyles.authorsText}>With the help of</Text>
+                <View style={articleDetailsStyles.authorAvatars}>
+                  {currentArticle.contributors?.map((contributor) => (
+                    <TouchableOpacity
+                      key={contributor.id}
+                      onPress={() => openLink(contributor.link)}
+                    >
+                      <Image
+                        source={{ uri: contributor?.image }}
+                        style={articleDetailsStyles.avatar}
+                      />
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </>
+            )}
           </ScrollView>
         ) : (
           <TryAgain

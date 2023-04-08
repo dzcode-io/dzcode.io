@@ -11,7 +11,6 @@ import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
 import { fetchDocument } from "src/redux/actions/learn-screen";
-import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { useLearnSliceSelector } from "src/redux/reducers/learn-screen/slice";
 import { globalStyles } from "src/styles/global";
 import { openLink } from "src/utils/link";
@@ -34,9 +33,6 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   const currentDocument = (
     loadedDocuments?.filter((document) => (document as Document).content) as Document[]
   ).find((document) => document.slug === route.params.document.slug);
-
-  const { theme } = useGeneralSliceSelector();
-
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -55,11 +51,7 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
             <Image source={{ uri: currentDocument.image }} style={documentDetailsStyles.image} />
             <Text style={documentDetailsStyles.authorsText}>{route.params.document.title}</Text>
             <Text style={documentDetailsStyles.descriptionText}>{currentDocument.description}</Text>
-            <Markdown
-              content={currentDocument.content!}
-              theme={theme}
-              onLinkPress={(url) => openLink(url)}
-            />
+            <Markdown content={currentDocument.content!} onLinkPress={(url) => openLink(url)} />
             <Text style={documentDetailsStyles.authorsText}>
               Authors: {currentDocument.authors?.join(", ")}
             </Text>

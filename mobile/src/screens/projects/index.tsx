@@ -7,15 +7,12 @@ import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
 import { fetchProjects } from "src/redux/actions/projects-screen";
-import { useGeneralSliceSelector } from "src/redux/reducers/general/slice";
 import { useProjectsSliceSelector } from "src/redux/reducers/projects-screen/slice";
 import { globalStyles } from "src/styles/global";
 import { openLink } from "src/utils/link";
 
 export const ProjectsScreen: FC = () => {
   const { projects, status } = useProjectsSliceSelector();
-
-  const { theme } = useGeneralSliceSelector();
 
   const dispatch = useDispatch<AppDispatch>();
 

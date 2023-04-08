@@ -6,14 +6,23 @@ describe("ContributeCard", () => {
   it("should render", () => {
     const { container } = render(
       <ContributeCard
-        commentsCount={0}
-        labels={[]}
         onChipPress={() => undefined}
         onPress={() => undefined}
-        subtitle={"subtitle"}
-        title={"title"}
-        type={"issue"}
-        updatedAt={"2022-09-27T00:00:00Z"}
+        item={{
+          title: "test",
+          project: {
+            name: "test",
+            slug: "test",
+          },
+          type: "issue",
+          labels: [],
+          commentsCount: 0,
+          createdAt: "",
+          updatedAt: "",
+          id: "",
+          languages: [],
+          url: "",
+        }}
       />,
     );
     expect(container).toBeTruthy();

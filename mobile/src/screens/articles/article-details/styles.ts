@@ -3,6 +3,7 @@ import {
   LARGE_MARGIN_SIZE,
   MEDIUM_MARGIN_SIZE,
   MEDIUM_TEXT_SIZE,
+  SMALL_MARGIN_SIZE,
 } from "@dzcode.io/ui-mobile/dist/_utils/constants";
 import { StyleSheet } from "react-native";
 
@@ -21,5 +22,15 @@ export const articleDetailsStyles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: MEDIUM_TEXT_SIZE,
     marginHorizontal: MEDIUM_MARGIN_SIZE,
+  },
+  authorAvatars: {
+    marginHorizontal: MEDIUM_MARGIN_SIZE,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  avatar: {
+    marginLeft: SMALL_MARGIN_SIZE,
+    width: 50,
+    height: 50,
   },
 });
