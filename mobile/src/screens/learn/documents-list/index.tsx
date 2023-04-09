@@ -8,7 +8,7 @@ import React, { FC, useEffect } from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
-import { fetchDocuments } from "src/redux/actions/learn-screen";
+import { fetchDocumentationList } from "src/redux/actions/learn-screen";
 import { useLearnSliceSelector } from "src/redux/reducers/learn-screen/slice";
 import { globalStyles } from "src/styles/global";
 
@@ -22,7 +22,7 @@ export const DocumentsListScreen: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(fetchDocuments());
+    dispatch(fetchDocumentationList());
   }, []);
 
   return (
@@ -32,12 +32,12 @@ export const DocumentsListScreen: FC = () => {
           <TryAgain
             error="Ops, an error occurred while loading the documentation, please try again..."
             action="Try Again"
-            onClick={() => dispatch(fetchDocuments())}
+            onClick={() => dispatch(fetchDocumentationList())}
           />
         ) : documents ? (
           <FlatList
             data={documents}
-            onRefresh={() => dispatch(fetchDocuments())}
+            onRefresh={() => dispatch(fetchDocumentationList())}
             refreshing={status === "loading"}
             ItemSeparatorComponent={() => <Divider />}
             keyExtractor={(_, index) => `item-${index}`}

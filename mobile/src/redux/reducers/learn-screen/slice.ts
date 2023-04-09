@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { RootState } from "src/redux";
-import { fetchDocument, fetchDocuments } from "src/redux/actions/learn-screen";
+import { fetchDocumentation, fetchDocumentationList } from "src/redux/actions/learn-screen";
 
 import { documentsAdapter } from "./adapters/documents";
 import { selectDocuments } from "./selectors";
@@ -22,27 +22,27 @@ const learnScreenSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchDocuments.pending, (state) => {
+      .addCase(fetchDocumentationList.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchDocuments.fulfilled, (state, action) => {
+      .addCase(fetchDocumentationList.fulfilled, (state, action) => {
         state.status = "idle";
         state.error = null;
         documentsAdapter.setAll(state, action.payload);
       })
-      .addCase(fetchDocuments.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(fetchDocumentationList.rejected, (state, action: PayloadAction<any>) => {
         state.status = "error";
         state.error = action.payload.message;
       })
-      .addCase(fetchDocument.pending, (state) => {
+      .addCase(fetchDocumentation.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchDocument.fulfilled, (state, action) => {
+      .addCase(fetchDocumentation.fulfilled, (state, action) => {
         state.status = "idle";
         state.error = null;
         documentsAdapter.setOne(state, action.payload);
       })
-      .addCase(fetchDocument.rejected, (state, action: PayloadAction<any>) => {
+      .addCase(fetchDocumentation.rejected, (state, action: PayloadAction<any>) => {
         state.status = "error";
         state.error = action.payload.message;
       });

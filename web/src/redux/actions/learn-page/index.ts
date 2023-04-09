@@ -1,5 +1,4 @@
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
-import { isLoaded } from "@dzcode.io/utils/dist/loadable";
 import * as Sentry from "@sentry/browser";
 import { listToTree } from "l2t";
 import { matchPath } from "react-router-dom";
@@ -44,54 +43,9 @@ export const fetchDocumentationList = async (): Promise<void> => {
 };
 
 /**
- * Fetches the contributors of the an current document
- */
-const fetchCurrentDocumentContributors = async (): Promise<void> => {
-  const { currentDocument } = getState().learnPage;
-  const loadedCurrentDocument = isLoaded(currentDocument);
-
-  // Don't re-fetch data again
-  if (!loadedCurrentDocument || loadedCurrentDocument.contributors.length > 0) return;
-
-  try {
-    const { contributors: legacyContributors } = await fetchV2("api:Contributors", {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      query: [["path", `documentation/${loadedCurrentDocument.id}`]],
-    });
-    // @TODO-ZM: simplify this once ./data is migrated to ./api
-    const contributors = legacyContributors.map(({ id, html_url, login, avatar_url }) => ({
-      id: `${id}`,
-      link: html_url,
-      name: login,
-      image: avatar_url,
-    }));
-    //  getting the current document from a fresh state
-    const freshCurrentDocument =
-      isLoaded(getState().learnPage.currentDocument) || loadedCurrentDocument;
-
-    // update our page state
-    actions.learnPage.set({
-      currentDocument: {
-        ...freshCurrentDocument,
-        contributors: contributors.filter(
-          ({ link: l1 }) => !freshCurrentDocument.authors.some(({ link: l2 }) => l1 === l2),
-        ),
-      },
-    });
-    // update our cache state
-    actions.documentation.set({ list: [{ ...freshCurrentDocument, contributors }] });
-  } catch (error) {
-    Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
-  }
-};
-
-/**
  * Fetches the content of the current document
  */
-// @TODO-ZM: remove this once ./data is migrated to ./api
-
-export const fetchCurrentDocument = async (): Promise<void> => {
+export const fetchCurrentDocumentation = async (): Promise<void> => {
   const match = matchPath<{ lang?: LanguageEntity["code"]; slug: string }>(
     history.location.pathname,
     { path: `${urlLanguageRegEx}/Learn/:slug(.*)` },
@@ -99,50 +53,23 @@ export const fetchCurrentDocument = async (): Promise<void> => {
 
   const currentSlug = match?.params.slug.replace(/\/$/, "") || "";
 
-  const cashedDocument = hasInCollection(getState().documentation.list, "slug", currentSlug, [
+  const cashedDocumentation = hasInCollection(getState().documentation.list, "slug", currentSlug, [
     ["content"],
   ]);
-  if (cashedDocument) {
+  if (cashedDocumentation) {
     // update our page state
-    actions.learnPage.set({ currentDocument: cashedDocument });
-    // Fetch contributors
-    fetchCurrentDocumentContributors();
+    actions.learnPage.set({ currentDocument: cashedDocumentation });
   } else {
     actions.learnPage.set({ currentDocument: null });
     try {
-      const currentLanguage = getState().settings.language;
-      const legacyCurrentDocument = await fetchV2(`data:documentation/:slug.json`, {
+      const { documentation } = await fetchV2(`api:Documentation/:slug`, {
         params: { slug: currentSlug },
-        query: [["language", currentLanguage.code]],
       });
 
       // update our page state
-      // @TODO-ZM: simplify this once ./data is migrated to ./api
-      const { title, description, content, image, slug } = legacyCurrentDocument;
-      const currentDocument = {
-        id: slug,
-        image: image || "",
-        title,
-        description: description || "",
-        content: content || "",
-        authors:
-          legacyCurrentDocument.authors?.map((author) => ({
-            id: author,
-            name: author,
-            link: `https://github.com/${author}`,
-            image: `https://github.com/${author}.png`,
-          })) || [],
-        contributors: [],
-      };
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      actions.learnPage.set({ currentDocument });
+      actions.learnPage.set({ currentDocument: documentation });
       // update our cache state
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      actions.documentation.set({ list: [currentDocument] });
-      // Fetch contributors
-      fetchCurrentDocumentContributors();
+      actions.documentation.set({ list: [documentation] });
     } catch (error) {
       actions.learnPage.set({ currentDocument: "ERROR" });
       Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });

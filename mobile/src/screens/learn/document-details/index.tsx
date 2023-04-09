@@ -1,4 +1,4 @@
-import { Document } from "@dzcode.io/api/dist/app/types/legacy";
+import { DocumentationEntity } from "@dzcode.io/models/dist/documentation";
 import type { RouteParam } from "@dzcode.io/ui-mobile/dist/_types/route-param";
 import { ErrorBoundary } from "@dzcode.io/ui-mobile/dist/error-boundary";
 import { DZCodeLoading } from "@dzcode.io/ui-mobile/dist/loading";
@@ -10,7 +10,7 @@ import React, { FC, useEffect } from "react";
 import { Image, SafeAreaView, ScrollView, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "src/redux";
-import { fetchDocument } from "src/redux/actions/learn-screen";
+import { fetchDocumentation } from "src/redux/actions/learn-screen";
 import { useLearnSliceSelector } from "src/redux/reducers/learn-screen/slice";
 import { globalStyles } from "src/styles/global";
 import { openLink } from "src/utils/link";
@@ -22,7 +22,7 @@ interface DocumentDetailsScreenProps {
 }
 
 interface RouteParams {
-  document: Document;
+  document: DocumentationEntity;
 }
 
 export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
@@ -31,12 +31,14 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
   const { documents, status } = useLearnSliceSelector();
   const loadedDocuments = isLoaded(documents);
   const currentDocument = (
-    loadedDocuments?.filter((document) => (document as Document).content) as Document[]
+    loadedDocuments?.filter(
+      (document) => (document as DocumentationEntity).content,
+    ) as DocumentationEntity[]
   ).find((document) => document.slug === route.params.document.slug);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(fetchDocument(route.params.document.slug));
+    dispatch(fetchDocumentation(route.params.document.slug));
   }, []);
 
   return (
@@ -53,14 +55,14 @@ export const DocumentDetailsScreen: FC<DocumentDetailsScreenProps> = ({
             <Text style={documentDetailsStyles.descriptionText}>{currentDocument.description}</Text>
             <Markdown content={currentDocument.content!} onLinkPress={(url) => openLink(url)} />
             <Text style={documentDetailsStyles.authorsText}>
-              Authors: {currentDocument.authors?.join(", ")}
+              Authors: {currentDocument.authors?.map(({ name }) => name).join(", ")}
             </Text>
           </ScrollView>
         ) : (
           <TryAgain
             error="Ops, an error occurred while loading the selected document, please try again..."
             action="Try Again"
-            onClick={() => dispatch(fetchDocument(route.params.document.slug))}
+            onClick={() => dispatch(fetchDocumentation(route.params.document.slug))}
           />
         )}
       </SafeAreaView>
