@@ -8,6 +8,7 @@ import { ArticleController } from "src/article/controller";
 import { ConfigService } from "src/config/service";
 import { ContributionController } from "src/contribution/controller";
 import { ContributorController } from "src/contributor/controller";
+import { DocumentationController } from "src/documentation/controller";
 import { GithubController } from "src/github/controller";
 import { GithubUserController } from "src/github-user/controller";
 import { LoggerService } from "src/logger/service";
@@ -50,6 +51,7 @@ export const routingControllersOptions: RoutingControllersOptions = {
     MilestoneController,
     ProjectController,
     ArticleController,
+    DocumentationController,
   ],
   middlewares: [
     SentryRequestHandlerMiddleware,
