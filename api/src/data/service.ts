@@ -3,7 +3,7 @@ import { getEntry } from "@dzcode.io/data/dist/get/entry";
 import { join } from "path";
 import { Service } from "typedi";
 
-import { DataArticleEntity, DataProjectEntity } from "./types";
+import { DataArticleEntity, DataDocumentationEntity, DataProjectEntity } from "./types";
 
 @Service()
 export class DataService {
@@ -35,6 +35,33 @@ export class DataService {
     if (article === 404) throw new Error("Article not found");
 
     return article;
+  };
+
+  public listDocumentation = async (): Promise<
+    Pick<DataDocumentationEntity, "slug" | "title">[]
+  > => {
+    const documentation = getCollection<DataDocumentationEntity>(
+      this.dataModelsPath,
+      "documentation",
+      "list.json",
+    );
+
+    if (documentation === 404) throw new Error("Documentation list not found");
+
+    const mappedDocumentation = documentation.map(({ slug, title }) => ({ slug, title }));
+
+    return mappedDocumentation;
+  };
+
+  public getDocumentation = async (slug: string): Promise<DataDocumentationEntity> => {
+    const documentation = getEntry<DataDocumentationEntity>(
+      this.dataModelsPath,
+      `documentation/${slug}`,
+    );
+
+    if (documentation === 404) throw new Error("Documentation not found");
+
+    return documentation;
   };
 
   private dataModelsPath = join(__dirname, "../../../data");
