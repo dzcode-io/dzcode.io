@@ -1,7 +1,9 @@
 import * as Updates from "expo-updates";
 
+export const getReleaseChannel = () => Updates.releaseChannel;
+
 export const getEnv = () => {
-  switch (Updates.releaseChannel) {
+  switch (getReleaseChannel()) {
     case "production":
       return "production";
     case "stage":
