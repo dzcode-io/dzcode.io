@@ -1,14 +1,11 @@
-import { LanguageEntity } from "@dzcode.io/models/dist/language";
 import { GetArticleResponseDto, GetArticlesResponseDto } from "src/article/types";
 import { GetContributionsResponseDto } from "src/contribution/types";
 import { GetContributorsResponseDto } from "src/contributor/types";
-import { GetDocumentationResponseDto } from "src/documentation/types";
+import { GetADocumentationResponseDto, GetDocumentationResponseDto } from "src/documentation/types";
 import { GetUserResponseDto } from "src/github-user/types";
 import { GetMilestonesResponseDto } from "src/milestone/types";
 import { GetProjectsResponseDto } from "src/project/types";
 import { GetTeamResponseDto } from "src/team/types";
-
-import { Document } from "./types/legacy";
 
 // @TODO-ZM: remove old endpoints
 export interface Endpoints {
@@ -22,10 +19,9 @@ export interface Endpoints {
   "api:Documentation": {
     response: GetDocumentationResponseDto;
   };
-  "data:documentation/:slug.json": {
-    response: Document;
+  "api:Documentation/:slug": {
+    response: GetADocumentationResponseDto;
     params: { slug: string };
-    query: [["language", LanguageEntity["code"]]];
   };
   "api:Projects": {
     response: GetProjectsResponseDto;

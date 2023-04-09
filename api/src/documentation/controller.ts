@@ -29,7 +29,7 @@ export class DocumentationController {
     };
   }
 
-  @Get("/:slug")
+  @Get("/:slug(*)")
   @OpenAPI({
     summary: "Return info about a single documentation",
   })
