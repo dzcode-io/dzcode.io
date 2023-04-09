@@ -4,12 +4,15 @@ import { DrawerActions } from "@dzcode.io/ui-mobile/dist/drawer/drawer-actions";
 import { DrawerContent } from "@dzcode.io/ui-mobile/dist/drawer/drawer-content";
 import { DrawerNav } from "@dzcode.io/ui-mobile/dist/navigation/drawer-nav";
 import React, { FC } from "react";
+import { getReleaseChannel } from "src/utils/env";
 
 import { Navigation as ArticlesStack } from "./articles/navigation";
 import { ContributeScreen } from "./contribute";
 import { FAQScreen } from "./faq";
 import { Navigation as DocumentsStack } from "./learn/navigation";
 import { ProjectsScreen } from "./projects";
+
+const releaseChannel = getReleaseChannel();
 
 const routes: Route[] = [
   {
@@ -55,7 +58,13 @@ export const Navigation: FC = () => {
           openDrawer={() => props.navigation.dispatch(DrawerActions.openDrawer())}
         />
       )}
-      drawerContent={(props) => <DrawerContent {...props} version={window.bundleInfo.version} />}
+      drawerContent={(props) => (
+        <DrawerContent
+          {...props}
+          version={window.bundleInfo.version}
+          releaseChannel={releaseChannel}
+        />
+      )}
     />
   );
 };
