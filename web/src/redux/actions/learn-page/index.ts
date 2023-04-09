@@ -16,16 +16,13 @@ import { urlLanguageRegEx } from "src/utils/language";
 export const fetchDocumentationList = async (): Promise<void> => {
   try {
     actions.learnPage.set({ sidebarTree: null });
-    const currentLanguage = getState().settings.language;
 
-    const documentationList = await fetchV2("data:documentation/list.c.json", {
-      query: [["language", currentLanguage.code]],
-    });
+    const { documentation } = await fetchV2("api:Documentation", {});
     const ids: string[] = [];
 
     // convert list into tree
-    const tree = listToTree<typeof documentationList[0], SidebarTreeItem>(
-      documentationList,
+    const tree = listToTree<typeof documentation[0], SidebarTreeItem>(
+      documentation,
       (item) => item.slug,
       (item) => item.slug.substring(0, item.slug.lastIndexOf("/")),
       "children",

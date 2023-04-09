@@ -16,7 +16,7 @@ import { useRouteMatch } from "react-router-dom";
 import learnLanding from "src/assets/svg/learn-landing.svg";
 import { T, t } from "src/components/t";
 import { AllDictionaryKeys } from "src/components/t/dictionary";
-import { fetchCurrentDocument, fetchDocumentationList } from "src/redux/actions/documentation-page";
+import { fetchCurrentDocument, fetchDocumentationList } from "src/redux/actions/learn-page";
 import { useSliceSelector } from "src/redux/selectors";
 
 const LearnPage: FC = () => {
