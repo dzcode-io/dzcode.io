@@ -27,3 +27,4 @@ nodemon.json
 *.eslintignore
 *.ttf
 *.ts-prunerc
+*.sh

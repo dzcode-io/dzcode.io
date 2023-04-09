@@ -80,7 +80,7 @@ export const ContributeScreen: FC = () => {
               )}
             />
           ) : (
-            <View style={globalStyles.centerView}>
+            <View id="no-contributions" style={globalStyles.centerView}>
               <Image
                 source={require("@dzcode.io/ui-mobile/assets/png/info.png")}
                 style={contributeStyles.emptyStateLogo}

@@ -36,7 +36,7 @@
     "web": {
       "favicon": "./src/assets/png/favicon.png"
     },
-    "plugins": ["sentry-expo"],
+    "plugins": ["sentry-expo", "@config-plugins/detox"],
     "hooks": {
       "postExport": [
         {
@@ -49,13 +49,13 @@
         }
       ]
     },
-    "extra": {
-      "eas": {
-        "projectId": "92897cc7-1f47-44ff-9a48-788b82c4d57b"
-      }
-    },
     "runtimeVersion": {
       "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "18ad1f04-aee8-49d0-b8d0-18678e9e009a"
+      }
     }
   }
 }
