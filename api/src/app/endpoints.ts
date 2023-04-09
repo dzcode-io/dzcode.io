@@ -2,6 +2,7 @@ import { LanguageEntity } from "@dzcode.io/models/dist/language";
 import { GetArticleResponseDto, GetArticlesResponseDto } from "src/article/types";
 import { GetContributionsResponseDto } from "src/contribution/types";
 import { GetContributorsResponseDto } from "src/contributor/types";
+import { GetDocumentationResponseDto } from "src/documentation/types";
 import { GetUserResponseDto } from "src/github-user/types";
 import { GetMilestonesResponseDto } from "src/milestone/types";
 import { GetProjectsResponseDto } from "src/project/types";
@@ -18,9 +19,8 @@ export interface Endpoints {
     response: GetArticleResponseDto;
     params: { slug: string };
   };
-  "data:documentation/list.c.json": {
-    response: Pick<Document, "title" | "slug">[];
-    query: [["language", LanguageEntity["code"]]];
+  "api:Documentation": {
+    response: GetDocumentationResponseDto;
   };
   "data:documentation/:slug.json": {
     response: Document;
