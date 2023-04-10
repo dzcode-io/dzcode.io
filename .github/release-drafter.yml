@@ -26,10 +26,10 @@ template: |
 autolabeler:
   - label: "breaking-change"
     body:
-      - '/\- [x] Breaking change/'
+      - '/\- \[x\] Breaking change/'
   - label: "feature"
     body:
-      - '/\- [x] New feature/'
+      - '/\- \[x\] New feature/'
   - label: "fix"
     body:
-      - '/\- [x] Bug fix/'
+      - '/\- \[x\] Bug fix/'
