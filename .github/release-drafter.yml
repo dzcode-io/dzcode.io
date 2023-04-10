@@ -13,9 +13,11 @@ version-resolver:
       - "feature"
   default: patch
 template: |
-  deploying to stage after merging:
+  deploying to `main` branch to stage:
 
   $CHANGES
+
+  To test on `stage` environment go to:
 
   - [stage.dzcode.io](https://stage.dzcode.io)
   - [Android](https://play.google.com/store/apps/details?id=io.dzcode.mobile)
