@@ -8,6 +8,10 @@ try {
 } catch (error) {
   /**/
 }
+
+bundleInfo.channel = process.env.BUILD_CHANNEL;
+if (bundleInfo.channel) throw new Error("BUILD_CHANNEL is not defined");
+
 module.exports = function (api) {
   api.cache(true);
   return {
