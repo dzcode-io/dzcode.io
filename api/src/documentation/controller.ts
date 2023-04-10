@@ -5,11 +5,11 @@ import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { Service } from "typedi";
 
-import { GetArticleResponseDto, GetArticlesResponseDto } from "./types";
+import { GetADocumentationResponseDto, GetDocumentationResponseDto } from "./types";
 
 @Service()
-@Controller("/Articles")
-export class ArticleController {
+@Controller("/Documentation")
+export class DocumentationController {
   constructor(
     private readonly githubService: GithubService,
     private readonly dataService: DataService,
@@ -17,30 +17,32 @@ export class ArticleController {
 
   @Get("/")
   @OpenAPI({
-    summary: "Return list of all articles",
+    summary: "Return list of all documentation",
   })
-  @ResponseSchema(GetArticlesResponseDto)
-  public async getArticles(): Promise<GetArticlesResponseDto> {
-    // get articles from /data folder:
-    const articles = await this.dataService.listArticles();
+  @ResponseSchema(GetDocumentationResponseDto)
+  public async getDocumentation(): Promise<GetDocumentationResponseDto> {
+    // get documentation from /data folder:
+    const documentation = await this.dataService.listDocumentation();
 
     return {
-      articles,
+      documentation,
     };
   }
 
   @Get("/:slug(*)")
   @OpenAPI({
-    summary: "Return info about a single article",
+    summary: "Return info about a single documentation",
   })
-  @ResponseSchema(GetArticleResponseDto)
-  public async getArticle(@Param("slug") slug: string): Promise<GetArticleResponseDto> {
-    // get articles from /data folder:
-    const { ...article } = await this.dataService.getArticle(slug);
+  @ResponseSchema(GetADocumentationResponseDto)
+  public async getADocumentation(
+    @Param("slug") slug: string,
+  ): Promise<GetADocumentationResponseDto> {
+    // get documentation from /data folder:
+    const { ...documentation } = await this.dataService.getDocumentation(slug);
 
     // get authors and contributors info from github:
     const authors = await Promise.all(
-      article.authors.map(async (author) => {
+      documentation.authors.map(async (author) => {
         const githubUser = await this.githubService.getUser({ username: author });
         return {
           id: `github/${githubUser.id}`,
@@ -56,19 +58,19 @@ export class ArticleController {
       this.githubService.listContributors({
         owner: "dzcode-io",
         repository: "dzcode.io",
-        path: `data/models/articles/${slug}`,
+        path: `data/models/documentation/${slug}`,
       }),
       // also check old place for data, to not lose contribution effort:
       this.githubService.listContributors({
         owner: "dzcode-io",
         repository: "dzcode.io",
-        path: `data/articles/${slug}`,
+        path: `data/documentation/${slug}`,
       }),
     ]);
 
     // filter and sort contributors:
     const uniqUsernames: Record<string, number> = {};
-    const contributors: GetArticleResponseDto["article"]["contributors"] = [
+    const contributors: GetADocumentationResponseDto["documentation"]["contributors"] = [
       ...contributorsBatches[0],
       ...contributorsBatches[1],
     ]
@@ -91,8 +93,8 @@ export class ArticleController {
       .filter(({ id }) => !authors.find((author) => author.id === id));
 
     return {
-      article: {
-        ...article,
+      documentation: {
+        ...documentation,
         authors,
         contributors,
       },

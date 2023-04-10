@@ -16,7 +16,7 @@ import { useRouteMatch } from "react-router-dom";
 import learnLanding from "src/assets/svg/learn-landing.svg";
 import { T, t } from "src/components/t";
 import { AllDictionaryKeys } from "src/components/t/dictionary";
-import { fetchCurrentDocument, fetchDocumentationList } from "src/redux/actions/documentation-page";
+import { fetchCurrentDocumentation, fetchDocumentationList } from "src/redux/actions/learn-page";
 import { useSliceSelector } from "src/redux/selectors";
 
 const LearnPage: FC = () => {
@@ -31,7 +31,7 @@ const LearnPage: FC = () => {
 
   useEffect(() => {
     if (urlParams.articleId) {
-      fetchCurrentDocument();
+      fetchCurrentDocumentation();
     }
   }, [urlParams.articleId]); // @TODO-ZM: add language as dependency
 
@@ -83,7 +83,7 @@ const LearnPage: FC = () => {
         <TryAgain
           error={t("learn-content-error")}
           action={t("global-try-again")}
-          onClick={() => fetchCurrentDocument()}
+          onClick={() => fetchCurrentDocumentation()}
           margin={[6, 1, 1]}
         />
       ) : (

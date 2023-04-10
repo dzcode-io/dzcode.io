@@ -15,9 +15,9 @@ project:
 article:
   - data/models/articles/**/*
 
-# Add 'documentation' to any changes within 'data/models/documentations' folder or any subfolders
+# Add 'documentation' to any changes within 'data/models/documentation' folder or any subfolders
 documentation:
-  - data/models/documentations/**/*
+  - data/models/documentation/**/*
 
 # Add 'web' to any changes within 'web' folder or any subfolders
 web:

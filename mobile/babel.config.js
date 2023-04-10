@@ -2,7 +2,7 @@ const { readFileSync } = require("fs");
 const internalIp = require("internal-ip");
 const localIP = internalIp.v4.sync();
 
-let bundleInfo = { version: require("./package.json").version };
+let bundleInfo = { version: require("./package.json").version, environment: "development" };
 try {
   bundleInfo = JSON.parse(readFileSync(".bundle-info.json").toString());
 } catch (error) {

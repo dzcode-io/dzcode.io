@@ -51,7 +51,7 @@ jobs:
       - name: "Bundle info"
         shell: bash
         run: |
-          yarn generate:bundle-info ${{ github.ref_name }}
+          yarn generate:bundle-info ${{ github.ref_name }} stage
 
       - name: "Build"
         shell: bash
