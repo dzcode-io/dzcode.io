@@ -45,7 +45,6 @@ export const fetchArticlesList = async (): Promise<void> => {
 /**
  * Fetches the content of the current article
  */
-// @TODO-ZM: remove this once ./data is migrated to ./api
 
 export const fetchCurrentArticle = async (): Promise<void> => {
   const match = matchPath<{ lang?: LanguageEntity["code"]; slug: string }>(

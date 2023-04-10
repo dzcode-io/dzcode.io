@@ -10,6 +10,10 @@ firebase
 
 # web
 bundle
+.bundle-info.json
+
+# mobile
+.expo
 
 ./.*
 .gitignore

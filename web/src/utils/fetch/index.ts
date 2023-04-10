@@ -32,9 +32,6 @@ export const fetchV2 = async <
   let baseURL = "";
 
   switch (domain) {
-    case "data":
-      baseURL = fullstackConfig.data.url;
-      break;
     case "api":
       baseURL = fullstackConfig.api.url;
       break;

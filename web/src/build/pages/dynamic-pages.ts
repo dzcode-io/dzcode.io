@@ -1,4 +1,4 @@
-import { getCollection } from "@dzcode.io/data/dist/get/collection";
+import { getCollection } from "@dzcode.io/data/dist/collection";
 import { join } from "path";
 
 import { PageInfo } from ".";
