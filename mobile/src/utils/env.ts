@@ -1,6 +1,6 @@
 import * as Updates from "expo-updates";
 
-export const getReleaseChannel = () => Updates.releaseChannel;
+export const getReleaseChannel = () => Updates.channel;
 
 export const getEnv = () => {
   switch (getReleaseChannel()) {
