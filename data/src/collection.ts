@@ -4,11 +4,12 @@ import { join } from "path";
 
 import { getEntry } from "./entry";
 
-export interface Collection {
+interface Collection {
   items: string[] | "all";
   include: string[];
 }
 
+// ts-prune-ignore-next
 export const getCollection = <T = Record<string, unknown>>(
   dataFolder: string,
   collectionType: string,

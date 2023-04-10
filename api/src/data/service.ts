@@ -1,5 +1,5 @@
-import { getCollection } from "@dzcode.io/data/dist/get/collection";
-import { getEntry } from "@dzcode.io/data/dist/get/entry";
+import { getCollection } from "@dzcode.io/data/dist/collection";
+import { getEntry } from "@dzcode.io/data/dist/entry";
 import { join } from "path";
 import { Service } from "typedi";
 
