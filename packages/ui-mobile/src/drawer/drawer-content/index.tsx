@@ -15,11 +15,6 @@ interface DrawerContentProps extends DrawerContentComponentProps {
    * the version of the app
    */
   version: string;
-
-  /**
-   * the release channel of the app
-   */
-  releaseChannel: string;
 }
 
 /**
@@ -35,9 +30,7 @@ export const DrawerContent: FC<DrawerContentProps> = (props) => {
         {/* dzcode.io logo */}
         <View>
           <Image source={require("../../../assets/png/logo.png")} style={drawerStyles.logoView} />
-          <Text style={drawerStyles.version}>
-            {props.version} / {props.releaseChannel}
-          </Text>
+          <Text style={drawerStyles.version}>{props.version}</Text>
         </View>
         {/* Drawer items */}
         <DrawerItemList {...props} />
