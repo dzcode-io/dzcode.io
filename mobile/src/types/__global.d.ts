@@ -5,7 +5,7 @@ declare global {
   interface Window {
     bundleInfo: {
       version: string;
-      channel: "production" | "stage" | "development";
+      environment: "production" | "stage" | "development";
     };
   }
 }
