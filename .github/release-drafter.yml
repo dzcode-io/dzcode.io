@@ -13,7 +13,7 @@ version-resolver:
       - "feature"
   default: patch
 template: |
-  deploying to `main` branch to stage:
+  deploying `main` branch to stage:
 
   $CHANGES
 
