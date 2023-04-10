@@ -1,0 +1,33 @@
+name-template: "stg-v$RESOLVED_VERSION"
+tag-template: "stg-v$RESOLVED_VERSION"
+tag-prefix: "stg-v"
+include-pre-releases: true
+prerelease: true
+change-template: "- $TITLE (#$NUMBER)"
+version-resolver:
+  major:
+    labels:
+      - "breaking-change"
+  minor:
+    labels:
+      - "feature"
+  default: patch
+template: |
+  deploying to stage after merging:
+
+  $CHANGES
+
+  - [stage.dzcode.io](https://stage.dzcode.io)
+  - [Android](https://play.google.com/store/apps/details?id=io.dzcode.mobile)
+  - [iOS](https://testflight.apple.com/join/XDcfIqdJ)
+  - [Expo](https://expo.dev/@zakman.dev/dzcode?release-channel=stage)
+autolabeler:
+  - label: "breaking-change"
+    body:
+      - '/\- [x] Breaking change/'
+  - label: "feature"
+    body:
+      - '/\- [x] New feature/'
+  - label: "fix"
+    body:
+      - '/\- [x] Bug fix/'
