@@ -18,9 +18,9 @@
     "expo-constants": "~14.2.1",
     "expo-device": "~5.2.1",
     "expo-status-bar": "~1.4.4",
-    "expo-updates": "~0.16.3",
+    "expo-updates": "~0.16.4",
     "react": "18.2.0",
-    "react-native": "0.71.4",
+    "react-native": "0.71.6",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
@@ -37,8 +37,7 @@
     "eas-cli": "^3.8.1",
     "internal-ip": "^6.2.0",
     "jest-expo": "^48.0.2",
-    "react-test-renderer": "^18.2.0",
-    "typescript": "^4.9.4"
+    "react-test-renderer": "^18.2.0"
   },
   "engines": {
     "node": ">=16",
@@ -93,7 +92,7 @@
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
     "lint:tsc": "tsc --noEmit",
     "start:dev": "echo \" \n\\033[0;32mPlease run in a separate terminal session the following command:\n \n\\033[0;32myarn --cwd=mobile start:expo\n \n \"",
-    "start:expo": "expo start --port 1010",
+    "start:expo": "rimraf .bundle-info.json && expo start --port 1010",
     "test": "yarn build && yarn test:alone",
     "test:alone": "jest --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
