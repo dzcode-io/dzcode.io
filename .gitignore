@@ -28,6 +28,7 @@ web/src/_e2e-test/screenshots
 
 # mobile
 mobile/.expo
+mobile/artifacts
 
 # data
 data/nodemon.json
