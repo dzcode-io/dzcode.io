@@ -1,12 +1,12 @@
-Projects on dzcode.io are found under the folder `./data/models/projects-v2` in [dzcode.io repository](https://github.com/dzcode-io/dzcode.io/tree/main/data/models/projects-v2).
+Projects on dzcode.io are found under the folder `./data/models/projects` in [dzcode.io repository](https://github.com/dzcode-io/dzcode.io/tree/main/data/models/projects).
 
 To add new project, named for example: "**My Awesome Project**", simply do the following:
 
 1. [Fork](/Learn/Git_Basics/What_The_Fork) the dzcode.io repository. and clone it to your local machine.
 
-2. Under `data/models/projects-v2`, Create a new folder using **Capital-Snake Case** version of your project title: `My_Awesome_Project`
+2. Under `data/models/projects`, Create a new folder using **Capital-Snake Case** version of your project title: `My_Awesome_Project`
 
-3. Under `data/models/projects-v2/My_Awesome_Project`, Add new file `info.json` and write the basic information about your project (name and list of repositories), like below:
+3. Under `data/models/projects/My_Awesome_Project`, Add new file `info.json` and write the basic information about your project (name and list of repositories), like below:
 
    ```json
    {
