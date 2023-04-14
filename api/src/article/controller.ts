@@ -1,8 +1,8 @@
 import { Controller, Get, Param } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
-import { GithubUser } from "src/app/types/legacy";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
+import { GithubUser } from "src/github/types";
 import { Service } from "typedi";
 
 import { GetArticleResponseDto, GetArticlesResponseDto } from "./types";
@@ -53,13 +53,13 @@ export class ArticleController {
 
     const contributorsBatches = await Promise.all([
       // current place for data:
-      this.githubService.listContributors({
+      this.githubService.listPathCommitters({
         owner: "dzcode-io",
         repository: "dzcode.io",
         path: `data/models/articles/${slug}`,
       }),
       // also check old place for data, to not lose contribution effort:
-      this.githubService.listContributors({
+      this.githubService.listPathCommitters({
         owner: "dzcode-io",
         repository: "dzcode.io",
         path: `data/articles/${slug}`,

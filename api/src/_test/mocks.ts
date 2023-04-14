@@ -1,9 +1,37 @@
-import { GithubUser } from "src/app/types/legacy";
+/* eslint-disable camelcase */
+import { GithubUser } from "src/github/types";
 
 export const githubUserMock: GithubUser = {
-  avatar_url: "avatar_url", // eslint-disable-line camelcase
-  html_url: "html_url", // eslint-disable-line camelcase
-  id: 1,
-  login: "login",
-  type: "type",
+  login: "zibanpirate",
+  id: 20110076,
+  node_id: "MDQ6VXNlcjEzNjIwMg==",
+  avatar_url: "https://avatars.githubusercontent.com/u/20110076?v=4",
+  gravatar_id: "",
+  url: "https://api.github.com/users/zibanpirate",
+  html_url: "https://github.com/zibanpirate",
+  followers_url: "https://api.github.com/users/zibanpirate/followers",
+  following_url: "https://api.github.com/users/zibanpirate/following{/other_user}",
+  gists_url: "https://api.github.com/users/zibanpirate/gists{/gist_id}",
+  starred_url: "https://api.github.com/users/zibanpirate/starred{/owner}{/repo}",
+  subscriptions_url: "https://api.github.com/users/zibanpirate/subscriptions",
+  organizations_url: "https://api.github.com/users/zibanpirate/orgs",
+  repos_url: "https://api.github.com/users/zibanpirate/repos",
+  events_url: "https://api.github.com/users/zibanpirate/events{/privacy}",
+  received_events_url: "https://api.github.com/users/zibanpirate/received_events",
+  type: "User",
+  site_admin: false,
+  name: "",
+  company: "",
+  blog: "",
+  location: "",
+  email: "",
+  hireable: false,
+  bio: "",
+  twitter_username: "",
+  public_repos: 0,
+  public_gists: 0,
+  followers: 0,
+  following: 0,
+  created_at: "2009-10-08T14:04:40Z",
+  updated_at: "2018-05-11T15:44:00Z",
 };

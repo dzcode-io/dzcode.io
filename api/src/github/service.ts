@@ -1,4 +1,3 @@
-import { GithubIssue, GithubMilestone, GithubUser } from "src/app/types/legacy";
 import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
@@ -6,12 +5,15 @@ import { Service } from "typedi";
 import {
   GeneralGithubQuery,
   GetUserInput,
+  GithubIssue,
   GitHubListRepositoryIssuesInput,
   GitHubListRepositoryLanguagesInput,
   GitHubListRepositoryMilestonesInput,
+  GithubMilestone,
   GitHubRateLimitApiResponse,
+  GithubUser,
   GitHubUserApiResponse,
-  ListContributorsResponse,
+  ListPathCommittersResponse,
   ListRepositoryContributorsResponse,
 } from "./types";
 
@@ -22,12 +24,12 @@ export class GithubService {
     private readonly fetchService: FetchService,
   ) {}
 
-  public listContributors = async ({
+  public listPathCommitters = async ({
     owner,
     repository,
     path,
   }: GeneralGithubQuery): Promise<GithubUser[]> => {
-    const commits = await this.fetchService.get<ListContributorsResponse>(
+    const commits = await this.fetchService.get<ListPathCommittersResponse>(
       `${this.apiURL}/repos/${owner}/${repository}/commits`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
@@ -35,16 +37,10 @@ export class GithubService {
       },
     );
     const contributors = commits
+      // @TODO-ZM: dry to a user block-list
       // excluding github.com/web-flow user
       .filter((item) => item.committer && item.committer.id !== 19864447)
-      // eslint-disable-next-line camelcase
-      .map(({ committer: { login, avatar_url, html_url, type, id } }) => ({
-        id,
-        login,
-        avatar_url, // eslint-disable-line camelcase
-        html_url, // eslint-disable-line camelcase
-        type,
-      }));
+      .map(({ committer }) => committer);
     return contributors;
   };
 

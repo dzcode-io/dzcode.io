@@ -1,8 +1,8 @@
 import { Controller, Get, Param } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
-import { GithubUser } from "src/app/types/legacy";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
+import { GithubUser } from "src/github/types";
 import { Service } from "typedi";
 
 import { GetADocumentationResponseDto, GetDocumentationResponseDto } from "./types";
@@ -53,15 +53,15 @@ export class DocumentationController {
       }),
     );
 
-    const contributorsBatches = await Promise.all([
+    const committersBatches = await Promise.all([
       // current place for data:
-      this.githubService.listContributors({
+      this.githubService.listPathCommitters({
         owner: "dzcode-io",
         repository: "dzcode.io",
         path: `data/models/documentation/${slug}`,
       }),
       // also check old place for data, to not lose contribution effort:
-      this.githubService.listContributors({
+      this.githubService.listPathCommitters({
         owner: "dzcode-io",
         repository: "dzcode.io",
         path: `data/documentation/${slug}`,
@@ -71,8 +71,8 @@ export class DocumentationController {
     // filter and sort contributors:
     const uniqUsernames: Record<string, number> = {};
     const contributors: GetADocumentationResponseDto["documentation"]["contributors"] = [
-      ...contributorsBatches[0],
-      ...contributorsBatches[1],
+      ...committersBatches[0],
+      ...committersBatches[1],
     ]
       .reduce<GithubUser[]>((pV, cV) => {
         if (uniqUsernames[cV.login]) {
