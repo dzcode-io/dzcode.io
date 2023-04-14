@@ -5,6 +5,7 @@ import { GetMilestonesResponseDto } from "src/milestone/types";
 import { GetProjectsResponseDto } from "src/project/types";
 import { GetTeamResponseDto } from "src/team/types";
 
+// ts-prune-ignore-next
 export interface Endpoints {
   "api:Articles": {
     response: GetArticlesResponseDto;

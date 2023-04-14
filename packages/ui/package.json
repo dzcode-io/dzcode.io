@@ -62,7 +62,7 @@
     "lint:fix": "yarn build && yarn lint:fix:alone",
     "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
     "lint:prettier": "prettier  --config ../tooling/.prettierrc --ignore-path ../tooling/.prettierignore --loglevel warn",
-    "lint:ts-prune": "ts-prune --error || echo \"@TODO-ZM: enabled this\"",
+    "lint:ts-prune": "ts-node ../tooling/setup-ts-prune.ts && ts-prune --error || echo \"@TODO-ZM: enable ts-prune on /ui\"",
     "test": "yarn build && yarn test:alone",
     "test:alone": "jest --config ../tooling/jest.config.ts --rootDir . --env=jsdom",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
