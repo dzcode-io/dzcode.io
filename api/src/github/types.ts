@@ -1,24 +1,6 @@
 import { IsNumber } from "class-validator";
-import { GithubUser } from "src/app/types/legacy";
 
-export type ListContributorsResponse = Array<{
-  author: GithubUser;
-  committer: GithubUser;
-}>;
-
-export type ListRepositoryContributorsResponse = Array<GithubUser & { contributions: number }>;
-
-export interface GeneralGithubQuery {
-  owner: string;
-  repository: string;
-  path: string;
-}
-
-export interface GetUserInput {
-  username: string;
-}
-
-export interface GitHubUserApiResponse {
+export interface GithubUser {
   login: string;
   id: number;
   node_id: string;
@@ -53,14 +35,92 @@ export interface GitHubUserApiResponse {
   updated_at: string;
 }
 
+export interface GithubRepositoryContributor
+  extends Pick<
+    GithubUser,
+    | "login"
+    | "id"
+    | "node_id"
+    | "avatar_url"
+    | "gravatar_id"
+    | "url"
+    | "html_url"
+    | "followers_url"
+    | "following_url"
+    | "gists_url"
+    | "starred_url"
+    | "subscriptions_url"
+    | "organizations_url"
+    | "repos_url"
+    | "events_url"
+    | "received_events_url"
+    | "type"
+    | "site_admin"
+  > {
+  contributions: number;
+}
+
+export type ListPathCommittersResponse = Array<{
+  author: GithubUser;
+  committer: GithubUser;
+}>;
+
+export type ListRepositoryContributorsResponse = GithubRepositoryContributor[];
+
+export interface GeneralGithubQuery {
+  owner: string;
+  repository: string;
+  path: string;
+}
+
+export interface GetUserInput {
+  username: string;
+}
+
+export type GitHubUserApiResponse = GithubUser;
+
 export interface GitHubListRepositoryIssuesInput {
   owner: string;
   repository: string;
 }
 
+export interface GithubIssue {
+  html_url: string;
+  number: number;
+  title: string;
+  user: GithubUser;
+  body: string;
+  labels: Array<{
+    name: string;
+  }>;
+  state: "closed" | "open";
+  assignees: GithubUser[];
+  comments: number;
+  created_at: string;
+  updated_at: string;
+  closed_at: string | null;
+  pull_request?: {
+    html_url: string;
+  };
+}
+
 export type GitHubListRepositoryLanguagesInput = GitHubListRepositoryIssuesInput;
 
 export type GitHubListRepositoryMilestonesInput = GitHubListRepositoryIssuesInput;
+
+export interface GithubMilestone {
+  html_url: string;
+  number: number;
+  title: string;
+  description: string;
+  state: "closed" | "open";
+  open_issues: number;
+  closed_issues: number;
+  created_at: string;
+  updated_at: string;
+  closed_at: string | null;
+  due_on: string | null;
+}
 
 export interface GitHubRateLimitApiResponse {
   resources: {

@@ -1,11 +1,11 @@
 import { Model } from "@dzcode.io/models/dist/_base";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { AccountEntity } from "@dzcode.io/models/dist/account";
 import { Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
 import { GeneralResponseDto } from "src/app/types";
 
 export class GetTeamResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
-  @Type(() => ContributorEntity)
-  contributors!: Model<ContributorEntity, "repositories">[];
+  @Type(() => AccountEntity)
+  contributors!: Model<AccountEntity, "repositories">[];
 }

@@ -1,5 +1,5 @@
 import { Model } from "@dzcode.io/models/dist/_base";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { AccountEntity } from "@dzcode.io/models/dist/account";
 import { getRepositoryURL } from "@dzcode.io/models/dist/repository-reference/utils";
 import { FC } from "react";
 import { useTranslation } from "src/_hooks/use-translation";
@@ -16,7 +16,7 @@ type ContributorCard =
       local?: never;
     }
   | {
-      contributor: Model<ContributorEntity, "repositories">;
+      contributor: Model<AccountEntity, "repositories">;
       // @TODO-ZM: make local dynamic based on counts
       local: {
         repository: string;
@@ -63,6 +63,9 @@ export const ContributorCard: FC<ContributorCard> = ({ contributor, local }) => 
           <Image src={contributor.avatarUrl} width={100} height={100} />
           <Stack direction="vertical">
             <Text variant="v3" wordWrap="break-word">
+              {contributor.name}
+            </Text>
+            <Text variant="v2" wordWrap="break-word">
               {contributor.username}
             </Text>
             <Text variant="v1" wordWrap="break-word">

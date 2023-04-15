@@ -44,16 +44,14 @@ export class ProjectController {
                     repository,
                   }),
                 },
-                contributors: (
-                  await this.githubService.listRepositoryContributors({
-                    owner,
-                    repository,
-                  })
-                ).map((contributor) => ({
-                  id: `github/${contributor.id}`,
-                  username: contributor.login,
-                  avatarUrl: contributor.avatar_url,
-                })),
+                contributors: await Promise.all(
+                  (
+                    await this.githubService.listRepositoryContributors({ owner, repository })
+                  ).map(async ({ login }) => {
+                    const githubUser = await this.githubService.getUser({ username: login });
+                    return this.githubService.githubUserToAccountEntity(githubUser);
+                  }),
+                ),
               };
             }),
           ),

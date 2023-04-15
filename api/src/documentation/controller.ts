@@ -1,8 +1,8 @@
 import { Controller, Get, Param } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
-import { GithubUser } from "src/app/types/legacy";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
+import { GithubUser } from "src/github/types";
 import { Service } from "typedi";
 
 import { GetADocumentationResponseDto, GetDocumentationResponseDto } from "./types";
@@ -44,24 +44,19 @@ export class DocumentationController {
     const authors = await Promise.all(
       documentation.authors.map(async (author) => {
         const githubUser = await this.githubService.getUser({ username: author });
-        return {
-          id: `github/${githubUser.id}`,
-          name: githubUser.login,
-          link: githubUser.html_url,
-          image: githubUser.avatar_url,
-        };
+        return this.githubService.githubUserToAccountEntity(githubUser);
       }),
     );
 
-    const contributorsBatches = await Promise.all([
+    const committersBatches = await Promise.all([
       // current place for data:
-      this.githubService.listContributors({
+      this.githubService.listPathCommitters({
         owner: "dzcode-io",
         repository: "dzcode.io",
         path: `data/models/documentation/${slug}`,
       }),
       // also check old place for data, to not lose contribution effort:
-      this.githubService.listContributors({
+      this.githubService.listPathCommitters({
         owner: "dzcode-io",
         repository: "dzcode.io",
         path: `data/documentation/${slug}`,
@@ -71,8 +66,8 @@ export class DocumentationController {
     // filter and sort contributors:
     const uniqUsernames: Record<string, number> = {};
     const contributors: GetADocumentationResponseDto["documentation"]["contributors"] = [
-      ...contributorsBatches[0],
-      ...contributorsBatches[1],
+      ...committersBatches[0],
+      ...committersBatches[1],
     ]
       .reduce<GithubUser[]>((pV, cV) => {
         if (uniqUsernames[cV.login]) {
@@ -84,12 +79,7 @@ export class DocumentationController {
         }
       }, [])
       .sort((a, b) => uniqUsernames[b.login] - uniqUsernames[a.login])
-      .map((contributor) => ({
-        id: `github/${contributor.id}`,
-        name: contributor.login,
-        link: contributor.html_url,
-        image: contributor.avatar_url,
-      }))
+      .map((contributor) => this.githubService.githubUserToAccountEntity(contributor))
       .filter(({ id }) => !authors.find((author) => author.id === id));
 
     return {

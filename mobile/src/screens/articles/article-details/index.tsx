@@ -63,9 +63,9 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
                   <Text style={articleDetailsStyles.authorsText}>This article is written by</Text>
                   <View style={articleDetailsStyles.authorAvatars}>
                     {currentArticle.authors?.map((author) => (
-                      <TouchableOpacity key={author.id} onPress={() => openLink(author.link)}>
+                      <TouchableOpacity key={author.id} onPress={() => openLink(author.profileUrl)}>
                         <Image
-                          source={{ uri: author?.image }}
+                          source={{ uri: author?.avatarUrl }}
                           style={articleDetailsStyles.avatar}
                         />
                       </TouchableOpacity>
@@ -80,10 +80,10 @@ export const ArticleDetailsScreen: FC<ArticleDetailsScreenProps> = ({
                   {currentArticle.contributors?.map((contributor) => (
                     <TouchableOpacity
                       key={contributor.id}
-                      onPress={() => openLink(contributor.link)}
+                      onPress={() => openLink(contributor.profileUrl)}
                     >
                       <Image
-                        source={{ uri: contributor?.image }}
+                        source={{ uri: contributor?.avatarUrl }}
                         style={articleDetailsStyles.avatar}
                       />
                     </TouchableOpacity>

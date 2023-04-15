@@ -1,4 +1,5 @@
-import { GithubIssue, GithubMilestone, GithubUser } from "src/app/types/legacy";
+import { Model } from "@dzcode.io/models/dist/_base";
+import { AccountEntity } from "@dzcode.io/models/dist/account";
 import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
@@ -6,12 +7,15 @@ import { Service } from "typedi";
 import {
   GeneralGithubQuery,
   GetUserInput,
+  GithubIssue,
   GitHubListRepositoryIssuesInput,
   GitHubListRepositoryLanguagesInput,
   GitHubListRepositoryMilestonesInput,
+  GithubMilestone,
   GitHubRateLimitApiResponse,
+  GithubUser,
   GitHubUserApiResponse,
-  ListContributorsResponse,
+  ListPathCommittersResponse,
   ListRepositoryContributorsResponse,
 } from "./types";
 
@@ -22,12 +26,12 @@ export class GithubService {
     private readonly fetchService: FetchService,
   ) {}
 
-  public listContributors = async ({
+  public listPathCommitters = async ({
     owner,
     repository,
     path,
   }: GeneralGithubQuery): Promise<GithubUser[]> => {
-    const commits = await this.fetchService.get<ListContributorsResponse>(
+    const commits = await this.fetchService.get<ListPathCommittersResponse>(
       `${this.apiURL}/repos/${owner}/${repository}/commits`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
@@ -35,16 +39,10 @@ export class GithubService {
       },
     );
     const contributors = commits
+      // @TODO-ZM: dry to a user block-list
       // excluding github.com/web-flow user
       .filter((item) => item.committer && item.committer.id !== 19864447)
-      // eslint-disable-next-line camelcase
-      .map(({ committer: { login, avatar_url, html_url, type, id } }) => ({
-        id,
-        login,
-        avatar_url, // eslint-disable-line camelcase
-        html_url, // eslint-disable-line camelcase
-        type,
-      }));
+      .map(({ committer }) => committer);
     return contributors;
   };
 
@@ -133,6 +131,17 @@ export class GithubService {
     );
     return milestones;
   };
+
+  public githubUserToAccountEntity = (
+    user: Pick<GithubUser, "id" | "login" | "name" | "avatar_url" | "html_url">,
+  ): Model<AccountEntity> => ({
+    id: `github/${user.id}`,
+    username: user.login,
+    name: user.name || user.login,
+    // @TODO-ZM: change this to `/Account/github/${user.id}` once we have a /Accounts page
+    profileUrl: user.html_url,
+    avatarUrl: user.avatar_url,
+  });
 
   private githubToken = this.configService.env().GITHUB_TOKEN;
   private apiURL = "https://api.github.com";

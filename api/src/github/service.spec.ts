@@ -4,7 +4,7 @@ import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 
 import { GithubService } from "./service";
-import { GeneralGithubQuery, ListContributorsResponse } from "./types";
+import { GeneralGithubQuery, ListPathCommittersResponse } from "./types";
 
 describe("GithubService", () => {
   const githubQuery: GeneralGithubQuery = {
@@ -12,7 +12,7 @@ describe("GithubService", () => {
     repository: "test-repo",
     path: "test/path",
   };
-  const contributorsMock: ListContributorsResponse = [
+  const contributorsMock: ListPathCommittersResponse = [
     {
       author: githubUserMock,
       committer: githubUserMock,
@@ -34,7 +34,7 @@ describe("GithubService", () => {
     const githubService = new GithubService(configService, fetchService);
     let errorThrown: unknown;
     try {
-      await githubService.listContributors(githubQuery);
+      await githubService.listPathCommitters(githubQuery);
     } catch (error) {
       errorThrown = error;
     }
@@ -44,7 +44,7 @@ describe("GithubService", () => {
   it("should return list of contributors when api call succeed", async () => {
     fetchService.get.mockResolvedValue(contributorsMock);
     const githubService = new GithubService(configService, fetchService);
-    const contributors = await githubService.listContributors(githubQuery);
+    const contributors = await githubService.listPathCommitters(githubQuery);
 
     expect(contributors).toMatchObject([githubUserMock]);
   });

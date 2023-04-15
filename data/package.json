@@ -50,7 +50,7 @@
     "lint:fix": "yarn build && yarn lint:fix:alone",
     "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
-    "lint:ts-prune": "ts-prune --error",
+    "lint:ts-prune": "ts-node ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",
     "test": "jest src",
     "test:cov": "jest src --coverage",

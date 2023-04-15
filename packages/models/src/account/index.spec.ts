@@ -5,10 +5,13 @@ import { AccountEntity } from ".";
 runDTOTestCases(
   AccountEntity,
   {
-    link: "https://github.com/ZibanPirate",
-    id: "20110076",
+    id: "github/20110076",
+    username: "ZibanPirate",
     name: "Zakaria Mansouri",
-    image: "https://api.github.com/users/ZibanPirate.png",
+    profileUrl: "/Account/github/20110076",
+    avatarUrl: "https://avatars.githubusercontent.com/u/20110076?v=4",
   },
-  {},
+  {
+    repositories: [],
+  },
 );

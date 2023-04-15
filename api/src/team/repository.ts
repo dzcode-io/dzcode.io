@@ -1,8 +1,9 @@
 import { Model } from "@dzcode.io/models/dist/_base";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { AccountEntity } from "@dzcode.io/models/dist/account";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
+import { GithubRepositoryContributor } from "src/github/types";
 import { Service } from "typedi";
 
 @Service()
@@ -12,7 +13,7 @@ export class TeamRepository {
     private readonly dataService: DataService,
   ) {}
 
-  public async find(): Promise<Model<ContributorEntity, "repositories">[]> {
+  public async find(): Promise<Model<AccountEntity, "repositories">[]> {
     const projects = await this.dataService.listProjects();
 
     // flatten repositories into one array
@@ -21,56 +22,70 @@ export class TeamRepository {
       [],
     );
 
-    // we first store them in a Record (object with id as keys) so we can uniquify them easily
-    const contributorsRecord: Record<
+    // we first store them in a Record (object with id as keys) so we can uniquify and rank them
+    const contributorsUsernameRankedRecord: Record<
       string,
-      Model<ContributorEntity, "repositories"> & { contributions: number }
+      Pick<
+        GithubRepositoryContributor & Model<AccountEntity, "repositories">,
+        "login" | "contributions" | "repositories"
+      >
     > = {};
 
     // get contributors from all the repos we have
     await Promise.all(
       repositories.map(async ({ provider, owner, repository }) => {
-        const committers = await this.githubService.listRepositoryContributors({
-          owner,
-          repository,
-        });
-        committers.forEach(({ avatar_url: avatarUrl, id, login, contributions }) => {
-          const uuid = `${provider}/${id}`;
-          // add new contributor if doesn't exists
-          if (!contributorsRecord[uuid]) {
-            contributorsRecord[`${provider}/${id}`] = {
-              id: `${provider}/${id}`,
-              avatarUrl,
-              username: login,
-              repositories: [{ provider, owner, repository }],
-              contributions,
-            };
-          } else {
-            // if exists, increment commit counts
-            contributorsRecord[uuid].contributions += contributions;
-            // add repository if doesn't exists
-            if (
-              !contributorsRecord[uuid].repositories.some(
-                (r) => r.provider === provider && r.owner === owner && r.repository === repository,
-              )
-            ) {
-              contributorsRecord[uuid].repositories.push({
+        if (provider === "github") {
+          const contributors = await this.githubService.listRepositoryContributors({
+            owner,
+            repository,
+          });
+          contributors.forEach((contributor) => {
+            const uuid = this.githubService.githubUserToAccountEntity({
+              ...contributor,
+              name: "",
+            }).id;
+            const { login, contributions } = contributor;
+            // contributor first time appearing in the list
+            if (!contributorsUsernameRankedRecord[uuid]) {
+              contributorsUsernameRankedRecord[uuid] = {
+                login,
+                contributions,
+                repositories: [{ provider, owner, repository }],
+              };
+            } else {
+              // contributor already exists in the list, and is a contributor to another repository
+              // - so we count additional contributions:
+              contributorsUsernameRankedRecord[uuid].contributions += contributor.contributions;
+              // - and add the other repository to the list of repositories he contributed to
+              contributorsUsernameRankedRecord[uuid].repositories.push({
                 provider,
                 owner,
                 repository,
               });
             }
-          }
-        });
+          });
+        } else throw new Error(`Provider ${provider} is not supported yet`);
       }),
     );
 
-    return Object.keys(contributorsRecord)
-      .sort((a, b) => contributorsRecord[b].contributions - contributorsRecord[a].contributions) // sort contributors by their commits count
-      .map((id) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { contributions, ...contributor } = contributorsRecord[id];
-        return contributor;
-      });
+    const contributors: Model<AccountEntity, "repositories">[] = await Promise.all(
+      Object.keys(contributorsUsernameRankedRecord)
+        // sort contributors by their commits count
+        .sort(
+          (a, b) =>
+            contributorsUsernameRankedRecord[b].contributions -
+            contributorsUsernameRankedRecord[a].contributions,
+        )
+        // get the github user data for each contributor
+        .map(async (uuid) => {
+          const { repositories, login } = contributorsUsernameRankedRecord[uuid];
+          const githubUser = await this.githubService.getUser({ username: login });
+          const account = this.githubService.githubUserToAccountEntity(githubUser);
+
+          return { ...account, repositories };
+        }),
+    );
+
+    return contributors;
   }
 }

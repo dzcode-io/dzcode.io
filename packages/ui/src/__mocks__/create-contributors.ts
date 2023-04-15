@@ -1,13 +1,14 @@
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
-import { v4 as uuid } from "uuid";
+import { AccountEntity } from "@dzcode.io/models/dist/account";
 
 export const createContributors = (number: number) => {
-  const contributors: ContributorEntity[] = [];
+  const contributors: AccountEntity[] = [];
   for (let i = 0; i < number; i++) {
     contributors.push({
-      id: uuid(),
-      avatarUrl: `mock-avatar-${i}`,
+      id: `github/${i}`,
       username: `mock-user-${i}`,
+      name: `mock-name-${i}`,
+      profileUrl: `mock-profile-${i}`,
+      avatarUrl: `mock-avatar-${i}`,
       repositories: [
         {
           owner: `user-${i}`,

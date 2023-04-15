@@ -1,25 +1,37 @@
-import { GithubUser } from "src/app/types/legacy";
+/* eslint-disable camelcase */
+import { GithubUser } from "src/github/types";
 
 export const githubUserMock: GithubUser = {
-  avatar_url: "avatar_url", // eslint-disable-line camelcase
-  html_url: "html_url", // eslint-disable-line camelcase
-  id: 1,
-  login: "login",
-  type: "type",
-};
-
-export const githubUserMock2: GithubUser = {
-  avatar_url: "avatar_url2", // eslint-disable-line camelcase
-  html_url: "html_url2", // eslint-disable-line camelcase
-  id: 2,
-  login: "login2",
-  type: "type2",
-};
-
-export const githubUserMock3: GithubUser = {
-  avatar_url: "avatar_url3", // eslint-disable-line camelcase
-  html_url: "html_url3", // eslint-disable-line camelcase
-  id: 3,
-  login: "login3",
-  type: "type3",
+  login: "ZibanPirate",
+  id: 20110076,
+  node_id: "MDQ6VXNlcjIwMTEwMDc2",
+  avatar_url: "https://avatars.githubusercontent.com/u/20110076?v=4",
+  gravatar_id: "",
+  url: "https://api.github.com/users/ZibanPirate",
+  html_url: "https://github.com/ZibanPirate",
+  followers_url: "https://api.github.com/users/ZibanPirate/followers",
+  following_url: "https://api.github.com/users/ZibanPirate/following{/other_user}",
+  gists_url: "https://api.github.com/users/ZibanPirate/gists{/gist_id}",
+  starred_url: "https://api.github.com/users/ZibanPirate/starred{/owner}{/repo}",
+  subscriptions_url: "https://api.github.com/users/ZibanPirate/subscriptions",
+  organizations_url: "https://api.github.com/users/ZibanPirate/orgs",
+  repos_url: "https://api.github.com/users/ZibanPirate/repos",
+  events_url: "https://api.github.com/users/ZibanPirate/events{/privacy}",
+  received_events_url: "https://api.github.com/users/ZibanPirate/received_events",
+  type: "User",
+  site_admin: false,
+  name: "Zakaria Mansouri",
+  company: "@dzcode-io @avimedical",
+  blog: "zak.dzcode.io",
+  location: "Algeria",
+  email: "",
+  hireable: true,
+  bio: "One-man-army lone programmer",
+  twitter_username: "ZibanPirate",
+  public_repos: 18,
+  public_gists: 2,
+  followers: 130,
+  following: 92,
+  created_at: "2016-06-23T12:41:14Z",
+  updated_at: "2023-04-10T21:31:26Z",
 };
