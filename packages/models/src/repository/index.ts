@@ -1,8 +1,8 @@
 import { Type } from "class-transformer";
 import { IsIn, IsNumber, IsString, ValidateNested } from "class-validator";
 import { BaseEntity, Model } from "src/_base";
+import { AccountEntity } from "src/account";
 import { ContributionEntity } from "src/contribution";
-import { ContributorEntity } from "src/contributor";
 
 export class RepositoryStatsEntity extends BaseEntity {
   @IsNumber()
@@ -28,10 +28,9 @@ export class RepositoryEntity extends BaseEntity {
   @Type(() => RepositoryStatsEntity)
   stats?: Model<RepositoryStatsEntity>;
 
-  // @TODO-ZM: use AccountEntity instead of ContributorEntity
   @ValidateNested({ each: true })
-  @Type(() => ContributorEntity)
-  contributors?: Model<ContributorEntity>[];
+  @Type(() => AccountEntity)
+  contributors?: Model<AccountEntity>[];
 
   @ValidateNested({ each: true })
   @Type(() => ContributionEntity)

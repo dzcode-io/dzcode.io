@@ -36,9 +36,7 @@
     "@types/markdown-to-jsx": "^6.11.3",
     "@types/react-router-dom": "^5.1.6",
     "@types/react-syntax-highlighter": "^13.5.0",
-    "@types/stylis": "^4.0.2",
-    "@types/uuid": "^8.3.3",
-    "uuid": "^3.4.0"
+    "@types/stylis": "^4.0.2"
   },
   "license": "MIT",
   "lint-staged": {

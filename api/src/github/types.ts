@@ -35,12 +35,37 @@ export interface GithubUser {
   updated_at: string;
 }
 
+export interface GithubRepositoryContributor
+  extends Pick<
+    GithubUser,
+    | "login"
+    | "id"
+    | "node_id"
+    | "avatar_url"
+    | "gravatar_id"
+    | "url"
+    | "html_url"
+    | "followers_url"
+    | "following_url"
+    | "gists_url"
+    | "starred_url"
+    | "subscriptions_url"
+    | "organizations_url"
+    | "repos_url"
+    | "events_url"
+    | "received_events_url"
+    | "type"
+    | "site_admin"
+  > {
+  contributions: number;
+}
+
 export type ListPathCommittersResponse = Array<{
   author: GithubUser;
   committer: GithubUser;
 }>;
 
-export type ListRepositoryContributorsResponse = Array<GithubUser & { contributions: number }>;
+export type ListRepositoryContributorsResponse = GithubRepositoryContributor[];
 
 export interface GeneralGithubQuery {
   owner: string;

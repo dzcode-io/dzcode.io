@@ -1,3 +1,5 @@
+import { Model } from "@dzcode.io/models/dist/_base";
+import { AccountEntity } from "@dzcode.io/models/dist/account";
 import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
@@ -129,6 +131,17 @@ export class GithubService {
     );
     return milestones;
   };
+
+  public githubUserToAccountEntity = (
+    user: Pick<GithubUser, "id" | "login" | "name" | "avatar_url" | "html_url">,
+  ): Model<AccountEntity> => ({
+    id: `github/${user.id}`,
+    username: user.login,
+    name: user.name || user.login,
+    // @TODO-ZM: change this to `/Account/github/${user.id}` once we have a /Accounts page
+    profileUrl: user.html_url,
+    avatarUrl: user.avatar_url,
+  });
 
   private githubToken = this.configService.env().GITHUB_TOKEN;
   private apiURL = "https://api.github.com";

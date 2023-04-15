@@ -4,10 +4,12 @@ exports[`should match snapshot when providing all fields: errors 1`] = `[]`;
 
 exports[`should match snapshot when providing all fields: output 1`] = `
 AccountEntity {
-  "id": "20110076",
-  "image": "https://api.github.com/users/ZibanPirate.png",
-  "link": "https://github.com/ZibanPirate",
+  "avatarUrl": "https://avatars.githubusercontent.com/u/20110076?v=4",
+  "id": "github/20110076",
   "name": "Zakaria Mansouri",
+  "profileUrl": "/Account/github/20110076",
+  "repositories": [],
+  "username": "ZibanPirate",
 }
 `;
 
@@ -15,10 +17,11 @@ exports[`should match snapshot when providing required fields only: errors 1`] =
 
 exports[`should match snapshot when providing required fields only: output 1`] = `
 AccountEntity {
-  "id": "20110076",
-  "image": "https://api.github.com/users/ZibanPirate.png",
-  "link": "https://github.com/ZibanPirate",
+  "avatarUrl": "https://avatars.githubusercontent.com/u/20110076?v=4",
+  "id": "github/20110076",
   "name": "Zakaria Mansouri",
+  "profileUrl": "/Account/github/20110076",
+  "username": "ZibanPirate",
 }
 `;
 
@@ -36,6 +39,15 @@ exports[`should show an error that matches snapshot when passing empty object: e
   ValidationError {
     "children": [],
     "constraints": {
+      "isString": "username must be a string",
+    },
+    "property": "username",
+    "target": AccountEntity {},
+    "value": undefined,
+  },
+  ValidationError {
+    "children": [],
+    "constraints": {
       "isString": "name must be a string",
     },
     "property": "name",
@@ -45,18 +57,18 @@ exports[`should show an error that matches snapshot when passing empty object: e
   ValidationError {
     "children": [],
     "constraints": {
-      "isUrl": "link must be an URL address",
+      "isUrl": "profileUrl must be an URL address",
     },
-    "property": "link",
+    "property": "profileUrl",
     "target": AccountEntity {},
     "value": undefined,
   },
   ValidationError {
     "children": [],
     "constraints": {
-      "isUrl": "image must be an URL address",
+      "isUrl": "avatarUrl must be an URL address",
     },
-    "property": "image",
+    "property": "avatarUrl",
     "target": AccountEntity {},
     "value": undefined,
   },

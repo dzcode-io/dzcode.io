@@ -44,12 +44,7 @@ export class DocumentationController {
     const authors = await Promise.all(
       documentation.authors.map(async (author) => {
         const githubUser = await this.githubService.getUser({ username: author });
-        return {
-          id: `github/${githubUser.id}`,
-          name: githubUser.login,
-          link: githubUser.html_url,
-          image: githubUser.avatar_url,
-        };
+        return this.githubService.githubUserToAccountEntity(githubUser);
       }),
     );
 
@@ -84,12 +79,7 @@ export class DocumentationController {
         }
       }, [])
       .sort((a, b) => uniqUsernames[b.login] - uniqUsernames[a.login])
-      .map((contributor) => ({
-        id: `github/${contributor.id}`,
-        name: contributor.login,
-        link: contributor.html_url,
-        image: contributor.avatar_url,
-      }))
+      .map((contributor) => this.githubService.githubUserToAccountEntity(contributor))
       .filter(({ id }) => !authors.find((author) => author.id === id));
 
     return {

@@ -1,3 +1,5 @@
+import { Model } from "@dzcode.io/models/dist/_base";
+import { AccountEntity } from "@dzcode.io/models/dist/account";
 import { Skeleton } from "@mui/material";
 import { FC } from "react";
 import { Divider } from "src/divider";
@@ -7,19 +9,17 @@ import { Markdown } from "src/markdown";
 import { Stack, StackProps } from "src/stack";
 import { Text } from "src/text";
 
-export interface ArticleAuthor {
-  name: string;
-  link: string;
-  image: string;
-}
-
+export type MinimumAccountInfo = Pick<
+  Model<AccountEntity>,
+  "id" | "name" | "username" | "profileUrl" | "avatarUrl"
+>;
 export interface ArticleProps extends Pick<StackProps, "margin"> {
   article: {
     image: string;
     title: string;
     content: string;
-    authors: ArticleAuthor[];
-    contributors: ArticleAuthor[];
+    authors: MinimumAccountInfo[];
+    contributors: MinimumAccountInfo[];
   } | null;
   authorsText: string;
   contributorsText: string;
@@ -44,8 +44,8 @@ export const Article: FC<ArticleProps> = ({ article, authorsText, contributorsTe
           </Text>
           <Stack direction="horizontal" gap={3}>
             {article.authors.map((author, index) => (
-              <Link key={`author-${index}`} href={author.link} variant="v2">
-                <Image key={`author-${index}`} width={48} src={author.image} />
+              <Link key={`author-${index}`} href={author.profileUrl} variant="v2">
+                <Image key={`author-${index}`} width={48} src={author.avatarUrl} />
               </Link>
             ))}
           </Stack>
@@ -58,8 +58,8 @@ export const Article: FC<ArticleProps> = ({ article, authorsText, contributorsTe
           </Text>
           <Stack direction="horizontal" gap={3}>
             {article.contributors.map((contributor, index) => (
-              <Link key={`contributor-${index}`} href={contributor.link} variant="v2">
-                <Image width={48} src={contributor.image} />
+              <Link key={`contributor-${index}`} href={contributor.profileUrl} variant="v2">
+                <Image width={48} src={contributor.avatarUrl} />
               </Link>
             ))}
           </Stack>

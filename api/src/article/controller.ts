@@ -42,16 +42,11 @@ export class ArticleController {
     const authors = await Promise.all(
       article.authors.map(async (author) => {
         const githubUser = await this.githubService.getUser({ username: author });
-        return {
-          id: `github/${githubUser.id}`,
-          name: githubUser.login,
-          link: githubUser.html_url,
-          image: githubUser.avatar_url,
-        };
+        return this.githubService.githubUserToAccountEntity(githubUser);
       }),
     );
 
-    const contributorsBatches = await Promise.all([
+    const committersBatches = await Promise.all([
       // current place for data:
       this.githubService.listPathCommitters({
         owner: "dzcode-io",
@@ -69,8 +64,8 @@ export class ArticleController {
     // filter and sort contributors:
     const uniqUsernames: Record<string, number> = {};
     const contributors: GetArticleResponseDto["article"]["contributors"] = [
-      ...contributorsBatches[0],
-      ...contributorsBatches[1],
+      ...committersBatches[0],
+      ...committersBatches[1],
     ]
       .reduce<GithubUser[]>((pV, cV) => {
         if (uniqUsernames[cV.login]) {
@@ -82,12 +77,7 @@ export class ArticleController {
         }
       }, [])
       .sort((a, b) => uniqUsernames[b.login] - uniqUsernames[a.login])
-      .map((contributor) => ({
-        id: `github/${contributor.id}`,
-        name: contributor.login,
-        link: contributor.html_url,
-        image: contributor.avatar_url,
-      }))
+      .map((committer) => this.githubService.githubUserToAccountEntity(committer))
       .filter(({ id }) => !authors.find((author) => author.id === id));
 
     return {
