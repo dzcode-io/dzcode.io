@@ -2,6 +2,7 @@ import { Controller, Get } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
+import { LoggerService } from "src/logger/service";
 import { Service } from "typedi";
 
 import { GetProjectsResponseDto } from "./types";
@@ -12,6 +13,7 @@ export class ProjectController {
   constructor(
     private readonly githubService: GithubService,
     private readonly dataService: DataService,
+    private readonly loggerService: LoggerService,
   ) {}
 
   @Get("/")
@@ -31,14 +33,23 @@ export class ProjectController {
           ...project,
           repositories: await Promise.all(
             repositories.map(async ({ provider, owner, repository }) => {
+              let contributionCount = 0;
+              try {
+                contributionCount = (
+                  await this.githubService.listRepositoryIssues({ owner, repository })
+                ).length;
+              } catch (error) {
+                this.loggerService.warn({
+                  message: `Failed to fetch contributionCount for ${owner}/${repository}: ${error}`,
+                  meta: { owner, repository },
+                });
+              }
               return {
                 provider,
                 owner,
                 repository,
                 stats: {
-                  contributionCount: (
-                    await this.githubService.listRepositoryIssues({ owner, repository })
-                  ).length,
+                  contributionCount,
                   languages: await this.githubService.listRepositoryLanguages({
                     owner,
                     repository,

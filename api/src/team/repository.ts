@@ -4,6 +4,7 @@ import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { GithubRepositoryContributor } from "src/github/types";
+import { LoggerService } from "src/logger/service";
 import { Service } from "typedi";
 
 @Service()
@@ -11,6 +12,7 @@ export class TeamRepository {
   constructor(
     private readonly githubService: GithubService,
     private readonly dataService: DataService,
+    private readonly loggerService: LoggerService,
   ) {}
 
   public async find(): Promise<Model<AccountEntity, "repositories">[]> {
@@ -35,35 +37,42 @@ export class TeamRepository {
     await Promise.all(
       repositories.map(async ({ provider, owner, repository }) => {
         if (provider === "github") {
-          const contributors = await this.githubService.listRepositoryContributors({
-            owner,
-            repository,
-          });
-          contributors.forEach((contributor) => {
-            const uuid = this.githubService.githubUserToAccountEntity({
-              ...contributor,
-              name: "",
-            }).id;
-            const { login, contributions } = contributor;
-            // contributor first time appearing in the list
-            if (!contributorsUsernameRankedRecord[uuid]) {
-              contributorsUsernameRankedRecord[uuid] = {
-                login,
-                contributions,
-                repositories: [{ provider, owner, repository }],
-              };
-            } else {
-              // contributor already exists in the list, and is a contributor to another repository
-              // - so we count additional contributions:
-              contributorsUsernameRankedRecord[uuid].contributions += contributor.contributions;
-              // - and add the other repository to the list of repositories he contributed to
-              contributorsUsernameRankedRecord[uuid].repositories.push({
-                provider,
-                owner,
-                repository,
-              });
-            }
-          });
+          try {
+            const contributors = await this.githubService.listRepositoryContributors({
+              owner,
+              repository,
+            });
+            contributors.forEach((contributor) => {
+              const uuid = this.githubService.githubUserToAccountEntity({
+                ...contributor,
+                name: "",
+              }).id;
+              const { login, contributions } = contributor;
+              // contributor first time appearing in the list
+              if (!contributorsUsernameRankedRecord[uuid]) {
+                contributorsUsernameRankedRecord[uuid] = {
+                  login,
+                  contributions,
+                  repositories: [{ provider, owner, repository }],
+                };
+              } else {
+                // contributor already exists in the list, and is a contributor to another repository
+                // - so we count additional contributions:
+                contributorsUsernameRankedRecord[uuid].contributions += contributor.contributions;
+                // - and add the other repository to the list of repositories he contributed to
+                contributorsUsernameRankedRecord[uuid].repositories.push({
+                  provider,
+                  owner,
+                  repository,
+                });
+              }
+            });
+          } catch (error) {
+            this.loggerService.warn({
+              message: `Failed to fetch contributors for ${owner}/${repository}: ${error}`,
+              meta: { owner, repository },
+            });
+          }
         } else throw new Error(`Provider ${provider} is not supported yet`);
       }),
     );

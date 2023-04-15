@@ -2,6 +2,7 @@ import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
+import { LoggerService } from "src/logger/service";
 import { Service } from "typedi";
 
 import { allFilterNames, FilterDto, GetContributionsResponseDto, OptionDto } from "./types";
@@ -11,6 +12,7 @@ export class ContributionRepository {
   constructor(
     private readonly githubService: GithubService,
     private readonly dataService: DataService,
+    private readonly loggerService: LoggerService,
   ) {}
 
   public async find(
@@ -26,43 +28,51 @@ export class ContributionRepository {
             ...repositories
               .filter(({ provider }) => provider === "github")
               .map(async ({ owner, repository }) => {
-                const issuesIncludingPRs = await this.githubService.listRepositoryIssues({
-                  owner,
-                  repository,
-                });
+                try {
+                  const issuesIncludingPRs = await this.githubService.listRepositoryIssues({
+                    owner,
+                    repository,
+                  });
 
-                const languages = await this.githubService.listRepositoryLanguages({
-                  owner,
-                  repository,
-                });
-                // @TODO-ZM: filter out the ones created by bots
-                return issuesIncludingPRs.map<Model<ContributionEntity, "project">>(
-                  ({
-                    number,
-                    labels: gLabels,
-                    title,
-                    html_url, // eslint-disable-line camelcase
-                    pull_request, // eslint-disable-line camelcase
-                    created_at, // eslint-disable-line camelcase
-                    updated_at, // eslint-disable-line camelcase
-                    comments,
-                  }) => ({
-                    id: `${number}`,
-                    labels: gLabels.map(({ name }) => name),
-                    languages,
-                    project: {
-                      slug,
-                      name,
-                    },
-                    title,
-                    type: pull_request ? "pullRequest" : "issue", // eslint-disable-line camelcase
-                    url: html_url, // eslint-disable-line camelcase
-                    createdAt: created_at, // eslint-disable-line camelcase
-                    updatedAt: updated_at, // eslint-disable-line camelcase
-                    commentsCount: comments,
-                    /* eslint-enable camelcase */
-                  }),
-                );
+                  const languages = await this.githubService.listRepositoryLanguages({
+                    owner,
+                    repository,
+                  });
+                  // @TODO-ZM: filter out the ones created by bots
+                  return issuesIncludingPRs.map<Model<ContributionEntity, "project">>(
+                    ({
+                      number,
+                      labels: gLabels,
+                      title,
+                      html_url, // eslint-disable-line camelcase
+                      pull_request, // eslint-disable-line camelcase
+                      created_at, // eslint-disable-line camelcase
+                      updated_at, // eslint-disable-line camelcase
+                      comments,
+                    }) => ({
+                      id: `${number}`,
+                      labels: gLabels.map(({ name }) => name),
+                      languages,
+                      project: {
+                        slug,
+                        name,
+                      },
+                      title,
+                      type: pull_request ? "pullRequest" : "issue", // eslint-disable-line camelcase
+                      url: html_url, // eslint-disable-line camelcase
+                      createdAt: created_at, // eslint-disable-line camelcase
+                      updatedAt: updated_at, // eslint-disable-line camelcase
+                      commentsCount: comments,
+                      /* eslint-enable camelcase */
+                    }),
+                  );
+                } catch (error) {
+                  this.loggerService.warn({
+                    message: `Failed to fetch contributions for ${owner}/${repository}: ${error}`,
+                    meta: { owner, repository },
+                  });
+                  return [];
+                }
               }),
           ],
           [],
