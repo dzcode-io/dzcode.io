@@ -31,3 +31,4 @@ nodemon.json
 *.eslintignore
 *.ttf
 *.ts-prunerc
+*.patch
