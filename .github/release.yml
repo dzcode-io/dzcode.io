@@ -4,18 +4,6 @@ changelog:
       labels:
         - feature
 
-    - title: Projects 🚀
-      labels:
-        - project
-
-    - title: Articles 📰
-      labels:
-        - article
-
-    - title: Documentation 📜
-      labels:
-        - documentation
-
     - title: Breaking Changes 🚨
       labels:
         - breaking-change
@@ -29,6 +17,19 @@ changelog:
         - bug
         - bug-fix
         - bugfix
+        - fix
+
+    - title: Projects 🚀
+      labels:
+        - project
+
+    - title: Articles 📰
+      labels:
+        - article
+
+    - title: Documentation 📜
+      labels:
+        - documentation
 
     - title: Other Changes
       labels:
