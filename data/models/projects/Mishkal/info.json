@@ -1,10 +1,10 @@
 {
-  "name": "List to Tree",
+  "name": "Mishkal",
   "repositories": [
     {
       "provider": "github",
-      "owner": "ZibanPirate",
-      "repository": "l2t"
+      "owner": "linuxscout",
+      "repository": "mishkal"
     }
   ]
 }

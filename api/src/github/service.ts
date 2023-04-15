@@ -66,8 +66,6 @@ export class GithubService {
       },
     );
 
-    // @TODO-ZM: validate responses using DTOs, for all fetchService methods
-    if (!Array.isArray(issues)) return [];
     return issues;
   };
 

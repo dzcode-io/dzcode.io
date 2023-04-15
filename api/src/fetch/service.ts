@@ -15,6 +15,7 @@ export class FetchService {
     });
   }
 
+  // @TODO-ZM: using DTO, validate response and DRY the types
   public get = async <T = unknown>(
     url: string,
     { params = {}, headers = {} }: FetchConfig = {},
