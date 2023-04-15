@@ -7,10 +7,8 @@ import { createExpressServer, RoutingControllersOptions, useContainer } from "ro
 import { ArticleController } from "src/article/controller";
 import { ConfigService } from "src/config/service";
 import { ContributionController } from "src/contribution/controller";
-import { ContributorController } from "src/contributor/controller";
 import { DocumentationController } from "src/documentation/controller";
 import { GithubController } from "src/github/controller";
-import { GithubUserController } from "src/github-user/controller";
 import { LoggerService } from "src/logger/service";
 import { MilestoneController } from "src/milestone/controller";
 import { ProjectController } from "src/project/controller";
@@ -44,8 +42,6 @@ if (NODE_ENV !== "development") {
 export const routingControllersOptions: RoutingControllersOptions = {
   controllers: [
     ContributionController,
-    ContributorController,
-    GithubUserController,
     TeamController,
     GithubController,
     MilestoneController,
