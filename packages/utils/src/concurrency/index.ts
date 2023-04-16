@@ -6,7 +6,7 @@ interface QueueObject {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const lock = <T extends (...args: any) => Promise<any>>(func: T): T => {
+export const lockFactory = <T extends (...args: any) => Promise<any>>(func: T): T => {
   const queue: Record<string, QueueObject> = {};
   let timer: NodeJS.Timer | null = null;
 
@@ -63,7 +63,6 @@ export const lock = <T extends (...args: any) => Promise<any>>(func: T): T => {
         callbacks[index](undefined, error);
       }
     }
-    delete queue[queueKeys[0]];
   };
 
   return lockedFunction as T;

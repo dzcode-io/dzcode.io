@@ -1,4 +1,4 @@
-import { lock } from "@dzcode.io/utils/dist/concurrency";
+import { lockFactory } from "@dzcode.io/utils/dist/concurrency";
 import { defaults } from "make-fetch-happen";
 import { ConfigService } from "src/config/service";
 import { Service } from "typedi";
@@ -28,9 +28,11 @@ export class FetchService {
   };
 
   private makeFetchHappenInstance;
-  private fetch = lock(async <T>(url: string, { headers }: Omit<FetchConfig, "params"> = {}) => {
-    const response = await this.makeFetchHappenInstance(url, { headers });
-    const jsonResponse = (await response.json()) as T;
-    return jsonResponse;
-  });
+  private fetch = lockFactory(
+    async <T>(url: string, { headers }: Omit<FetchConfig, "params"> = {}) => {
+      const response = await this.makeFetchHappenInstance(url, { headers });
+      const jsonResponse = (await response.json()) as T;
+      return jsonResponse;
+    },
+  );
 }
