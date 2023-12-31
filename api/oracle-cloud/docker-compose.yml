@@ -6,6 +6,6 @@ services:
     ports:
       - "80:7070"
     env_file:
-      - ~/app-env/api.env
+      - /home/opc/app-env/api.env
     volumes:
-      - /home/${USER}/app-data/api/fetch_cache:/usr/src/repo/api/fetch_cache
+      - /home/opc/app-data/api/fetch_cache:/usr/src/repo/api/fetch_cache
