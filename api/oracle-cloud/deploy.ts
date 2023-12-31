@@ -43,21 +43,23 @@ console.log("⚙️  Deploying to", isProduction ? "Production" : "Staging", "..
 
 let logs: Buffer;
 const sshServer = isProduction ? process.env.SSH_ADDRESS_PRD : process.env.SSH_ADDRESS_STG;
+const sshKeyPath = process.env.SSH_PATH;
 const appPath = "~/app";
-const sshPrefix = "ssh -o StrictHostKeyChecking=no " + sshServer + " ";
+const sshPrefix =
+  "ssh -o StrictHostKeyChecking=no " + (sshKeyPath ? `-i ${sshKeyPath} ` : "") + sshServer + " ";
 
 // Check for existing containers
-logs = execSync(sshPrefix + '"docker ps -aq"');
+logs = execSync(sshPrefix + '"sudo docker ps -aq"');
 
 if (String(logs)) {
   // stop containers
   console.log("⚠️  Stopping all containers ...");
-  logs = execSync(sshPrefix + '"docker stop \\$(docker ps -aq)"');
+  logs = execSync(sshPrefix + '"sudo docker stop \\$(sudo docker ps -aq)"');
   console.log(String(logs));
 
   // delete containers
   console.log("⚠️  Deleting all containers ...");
-  logs = execSync(sshPrefix + '"docker rm \\$(docker ps -aq)"');
+  logs = execSync(sshPrefix + '"sudo docker rm \\$(sudo docker ps -aq)"');
   console.log(String(logs));
   console.log("✅ All containers stopped");
 } else {
@@ -69,10 +71,19 @@ logs = execSync(sshPrefix + '"rm -f -r ' + appPath + '"');
 logs = execSync(sshPrefix + '"mkdir ' + appPath + '"');
 
 console.log("⤴️  Uploading new code ...");
-logs = execSync("rsync -r oracle-cloud/build/* " + sshServer + ":" + appPath);
+logs = execSync(
+  "rsync " +
+    (sshKeyPath ? `-e "ssh -i ${sshKeyPath}" ` : "") +
+    " -r oracle-cloud/build/* " +
+    sshServer +
+    ":" +
+    appPath,
+);
 console.log("✅ New code uploaded.");
 
 console.log("\n⚙️  Starting up the app");
-logs = execSync(sshPrefix + '"docker-compose -f ' + appPath + '/docker-compose.yml up -d --build"');
+logs = execSync(
+  sshPrefix + '"sudo docker-compose -f ' + appPath + '/docker-compose.yml up -d --build"',
+);
 console.log(String(logs));
 console.log("✅ Deployment successful.");
