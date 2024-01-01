@@ -6,6 +6,13 @@ exports[`should match snapshot when providing all fields: output 1`] = `
 ContributionEntity {
   "commentsCount": 0,
   "createdAt": "2020-02-02T20:22:02.000Z",
+  "createdBy": AccountEntity {
+    "avatarUrl": "https://avatars.githubusercontent.com/u/20110076?v=4",
+    "id": "github/20110076",
+    "name": "Zakaria Mansouri",
+    "profileUrl": "/Account/github/20110076",
+    "username": "ZibanPirate",
+  },
   "id": "71",
   "labels": [
     "discussion",
@@ -32,6 +39,13 @@ exports[`should match snapshot when providing required fields only: output 1`] =
 ContributionEntity {
   "commentsCount": 0,
   "createdAt": "2020-02-02T20:22:02.000Z",
+  "createdBy": AccountEntity {
+    "avatarUrl": "https://avatars.githubusercontent.com/u/20110076?v=4",
+    "id": "github/20110076",
+    "name": "Zakaria Mansouri",
+    "profileUrl": "/Account/github/20110076",
+    "username": "ZibanPirate",
+  },
   "id": "71",
   "labels": [
     "discussion",
