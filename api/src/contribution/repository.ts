@@ -22,7 +22,7 @@ export class ContributionRepository {
 
     let contributions = (
       await Promise.all(
-        projects.reduce<Promise<Model<ContributionEntity, "project">[]>[]>(
+        projects.reduce<Promise<Model<ContributionEntity, "project" | "createdBy">[]>[]>(
           (pV, { repositories, name, slug }) => [
             ...pV,
             ...repositories
@@ -38,8 +38,7 @@ export class ContributionRepository {
                     owner,
                     repository,
                   });
-                  // @TODO-ZM: filter out the ones created by bots
-                  return issuesIncludingPRs.map<Model<ContributionEntity, "project">>(
+                  return issuesIncludingPRs.map<Model<ContributionEntity, "project" | "createdBy">>(
                     ({
                       number,
                       labels: gLabels,
@@ -49,6 +48,7 @@ export class ContributionRepository {
                       created_at, // eslint-disable-line camelcase
                       updated_at, // eslint-disable-line camelcase
                       comments,
+                      user,
                     }) => ({
                       id: `${number}`,
                       labels: gLabels.map(({ name }) => name),
@@ -64,6 +64,7 @@ export class ContributionRepository {
                       updatedAt: updated_at, // eslint-disable-line camelcase
                       commentsCount: comments,
                       /* eslint-enable camelcase */
+                      createdBy: this.githubService.githubUserToAccountEntity(user),
                     }),
                   );
                 } catch (error) {

@@ -20,6 +20,7 @@ export class ContributionController {
   ): Promise<GetContributionsResponseDto> {
     const { contributions, filters } = await this.contributionRepository.find(
       (contribution) =>
+        !contribution.createdBy.username.includes("[bot]") &&
         (labels.length === 0 || labels.some((label) => contribution.labels.includes(label))) &&
         (languages.length === 0 ||
           languages.some((language) => contribution.languages.includes(language))) &&
