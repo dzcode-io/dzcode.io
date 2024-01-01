@@ -1,6 +1,7 @@
 import { Type } from "class-transformer";
 import { IsDateString, IsNumber, IsString, IsUrl, ValidateNested } from "class-validator";
 import { BaseEntity, Model } from "src/_base";
+import { AccountEntity } from "src/account";
 import { ProjectReferenceEntity } from "src/project-reference";
 
 export class ContributionEntity extends BaseEntity {
@@ -13,6 +14,10 @@ export class ContributionEntity extends BaseEntity {
   @ValidateNested()
   @Type(() => ProjectReferenceEntity)
   project!: Model<ProjectReferenceEntity>;
+
+  @ValidateNested()
+  @Type(() => AccountEntity)
+  createdBy!: Model<AccountEntity>;
 
   @IsString()
   type!: "issue" | "pullRequest";
