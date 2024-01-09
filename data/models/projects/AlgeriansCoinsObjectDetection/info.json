@@ -1,0 +1,10 @@
+{
+  "name": "Algerians Coins Object Detection",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "lablack576",
+      "repository": "algerians_coins_object_detection"
+    }
+  ]
+}
