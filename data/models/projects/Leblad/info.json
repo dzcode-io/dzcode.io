@@ -15,6 +15,11 @@
       "provider": "github",
       "owner": "omdxp",
       "repository": "leblad"
+    },
+    {
+      "provider": "github",
+      "owner": "omdxp",
+      "repository": "leblad-rs"
     }
   ]
 }
