@@ -2,7 +2,7 @@
   "expo": {
     "name": "DzCode i/o",
     "slug": "dzcode",
-    "version": "5.3.5",
+    "version": "5.3.6",
     "orientation": "portrait",
     "icon": "./src/assets/png/icon.png",
     "scheme": "dzcode",
@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "io.dzcode.mobile",
-      "buildNumber": "5.3.5",
+      "buildNumber": "5.3.6",
       "userInterfaceStyle": "automatic"
     },
     "android": {
@@ -30,7 +30,7 @@
       },
       "permissions": [],
       "package": "io.dzcode.mobile",
-      "versionCode": 535,
+      "versionCode": 536,
       "userInterfaceStyle": "automatic"
     },
     "web": {
