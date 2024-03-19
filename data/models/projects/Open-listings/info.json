@@ -1,0 +1,10 @@
+{
+  "name": "Open-listings",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "bacloud23",
+      "repository": "open-listings"
+    }
+  ]
+}
