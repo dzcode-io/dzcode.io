@@ -1,0 +1,10 @@
+{
+  "name": "System Monitor",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "ZibanPirate",
+      "repository": "sysmon"
+    }
+  ]
+}
