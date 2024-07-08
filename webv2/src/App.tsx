@@ -1,8 +1,48 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, RouteProps, Routes } from 'react-router-dom';
 import './App.css';
 import { TopBar } from './components/top-bar';
 import { ReduxProvider } from './redux/provider';
 import { Footer } from './components/footer';
+import { Loadable } from './components/loadable';
+
+const routes: Array<
+  RouteProps & {
+    pageName: string;
+  }
+> = [
+  {
+    pageName: 'landing',
+    path: '/',
+    index: true,
+  },
+  {
+    pageName: 'learn',
+    path: '/learn/:articleId?',
+  },
+  {
+    pageName: 'projects',
+    path: '/projects',
+  },
+  {
+    pageName: 'articles',
+    path: '/articles/:articleId?',
+  },
+  {
+    pageName: 'faq',
+    path: '/faq',
+  },
+  {
+    pageName: 'contribute',
+    path: '/contribute',
+  },
+  {
+    pageName: 'team',
+    path: '/team',
+  },
+  {
+    pageName: 'not-found',
+  },
+];
 
 const App = () => {
   return (
@@ -19,9 +59,17 @@ const App = () => {
             { href: '/faq', localeKey: 'navbar-section-faq' },
           ]}
         />
-        <h1>Rsbuild with React</h1>
-        <p>Start building amazing things with Rsbuild.</p>
-
+        <Routes>
+          {routes.map((route) => {
+            return (
+              <Route
+                key={route.pageName}
+                path={route.path}
+                element={<Loadable page={route.pageName} />}
+              />
+            );
+          })}
+        </Routes>
         <Footer
           sections={[
             {
