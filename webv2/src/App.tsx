@@ -49,7 +49,7 @@ const App = () => {
     <ReduxProvider>
       <BrowserRouter>
         <TopBar
-          version={'publicRuntimeConfig.version'}
+          version={window.bundleInfo.version}
           links={[
             { href: '/contribute', localeKey: 'navbar-section-contribute' },
             { href: '/team', localeKey: 'navbar-section-connect' },
