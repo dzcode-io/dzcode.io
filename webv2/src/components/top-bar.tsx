@@ -122,7 +122,6 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
           role="tablist"
           className="tabs tabs-lifted tab-border-none tabs-lg overflow-x-auto"
         >
-          <a role="tab" className="tab" />
           {links.map(({ localeKey, href }, index) => (
             <Link
               href={href}
