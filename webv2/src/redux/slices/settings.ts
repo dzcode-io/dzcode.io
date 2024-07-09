@@ -1,24 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { Language } from "src/components/locale/languages";
+import { createSlice } from '@reduxjs/toolkit';
+import { Language, Languages } from 'src/components/locale/languages';
 
 export interface SettingsState {
-  languageCode: Language["code"];
+  readonly languageCode: Language['code'];
 }
 
-// @TODO-ZM: get from url
+let initialLanguageCode: Language['code'] | null = null;
+export function getInitialLanguageCode(): Language['code'] {
+  if (!initialLanguageCode) {
+    const language =
+      Languages.find(({ code }) =>
+        window.location.pathname.startsWith(`/${code}`),
+      ) || Languages[0];
+    initialLanguageCode = language.code;
+  }
+  return initialLanguageCode;
+}
+
 const initialState: SettingsState = {
-  languageCode: "en",
+  languageCode: getInitialLanguageCode(),
 };
 
 export const settingsSlice = createSlice({
-  name: "settings",
+  name: 'settings',
   initialState,
-  reducers: {
-    changeLanguage: (state, action: PayloadAction<Language["code"]>) => {
-      state.languageCode = action.payload;
-    },
-  },
+  reducers: {},
 });
 
 // Action creators are generated for each case reducer function

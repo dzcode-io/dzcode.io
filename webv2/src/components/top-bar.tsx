@@ -1,16 +1,14 @@
-'use client';
-
 import { Locale } from 'src/components/locale';
 import { DictionaryKeys } from 'src/components/locale/dictionary';
 import { useMemo } from 'react';
 import logoWide from 'src/assets/svg/logo-wide.svg';
 import logoWideExtended from 'src/assets/svg/logo-wide-extended.svg';
-import { Language, languages } from './locale/languages';
-import { useAppDispatch, useAppSelector } from 'src/redux/hooks';
-import { settingsActions } from 'src/redux/slices/settings';
+import { Language, Languages } from './locale/languages';
+import { useAppSelector } from 'src/redux/hooks';
 import { Link } from 'src/components/link';
 import { Image } from 'src/components/image';
 import { useLocation } from 'react-router-dom';
+import { changeLanguage } from 'src/redux/actions/settings';
 
 interface TopBarProps {
   version: string;
@@ -26,12 +24,11 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
   const selectedLanguageCode = useAppSelector(
     (state) => state.settings.languageCode,
   );
-  const dispatch = useAppDispatch();
 
   const { selectedLanguage, languageOptions } = useMemo(() => {
     let selectedLanguage!: Language;
     const languageOptions: Array<Language> = [];
-    languages.forEach((language) => {
+    Languages.forEach((language) => {
       if (language.code === selectedLanguageCode) selectedLanguage = language;
       else languageOptions.push(language);
     });
@@ -66,7 +63,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
               <li
                 key={index}
                 onClick={() => {
-                  dispatch(settingsActions.changeLanguage(code));
+                  changeLanguage(code);
                   (document.activeElement as HTMLElement)?.blur();
                 }}
                 className="cursor-pointer"
