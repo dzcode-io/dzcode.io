@@ -11,10 +11,7 @@ interface LinkProps extends Omit<RRLinkProps, 'to'> {
 
 const initialLanguageCode = getInitialLanguageCode();
 
-export function Link({
-  href,
-  ...props
-}: PropsWithChildren<LinkProps>): JSX.Element {
+export function Link({ href, ...props }: PropsWithChildren<LinkProps>): JSX.Element {
   if (initialLanguageCode !== Languages[0].code) {
     href = `/${initialLanguageCode}${href}`;
   }

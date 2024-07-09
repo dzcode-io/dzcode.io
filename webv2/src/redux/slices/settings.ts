@@ -9,9 +9,7 @@ let initialLanguageCode: Language['code'] | null = null;
 export function getInitialLanguageCode(): Language['code'] {
   if (!initialLanguageCode) {
     const language =
-      Languages.find(({ code }) =>
-        window.location.pathname.startsWith(`/${code}`),
-      ) || Languages[0];
+      Languages.find(({ code }) => window.location.pathname.startsWith(`/${code}`)) || Languages[0];
     initialLanguageCode = language.code;
   }
   if (initialLanguageCode === 'ar') {

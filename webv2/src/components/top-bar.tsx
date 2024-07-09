@@ -21,9 +21,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
     return links.findIndex(({ href }) => pathname === href);
   }, [pathname, links]);
 
-  const selectedLanguageCode = useAppSelector(
-    (state) => state.settings.languageCode,
-  );
+  const selectedLanguageCode = useAppSelector((state) => state.settings.languageCode);
 
   const { selectedLanguage, languageOptions } = useMemo(() => {
     let selectedLanguage!: Language;
@@ -45,9 +43,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
             alt="DzCode i/o SVG Logo wide"
           />
         </Link>
-        <Link
-          href={`https://github.com/dzcode-io/dzcode.io/releases/tag/${version}`}
-        >
+        <Link href={`https://github.com/dzcode-io/dzcode.io/releases/tag/${version}`}>
           {version}
         </Link>
         <div className="flex-1" />
@@ -55,10 +51,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
           <div tabIndex={0} role="button">
             {selectedLanguage.label}
           </div>
-          <ul
-            tabIndex={0}
-            className="menu dropdown-content z-[1] rounded-box bg-base-300"
-          >
+          <ul tabIndex={0} className="menu dropdown-content z-[1] rounded-box bg-base-300">
             {languageOptions.map(({ code, label }, index) => (
               <li
                 key={index}
@@ -88,11 +81,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
             >
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
-            <input
-              type="checkbox"
-              value="dzcode_light"
-              className="theme-controller toggle"
-            />
+            <input type="checkbox" value="dzcode_light" className="theme-controller toggle" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -118,10 +107,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
             alt="DzCode i/o SVG Logo wide"
           />
         </Link>
-        <div
-          role="tablist"
-          className="tabs tabs-lifted tab-border-none tabs-lg overflow-x-auto"
-        >
+        <div role="tablist" className="tabs tabs-lifted tab-border-none tabs-lg overflow-x-auto">
           {links.map(({ localeKey, href }, index) => (
             <Link
               href={href}

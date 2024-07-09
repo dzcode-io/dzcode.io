@@ -1,8 +1,6 @@
 import { Language, Languages } from 'src/components/locale/languages';
 
-export const changeLanguage = async (
-  languageCode: Language['code'],
-): Promise<void> => {
+export const changeLanguage = async (languageCode: Language['code']): Promise<void> => {
   // case 1: url has no language code, eg: /about / or root
   // case 2: url has language code, eg: /en/about /ar/ or /ar
   // case 3: url has language code, but not in the list of supported languages, eg: /es/about /es/ or /es
@@ -15,9 +13,7 @@ export const changeLanguage = async (
     return;
   }
 
-  const urlLanguageRegEx = new RegExp(
-    `^/(${Languages.map(({ code }) => code).join('|')})`,
-  );
+  const urlLanguageRegEx = new RegExp(`^/(${Languages.map(({ code }) => code).join('|')})`);
 
   const urlLanguageMatch = newPath.match(urlLanguageRegEx);
   if (urlLanguageMatch) {

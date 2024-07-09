@@ -6,9 +6,7 @@ let bundleInfo: { version: string } = {
   version: `v${require('./package.json').version as string}`, // eslint-disable-line @typescript-eslint/no-var-requires
 };
 try {
-  bundleInfo = JSON.parse(
-    readFileSync('.bundle-info.json').toString(),
-  ) as typeof bundleInfo;
+  bundleInfo = JSON.parse(readFileSync('.bundle-info.json').toString()) as typeof bundleInfo;
 } catch (error) {
   console.log(`no .bundle-info.json found`);
 }
