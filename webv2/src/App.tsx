@@ -1,11 +1,12 @@
+import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter, Route, RouteProps, Routes } from 'react-router-dom';
 import './App.css';
 import { TopBar } from './components/top-bar';
-import { ReduxProvider } from './redux/provider';
 import { Footer } from './components/footer';
 import { Loadable } from './components/loadable';
 import { getInitialLanguageCode } from './redux/slices/settings';
 import { Languages } from './components/locale/languages';
+import { getAppStore } from './redux/store';
 
 let routes: Array<
   RouteProps & {
@@ -143,7 +144,7 @@ const App = () => {
 
 const AppWithProviders = () => {
   return (
-    <ReduxProvider>
+    <ReduxProvider store={getAppStore()}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
