@@ -60,28 +60,30 @@ if (initialLanguageCode !== Languages[0].code) {
 const App = () => {
   return (
     <>
-      <TopBar
-        version={window.bundleInfo.version}
-        links={[
-          { href: '/contribute', localeKey: 'navbar-section-contribute' },
-          { href: '/team', localeKey: 'navbar-section-connect' },
-          { href: '/learn', localeKey: 'navbar-section-learn' },
-          { href: '/projects', localeKey: 'navbar-section-projects' },
-          { href: '/articles', localeKey: 'navbar-section-articles' },
-          { href: '/faq', localeKey: 'navbar-section-faq' },
-        ]}
-      />
-      <Routes>
-        {routes.map((route) => {
-          return (
-            <Route
-              key={route.pageName}
-              path={route.path}
-              element={<Loadable page={route.pageName} />}
-            />
-          );
-        })}
-      </Routes>
+      <div className="flex flex-col min-h-screen">
+        <TopBar
+          version={window.bundleInfo.version}
+          links={[
+            { href: '/contribute', localeKey: 'navbar-section-contribute' },
+            { href: '/team', localeKey: 'navbar-section-connect' },
+            { href: '/learn', localeKey: 'navbar-section-learn' },
+            { href: '/projects', localeKey: 'navbar-section-projects' },
+            { href: '/articles', localeKey: 'navbar-section-articles' },
+            { href: '/faq', localeKey: 'navbar-section-faq' },
+          ]}
+        />
+        <Routes>
+          {routes.map((route) => {
+            return (
+              <Route
+                key={route.pageName}
+                path={route.path}
+                element={<Loadable page={route.pageName} />}
+              />
+            );
+          })}
+        </Routes>
+      </div>
       <Footer
         sections={[
           {
