@@ -6,12 +6,12 @@ import { getInitialLanguageCode } from 'src/redux/slices/settings';
 import { Languages } from './locale/languages';
 
 interface LinkProps extends Omit<RRLinkProps, 'to'> {
-  href: string;
+  href?: string;
 }
 
 const initialLanguageCode = getInitialLanguageCode();
 
-export function Link({ href, ...props }: PropsWithChildren<LinkProps>): JSX.Element {
+export function Link({ href = '/', ...props }: PropsWithChildren<LinkProps>): JSX.Element {
   if (initialLanguageCode !== Languages[0].code) {
     href = `/${initialLanguageCode}${href}`;
   }
