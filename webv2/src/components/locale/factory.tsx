@@ -19,6 +19,17 @@ export function factory<D extends BaseDictionary>(
   };
 }
 
+export function functionFactory<D extends BaseDictionary>(
+  dictionary: D,
+  getLanguageCode: () => ExtractDictionaryLanguageCodes<D>,
+  fallbackText = 'MISSING_TRANSLATION',
+) {
+  return (key: keyof D) => {
+    const languageCode = getLanguageCode() as string;
+    return localize(dictionary, languageCode, key as string, fallbackText);
+  };
+}
+
 function localize(
   dictionary: BaseDictionary,
   languageCode: string,
