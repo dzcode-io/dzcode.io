@@ -19,16 +19,8 @@ let routes: Array<
     index: true,
   },
   {
-    pageName: 'learn',
-    path: '/learn/:articleId?',
-  },
-  {
     pageName: 'projects',
     path: '/projects',
-  },
-  {
-    pageName: 'articles',
-    path: '/articles/:articleId?',
   },
   {
     pageName: 'faq',
@@ -66,9 +58,7 @@ const App = () => {
           links={[
             { href: '/contribute', localeKey: 'navbar-section-contribute' },
             { href: '/team', localeKey: 'navbar-section-connect' },
-            { href: '/learn', localeKey: 'navbar-section-learn' },
             { href: '/projects', localeKey: 'navbar-section-projects' },
-            { href: '/articles', localeKey: 'navbar-section-articles' },
             { href: '/faq', localeKey: 'navbar-section-faq' },
           ]}
         />
@@ -91,16 +81,8 @@ const App = () => {
             links: [
               { localeKey: 'footer-category-link-text-home', href: '/' },
               {
-                localeKey: 'footer-category-link-text-learn',
-                href: '/learn',
-              },
-              {
                 localeKey: 'footer-category-link-text-projects',
                 href: '/projects',
-              },
-              {
-                localeKey: 'footer-category-link-text-articles',
-                href: '/articles',
               },
               { localeKey: 'footer-category-link-text-faq', href: '/faq' },
             ],

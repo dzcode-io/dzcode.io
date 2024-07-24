@@ -26,14 +26,6 @@ export const faqPageData: FaqPageData = [
     ],
   },
   {
-    title: 'faq-topic-3',
-    questions: [
-      { question: 'faq-topic-3-question-1', answer: 'faq-topic-3-answer-1' },
-      { question: 'faq-topic-3-question-2', answer: 'faq-topic-3-answer-2' },
-      { question: 'faq-topic-3-question-3', answer: 'faq-topic-3-answer-3' },
-    ],
-  },
-  {
     title: 'faq-topic-4',
     questions: [
       { question: 'faq-topic-4-question-1', answer: 'faq-topic-4-answer-1' },

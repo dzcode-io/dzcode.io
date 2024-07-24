@@ -1,4 +1,4 @@
-import type { PyramidSplitString } from '@repo/utils/typescript';
+import { PyramidSplitString } from 'src/utils/typescript';
 import { Language } from './languages';
 
 type AllDictionaryKeys = keyof typeof dictionary;
@@ -75,16 +75,8 @@ export const dictionary = {
     ar: 'ما هي أهداف DzCode i/o؟',
   },
   'faq-topic-1-answer-2': {
-    en: `
-- Share our experiences (in form of [articles](/Articles)), there are many Algerian developers that accumulated lots of experiences, here comes dzcode.io to give them the chance to share these experiences with the right people.
-- Guide new developers to build their careers (with some educational resources and [articles](/Learn)), and to understand the software market, instead of wasting their time on other resources they won't be needing.
-- Fix some common Algerian software problems, in form of ready-to-use open-source [softwares](/Projects) (packages, libraries ...etc).
-`,
-    ar: `
-- لمشاركة خبراتنا (في شكل [مقالات](/Articles)) ، هناك العديد من المطورين الجزائريين الذين جمعوا الكثير من الخبرات ، وهنا يأتي dzcode.io لمنحهم الفرصة لمشاركة هذه الخبرات مع الأشخاص المناسبين.
-- توجيه المطورين الجدد لبناء حياتهم المهنية (ببعض الموارد و[المقالات التعليمية](/Learn)) ، وفهم سوق البرمجيات ، بدلاً من إضاعة وقتهم في موارد أخرى لن يحتاجوا إليها.
-- إصلاح بعض مشاكل البرمجيات الجزائرية الشائعة ، على شكل [برامج](/Projects) مفتوحة المصدر جاهزة للاستخدام (حزم ، مكتبات ... إلخ).
-`,
+    en: `@TODO: reflect the latest goals of DzCode i/o`,
+    ar: `@TODO: reflect the latest goals of DzCode i/o`,
   },
   'faq-topic-1-question-3': {
     en: 'What would I benefit from DzCode i/o?',
@@ -130,43 +122,13 @@ export const dictionary = {
     en: `
 Besides the open tasks on [/Contribute](/Contribute) page, you can also contribute to DzCode i/o by:
 
-- Adding your open-source projects to the dzcode.io website, you can do that [here](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).
-- Writing about your programming experience in form of articles, to do that, simply follow [these simple steps](/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io).
+- Adding your open-source projects to the dzcode.io website.
 `,
     ar: `
 إلى جانب المهام المفتوحة في صفحة المساهمة ، يمكنك أيضًا المساهمة في DzCode i / o عن طريق:
 
-- إضافة مشاريعك مفتوحة المصدر إلى موقع dzcode.io ، يمكنك القيام بذلك [هنا](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).
-- الكتابة عن التجربة البرمجة الخاصة بك في شكل مقالات ، للقيام بذلك ، ما عليك سوى اتباع [هذه الخطوات البسيطة](/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io).
+- إضافة مشاريعك مفتوحة المصدر إلى موقع dzcode.io .
 `,
-  },
-  'faq-topic-3': {
-    en: 'Articles',
-    ar: 'مقالات',
-  },
-  'faq-topic-3-question-1': {
-    en: 'How to write an article in dzcode.io',
-    ar: 'كيفية كتابة مقال في dzcode.io',
-  },
-  'faq-topic-3-answer-1': {
-    en: `Follow [these steps](/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io).`,
-    ar: `اتبع هذه [الخطوات](/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io).`,
-  },
-  'faq-topic-3-question-2': {
-    en: 'The articles should they be in English?',
-    ar: 'هل يجب أن تكون المقالات باللغة الإنجليزية؟',
-  },
-  'faq-topic-3-answer-2': {
-    en: `You can write in both English and Arabic`,
-    ar: `يمكنك الكتابة باللغتين الإنجليزية والعربية`,
-  },
-  'faq-topic-3-question-3': {
-    en: 'Can I write about anything?',
-    ar: 'هل يمكنني الكتابة عن أي شيء؟',
-  },
-  'faq-topic-3-answer-3': {
-    en: `As long as it's IT-related yes you can write about anything.`,
-    ar: `طالما أن الأمر يتعلق بتكنولوجيا المعلومات نعم يمكنك الكتابة عن أي شيء.`,
   },
   'faq-topic-4': {
     en: 'Projects',
@@ -177,8 +139,8 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     ar: 'كيفية إضافة مشروعي مفتوح المصدر إلى dzcode.io',
   },
   'faq-topic-4-answer-1': {
-    en: `Follow [these steps](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).`,
-    ar: `اتبع هذه [الخطوات](/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io).`,
+    en: `Follow [these steps](https://github.com/dzcode-io/dzcode.io/blob/main/data/models/documentation/About_dzcode_io/Add_Your_Project_To_dzcode_io/content.md).`,
+    ar: `اتبع هذه [الخطوات](https://github.com/dzcode-io/dzcode.io/blob/main/data/models/documentation/About_dzcode_io/Add_Your_Project_To_dzcode_io/content.md).`,
   },
   'faq-topic-4-question-2': {
     en: 'What makes my project eligible to be added to dzcode.io',
