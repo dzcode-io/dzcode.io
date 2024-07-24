@@ -1,6 +1,6 @@
 import { Locale, localize } from 'src/components/locale';
 import { faqPageData } from './faq-data';
-import { Markdown } from 'src/components/makrdown';
+import { Markdown } from 'src/components/markdown';
 
 export default function Page(): JSX.Element {
   return (

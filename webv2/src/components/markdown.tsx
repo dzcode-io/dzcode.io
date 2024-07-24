@@ -1,6 +1,5 @@
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'src/components/link';
-import './style.css';
 
 interface MarkdownProps {
   content: string;

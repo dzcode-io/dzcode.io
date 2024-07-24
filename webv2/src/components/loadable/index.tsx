@@ -5,6 +5,10 @@ export const Loadable = loadableFactory<{ page: string }>(
   (props) => import(`src/pages/${props.page}/page`),
   {
     cacheKey: (props) => props.page,
-    fallback: <Loading />,
+    fallback: (
+      <div className="self-center pt-8">
+        <Loading />
+      </div>
+    ),
   },
 ) as React.FC<{ page: string }>;

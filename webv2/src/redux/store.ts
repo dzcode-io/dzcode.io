@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { settingsReducer } from './slices/settings';
+import { projectsPageReducer } from './slices/projects-page';
 
 const makeAppStore = () => {
   return configureStore({
     reducer: {
       settings: settingsReducer,
+      projectsPage: projectsPageReducer,
     },
   });
 };
@@ -17,11 +19,7 @@ type GetAppStoreParam = {
 
 export function getAppStore({ cacheStore = false }: GetAppStoreParam = {}) {
   if (!appStore || !cacheStore) {
-    appStore = configureStore({
-      reducer: {
-        settings: settingsReducer,
-      },
-    });
+    appStore = makeAppStore();
   }
   return appStore;
 }

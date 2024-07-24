@@ -12,3 +12,14 @@
     transform: translate(-50%, -50%);
   }
 }
+
+.markdown a {
+  @apply text-blue-500;
+  @apply hover:text-blue-700;
+  @apply underline;
+}
+
+.markdown ul {
+  @apply list-inside;
+  @apply list-disc;
+}
