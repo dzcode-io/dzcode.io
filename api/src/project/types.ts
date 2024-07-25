@@ -8,9 +8,5 @@ import { GeneralResponseDto } from "src/app/types";
 export class GetProjectsResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
   @Type(() => ProjectEntity)
-  // @TODO-ZM: find a way to DRY this, eg:
-  // projects!: Model<ProjectEntity, 'repositories' | 'repositories.contributors' | 'repositories.stats'>[]
-  projects!: Array<
-    Model<ProjectEntity> & { repositories: Model<RepositoryEntity, "contributors" | "stats">[] }
-  >;
+  projects!: Array<Model<ProjectEntity> & { repositories: Model<RepositoryEntity>[] }>;
 }
