@@ -24,4 +24,18 @@ export default defineConfig({
   html: {
     template: "./src/_entry/main.html",
   },
+  output: {
+    distPath: {
+      root: "./bundle",
+      css: `w/${bundleInfo.version}/css`,
+      cssAsync: `w/${bundleInfo.version}/css/async`,
+      js: `w/${bundleInfo.version}/js`,
+      jsAsync: `w/${bundleInfo.version}/js/async`,
+      image: `w/${bundleInfo.version}/images`,
+      font: `w/${bundleInfo.version}/fonts`,
+      media: `w/${bundleInfo.version}/media`,
+      svg: `w/${bundleInfo.version}/svg`,
+      wasm: `w/${bundleInfo.version}/wasm`,
+    },
+  },
 });

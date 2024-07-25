@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { PartialWithOneRequiredKey } from "src/utils/typescript";
 
 import { BaseDictionary, ExtractDictionaryLanguageCodes } from "./types";
+import { plainLocalize } from "./utils";
 
 export function factory<D extends BaseDictionary, S>(
   dictionary: D,
@@ -16,27 +17,22 @@ export function factory<D extends BaseDictionary, S>(
     | { localeKey: keyof D }
   >;
   useLocale: () => { localize: (key: keyof D) => string };
+  localize: (key: keyof D, languageCode: string) => string;
 } {
   return {
     Locale: ({ localeKey, ...localeKeys }) => {
       const languageCode = useSelector(getLanguageCode) as string;
       const key = (localeKey || Object.keys(localeKeys)[0]) as string;
-      return localize(dictionary, languageCode, key, fallbackText);
+      return plainLocalize(dictionary, languageCode, key, fallbackText);
     },
     useLocale: () => {
       const languageCode = useSelector(getLanguageCode) as string;
       return {
-        localize: (key: keyof D) => localize(dictionary, languageCode, key as string, fallbackText),
+        localize: (key: keyof D) =>
+          plainLocalize(dictionary, languageCode, key as string, fallbackText),
       };
     },
+    localize: (key: keyof D, languageCode: string) =>
+      plainLocalize(dictionary, languageCode, key as string, fallbackText),
   };
-}
-
-function localize(
-  dictionary: BaseDictionary,
-  languageCode: string,
-  key: string,
-  fallbackText: string,
-) {
-  return dictionary[key]?.[languageCode] || fallbackText;
 }

@@ -10,6 +10,7 @@ firebase
 
 # web
 bundle
+src/_build
 
 *.*
 !*.ts

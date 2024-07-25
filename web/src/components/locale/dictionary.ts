@@ -2,7 +2,7 @@ import { PyramidSplitString } from "src/utils/typescript";
 
 import { Language } from "./languages";
 
-type AllDictionaryKeys = keyof typeof dictionary;
+export type AllDictionaryKeys = keyof typeof dictionary;
 
 type DictionaryGroups = PyramidSplitString<AllDictionaryKeys, "-">[number];
 

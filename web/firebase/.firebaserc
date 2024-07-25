@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "dzcode-io"
+  },
+  "targets": {
+    "dzcode-io": {
+      "hosting": {
+        "dzcode.io": [
+          "dzcode-io"
+        ],
+        "stage.dzcode.io": [
+          "staging-dzcode-io"
+        ]
+      }
+    }
+  }
+}
