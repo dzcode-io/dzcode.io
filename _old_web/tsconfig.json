@@ -1,0 +1,10 @@
+{
+  "extends": "@dzcode.io/tooling/tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "dist",
+    "baseUrl": "."
+  },
+  "include": ["src"],
+  "exclude": ["src/_e2e-test"]
+}

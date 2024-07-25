@@ -95,10 +95,14 @@ If you use VSCode, please make sure to have a `.vscode/settings.json` file with 
 
 ```json
 {
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "prettier.configPath": "packages/tooling/.prettierrc",
   "eslint.options": { "overrideConfigFile": "packages/tooling/.eslintrc.json" },
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll.eslint": "always",
+    "source.fixAll.ts": "always"
   }
 }
 ```
