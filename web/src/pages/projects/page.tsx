@@ -7,6 +7,7 @@ import { fetchProjectsListAction } from "src/redux/actions/projects";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
 import { getRepositoryName, getRepositoryURL } from "src/utils/repository";
 
+// ts-prune-ignore-next
 export default function Page(): JSX.Element {
   const { localize } = useLocale();
   const { projectsList } = useAppSelector((state) => state.projectsPage);

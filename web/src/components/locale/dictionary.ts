@@ -1,7 +1,5 @@
 import { PyramidSplitString } from "src/utils/typescript";
 
-import { Language } from "./languages";
-
 export type AllDictionaryKeys = keyof typeof dictionary;
 
 type DictionaryGroups = PyramidSplitString<AllDictionaryKeys, "-">[number];
@@ -399,4 +397,4 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Algeria Codes",
     ar: "الجزائر تبرمج",
   },
-} as Record<string, Record<Language["code"], string>>;
+} as const;

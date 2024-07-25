@@ -1,6 +1,7 @@
 import { Link } from "src/components/link";
 import { Locale } from "src/components/locale";
 
+// ts-prune-ignore-next
 export default function Page(): JSX.Element {
   return (
     <main>

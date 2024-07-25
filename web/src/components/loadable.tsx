@@ -1,6 +1,5 @@
+import loadableFactory from "@loadable/component";
 import { Loading } from "src/components/loading";
-
-import { loadableFactory } from "./loadable-factory";
 
 export const Loadable = loadableFactory<{ page: string }>(
   (props) => import(`src/pages/${props.page}/page`),

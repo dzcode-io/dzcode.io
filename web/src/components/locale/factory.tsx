@@ -17,13 +17,12 @@ export function factory<D extends BaseDictionary, S>(
     | { localeKey: keyof D }
   >;
   useLocale: () => { localize: (key: keyof D) => string };
-  localize: (key: keyof D, languageCode: string) => string;
 } {
   return {
     Locale: ({ localeKey, ...localeKeys }) => {
       const languageCode = useSelector(getLanguageCode) as string;
       const key = (localeKey || Object.keys(localeKeys)[0]) as string;
-      return plainLocalize(dictionary, languageCode, key, fallbackText);
+      return <>{plainLocalize(dictionary, languageCode, key, fallbackText)}</>;
     },
     useLocale: () => {
       const languageCode = useSelector(getLanguageCode) as string;
@@ -32,7 +31,5 @@ export function factory<D extends BaseDictionary, S>(
           plainLocalize(dictionary, languageCode, key as string, fallbackText),
       };
     },
-    localize: (key: keyof D, languageCode: string) =>
-      plainLocalize(dictionary, languageCode, key as string, fallbackText),
   };
 }

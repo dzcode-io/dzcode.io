@@ -3,6 +3,7 @@ import { Markdown } from "src/components/markdown";
 
 import { faqPageData } from "./faq-data";
 
+// ts-prune-ignore-next
 export default function Page(): JSX.Element {
   const { localize } = useLocale();
   return (

@@ -1,12 +1,11 @@
-export function getRepositoryName(repository: { owner: string; repository: string }): string {
+import { Model } from "@dzcode.io/models/dist/_base";
+import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
+
+export function getRepositoryName(repository: Model<RepositoryEntity>): string {
   return `${repository.owner}/${repository.repository}`;
 }
 
-export const getRepositoryURL = (repository: {
-  provider: string;
-  owner: string;
-  repository: string;
-}): string => {
+export const getRepositoryURL = (repository: Model<RepositoryEntity>): string => {
   switch (repository.provider) {
     case "github":
       return `https://www.github.com/${repository.owner}/${repository.repository}`;

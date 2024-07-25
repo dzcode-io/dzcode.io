@@ -1,4 +1,4 @@
-export interface TryAgainProps {
+interface TryAgainProps {
   error: string;
   action: string;
   onClick: () => void;
