@@ -27,6 +27,5 @@ export const changeLanguage = async (languageCode: Language['code']): Promise<vo
     newPath = newPath.replace(`/${language.code}`, '');
   }
 
-  console.log('zako changeLanguage', newPath);
   window.location.href = newPath;
 };

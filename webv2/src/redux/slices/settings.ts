@@ -27,7 +27,3 @@ export const settingsSlice = createSlice({
   initialState,
   reducers: {},
 });
-
-// Action creators are generated for each case reducer function
-export const settingsActions = settingsSlice.actions;
-export const settingsReducer = settingsSlice.reducer;

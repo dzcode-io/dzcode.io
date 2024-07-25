@@ -1,7 +1,8 @@
-import { factory, functionFactory } from './factory';
+import { factory } from './factory';
 import { dictionary } from './dictionary';
-import { getAppState } from 'src/redux/store';
+import { AppState } from 'src/redux/store';
 
-export const Locale = factory(dictionary, () => getAppState().settings.languageCode);
-
-export const localize = functionFactory(dictionary, () => getAppState().settings.languageCode);
+export const { Locale, useLocale } = factory(
+  dictionary,
+  (state: AppState) => state.settings.languageCode,
+);

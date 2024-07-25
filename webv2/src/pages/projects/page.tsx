@@ -1,13 +1,20 @@
+import { useEffect } from 'react';
 import { Link } from 'src/components/link';
 import { Loading } from 'src/components/loading';
-import { Locale, localize } from 'src/components/locale';
+import { Locale, useLocale } from 'src/components/locale';
 import { TryAgain } from 'src/components/try-again';
-import { useAppSelector } from 'src/redux/hooks';
+import { fetchProjectsListAction } from 'src/redux/actions/projects';
+import { useAppDispatch, useAppSelector } from 'src/redux/store';
 import { getRepositoryName, getRepositoryURL } from 'src/utils/repository';
 
 export default function Page(): JSX.Element {
+  const { localize } = useLocale();
   const { projectsList } = useAppSelector((state) => state.projectsPage);
-  // @TODO: fetchProjectsList(); on load
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProjectsListAction());
+  }, [dispatch]);
 
   return (
     <main className="flex flex-col self-center">
@@ -21,7 +28,7 @@ export default function Page(): JSX.Element {
             error={localize('projects-error')}
             action={localize('projects-try-again')}
             onClick={() => {
-              // @TODO: fetchProjectsList();
+              dispatch(fetchProjectsListAction());
             }}
           />
         ) : projectsList === null ? (

@@ -6,7 +6,7 @@ export const Loadable = loadableFactory<{ page: string }>(
   {
     cacheKey: (props) => props.page,
     fallback: (
-      <div className="self-center pt-8">
+      <div className="self-center p-2 pt-8">
         <Loading />
       </div>
     ),

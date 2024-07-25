@@ -4,11 +4,11 @@ import { useMemo } from 'react';
 import logoWide from 'src/assets/svg/logo-wide.svg';
 import logoWideExtended from 'src/assets/svg/logo-wide-extended.svg';
 import { Language, Languages } from './locale/languages';
-import { useAppSelector } from 'src/redux/hooks';
 import { Link } from 'src/components/link';
 import { Image } from 'src/components/image';
 import { useLocation } from 'react-router-dom';
 import { changeLanguage } from 'src/redux/actions/settings';
+import { useAppSelector } from 'src/redux/store';
 
 interface TopBarProps {
   version: string;

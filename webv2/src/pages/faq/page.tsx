@@ -1,8 +1,9 @@
-import { Locale, localize } from 'src/components/locale';
+import { Locale, useLocale } from 'src/components/locale';
 import { faqPageData } from './faq-data';
 import { Markdown } from 'src/components/markdown';
 
 export default function Page(): JSX.Element {
+  const { localize } = useLocale();
   return (
     <main className="flex justify-center">
       <div className="flex flex-col gap-8 m-2 mt-8 mb-8 max-w-screen-md">
