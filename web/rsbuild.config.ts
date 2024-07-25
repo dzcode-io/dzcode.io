@@ -22,6 +22,6 @@ export default defineConfig({
     },
   },
   html: {
-    template: "./src/main.html",
+    template: "./src/_entry/main.html",
   },
 });
