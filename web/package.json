@@ -8,6 +8,7 @@
     "url": "https://www.zakiii.com"
   },
   "dependencies": {
+    "@dzcode.io/api": "*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
