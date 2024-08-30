@@ -23,6 +23,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
+    "cypress": "^13.14.1",
     "daisyui": "^4.12.10",
     "globals": "^15.8.0",
     "postcss": "^8.4.39",
@@ -32,7 +33,8 @@
     "react-router-dom": "^6.24.1",
     "sitemap": "^7.1.1",
     "tailwindcss": "^3.4.4",
-    "typescript-eslint": "^7.15.0"
+    "typescript-eslint": "^7.15.0",
+    "wait-on": "^8.0.0"
   },
   "engines": {
     "node": ">=16",
@@ -58,6 +60,7 @@
     "clean:alone": "rimraf dist coverage bundle node_modules/.cache",
     "deploy": "yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
     "deploy:stg": "yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "e2e:dev": "yarn wait-on http://localhost:8080/ && yarn cypress open",
     "generate:bundle-info": "ts-node ../packages/tooling/bundle-info.ts",
     "generate:sentry-release": "ts-node ../packages/tooling/sentry-release.ts web bundle",
     "generate:sitemap": "cross-env TS_NODE_SKIP_PROJECT=true ts-node --compilerOptions \"{\\\"baseUrl\\\": \\\".\\\"}\" src/_build/sitemap.ts",

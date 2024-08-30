@@ -24,6 +24,9 @@ export default defineConfig({
   html: {
     template: "./src/_entry/main.html",
   },
+  server: {
+    port: 8080,
+  },
   output: {
     distPath: {
       root: "./bundle",
