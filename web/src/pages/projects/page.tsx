@@ -26,8 +26,8 @@ export default function Page(): JSX.Element {
       <div className="flex flex-col self-center">
         {projectsList === "ERROR" ? (
           <TryAgain
-            error={localize("projects-error")}
-            action={localize("projects-try-again")}
+            error={localize("global-generic-error")}
+            action={localize("global-try-again")}
             onClick={() => {
               dispatch(fetchProjectsListAction());
             }}

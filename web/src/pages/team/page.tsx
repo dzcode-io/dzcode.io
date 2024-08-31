@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Link } from "src/components/link";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
-import { Text } from "src/components/text";
 import { TryAgain } from "src/components/try-again";
 import { fetchContributorsListAction } from "src/redux/actions/contributors";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
@@ -27,8 +26,8 @@ export default function Page(): JSX.Element {
       <div className="flex flex-col self-center">
         {contributorsList === "ERROR" ? (
           <TryAgain
-            error={localize("team-error")}
-            action={localize("team-try-again")}
+            error={localize("global-generic-error")}
+            action={localize("global-try-again")}
             onClick={() => {
               dispatch(fetchContributorsListAction());
             }}

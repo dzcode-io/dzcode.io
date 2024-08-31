@@ -195,14 +195,6 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Meet the DzCode i/o mobile app and stay up-to-date with the state of Algerian open-source software on iOS and Android.",
     ar: "تعرف على تطبيق DzCode i / o للجوال وابق على اطلاع دائم بأحدث البرامج مفتوحة المصدر الجزائرية على iOS و Android.",
   },
-  "landing-milestones-error": {
-    en: "Oops, an error occurred while loading the milestones list, please try again...",
-    ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة خارطة الطريق ، يرجى المحاولة مرة أخرى ...",
-  },
-  "landing-milestones-try-again": {
-    en: "Try Again",
-    ar: "حاول مرة أخري",
-  },
   "landing-milestones-title": {
     en: "Project roadmap",
     ar: "خارطة طريق المشروع",
@@ -218,14 +210,6 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "team-description": {
     en: "Meet and connect with all the contributors of all the listed projects on dzcode.io website",
     ar: "تعرف على جميع المساهمين في جميع المشاريع المدرجة وتواصل معهم على موقع dzcode.io الإلكتروني",
-  },
-  "team-error": {
-    en: "Oops, an error occurred while loading the articles list, please try again...",
-    ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة المقالات ، يرجى المحاولة مرة أخرى ...",
-  },
-  "team-try-again": {
-    en: "Try Again",
-    ar: "حاول مرة أخري",
   },
   "team-header-title": {
     en: "Get to know our team 💻",
@@ -246,14 +230,6 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "projects-description": {
     en: "Browse a growing list of Algerian open-source projects and be up-to-date with the state of open-source software in Algeria, you can also add your project to the list!",
     ar: "تصفح قائمة متزايدة من المشاريع الجزائرية مفتوحة المصدر وكن على اطلاع دائم بأحدث البرامج مفتوحة المصدر في الجزائر ، كما يمكنك إضافة مشروعك إلى القائمة!",
-  },
-  "projects-error": {
-    en: "Oops, an error occurred while loading the projects list, please try again...",
-    ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة المشاريع ، يرجى المحاولة مرة أخرى ...",
-  },
-  "projects-try-again": {
-    en: "Try Again",
-    ar: "حاول مرة أخري",
   },
   "projects-header-title": {
     en: "Open Source Projects",
@@ -320,14 +296,6 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Browse, read or modify a growing list of articles written by Algerian developers, or Add your own article to the list!",
     ar: "تصفح أو اقرأ أو عدل قائمة متزايدة من المقالات التي كتبها مطورون جزائريون ، أو أضف مقالك الخاص إلى القائمة!",
   },
-  "articles-list-error": {
-    en: "Oops, an error occurred while loading the articles list, please try again...",
-    ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة المقالات ، يرجى المحاولة مرة أخرى ...",
-  },
-  "articles-content-error": {
-    en: "Ops, an error occurred while loading the selected article, please try again...",
-    ar: "عفوًا ، حدث خطأ أثناء تحميل المقالة ، يرجى المحاولة مرة أخرى ...",
-  },
   "articles-content-back": {
     en: "Back to the list",
     ar: "عد إلى القائمة",
@@ -349,14 +317,6 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Learn and share your knowledge with other Algerian developers!",
     ar: "تعلم وشارك معرفتك مع مطورين جزائريين آخرين!",
   },
-  "learn-list-error": {
-    en: "Oops, an error occurred while loading the articles list, please try again...",
-    ar: "عفوًا ، حدث خطأ أثناء تحميل قائمة المقالات ، يرجى المحاولة مرة أخرى ...",
-  },
-  "learn-content-error": {
-    en: "Ops, an error occurred while loading the selected article, please try again...",
-    ar: "عفوًا ، حدث خطأ أثناء تحميل المقالة ، يرجى المحاولة مرة أخرى ...",
-  },
   "learn-content-back": {
     en: "Back to the list",
     ar: "عد إلى القائمة",
@@ -372,6 +332,10 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "ui-theme-DARK": { en: "Dark", ar: "داكن" },
   "ui-theme-LIGHT": { en: "Light", ar: "فاتح" },
   "ui-theme-AUTO": { en: "Auto", ar: "تلقائي" },
+  "global-generic-error": {
+    en: "Oops, something went wrong, please try again...",
+    ar: "عفوًا ، حدث خطأ ما ، يرجى المحاولة مرة أخرى ...",
+  },
   "global-error-email-us": {
     en: "Email us 📩",
     ar: "راسلنا 📩",
