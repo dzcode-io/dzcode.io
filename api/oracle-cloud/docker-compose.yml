@@ -6,6 +6,6 @@ services:
     ports:
       - "80:7070"
     env_file:
-      - /root/app-env/api.env
+      - /home/ubuntu/app-env/api.env
     volumes:
-      - /root/app-data/api/fetch_cache:/usr/src/repo/api/fetch_cache
+      - /home/ubuntu/app-data/api/fetch_cache:/usr/src/repo/api/fetch_cache

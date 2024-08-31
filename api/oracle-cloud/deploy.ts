@@ -85,8 +85,6 @@ logs = execSync(
 console.log("✅ New code uploaded.");
 
 console.log("\n⚙️  Starting up the app");
-logs = execSync(
-  sshPrefix + '"sudo docker compose -f ' + appPath + '/docker-compose.yml up -d --build"',
-);
+logs = execSync(sshPrefix + '"cd ' + appPath + ' && docker compose up -d --build"');
 console.log(String(logs));
 console.log("✅ Deployment successful.");
