@@ -1,7 +1,9 @@
 import { Model } from "@dzcode.io/models/dist/_base";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 
-export function getRepositoryName(repository: Model<RepositoryEntity>): string {
+export function getRepositoryName(
+  repository: Pick<Model<RepositoryEntity>, "owner" | "repository">,
+): string {
   return `${repository.owner}/${repository.repository}`;
 }
 

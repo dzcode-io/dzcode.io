@@ -54,6 +54,7 @@
   },
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
+    "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
     "bundle": "yarn build && yarn bundle:alone",
     "bundle:alone": "rsbuild build",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
@@ -72,6 +73,9 @@
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --loglevel warn",
     "lint:ts-prune": "ts-node ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",
-    "start:dev": "rsbuild dev --open"
+    "start:dev": "rsbuild dev --open",
+    "test": "yarn build && yarn test:alone",
+    "test:alone": "jest",
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }
