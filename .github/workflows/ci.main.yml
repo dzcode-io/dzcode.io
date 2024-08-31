@@ -70,13 +70,6 @@ jobs:
       - uses: codecov/codecov-action@v3
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
-          flags: mobile
-          name: codecov-mobile
-          directory: ./mobile
-          fail_ci_if_error: true
-      - uses: codecov/codecov-action@v3
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
           flags: models
           name: codecov-models
           directory: ./packages/models
@@ -87,13 +80,6 @@ jobs:
           flags: utils
           name: codecov-utils
           directory: ./packages/utils
-          fail_ci_if_error: true
-      - uses: codecov/codecov-action@v3
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          flags: ui
-          name: codecov-ui
-          directory: ./packages/ui
           fail_ci_if_error: true
 
       - name: "Misc"
