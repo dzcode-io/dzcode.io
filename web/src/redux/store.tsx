@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { PropsWithChildren, useState } from "react";
 import { Provider as ReduxProvider, useDispatch, useSelector } from "react-redux";
 
+import { contributorsPageSlice } from "./slices/contributors-page";
 import { projectsPageSlice } from "./slices/projects-page";
 import { settingsSlice } from "./slices/settings";
 
@@ -10,6 +11,7 @@ const makeAppStore = () => {
     reducer: {
       settings: settingsSlice.reducer,
       projectsPage: projectsPageSlice.reducer,
+      contributorsPage: contributorsPageSlice.reducer,
     },
   });
 };

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 import { LOADABLE } from "src/utils/loadable";
 
-interface ProjectsPageState {
+export interface ProjectsPageState {
   projectsList: LOADABLE<GetProjectsResponseDto["projects"]>;
 }
 

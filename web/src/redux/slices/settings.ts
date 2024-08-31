@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Language, Languages } from "src/components/locale/languages";
 
-interface SettingsState {
+export interface SettingsState {
   readonly languageCode: Language["code"];
 }
 

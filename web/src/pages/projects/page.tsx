@@ -37,7 +37,7 @@ export default function Page(): JSX.Element {
         ) : (
           <div className="flex flex-row flex-wrap gap-4 justify-between p-4">
             {projectsList.map((project, projectIndex) => (
-              <div className="card bg-base-300 w-96 flex-auto" key={projectIndex}>
+              <div dir="ltr" className="card bg-base-300 w-96 flex-auto" key={projectIndex}>
                 <div className="card-body markdown">
                   <h2 className="card-title">{project.name}</h2>
                   <ul>
