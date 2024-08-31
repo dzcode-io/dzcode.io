@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - "stg-v*"
+    branches:
+      - "rspack"
 
 jobs:
   install-build-deploy:
@@ -17,10 +19,11 @@ jobs:
     env:
       CI: true
       STAGE: staging
-      SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+      # SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
       SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      # EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('stg-0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
       - name: "Git"
@@ -37,11 +40,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-      - name: "Expo"
-        uses: expo/expo-github-action@v8
-        with:
-          expo-version: 4.x
-          token: ${{ secrets.EXPO_TOKEN }}
+      # - name: "Expo"
+      #   uses: expo/expo-github-action@v8
+      #   with:
+      #     expo-version: 4.x
+      #     token: ${{ secrets.EXPO_TOKEN }}
 
       - name: "Install"
         shell: bash
@@ -51,7 +54,7 @@ jobs:
       - name: "Bundle info"
         shell: bash
         run: |
-          yarn generate:bundle-info ${{ github.ref_name }} stage
+          yarn generate:bundle-info $DEPLOY_VERSION stage
 
       - name: "Build"
         shell: bash
@@ -62,7 +65,7 @@ jobs:
       - name: "Sentry Release"
         shell: bash
         run: |
-          yarn generate:sentry-release ${{ github.ref_name }} stage ${{ secrets.SENTRY_AUTH_TOKEN }}
+          yarn generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
 
       - name: "Deploy"
         shell: bash
