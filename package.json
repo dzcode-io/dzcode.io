@@ -28,11 +28,11 @@
     "semver": "^7.3.5",
     "syncpack": "^5.8.15",
     "ts-jest": "^29.0.5",
-    "ts-node": "^10.9.1",
-    "ts-patch": "^2.0.2",
+    "ts-node": "^10.9.2",
+    "ts-patch": "^3.2.1",
     "ts-prune": "^0.10.3",
-    "typescript": "^4.8.2",
-    "typescript-transform-paths": "^3.3.1"
+    "typescript": "^5.5.4",
+    "typescript-transform-paths": "^3.5.0"
   },
   "lint-staged": {
     "**/package.json": [
