@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "stg-v*"
+    # change to woklfow_dispatch for manual deploy
     branches:
       - "rspack"
 
