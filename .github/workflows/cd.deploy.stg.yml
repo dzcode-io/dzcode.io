@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - "stg-v*"
-    # change to woklfow_dispatch for manual deploy
+    # TODO-ZM: change to woklfow_dispatch for manual deploy
     branches:
       - "rspack"
 
@@ -20,10 +20,8 @@ jobs:
     env:
       CI: true
       STAGE: staging
-      # SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
       SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      # EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
       DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('stg-0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
@@ -41,11 +39,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-      # - name: "Expo"
-      #   uses: expo/expo-github-action@v8
-      #   with:
-      #     expo-version: 4.x
-      #     token: ${{ secrets.EXPO_TOKEN }}
 
       - name: "Install"
         shell: bash

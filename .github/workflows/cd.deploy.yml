@@ -4,9 +4,6 @@ on:
   push:
     tags:
       - "v*"
-    # @TODO-ZM: remove !!!!
-    branches:
-      - "rspack"
 
 jobs:
   install-build-deploy:
@@ -20,10 +17,8 @@ jobs:
     env:
       CI: true
       STAGE: production
-      # SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
       SSH_ADDRESS_PRD: ${{ secrets.SSH_ADDRESS_PRD }}
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      # EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
       DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
@@ -42,23 +37,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-      # - name: "Expo"
-      #   uses: expo/expo-github-action@v8
-      #   with:
-      #     expo-version: 4.x
-      #     token: ${{ secrets.EXPO_TOKEN }}
 
       - name: "Install"
         shell: bash
         run: |
           yarn --frozen-lockfile --network-timeout 1000000
 
-      # @TODO-ZM: put back !!!!
-      # - name: "Version"
-      #   shell: bash
-      #   run: |
-      #     yarn version:apply $DEPLOY_VERSION
-      #     yarn version:push $DEPLOY_VERSION
+      - name: "Version"
+        shell: bash
+        run: |
+          yarn version:apply $DEPLOY_VERSION
+          yarn version:push $DEPLOY_VERSION
 
       - name: "Bundle info"
         shell: bash
