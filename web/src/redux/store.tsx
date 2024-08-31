@@ -4,6 +4,7 @@ import { Provider as ReduxProvider, useDispatch, useSelector } from "react-redux
 
 import { contributionsPageSlice } from "./slices/contributions-page";
 import { contributorsPageSlice } from "./slices/contributors-page";
+import { landingPageSlice } from "./slices/landing-page";
 import { projectsPageSlice } from "./slices/projects-page";
 import { settingsSlice } from "./slices/settings";
 
@@ -14,6 +15,7 @@ const makeAppStore = () => {
       projectsPage: projectsPageSlice.reducer,
       contributorsPage: contributorsPageSlice.reducer,
       contributionsPage: contributionsPageSlice.reducer,
+      landingPage: landingPageSlice.reducer,
     },
   });
 };
