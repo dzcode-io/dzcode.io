@@ -4,9 +4,7 @@ on:
   push:
     tags:
       - "stg-v*"
-    # TODO-ZM: change to woklfow_dispatch for manual deploy
-    branches:
-      - "rspack"
+  workflow_dispatch:
 
 jobs:
   install-build-deploy:
