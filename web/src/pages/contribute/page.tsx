@@ -22,7 +22,7 @@ export default function Page(): JSX.Element {
   return (
     <main className="flex flex-col self-center">
       <h1 className="text-xl font-bold m-2 mt-8 self-center">
-        <Locale contribute-title />
+        <Locale contribute-description />
       </h1>
 
       <div className="flex flex-col self-center">
@@ -37,7 +37,7 @@ export default function Page(): JSX.Element {
         ) : contributionsList === null ? (
           <Loading />
         ) : (
-          <div className="flex flex-row flex-wrap gap-4 justify-between p-4">
+          <div className="flex flex-row flex-wrap gap-4 justify-between p-4 max-w-7xl">
             {contributionsList.map((contribution, contributionIndex) => (
               <div
                 dir="ltr"

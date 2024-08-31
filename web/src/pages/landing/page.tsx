@@ -48,7 +48,7 @@ export default function Page(): JSX.Element {
           <Locale landing-milestones-subtitle />
         </p>
 
-        <div className="flex flex-col self-center">
+        <div className="flex justify-center">
           {milestones === "ERROR" ? (
             <TryAgain
               error={localize("global-generic-error")}
@@ -69,8 +69,10 @@ export default function Page(): JSX.Element {
                     <li dir="ltr" key={milestoneIndex}>
                       <hr />
                       <div
-                        className={`timeline-${isEven ? "start" : "end"} timeline-box md:text-${
-                          isEven ? "end" : "start"
+                        className={`${
+                          isEven ? "timeline-start" : "timeline-end"
+                        } w-full md:w-auto timeline-box ${
+                          isEven ? "md:text-end" : "md:text-start"
                         }`}
                       >
                         <h2 className="text-xl font-bold">{milestone.title}</h2>
