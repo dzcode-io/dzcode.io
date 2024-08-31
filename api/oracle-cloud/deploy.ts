@@ -2,6 +2,9 @@ import { execSync } from "child_process";
 import { copySync, existsSync } from "fs-extra";
 import { join } from "path";
 
+console.log("Skipping API deployment for now.");
+process.exit(0);
+
 console.log("🏗  Preparing files ...");
 const stdout = execSync(
   "lerna list --include-dependencies --json --all --loglevel silent --scope @dzcode.io/api",
