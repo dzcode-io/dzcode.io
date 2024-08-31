@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 import { LOADABLE } from "src/utils/loadable";
 
+// ts-prune-ignore-next
 export interface ContributorsPageState {
   contributorsList: LOADABLE<GetTeamResponseDto["contributors"]>;
 }

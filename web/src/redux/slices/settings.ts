@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Language, Languages } from "src/components/locale/languages";
 
+// ts-prune-ignore-next
 export interface SettingsState {
   readonly languageCode: Language["code"];
 }
