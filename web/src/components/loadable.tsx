@@ -2,7 +2,7 @@ import loadableFactory from "@loadable/component";
 import { Loading } from "src/components/loading";
 
 export const Loadable = loadableFactory<{ page: string }>(
-  (props) => import(`src/pages/${props.page}/page`),
+  (props) => import(`src/pages/${props.page}`),
   {
     cacheKey: (props) => props.page,
     fallback: (

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "src/components/link";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
@@ -19,6 +20,10 @@ export default function Page(): JSX.Element {
 
   return (
     <main className="flex flex-col self-center">
+      <Helmet>
+        <title>{localize("landing-title")}</title>
+        <meta name="description" content={localize("landing-description")} />
+      </Helmet>
       <div className="hero pb-40 pt-40">
         <div className="hero-content text-center">
           <div className="max-w-xl">

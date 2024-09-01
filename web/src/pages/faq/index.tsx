@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Locale, useLocale } from "src/components/locale";
 import { Markdown } from "src/components/markdown";
 
@@ -9,6 +10,10 @@ export default function Page(): JSX.Element {
   return (
     <main className="flex justify-center">
       <div className="flex flex-col gap-8 m-2 mt-8 mb-8 max-w-screen-md">
+        <Helmet>
+          <title>{localize("faq-title")}</title>
+          <meta name="description" content={localize("faq-description")} />
+        </Helmet>
         <h1 className="text-xl font-bold m-auto">
           <Locale faq-header-title />
         </h1>

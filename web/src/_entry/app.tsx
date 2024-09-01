@@ -1,5 +1,6 @@
 import "./style.css";
 
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Route, RouteProps, Routes } from "react-router-dom";
 import { Footer } from "src/components/footer";
 import { Loadable } from "src/components/loadable";
@@ -130,7 +131,9 @@ export function AppWithProviders() {
   return (
     <StoreProvider>
       <BrowserRouter>
-        <App />
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </BrowserRouter>
     </StoreProvider>
   );

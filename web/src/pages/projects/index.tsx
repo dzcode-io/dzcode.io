@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "src/components/link";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
@@ -19,6 +20,10 @@ export default function Page(): JSX.Element {
 
   return (
     <main className="flex flex-col self-center">
+      <Helmet>
+        <title>{localize("projects-title")}</title>
+        <meta name="description" content={localize("projects-description")} />
+      </Helmet>
       <h1 className="text-xl font-bold m-2 mt-8 self-center">
         <Locale projects-header-title />
       </h1>
