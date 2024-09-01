@@ -22,7 +22,8 @@ export default defineConfig({
     },
   },
   html: {
-    template: "./src/_entry/main.html",
+    template: "./src/_entry/index.html",
+    favicon: "./src/assets/ico/favicon.ico",
   },
   server: {
     port: 8080,
