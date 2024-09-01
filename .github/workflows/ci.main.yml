@@ -87,6 +87,7 @@ jobs:
         run: |
           yarn lerna run bundle:alone --scope @dzcode.io/web
           yarn lerna run generate:sitemap --scope @dzcode.io/web
+          yarn lerna run generate:htmls --scope @dzcode.io/web
 
         env:
           CI: true
