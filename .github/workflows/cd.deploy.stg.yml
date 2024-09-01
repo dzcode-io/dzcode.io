@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - "stg-v*"
+    branches:
+      - "rspack"
   workflow_dispatch:
 
 jobs:
