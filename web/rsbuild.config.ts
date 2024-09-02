@@ -1,6 +1,13 @@
+import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { readFileSync } from "fs";
+
+let stage = process.env.STAGE as Environment;
+if (!environments.includes(stage)) {
+  console.log(`⚠️  No STAGE provided, falling back to "development"`);
+  stage = "development";
+}
 
 let bundleInfo: { version: string } = {
   version: `v${require("./package.json").version as string}`, // eslint-disable-line @typescript-eslint/no-var-requires
@@ -24,6 +31,9 @@ export default defineConfig({
   html: {
     template: "./src/_entry/index.html",
     favicon: "./src/assets/ico/favicon.ico",
+    templateParameters: {
+      stage,
+    },
   },
   server: {
     port: 8080,
