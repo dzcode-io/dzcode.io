@@ -1,4 +1,5 @@
 import { Action, ThunkAction } from "@reduxjs/toolkit";
+import { captureException } from "@sentry/react";
 import { contributorsPageSlice } from "src/redux/slices/contributors-page";
 import { AppState } from "src/redux/store";
 import { fetchV2 } from "src/utils/fetch";
@@ -11,7 +12,6 @@ export const fetchContributorsListAction =
       dispatch(contributorsPageSlice.actions.set({ contributorsList: contributors }));
     } catch (error) {
       dispatch(contributorsPageSlice.actions.set({ contributorsList: "ERROR" }));
-      // @TODO-ZM: Uncomment this line when sentry is added
-      // Sentry.captureException(error, { tags: { type: "WEB_FETCH" } });
+      captureException(error, { tags: { type: "WEB_FETCH" } });
     }
   };

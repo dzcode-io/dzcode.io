@@ -1,3 +1,4 @@
+import { captureException } from "@sentry/react";
 import { Language, Languages } from "src/components/locale/languages";
 
 export const changeLanguage = async (languageCode: Language["code"]): Promise<void> => {
@@ -8,8 +9,8 @@ export const changeLanguage = async (languageCode: Language["code"]): Promise<vo
   let newPath = window.location.pathname;
   const language = Languages.find(({ code }) => code === languageCode);
   if (!language) {
-    // @TODO-ZM: log error
     console.error("Invalid language code", languageCode);
+    captureException(`Invalid language code ${language}`), { tags: { type: "GENERIC" } };
     return;
   }
 
