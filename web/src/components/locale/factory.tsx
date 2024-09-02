@@ -1,6 +1,6 @@
+import { PartialWithOneRequiredKey } from "@dzcode.io/utils/dist/ts";
 import type { FC } from "react";
 import { useSelector } from "react-redux";
-import { PartialWithOneRequiredKey } from "src/utils/typescript";
 
 import { BaseDictionary, ExtractDictionaryLanguageCodes } from "./types";
 import { plainLocalize } from "./utils";

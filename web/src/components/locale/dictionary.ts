@@ -1,4 +1,4 @@
-import { PyramidSplitString } from "src/utils/typescript";
+import { PyramidSplitString } from "@dzcode.io/utils/dist/ts";
 
 export type AllDictionaryKeys = keyof typeof dictionary;
 
