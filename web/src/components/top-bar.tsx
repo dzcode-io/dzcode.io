@@ -8,6 +8,7 @@ import { Locale } from "src/components/locale";
 import { DictionaryKeys } from "src/components/locale/dictionary";
 import { changeLanguage } from "src/redux/actions/settings";
 import { useAppSelector } from "src/redux/store";
+import { stripLanguageCodeFromHRef } from "src/utils/website-language";
 
 import { Language, Languages } from "./locale/languages";
 
@@ -18,9 +19,10 @@ interface TopBarProps {
 
 export function TopBar({ version, links }: TopBarProps): JSX.Element {
   const { pathname } = useLocation();
+  const languageLessPathname = useMemo(() => stripLanguageCodeFromHRef(pathname), [pathname]);
   const activeIndex = useMemo(() => {
-    return links.findIndex(({ href }) => pathname === href);
-  }, [pathname, links]);
+    return links.findIndex(({ href }) => languageLessPathname === href);
+  }, [languageLessPathname, links]);
 
   const selectedLanguageCode = useAppSelector((state) => state.settings.languageCode);
 

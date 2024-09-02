@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import type { LinkProps as RRLinkProps } from "react-router-dom";
 import { Link as RRLink } from "react-router-dom";
-import { getInitialLanguageCode } from "src/redux/slices/settings";
+import { getInitialLanguageCode } from "src/utils/website-language";
 
 import { Languages } from "./locale/languages";
 

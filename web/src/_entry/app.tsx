@@ -6,8 +6,8 @@ import { Footer } from "src/components/footer";
 import { Loadable } from "src/components/loadable";
 import { Languages } from "src/components/locale/languages";
 import { TopBar } from "src/components/top-bar";
-import { getInitialLanguageCode } from "src/redux/slices/settings";
 import { StoreProvider } from "src/redux/store";
+import { getInitialLanguageCode } from "src/utils/website-language";
 
 let routes: Array<
   RouteProps & {
