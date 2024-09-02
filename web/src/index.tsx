@@ -1,14 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+// Sentry initialization should be imported first!
+import "src/utils/setup-sentry";
+
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
 import { AppWithProviders } from "./_entry/app";
 
 const rootEl = document.getElementById("root");
 if (rootEl) {
-  const root = ReactDOM.createRoot(rootEl);
+  const root = createRoot(rootEl);
   root.render(
-    <React.StrictMode>
+    <StrictMode>
       <AppWithProviders />
-    </React.StrictMode>,
+    </StrictMode>,
   );
 }
