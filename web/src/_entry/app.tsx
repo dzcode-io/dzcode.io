@@ -37,6 +37,7 @@ let routes: Array<
   },
   {
     pageName: "not-found",
+    path: "*",
   },
 ];
 
