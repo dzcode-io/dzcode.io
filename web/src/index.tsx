@@ -7,11 +7,11 @@ import { createRoot } from "react-dom/client";
 import { AppWithProviders } from "./_entry/app";
 
 const rootEl = document.getElementById("root");
-if (rootEl) {
-  const root = createRoot(rootEl);
-  root.render(
-    <StrictMode>
-      <AppWithProviders />
-    </StrictMode>,
-  );
-}
+if (!rootEl) throw new Error("Root element not found!");
+
+const root = createRoot(rootEl);
+root.render(
+  <StrictMode>
+    <AppWithProviders />
+  </StrictMode>,
+);

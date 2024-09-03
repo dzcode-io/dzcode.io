@@ -5,6 +5,6 @@
     "outDir": "dist",
     "baseUrl": "."
   },
-  "include": ["src"],
+  "include": ["src", "_global.d.ts"],
   "exclude": ["src/_e2e-test"]
 }
