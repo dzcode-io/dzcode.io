@@ -1,4 +1,6 @@
+// Import these two first! in this order
 import "reflect-metadata";
+import "src/_utils/setup-sentry";
 
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import * as Sentry from "@sentry/node";
@@ -20,23 +22,11 @@ import { ErrorMiddleware } from "./middlewares/error";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { RobotsMiddleware } from "./middlewares/robots";
 import { SecurityMiddleware } from "./middlewares/security";
-import { SentryErrorHandlerMiddleware } from "./middlewares/sentry-error-handler";
-import { SentryRequestHandlerMiddleware } from "./middlewares/sentry-request-handler";
 
 // Use typedi container
 useContainer(Container);
 
-const { NODE_ENV, PORT, BUNDLE_INFO } = Container.get(ConfigService).env();
-
-if (NODE_ENV !== "development") {
-  Sentry.init({
-    dsn: "https://5f9d7ae6e98944e1815f8d1944fc3c12@o953637.ingest.sentry.io/5904452",
-    tracesSampleRate: 1.0,
-    environment: NODE_ENV,
-    debug: NODE_ENV !== "production",
-    release: `api@${BUNDLE_INFO.version}`,
-  });
-}
+const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
 // Create the app:
 export const routingControllersOptions: RoutingControllersOptions = {
@@ -50,9 +40,7 @@ export const routingControllersOptions: RoutingControllersOptions = {
     DocumentationController,
   ],
   middlewares: [
-    SentryRequestHandlerMiddleware,
     SecurityMiddleware,
-    SentryErrorHandlerMiddleware,
     ErrorMiddleware,
     LoggerMiddleware,
     DocsMiddleware,
@@ -64,6 +52,8 @@ export const routingControllersOptions: RoutingControllersOptions = {
 const app: Application = createExpressServer(routingControllersOptions);
 
 const logger = Container.get(LoggerService);
+
+Sentry.setupExpressErrorHandler(app);
 
 // Start it
 app.listen(PORT, () => {
