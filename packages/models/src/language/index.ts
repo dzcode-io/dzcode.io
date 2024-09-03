@@ -8,14 +8,14 @@ export const allLanguages = [
 
 export class LanguageEntity extends BaseEntity {
   @IsIn(allLanguages.map(({ code }) => code))
-  code!: typeof allLanguages[number]["code"];
+  code!: (typeof allLanguages)[number]["code"];
 
   @IsIn(allLanguages.map(({ shortLabel }) => shortLabel))
-  shortLabel!: typeof allLanguages[number]["shortLabel"];
+  shortLabel!: (typeof allLanguages)[number]["shortLabel"];
 
   @IsIn(allLanguages.map(({ label }) => label))
-  label!: typeof allLanguages[number]["label"];
+  label!: (typeof allLanguages)[number]["label"];
 
   @IsIn(allLanguages.map(({ direction }) => direction))
-  direction!: typeof allLanguages[number]["direction"];
+  direction!: (typeof allLanguages)[number]["direction"];
 }

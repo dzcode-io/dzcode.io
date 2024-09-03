@@ -21,7 +21,7 @@ export const allFilterNames = ["projects", "languages", "labels"] as const;
 
 export class FilterDto {
   @IsIn(allFilterNames)
-  name!: typeof allFilterNames[number];
+  name!: (typeof allFilterNames)[number];
 
   @ValidateNested({ each: true })
   @Type(() => OptionDto)

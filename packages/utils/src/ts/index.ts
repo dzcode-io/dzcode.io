@@ -26,18 +26,18 @@ export type TreeItem<R extends Record<string, unknown>> = {
 export type SplitString<S extends string, D extends string> = string extends S
   ? string[]
   : S extends ""
-  ? []
-  : S extends `${infer T}${D}${infer U}`
-  ? [T, ...SplitString<U, D>]
-  : [S];
+    ? []
+    : S extends `${infer T}${D}${infer U}`
+      ? [T, ...SplitString<U, D>]
+      : [S];
 
 export type PopSubString<S extends string, D extends string> = string extends S
   ? string
   : S extends ""
-  ? []
-  : S extends `${string}${D}${infer U}`
-  ? PopSubString<U, D>
-  : S;
+    ? []
+    : S extends `${string}${D}${infer U}`
+      ? PopSubString<U, D>
+      : S;
 
 export type PyramidSplitString<
   S extends string,

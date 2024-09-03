@@ -13,7 +13,7 @@ export class RepositoryStatsEntity extends BaseEntity {
 }
 
 const RepositoryProviders = ["github", "gitlab"] as const;
-type RepositoryProvider = typeof RepositoryProviders[number];
+type RepositoryProvider = (typeof RepositoryProviders)[number];
 
 export class RepositoryEntity extends BaseEntity {
   @IsIn(RepositoryProviders)

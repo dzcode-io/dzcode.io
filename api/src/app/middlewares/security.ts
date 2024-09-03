@@ -16,8 +16,8 @@ export class SecurityMiddleware implements ExpressMiddlewareInterface {
       this.env === "staging"
         ? ["https://stage.dzcode.io"]
         : this.env === "production"
-        ? ["https://www.dzcode.io"]
-        : [];
+          ? ["https://www.dzcode.io"]
+          : [];
 
     this.router.use(helmet());
 
