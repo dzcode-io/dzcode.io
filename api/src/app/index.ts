@@ -9,6 +9,7 @@ import { createExpressServer, RoutingControllersOptions, useContainer } from "ro
 import { ArticleController } from "src/article/controller";
 import { ConfigService } from "src/config/service";
 import { ContributionController } from "src/contribution/controller";
+import { DigestCron } from "src/digest/cron";
 import { DocumentationController } from "src/documentation/controller";
 import { GithubController } from "src/github/controller";
 import { LoggerService } from "src/logger/service";
@@ -27,6 +28,10 @@ import { SecurityMiddleware } from "./middlewares/security";
 useContainer(Container);
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
+
+// Add crons to DI container
+const CronServices = [DigestCron];
+CronServices.forEach((service) => Container.get(service));
 
 // Create the app:
 export const routingControllersOptions: RoutingControllersOptions = {
