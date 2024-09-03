@@ -5,7 +5,7 @@ import { Link } from "src/components/link";
 import { Locale } from "./locale";
 import { DictionaryKeys } from "./locale/dictionary";
 
-interface FooterProps {
+export interface FooterProps {
   sections: Array<{
     localeKey: DictionaryKeys<"footer">;
     links: Array<{
