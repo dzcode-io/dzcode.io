@@ -1,11 +1,11 @@
 import { GetContributionsResponseDto } from "@dzcode.io/api/dist/contribution/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
-import { LOADABLE } from "src/utils/loadable";
+import { Loadable } from "src/utils/loadable";
 
 // ts-prune-ignore-next
 export interface ContributionsPageState {
-  contributionsList: LOADABLE<GetContributionsResponseDto["contributions"]>;
+  contributionsList: Loadable<GetContributionsResponseDto["contributions"]>;
 }
 
 const initialState: ContributionsPageState = {

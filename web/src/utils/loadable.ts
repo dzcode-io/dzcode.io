@@ -1,1 +1,1 @@
-export type LOADABLE<T> = null | "ERROR" | T;
+export type Loadable<T> = null | "ERROR" | T;
