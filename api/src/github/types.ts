@@ -1,4 +1,5 @@
 import { IsNumber } from "class-validator";
+import { GeneralResponseDto } from "src/app/types";
 
 export interface GithubUser {
   login: string;
@@ -163,7 +164,7 @@ export interface GitHubRateLimitApiResponse {
   };
 }
 
-export class GetRateLimitResponseDto {
+export class GetRateLimitResponseDto extends GeneralResponseDto {
   @IsNumber()
   limit!: number;
 

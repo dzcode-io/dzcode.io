@@ -22,6 +22,7 @@ describe("GithubService", () => {
   const configService = mock<ConfigService>({
     env: () => ({
       FETCH_CACHE_PATH: "",
+      SQLITE_DB_PATH: "",
       NODE_ENV: "development",
       PORT: 0,
       BUNDLE_INFO: { version: "test" },

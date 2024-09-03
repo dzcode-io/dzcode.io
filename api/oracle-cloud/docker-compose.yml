@@ -9,3 +9,4 @@ services:
       - /home/ubuntu/app-env/api.env
     volumes:
       - /home/ubuntu/app-data/api/fetch_cache:/usr/src/repo/api/fetch_cache
+      - /home/ubuntu/app-data/api/sqlite_db:/usr/src/repo/api/sqlite_db

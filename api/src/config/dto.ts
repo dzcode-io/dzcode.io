@@ -20,6 +20,9 @@ export class ENVDto {
   FETCH_CACHE_PATH = "./fetch_cache";
 
   @IsString()
+  SQLITE_DB_PATH = "./sqlite_db";
+
+  @IsString()
   @IsOptional()
   GITHUB_TOKEN?: string;
 

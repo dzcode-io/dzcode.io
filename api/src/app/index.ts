@@ -15,6 +15,7 @@ import { GithubController } from "src/github/controller";
 import { LoggerService } from "src/logger/service";
 import { MilestoneController } from "src/milestone/controller";
 import { ProjectController } from "src/project/controller";
+import { SQLiteService } from "src/sqlite/service";
 import { TeamController } from "src/team/controller";
 import Container from "typedi";
 
@@ -26,6 +27,9 @@ import { SecurityMiddleware } from "./middlewares/security";
 
 // Use typedi container
 useContainer(Container);
+
+// Initialize Database
+Container.get(SQLiteService);
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
