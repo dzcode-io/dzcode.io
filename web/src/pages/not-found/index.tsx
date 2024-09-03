@@ -1,34 +1,24 @@
-import { Button } from "@dzcode.io/ui/dist/button";
-import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import { Image } from "@dzcode.io/ui/dist/image";
-import { Markdown } from "@dzcode.io/ui/dist/markdown";
-import { Stack } from "@dzcode.io/ui/dist/stack";
-import { Text } from "@dzcode.io/ui/dist/text";
-import { FC } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import svg from "src/assets/svg/404.svg";
-import { T, t } from "src/components/t";
-import { AllDictionaryKeys } from "src/components/t/dictionary";
-
-const NotFound: FC = () => {
-  return (
-    <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
-      <Helmet>
-        <title>{t("notfound-title")}</title>
-        <meta name="description" content={t("notfound-description")} />
-      </Helmet>
-      <Stack direction="vertical" alignItems="center" justifyContent="center">
-        <Image src={svg} width="80%" />
-        <Text variant="v2">
-          <Markdown t={t("notfound-subtitle")} />
-        </Text>
-        <Button variant="v1" href="/" margin={3}>
-          <T notfound-back-home />
-        </Button>
-      </Stack>
-    </ErrorBoundary>
-  );
-};
+import { Link } from "src/components/link";
+import { Locale, useLocale } from "src/components/locale";
+import { Markdown } from "src/components/markdown";
 
 // ts-prune-ignore-next
-export default NotFound;
+export default function Page(): JSX.Element {
+  const { localize } = useLocale();
+  return (
+    <main className="flex justify-center">
+      <Helmet>
+        <title>{localize("notfound-title")}</title>
+        <meta name="description" content={localize("notfound-description")} />
+      </Helmet>
+      <div className="text-center">
+        <img src={svg} alt="404" className="m-auto w-1/2" />
+        <Link href="/" className="btn btn-outline">
+          <Locale notfound-back-home />
+        </Link>
+      </div>
+    </main>
+  );
+}

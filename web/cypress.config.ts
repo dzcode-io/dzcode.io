@@ -4,7 +4,7 @@ import { defineConfig } from "cypress";
 export default defineConfig({
   e2e: {
     baseUrl: fsConfig("development").web.url,
-    supportFile: "src/_e2e-test/support/e2e.ts",
+    supportFile: false,
     specPattern: "src/_e2e-test/tests/**/*.spec.{js,jsx,ts,tsx}",
     downloadsFolder: "src/_e2e-test/downloads",
     videosFolder: "src/_e2e-test/videos",

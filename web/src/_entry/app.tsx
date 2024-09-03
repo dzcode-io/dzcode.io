@@ -1,125 +1,140 @@
-import "./style.scss";
+import "./style.css";
 
-import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
-import { Flex, MAX_CONTAINER_WIDTH } from "@dzcode.io/ui/dist/flex";
-import { Footer } from "@dzcode.io/ui/dist/footer";
-import { Loading } from "@dzcode.io/ui/dist/loading";
-import { Navbar } from "@dzcode.io/ui/dist/navbar";
-import { Stack } from "@dzcode.io/ui/dist/stack";
-import { FC, Suspense, useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { Route, RouteProps, Switch, useLocation, useRouteMatch } from "react-router-dom";
-import logoWide from "src/assets/svg/logo-wide.svg";
-import logo from "src/assets/svg/logo-wide.svg";
-import logoExtended from "src/assets/svg/logo-wide-extended.svg";
-import { L } from "src/components/l";
-import { t } from "src/components/t";
-import { actions } from "src/redux";
-import { useSliceSelector } from "src/redux/selectors";
-import { getEnv } from "src/utils";
-import { urlLanguageRegEx } from "src/utils/language";
+import { HelmetProvider } from "react-helmet-async";
+import { BrowserRouter, Route, RouteProps, Routes } from "react-router-dom";
+import { Footer, FooterProps } from "src/components/footer";
+import { Loadable } from "src/components/loadable";
+import { Languages } from "src/components/locale/languages";
+import { TopBar, TopBarProps } from "src/components/top-bar";
+import { StoreProvider } from "src/redux/store";
+import { getInitialLanguageCode } from "src/utils/website-language";
 
-interface RouteInterface extends RouteProps {
-  pageName: string;
-}
-
-const routes: RouteInterface[] = [
+let routes: Array<
+  RouteProps & {
+    pageName: string;
+  }
+> = [
   {
     pageName: "landing",
     path: "/",
-    exact: true,
-  },
-  {
-    pageName: "learn",
-    path: "/Learn/:articleId*",
+    index: true,
   },
   {
     pageName: "projects",
-    path: "/Projects",
-  },
-  {
-    pageName: "articles",
-    path: "/Articles/:articleId*",
+    path: "/projects",
   },
   {
     pageName: "faq",
-    path: "/FAQ",
+    path: "/faq",
   },
   {
     pageName: "contribute",
-    path: "/Contribute",
+    path: "/contribute",
   },
   {
     pageName: "team",
-    path: "/Team",
+    path: "/team",
   },
   {
     pageName: "not-found",
+    path: "*",
   },
 ];
 
-export const App: FC = () => {
-  const location = useLocation();
-  const match = useRouteMatch<{ lang?: LanguageEntity["code"] }>(urlLanguageRegEx);
-  const landingPageMatch = useRouteMatch<{ lang?: LanguageEntity["code"] }>(`${urlLanguageRegEx}/`);
-  const { language, themeName } = useSliceSelector("settings");
-  const { links } = useSliceSelector("navbarComponent");
-  const { sections } = useSliceSelector("footerComponent");
+const initialLanguageCode = getInitialLanguageCode();
+if (initialLanguageCode !== Languages[0].code) {
+  routes = routes.map((route) => {
+    return {
+      ...route,
+      path: `/${initialLanguageCode}${route.path}`,
+    };
+  });
+}
 
-  useEffect(() => {
-    if (getEnv() !== "development") {
-      if (window.ga) {
-        window.ga("set", "page", location.pathname);
-        window.ga("send", "pageview");
-      }
-    }
+const footerSections: FooterProps["sections"] = [
+  {
+    localeKey: "footer-category-title-helpful-links",
+    links: [
+      { localeKey: "footer-category-link-text-home", href: "/" },
+      {
+        localeKey: "footer-category-link-text-projects",
+        href: "/projects",
+      },
+      { localeKey: "footer-category-link-text-faq", href: "/faq" },
+    ],
+  },
+  {
+    localeKey: "footer-category-title-social-media",
+    links: [
+      {
+        localeKey: "footer-category-link-text-github",
+        href: "https://www.github.com/dzcode-io",
+      },
+      {
+        localeKey: "footer-category-link-text-slack",
+        href: "https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ",
+      },
+      {
+        localeKey: "footer-category-link-text-facebook",
+        href: "https://www.facebook.com/dzcode.io",
+      },
+      {
+        localeKey: "footer-category-link-text-instagram",
+        href: "https://www.instagram.com/dzcode.io",
+      },
+      {
+        localeKey: "footer-category-link-text-youTube",
+        href: "https://www.youtube.com/channel/UC_tLjuQaYotzERtaAo8Y4SQ",
+      },
+      {
+        localeKey: "footer-category-link-text-twitter",
+        href: "https://twitter.com/dzcode_io",
+      },
+      {
+        localeKey: "footer-category-link-text-linkedIn",
+        href: "https://www.linkedin.com/groups/8924363",
+      },
+    ],
+  },
+];
 
-    const urlLanguage =
-      allLanguages.find(({ code }) => code === match?.params.lang) || allLanguages[0];
-    if (urlLanguage.code !== language.code) {
-      actions.settings.set({ language: urlLanguage });
-    }
-  }, [location]);
+const topBarLinks: TopBarProps["links"] = [
+  { href: "/contribute", localeKey: "navbar-section-contribute" },
+  { href: "/team", localeKey: "navbar-section-connect" },
+  { href: "/projects", localeKey: "navbar-section-projects" },
+  { href: "/faq", localeKey: "navbar-section-faq" },
+];
 
+const App = () => {
   return (
     <>
-      <Helmet>
-        <title>{t("landing-title")}</title>
-      </Helmet>
-      <Stack direction="vertical" min={{ height: "100vh" }}>
-        <Navbar
-          version={window.bundleInfo.version}
-          selectedLanguageCode={language.code}
-          themeName={themeName}
-          logo={logo}
-          logoExtended={logoExtended}
-          links={links}
-          onLanguageChanged={(selectedLanguageCode) => {
-            actions.settings.set({
-              language: allLanguages.find(({ code }) => code === selectedLanguageCode),
-            });
-          }}
-          onThemeChanged={(selectedThemeName) => {
-            actions.settings.set({ themeName: selectedThemeName });
-          }}
-          fixed={!!landingPageMatch?.isExact}
-        />
-        <Flex max={{ width: MAX_CONTAINER_WIDTH }} grow={1} display="flex">
-          <Suspense fallback={<Loading logo={logoWide} />}>
-            <Switch>
-              {routes.map(({ pageName, path, ...route }, index) => (
-                <Route
-                  {...route}
-                  path={path ? `${urlLanguageRegEx}${path}` : undefined}
-                  key={`route-${index}`}
-                  render={() => <L page={pageName} />}
-                />
-              ))}
-            </Switch>
-          </Suspense>
-        </Flex>
-        <Footer sections={sections} bottomText="footer-bottom-text" />
-      </Stack>
+      <div className="flex flex-col min-h-screen">
+        <TopBar version={window.bundleInfo.version} links={topBarLinks} />
+        <Routes>
+          {routes.map((route) => {
+            return (
+              <Route
+                key={route.pageName}
+                path={route.path}
+                element={<Loadable page={route.pageName} />}
+              />
+            );
+          })}
+        </Routes>
+      </div>
+      <Footer sections={footerSections} />
     </>
   );
 };
+
+export function AppWithProviders() {
+  return (
+    <StoreProvider>
+      <BrowserRouter>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </BrowserRouter>
+    </StoreProvider>
+  );
+}

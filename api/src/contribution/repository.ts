@@ -81,6 +81,8 @@ export class ContributionRepository {
       )
     ).reduce((pV, cV) => [...pV, ...cV], []);
     if (filterFn) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       contributions = contributions.filter(filterFn);
     }
     contributions = contributions.sort(
@@ -93,11 +95,15 @@ export class ContributionRepository {
       this.pushUniqueOption([{ name: project.slug, label: project.name }], filters[0].options);
 
       this.pushUniqueOption(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         languages.map((language) => ({ name: language })),
         filters[1].options,
       );
 
       this.pushUniqueOption(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         labels.map((label) => ({ name: label })),
         filters[2].options,
       );

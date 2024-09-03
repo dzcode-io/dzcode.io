@@ -1,113 +1,113 @@
-import { ContributionCard } from "@dzcode.io/ui/dist/card/contribution";
-import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import { Filter } from "@dzcode.io/ui/dist/filter";
-import { Stack } from "@dzcode.io/ui/dist/stack";
-import { TryAgain } from "@dzcode.io/ui/dist/try-again";
-import { arrayOf } from "@dzcode.io/utils/dist/array";
-import { FC, useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { t, tKey } from "src/components/t";
-import { AllDictionaryKeys } from "src/components/t/dictionary";
-import { fetchContributions, updateFilterValue } from "src/redux/actions/contribute-page";
-import { useSliceSelector } from "src/redux/selectors";
-
-const loadingItems = arrayOf(3);
-
-const ContributePage: FC = () => {
-  const { filters, contributions } = useSliceSelector("contributePage");
-
-  useEffect(() => {
-    fetchContributions();
-  }, []);
-
-  return (
-    <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
-      <Helmet>
-        <title>{t("contribute-title")}</title>
-        <meta name="description" content={t("contribute-description")} />
-      </Helmet>
-      <Stack
-        direction="vertical"
-        alignItems="stretch"
-        justifyContent="start"
-        width="100%"
-        flexWrap="wrap"
-      >
-        <Stack direction="vertical">
-          {filters === "ERROR" ? (
-            <TryAgain
-              // @TODO-ZM: localize these
-              error="Ops, an error occurred while loading the contribution cards, please try again..."
-              action="Try Again"
-              onClick={() => fetchContributions()}
-            />
-          ) : (
-            <Filter
-              margin={[3, 1, 0]}
-              items={filters}
-              local={{
-                filterLabelKeyPrefix: tKey("contribute-filter"),
-                programmingLanguageKeyPrefix: tKey("global-programming-language"),
-                contributionLabelKeyPrefix: tKey("global-contribution-label"),
-              }}
-              onOptionClick={(filterName, optionName, checked) =>
-                updateFilterValue({ filterName, optionName, value: checked })
-              }
-            />
-          )}
-        </Stack>
-        <Stack direction="vertical">
-          {contributions === "ERROR" ? (
-            <TryAgain
-              // @TODO-ZM: localize these
-              error="Ops, an error occurred while loading the contribution cards, please try again..."
-              action="Try Again"
-              onClick={() => fetchContributions()}
-            />
-          ) : (
-            <Stack
-              margin={[3, 0]}
-              padding={[0, 1]}
-              direction="horizontal"
-              flexWrap="wrap"
-              justifyContent="space-between"
-              gap={1}
-              width="100%"
-            >
-              {contributions
-                ? contributions.map((contribution, index) => (
-                    <ContributionCard
-                      key={`contribution-${index}`}
-                      contribution={contribution}
-                      local={{
-                        readIssue: tKey("contribute-read-issue"),
-                        reviewChanges: tKey("contribute-review-changes"),
-                        elapsedTime: tKey("elapsed-time-suffixes"),
-                        filterLabelKeyPrefix: tKey("contribute-filter"),
-                        programmingLanguageKeyPrefix: tKey("global-programming-language"),
-                        contributionLabelKeyPrefix: tKey("global-contribution-label"),
-                      }}
-                      onChipClick={(filterName, optionName) =>
-                        updateFilterValue({
-                          filterName,
-                          optionName,
-                          value: true,
-                          updateImmediately: true,
-                          overwrite: true,
-                        })
-                      }
-                    />
-                  ))
-                : loadingItems.map((index) => (
-                    <ContributionCard key={`loading-${index}`} contribution={null} />
-                  ))}
-            </Stack>
-          )}
-        </Stack>
-      </Stack>
-    </ErrorBoundary>
-  );
-};
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import { Link } from "src/components/link";
+import { Loading } from "src/components/loading";
+import { Locale, useLocale } from "src/components/locale";
+import { Markdown } from "src/components/markdown";
+import { TryAgain } from "src/components/try-again";
+import { fetchContributionsListAction } from "src/redux/actions/contributions";
+import { useAppDispatch, useAppSelector } from "src/redux/store";
+import { getElapsedTime } from "src/utils/elapsed-time";
 
 // ts-prune-ignore-next
-export default ContributePage;
+export default function Page(): JSX.Element {
+  const { localize } = useLocale();
+  const { contributionsList } = useAppSelector((state) => state.contributionsPage);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContributionsListAction());
+  }, [dispatch]);
+
+  // @TODO-ZM: add filters and search
+  return (
+    <main className="flex flex-col self-center">
+      <Helmet>
+        <title>{localize("contribute-title")}</title>
+        <meta name="description" content={localize("contribute-description")} />
+      </Helmet>
+      <h1 className="text-xl font-bold m-2 mt-8 self-center">
+        <Locale contribute-description />
+      </h1>
+
+      <div className="flex flex-col self-center">
+        {contributionsList === "ERROR" ? (
+          <TryAgain
+            error={localize("global-generic-error")}
+            action={localize("global-try-again")}
+            onClick={() => {
+              dispatch(fetchContributionsListAction());
+            }}
+          />
+        ) : contributionsList === null ? (
+          <Loading />
+        ) : (
+          <div className="flex flex-row flex-wrap gap-4 justify-between p-4 max-w-7xl">
+            {contributionsList.map((contribution, contributionIndex) => (
+              <div
+                dir="ltr"
+                className="card card-compact bg-base-300 w-96 flex-auto"
+                key={contributionIndex}
+              >
+                <div className="card-body markdown">
+                  <div className="card-body">
+                    <h2 className="card-title">
+                      <Markdown content={contribution.title} />
+                    </h2>
+                    <span className="card-normal flex-1 ">{contribution.project.name}</span>
+                    <div className="flex flex-row flex-wrap gap-1">
+                      {contribution.labels.map((label, labelIndex) => (
+                        <span key={`label-${labelIndex}`} className="badge">
+                          {label}
+                        </span>
+                      ))}
+                      {contribution.languages.map((language, languageIndex) => (
+                        <span key={`language-${languageIndex}`} className="badge">
+                          {language}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="card-actions justify-end mt-4 gap-4">
+                      <img
+                        className="w-6 h-6 rounded-full"
+                        src={contribution.createdBy.avatarUrl}
+                      />
+                      <div className="flex-1" />
+                      <div className="flex flex-row">
+                        {getElapsedTime(contribution.updatedAt, localize("elapsed-time-suffixes"))}
+                      </div>
+                      {contribution.commentsCount > 0 && (
+                        <div className="flex flex-row">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="size-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"
+                            />
+                          </svg>
+                          <span className="">{contribution.commentsCount}</span>
+                        </div>
+                      )}
+                      <Link href={contribution.url} className="link">
+                        {contribution.type === "issue"
+                          ? localize("contribute-read-issue")
+                          : localize("contribute-review-changes")}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}

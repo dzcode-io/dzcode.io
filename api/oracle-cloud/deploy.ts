@@ -1,3 +1,6 @@
+// can be ran locally from ./api:
+// SSH_ADDRESS_STG="root@x.x.x.x" SSH_PATH="path/to/private/ssh/key" yarn deploy:stg
+
 import { execSync } from "child_process";
 import { copySync, existsSync } from "fs-extra";
 import { join } from "path";
@@ -82,8 +85,6 @@ logs = execSync(
 console.log("✅ New code uploaded.");
 
 console.log("\n⚙️  Starting up the app");
-logs = execSync(
-  sshPrefix + '"sudo docker-compose -f ' + appPath + '/docker-compose.yml up -d --build"',
-);
+logs = execSync(sshPrefix + '"cd ' + appPath + ' && docker compose up -d --build"');
 console.log(String(logs));
 console.log("✅ Deployment successful.");

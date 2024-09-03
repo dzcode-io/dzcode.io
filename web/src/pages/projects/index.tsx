@@ -1,70 +1,65 @@
-import { ProjectCard } from "@dzcode.io/ui/dist/card/project";
-import { ErrorBoundary } from "@dzcode.io/ui/dist/error-boundary";
-import { Stack } from "@dzcode.io/ui/dist/stack";
-import { Text } from "@dzcode.io/ui/dist/text";
-import { TryAgain } from "@dzcode.io/ui/dist/try-again";
-import { arrayOf } from "@dzcode.io/utils/dist/array";
-import { FC, useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { T, t, tKey } from "src/components/t";
-import { AllDictionaryKeys } from "src/components/t/dictionary";
-import { fetchProjectsList } from "src/redux/actions/projects-page";
-import { useSliceSelector } from "src/redux/selectors";
-
-const loadingItems = arrayOf(4);
-
-const ProjectsPage: FC = () => {
-  const { projectsList } = useSliceSelector("projectsPage");
-
-  useEffect(() => {
-    fetchProjectsList();
-  }, []);
-
-  return (
-    <ErrorBoundary local={{ emailUs: "global-error-email-us" as AllDictionaryKeys }}>
-      <Helmet>
-        <title>{t("projects-title")}</title>
-        <meta name="description" content={t("projects-description")} />
-      </Helmet>
-      <Stack direction="vertical" alignItems="center" width="100%">
-        <Text variant="v3" margin={[3, 1, 0]}>
-          <T projects-header-title />
-        </Text>
-        {projectsList == "ERROR" ? (
-          <TryAgain
-            error={t("projects-error")}
-            action={t("projects-try-again")}
-            onClick={() => fetchProjectsList()}
-          />
-        ) : (
-          <Stack
-            direction="horizontal"
-            flexWrap="wrap"
-            margin={[3, 1]}
-            justifyContent="space-evenly"
-            gap={3}
-          >
-            {projectsList
-              ? projectsList.map((project, index) => (
-                  <ProjectCard
-                    key={`project-${index}`}
-                    project={project}
-                    local={{
-                      filterLabelKeyPrefix: tKey("contribute-filter"),
-                      programmingLanguageKeyPrefix: tKey("global-programming-language"),
-                      contributionLabelKeyPrefix: tKey("global-contribution-label"),
-                    }}
-                  />
-                ))
-              : loadingItems.map((index) => (
-                  <ProjectCard key={`loading-${index}`} project={null} />
-                ))}
-          </Stack>
-        )}
-      </Stack>
-    </ErrorBoundary>
-  );
-};
+import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import { Link } from "src/components/link";
+import { Loading } from "src/components/loading";
+import { Locale, useLocale } from "src/components/locale";
+import { TryAgain } from "src/components/try-again";
+import { fetchProjectsListAction } from "src/redux/actions/projects";
+import { useAppDispatch, useAppSelector } from "src/redux/store";
+import { getRepositoryName, getRepositoryURL } from "src/utils/repository";
 
 // ts-prune-ignore-next
-export default ProjectsPage;
+export default function Page(): JSX.Element {
+  const { localize } = useLocale();
+  const { projectsList } = useAppSelector((state) => state.projectsPage);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProjectsListAction());
+  }, [dispatch]);
+
+  return (
+    <main className="flex flex-col self-center">
+      <Helmet>
+        <title>{localize("projects-title")}</title>
+        <meta name="description" content={localize("projects-description")} />
+      </Helmet>
+      <h1 className="text-xl font-bold m-2 mt-8 self-center">
+        <Locale projects-header-title />
+      </h1>
+
+      <div className="flex flex-col self-center">
+        {projectsList === "ERROR" ? (
+          <TryAgain
+            error={localize("global-generic-error")}
+            action={localize("global-try-again")}
+            onClick={() => {
+              dispatch(fetchProjectsListAction());
+            }}
+          />
+        ) : projectsList === null ? (
+          <Loading />
+        ) : (
+          <div className="flex flex-row flex-wrap gap-4 justify-between p-4 max-w-7xl">
+            {projectsList.map((project, projectIndex) => (
+              <div dir="ltr" className="card bg-base-300 w-96 flex-auto" key={projectIndex}>
+                <div className="card-body markdown">
+                  <h2 className="card-title">{project.name}</h2>
+                  <ul>
+                    {project.repositories.map((repository, repositoryIndex) => (
+                      <li key={repositoryIndex}>
+                        <Link href={getRepositoryURL(repository)}>
+                          {getRepositoryName(repository)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}

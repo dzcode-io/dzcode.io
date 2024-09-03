@@ -19,7 +19,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.1.4",
     "cpx": "^1.5.0",
-    "firebase-tools": "^9.1.0"
+    "firebase-tools": "^13.16.0"
   },
   "engines": {
     "node": ">=16",

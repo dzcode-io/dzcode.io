@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
         os: [macos-latest, ubuntu-latest, windows-latest]
       fail-fast: false
 
@@ -70,13 +70,6 @@ jobs:
       - uses: codecov/codecov-action@v3
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
-          flags: mobile
-          name: codecov-mobile
-          directory: ./mobile
-          fail_ci_if_error: true
-      - uses: codecov/codecov-action@v3
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
           flags: models
           name: codecov-models
           directory: ./packages/models
@@ -88,19 +81,13 @@ jobs:
           name: codecov-utils
           directory: ./packages/utils
           fail_ci_if_error: true
-      - uses: codecov/codecov-action@v3
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          flags: ui
-          name: codecov-ui
-          directory: ./packages/ui
-          fail_ci_if_error: true
 
       - name: "Misc"
         shell: bash
         run: |
           yarn lerna run bundle:alone --scope @dzcode.io/web
           yarn lerna run generate:sitemap --scope @dzcode.io/web
+          yarn lerna run generate:htmls --scope @dzcode.io/web
 
         env:
           CI: true

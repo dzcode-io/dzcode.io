@@ -15,7 +15,9 @@ bundle
 # mobile
 .expo
 
+
 ./.*
+.editorconfig
 .gitignore
 nodemon.json
 *.tsbuildinfo

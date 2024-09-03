@@ -1,5 +1,5 @@
 {
-  "extends": "@dzcode.io/tooling/tsconfig.json",
+  "extends": "../packages/tooling/tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
     "baseUrl": "."

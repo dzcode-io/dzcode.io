@@ -42,4 +42,9 @@ export type PopSubString<S extends string, D extends string> = string extends S
 export type PyramidSplitString<
   S extends string,
   D extends string,
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
 > = S extends `${infer L}-${PopSubString<S, D>}` ? [L, ...PyramidSplitString<L, D>] : [];
+
+export type PartialWithOneRequiredKey<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
+  U[keyof U];
