@@ -78,7 +78,7 @@
     "lint:tsc": "tsc --noEmit",
     "start:dev": "rsbuild dev --open",
     "test": "yarn build && yarn test:alone",
-    "test:alone": "jest",
+    "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }
