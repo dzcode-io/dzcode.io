@@ -12,4 +12,4 @@ export const projectsTable = sqliteTable("projects", {
   slug: text("slug").notNull(),
 });
 
-// projectsTable.$inferSelect satisfies Model<ProjectEntity>;
+projectsTable.$inferSelect satisfies Model<ProjectEntity>;
