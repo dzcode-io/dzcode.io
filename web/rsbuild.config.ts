@@ -3,7 +3,8 @@ import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { readFileSync } from "fs";
 
-let stage = process.env.STAGE as Environment;
+let stage = process.env.STAGE;
+
 if (!environments.includes(stage)) {
   console.log(`⚠️  No STAGE provided, falling back to "development"`);
   stage = "development";
