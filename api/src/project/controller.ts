@@ -1,20 +1,14 @@
 import { Controller, Get } from "routing-controllers";
 import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
-import { DataService } from "src/data/service";
-import { GithubService } from "src/github/service";
-import { LoggerService } from "src/logger/service";
 import { Service } from "typedi";
 
+import { ProjectRepository } from "./repository";
 import { GetProjectsResponseDto } from "./types";
 
 @Service()
 @Controller("/Projects")
 export class ProjectController {
-  constructor(
-    private readonly githubService: GithubService,
-    private readonly dataService: DataService,
-    private readonly loggerService: LoggerService,
-  ) {}
+  constructor(private readonly projectRepository: ProjectRepository) {}
 
   @Get("/")
   @OpenAPI({
@@ -22,8 +16,7 @@ export class ProjectController {
   })
   @ResponseSchema(GetProjectsResponseDto)
   public async getProjects(): Promise<GetProjectsResponseDto> {
-    // get projects from /data folder:
-    const projects = await this.dataService.listProjects();
+    const projects = await this.projectRepository.find();
 
     return {
       projects,

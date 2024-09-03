@@ -1,5 +1,6 @@
 {
   "name": "@dzcode.io/root",
+  "dependencies": {},
   "devDependencies": {
     "@prettier/plugin-pug": "^1.17.3",
     "@sentry/cli": "^1.71.0",
@@ -39,7 +40,7 @@
       "syncpack format"
     ],
     "./*.*": [
-      "prettier --config ./packages/tooling/.prettierrc --ignore-path ./packages/tooling/.prettierignore --loglevel warn --write"
+      "prettier --config ./packages/tooling/.prettierrc --ignore-path ./packages/tooling/.prettierignore --log-level warn --write"
     ]
   },
   "private": true,

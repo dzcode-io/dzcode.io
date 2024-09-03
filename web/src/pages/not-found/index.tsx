@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import svg from "src/assets/svg/404.svg";
 import { Link } from "src/components/link";
 import { Locale, useLocale } from "src/components/locale";
-import { Markdown } from "src/components/markdown";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {

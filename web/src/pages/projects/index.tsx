@@ -46,13 +46,14 @@ export default function Page(): JSX.Element {
                 <div className="card-body markdown">
                   <h2 className="card-title">{project.name}</h2>
                   <ul>
-                    {project.repositories.map((repository, repositoryIndex) => (
+                    {/* @TODO-ZM: put this back */}
+                    {/* {project.repositories.map((repository, repositoryIndex) => (
                       <li key={repositoryIndex}>
                         <Link href={getRepositoryURL(repository)}>
                           {getRepositoryName(repository)}
                         </Link>
                       </li>
-                    ))}
+                    ))} */}
                   </ul>
                 </div>
               </div>
