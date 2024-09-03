@@ -12,6 +12,5 @@ runDTOTestCases(
   {
     contributions: [],
     contributors: [],
-    stats: { contributionCount: 10, languages: ["TypeScript", "Rust"] },
   },
 );

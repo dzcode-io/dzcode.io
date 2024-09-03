@@ -1,9 +1,17 @@
 import { Type } from "class-transformer";
-import { IsString, ValidateNested } from "class-validator";
+import { IsNumber, IsString, ValidateNested } from "class-validator";
 import { BaseEntity, Model } from "src/_base";
 import { RepositoryEntity } from "src/repository";
 
 export class ProjectEntity extends BaseEntity {
+  // @TODO-ZM: move this to BaseEntity
+  @IsNumber()
+  id!: number;
+
+  // @TODO-ZM: move this to BaseEntity
+  @IsString()
+  runId!: string;
+
   @IsString()
   slug!: string;
 

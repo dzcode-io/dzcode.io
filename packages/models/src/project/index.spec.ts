@@ -5,6 +5,8 @@ import { ProjectEntity } from ".";
 runDTOTestCases(
   ProjectEntity,
   {
+    id: 0,
+    runId: "initial-run-id",
     name: "Leblad",
     repositories: [
       {
