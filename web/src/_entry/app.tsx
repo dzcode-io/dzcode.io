@@ -5,7 +5,7 @@ import { BrowserRouter, Route, RouteProps, Routes } from "react-router-dom";
 import { Footer, FooterProps } from "src/components/footer";
 import { Loadable } from "src/components/loadable";
 import { Languages } from "src/components/locale/languages";
-import { TopBar } from "src/components/top-bar";
+import { TopBar, TopBarProps } from "src/components/top-bar";
 import { StoreProvider } from "src/redux/store";
 import { getInitialLanguageCode } from "src/utils/website-language";
 
@@ -98,19 +98,18 @@ const footerSections: FooterProps["sections"] = [
   },
 ];
 
+const topBarLinks: TopBarProps["links"] = [
+  { href: "/contribute", localeKey: "navbar-section-contribute" },
+  { href: "/team", localeKey: "navbar-section-connect" },
+  { href: "/projects", localeKey: "navbar-section-projects" },
+  { href: "/faq", localeKey: "navbar-section-faq" },
+];
+
 const App = () => {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <TopBar
-          version={window.bundleInfo.version}
-          links={[
-            { href: "/contribute", localeKey: "navbar-section-contribute" },
-            { href: "/team", localeKey: "navbar-section-connect" },
-            { href: "/projects", localeKey: "navbar-section-projects" },
-            { href: "/faq", localeKey: "navbar-section-faq" },
-          ]}
-        />
+        <TopBar version={window.bundleInfo.version} links={topBarLinks} />
         <Routes>
           {routes.map((route) => {
             return (

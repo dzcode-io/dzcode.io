@@ -12,7 +12,7 @@ import { stripLanguageCodeFromHRef } from "src/utils/website-language";
 
 import { Language, Languages } from "./locale/languages";
 
-interface TopBarProps {
+export interface TopBarProps {
   version: string;
   links: Array<{ localeKey: DictionaryKeys<"navbar-section">; href: string }>;
 }
