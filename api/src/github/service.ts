@@ -1,9 +1,11 @@
 import { Model } from "@dzcode.io/models/dist/_base";
 import { AccountEntity } from "@dzcode.io/models/dist/account";
+import { validatePlainObject } from "src/_utils/validator/validate-plain-object";
 import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
 
+import { GitHubListRepositoryLanguagesResponse } from "./dto";
 import {
   GeneralGithubQuery,
   GetUserInput,
@@ -72,12 +74,12 @@ export class GithubService {
   public listRepositoryLanguages = async ({
     owner,
     repository,
-  }: GitHubListRepositoryLanguagesInput): Promise<string[]> => {
+  }: GitHubListRepositoryLanguagesInput): Promise<GitHubListRepositoryLanguagesResponse> => {
     const languages = await this.fetchService.get<Record<string, number>>(
       `${this.apiURL}/repos/${owner}/${repository}/languages`,
       { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
-    return Object.keys(languages);
+    return validatePlainObject(GitHubListRepositoryLanguagesResponse, { languages });
   };
 
   public listRepositoryContributors = async ({

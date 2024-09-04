@@ -52,7 +52,7 @@ export class ContributionRepository {
                     }) => ({
                       id: `${number}`,
                       labels: gLabels.map(({ name }) => name),
-                      languages,
+                      languages: Object.keys(languages),
                       project: {
                         slug,
                         name,
