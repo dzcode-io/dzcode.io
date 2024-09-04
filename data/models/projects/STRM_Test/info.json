@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "linuxscout",
-      "repository": "strm-tests"
+      "name": "strm-tests"
     }
   ]
 }

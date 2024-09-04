@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "Ghali-Benbernou",
-      "repository": "mask-detect"
+      "name": "mask-detect"
     }
   ]
 }

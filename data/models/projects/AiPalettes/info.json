@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "bondbenz",
-      "repository": "aipalettes"
+      "name": "aipalettes"
     }
   ]
 }

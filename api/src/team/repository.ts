@@ -35,7 +35,7 @@ export class TeamRepository {
 
     // get contributors from all the repos we have
     await Promise.all(
-      repositories.map(async ({ provider, owner, repository }) => {
+      repositories.map(async ({ provider, owner, name: repository }) => {
         if (provider === "github") {
           try {
             const contributors = await this.githubService.listRepositoryContributors({

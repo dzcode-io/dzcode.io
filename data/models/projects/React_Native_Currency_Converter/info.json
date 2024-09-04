@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "ilies-space",
-      "repository": "currency_converter_rn"
+      "name": "currency_converter_rn"
     }
   ]
 }

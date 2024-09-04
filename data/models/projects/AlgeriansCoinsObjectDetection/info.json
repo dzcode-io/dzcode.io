@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "lablack576",
-      "repository": "algerians_coins_object_detection"
+      "name": "algerians_coins_object_detection"
     }
   ]
 }

@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "adelpro",
-      "repository": "check-hadith"
+      "name": "check-hadith"
     }
   ]
 }

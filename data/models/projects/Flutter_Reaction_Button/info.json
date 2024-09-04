@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "geekabdelouahed",
-      "repository": "flutter-reaction-button"
+      "name": "flutter-reaction-button"
     }
   ]
 }

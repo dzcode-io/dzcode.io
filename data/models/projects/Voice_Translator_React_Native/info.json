@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "ilies-space",
-      "repository": "voiceTranslator-reactNative"
+      "name": "voiceTranslator-reactNative"
     }
   ]
 }

@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "AmineVolk",
-      "repository": "react-project-builder"
+      "name": "react-project-builder"
     }
   ]
 }

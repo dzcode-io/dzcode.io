@@ -27,7 +27,7 @@ export class ContributionRepository {
             ...pV,
             ...repositories
               .filter(({ provider }) => provider === "github")
-              .map(async ({ owner, repository }) => {
+              .map(async ({ owner, name: repository }) => {
                 try {
                   const issuesIncludingPRs = await this.githubService.listRepositoryIssues({
                     owner,

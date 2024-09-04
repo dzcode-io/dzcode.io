@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "adelpro",
-      "repository": "MERN-auth-roles-boilerplate"
+      "name": "MERN-auth-roles-boilerplate"
     }
   ]
 }

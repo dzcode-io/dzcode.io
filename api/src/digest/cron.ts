@@ -7,6 +7,7 @@ import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { LoggerService } from "src/logger/service";
 import { ProjectRepository } from "src/project/repository";
+import { RepositoryRepository } from "src/repository/repository";
 import { Service } from "typedi";
 
 @Service()
@@ -19,6 +20,7 @@ export class DigestCron {
     private readonly dataService: DataService,
     private readonly githubService: GithubService,
     private readonly projectsRepository: ProjectRepository,
+    private readonly repositoriesRepository: RepositoryRepository,
   ) {
     const SentryCronJob = cron.instrumentCron(CronJob, "DigestCron");
     new SentryCronJob(
@@ -72,7 +74,7 @@ export class DigestCron {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const languages: string[] = await this.githubService.listRepositoryLanguages({
               owner: repository.owner,
-              repository: repository.repository,
+              repository: repository.name,
             });
 
             // do more stuff here
@@ -82,13 +84,16 @@ export class DigestCron {
           } catch (error) {
             // @TODO-ZM: capture error
             this.logger.error({
-              message: `Failed to fetch languages for repository: ${repository.owner}/${repository.repository}`,
+              message: `Failed to fetch languages for repository: ${repository.owner}/${repository.name}`,
               meta: { error },
             });
           }
         }
 
         if (repositories.length > 0) {
+          for (const repository of repositories) {
+            await this.repositoriesRepository.upsert(repository);
+          }
           projects.push({ ...project, runId });
         }
       } catch (error) {
