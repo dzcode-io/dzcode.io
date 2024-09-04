@@ -15,10 +15,14 @@ export class ProjectRepository {
   }
 
   public async upsert(project: Model<ProjectEntity>) {
-    return await this.sqliteService.db.insert(projectsTable).values(project).onConflictDoUpdate({
-      target: projectsTable.slug,
-      set: project,
-    });
+    return await this.sqliteService.db
+      .insert(projectsTable)
+      .values(project)
+      .onConflictDoUpdate({
+        target: projectsTable.slug,
+        set: project,
+      })
+      .returning({ id: projectsTable.id });
   }
 
   public async deleteAllButWithRunId(runId: string) {

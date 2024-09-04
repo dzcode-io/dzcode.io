@@ -1,6 +1,3 @@
-import { Model } from "@dzcode.io/models/dist/_base";
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
-import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { captureException, cron } from "@sentry/node";
 import { CronJob } from "cron";
 import { DataService } from "src/data/service";
@@ -62,53 +59,36 @@ export class DigestCron {
     const runId = Math.random().toString(36).slice(2);
     this.logger.info({ message: `Digest cron started, runId: ${runId}` });
 
-    const projects: Model<ProjectEntity>[] = [];
     const projectsFromDataFolder = await this.dataService.listProjects();
     // @TODO-ZM: add relations
     for (const project of projectsFromDataFolder) {
+      const [{ id: projectId }] = await this.projectsRepository.upsert({ ...project, runId });
+
       try {
-        const repositories: Model<RepositoryEntity>[] = [];
         const repositoriesFromDataFolder = project.repositories;
         for (const repository of repositoriesFromDataFolder) {
           try {
+            // #@TODO-ZM: call repo-exist api instead of fetching languages
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const languages: string[] = await this.githubService.listRepositoryLanguages({
               owner: repository.owner,
               repository: repository.name,
             });
-
-            // do more stuff here
-            repositories.push({
-              ...repository,
-            });
+            const [{ id: repositoryId }] = await this.repositoriesRepository.upsert(repository);
           } catch (error) {
             // @TODO-ZM: capture error
-            this.logger.error({
-              message: `Failed to fetch languages for repository: ${repository.owner}/${repository.name}`,
-              meta: { error },
-            });
+            console.error(error);
           }
-        }
-
-        if (repositories.length > 0) {
-          for (const repository of repositories) {
-            await this.repositoriesRepository.upsert(repository);
-          }
-          projects.push({ ...project, runId });
         }
       } catch (error) {
         // @TODO-ZM: capture error
-        this.logger.error({
-          message: `Failed to fetch repositories for project: ${project.name}`,
-          meta: { error },
-        });
+        console.error(error);
       }
     }
 
-    for (const project of projects) {
-      await this.projectsRepository.upsert(project);
-    }
     await this.projectsRepository.deleteAllButWithRunId(runId);
+    await this.repositoriesRepository.deleteAllButWithRunId(runId);
+
     this.logger.info({ message: `Digest cron finished, runId: ${runId}` });
   }
 }

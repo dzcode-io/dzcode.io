@@ -17,7 +17,8 @@ export class RepositoryRepository {
       .onConflictDoUpdate({
         target: [repositoriesTable.provider, repositoriesTable.owner, repositoriesTable.name],
         set: repository,
-      });
+      })
+      .returning({ id: repositoriesTable.id });
   }
 
   public async deleteAllButWithRunId(runId: string) {
