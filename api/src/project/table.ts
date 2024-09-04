@@ -14,3 +14,5 @@ export const projectsTable = sqliteTable("projects", {
 });
 
 projectsTable.$inferSelect satisfies Model<ProjectEntity>;
+
+export type ProjectRow = typeof projectsTable.$inferInsert;

@@ -70,11 +70,15 @@ export class DigestCron {
           try {
             // #@TODO-ZM: call repo-exist api instead of fetching languages
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const languages: string[] = await this.githubService.listRepositoryLanguages({
+            const { languages } = await this.githubService.listRepositoryLanguages({
               owner: repository.owner,
               repository: repository.name,
             });
-            const [{ id: repositoryId }] = await this.repositoriesRepository.upsert(repository);
+            const [{ id: repositoryId }] = await this.repositoriesRepository.upsert({
+              ...repository,
+              runId,
+              projectId,
+            });
           } catch (error) {
             // @TODO-ZM: capture error
             console.error(error);

@@ -1,10 +1,8 @@
-import { Model } from "@dzcode.io/models/dist/_base";
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { ne } from "drizzle-orm";
 import { SQLiteService } from "src/sqlite/service";
 import { Service } from "typedi";
 
-import { projectsTable } from "./table";
+import { ProjectRow, projectsTable } from "./table";
 
 @Service()
 export class ProjectRepository {
@@ -14,7 +12,7 @@ export class ProjectRepository {
     return this.sqliteService.db.select().from(projectsTable);
   }
 
-  public async upsert(project: Model<ProjectEntity>) {
+  public async upsert(project: ProjectRow) {
     return await this.sqliteService.db
       .insert(projectsTable)
       .values(project)

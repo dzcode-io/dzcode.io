@@ -2,6 +2,7 @@ import { Model } from "@dzcode.io/models/dist/_base";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { sql } from "drizzle-orm";
 import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
+import { projectsTable } from "src/project/table";
 
 export const repositoriesTable = sqliteTable(
   "repositories",
@@ -14,6 +15,9 @@ export const repositoriesTable = sqliteTable(
     owner: text("owner").notNull(),
     name: text("name").notNull(),
     runId: text("run_id").notNull().default("initial-run-id"),
+    projectId: integer("project_id")
+      .notNull()
+      .references(() => projectsTable.id),
   },
   (table) => {
     return {
@@ -23,3 +27,5 @@ export const repositoriesTable = sqliteTable(
 );
 
 repositoriesTable.$inferSelect satisfies Model<RepositoryEntity>;
+
+export type RepositoryRow = typeof repositoriesTable.$inferInsert;

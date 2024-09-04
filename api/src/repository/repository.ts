@@ -1,16 +1,14 @@
-import { Model } from "@dzcode.io/models/dist/_base";
-import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { ne } from "drizzle-orm";
 import { SQLiteService } from "src/sqlite/service";
 import { Service } from "typedi";
 
-import { repositoriesTable } from "./table";
+import { repositoriesTable, RepositoryRow } from "./table";
 
 @Service()
 export class RepositoryRepository {
   constructor(private readonly sqliteService: SQLiteService) {}
 
-  public async upsert(repository: Model<RepositoryEntity>) {
+  public async upsert(repository: RepositoryRow) {
     return await this.sqliteService.db
       .insert(repositoriesTable)
       .values(repository)
