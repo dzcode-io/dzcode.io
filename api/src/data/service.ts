@@ -7,7 +7,7 @@ import { DataArticleEntity, DataDocumentationEntity, DataProjectEntity } from ".
 
 @Service()
 export class DataService {
-  public listProjects = async (): Promise<Omit<DataProjectEntity, "runId">[]> => {
+  public listProjects = async (): Promise<DataProjectEntity[]> => {
     const projects = getCollection<DataProjectEntity>(this.dataModelsPath, "projects", "list.json");
 
     if (projects === 404) throw new Error("Projects list not found");

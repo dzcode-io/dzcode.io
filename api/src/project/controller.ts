@@ -16,7 +16,7 @@ export class ProjectController {
   })
   @ResponseSchema(GetProjectsResponseDto)
   public async getProjects(): Promise<GetProjectsResponseDto> {
-    const projects = await this.projectRepository.find();
+    const projects = await this.projectRepository.findForList();
 
     return {
       projects,

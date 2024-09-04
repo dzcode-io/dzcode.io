@@ -1,11 +1,12 @@
-import { Model } from "@dzcode.io/models/dist/_base";
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
+import { ProjectEntityForList } from "@dzcode.io/models/dist/project";
 import { Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
 import { GeneralResponseDto } from "src/app/types";
 
+// @TODO-ZM: remove Model<> from existence
+
 export class GetProjectsResponseDto extends GeneralResponseDto {
   @ValidateNested({ each: true })
-  @Type(() => ProjectEntity)
-  projects!: Array<Model<ProjectEntity>>;
+  @Type(() => ProjectEntityForList)
+  projects!: Array<ProjectEntityForList>;
 }

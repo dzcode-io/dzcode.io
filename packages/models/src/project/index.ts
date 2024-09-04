@@ -1,24 +1,27 @@
 import { Type } from "class-transformer";
 import { IsNumber, IsString, ValidateNested } from "class-validator";
-import { BaseEntity, Model } from "src/_base";
-import { RepositoryEntity } from "src/repository";
+import { BaseEntity } from "src/_base";
+import { RepositoryEntityCompact } from "src/repository";
 
-export class ProjectEntity extends BaseEntity {
+export class ProjectEntityCompact extends BaseEntity {
   // @TODO-ZM: move this to BaseEntity
   @IsNumber()
   id!: number;
-
-  // @TODO-ZM: move this to BaseEntity
-  @IsString()
-  runId!: string;
 
   @IsString()
   slug!: string;
 
   @IsString()
   name!: string;
+}
 
+export class ProjectEntity extends ProjectEntityCompact {
+  @IsString()
+  runId!: string;
+}
+
+export class ProjectEntityForList extends ProjectEntityCompact {
   @ValidateNested({ each: true })
-  @Type(() => RepositoryEntity)
-  declare repositories: Model<RepositoryEntity>[];
+  @Type(() => RepositoryEntityCompact)
+  repositories!: RepositoryEntityCompact[];
 }

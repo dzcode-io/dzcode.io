@@ -1,7 +1,7 @@
 import { Model } from "@dzcode.io/models/dist/_base";
 import { AccountEntity } from "@dzcode.io/models/dist/account";
-import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { DataService } from "src/data/service";
+import { DataProjectEntity } from "src/data/types";
 import { GithubService } from "src/github/service";
 import { GithubRepositoryContributor } from "src/github/types";
 import { LoggerService } from "src/logger/service";
@@ -19,7 +19,7 @@ export class TeamRepository {
     const projects = await this.dataService.listProjects();
 
     // flatten repositories into one array
-    const repositories = projects.reduce<RepositoryEntity[]>(
+    const repositories = projects.reduce<DataProjectEntity["repositories"]>(
       (repositories, project) => [...repositories, ...project.repositories],
       [],
     );
