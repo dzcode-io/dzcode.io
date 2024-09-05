@@ -10,7 +10,7 @@ const stdout = execSync(
   "lerna list --include-dependencies --json --all --loglevel silent --scope @dzcode.io/api",
 );
 const dependencies = JSON.parse(stdout.toString()) as Array<{ name: string; location: string }>;
-const subPaths = ["dist", "package.json", "models"];
+const subPaths = ["dist", "package.json", "models", "db"];
 const workspaceRoot = join(__dirname, "../..");
 const fromToRecords = dependencies
   .map<{ from: string; to: string }>(({ location }) => ({
