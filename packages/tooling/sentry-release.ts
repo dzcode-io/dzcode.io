@@ -6,8 +6,9 @@ if (!scope) throw new Error("Please provide a scope");
 const uploadPath = process.argv[3];
 if (!uploadPath) throw new Error("Please provide a uploadPath");
 
-const version = process.argv[4];
+let version = process.argv[4];
 if (!version) throw new Error("Please provide a version");
+version = version.replace(/\//g, "-");
 
 const environment = process.argv[5];
 if (!environment) throw new Error("Please provide a environment");
