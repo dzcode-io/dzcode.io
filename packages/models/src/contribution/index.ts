@@ -1,42 +1,46 @@
 import { Type } from "class-transformer";
-import { IsDateString, IsNumber, IsString, IsUrl, ValidateNested } from "class-validator";
+import { IsDateString, IsIn, IsNumber, IsString, IsUrl, ValidateNested } from "class-validator";
 import { BaseEntity, Model } from "src/_base";
 import { AccountEntity } from "src/account";
 import { ProjectReferenceEntity } from "src/project-reference";
 
-export class ContributionEntity extends BaseEntity {
+export class ContributionEntityCompact extends BaseEntity {
+  // @TODO-ZM: move this to BaseEntity
   @IsString()
-  id!: string;
+  id!: number;
 
   @IsString()
   title!: string;
 
-  @ValidateNested()
-  @Type(() => ProjectReferenceEntity)
-  project!: Model<ProjectReferenceEntity>;
-
-  @ValidateNested()
-  @Type(() => AccountEntity)
-  createdBy!: Model<AccountEntity>;
-
-  @IsString()
-  type!: "issue" | "pullRequest";
+  @IsIn(["ISSUE", "PULL_REQUEST"])
+  type!: "ISSUE" | "PULL_REQUEST";
 
   @IsUrl()
   url!: string;
-
-  @IsString({ each: true })
-  languages!: string[];
-
-  @IsString({ each: true })
-  labels!: string[];
-
-  @IsDateString()
-  createdAt!: string;
 
   @IsDateString()
   updatedAt!: string;
 
   @IsNumber()
-  commentsCount!: number;
+  activityCount!: number;
+}
+export class ContributionEntity extends ContributionEntityCompact {
+  @IsString()
+  runId!: string;
+}
+
+export class ContributionEntityForList extends BaseEntity {
+  @ValidateNested()
+  @Type(() => AccountEntity)
+  createdBy!: Model<AccountEntity>; // Compact
+
+  @ValidateNested()
+  @Type(() => ProjectReferenceEntity)
+  project!: Model<ProjectReferenceEntity>; // Compact
+
+  @IsString({ each: true })
+  languages!: string[]; // Compact
+
+  @IsString({ each: true })
+  labels!: string[]; // Compact
 }

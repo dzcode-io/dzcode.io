@@ -4,13 +4,15 @@ import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
 
-import { GetRepositoryResponse, GitHubListRepositoryLanguagesResponse } from "./dto";
+import {
+  GetRepositoryIssuesResponseArray,
+  GetRepositoryResponse,
+  GitHubListRepositoryLanguagesResponse,
+} from "./dto";
 import {
   GeneralGithubQuery,
   GetRepositoryInput,
   GetUserInput,
-  GithubIssue,
-  GitHubListRepositoryIssuesInput,
   GitHubListRepositoryLanguagesInput,
   GitHubListRepositoryMilestonesInput,
   GithubMilestone,
@@ -58,17 +60,20 @@ export class GithubService {
 
   public listRepositoryIssues = async ({
     owner,
-    repository,
-  }: GitHubListRepositoryIssuesInput): Promise<GithubIssue[]> => {
-    const issues = await this.fetchService.getUnsafe<GithubIssue[]>(
-      `${this.apiURL}/repos/${owner}/${repository}/issues`,
+    repo,
+  }: GetRepositoryInput): Promise<GetRepositoryIssuesResponseArray> => {
+    const repoIssues = await this.fetchService.get(
+      `${this.apiURL}/repos/${owner}/${repo}/issues`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
+        // @TODO-ZM: add pagination
         params: { sort: "updated", per_page: 100 }, // eslint-disable-line camelcase
       },
+      GetRepositoryIssuesResponseArray,
+      "issues",
     );
 
-    return issues;
+    return repoIssues;
   };
 
   public listRepositoryLanguages = async ({

@@ -1,5 +1,6 @@
 import { captureException, cron } from "@sentry/node";
 import { CronJob } from "cron";
+import { ContributionRepository } from "src/contribution/repository";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { LoggerService } from "src/logger/service";
@@ -18,6 +19,7 @@ export class DigestCron {
     private readonly githubService: GithubService,
     private readonly projectsRepository: ProjectRepository,
     private readonly repositoriesRepository: RepositoryRepository,
+    private readonly contributionsRepository: ContributionRepository,
   ) {
     const SentryCronJob = cron.instrumentCron(CronJob, "DigestCron");
     new SentryCronJob(
@@ -74,7 +76,6 @@ export class DigestCron {
               repo: repository.name,
             });
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const [{ id: repositoryId }] = await this.repositoriesRepository.upsert({
               provider: "github",
               name: repoInfo.name,
@@ -82,6 +83,26 @@ export class DigestCron {
               runId,
               projectId,
             });
+
+            const issues = await this.githubService.listRepositoryIssues({
+              owner: repository.owner,
+              repo: repository.name,
+            });
+
+            for (const issue of issues.issues) {
+              const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
+              const [{ id: contributionId }] = await this.contributionsRepository.upsert({
+                title: issue.title,
+                type,
+                updatedAt: issue.updated_at,
+                activityCount: issue.comments,
+                runId,
+                repositoryId,
+                url: type === "PULL_REQUEST" ? issue.pull_request.html_url : issue.html_url,
+              });
+
+              console.log("contributionId", contributionId);
+            }
           } catch (error) {
             // @TODO-ZM: capture error
             console.error(error);
@@ -93,6 +114,7 @@ export class DigestCron {
       }
     }
 
+    await this.contributionsRepository.deleteAllButWithRunId(runId);
     await this.repositoriesRepository.deleteAllButWithRunId(runId);
     await this.projectsRepository.deleteAllButWithRunId(runId);
 
