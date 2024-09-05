@@ -1,13 +1,13 @@
 import { Model } from "@dzcode.io/models/dist/_base";
 import { AccountEntity } from "@dzcode.io/models/dist/account";
-import { validatePlainObject } from "src/_utils/validator/validate-plain-object";
 import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
 
-import { GitHubListRepositoryLanguagesResponse } from "./dto";
+import { GetRepositoryResponse, GitHubListRepositoryLanguagesResponse } from "./dto";
 import {
   GeneralGithubQuery,
+  GetRepositoryInput,
   GetUserInput,
   GithubIssue,
   GitHubListRepositoryIssuesInput,
@@ -33,7 +33,7 @@ export class GithubService {
     repository,
     path,
   }: GeneralGithubQuery): Promise<GithubUser[]> => {
-    const commits = await this.fetchService.get<ListPathCommittersResponse>(
+    const commits = await this.fetchService.getUnsafe<ListPathCommittersResponse>(
       `${this.apiURL}/repos/${owner}/${repository}/commits`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
@@ -49,7 +49,7 @@ export class GithubService {
   };
 
   public getUser = async ({ username }: GetUserInput): Promise<GitHubUserApiResponse> => {
-    const user = await this.fetchService.get<GitHubUserApiResponse>(
+    const user = await this.fetchService.getUnsafe<GitHubUserApiResponse>(
       `${this.apiURL}/users/${username}`,
       { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
@@ -60,7 +60,7 @@ export class GithubService {
     owner,
     repository,
   }: GitHubListRepositoryIssuesInput): Promise<GithubIssue[]> => {
-    const issues = await this.fetchService.get<GithubIssue[]>(
+    const issues = await this.fetchService.getUnsafe<GithubIssue[]>(
       `${this.apiURL}/repos/${owner}/${repository}/issues`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
@@ -75,18 +75,32 @@ export class GithubService {
     owner,
     repository,
   }: GitHubListRepositoryLanguagesInput): Promise<GitHubListRepositoryLanguagesResponse> => {
-    const languages = await this.fetchService.get<Record<string, number>>(
+    const languages = await this.fetchService.get(
       `${this.apiURL}/repos/${owner}/${repository}/languages`,
       { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
+      GitHubListRepositoryLanguagesResponse,
+      "languages",
     );
-    return validatePlainObject(GitHubListRepositoryLanguagesResponse, { languages });
+    return languages;
+  };
+
+  public getRepository = async ({
+    owner,
+    repo,
+  }: GetRepositoryInput): Promise<GetRepositoryResponse> => {
+    const repoInfo = await this.fetchService.get(
+      `${this.apiURL}/repos/${owner}/${repo}`,
+      { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
+      GetRepositoryResponse,
+    );
+    return repoInfo;
   };
 
   public listRepositoryContributors = async ({
     owner,
     repository,
   }: Omit<GeneralGithubQuery, "path">): Promise<ListRepositoryContributorsResponse> => {
-    const contributors = await this.fetchService.get<ListRepositoryContributorsResponse>(
+    const contributors = await this.fetchService.getUnsafe<ListRepositoryContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repository}/contributors`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
@@ -106,7 +120,7 @@ export class GithubService {
   };
 
   public getRateLimit = async (): Promise<{ limit: number; used: number; ratio: number }> => {
-    const rateLimitInfo = await this.fetchService.get<GitHubRateLimitApiResponse>(
+    const rateLimitInfo = await this.fetchService.getUnsafe<GitHubRateLimitApiResponse>(
       `${this.apiURL}/rate_limit`,
       { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
@@ -122,7 +136,7 @@ export class GithubService {
     owner,
     repository,
   }: GitHubListRepositoryMilestonesInput): Promise<GithubMilestone[]> => {
-    const milestones = await this.fetchService.get<GithubMilestone[]>(
+    const milestones = await this.fetchService.getUnsafe<GithubMilestone[]>(
       `${this.apiURL}/repos/${owner}/${repository}/milestones`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},

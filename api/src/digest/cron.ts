@@ -33,6 +33,7 @@ export class DigestCron {
           await this.run();
         } catch (error) {
           this.isRunning = false;
+          console.error(error);
           captureException(error, { tags: { type: "CRON" } });
           logger.error({
             message: `Digest cron failed: ${error}`,
@@ -60,7 +61,7 @@ export class DigestCron {
     this.logger.info({ message: `Digest cron started, runId: ${runId}` });
 
     const projectsFromDataFolder = await this.dataService.listProjects();
-    // @TODO-ZM: add relations
+
     for (const project of projectsFromDataFolder) {
       const [{ id: projectId }] = await this.projectsRepository.upsert({ ...project, runId });
 
@@ -68,14 +69,16 @@ export class DigestCron {
         const repositoriesFromDataFolder = project.repositories;
         for (const repository of repositoriesFromDataFolder) {
           try {
-            // #@TODO-ZM: call repo-exist api instead of fetching languages
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            const { languages } = await this.githubService.listRepositoryLanguages({
+            const repoInfo = await this.githubService.getRepository({
               owner: repository.owner,
-              repository: repository.name,
+              repo: repository.name,
             });
+
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const [{ id: repositoryId }] = await this.repositoriesRepository.upsert({
-              ...repository,
+              provider: "github",
+              name: repoInfo.name,
+              owner: repoInfo.owner.login,
               runId,
               projectId,
             });
@@ -90,8 +93,8 @@ export class DigestCron {
       }
     }
 
-    await this.projectsRepository.deleteAllButWithRunId(runId);
     await this.repositoriesRepository.deleteAllButWithRunId(runId);
+    await this.projectsRepository.deleteAllButWithRunId(runId);
 
     this.logger.info({ message: `Digest cron finished, runId: ${runId}` });
   }

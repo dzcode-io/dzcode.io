@@ -7,12 +7,16 @@ export function validatePlainObject<T extends ClassConstructor<unknown>>(
   cls: T,
   obj: Record<string, unknown>,
   exposeValues = false,
+  allowExtraneousKeys = false,
 ): InstanceType<T> {
   const camelCasedObj = mapKeys(obj, (value, key) => camelCase(key));
 
   const output = plainToClass(cls, camelCasedObj);
 
-  const errors = validateSync(output as T, { whitelist: true, forbidNonWhitelisted: true });
+  const errors = validateSync(output as T, {
+    whitelist: !allowExtraneousKeys,
+    forbidNonWhitelisted: !allowExtraneousKeys,
+  });
 
   if (errors.length > 0)
     throw new Error(

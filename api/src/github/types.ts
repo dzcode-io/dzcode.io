@@ -80,6 +80,11 @@ export interface GetUserInput {
 
 export type GitHubUserApiResponse = GithubUser;
 
+export interface GetRepositoryInput {
+  owner: string;
+  repo: string;
+}
+
 export interface GitHubListRepositoryIssuesInput {
   owner: string;
   repository: string;
