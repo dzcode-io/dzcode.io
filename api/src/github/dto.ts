@@ -6,7 +6,7 @@ export class GitHubListRepositoryLanguagesResponse {
   languages!: Map<string, number>;
 }
 
-export class GithubAccount {
+class GithubAccount {
   @IsString()
   login!: string;
 }
