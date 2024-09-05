@@ -10,12 +10,12 @@ runDTOTestCases(
       {
         provider: "github",
         owner: "dzcode-io",
-        repository: "leblad",
+        name: "leblad",
       },
       {
         provider: "github",
         owner: "abderrahmaneMustapha",
-        repository: "leblad-py",
+        name: "leblad-py",
       },
     ],
     slug: "Leblad",

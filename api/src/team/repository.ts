@@ -35,12 +35,12 @@ export class TeamRepository {
 
     // get contributors from all the repos we have
     await Promise.all(
-      repositories.map(async ({ provider, owner, name: repository }) => {
+      repositories.map(async ({ provider, owner, name }) => {
         if (provider === "github") {
           try {
             const contributors = await this.githubService.listRepositoryContributors({
               owner,
-              repository,
+              repository: name,
             });
             contributors.forEach((contributor) => {
               const uuid = this.githubService.githubUserToAccountEntity({
@@ -53,7 +53,7 @@ export class TeamRepository {
                 contributorsUsernameRankedRecord[uuid] = {
                   login,
                   contributions,
-                  repositories: [{ provider, owner, repository }],
+                  repositories: [{ provider, owner, name }],
                 };
               } else {
                 // contributor already exists in the list, and is a contributor to another repository
@@ -63,14 +63,14 @@ export class TeamRepository {
                 contributorsUsernameRankedRecord[uuid].repositories.push({
                   provider,
                   owner,
-                  repository,
+                  name,
                 });
               }
             });
           } catch (error) {
             this.loggerService.warn({
-              message: `Failed to fetch contributors for ${owner}/${repository}: ${error}`,
-              meta: { owner, repository },
+              message: `Failed to fetch contributors for ${owner}/${name}: ${error}`,
+              meta: { owner, name },
             });
           }
         } else throw new Error(`Provider ${provider} is not supported yet`);

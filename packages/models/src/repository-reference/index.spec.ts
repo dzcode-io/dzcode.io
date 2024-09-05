@@ -7,7 +7,7 @@ runDTOTestCases(
   {
     provider: "github",
     owner: "dzcode-io",
-    repository: "leblad",
+    name: "leblad",
   },
   {
     contributions: [],

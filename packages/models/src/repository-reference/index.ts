@@ -10,5 +10,5 @@ export class RepositoryReferenceEntity extends BaseEntity {
   owner!: string;
 
   @IsString()
-  repository!: string;
+  name!: string;
 }
