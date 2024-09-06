@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 import { IsNumber, IsObject, IsOptional, IsString } from "class-validator";
 
 export class GeneralResponseDto {
