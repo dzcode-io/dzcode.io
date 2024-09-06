@@ -1,5 +1,6 @@
-import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { ProjectEntity } from "@dzcode.io/models/dist/project";
+import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { Transform, TransformFnParams, Type } from "class-transformer";
 import { IsBoolean, IsIn, IsOptional, IsString, ValidateNested } from "class-validator";
 import { GeneralResponseDto } from "src/app/types";
@@ -28,14 +29,14 @@ export class FilterDto {
   options!: OptionDto[];
 }
 
-export class GetContributionsResponseDto extends GeneralResponseDto {
-  @ValidateNested({ each: true })
-  @Type(() => ContributionEntity)
-  contributions!: Model<ContributionEntity, "project" | "createdBy">[];
-
-  @ValidateNested({ each: true })
-  @Type(() => FilterDto)
-  filters!: FilterDto[];
+export interface GetContributionsResponseDto extends GeneralResponseDto {
+  contributions: Array<
+    Pick<ContributionEntity, "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"> & {
+      repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
+        project: Pick<ProjectEntity, "id" | "name">;
+      };
+    }
+  >;
 }
 
 const transformFilterOptions = ({ value }: TransformFnParams) => {
