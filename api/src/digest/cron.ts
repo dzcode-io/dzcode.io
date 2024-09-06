@@ -1,6 +1,7 @@
 import { captureException, cron } from "@sentry/node";
 import { CronJob } from "cron";
 import { ContributionRepository } from "src/contribution/repository";
+import { ContributorRepository } from "src/contributor/repository";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { LoggerService } from "src/logger/service";
@@ -20,6 +21,7 @@ export class DigestCron {
     private readonly projectsRepository: ProjectRepository,
     private readonly repositoriesRepository: RepositoryRepository,
     private readonly contributionsRepository: ContributionRepository,
+    private readonly contributorsRepository: ContributorRepository,
   ) {
     const SentryCronJob = cron.instrumentCron(CronJob, "DigestCron");
     new SentryCronJob(
@@ -64,6 +66,8 @@ export class DigestCron {
 
     const projectsFromDataFolder = await this.dataService.listProjects();
 
+    // @TODO-ZM: add data with recordStatus="draft", delete, then update to recordStatus="ok"
+    // @TODO-ZM: in all repos, filter by recordStatus="ok"
     for (const project of projectsFromDataFolder) {
       const [{ id: projectId }] = await this.projectsRepository.upsert({ ...project, runId });
 
@@ -90,6 +94,15 @@ export class DigestCron {
             });
 
             for (const issue of issues.issues) {
+              const githubUser = await this.githubService.getUser({ username: issue.user.login });
+              const [{ id: contributorId }] = await this.contributorsRepository.upsert({
+                name: githubUser.name || githubUser.login,
+                username: githubUser.login,
+                url: githubUser.html_url,
+                avatarUrl: githubUser.avatar_url,
+                runId,
+              });
+
               const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
               const [{ id: contributionId }] = await this.contributionsRepository.upsert({
                 title: issue.title,
@@ -97,8 +110,9 @@ export class DigestCron {
                 updatedAt: issue.updated_at,
                 activityCount: issue.comments,
                 runId,
-                repositoryId,
                 url: type === "PULL_REQUEST" ? issue.pull_request.html_url : issue.html_url,
+                repositoryId,
+                contributorId,
               });
 
               console.log("contributionId", contributionId);
@@ -114,6 +128,7 @@ export class DigestCron {
       }
     }
 
+    await this.contributorsRepository.deleteAllButWithRunId(runId);
     await this.contributionsRepository.deleteAllButWithRunId(runId);
     await this.repositoriesRepository.deleteAllButWithRunId(runId);
     await this.projectsRepository.deleteAllButWithRunId(runId);
