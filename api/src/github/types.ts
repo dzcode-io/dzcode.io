@@ -85,29 +85,9 @@ export interface GetRepositoryInput {
   repo: string;
 }
 
-export interface GitHubListRepositoryIssuesInput {
+interface GitHubListRepositoryIssuesInput {
   owner: string;
   repository: string;
-}
-
-export interface GithubIssue {
-  html_url: string;
-  number: number;
-  title: string;
-  user: GithubUser;
-  body: string;
-  labels: Array<{
-    name: string;
-  }>;
-  state: "closed" | "open";
-  assignees: GithubUser[];
-  comments: number;
-  created_at: string;
-  updated_at: string;
-  closed_at: string | null;
-  pull_request?: {
-    html_url: string;
-  };
 }
 
 export type GitHubListRepositoryLanguagesInput = GitHubListRepositoryIssuesInput;

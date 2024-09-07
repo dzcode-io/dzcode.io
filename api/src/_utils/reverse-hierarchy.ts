@@ -4,6 +4,7 @@ export function reverseHierarchy(
   _obj: unknown,
   foreignKeyParentKeyRecord: ForeignKeyParentKeyRecord[],
   parentWithItsKey: Record<string, unknown> = {},
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): any {
   if (Array.isArray(_obj)) {
     return _obj

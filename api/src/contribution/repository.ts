@@ -98,6 +98,7 @@ export class ContributionRepository {
 
     const camelCased = camelCaseObject(reversed);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sortedUpdatedAt = camelCased.sort((a: any, b: any) => {
       return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
     });
