@@ -2,10 +2,21 @@ import camelCase from "lodash/camelCase";
 import mapKeys from "lodash/mapKeys";
 
 export function camelCaseObject<T extends Record<string, unknown>>(obj: T): T {
-  const array = !Array.isArray(obj) ? [obj] : obj;
-  const camelCasedArray = array.map((item) => {
-    return mapKeys(item, (value, key) => camelCase(key));
-  });
+  if (typeof obj !== "object") {
+    return obj;
+  }
 
-  return (!Array.isArray(obj) ? camelCasedArray[0] : camelCasedArray) as T;
+  if (Array.isArray(obj)) {
+    return obj.map((item) => camelCaseObject(item)) as unknown as T;
+  }
+
+  const mappedRootKeys = mapKeys(obj, (value, key) => camelCase(key)) as T;
+
+  for (const key in mappedRootKeys) {
+    if (typeof mappedRootKeys[key] === "object") {
+      (mappedRootKeys[key] as unknown) = camelCaseObject(mappedRootKeys[key] as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+    }
+  }
+
+  return mappedRootKeys;
 }

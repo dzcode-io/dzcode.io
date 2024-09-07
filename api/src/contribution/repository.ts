@@ -2,6 +2,7 @@ import { ne, sql } from "drizzle-orm";
 import { camelCaseObject } from "src/_utils/case";
 import { reverseHierarchy } from "src/_utils/reverse-hierarchy";
 import { unStringifyDeep } from "src/_utils/unstringify-deep";
+import { contributorsTable } from "src/contributor/table";
 import { projectsTable } from "src/project/table";
 import { repositoriesTable } from "src/repository/table";
 import { SQLiteService } from "src/sqlite/service";
@@ -47,16 +48,44 @@ export class ContributionRepository {
             r.name as name,
             r.project_id as project_id,
             json_group_array(
-                json_object('id', c.id, 'title', c.title, 'type', c.type, 'url', c.url, 'updated_at', c.updated_at, 'activity_count', c.activity_count)
+                json_object(
+                    'id',
+                    c.id,
+                    'title',
+                    c.title,
+                    'type',
+                    c.type,
+                    'url',
+                    c.url,
+                    'updated_at',
+                    c.updated_at,
+                    'activity_count',
+                    c.activity_count,
+                    'contributor',
+                    json_object(
+                        'id',
+                        cr.id,
+                        'name',
+                        cr.name,
+                        'username',
+                        cr.username,
+                        'avatar_url',
+                        cr.avatar_url
+                    )
+                )
             ) AS contributions
         FROM
             ${contributionsTable} c
-        RIGHT JOIN
-            ${repositoriesTable} r ON c.id = r.project_id
+        INNER JOIN
+            ${repositoriesTable} r ON c.repository_id = r.id
+        INNER JOIN
+            ${contributorsTable} cr ON c.contributor_id = cr.id
         GROUP BY
             c.id) AS r
-    RIGHT JOIN
+    INNER JOIN
         ${projectsTable} p ON r.project_id = p.id
+    GROUP BY
+        p.id
     `;
 
     const raw = this.sqliteService.db.all(statement);
@@ -69,6 +98,10 @@ export class ContributionRepository {
 
     const camelCased = camelCaseObject(reversed);
 
-    return camelCased;
+    const sortedUpdatedAt = camelCased.sort((a: any, b: any) => {
+      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+    });
+
+    return sortedUpdatedAt;
   }
 }

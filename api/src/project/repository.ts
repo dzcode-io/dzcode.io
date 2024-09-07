@@ -1,5 +1,5 @@
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
-import { ne, sql } from "drizzle-orm";
+import { eq, ne, sql } from "drizzle-orm";
 import { repositoriesTable } from "src/repository/table";
 import { SQLiteService } from "src/sqlite/service";
 import { Service } from "typedi";
@@ -49,6 +49,10 @@ export class ProjectRepository {
         set: project,
       })
       .returning({ id: projectsTable.id });
+  }
+
+  public async deleteById(id: number) {
+    return await this.sqliteService.db.delete(projectsTable).where(eq(projectsTable.id, id));
   }
 
   public async deleteAllButWithRunId(runId: string) {

@@ -61,6 +61,8 @@ export class DigestCron {
    * Generate a random runId, use it to tag all newly fetched data, persist it to the database, then delete all data that doesn't have that runId.
    */
   private async run() {
+    if (Math.random() >= 0) return;
+
     const runId = Math.random().toString(36).slice(2);
     this.logger.info({ message: `Digest cron started, runId: ${runId}` });
 
@@ -71,6 +73,7 @@ export class DigestCron {
     for (const project of projectsFromDataFolder) {
       const [{ id: projectId }] = await this.projectsRepository.upsert({ ...project, runId });
 
+      let addedRepositoryCount = 0;
       try {
         const repositoriesFromDataFolder = project.repositories;
         for (const repository of repositoriesFromDataFolder) {
@@ -87,6 +90,7 @@ export class DigestCron {
               runId,
               projectId,
             });
+            addedRepositoryCount++;
 
             const issues = await this.githubService.listRepositoryIssues({
               owner: repository.owner,
@@ -125,6 +129,11 @@ export class DigestCron {
       } catch (error) {
         // @TODO-ZM: capture error
         console.error(error);
+      }
+
+      if (addedRepositoryCount === 0) {
+        captureException(new Error("Empty project"), { extra: { project } });
+        await this.projectsRepository.deleteById(projectId);
       }
     }
 

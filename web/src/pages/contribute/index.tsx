@@ -54,10 +54,9 @@ export default function Page(): JSX.Element {
                     <h2 className="card-title">
                       <Markdown content={contribution.title} />
                     </h2>
-                    <span className="card-normal flex-1 ">
-                      {contribution.repository.project.name}
-                    </span>
-                    <span className="card-normal flex-1 ">
+                    <span className="flex-1" />
+                    <span className="card-normal">{contribution.repository.project.name}</span>
+                    <span className="card-normal">
                       {contribution.repository.owner}/{contribution.repository.name}
                     </span>
                     {/* <div className="flex flex-row flex-wrap gap-1">
@@ -73,10 +72,10 @@ export default function Page(): JSX.Element {
                       ))}
                     </div> */}
                     <div className="card-actions justify-end mt-4 gap-4">
-                      {/* <img
+                      <img
                         className="w-6 h-6 rounded-full"
-                        src={contribution.createdBy.avatarUrl}
-                      /> */}
+                        src={contribution.contributor.avatarUrl}
+                      />
                       <div className="flex-1" />
                       {contribution.activityCount > 0 && (
                         <div className="flex flex-row">
