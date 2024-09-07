@@ -61,8 +61,6 @@ export class DigestCron {
    * Generate a random runId, use it to tag all newly fetched data, persist it to the database, then delete all data that doesn't have that runId.
    */
   private async run() {
-    if (Math.random() >= 0) return;
-
     const runId = Math.random().toString(36).slice(2);
     this.logger.info({ message: `Digest cron started, runId: ${runId}` });
 

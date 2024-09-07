@@ -3,10 +3,10 @@
  * its children.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
-export function unStringifyDeep<T extends any>(obj: T): T {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function unStringifyDeep(obj: any): any {
   if (Array.isArray(obj)) {
-    return obj.map((item) => unStringifyDeep(item)) as T;
+    return obj.map((item) => unStringifyDeep(item)) as unknown as typeof obj;
   }
 
   if (typeof obj !== "object" || obj === null) {
@@ -30,5 +30,5 @@ export function unStringifyDeep<T extends any>(obj: T): T {
     }
   }
 
-  return result as T;
+  return result as typeof obj;
 }

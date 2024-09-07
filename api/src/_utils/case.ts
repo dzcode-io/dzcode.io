@@ -1,7 +1,7 @@
 import camelCase from "lodash/camelCase";
 import mapKeys from "lodash/mapKeys";
 
-export function camelCaseObject<T extends Record<string, unknown>>(obj: T): T {
+export function camelCaseObject<T>(obj: T): T {
   if (typeof obj !== "object") {
     return obj;
   }

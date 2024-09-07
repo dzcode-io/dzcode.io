@@ -1,5 +1,6 @@
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { eq, ne, sql } from "drizzle-orm";
+import { camelCaseObject } from "src/_utils/case";
+import { unStringifyDeep } from "src/_utils/unstringify-deep";
 import { repositoriesTable } from "src/repository/table";
 import { SQLiteService } from "src/sqlite/service";
 import { Service } from "typedi";
@@ -27,17 +28,10 @@ export class ProjectRepository {
     GROUP BY
         p.id;
     `;
-    const raw = this.sqliteService.db.all(statement) as Array<
-      // the SQL query above returns a stringified JSON for the `repositories` column
-      Omit<ProjectEntity, "repositories"> & { repositories: string }
-    >;
-    const projectsForList: ProjectEntity[] = raw.map((row) => {
-      const notYetValid = { ...row, repositories: JSON.parse(row.repositories) };
-
-      return notYetValid;
-    });
-
-    return projectsForList;
+    const raw = this.sqliteService.db.all(statement);
+    const unStringifiedRaw = unStringifyDeep(raw);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
   }
 
   public async upsert(project: ProjectRow) {
