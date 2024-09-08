@@ -66,8 +66,6 @@ export class DigestCron {
 
     const projectsFromDataFolder = await this.dataService.listProjects();
 
-    // @TODO-ZM: add data with recordStatus="draft", delete, then update to recordStatus="ok"
-    // @TODO-ZM: in all repos, filter by recordStatus="ok"
     for (const project of projectsFromDataFolder) {
       const [{ id: projectId }] = await this.projectsRepository.upsert({ ...project, runId });
 
@@ -116,7 +114,7 @@ export class DigestCron {
               });
 
               const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
-              const [{ id: contributionId }] = await this.contributionsRepository.upsert({
+              await this.contributionsRepository.upsert({
                 title: issue.title,
                 type,
                 updatedAt: issue.updated_at,
@@ -126,8 +124,6 @@ export class DigestCron {
                 repositoryId,
                 contributorId,
               });
-
-              console.log("contributionId", contributionId);
             }
 
             const repoContributors = await this.githubService.listRepositoryContributors({
@@ -156,13 +152,11 @@ export class DigestCron {
               });
             }
           } catch (error) {
-            // @TODO-ZM: capture error
-            console.error(error);
+            captureException(error, { tags: { type: "CRON" } });
           }
         }
       } catch (error) {
-        // @TODO-ZM: capture error
-        console.error(error);
+        captureException(error, { tags: { type: "CRON" } });
       }
 
       if (addedRepositoryCount === 0) {
@@ -178,8 +172,7 @@ export class DigestCron {
       await this.repositoriesRepository.deleteAllButWithRunId(runId);
       await this.projectsRepository.deleteAllButWithRunId(runId);
     } catch (error) {
-      // @TODO-ZM: capture error
-      console.error(error);
+      captureException(error, { tags: { type: "CRON" } });
     }
 
     this.logger.info({ message: `Digest cron finished, runId: ${runId}` });
