@@ -14,7 +14,7 @@ export class ENVDto {
   PORT = 7070;
 
   @Matches("(" + environments.join(")|(") + ")")
-  NODE_ENV: Environment = "development";
+  NODE_ENV!: Environment;
 
   @IsString()
   FETCH_CACHE_PATH = "./fetch_cache";
