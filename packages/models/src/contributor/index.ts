@@ -1,7 +1,6 @@
-export interface ContributorEntity {
-  // @TODO-ZM: move this to BaseEntity
-  id: number;
-  runId: string;
+import { BaseEntity } from "src/_base";
+
+export interface ContributorEntity extends BaseEntity {
   name: string;
   username: string;
   url: string;

@@ -1,4 +1,3 @@
-import { Model } from "@dzcode.io/models/dist/_base";
 import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { sql } from "drizzle-orm";
 import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
@@ -16,7 +15,7 @@ export const contributorsTable = sqliteTable("contributors", {
   avatarUrl: text("avatar_url").notNull(),
 });
 
-contributorsTable.$inferSelect satisfies Model<ContributorEntity>;
+contributorsTable.$inferSelect satisfies ContributorEntity;
 
 export type ContributorRow = typeof contributorsTable.$inferInsert;
 

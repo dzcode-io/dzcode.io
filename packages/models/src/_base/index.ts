@@ -1,14 +1,4 @@
-import "reflect-metadata";
-
-import { KeysMatching } from "@dzcode.io/utils/dist/ts";
-
-export class BaseEntity {
-  private _entity?: undefined;
+export interface BaseEntity {
+  id: number;
+  runId: string;
 }
-
-export type Model<ENTITY, RELATIONS extends KeysMatching<ENTITY, BaseEntity> = never> = Pick<
-  ENTITY,
-  Exclude<keyof ENTITY, KeysMatching<ENTITY, BaseEntity>>
-> &
-  Pick<Required<ENTITY>, RELATIONS> &
-  BaseEntity;

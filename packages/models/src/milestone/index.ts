@@ -1,6 +1,5 @@
-import { BaseEntity } from "src/_base";
-
-export interface MilestoneEntity extends BaseEntity {
+// TODO-ZM: digest this to database later (then extends BaseEntity)
+export interface MilestoneEntity {
   id: string;
   title: string;
   description: string;

@@ -1,7 +1,6 @@
-export interface ProjectEntity {
-  // @TODO-ZM: move this to BaseEntity
-  id: number;
+import { BaseEntity } from "src/_base";
+
+export interface ProjectEntity extends BaseEntity {
   slug: string;
   name: string;
-  runId: string;
 }

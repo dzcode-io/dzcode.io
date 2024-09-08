@@ -1,4 +1,3 @@
-import { Model } from "@dzcode.io/models/dist/_base";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { sql } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
@@ -13,6 +12,6 @@ export const projectsTable = sqliteTable("projects", {
   runId: text("run_id").notNull().default("initial-run-id"),
 });
 
-projectsTable.$inferSelect satisfies Model<ProjectEntity>;
+projectsTable.$inferSelect satisfies ProjectEntity;
 
 export type ProjectRow = typeof projectsTable.$inferInsert;

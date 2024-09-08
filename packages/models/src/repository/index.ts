@@ -1,11 +1,7 @@
-const RepositoryProviders = ["github", "gitlab"] as const;
-type RepositoryProvider = (typeof RepositoryProviders)[number];
+import { BaseEntity } from "src/_base";
 
-export interface RepositoryEntity {
-  // @TODO-ZM: move this to BaseEntity
-  id: number;
+export interface RepositoryEntity extends BaseEntity {
   owner: string;
   name: string;
-  runId: string;
-  provider: RepositoryProvider;
+  provider: "github" | "gitlab";
 }

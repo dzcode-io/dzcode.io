@@ -1,4 +1,3 @@
-import { Model } from "@dzcode.io/models/dist/_base";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { sql } from "drizzle-orm";
 import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
@@ -26,6 +25,6 @@ export const repositoriesTable = sqliteTable(
   },
 );
 
-repositoriesTable.$inferSelect satisfies Model<RepositoryEntity>;
+repositoriesTable.$inferSelect satisfies RepositoryEntity;
 
 export type RepositoryRow = typeof repositoriesTable.$inferInsert;
