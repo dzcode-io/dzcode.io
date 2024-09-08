@@ -32,6 +32,8 @@ export class ContributorRepository {
                 p.id,
                 'name',
                 p.name,
+                'score',
+                c.score,
                 'repositories',
                 c.repositories
             )
@@ -48,7 +50,9 @@ export class ContributorRepository {
                     'owner',
                     r.owner,
                     'name',
-                    r.name
+                    r.name,
+                    'score',
+                    crr.score
                 )
             ) AS repositories
         FROM
@@ -61,11 +65,16 @@ export class ContributorRepository {
                 ${contributorRepositoryRelationTable} crr
             INNER JOIN
                 ${repositoriesTable} r ON crr.repository_id = r.id
+            ORDER BY
+                crr.score DESC
             ) as crr
         INNER JOIN
             ${repositoriesTable} r ON crr.repository_id = r.id
         GROUP BY
-            crr.contributor_id, crr.project_id) as c
+            crr.contributor_id, crr.project_id
+        ORDER BY
+            crr.score DESC
+        ) as c
     INNER JOIN
         ${contributorsTable} cr ON c.contributor_id = cr.id
     INNER JOIN

@@ -51,7 +51,7 @@ export default function Page(): JSX.Element {
                     className="rounded-full w-20 h-20"
                   />
                   <h2 className="card-title">{contributor.name}</h2>
-                  <div className="card-actions gap-4 flex-col">
+                  <div className="card-actions gap-4 flex-row justify-between">
                     {contributor.projects.map((project, projectIndex) => (
                       <div key={projectIndex} className="flex flex-col">
                         <span className="mb-0">{project.name}</span>
