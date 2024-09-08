@@ -22,7 +22,7 @@ export class GithubService {
   ) {}
 
   public getUser = async ({ username }: GetUserInput): Promise<GitHubUserApiResponse> => {
-    const user = await this.fetchService.getUnsafe<GitHubUserApiResponse>(
+    const user = await this.fetchService.get<GitHubUserApiResponse>(
       `${this.apiURL}/users/${username}`,
       { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
@@ -60,7 +60,7 @@ export class GithubService {
     owner,
     repository,
   }: Omit<GeneralGithubQuery, "path">): Promise<ListRepositoryContributorsResponse> => {
-    const contributors = await this.fetchService.getUnsafe<ListRepositoryContributorsResponse>(
+    const contributors = await this.fetchService.get<ListRepositoryContributorsResponse>(
       `${this.apiURL}/repos/${owner}/${repository}/contributors`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
@@ -75,7 +75,7 @@ export class GithubService {
   };
 
   public getRateLimit = async (): Promise<{ limit: number; used: number; ratio: number }> => {
-    const rateLimitInfo = await this.fetchService.getUnsafe<GitHubRateLimitApiResponse>(
+    const rateLimitInfo = await this.fetchService.get<GitHubRateLimitApiResponse>(
       `${this.apiURL}/rate_limit`,
       { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
@@ -91,7 +91,7 @@ export class GithubService {
     owner,
     repository,
   }: GitHubListRepositoryMilestonesInput): Promise<GithubMilestone[]> => {
-    const milestones = await this.fetchService.getUnsafe<GithubMilestone[]>(
+    const milestones = await this.fetchService.get<GithubMilestone[]>(
       `${this.apiURL}/repos/${owner}/${repository}/milestones`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},

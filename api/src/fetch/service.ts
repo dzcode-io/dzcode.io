@@ -30,18 +30,6 @@ export class FetchService {
     return response;
   };
 
-  // @TODO-ZM: using DTO, validate response and DRY the types
-  public getUnsafe = async <T = unknown>(
-    url: string,
-    { params = {}, headers = {} }: FetchConfig = {},
-  ) => {
-    const _url = new URL(url);
-    Object.keys(params).forEach((key) => _url.searchParams.append(key, String(params[key])));
-
-    const response = await this.fetch<T>(_url.toString(), { headers });
-    return response;
-  };
-
   private makeFetchHappenInstance;
   // @TODO-ZM: make sure lockFactory works as expected
   private fetch = lockFactory(
