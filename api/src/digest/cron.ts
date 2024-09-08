@@ -105,6 +105,13 @@ export class DigestCron {
                 runId,
               });
 
+              await this.contributorsRepository.upsertRelationWithRepository({
+                contributorId,
+                repositoryId,
+                runId,
+                score: 1,
+              });
+
               const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
               const [{ id: contributionId }] = await this.contributionsRepository.upsert({
                 title: issue.title,
@@ -135,10 +142,16 @@ export class DigestCron {
       }
     }
 
-    await this.contributorsRepository.deleteAllButWithRunId(runId);
-    await this.contributionsRepository.deleteAllButWithRunId(runId);
-    await this.repositoriesRepository.deleteAllButWithRunId(runId);
-    await this.projectsRepository.deleteAllButWithRunId(runId);
+    try {
+      await this.contributorsRepository.deleteAllRelationWithRepositoryButWithRunId(runId);
+      await this.contributorsRepository.deleteAllButWithRunId(runId);
+      await this.contributionsRepository.deleteAllButWithRunId(runId);
+      await this.repositoriesRepository.deleteAllButWithRunId(runId);
+      await this.projectsRepository.deleteAllButWithRunId(runId);
+    } catch (error) {
+      // @TODO-ZM: capture error
+      console.error(error);
+    }
 
     this.logger.info({ message: `Digest cron finished, runId: ${runId}` });
   }
