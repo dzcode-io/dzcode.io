@@ -14,8 +14,7 @@
     "@sentry/profiling-node": "^8.28.0",
     "better-sqlite3": "^11.2.1",
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
-    "class-validator-jsonschema": "^3.1.0",
+    "class-validator": "^0.14.1",
     "cors": "^2.8.5",
     "cron": "^3.1.7",
     "dotenv": "^8.2.0",
@@ -30,8 +29,6 @@
     "morgan": "^1.10.0",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.9.0",
-    "routing-controllers-openapi": "^3.1.0",
-    "swagger-ui-express": "^4.1.6",
     "typedi": "^0.10.0",
     "winston": "^3.3.3"
   },
@@ -48,13 +45,12 @@
     "@types/lodash": "^4.17.7",
     "@types/make-fetch-happen": "^9.0.1",
     "@types/morgan": "^1.9.2",
-    "@types/swagger-ui-express": "^4.1.2",
     "drizzle-kit": "^0.24.2",
     "faker": "^5.5.3",
     "glob": "^7.1.7"
   },
   "engines": {
-    "node": ">=16",
+    "node": ">=20",
     "yarn": ">=1.4.2"
   },
   "license": "MIT",

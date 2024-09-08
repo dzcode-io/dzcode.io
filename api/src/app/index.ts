@@ -1,3 +1,4 @@
+// @TODO-ZM: remove the need for reflect-metadata
 // Import these two first! in this order
 import "reflect-metadata";
 import "src/_utils/setup-sentry";
@@ -17,7 +18,6 @@ import { ProjectController } from "src/project/controller";
 import { SQLiteService } from "src/sqlite/service";
 import Container from "typedi";
 
-import { DocsMiddleware } from "./middlewares/docs";
 import { ErrorMiddleware } from "./middlewares/error";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { RobotsMiddleware } from "./middlewares/robots";
@@ -36,7 +36,7 @@ const CronServices = [DigestCron];
 CronServices.forEach((service) => Container.get(service));
 
 // Create the app:
-export const routingControllersOptions: RoutingControllersOptions = {
+const routingControllersOptions: RoutingControllersOptions = {
   controllers: [
     ContributionController,
     GithubController,
@@ -44,13 +44,7 @@ export const routingControllersOptions: RoutingControllersOptions = {
     ProjectController,
     ContributorController,
   ],
-  middlewares: [
-    SecurityMiddleware,
-    ErrorMiddleware,
-    LoggerMiddleware,
-    DocsMiddleware,
-    RobotsMiddleware,
-  ],
+  middlewares: [SecurityMiddleware, ErrorMiddleware, LoggerMiddleware, RobotsMiddleware],
   defaultErrorHandler: false,
   cors: Container.get(SecurityMiddleware).cors(),
 };

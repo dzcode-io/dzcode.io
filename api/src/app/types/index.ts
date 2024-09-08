@@ -1,15 +1,5 @@
-import { IsNumber, IsObject, IsOptional, IsString } from "class-validator";
-
-export class GeneralResponseDto {
-  @IsNumber()
-  @IsOptional()
+export interface GeneralResponseDto {
   code?: number;
-
-  @IsString()
-  @IsOptional()
   msg?: string;
-
-  @IsObject()
-  @IsOptional()
   debug?: Record<string, unknown>;
 }
