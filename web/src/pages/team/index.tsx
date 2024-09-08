@@ -51,15 +51,18 @@ export default function Page(): JSX.Element {
                     className="rounded-full w-20 h-20"
                   />
                   <h2 className="card-title">{contributor.name}</h2>
-                  <ul>
-                    {contributor.repositories.map((repository, repositoryIndex) => (
-                      <li key={repositoryIndex}>
-                        <Link href={getRepositoryURL(repository)}>
-                          {getRepositoryName(repository)}
-                        </Link>
-                      </li>
+                  <div className="card-actions gap-4 flex-col">
+                    {contributor.projects.map((project, projectIndex) => (
+                      <div key={projectIndex} className="flex flex-col">
+                        <span className="mb-0">{project.name}</span>
+                        {project.repositories.map((repository, repositoryIndex) => (
+                          <span className="text-sm font-bold text-gray-500" key={repositoryIndex}>
+                            {getRepositoryName(repository)}
+                          </span>
+                        ))}
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             ))}
