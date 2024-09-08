@@ -1,9 +1,9 @@
 import { GetArticleResponseDto, GetArticlesResponseDto } from "src/article/types";
 import { GetContributionsResponseDto } from "src/contribution/types";
+import { GetContributorsResponseDto } from "src/contributor/types";
 import { GetADocumentationResponseDto, GetDocumentationResponseDto } from "src/documentation/types";
 import { GetMilestonesResponseDto } from "src/milestone/types";
 import { GetProjectsResponseDto } from "src/project/types";
-import { GetTeamResponseDto } from "src/team/types";
 
 // ts-prune-ignore-next
 export interface Endpoints {
@@ -26,10 +26,9 @@ export interface Endpoints {
   };
   "api:Contributions": {
     response: GetContributionsResponseDto;
-    query: [string, string][];
   };
-  "api:Team": {
-    response: GetTeamResponseDto;
+  "api:Contributors": {
+    response: GetContributorsResponseDto;
   };
   "api:MileStones/dzcode": {
     response: GetMilestonesResponseDto;

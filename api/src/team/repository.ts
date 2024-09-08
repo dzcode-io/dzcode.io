@@ -43,6 +43,8 @@ export class TeamRepository {
               repository: name,
             });
             contributors.forEach((contributor) => {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               const uuid = this.githubService.githubUserToAccountEntity({
                 ...contributor,
                 name: "",
@@ -89,6 +91,8 @@ export class TeamRepository {
         .map(async (uuid) => {
           const { repositories, login } = contributorsUsernameRankedRecord[uuid];
           const githubUser = await this.githubService.getUser({ username: login });
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           const account = this.githubService.githubUserToAccountEntity(githubUser);
 
           return { ...account, repositories };

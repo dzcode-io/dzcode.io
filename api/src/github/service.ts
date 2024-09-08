@@ -4,13 +4,15 @@ import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
 
-import { GetRepositoryResponse, GitHubListRepositoryLanguagesResponse } from "./dto";
+import {
+  GetRepositoryIssuesResponseArray,
+  GetRepositoryResponse,
+  GitHubListRepositoryLanguagesResponse,
+} from "./dto";
 import {
   GeneralGithubQuery,
   GetRepositoryInput,
   GetUserInput,
-  GithubIssue,
-  GitHubListRepositoryIssuesInput,
   GitHubListRepositoryLanguagesInput,
   GitHubListRepositoryMilestonesInput,
   GithubMilestone,
@@ -43,6 +45,8 @@ export class GithubService {
     const contributors = commits
       // @TODO-ZM: dry to a user block-list
       // excluding github.com/web-flow user
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       .filter((item) => item.committer && item.committer.id !== 19864447)
       .map(({ committer }) => committer);
     return contributors;
@@ -58,17 +62,20 @@ export class GithubService {
 
   public listRepositoryIssues = async ({
     owner,
-    repository,
-  }: GitHubListRepositoryIssuesInput): Promise<GithubIssue[]> => {
-    const issues = await this.fetchService.getUnsafe<GithubIssue[]>(
-      `${this.apiURL}/repos/${owner}/${repository}/issues`,
+    repo,
+  }: GetRepositoryInput): Promise<GetRepositoryIssuesResponseArray> => {
+    const repoIssues = await this.fetchService.get(
+      `${this.apiURL}/repos/${owner}/${repo}/issues`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
+        // @TODO-ZM: add pagination
         params: { sort: "updated", per_page: 100 }, // eslint-disable-line camelcase
       },
+      GetRepositoryIssuesResponseArray,
+      "issues",
     );
 
-    return issues;
+    return repoIssues;
   };
 
   public listRepositoryLanguages = async ({
@@ -111,12 +118,7 @@ export class GithubService {
     // @TODO-ZM: validate responses using DTOs, for all fetchService methods
     if (!Array.isArray(contributors)) return [];
 
-    return (
-      contributors
-        // @TODO-ZM: filter out bots
-        .filter(({ type }) => type === "User")
-        .sort((a, b) => b.contributions - a.contributions)
-    );
+    return contributors;
   };
 
   public getRateLimit = async (): Promise<{ limit: number; used: number; ratio: number }> => {
@@ -147,6 +149,8 @@ export class GithubService {
   };
 
   public githubUserToAccountEntity = (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     user: Pick<GithubUser, "id" | "login" | "name" | "avatar_url" | "html_url">,
   ): Model<AccountEntity> => ({
     id: `github/${user.id}`,

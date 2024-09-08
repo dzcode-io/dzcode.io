@@ -7,6 +7,7 @@ import { Service } from "typedi";
 
 import { GetArticleResponseDto, GetArticlesResponseDto } from "./types";
 
+// @TODO-ZM: remove article and learn controllers
 @Service()
 @Controller("/Articles")
 export class ArticleController {
@@ -42,6 +43,8 @@ export class ArticleController {
     const authors = await Promise.all(
       article.authors.map(async (author) => {
         const githubUser = await this.githubService.getUser({ username: author });
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         return this.githubService.githubUserToAccountEntity(githubUser);
       }),
     );
@@ -77,6 +80,8 @@ export class ArticleController {
         }
       }, [])
       .sort((a, b) => uniqUsernames[b.login] - uniqUsernames[a.login])
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       .map((committer) => this.githubService.githubUserToAccountEntity(committer))
       .filter(({ id }) => !authors.find((author) => author.id === id));
 

@@ -1,124 +1,106 @@
-import { Model } from "@dzcode.io/models/dist/_base";
-import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { DataService } from "src/data/service";
-import { GithubService } from "src/github/service";
-import { LoggerService } from "src/logger/service";
+import { ne, sql } from "drizzle-orm";
+import { camelCaseObject } from "src/_utils/case";
+import { reverseHierarchy } from "src/_utils/reverse-hierarchy";
+import { unStringifyDeep } from "src/_utils/unstringify-deep";
+import { contributorsTable } from "src/contributor/table";
+import { projectsTable } from "src/project/table";
+import { repositoriesTable } from "src/repository/table";
+import { SQLiteService } from "src/sqlite/service";
 import { Service } from "typedi";
 
-import { allFilterNames, FilterDto, GetContributionsResponseDto, OptionDto } from "./types";
+import { ContributionRow, contributionsTable } from "./table";
 
 @Service()
 export class ContributionRepository {
-  constructor(
-    private readonly githubService: GithubService,
-    private readonly dataService: DataService,
-    private readonly loggerService: LoggerService,
-  ) {}
+  constructor(private readonly sqliteService: SQLiteService) {}
 
-  public async find(
-    filterFn?: (value: ContributionEntity, index: number, array: ContributionEntity[]) => boolean,
-  ): Promise<Pick<GetContributionsResponseDto, "contributions" | "filters">> {
-    const projects = await this.dataService.listProjects();
-
-    let contributions = (
-      await Promise.all(
-        projects.reduce<Promise<Model<ContributionEntity, "project" | "createdBy">[]>[]>(
-          (pV, { repositories, name, slug }) => [
-            ...pV,
-            ...repositories
-              .filter(({ provider }) => provider === "github")
-              .map(async ({ owner, name: repository }) => {
-                try {
-                  const issuesIncludingPRs = await this.githubService.listRepositoryIssues({
-                    owner,
-                    repository,
-                  });
-
-                  const languages = await this.githubService.listRepositoryLanguages({
-                    owner,
-                    repository,
-                  });
-                  return issuesIncludingPRs.map<Model<ContributionEntity, "project" | "createdBy">>(
-                    ({
-                      number,
-                      labels: gLabels,
-                      title,
-                      html_url, // eslint-disable-line camelcase
-                      pull_request, // eslint-disable-line camelcase
-                      created_at, // eslint-disable-line camelcase
-                      updated_at, // eslint-disable-line camelcase
-                      comments,
-                      user,
-                    }) => ({
-                      id: `${number}`,
-                      labels: gLabels.map(({ name }) => name),
-                      languages: Object.keys(languages),
-                      project: {
-                        slug,
-                        name,
-                      },
-                      title,
-                      type: pull_request ? "pullRequest" : "issue", // eslint-disable-line camelcase
-                      url: html_url, // eslint-disable-line camelcase
-                      createdAt: created_at, // eslint-disable-line camelcase
-                      updatedAt: updated_at, // eslint-disable-line camelcase
-                      commentsCount: comments,
-                      /* eslint-enable camelcase */
-                      createdBy: this.githubService.githubUserToAccountEntity(user),
-                    }),
-                  );
-                } catch (error) {
-                  this.loggerService.warn({
-                    message: `Failed to fetch contributions for ${owner}/${repository}: ${error}`,
-                    meta: { owner, repository },
-                  });
-                  return [];
-                }
-              }),
-          ],
-          [],
-        ),
-      )
-    ).reduce((pV, cV) => [...pV, ...cV], []);
-    if (filterFn) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      contributions = contributions.filter(filterFn);
-    }
-    contributions = contributions.sort(
-      (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
-    );
-
-    const filters: FilterDto[] = allFilterNames.map((name) => ({ name, options: [] }));
-
-    contributions.forEach(({ project, languages, labels }) => {
-      this.pushUniqueOption([{ name: project.slug, label: project.name }], filters[0].options);
-
-      this.pushUniqueOption(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        languages.map((language) => ({ name: language })),
-        filters[1].options,
-      );
-
-      this.pushUniqueOption(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        labels.map((label) => ({ name: label })),
-        filters[2].options,
-      );
-    });
-
-    return {
-      contributions,
-      filters,
-    };
+  public async upsert(contribution: ContributionRow) {
+    return await this.sqliteService.db
+      .insert(contributionsTable)
+      .values(contribution)
+      .onConflictDoUpdate({
+        target: [contributionsTable.url],
+        set: contribution,
+      })
+      .returning({ id: contributionsTable.id });
   }
 
-  private pushUniqueOption = (options: OptionDto[], filterOptions: OptionDto[]) => {
-    const uniqueOptions = options.filter(
-      (_option) => !filterOptions.some(({ name }) => _option.name === name),
-    );
-    filterOptions.push(...uniqueOptions);
-  };
+  public async deleteAllButWithRunId(runId: string) {
+    return await this.sqliteService.db
+      .delete(contributionsTable)
+      .where(ne(contributionsTable.runId, runId));
+  }
+
+  public async findForList() {
+    const statement = sql`
+    SELECT
+        p.id as id,
+        p.name as name,
+        json_group_array(
+            json_object('id', r.id, 'name', r.name, 'owner', r.owner, 'contributions', r.contributions)
+        ) AS repositories
+    FROM
+        (SELECT
+            r.id as id,
+            r.owner as owner,
+            r.name as name,
+            r.project_id as project_id,
+            json_group_array(
+                json_object(
+                    'id',
+                    c.id,
+                    'title',
+                    c.title,
+                    'type',
+                    c.type,
+                    'url',
+                    c.url,
+                    'updated_at',
+                    c.updated_at,
+                    'activity_count',
+                    c.activity_count,
+                    'contributor',
+                    json_object(
+                        'id',
+                        cr.id,
+                        'name',
+                        cr.name,
+                        'username',
+                        cr.username,
+                        'avatar_url',
+                        cr.avatar_url
+                    )
+                )
+            ) AS contributions
+        FROM
+            ${contributionsTable} c
+        INNER JOIN
+            ${repositoriesTable} r ON c.repository_id = r.id
+        INNER JOIN
+            ${contributorsTable} cr ON c.contributor_id = cr.id
+        GROUP BY
+            c.id) AS r
+    INNER JOIN
+        ${projectsTable} p ON r.project_id = p.id
+    GROUP BY
+        p.id
+    `;
+
+    const raw = this.sqliteService.db.all(statement);
+    const unStringifiedRaw = unStringifyDeep(raw);
+
+    const reversed = reverseHierarchy(unStringifiedRaw, [
+      { from: "repositories", setParentAs: "project" },
+      { from: "contributions", setParentAs: "repository" },
+    ]);
+
+    const camelCased = camelCaseObject(reversed);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sortedUpdatedAt = camelCased.sort((a: any, b: any) => {
+      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+    });
+
+    return sortedUpdatedAt;
+  }
 }

@@ -1,5 +1,7 @@
 import { captureException, cron } from "@sentry/node";
 import { CronJob } from "cron";
+import { ContributionRepository } from "src/contribution/repository";
+import { ContributorRepository } from "src/contributor/repository";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { LoggerService } from "src/logger/service";
@@ -18,6 +20,8 @@ export class DigestCron {
     private readonly githubService: GithubService,
     private readonly projectsRepository: ProjectRepository,
     private readonly repositoriesRepository: RepositoryRepository,
+    private readonly contributionsRepository: ContributionRepository,
+    private readonly contributorsRepository: ContributorRepository,
   ) {
     const SentryCronJob = cron.instrumentCron(CronJob, "DigestCron");
     new SentryCronJob(
@@ -62,9 +66,12 @@ export class DigestCron {
 
     const projectsFromDataFolder = await this.dataService.listProjects();
 
+    // @TODO-ZM: add data with recordStatus="draft", delete, then update to recordStatus="ok"
+    // @TODO-ZM: in all repos, filter by recordStatus="ok"
     for (const project of projectsFromDataFolder) {
       const [{ id: projectId }] = await this.projectsRepository.upsert({ ...project, runId });
 
+      let addedRepositoryCount = 0;
       try {
         const repositoriesFromDataFolder = project.repositories;
         for (const repository of repositoriesFromDataFolder) {
@@ -74,7 +81,6 @@ export class DigestCron {
               repo: repository.name,
             });
 
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const [{ id: repositoryId }] = await this.repositoriesRepository.upsert({
               provider: "github",
               name: repoInfo.name,
@@ -82,6 +88,73 @@ export class DigestCron {
               runId,
               projectId,
             });
+            addedRepositoryCount++;
+
+            const issues = await this.githubService.listRepositoryIssues({
+              owner: repository.owner,
+              repo: repository.name,
+            });
+
+            for (const issue of issues.issues) {
+              const githubUser = await this.githubService.getUser({ username: issue.user.login });
+
+              if (githubUser.type !== "User") continue;
+
+              const [{ id: contributorId }] = await this.contributorsRepository.upsert({
+                name: githubUser.name || githubUser.login,
+                username: githubUser.login,
+                url: githubUser.html_url,
+                avatarUrl: githubUser.avatar_url,
+                runId,
+              });
+
+              await this.contributorsRepository.upsertRelationWithRepository({
+                contributorId,
+                repositoryId,
+                runId,
+                score: 1,
+              });
+
+              const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
+              const [{ id: contributionId }] = await this.contributionsRepository.upsert({
+                title: issue.title,
+                type,
+                updatedAt: issue.updated_at,
+                activityCount: issue.comments,
+                runId,
+                url: type === "PULL_REQUEST" ? issue.pull_request.html_url : issue.html_url,
+                repositoryId,
+                contributorId,
+              });
+
+              console.log("contributionId", contributionId);
+            }
+
+            const repoContributors = await this.githubService.listRepositoryContributors({
+              owner: repository.owner,
+              repository: repository.name,
+            });
+
+            const repoContributorsFiltered = repoContributors.filter(
+              (contributor) => contributor.type === "User",
+            );
+
+            for (const repoContributor of repoContributorsFiltered) {
+              const [{ id: contributorId }] = await this.contributorsRepository.upsert({
+                name: repoContributor.name || repoContributor.login,
+                username: repoContributor.login,
+                url: repoContributor.html_url,
+                avatarUrl: repoContributor.avatar_url,
+                runId,
+              });
+
+              await this.contributorsRepository.upsertRelationWithRepository({
+                contributorId,
+                repositoryId,
+                runId,
+                score: repoContributor.contributions,
+              });
+            }
           } catch (error) {
             // @TODO-ZM: capture error
             console.error(error);
@@ -91,10 +164,23 @@ export class DigestCron {
         // @TODO-ZM: capture error
         console.error(error);
       }
+
+      if (addedRepositoryCount === 0) {
+        captureException(new Error("Empty project"), { extra: { project } });
+        await this.projectsRepository.deleteById(projectId);
+      }
     }
 
-    await this.repositoriesRepository.deleteAllButWithRunId(runId);
-    await this.projectsRepository.deleteAllButWithRunId(runId);
+    try {
+      await this.contributorsRepository.deleteAllRelationWithRepositoryButWithRunId(runId);
+      await this.contributorsRepository.deleteAllButWithRunId(runId);
+      await this.contributionsRepository.deleteAllButWithRunId(runId);
+      await this.repositoriesRepository.deleteAllButWithRunId(runId);
+      await this.projectsRepository.deleteAllButWithRunId(runId);
+    } catch (error) {
+      // @TODO-ZM: capture error
+      console.error(error);
+    }
 
     this.logger.info({ message: `Digest cron finished, runId: ${runId}` });
   }

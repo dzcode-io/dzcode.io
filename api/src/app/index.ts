@@ -9,6 +9,7 @@ import { createExpressServer, RoutingControllersOptions, useContainer } from "ro
 import { ArticleController } from "src/article/controller";
 import { ConfigService } from "src/config/service";
 import { ContributionController } from "src/contribution/controller";
+import { ContributorController } from "src/contributor/controller";
 import { DigestCron } from "src/digest/cron";
 import { DocumentationController } from "src/documentation/controller";
 import { GithubController } from "src/github/controller";
@@ -47,6 +48,7 @@ export const routingControllersOptions: RoutingControllersOptions = {
     ProjectController,
     ArticleController,
     DocumentationController,
+    ContributorController,
   ],
   middlewares: [
     SecurityMiddleware,

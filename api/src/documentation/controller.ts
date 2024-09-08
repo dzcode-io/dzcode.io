@@ -44,6 +44,8 @@ export class DocumentationController {
     const authors = await Promise.all(
       documentation.authors.map(async (author) => {
         const githubUser = await this.githubService.getUser({ username: author });
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         return this.githubService.githubUserToAccountEntity(githubUser);
       }),
     );
@@ -79,6 +81,8 @@ export class DocumentationController {
         }
       }, [])
       .sort((a, b) => uniqUsernames[b.login] - uniqUsernames[a.login])
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       .map((contributor) => this.githubService.githubUserToAccountEntity(contributor))
       .filter(({ id }) => !authors.find((author) => author.id === id));
 

@@ -1,6 +1,6 @@
-import { ProjectEntityForList } from "@dzcode.io/models/dist/project";
-import { ne, sql } from "drizzle-orm";
-import { validatePlainObject } from "src/_utils/validator/validate-plain-object";
+import { eq, ne, sql } from "drizzle-orm";
+import { camelCaseObject } from "src/_utils/case";
+import { unStringifyDeep } from "src/_utils/unstringify-deep";
 import { repositoriesTable } from "src/repository/table";
 import { SQLiteService } from "src/sqlite/service";
 import { Service } from "typedi";
@@ -12,6 +12,7 @@ export class ProjectRepository {
   constructor(private readonly sqliteService: SQLiteService) {}
 
   public async findForList() {
+    // @TODO-ZM: reverse hierarchy instead here
     const statement = sql`
     SELECT
         p.id as id,
@@ -27,17 +28,10 @@ export class ProjectRepository {
     GROUP BY
         p.id;
     `;
-    const raw = this.sqliteService.db.all(statement) as Array<
-      // the SQL query above returns a stringified JSON for the `repositories` column
-      Omit<ProjectEntityForList, "repositories"> & { repositories: string }
-    >;
-    const projectsForList: ProjectEntityForList[] = raw.map((row) => {
-      const notYetValid = { ...row, repositories: JSON.parse(row.repositories) };
-      const validated = validatePlainObject(ProjectEntityForList, notYetValid, true);
-      return validated;
-    });
-
-    return projectsForList;
+    const raw = this.sqliteService.db.all(statement);
+    const unStringifiedRaw = unStringifyDeep(raw);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
   }
 
   public async upsert(project: ProjectRow) {
@@ -49,6 +43,10 @@ export class ProjectRepository {
         set: project,
       })
       .returning({ id: projectsTable.id });
+  }
+
+  public async deleteById(id: number) {
+    return await this.sqliteService.db.delete(projectsTable).where(eq(projectsTable.id, id));
   }
 
   public async deleteAllButWithRunId(runId: string) {
