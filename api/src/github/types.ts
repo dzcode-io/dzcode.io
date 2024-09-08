@@ -6,6 +6,7 @@ export interface GithubUser {
   name: string;
   html_url: string;
   avatar_url: string;
+  type: "User" | "_other";
 }
 
 export interface GithubRepositoryContributor extends GithubUser {

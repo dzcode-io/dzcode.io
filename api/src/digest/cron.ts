@@ -97,6 +97,9 @@ export class DigestCron {
 
             for (const issue of issues.issues) {
               const githubUser = await this.githubService.getUser({ username: issue.user.login });
+
+              if (githubUser.type !== "User") continue;
+
               const [{ id: contributorId }] = await this.contributorsRepository.upsert({
                 name: githubUser.name || githubUser.login,
                 username: githubUser.login,
@@ -125,6 +128,32 @@ export class DigestCron {
               });
 
               console.log("contributionId", contributionId);
+            }
+
+            const repoContributors = await this.githubService.listRepositoryContributors({
+              owner: repository.owner,
+              repository: repository.name,
+            });
+
+            const repoContributorsFiltered = repoContributors.filter(
+              (contributor) => contributor.type === "User",
+            );
+
+            for (const repoContributor of repoContributorsFiltered) {
+              const [{ id: contributorId }] = await this.contributorsRepository.upsert({
+                name: repoContributor.name || repoContributor.login,
+                username: repoContributor.login,
+                url: repoContributor.html_url,
+                avatarUrl: repoContributor.avatar_url,
+                runId,
+              });
+
+              await this.contributorsRepository.upsertRelationWithRepository({
+                contributorId,
+                repositoryId,
+                runId,
+                score: repoContributor.contributions,
+              });
             }
           } catch (error) {
             // @TODO-ZM: capture error
