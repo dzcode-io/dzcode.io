@@ -59,18 +59,6 @@ export default function Page(): JSX.Element {
                     <span className="card-normal">
                       {contribution.repository.owner}/{contribution.repository.name}
                     </span>
-                    {/* <div className="flex flex-row flex-wrap gap-1">
-                      {contribution.labels.map((label, labelIndex) => (
-                        <span key={`label-${labelIndex}`} className="badge">
-                          {label}
-                        </span>
-                      ))}
-                      {contribution.languages.map((language, languageIndex) => (
-                        <span key={`language-${languageIndex}`} className="badge">
-                          {language}
-                        </span>
-                      ))}
-                    </div> */}
                     <div className="card-actions justify-end mt-4 gap-4">
                       <img
                         className="w-6 h-6 rounded-full"
