@@ -6,9 +6,9 @@ exports[`should match snapshot when providing all fields: output 1`] = `
 RepositoryReferenceEntity {
   "contributions": [],
   "contributors": [],
+  "name": "leblad",
   "owner": "dzcode-io",
   "provider": "github",
-  "repository": "leblad",
 }
 `;
 
@@ -16,9 +16,9 @@ exports[`should match snapshot when providing required fields only: errors 1`] =
 
 exports[`should match snapshot when providing required fields only: output 1`] = `
 RepositoryReferenceEntity {
+  "name": "leblad",
   "owner": "dzcode-io",
   "provider": "github",
-  "repository": "leblad",
 }
 `;
 
@@ -45,9 +45,9 @@ exports[`should show an error that matches snapshot when passing empty object: e
   ValidationError {
     "children": [],
     "constraints": {
-      "isString": "repository must be a string",
+      "isString": "name must be a string",
     },
-    "property": "repository",
+    "property": "name",
     "target": RepositoryReferenceEntity {},
     "value": undefined,
   },
