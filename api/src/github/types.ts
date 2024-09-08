@@ -13,11 +13,6 @@ interface GithubRepositoryContributor extends GithubUser {
   contributions: number;
 }
 
-export type ListPathCommittersResponse = Array<{
-  author: GithubUser;
-  committer: GithubUser;
-}>;
-
 export type ListRepositoryContributorsResponse = GithubRepositoryContributor[];
 
 export interface GeneralGithubQuery {
@@ -41,8 +36,6 @@ interface GitHubListRepositoryIssuesInput {
   owner: string;
   repository: string;
 }
-
-export type GitHubListRepositoryLanguagesInput = GitHubListRepositoryIssuesInput;
 
 export type GitHubListRepositoryMilestonesInput = GitHubListRepositoryIssuesInput;
 

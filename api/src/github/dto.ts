@@ -1,59 +1,19 @@
-import { IsIn, IsNumber, IsString, Validate, ValidateNested } from "class-validator";
-import { IsMapOfStringNumber } from "src/_utils/validator/is-map-of-string-number";
+import { GithubUser } from "./types";
 
-export class GitHubListRepositoryLanguagesResponse {
-  @Validate(IsMapOfStringNumber)
-  languages!: Map<string, number>;
+export interface GetRepositoryResponse {
+  name: string;
+  owner: GithubUser;
 }
 
-class GithubAccount {
-  @IsString()
-  login!: string;
+interface GithubIssue {
+  title: string;
+  user: GithubUser;
+  labels: string[];
+  state: "closed" | "open";
+  assignees: GithubUser[];
+  updated_at: string;
+  html_url: string;
+  pull_request: { html_url: string };
+  comments: number;
 }
-
-export class GetRepositoryResponse {
-  @IsString()
-  name!: string;
-
-  @ValidateNested()
-  owner!: GithubAccount;
-}
-
-class GetRepositoryIssuesPullRequestResponse {
-  @IsString()
-  html_url!: string; // eslint-disable-line camelcase
-}
-
-class GetRepositoryIssuesResponse {
-  @IsString()
-  title!: string;
-
-  @ValidateNested()
-  user!: GithubAccount;
-
-  @IsString({ each: true })
-  labels!: string[];
-
-  @IsIn(["closed", "open"])
-  state!: "closed" | "open";
-
-  @ValidateNested({ each: true })
-  assignees!: GithubAccount[];
-
-  @IsString()
-  updated_at!: string; // eslint-disable-line camelcase
-
-  @IsString()
-  html_url!: string; // eslint-disable-line camelcase
-
-  @ValidateNested()
-  pull_request!: GetRepositoryIssuesPullRequestResponse; // eslint-disable-line camelcase
-
-  @IsNumber()
-  comments!: number;
-}
-
-export class GetRepositoryIssuesResponseArray {
-  @ValidateNested({ each: true })
-  issues!: GetRepositoryIssuesResponse[];
-}
+export type GetRepositoryIssuesResponse = GithubIssue[];

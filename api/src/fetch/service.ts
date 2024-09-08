@@ -1,7 +1,5 @@
 import { lockFactory } from "@dzcode.io/utils/dist/concurrency";
-import { ClassConstructor } from "class-transformer";
 import { defaults } from "make-fetch-happen";
-import { validatePlainObject } from "src/_utils/validator/validate-plain-object";
 import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
 import { Service } from "typedi";
@@ -21,20 +19,15 @@ export class FetchService {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public get = async <T extends ClassConstructor<any>>(
+  public get = async <T>(
     url: string,
     { params = {}, headers = {} }: FetchConfig = {},
-    cls: T,
-    rootKey?: string,
-  ) => {
+  ): Promise<Awaited<T>> => {
     const _url = new URL(url);
     Object.keys(params).forEach((key) => _url.searchParams.append(key, String(params[key])));
 
-    const response = await this.fetch<InstanceType<T>>(_url.toString(), { headers });
-    const mappedResponse = rootKey ? { [rootKey]: response } : response;
-
-    return validatePlainObject(cls, mappedResponse, undefined, true);
+    const response = await this.fetch<T>(_url.toString(), { headers });
+    return response;
   };
 
   // @TODO-ZM: using DTO, validate response and DRY the types
