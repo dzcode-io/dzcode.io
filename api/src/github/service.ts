@@ -45,6 +45,8 @@ export class GithubService {
     const contributors = commits
       // @TODO-ZM: dry to a user block-list
       // excluding github.com/web-flow user
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       .filter((item) => item.committer && item.committer.id !== 19864447)
       .map(({ committer }) => committer);
     return contributors;
@@ -116,12 +118,7 @@ export class GithubService {
     // @TODO-ZM: validate responses using DTOs, for all fetchService methods
     if (!Array.isArray(contributors)) return [];
 
-    return (
-      contributors
-        // @TODO-ZM: filter out bots
-        .filter(({ type }) => type === "User")
-        .sort((a, b) => b.contributions - a.contributions)
-    );
+    return contributors;
   };
 
   public getRateLimit = async (): Promise<{ limit: number; used: number; ratio: number }> => {
@@ -152,6 +149,8 @@ export class GithubService {
   };
 
   public githubUserToAccountEntity = (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     user: Pick<GithubUser, "id" | "login" | "name" | "avatar_url" | "html_url">,
   ): Model<AccountEntity> => ({
     id: `github/${user.id}`,

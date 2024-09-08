@@ -7,14 +7,14 @@ ProjectReferenceEntity {
   "name": "Leblad",
   "repositories": [
     RepositoryReferenceEntity {
+      "name": "leblad",
       "owner": "dzcode-io",
       "provider": "github",
-      "repository": "leblad",
     },
     RepositoryReferenceEntity {
+      "name": "leblad-py",
       "owner": "abderrahmaneMustapha",
       "provider": "github",
-      "repository": "leblad-py",
     },
   ],
   "slug": "Leblad",
@@ -28,14 +28,14 @@ ProjectReferenceEntity {
   "name": "Leblad",
   "repositories": [
     RepositoryReferenceEntity {
+      "name": "leblad",
       "owner": "dzcode-io",
       "provider": "github",
-      "repository": "leblad",
     },
     RepositoryReferenceEntity {
+      "name": "leblad-py",
       "owner": "abderrahmaneMustapha",
       "provider": "github",
-      "repository": "leblad-py",
     },
   ],
   "slug": "Leblad",

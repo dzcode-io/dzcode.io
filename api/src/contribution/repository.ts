@@ -12,9 +12,7 @@ import { ContributionRow, contributionsTable } from "./table";
 
 @Service()
 export class ContributionRepository {
-  constructor(private readonly sqliteService: SQLiteService) {
-    this.findForList();
-  }
+  constructor(private readonly sqliteService: SQLiteService) {}
 
   public async upsert(contribution: ContributionRow) {
     return await this.sqliteService.db

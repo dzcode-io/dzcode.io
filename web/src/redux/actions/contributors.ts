@@ -8,7 +8,7 @@ export const fetchContributorsListAction =
   (): ThunkAction<void, AppState, unknown, Action> => async (dispatch) => {
     try {
       dispatch(contributorsPageSlice.actions.set({ contributorsList: null }));
-      const { contributors } = await fetchV2("api:Team", {});
+      const { contributors } = await fetchV2("api:Contributors", {});
       dispatch(contributorsPageSlice.actions.set({ contributorsList: contributors }));
     } catch (error) {
       dispatch(contributorsPageSlice.actions.set({ contributorsList: "ERROR" }));
