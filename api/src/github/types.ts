@@ -9,7 +9,7 @@ export interface GithubUser {
   type: "User" | "_other";
 }
 
-export interface GithubRepositoryContributor extends GithubUser {
+interface GithubRepositoryContributor extends GithubUser {
   contributions: number;
 }
 
