@@ -27,7 +27,7 @@
     "lodash": "^4.17.21",
     "make-fetch-happen": "^9.0.2",
     "morgan": "^1.10.0",
-    "reflect-metadata": "^0.1.13",
+    "reflect-metadata": "^0.2.2",
     "routing-controllers": "^0.9.0",
     "typedi": "^0.10.0",
     "winston": "^3.3.3"

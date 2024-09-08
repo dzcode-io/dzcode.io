@@ -8,10 +8,7 @@
     "url": "https://zakiii.com/"
   },
   "dependencies": {
-    "@dzcode.io/utils": "*",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
-    "reflect-metadata": "^0.1.13"
+    "@dzcode.io/utils": "*"
   },
   "devDependencies": {
     "@dzcode.io/tooling": "*"
