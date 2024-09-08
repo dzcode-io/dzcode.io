@@ -173,8 +173,8 @@ export class DigestCron {
 
     try {
       await this.contributorsRepository.deleteAllRelationWithRepositoryButWithRunId(runId);
-      await this.contributorsRepository.deleteAllButWithRunId(runId);
       await this.contributionsRepository.deleteAllButWithRunId(runId);
+      await this.contributorsRepository.deleteAllButWithRunId(runId);
       await this.repositoriesRepository.deleteAllButWithRunId(runId);
       await this.projectsRepository.deleteAllButWithRunId(runId);
     } catch (error) {

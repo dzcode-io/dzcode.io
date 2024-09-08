@@ -57,5 +57,5 @@ Sentry.setupExpressErrorHandler(app);
 // Start it
 app.listen(PORT, () => {
   const commonConfig = fsConfig(NODE_ENV);
-  logger.info({ message: `API Server up on: ${commonConfig.api.url}/docs` });
+  logger.info({ message: `API Server up on: ${commonConfig.api.url}/` });
 });
