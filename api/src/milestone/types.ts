@@ -1,6 +1,6 @@
 import { MilestoneEntity } from "@dzcode.io/models/dist/milestone";
-import { GeneralResponseDto } from "src/app/types";
+import { GeneralResponse } from "src/app/types";
 
-export interface GetMilestonesResponseDto extends GeneralResponseDto {
+export interface GetMilestonesResponse extends GeneralResponse {
   milestones: MilestoneEntity[];
 }

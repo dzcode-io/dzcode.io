@@ -1,6 +1,6 @@
-import { GeneralResponseDto } from "src/app/types";
+import { GeneralResponse } from "src/app/types";
 
-export interface GithubUser {
+interface GithubUser {
   login: string;
   name: string;
   html_url: string;
@@ -93,8 +93,26 @@ export interface GitHubRateLimitApiResponse {
   };
 }
 
-export interface GetRateLimitResponseDto extends GeneralResponseDto {
+export interface GetRateLimitResponse extends GeneralResponse {
   limit: number;
   used: number;
   ratio: number;
 }
+
+export interface GetRepositoryResponse {
+  name: string;
+  owner: GithubUser;
+}
+
+interface GithubIssue {
+  title: string;
+  user: GithubUser;
+  labels: string[];
+  state: "closed" | "open";
+  assignees: GithubUser[];
+  updated_at: string;
+  html_url: string;
+  pull_request: { html_url: string };
+  comments: number;
+}
+export type GetRepositoryIssuesResponse = GithubIssue[];

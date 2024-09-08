@@ -10,7 +10,7 @@ try {
   /**/
 }
 
-export class ENVDto {
+export class EnvRecord {
   PORT = 7070;
 
   @Matches("(" + environments.join(")|(") + ")")

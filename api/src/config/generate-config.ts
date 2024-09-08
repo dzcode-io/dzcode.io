@@ -2,15 +2,15 @@ import { plainToClass } from "class-transformer";
 import { validateSync } from "class-validator";
 import { config } from "dotenv";
 
-import { ENVDto } from "./dto";
+import { EnvRecord } from "./types";
 
-let cachedEnv: ENVDto | undefined = undefined;
+let cachedEnv: EnvRecord | undefined = undefined;
 
-export function generateConfig(): ENVDto {
+export function generateConfig(): EnvRecord {
   if (cachedEnv) return cachedEnv;
 
   const _config = config();
-  const output = plainToClass(ENVDto, {
+  const output = plainToClass(EnvRecord, {
     ...process.env,
     ...(_config.parsed || {}),
   });

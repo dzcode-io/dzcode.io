@@ -1,9 +1,9 @@
 import { Service } from "typedi";
 
-import { ENVDto } from "./dto";
 import { generateConfig } from "./generate-config";
+import { EnvRecord } from "./types";
 
-let _env: ENVDto;
+let _env: EnvRecord;
 
 @Service()
 export class ConfigService {

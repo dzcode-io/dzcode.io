@@ -39,7 +39,7 @@
     "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
     "lint:prettier": "prettier  --config ../tooling/.prettierrc --ignore-path ../tooling/.prettierignore --log-level warn",
     "test": "yarn build && yarn test:alone",
-    "test:alone": "jest --config ../tooling/jest.config.ts --rootDir .",
+    "test:alone": "jest --passWithNoTests --config ../tooling/jest.config.ts --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }

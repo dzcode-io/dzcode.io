@@ -2,10 +2,11 @@ import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
 
-import { GetRepositoryIssuesResponse, GetRepositoryResponse } from "./dto";
 import {
   GeneralGithubQuery,
   GetRepositoryInput,
+  GetRepositoryIssuesResponse,
+  GetRepositoryResponse,
   GetUserInput,
   GitHubListRepositoryMilestonesInput,
   GithubMilestone,
