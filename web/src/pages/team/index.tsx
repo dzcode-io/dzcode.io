@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "src/components/link";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
 import { TryAgain } from "src/components/try-again";
 import { fetchContributorsListAction } from "src/redux/actions/contributors";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
-import { getRepositoryName, getRepositoryURL } from "src/utils/repository";
+import { getRepositoryName } from "src/utils/repository";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {
