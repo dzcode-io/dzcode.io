@@ -1,21 +1,17 @@
-import { Model } from "@dzcode.io/models/dist/_base";
-import { AccountEntity } from "@dzcode.io/models/dist/account";
 import { ConfigService } from "src/config/service";
 import { FetchService } from "src/fetch/service";
 import { Service } from "typedi";
 
 import {
   GeneralGithubQuery,
+  GetRepositoryInput,
+  GetRepositoryIssuesResponse,
+  GetRepositoryResponse,
   GetUserInput,
-  GithubIssue,
-  GitHubListRepositoryIssuesInput,
-  GitHubListRepositoryLanguagesInput,
   GitHubListRepositoryMilestonesInput,
   GithubMilestone,
   GitHubRateLimitApiResponse,
-  GithubUser,
   GitHubUserApiResponse,
-  ListPathCommittersResponse,
   ListRepositoryContributorsResponse,
 } from "./types";
 
@@ -25,26 +21,6 @@ export class GithubService {
     private readonly configService: ConfigService,
     private readonly fetchService: FetchService,
   ) {}
-
-  public listPathCommitters = async ({
-    owner,
-    repository,
-    path,
-  }: GeneralGithubQuery): Promise<GithubUser[]> => {
-    const commits = await this.fetchService.get<ListPathCommittersResponse>(
-      `${this.apiURL}/repos/${owner}/${repository}/commits`,
-      {
-        headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
-        params: { path, state: "all", per_page: 100 }, // eslint-disable-line camelcase
-      },
-    );
-    const contributors = commits
-      // @TODO-ZM: dry to a user block-list
-      // excluding github.com/web-flow user
-      .filter((item) => item.committer && item.committer.id !== 19864447)
-      .map(({ committer }) => committer);
-    return contributors;
-  };
 
   public getUser = async ({ username }: GetUserInput): Promise<GitHubUserApiResponse> => {
     const user = await this.fetchService.get<GitHubUserApiResponse>(
@@ -56,28 +32,29 @@ export class GithubService {
 
   public listRepositoryIssues = async ({
     owner,
-    repository,
-  }: GitHubListRepositoryIssuesInput): Promise<GithubIssue[]> => {
-    const issues = await this.fetchService.get<GithubIssue[]>(
-      `${this.apiURL}/repos/${owner}/${repository}/issues`,
+    repo,
+  }: GetRepositoryInput): Promise<GetRepositoryIssuesResponse> => {
+    const repoIssues = await this.fetchService.get<GetRepositoryIssuesResponse>(
+      `${this.apiURL}/repos/${owner}/${repo}/issues`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
+        // @TODO-ZM: add pagination
         params: { sort: "updated", per_page: 100 }, // eslint-disable-line camelcase
       },
     );
 
-    return issues;
+    return repoIssues;
   };
 
-  public listRepositoryLanguages = async ({
+  public getRepository = async ({
     owner,
-    repository,
-  }: GitHubListRepositoryLanguagesInput): Promise<string[]> => {
-    const languages = await this.fetchService.get<Record<string, number>>(
-      `${this.apiURL}/repos/${owner}/${repository}/languages`,
+    repo,
+  }: GetRepositoryInput): Promise<GetRepositoryResponse> => {
+    const repoInfo = await this.fetchService.get<GetRepositoryResponse>(
+      `${this.apiURL}/repos/${owner}/${repo}`,
       { headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {} },
     );
-    return Object.keys(languages);
+    return repoInfo;
   };
 
   public listRepositoryContributors = async ({
@@ -95,12 +72,7 @@ export class GithubService {
     // @TODO-ZM: validate responses using DTOs, for all fetchService methods
     if (!Array.isArray(contributors)) return [];
 
-    return (
-      contributors
-        // @TODO-ZM: filter out bots
-        .filter(({ type }) => type === "User")
-        .sort((a, b) => b.contributions - a.contributions)
-    );
+    return contributors;
   };
 
   public getRateLimit = async (): Promise<{ limit: number; used: number; ratio: number }> => {
@@ -129,17 +101,6 @@ export class GithubService {
     );
     return milestones;
   };
-
-  public githubUserToAccountEntity = (
-    user: Pick<GithubUser, "id" | "login" | "name" | "avatar_url" | "html_url">,
-  ): Model<AccountEntity> => ({
-    id: `github/${user.id}`,
-    username: user.login,
-    name: user.name || user.login,
-    // @TODO-ZM: change this to `/Account/github/${user.id}` once we have a /Accounts page
-    profileUrl: user.html_url,
-    avatarUrl: user.avatar_url,
-  });
 
   private githubToken = this.configService.env().GITHUB_TOKEN;
   private apiURL = "https://api.github.com";

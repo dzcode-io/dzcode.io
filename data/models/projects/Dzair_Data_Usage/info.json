@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "dfourcfive",
-      "repository": "dzair_data_usage"
+      "name": "dzair_data_usage"
     }
   ]
 }

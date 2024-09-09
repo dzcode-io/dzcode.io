@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "src/components/link";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
 import { TryAgain } from "src/components/try-again";
 import { fetchContributorsListAction } from "src/redux/actions/contributors";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
-import { getRepositoryName, getRepositoryURL } from "src/utils/repository";
+import { getRepositoryName } from "src/utils/repository";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {
@@ -51,15 +50,18 @@ export default function Page(): JSX.Element {
                     className="rounded-full w-20 h-20"
                   />
                   <h2 className="card-title">{contributor.name}</h2>
-                  <ul>
-                    {contributor.repositories.map((repository, repositoryIndex) => (
-                      <li key={repositoryIndex}>
-                        <Link href={getRepositoryURL(repository)}>
-                          {getRepositoryName(repository)}
-                        </Link>
-                      </li>
+                  <div className="card-actions gap-4 flex-row justify-between">
+                    {contributor.projects.map((project, projectIndex) => (
+                      <div key={projectIndex} className="flex flex-col">
+                        <span className="mb-0">{project.name}</span>
+                        {project.repositories.map((repository, repositoryIndex) => (
+                          <span className="text-sm font-bold text-gray-500" key={repositoryIndex}>
+                            {getRepositoryName(repository)}
+                          </span>
+                        ))}
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             ))}

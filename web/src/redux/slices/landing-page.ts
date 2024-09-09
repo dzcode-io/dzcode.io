@@ -1,11 +1,11 @@
-import { GetMilestonesResponseDto } from "@dzcode.io/api/dist/milestone/types";
+import { GetMilestonesResponse } from "@dzcode.io/api/dist/milestone/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 import { Loadable } from "src/utils/loadable";
 
 // ts-prune-ignore-next
 export interface LandingPageState {
-  milestones: Loadable<GetMilestonesResponseDto["milestones"]>;
+  milestones: Loadable<GetMilestonesResponse["milestones"]>;
 }
 
 const initialState: LandingPageState = {

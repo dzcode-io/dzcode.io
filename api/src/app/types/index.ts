@@ -1,17 +1,5 @@
-import "reflect-metadata";
-
-import { IsNumber, IsObject, IsOptional, IsString } from "class-validator";
-
-export class GeneralResponseDto {
-  @IsNumber()
-  @IsOptional()
+export interface GeneralResponse {
   code?: number;
-
-  @IsString()
-  @IsOptional()
   msg?: string;
-
-  @IsObject()
-  @IsOptional()
   debug?: Record<string, unknown>;
 }

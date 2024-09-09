@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "bychis",
-      "repository": "godaddy-reseller"
+      "name": "godaddy-reseller"
     }
   ]
 }

@@ -1,9 +1,8 @@
 import { Controller, Get } from "routing-controllers";
-import { OpenAPI, ResponseSchema } from "routing-controllers-openapi";
 import { GithubService } from "src/github/service";
 import { Service } from "typedi";
 
-import { GetMilestonesResponseDto } from "./types";
+import { GetMilestonesResponse } from "./types";
 
 @Service()
 @Controller("/Milestones")
@@ -11,11 +10,7 @@ export class MilestoneController {
   constructor(private readonly githubService: GithubService) {}
 
   @Get("/dzcode")
-  @OpenAPI({
-    summary: "Return a list of milestones for dzcode.io repository",
-  })
-  @ResponseSchema(GetMilestonesResponseDto)
-  public async getMilestones(): Promise<GetMilestonesResponseDto> {
+  public async getMilestones(): Promise<GetMilestonesResponse> {
     const githubMilestones = await this.githubService.listRepositoryMilestones({
       owner: "dzcode-io",
       repository: "dzcode.io",

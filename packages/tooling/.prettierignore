@@ -34,3 +34,4 @@ nodemon.json
 *.ttf
 *.ts-prunerc
 *.patch
+*.sql

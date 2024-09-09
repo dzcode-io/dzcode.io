@@ -21,6 +21,6 @@
     "lint:eslint": "eslint --config .eslintrc.json --ignore-path .eslintignore --report-unused-disable-directives",
     "lint:fix": "yarn lint:fix:alone",
     "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
-    "lint:prettier": "prettier  --config .prettierrc --ignore-path .prettierignore --loglevel warn"
+    "lint:prettier": "prettier  --config .prettierrc --ignore-path .prettierignore --log-level warn"
   }
 }

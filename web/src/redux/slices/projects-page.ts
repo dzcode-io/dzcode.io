@@ -1,11 +1,11 @@
-import { GetProjectsResponseDto } from "@dzcode.io/api/dist/project/types";
+import { GetProjectsResponse } from "@dzcode.io/api/dist/project/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { setReducerFactory } from "src/redux/utils";
 import { Loadable } from "src/utils/loadable";
 
 // ts-prune-ignore-next
 export interface ProjectsPageState {
-  projectsList: Loadable<GetProjectsResponseDto["projects"]>;
+  projectsList: Loadable<GetProjectsResponse["projects"]>;
 }
 
 const initialState: ProjectsPageState = {

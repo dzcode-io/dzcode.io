@@ -43,7 +43,7 @@ now let's move to the HTML template add this code to it
 ```html
 <!--  mainFolder/templates/index.html -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />

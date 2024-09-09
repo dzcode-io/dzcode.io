@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "elaborate-code",
-      "repository": "php-json-tongue"
+      "name": "php-json-tongue"
     }
   ]
 }

@@ -3,4 +3,4 @@ export const Languages = [
   { code: "ar", label: "العربية" },
 ] as const;
 
-export type Language = typeof Languages[number];
+export type Language = (typeof Languages)[number];

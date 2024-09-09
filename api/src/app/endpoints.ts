@@ -1,37 +1,20 @@
-import { GetArticleResponseDto, GetArticlesResponseDto } from "src/article/types";
-import { GetContributionsResponseDto } from "src/contribution/types";
-import { GetADocumentationResponseDto, GetDocumentationResponseDto } from "src/documentation/types";
-import { GetMilestonesResponseDto } from "src/milestone/types";
-import { GetProjectsResponseDto } from "src/project/types";
-import { GetTeamResponseDto } from "src/team/types";
+import { GetContributionsResponse } from "src/contribution/types";
+import { GetContributorsResponse } from "src/contributor/types";
+import { GetMilestonesResponse } from "src/milestone/types";
+import { GetProjectsResponse } from "src/project/types";
 
 // ts-prune-ignore-next
 export interface Endpoints {
-  "api:Articles": {
-    response: GetArticlesResponseDto;
-  };
-  "api:Articles/:slug": {
-    response: GetArticleResponseDto;
-    params: { slug: string };
-  };
-  "api:Documentation": {
-    response: GetDocumentationResponseDto;
-  };
-  "api:Documentation/:slug": {
-    response: GetADocumentationResponseDto;
-    params: { slug: string };
-  };
   "api:Projects": {
-    response: GetProjectsResponseDto;
+    response: GetProjectsResponse;
   };
   "api:Contributions": {
-    response: GetContributionsResponseDto;
-    query: [string, string][];
+    response: GetContributionsResponse;
   };
-  "api:Team": {
-    response: GetTeamResponseDto;
+  "api:Contributors": {
+    response: GetContributorsResponse;
   };
   "api:MileStones/dzcode": {
-    response: GetMilestonesResponseDto;
+    response: GetMilestonesResponse;
   };
 }

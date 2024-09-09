@@ -1,69 +1,16 @@
-import { IsNumber } from "class-validator";
+import { GeneralResponse } from "src/app/types";
 
-export interface GithubUser {
+interface GithubUser {
   login: string;
-  id: number;
-  node_id: string;
-  avatar_url: string;
-  gravatar_id: string;
-  url: string;
-  html_url: string;
-  followers_url: string;
-  following_url: string;
-  gists_url: string;
-  starred_url: string;
-  subscriptions_url: string;
-  organizations_url: string;
-  repos_url: string;
-  events_url: string;
-  received_events_url: string;
-  type: string;
-  site_admin: boolean;
   name: string;
-  company: string;
-  blog: string;
-  location: string;
-  email: string;
-  hireable: boolean;
-  bio: string;
-  twitter_username: string;
-  public_repos: number;
-  public_gists: number;
-  followers: number;
-  following: number;
-  created_at: string;
-  updated_at: string;
+  html_url: string;
+  avatar_url: string;
+  type: "User" | "_other";
 }
 
-export interface GithubRepositoryContributor
-  extends Pick<
-    GithubUser,
-    | "login"
-    | "id"
-    | "node_id"
-    | "avatar_url"
-    | "gravatar_id"
-    | "url"
-    | "html_url"
-    | "followers_url"
-    | "following_url"
-    | "gists_url"
-    | "starred_url"
-    | "subscriptions_url"
-    | "organizations_url"
-    | "repos_url"
-    | "events_url"
-    | "received_events_url"
-    | "type"
-    | "site_admin"
-  > {
+interface GithubRepositoryContributor extends GithubUser {
   contributions: number;
 }
-
-export type ListPathCommittersResponse = Array<{
-  author: GithubUser;
-  committer: GithubUser;
-}>;
 
 export type ListRepositoryContributorsResponse = GithubRepositoryContributor[];
 
@@ -79,32 +26,15 @@ export interface GetUserInput {
 
 export type GitHubUserApiResponse = GithubUser;
 
-export interface GitHubListRepositoryIssuesInput {
+export interface GetRepositoryInput {
+  owner: string;
+  repo: string;
+}
+
+interface GitHubListRepositoryIssuesInput {
   owner: string;
   repository: string;
 }
-
-export interface GithubIssue {
-  html_url: string;
-  number: number;
-  title: string;
-  user: GithubUser;
-  body: string;
-  labels: Array<{
-    name: string;
-  }>;
-  state: "closed" | "open";
-  assignees: GithubUser[];
-  comments: number;
-  created_at: string;
-  updated_at: string;
-  closed_at: string | null;
-  pull_request?: {
-    html_url: string;
-  };
-}
-
-export type GitHubListRepositoryLanguagesInput = GitHubListRepositoryIssuesInput;
 
 export type GitHubListRepositoryMilestonesInput = GitHubListRepositoryIssuesInput;
 
@@ -163,13 +93,26 @@ export interface GitHubRateLimitApiResponse {
   };
 }
 
-export class GetRateLimitResponseDto {
-  @IsNumber()
-  limit!: number;
-
-  @IsNumber()
-  used!: number;
-
-  @IsNumber()
-  ratio!: number;
+export interface GetRateLimitResponse extends GeneralResponse {
+  limit: number;
+  used: number;
+  ratio: number;
 }
+
+export interface GetRepositoryResponse {
+  name: string;
+  owner: GithubUser;
+}
+
+interface GithubIssue {
+  title: string;
+  user: GithubUser;
+  labels: string[];
+  state: "closed" | "open";
+  assignees: GithubUser[];
+  updated_at: string;
+  html_url: string;
+  pull_request: { html_url: string };
+  comments: number;
+}
+export type GetRepositoryIssuesResponse = GithubIssue[];

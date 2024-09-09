@@ -4,7 +4,7 @@
     {
       "provider": "github",
       "owner": "dzcode-io",
-      "repository": "dzcode.io"
+      "name": "dzcode.io"
     }
   ]
 }

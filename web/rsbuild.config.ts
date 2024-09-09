@@ -1,4 +1,4 @@
-import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
+import { environments } from "@dzcode.io/utils/dist/config/environment";
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { readFileSync } from "fs";

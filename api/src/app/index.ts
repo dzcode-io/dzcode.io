@@ -1,63 +1,50 @@
+// @TODO-ZM: remove the need for reflect-metadata
+// Import these two first! in this order
 import "reflect-metadata";
+import "src/_utils/setup-sentry";
 
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import * as Sentry from "@sentry/node";
 import { Application } from "express";
 import { createExpressServer, RoutingControllersOptions, useContainer } from "routing-controllers";
-import { ArticleController } from "src/article/controller";
 import { ConfigService } from "src/config/service";
 import { ContributionController } from "src/contribution/controller";
-import { DocumentationController } from "src/documentation/controller";
+import { ContributorController } from "src/contributor/controller";
+import { DigestCron } from "src/digest/cron";
 import { GithubController } from "src/github/controller";
 import { LoggerService } from "src/logger/service";
 import { MilestoneController } from "src/milestone/controller";
 import { ProjectController } from "src/project/controller";
-import { TeamController } from "src/team/controller";
+import { SQLiteService } from "src/sqlite/service";
 import Container from "typedi";
 
-import { DocsMiddleware } from "./middlewares/docs";
 import { ErrorMiddleware } from "./middlewares/error";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { RobotsMiddleware } from "./middlewares/robots";
 import { SecurityMiddleware } from "./middlewares/security";
-import { SentryErrorHandlerMiddleware } from "./middlewares/sentry-error-handler";
-import { SentryRequestHandlerMiddleware } from "./middlewares/sentry-request-handler";
 
 // Use typedi container
 useContainer(Container);
 
-const { NODE_ENV, PORT, BUNDLE_INFO } = Container.get(ConfigService).env();
+// Initialize Database
+Container.get(SQLiteService);
 
-if (NODE_ENV !== "development") {
-  Sentry.init({
-    dsn: "https://5f9d7ae6e98944e1815f8d1944fc3c12@o953637.ingest.sentry.io/5904452",
-    tracesSampleRate: 1.0,
-    environment: NODE_ENV,
-    debug: NODE_ENV !== "production",
-    release: `api@${BUNDLE_INFO.version}`,
-  });
-}
+const { NODE_ENV, PORT } = Container.get(ConfigService).env();
+
+// Add crons to DI container
+const CronServices = [DigestCron];
+CronServices.forEach((service) => Container.get(service));
 
 // Create the app:
-export const routingControllersOptions: RoutingControllersOptions = {
+const routingControllersOptions: RoutingControllersOptions = {
   controllers: [
     ContributionController,
-    TeamController,
     GithubController,
     MilestoneController,
     ProjectController,
-    ArticleController,
-    DocumentationController,
+    ContributorController,
   ],
-  middlewares: [
-    SentryRequestHandlerMiddleware,
-    SecurityMiddleware,
-    SentryErrorHandlerMiddleware,
-    ErrorMiddleware,
-    LoggerMiddleware,
-    DocsMiddleware,
-    RobotsMiddleware,
-  ],
+  middlewares: [SecurityMiddleware, ErrorMiddleware, LoggerMiddleware, RobotsMiddleware],
   defaultErrorHandler: false,
   cors: Container.get(SecurityMiddleware).cors(),
 };
@@ -65,8 +52,10 @@ const app: Application = createExpressServer(routingControllersOptions);
 
 const logger = Container.get(LoggerService);
 
+Sentry.setupExpressErrorHandler(app);
+
 // Start it
 app.listen(PORT, () => {
   const commonConfig = fsConfig(NODE_ENV);
-  logger.info({ message: `API Server up on: ${commonConfig.api.url}/docs` });
+  logger.info({ message: `API Server up on: ${commonConfig.api.url}/` });
 });
