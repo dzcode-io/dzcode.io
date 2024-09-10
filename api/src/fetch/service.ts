@@ -1,4 +1,3 @@
-import { lockFactory } from "@dzcode.io/utils/dist/concurrency";
 import { defaults } from "make-fetch-happen";
 import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
@@ -31,13 +30,10 @@ export class FetchService {
   };
 
   private makeFetchHappenInstance;
-  // @TODO-ZM: make sure lockFactory works as expected
-  private fetch = lockFactory(
-    async <T>(url: string, { headers }: Omit<FetchConfig, "params"> = {}) => {
-      this.logger.info({ message: `Fetching ${url}` });
-      const response = await this.makeFetchHappenInstance(url, { headers });
-      const jsonResponse = (await response.json()) as T;
-      return jsonResponse;
-    },
-  );
+  private async fetch<T>(url: string, { headers }: Omit<FetchConfig, "params"> = {}) {
+    this.logger.info({ message: `Fetching ${url}` });
+    const response = await this.makeFetchHappenInstance(url, { headers });
+    const jsonResponse = (await response.json()) as T;
+    return jsonResponse;
+  }
 }
