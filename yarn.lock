@@ -2475,12 +2475,12 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@prettier/plugin-pug@^1.17.3":
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-1.18.0.tgz#b2f2425814bee1bc17cfbb3b7e382e73d4089fb7"
-  integrity sha512-67uxCVZRNS9CwvEGHZCeABeiBKODuxuxVagP7xd1GBbPCOy0MHkwNAduYldRQJbCLuz1+WNqADCwgZXmdpWipg==
+"@prettier/plugin-pug@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@prettier/plugin-pug/-/plugin-pug-3.1.0.tgz#1915a31996a4365a2ad221bf8bcae2f4ff1a6edd"
+  integrity sha512-Zwm1JnMRMejF5aOGTNux8ZmBvdYeouyyq2tgEw+18hkWZzUjXMv9OLT/bEKS2LEj98Pr1uWtN04sIJKzF8J1tQ==
   dependencies:
-    pug-lexer "^5.0.0"
+    pug-lexer "^5.0.1"
 
 "@prisma/instrumentation@5.18.0":
   version "5.18.0"
@@ -12357,7 +12357,7 @@ pug-error@^2.0.0:
   resolved "https://registry.yarnpkg.com/pug-error/-/pug-error-2.0.0.tgz#5c62173cb09c34de2a2ce04f17b8adfec74d8ca5"
   integrity sha512-sjiUsi9M4RAGHktC1drQfCr5C5eriu24Lfbt4s+7SykztEOwVZtbFk1RRq0tzLxcMxMYTBR+zMQaG07J/btayQ==
 
-pug-lexer@^5.0.0:
+pug-lexer@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/pug-lexer/-/pug-lexer-5.0.1.tgz#ae44628c5bef9b190b665683b288ca9024b8b0d5"
   integrity sha512-0I6C62+keXlZPZkOJeVam9aBLVP2EnbeDw3An+k0/QlqdwH6rv8284nko14Na7c0TtqtogfWXcRoFE4O4Ff20w==

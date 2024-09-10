@@ -2,7 +2,7 @@
   "name": "@dzcode.io/root",
   "dependencies": {},
   "devDependencies": {
-    "@prettier/plugin-pug": "^1.17.3",
+    "@prettier/plugin-pug": "^3.1.0",
     "@sentry/cli": "^1.71.0",
     "@types/jest": "^29.5.0",
     "@types/node": "^16.11.10",
