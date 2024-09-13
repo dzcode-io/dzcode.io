@@ -8,21 +8,19 @@
     "url": "https://www.zakiii.com"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "fs-extra": "^10.0.0",
-    "glob": "^7.1.6"
+    "fs-extra": "^11.2.0",
+    "glob": "^11.0.0"
   },
   "devDependencies": {
     "@dzcode.io/tooling": "*",
     "@dzcode.io/utils": "*",
-    "@types/express": "^4.17.9",
-    "@types/fs-extra": "^9.0.13",
-    "@types/glob": "^7.1.4",
+    "@types/fs-extra": "^11.0.4",
+    "@types/glob": "^8.1.0",
     "cpx": "^1.5.0",
     "firebase-tools": "^13.16.0"
   },
   "engines": {
-    "node": ">=16",
+    "node": ">=20",
     "yarn": ">=1.4.2"
   },
   "license": "MIT",
