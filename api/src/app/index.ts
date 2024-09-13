@@ -24,7 +24,7 @@ import { RobotsMiddleware } from "./middlewares/robots";
 import { SecurityMiddleware } from "./middlewares/security";
 
 // Use typedi container
-useContainer(Container);
+useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
 
 // Initialize Database
 Container.get(SQLiteService);

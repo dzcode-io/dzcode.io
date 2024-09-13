@@ -7,6 +7,7 @@ import { Markdown } from "src/components/markdown";
 import { TryAgain } from "src/components/try-again";
 import { fetchMilestonesListAction } from "src/redux/actions/milestones";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
+import React from "react";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {

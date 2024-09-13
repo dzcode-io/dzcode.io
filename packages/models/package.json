@@ -31,7 +31,7 @@
     "clean:alone": "rimraf dist coverage",
     "lint": "yarn build && yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
-    "lint:eslint": "eslint --config ../tooling/.eslintrc.json --ignore-path ../tooling/.eslintignore --report-unused-disable-directives",
+    "lint:eslint": "eslint --config ../tooling/eslint.config.mjs",
     "lint:fix": "yarn build && yarn lint:fix:alone",
     "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
     "lint:prettier": "prettier  --config ../tooling/.prettierrc --ignore-path ../tooling/.prettierignore --log-level warn",

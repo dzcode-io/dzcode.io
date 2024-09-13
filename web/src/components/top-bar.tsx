@@ -1,3 +1,4 @@
+import React from "react";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import logoWide from "src/assets/svg/logo-wide.svg";

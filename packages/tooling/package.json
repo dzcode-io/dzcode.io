@@ -18,7 +18,7 @@
   "scripts": {
     "lint": "yarn lint:alone",
     "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
-    "lint:eslint": "eslint --config .eslintrc.json --ignore-path .eslintignore --report-unused-disable-directives",
+    "lint:eslint": "eslint --config eslint.config.mjs",
     "lint:fix": "yarn lint:fix:alone",
     "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
     "lint:prettier": "prettier  --config .prettierrc --ignore-path .prettierignore --log-level warn"

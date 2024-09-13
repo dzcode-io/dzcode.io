@@ -1,6 +1,7 @@
 // Sentry initialization should be imported first!
 import "src/utils/setup-sentry";
 
+import React from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 

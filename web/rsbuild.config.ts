@@ -11,7 +11,7 @@ if (!environments.includes(stage)) {
 }
 
 let bundleInfo: { version: string } = {
-  version: `v${require("./package.json").version as string}`, // eslint-disable-line @typescript-eslint/no-var-requires
+  version: `v${require("./package.json").version as string}`, // eslint-disable-line @typescript-eslint/no-require-imports
 };
 try {
   bundleInfo = JSON.parse(readFileSync(".bundle-info.json").toString()) as typeof bundleInfo;

@@ -1,6 +1,7 @@
 import logoSquare from "src/assets/svg/logo-square.svg";
 import { Image } from "src/components/image";
 import { Link } from "src/components/link";
+import React from "react";
 
 import { Locale } from "./locale";
 import { DictionaryKeys } from "./locale/dictionary";

@@ -39,7 +39,7 @@ export class GithubService {
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
         // @TODO-ZM: add pagination
-        params: { sort: "updated", per_page: 100 }, // eslint-disable-line camelcase
+        params: { sort: "updated", per_page: 100 },
       },
     );
 
@@ -65,7 +65,7 @@ export class GithubService {
       `${this.apiURL}/repos/${owner}/${repository}/contributors`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
-        params: { state: "all", per_page: 100 }, // eslint-disable-line camelcase
+        params: { state: "all", per_page: 100 },
       },
     );
 
@@ -96,7 +96,7 @@ export class GithubService {
       `${this.apiURL}/repos/${owner}/${repository}/milestones`,
       {
         headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
-        params: { state: "all", per_page: 100 }, // eslint-disable-line camelcase
+        params: { state: "all", per_page: 100 },
       },
     );
     return milestones;

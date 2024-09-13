@@ -1,3 +1,4 @@
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import { Locale, useLocale } from "src/components/locale";
 import { Markdown } from "src/components/markdown";

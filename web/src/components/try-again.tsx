@@ -1,3 +1,4 @@
+import React from "react";
 interface TryAgainProps {
   error: string;
   action: string;
