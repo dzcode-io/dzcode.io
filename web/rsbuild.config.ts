@@ -16,7 +16,7 @@ let bundleInfo: { version: string } = {
 try {
   bundleInfo = JSON.parse(readFileSync(".bundle-info.json").toString()) as typeof bundleInfo;
 } catch (error) {
-  console.log(`no .bundle-info.json found`);
+  console.log(`no .bundle-info.json found`, error);
 }
 
 export default defineConfig({

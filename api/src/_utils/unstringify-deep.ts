@@ -25,7 +25,7 @@ export function unStringifyDeep(obj: any): any {
           result[key] = value;
         }
       } catch (error) {
-        // ignore
+        console.error(error);
       }
     }
   }

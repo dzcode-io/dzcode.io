@@ -6,7 +6,7 @@ let bundleInfo = { version: require("../../package.json").version }; // eslint-d
 try {
   bundleInfo = JSON.parse(readFileSync(".bundle-info.json").toString());
 } catch (error) {
-  /**/
+  console.error(error);
 }
 
 export class EnvRecord {
