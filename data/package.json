@@ -19,15 +19,11 @@
     "cpx": "^1.5.0",
     "firebase-tools": "^13.16.0"
   },
-  "engines": {
-    "node": ">=20",
-    "yarn": ">=1.4.2"
-  },
   "license": "MIT",
   "lint-staged": {
     "*.*": [
-      "yarn lint:eslint --fix",
-      "yarn lint:prettier --write"
+      "npm run lint:eslint --fix",
+      "npm run lint:prettier --write"
     ]
   },
   "private": true,
@@ -42,11 +38,11 @@
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/data --include-dependencies --parallel",
     "clean": "lerna run clean:alone --scope=@dzcode.io/api --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage",
-    "lint": "yarn build && yarn lint:alone",
-    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check . && yarn lint:tsc && yarn lint:ts-prune",
+    "lint": "npm run build && npm run lint:alone",
+    "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check . && npm run lint:tsc && npm run lint:ts-prune",
     "lint:eslint": "eslint --config ../packages/tooling/eslint.config.mjs",
-    "lint:fix": "yarn build && yarn lint:fix:alone",
-    "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
+    "lint:fix": "npm run build && npm run lint:fix:alone",
+    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier --write .",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --log-level warn",
     "lint:ts-prune": "ts-node ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",

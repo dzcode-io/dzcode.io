@@ -1,6 +1,6 @@
 // for dev, run:
-// yarn clean && yarn bundle && yarn generate:htmls
-// yarn rsbuild preview
+// npm run clean && npm run bundle && npm run generate:htmls
+// npm run rsbuild preview
 
 import { join } from "path";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";

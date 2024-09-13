@@ -3,7 +3,6 @@ node_modules
 .vscode
 
 *.tsbuildinfo
-yarn-error.log
 
 .idea/
 .env

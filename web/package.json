@@ -39,13 +39,13 @@
   },
   "engines": {
     "node": ">=20",
-    "yarn": ">=1.4.2"
+    "npm run": ">=1.4.2"
   },
   "license": "MIT",
   "lint-staged": {
     "*.*": [
-      "yarn lint:eslint --fix",
-      "yarn lint:prettier --write"
+      "npm run lint:eslint --fix",
+      "npm run lint:prettier --write"
     ]
   },
   "private": true,
@@ -56,27 +56,27 @@
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
-    "bundle": "yarn build && yarn bundle:alone",
+    "bundle": "npm run build && npm run bundle:alone",
     "bundle:alone": "rsbuild build",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage bundle node_modules/.cache",
-    "deploy": "yarn generate:htmls && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
-    "deploy:stg": "yarn generate:htmls && yarn generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
-    "e2e:dev": "yarn wait-on http://localhost:8080/ && yarn cypress open",
+    "deploy": "npm run generate:htmls && npm run generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "deploy:stg": "npm run generate:htmls && npm run generate:sitemap && rimraf ./firebase/public && cpx -u \"./bundle/**/*\" ./firebase/public && cd ./firebase && firebase deploy --only hosting:stage.dzcode.io --token \"$FIREBASE_TOKEN\"",
+    "e2e:dev": "npm run wait-on http://localhost:8080/ && npm run cypress open",
     "generate:bundle-info": "ts-node ../packages/tooling/bundle-info.ts",
     "generate:htmls": "cross-env TS_NODE_SKIP_PROJECT=true ts-node --compilerOptions \"{\\\"baseUrl\\\": \\\".\\\"}\" src/_build/gen-multiple-htmls.ts",
     "generate:sentry-release": "ts-node ../packages/tooling/sentry-release.ts web bundle",
     "generate:sitemap": "cross-env TS_NODE_SKIP_PROJECT=true ts-node --compilerOptions \"{\\\"baseUrl\\\": \\\".\\\"}\" src/_build/sitemap.ts",
-    "lint": "yarn build && yarn lint:alone",
-    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check . && yarn lint:tsc && yarn lint:ts-prune",
+    "lint": "npm run build && npm run lint:alone",
+    "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check . && npm run lint:tsc && npm run lint:ts-prune",
     "lint:eslint": "eslint --config ../packages/tooling/eslint.config.mjs",
-    "lint:fix": "yarn build && yarn lint:fix:alone",
-    "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
+    "lint:fix": "npm run build && npm run lint:fix:alone",
+    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier --write .",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --log-level warn",
     "lint:ts-prune": "ts-node ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",
     "start:dev": "rsbuild dev --open",
-    "test": "yarn build && yarn test:alone",
+    "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
