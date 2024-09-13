@@ -58,7 +58,7 @@ jobs:
         shell: bash
         run: |
           npm run build
-          npm run --cwd=web bundle:alone
+          npx lerna run bundle:alone --scope @dzcode.io/web
 
       - name: "Sentry Release"
         shell: bash
