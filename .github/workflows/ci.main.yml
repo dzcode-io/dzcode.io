@@ -85,9 +85,9 @@ jobs:
       - name: "Misc"
         shell: bash
         run: |
-          npm run lerna run bundle:alone --scope @dzcode.io/web
-          npm run lerna run generate:sitemap --scope @dzcode.io/web
-          npm run lerna run generate:htmls --scope @dzcode.io/web
+          npx lerna run bundle:alone --scope @dzcode.io/web
+          npx lerna run generate:sitemap --scope @dzcode.io/web
+          npx lerna run generate:htmls --scope @dzcode.io/web
 
         env:
           CI: true

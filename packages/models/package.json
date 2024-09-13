@@ -26,7 +26,7 @@
     "build": "lerna run build:alone --scope=@dzcode.io/models --include-dependencies --stream",
     "build:alone": "tsc",
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
-    "build:watch": "npm run build & npm run lerna run build:alone:watch --scope=@dzcode.io/models --include-dependencies --parallel",
+    "build:watch": "npm run build & npx lerna run build:alone:watch --scope=@dzcode.io/models --include-dependencies --parallel",
     "clean": "lerna run clean:alone --scope=@dzcode.io/models --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage",
     "lint": "npm run build && npm run lint:alone",
