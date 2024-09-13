@@ -29,33 +29,33 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+          cache: "npm"
 
       - name: "Install"
         shell: bash
         run: |
-          yarn --frozen-lockfile --network-timeout 1000000
+          npm ci
 
       - name: "Build"
         shell: bash
         run: |
-          yarn build --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          npm run build --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
 
       - name: "Lint"
         shell: bash
         run: |
-          yarn lint:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          npm run lint:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
 
       - name: "Test"
         shell: bash
         run: |
-          yarn test:alone -- --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents -- --coverage
+          npm run test:alone -- --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents -- --coverage
 
       - name: "Misc"
         shell: bash
         run: |
-          yarn lerna run bundle:alone --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
-          yarn lerna run generate:sitemap --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          npx lerna run bundle:alone --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          npx lerna run generate:sitemap --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
 
         env:
           CI: true

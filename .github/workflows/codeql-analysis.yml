@@ -46,16 +46,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+          cache: "npm"
 
       - name: "Install"
         shell: bash
         run: |
-          yarn --frozen-lockfile --network-timeout 1000000
+          npm ci
 
       - name: "Build"
         run: |
-          yarn build
+          npm run build
 
       # Initializes the CodeQL tools for scanning.
       - name: "CodeQL"

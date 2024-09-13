@@ -36,30 +36,30 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+          cache: "npm"
 
       - name: "Install"
         shell: bash
         run: |
-          yarn --frozen-lockfile --network-timeout 1000000
+          npm ci
 
       - name: "Bundle info"
         shell: bash
         run: |
-          yarn generate:bundle-info $DEPLOY_VERSION stage
+          npm run generate:bundle-info $DEPLOY_VERSION stage
 
       - name: "Build"
         shell: bash
         run: |
-          yarn build
-          yarn --cwd=web bundle:alone
+          npm run build
+          npm run --cwd=web bundle:alone
 
       - name: "Sentry Release"
         shell: bash
         run: |
-          yarn generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
+          npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
 
       - name: "Deploy"
         shell: bash
         run: |
-          yarn deploy:stg
+          npm run deploy:stg
