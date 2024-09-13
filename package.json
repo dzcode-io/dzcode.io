@@ -30,7 +30,7 @@
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
     "semver": "^7.3.5",
-    "syncpack": "^5.8.15",
+    "syncpack": "^13.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "ts-patch": "^3.2.1",
