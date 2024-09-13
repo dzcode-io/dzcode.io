@@ -9,7 +9,7 @@ RUN pwd
 RUN ls
 
 # Install app dependencies
-RUN npm install --production --frozen-lockfile
+RUN npm install --frozen-lockfile
 
 # export server port
 ENV PORT=7070
