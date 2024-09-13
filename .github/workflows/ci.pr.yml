@@ -39,12 +39,12 @@ jobs:
       - name: "Build"
         shell: bash
         run: |
-          npm run build --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          npm run build -- --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
 
       - name: "Lint"
         shell: bash
         run: |
-          npm run lint:alone --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
+          npm run lint:alone -- --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
 
       - name: "Test"
         shell: bash
