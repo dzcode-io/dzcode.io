@@ -1,6 +1,6 @@
 import { BaseEntity } from "src/_base";
 
-export interface ProjectEntity extends BaseEntity {
+export type ProjectEntity = BaseEntity & {
   slug: string;
   name: string;
-}
+};
