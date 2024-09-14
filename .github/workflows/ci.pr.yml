@@ -10,6 +10,11 @@ jobs:
     with:
       node-version: "20"
       os: "ubuntu-latest"
+  test-coverage:
+    needs: build
+    uses: ./.github/workflows/ci.test-coverage.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"
   # lint
-  # test
   # misc
