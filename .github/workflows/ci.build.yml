@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ github.event.inputs.os }}
+    runs-on: ${{ inputs.os }}
     steps:
       - name: "Git"
         uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
       - name: "Nodejs"
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ github.event.inputs.node-version }}
+          node-version: ${{ inputs.node-version }}
           cache: "npm"
       - run: npm ci
       - run: npm run build
