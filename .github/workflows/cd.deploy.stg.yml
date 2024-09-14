@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/reusable/ci.build.yml
+    uses: ./.github/workflows/ci.reusable.build.yml
     with:
       node-version: "20"
       os: "ubuntu-latest"
