@@ -8,6 +8,7 @@ import { Languages } from "src/components/locale/languages";
 import { TopBar, TopBarProps } from "src/components/top-bar";
 import { StoreProvider } from "src/redux/store";
 import { getInitialLanguageCode } from "src/utils/website-language";
+import React from "react";
 
 let routes: Array<
   RouteProps & {

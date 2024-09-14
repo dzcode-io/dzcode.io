@@ -9,7 +9,7 @@ RUN pwd
 RUN ls
 
 # Install app dependencies
-RUN yarn --production --frozen-lockfile
+RUN npm install --frozen-lockfile
 
 # export server port
 ENV PORT=7070
@@ -17,4 +17,4 @@ EXPOSE ${PORT}
 
 # Run the app
 WORKDIR /usr/src/repo/api
-CMD [ "yarn", "start" ]
+CMD [ "npm", "run", "start" ]

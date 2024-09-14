@@ -24,27 +24,27 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "yarn"
+          cache: "npm"
 
       - name: "Install"
         shell: bash
         run: |
-          yarn --frozen-lockfile --network-timeout 1000000
+          npm ci
 
       - name: "Build"
         shell: bash
         run: |
-          yarn build
+          npm run build
 
       - name: "Lint"
         shell: bash
         run: |
-          yarn lint:alone
+          npm run lint:alone
 
       - name: "Test"
         shell: bash
         run: |
-          yarn test:alone  -- -- --coverage
+          npm run test:alone  -- -- --coverage
 
       - uses: codecov/codecov-action@v3
         if: ${{ matrix.os == 'ubuntu-latest' }}
@@ -85,9 +85,9 @@ jobs:
       - name: "Misc"
         shell: bash
         run: |
-          yarn lerna run bundle:alone --scope @dzcode.io/web
-          yarn lerna run generate:sitemap --scope @dzcode.io/web
-          yarn lerna run generate:htmls --scope @dzcode.io/web
+          npx lerna run bundle:alone --scope @dzcode.io/web
+          npx lerna run generate:sitemap --scope @dzcode.io/web
+          npx lerna run generate:htmls --scope @dzcode.io/web
 
         env:
           CI: true

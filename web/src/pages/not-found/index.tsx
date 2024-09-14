@@ -1,3 +1,4 @@
+import React from "react";
 import { Helmet } from "react-helmet-async";
 import svg from "src/assets/svg/404.svg";
 import { Link } from "src/components/link";

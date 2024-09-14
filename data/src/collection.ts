@@ -1,7 +1,6 @@
 import fse from "fs-extra";
-import glob from "glob";
+import { globSync } from "glob";
 import { join } from "path";
-
 import { getEntry } from "./entry";
 
 interface Collection {
@@ -27,7 +26,7 @@ export const getCollection = <T = Record<string, unknown>>(
   let items: string[] = [];
 
   if (collection.items === "all") {
-    const files = glob.sync(join(dataFolder, "models", `/${collectionType}/**/info.json`));
+    const files = globSync(join(dataFolder, "models", `/${collectionType}/**/info.json`));
     const dPath = `data/models/${collectionType}/`;
     items = files.map((filePath) => {
       return filePath.substring(

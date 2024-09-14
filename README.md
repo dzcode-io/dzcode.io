@@ -8,18 +8,15 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 
 You can find more about each folder by clicking on the folder name
 
-| **Apps**                          | **Coverage**                                                                                                                      |                               **Production URL** |                                                                                                                                                                                     **Staging URL** |                                     **Local URL** |
-| :-------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------: |
-| [api](./api)                      | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)       | [api.dzcode.io/docs](https://api.dzcode.io/docs) |                                                                                                                                        [api-stage.dzcode.io/docs](https://api-stage.dzcode.io/docs) | [localhost:7070/docs](http://localhost:7070/docs) |
-| [web](./web)                      | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)       |                   [dzcode.io](https://dzcode.io) |                                                                                                                                                          [stage.dzcode.io](https://stage.dzcode.io) |           [localhost:8080](http://localhost:8080) |
-| [mobile](./mobile)                | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=mobile)](https://codecov.io/gh/dzcode-io/dzcode.io)    |                                                  | [Android](https://play.google.com/store/apps/details?id=io.dzcode.mobile) \| [iOS](https://testflight.apple.com/join/XDcfIqdJ) \| [Expo](https://expo.dev/@zakman.dev/dzcode?release-channel=stage) |                run `yarn --cwd=mobile start:expo` |
-| [data](./data)                    | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)      |                                                  |                                                                                                                                                                                                     |                                                   |
-| **Packages**                      |                                                                                                                                   |                                                  |                                                                                                                                                                                                     |                                                   |
-| [models](./packages/models)       | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=models)](https://codecov.io/gh/dzcode-io/dzcode.io)    |                                                  |                                                                                                                                                                                                     |                                                   |
-| [utils](./packages/utils)         | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=utils)](https://codecov.io/gh/dzcode-io/dzcode.io)     |                                                  |                                                                                                                                                                                                     |                                                   |
-| [ui](./packages/ui)               | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=ui)](https://codecov.io/gh/dzcode-io/dzcode.io)        |                                                  |                                                                                                                                                                                                     |                                                   |
-| [tooling](./packages/tooling)     |                                                                                                                                   |                                                  |                                                                                                                                                                                                     |                                                   |
-| [ui-mobile](./packages/ui-mobile) | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=ui-mobile)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                  |                                                                                                                                                                                                     |                                                   |
+| **Apps**                      | **Coverage**                                                                                                                   |                               **Production URL** |                                              **Staging URL** |                                     **Local URL** |
+| :---------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------: | -----------------------------------------------------------: | ------------------------------------------------: |
+| [api](./api)                  | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    | [api.dzcode.io/docs](https://api.dzcode.io/docs) | [api-stage.dzcode.io/docs](https://api-stage.dzcode.io/docs) | [localhost:7070/docs](http://localhost:7070/docs) |
+| [web](./web)                  | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |                   [dzcode.io](https://dzcode.io) |                   [stage.dzcode.io](https://stage.dzcode.io) |           [localhost:8080](http://localhost:8080) |
+| [data](./data)                | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |                                                  |                                                              |                                                   |
+| **Packages**                  |                                                                                                                                |                                                  |                                                              |                                                   |
+| [models](./packages/models)   | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=models)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                  |                                                              |                                                   |
+| [utils](./packages/utils)     | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=utils)](https://codecov.io/gh/dzcode-io/dzcode.io)  |                                                  |                                                              |                                                   |
+| [tooling](./packages/tooling) |                                                                                                                                |                                                  |                                                              |                                                   |
 
 ## Get Started
 
@@ -29,7 +26,6 @@ Make sure you have:
 
 - [Git](https://git-scm.com/)
 - [Nodejs](https://nodejs.org/) version 18 or higher (we recommend using [nvm](https://github.com/nvm-sh/nvm))
-- [Yarn](https://yarnpkg.com/) version 1.4.2 or higher
 
 ### Run it locally
 
@@ -48,26 +44,25 @@ Make sure you have:
 - Install dependencies:
 
 ```sh
-yarn
+npm install
 ```
 
 - Run it locally by either:
 
 ```sh
-yarn dev:web
+npm run dev:web
 ```
 
 ```sh
-yarn dev:mobile
+npm run dev:api
 ```
 
 ```sh
-yarn dev:all
+npm run dev:all
 ```
 
 - For api server go to <http://localhost:7070/docs>
 - For web server go to <http://localhost:8080>
-- For mobile run `yarn --cwd=mobile start:expo` and scan QR code with your phone
 
 **Note**
 
@@ -84,7 +79,7 @@ Make **sure** you are in the project **root**, then:
 - run web e2e tests by:
 
 ```sh
-yarn e2e:web
+cd web && npm run e2e:dev
 ```
 
 ## Contributing
@@ -110,7 +105,7 @@ If you use VSCode, please make sure to have a `.vscode/settings.json` file with 
 ### Before You Create a Pull Request
 
 - If you already forked the repository, please make sure your fork is up-to-date, following [this simple steps](https://www.dzcode.io/Learn/Git_Basics/Syncing_An_Old_Forked_Repository_With_Upstream).
-- Please make sure your code follows the style guideline defined in this repo, for that simply run `yarn lint:fix` to ensure the conformity. This process should happen automatically whenever you commit your changes, but you can always do it manually when your Pull Request checks are failing due to linting errors.
+- Please make sure your code follows the style guideline defined in this repo, for that simply run `npm run lint:fix` to ensure the conformity. This process should happen automatically whenever you commit your changes, but you can always do it manually when your Pull Request checks are failing due to linting errors.
 
 ### List Your Project or Add/Edit Article
 

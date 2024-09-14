@@ -1,3 +1,4 @@
+import React from "react";
 import type { ImgHTMLAttributes } from "react";
 
 type ImageProps = ImgHTMLAttributes<HTMLImageElement>;

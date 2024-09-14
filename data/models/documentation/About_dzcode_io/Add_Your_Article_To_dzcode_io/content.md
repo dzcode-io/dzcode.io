@@ -49,4 +49,4 @@ To add new article, named for example: "**My Awesome Article**", simply do the f
    }
    ```
 
-5. Finally run `yarn` then `yarn lint:fix`, commit and push the modifications you did to the repository and create a [pull request](/learn/git_basics/pull_merge_request). the maintainers will happily review, approve, merge and [deploy](https://github.com/dzcode-io/dzcode.io/releases) your changes!
+5. Finally run `npm i` then `npm run lint:fix`, commit and push the modifications you did to the repository and create a [pull request](/learn/git_basics/pull_merge_request). the maintainers will happily review, approve, merge and [deploy](https://github.com/dzcode-io/dzcode.io/releases) your changes!

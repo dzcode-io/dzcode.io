@@ -1,3 +1,4 @@
+import React from "react";
 import loadableFactory from "@loadable/component";
 import { Loading } from "src/components/loading";
 

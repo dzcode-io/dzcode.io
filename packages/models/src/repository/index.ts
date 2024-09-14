@@ -1,7 +1,7 @@
 import { BaseEntity } from "src/_base";
 
-export interface RepositoryEntity extends BaseEntity {
+export type RepositoryEntity = BaseEntity & {
   owner: string;
   name: string;
   provider: "github" | "gitlab";
-}
+};

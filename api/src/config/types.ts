@@ -2,12 +2,11 @@ import { Environment, environments } from "@dzcode.io/utils/dist/config/environm
 import { IsOptional, IsString, Matches } from "class-validator";
 import { readFileSync } from "fs-extra";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-let bundleInfo = { version: require("../../package.json").version };
+let bundleInfo = { version: require("../../package.json").version }; // eslint-disable-line @typescript-eslint/no-require-imports
 try {
   bundleInfo = JSON.parse(readFileSync(".bundle-info.json").toString());
 } catch (error) {
-  /**/
+  console.error(error);
 }
 
 export class EnvRecord {

@@ -10,7 +10,7 @@ export const changeLanguage = async (languageCode: Language["code"]): Promise<vo
   const language = Languages.find(({ code }) => code === languageCode);
   if (!language) {
     console.error("Invalid language code", languageCode);
-    captureException(`Invalid language code ${language}`), { tags: { type: "GENERIC" } };
+    captureException(`Invalid language code ${language}`, { tags: { type: "GENERIC" } });
     return;
   }
 

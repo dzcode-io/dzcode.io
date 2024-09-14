@@ -26,7 +26,7 @@ const modifiedFilePaths: string[] = [];
 dependencies.forEach(({ location }) => {
   const packageJsonPath = join(location, "package.json");
   if (existsSync(packageJsonPath)) {
-    const packageJsonContent = require(packageJsonPath); // eslint-disable-line @typescript-eslint/no-var-requires
+    const packageJsonContent = require(packageJsonPath); // eslint-disable-line @typescript-eslint/no-require-imports
     packageJsonContent.version = cleanVersion;
     writeFileSync(packageJsonPath, JSON.stringify(packageJsonContent, null, 2));
     console.log(`Applied version ${version} to ${packageJsonPath}`);
@@ -35,7 +35,7 @@ dependencies.forEach(({ location }) => {
 
   const appJsonPath = join(location, "app.json");
   if (existsSync(appJsonPath)) {
-    const appJsonContent = require(appJsonPath); // eslint-disable-line @typescript-eslint/no-var-requires
+    const appJsonContent = require(appJsonPath); // eslint-disable-line @typescript-eslint/no-require-imports
     appJsonContent.expo.version = cleanVersion;
     appJsonContent.expo.ios.buildNumber = cleanVersion;
     appJsonContent.expo.android.versionCode = Number(cleanVersion.replace(/\D/g, ""));

@@ -1,3 +1,4 @@
+import React from "react";
 import type { PropsWithChildren } from "react";
 import type { LinkProps as RRLinkProps } from "react-router-dom";
 import { Link as RRLink } from "react-router-dom";

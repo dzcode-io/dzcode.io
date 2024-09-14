@@ -9,8 +9,6 @@ node_modules/
 logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 firebase-debug.log*
 
 # Firebase cache
@@ -64,9 +62,6 @@ node_modules/
 
 # Output of 'npm pack'
 *.tgz
-
-# Yarn Integrity file
-.yarn-integrity
 
 # dotenv environment variables file
 .env

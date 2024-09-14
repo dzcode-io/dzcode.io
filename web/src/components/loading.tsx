@@ -1,3 +1,4 @@
+import React from "react";
 import logoSquare from "src/assets/svg/logo-square.svg";
 
 import { Image } from "./image";

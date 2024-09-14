@@ -3,7 +3,6 @@ node_modules
 .vscode
 
 *.tsbuildinfo
-yarn-error.log
 
 .idea/
 .env
@@ -22,11 +21,15 @@ api/sqlite_db
 api/nodemon.json
 
 # web
-web/bundle
-web/build
-web/src/_e2e-test/downloads
-web/src/_e2e-test/videos
-web/src/_e2e-test/screenshots
+bundle
+build
+src/_e2e-test/downloads
+src/_e2e-test/videos
+src/_e2e-test/screenshots
+
+# Project
+firebase/public
+firebase/data
 
 # mobile
 mobile/.expo

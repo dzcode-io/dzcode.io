@@ -10,17 +10,17 @@
   "license": "MIT",
   "lint-staged": {
     "*.*": [
-      "yarn lint:eslint --fix",
-      "yarn lint:prettier --write"
+      "npm run lint:eslint --fix",
+      "npm run lint:prettier --write"
     ]
   },
   "private": true,
   "scripts": {
-    "lint": "yarn lint:alone",
-    "lint:alone": "yarn lint:eslint . && yarn lint:prettier --check .",
-    "lint:eslint": "eslint --config .eslintrc.json --ignore-path .eslintignore --report-unused-disable-directives",
-    "lint:fix": "yarn lint:fix:alone",
-    "lint:fix:alone": "yarn lint:eslint --fix . && yarn lint:prettier --write .",
+    "lint": "npm run lint:alone",
+    "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check .",
+    "lint:eslint": "eslint --config eslint.config.mjs",
+    "lint:fix": "npm run lint:fix:alone",
+    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier --write .",
     "lint:prettier": "prettier  --config .prettierrc --ignore-path .prettierignore --log-level warn"
   }
 }

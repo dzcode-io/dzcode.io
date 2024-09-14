@@ -26,4 +26,4 @@ To add new project, named for example: "**My Awesome Project**", simply do the f
    - Please use **Capital Cased** words for the name, as shown in the above example.
    - if your projects has mutiple repositories, just add them in the `repositories` array, and they will automatically be shown in the website.
 
-4. Finally run `yarn` then `yarn lint:fix`, commit and push the modifications you did to the repository and create a [pull request](/learn/git_basics/pull_merge_request). the maintainers will happily review, approve, merge and [deploy](https://github.com/dzcode-io/dzcode.io/releases) your changes!
+4. Finally run `npm i` then `npm run lint:fix`, commit and push the modifications you did to the repository and create a [pull request](/learn/git_basics/pull_merge_request). the maintainers will happily review, approve, merge and [deploy](https://github.com/dzcode-io/dzcode.io/releases) your changes!
