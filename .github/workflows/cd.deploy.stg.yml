@@ -17,6 +17,7 @@ jobs:
       os: "ubuntu-latest"
 
   bundle-deploy:
+    needs: build
     runs-on: ubuntu-latest
     env:
       CI: true
