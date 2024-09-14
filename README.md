@@ -25,7 +25,7 @@ You can find more about each folder by clicking on the folder name
 Make sure you have:
 
 - [Git](https://git-scm.com/)
-- [Nodejs](https://nodejs.org/) version 18 or higher (we recommend using [nvm](https://github.com/nvm-sh/nvm))
+- [Nodejs](https://nodejs.org/) version 20 or higher (we recommend using [nvm](https://github.com/nvm-sh/nvm))
 
 ### Run it locally
 
