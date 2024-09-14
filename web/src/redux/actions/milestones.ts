@@ -5,9 +5,10 @@ import { AppState } from "src/redux/store";
 import { fetchV2 } from "src/utils/fetch";
 
 export const fetchMilestonesListAction =
-  (): ThunkAction<void, AppState, unknown, Action> => async (dispatch) => {
+  (): ThunkAction<void, AppState, unknown, Action> => async (dispatch, getState) => {
     try {
-      dispatch(landingPageSlice.actions.set({ milestones: null }));
+      if (getState().landingPage.milestones === "ERROR")
+        dispatch(landingPageSlice.actions.set({ milestones: null }));
       const { milestones } = await fetchV2("api:MileStones/dzcode", {});
       dispatch(landingPageSlice.actions.set({ milestones }));
     } catch (error) {
