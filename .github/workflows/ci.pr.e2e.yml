@@ -16,7 +16,6 @@ jobs:
 
     steps:
       - name: "Git"
-        if: always()
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -41,13 +40,11 @@ jobs:
           project: ./web
 
       - uses: actions/upload-artifact@v3
-        if: failure()
         with:
           name: cypress-screenshots
           path: web/src/_e2e-test/screenshots
 
       - uses: actions/upload-artifact@v3
-        if: always()
         with:
           name: cypress-videos
           path: web/src/_e2e-test/videos
