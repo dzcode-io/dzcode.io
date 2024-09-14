@@ -94,7 +94,8 @@ If you use VSCode, please make sure to have a `.vscode/settings.json` file with 
     "*.css": "tailwindcss"
   },
   "prettier.configPath": "packages/tooling/.prettierrc",
-  "eslint.options": { "overrideConfigFile": "packages/tooling/.eslintrc.json" },
+  "prettier.prettierPath": "./node_modules/prettier/index.cjs",
+  "eslint.options": { "overrideConfigFile": "packages/tooling/eslint.config.mjs" },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
     "source.fixAll.ts": "always"
