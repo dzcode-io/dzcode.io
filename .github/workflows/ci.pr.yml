@@ -8,8 +8,8 @@ jobs:
   build:
     uses: ./.github/workflows/ci.build.yml
     with:
-      node-version-matrix: '["20.x"]'
-      os-matrix: '["macos-latest", "ubuntu-latest", "windows-latest"]'
+      node-version-matrix: "['20.x']"
+      os-matrix: "['macos-latest', 'ubuntu-latest', 'windows-latest']"
   # lint
   # test
   # misc

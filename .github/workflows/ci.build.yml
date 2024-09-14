@@ -4,11 +4,11 @@ on:
       os-matrix:
         required: true
         type: string
-        description: 'eg. ["macos-latest", "ubuntu-latest", "windows-latest"]'
+        description: "eg. ['macos-latest', 'ubuntu-latest', 'windows-latest']"
       node-version-matrix:
         required: true
         type: string
-        description: 'eg. ["20.x"]'
+        description: "eg. ['20.x']"
 
 jobs:
   build:
