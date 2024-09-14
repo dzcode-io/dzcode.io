@@ -1,23 +1,16 @@
 on:
   workflow_call:
     inputs:
-      os-matrix:
+      os:
         required: true
         type: string
-        description: "eg. ['macos-latest', 'ubuntu-latest', 'windows-latest']"
-      node-version-matrix:
+      node-version:
         required: true
         type: string
-        description: "eg. ['20.x']"
 
 jobs:
   build:
     runs-on: ${{ github.event.inputs.os }}
-    strategy:
-      matrix:
-        node-version: ${{ toJSON(github.event.inputs.node-version-matrix) }}
-        os: ${{ toJSON(github.event.inputs.os-matrix) }}
-      fail-fast: false
     steps:
       - name: "Git"
         uses: actions/checkout@v4
