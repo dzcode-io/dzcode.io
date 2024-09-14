@@ -24,10 +24,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dependencies and build output
+          name: build output
           path: |
             **/dist/**
-            **/node_modules/**
           if-no-files-found: error
           include-hidden-files: true
           retention-days: 1
