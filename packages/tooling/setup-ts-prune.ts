@@ -3,7 +3,7 @@ import { join } from "path";
 
 console.log("Setting up .ts-prunerc ...");
 
-const paths = ["node_modules", "coverage", "dist", "oracle-cloud/build", "firebase", "bundle"];
+const paths = ["node_modules", "coverage", "dist", "oracle-cloud/build", "cloudflare", "bundle"];
 const tsPruneJson = { ignore: paths.join("|") };
 
 writeFileSync(join(process.cwd(), ".ts-prunerc"), JSON.stringify(tsPruneJson, null, 2));

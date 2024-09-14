@@ -28,8 +28,7 @@ src/_e2e-test/videos
 src/_e2e-test/screenshots
 
 # Project
-firebase/public
-firebase/data
+*/cloudflare/public
 
 # mobile
 mobile/.expo

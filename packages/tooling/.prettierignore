@@ -5,16 +5,12 @@ dist
 # api
 oracle-cloud/build
 
-# data
-firebase
-
 # web
 bundle
 .bundle-info.json
 
 # mobile
 .expo
-
 
 ./.*
 .editorconfig
