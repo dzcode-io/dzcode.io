@@ -9,7 +9,7 @@ on:
         type: string
 
 jobs:
-  build:
+  install:
     runs-on: ${{ inputs.os }}
     steps:
       - name: "Git"
@@ -22,4 +22,8 @@ jobs:
           node-version: ${{ inputs.node-version }}
           cache: "npm"
       - run: npm ci
+  build:
+    needs: install
+    runs-on: ${{ inputs.os }}
+    steps:
       - run: npm run build
