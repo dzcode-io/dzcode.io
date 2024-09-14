@@ -6,52 +6,36 @@ on:
       - main
 
 jobs:
-  install-build-lint-test-coverage-misc:
-    runs-on: ${{ matrix.os }}
+  build:
+    uses: ./.github/workflows/reusable/ci.build.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"
 
-    strategy:
-      matrix:
-        node-version: [20.x]
-        os: [macos-latest, ubuntu-latest, windows-latest]
-      fail-fast: false
+  test-coverage:
+    needs: build
+    uses: ./.github/workflows/reusable/ci.test-coverage.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"
 
-    steps:
-      - name: "Git"
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: "Nodejs"
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
+  lint:
+    needs: build
+    uses: ./.github/workflows/reusable/ci.lint.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"
 
-      - name: "Install"
-        shell: bash
-        run: |
-          npm ci
+  misc:
+    needs: build
+    uses: ./.github/workflows/reusable/ci.misc.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"
 
-      - name: "Build"
-        shell: bash
-        run: |
-          npm run build
-
-      - name: "Lint"
-        shell: bash
-        run: |
-          npm run lint:alone
-
-      - name: "Test"
-        shell: bash
-        run: |
-          npm run test:alone  -- -- --coverage
-
-      - name: "Misc"
-        shell: bash
-        run: |
-          npx lerna run bundle:alone --scope @dzcode.io/web
-          npx lerna run generate:sitemap --scope @dzcode.io/web
-          npx lerna run generate:htmls --scope @dzcode.io/web
-
-        env:
-          CI: true
+  test-e2e:
+    needs: build
+    uses: ./.github/workflows/reusable/ci.test-e2e.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"

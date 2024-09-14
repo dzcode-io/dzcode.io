@@ -26,3 +26,4 @@ jobs:
           name: build output
       - run: npx lerna run bundle:alone --scope @dzcode.io/web
       - run: npx lerna run generate:sitemap --scope @dzcode.io/web
+      - run: npx lerna run generate:htmls --scope @dzcode.io/web
