@@ -16,5 +16,10 @@ jobs:
     with:
       node-version: "20"
       os: "ubuntu-latest"
-  # lint
+  lint:
+    needs: build
+    uses: ./.github/workflows/ci.lint.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"
   # misc
