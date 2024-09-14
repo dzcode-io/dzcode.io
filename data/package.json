@@ -15,9 +15,7 @@
     "@dzcode.io/tooling": "*",
     "@dzcode.io/utils": "*",
     "@types/fs-extra": "^11.0.4",
-    "@types/glob": "^8.1.0",
-    "cpx": "^1.5.0",
-    "firebase-tools": "^13.16.0"
+    "@types/glob": "^8.1.0"
   },
   "license": "MIT",
   "lint-staged": {
@@ -46,9 +44,8 @@
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --log-level warn",
     "lint:ts-prune": "ts-node ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",
-    "test": "jest src",
-    "test:cov": "jest src --coverage",
-    "test:cov:watch": "jest src --coverage --watchAll",
-    "test:watch": "jest src --watchAll"
+    "test": "npm run build && npm run test:alone",
+    "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }

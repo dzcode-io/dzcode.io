@@ -1,0 +1,12 @@
+{
+  "name": "dzcode-dot-io",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy:prd": "wrangler pages deploy --project-name dzcode-dot-io --directory=./public --branch main",
+    "deploy:stg": "wrangler pages deploy --project-name stage-dot-dzcode-dot-io --directory=./public --branch main"
+  },
+  "devDependencies": {
+    "wrangler": "^3.78.2"
+  }
+}

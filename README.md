@@ -25,7 +25,7 @@ You can find more about each folder by clicking on the folder name
 Make sure you have:
 
 - [Git](https://git-scm.com/)
-- [Nodejs](https://nodejs.org/) version 18 or higher (we recommend using [nvm](https://github.com/nvm-sh/nvm))
+- [Nodejs](https://nodejs.org/) version 20 or higher (we recommend using [volta](https://docs.volta.sh/guide/getting-started) over plain install or [nvm](https://github.com/nvm-sh/nvm))
 
 ### Run it locally
 
@@ -94,7 +94,8 @@ If you use VSCode, please make sure to have a `.vscode/settings.json` file with 
     "*.css": "tailwindcss"
   },
   "prettier.configPath": "packages/tooling/.prettierrc",
-  "eslint.options": { "overrideConfigFile": "packages/tooling/.eslintrc.json" },
+  "prettier.prettierPath": "./node_modules/prettier/index.cjs",
+  "eslint.options": { "overrideConfigFile": "packages/tooling/eslint.config.mjs" },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
     "source.fixAll.ts": "always"
@@ -107,10 +108,9 @@ If you use VSCode, please make sure to have a `.vscode/settings.json` file with 
 - If you already forked the repository, please make sure your fork is up-to-date, following [this simple steps](https://www.dzcode.io/Learn/Git_Basics/Syncing_An_Old_Forked_Repository_With_Upstream).
 - Please make sure your code follows the style guideline defined in this repo, for that simply run `npm run lint:fix` to ensure the conformity. This process should happen automatically whenever you commit your changes, but you can always do it manually when your Pull Request checks are failing due to linting errors.
 
-### List Your Project or Add/Edit Article
+### List Your Project
 
-- To list your project on dzcode.io, see [this tutorial](https://dzcode.io/Learn/About_dzcode_io/Add_Your_Project_To_dzcode_io)
-- To add an article, see [this tutorial](https://dzcode.io/Learn/About_dzcode_io/Add_Your_Article_To_dzcode_io)
+Follow [these steps](https://github.com/dzcode-io/dzcode.io/blob/main/data/models/documentation/About_dzcode_io/Add_Your_Project_To_dzcode_io/content.md).
 
 ## License
 
