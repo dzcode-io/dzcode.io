@@ -4,30 +4,44 @@ on:
   pull_request:
 
 jobs:
-  # labels
+  pr-labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v5
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          sync-labels: true
+
   build:
     uses: ./.github/workflows/ci.build.yml
     with:
       node-version: "20"
       os: "ubuntu-latest"
+
   test-coverage:
     needs: build
     uses: ./.github/workflows/ci.test-coverage.yml
     with:
       node-version: "20"
       os: "ubuntu-latest"
+
   lint:
     needs: build
     uses: ./.github/workflows/ci.lint.yml
     with:
       node-version: "20"
       os: "ubuntu-latest"
+
   misc:
     needs: build
     uses: ./.github/workflows/ci.misc.yml
     with:
       node-version: "20"
       os: "ubuntu-latest"
+
   test-e2e:
     needs: build
     uses: ./.github/workflows/ci.test-e2e.yml
