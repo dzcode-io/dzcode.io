@@ -22,8 +22,11 @@ jobs:
           node-version: ${{ inputs.node-version }}
           cache: "npm"
       - run: npm ci
-  build:
-    needs: install
-    runs-on: ${{ inputs.os }}
-    steps:
       - run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build output
+          path: "**/dist/**"
+          if-no-files-found: error
+          retention-days: 1
