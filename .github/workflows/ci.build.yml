@@ -15,8 +15,8 @@ jobs:
     runs-on: ${{ github.event.inputs.os }}
     strategy:
       matrix:
-        node-version: ${{ fromJson(github.event.inputs.node-version-matrix) }}
-        os: ${{ fromJson(github.event.inputs.os-matrix) }}
+        node-version: ${{ toJSON(github.event.inputs.node-version-matrix) }}
+        os: ${{ toJSON(github.event.inputs.os-matrix) }}
       fail-fast: false
     steps:
       - name: "Git"
