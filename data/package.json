@@ -15,9 +15,7 @@
     "@dzcode.io/tooling": "*",
     "@dzcode.io/utils": "*",
     "@types/fs-extra": "^11.0.4",
-    "@types/glob": "^8.1.0",
-    "cpx": "^1.5.0",
-    "firebase-tools": "^13.16.0"
+    "@types/glob": "^8.1.0"
   },
   "license": "MIT",
   "lint-staged": {
