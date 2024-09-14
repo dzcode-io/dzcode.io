@@ -22,4 +22,9 @@ jobs:
     with:
       node-version: "20"
       os: "ubuntu-latest"
-  # misc
+  misc:
+    needs: build
+    uses: ./.github/workflows/ci.misc.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"

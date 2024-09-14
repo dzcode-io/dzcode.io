@@ -1,0 +1,28 @@
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
+      node-version:
+        required: true
+        type: string
+
+jobs:
+  download-artifact-lint:
+    runs-on: ${{ inputs.os }}
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build output
+      - run: npx lerna run bundle:alone --scope @dzcode.io/web
+      - run: npx lerna run generate:sitemap --scope @dzcode.io/web
