@@ -4,57 +4,12 @@ on:
   pull_request:
 
 jobs:
-  install-build-lint-test-misc:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        node-version: [20.x]
-        os: [macos-latest, ubuntu-latest, windows-latest]
-      fail-fast: false
-
-    steps:
-      - name: labels
-        uses: actions/labeler@main
-        continue-on-error: true
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          sync-labels: true
-      - name: "Git"
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: "Nodejs"
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-
-      - name: "Install"
-        shell: bash
-        run: |
-          npm ci
-
-      - name: "Build"
-        shell: bash
-        run: |
-          npm run build -- --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
-
-      - name: "Lint"
-        shell: bash
-        run: |
-          npm run lint:alone -- --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
-
-      - name: "Test"
-        shell: bash
-        run: |
-          npm run test:alone -- --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents -- --coverage
-
-      - name: "Misc"
-        shell: bash
-        run: |
-          npx lerna run bundle:alone --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
-          npx lerna run generate:sitemap --scope @dzcode.io/web --since refs/remotes/origin/${{ github.event.pull_request.base.ref }} --include-dependencies --include-dependents
-
-        env:
-          CI: true
+  # labels
+  build:
+    uses: ./.github/workflows/ci.build.yml
+    with:
+      node-version-matrix: '["20.x"]'
+      os-matrix: '["macos-latest", "ubuntu-latest", "windows-latest"]'
+  # lint
+  # test
+  # misc
