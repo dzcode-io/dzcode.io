@@ -46,41 +46,45 @@ jobs:
         run: |
           npm run test:alone  -- -- --coverage
 
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v4
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
           flags: api
           name: codecov-api
           directory: ./api
           fail_ci_if_error: true
-      - uses: codecov/codecov-action@v3
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - uses: codecov/codecov-action@v4
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
           flags: web
           name: codecov-web
           directory: ./web
           fail_ci_if_error: true
-      - uses: codecov/codecov-action@v3
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - uses: codecov/codecov-action@v4
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
           flags: data
           name: codecov-data
           directory: ./data
           fail_ci_if_error: false # put it back to true once we have tests in ./data
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v4
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
           flags: models
           name: codecov-models
           directory: ./packages/models
           fail_ci_if_error: true
-      - uses: codecov/codecov-action@v3
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - uses: codecov/codecov-action@v4
         if: ${{ matrix.os == 'ubuntu-latest' }}
         with:
           flags: utils
           name: codecov-utils
           directory: ./packages/utils
           fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: "Misc"
         shell: bash
