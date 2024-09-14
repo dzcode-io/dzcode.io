@@ -22,4 +22,5 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: dependencies and build output
+      - run: npm install
       - run: npm run test:alone -- -- --coverage
