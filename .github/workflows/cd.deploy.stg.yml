@@ -2,9 +2,6 @@ name: Deploy To Stage Environment
 
 on:
   push:
-    # @TODO-ZM: to remove
-    branches:
-      - "ci-fixes"
     tags:
       - "stg-v*"
   workflow_dispatch:
