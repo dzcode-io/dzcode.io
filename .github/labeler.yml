@@ -25,3 +25,7 @@ utils:
 tooling:
   - changed-files:
       - any-glob-to-any-file: packages/tooling/**/*
+
+repo:
+  - changed-files:
+      - any-glob-to-any-file: .github/**/*
