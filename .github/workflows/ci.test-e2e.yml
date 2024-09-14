@@ -1,0 +1,39 @@
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
+      node-version:
+        required: true
+        type: string
+
+jobs:
+  download-artifact-lint:
+    runs-on: ${{ inputs.os }}
+    strategy:
+      matrix:
+        browser: [chrome, firefox, edge]
+      fail-fast: false
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build output
+      - name: "E2E"
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm run start:dev
+          wait-on: "http://localhost:8080"
+          wait-on-timeout: 10
+          browser: ${{ matrix.browser }}
+          project: ./web

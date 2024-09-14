@@ -28,3 +28,9 @@ jobs:
     with:
       node-version: "20"
       os: "ubuntu-latest"
+  test-e2e:
+    needs: build
+    uses: ./.github/workflows/ci.test-e2e.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"
