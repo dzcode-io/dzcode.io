@@ -49,3 +49,14 @@ jobs:
         run: npm run generate:sentry-release $DEPLOY_VERSION production ${{ secrets.SENTRY_AUTH_TOKEN }}
       - name: "Deploy"
         run: npm run deploy
+
+  lighthouse:
+    needs: bundle-deploy
+    uses: ./.github/workflows/ci.reusable.lighthouse.yml
+    with:
+      serverBaseUrl: "https://lh.dzcode.io"
+      testBaseUrl: "https://www.dzcode.io"
+      stage: "production"
+    secrets:
+      LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
+      LH_SERVER_TOKEN_PRD: ${{ secrets.LH_SERVER_TOKEN_PRD }}

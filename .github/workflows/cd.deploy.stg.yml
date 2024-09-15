@@ -58,7 +58,7 @@ jobs:
     needs: bundle-deploy
     uses: ./.github/workflows/ci.reusable.lighthouse.yml
     with:
-      serverBaseUrl: "https://api_stage.dzcode.io"
+      serverBaseUrl: "https://lh-stage.dzcode.io"
       testBaseUrl: "https://stage.dzcode.io"
       stage: "staging"
     secrets:
