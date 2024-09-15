@@ -112,4 +112,4 @@ Follow [these steps](https://github.com/dzcode-io/dzcode.io/blob/main/data/model
 
 ## License
 
-Copyright (c) 2021 DzCode i/o (twitter: [@dzcode_io](https://twitter.com/dzcode_io)) Licensed under the MIT license.
+Licensed under the MIT license (twitter: [@dzcode_io](https://twitter.com/dzcode_io)).
