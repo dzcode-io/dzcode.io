@@ -28,7 +28,7 @@ jobs:
       fail-fast: false
       matrix:
         # Learn more about CodeQL language support at https://git.io/codeql-language-support
-        language: ["javascript", "typescript"]
+        language: ["typescript"]
         node-version: [20.x]
 
     steps:
