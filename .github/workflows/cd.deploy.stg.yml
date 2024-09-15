@@ -61,3 +61,6 @@ jobs:
       serverBaseUrl: "https://api_stage.dzcode.io"
       testBaseUrl: "https://stage.dzcode.io"
       stage: "staging"
+    secrets:
+      LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
+      LH_SERVER_TOKEN_PRD: ${{ secrets.LH_SERVER_TOKEN_PRD }}

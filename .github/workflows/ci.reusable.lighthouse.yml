@@ -11,6 +11,11 @@ on:
         required: true
         type: string
         description: "staging or production"
+    secrets:
+      LH_SERVER_TOKEN_STG:
+        required: true
+      LH_SERVER_TOKEN_PRD:
+        required: true
 
 jobs:
   lighthouse:
