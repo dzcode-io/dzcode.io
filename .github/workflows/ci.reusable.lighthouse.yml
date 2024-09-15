@@ -13,7 +13,7 @@ on:
         description: "staging or production"
 
 jobs:
-  lint:
+  lighthouse:
     runs-on: ubuntu-latest
     env:
       LH_TEST_BASE_URL: ${{ inputs.testBaseUrl }}
@@ -29,4 +29,8 @@ jobs:
           node-version: "20"
           cache: "npm"
       - run: npm ci
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build output (ubuntu-latest, 20)
       - run: npx lerna run generate:lh-report --scope "@dzcode.io/web"
