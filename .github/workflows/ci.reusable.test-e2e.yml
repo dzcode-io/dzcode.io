@@ -28,7 +28,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: build output
+          name: build output (${{ inputs.os }}, ${{ inputs.node-version }})
       - name: "E2E"
         uses: cypress-io/github-action@v6
         with:
