@@ -29,6 +29,7 @@ const fromToRecords = dependencies
 fromToRecords.push(
   { from: "./oracle-cloud/docker-compose.yml", to: "./oracle-cloud/build/docker-compose.yml" },
   { from: "./oracle-cloud/Dockerfile", to: "./oracle-cloud/build/Dockerfile" },
+  { from: "./oracle-cloud/nginx.conf", to: "./oracle-cloud/build/nginx.conf" },
   { from: join(workspaceRoot, "package.json"), to: "./oracle-cloud/build/package.json" },
   { from: join(workspaceRoot, "package-lock.json"), to: "./oracle-cloud/build/package-lock.json" },
 );
