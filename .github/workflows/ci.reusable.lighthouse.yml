@@ -71,7 +71,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: lighthouse output (${{ github.job }})
+          name: lighthouse output (${{ hashFiles('web/.lighthouseci/**') }})
           path: ./web/.lighthouseci/**
           if-no-files-found: error
           include-hidden-files: true
