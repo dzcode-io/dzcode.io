@@ -26,7 +26,10 @@ jobs:
         with:
           name: build output (${{ inputs.os }}, ${{ inputs.node-version }})
           path: |
-            **/dist/**
+            */dist/**
+            packages/*/dist/**
+            !**/node_modules/**
+
           if-no-files-found: error
           include-hidden-files: true
           retention-days: 1
