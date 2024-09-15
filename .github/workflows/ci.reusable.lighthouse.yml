@@ -50,8 +50,6 @@ jobs:
         url: ${{fromJson(needs.urls-for-lighthouse.outputs.urls)}}
     env:
       LH_TEST_BASE_URL: ${{ inputs.testBaseUrl }}
-      LH_SERVER_BASE_URL: ${{ inputs.serverBaseUrl }}
-      LH_SERVER_TOKEN: ${{ inputs.stage == 'staging' && secrets.LH_SERVER_TOKEN_STG || secrets.LH_SERVER_TOKEN_PRD }}
       LH_OVERWRITE_URL: ${{ matrix.url }}
 
     steps:
@@ -76,3 +74,29 @@ jobs:
           if-no-files-found: error
           include-hidden-files: true
           retention-days: 1
+
+  lighthouse-upload:
+    needs: lighthouse-collect
+    runs-on: ubuntu-latest
+    env:
+      LH_SERVER_BASE_URL: ${{ inputs.serverBaseUrl }}
+      LH_SERVER_TOKEN: ${{ inputs.stage == 'staging' && secrets.LH_SERVER_TOKEN_STG || secrets.LH_SERVER_TOKEN_PRD }}
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build output (ubuntu-latest, 20)
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          pattern: lighthouse*
+          merge-multiple: true
+      - run: npx lerna run lh:upload --scope "@dzcode.io/web"
