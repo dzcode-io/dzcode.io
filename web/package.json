@@ -82,6 +82,7 @@
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --",
     "comment-script": "@TODO-ZM: use npx and remove lhci from devDependencies",
-    "generate:lh-report": "lhci autorun"
+    "lh:collect": "lhci collect",
+    "lh:upload": "lhci upload"
   }
 }
