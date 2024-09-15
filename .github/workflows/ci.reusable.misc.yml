@@ -9,7 +9,7 @@ on:
         type: string
 
 jobs:
-  download-artifact-lint:
+  misc:
     runs-on: ${{ inputs.os }}
     steps:
       - name: "Git"

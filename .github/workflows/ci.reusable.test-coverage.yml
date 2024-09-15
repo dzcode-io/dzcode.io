@@ -9,7 +9,7 @@ on:
         type: string
 
 jobs:
-  download-artifact-test-coverage:
+  test-coverage:
     runs-on: ${{ inputs.os }}
     steps:
       - name: "Git"

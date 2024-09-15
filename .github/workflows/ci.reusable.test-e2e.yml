@@ -12,7 +12,7 @@ on:
         type: string
 
 jobs:
-  download-artifact-lint:
+  lint:
     runs-on: ${{ inputs.os }}
 
     steps:
