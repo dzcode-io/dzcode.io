@@ -18,12 +18,42 @@ on:
         required: true
 
 jobs:
-  lighthouse:
+  urls-for-lighthouse:
     runs-on: ubuntu-latest
+    env:
+      LH_TEST_BASE_URL: ${{ inputs.testBaseUrl }}
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build output (ubuntu-latest, 20)
+      - run: npx lerna run generate:lh-report --scope "@dzcode.io/web"
+      - name: Define Urls
+        id: define-urls
+        run: |
+          node web/lighthouserc.cjs --output-urls >> "$GITHUB_OUTPUT"
+    outputs:
+      urls: ${{ steps.define-urls.outputs.urls }}
+
+  lighthouse:
+    needs: urls-for-lighthouse
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        url: ${{fromJson(needs.urls-for-lighthouse.outputs.urls)}}
     env:
       LH_TEST_BASE_URL: ${{ inputs.testBaseUrl }}
       LH_SERVER_BASE_URL: ${{ inputs.serverBaseUrl }}
       LH_SERVER_TOKEN: ${{ inputs.stage == 'staging' && secrets.LH_SERVER_TOKEN_STG || secrets.LH_SERVER_TOKEN_PRD }}
+      LH_OVERWRITE_URL: ${{ matrix.url }}
 
     steps:
       - name: "Git"
