@@ -35,7 +35,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build output (ubuntu-latest, 20)
-      - run: npx lerna run generate:lh-report --scope "@dzcode.io/web"
       - name: Define Urls
         id: define-urls
         run: |
