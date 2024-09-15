@@ -1,5 +1,5 @@
 // can be ran locally from ./api:
-// SSH_ADDRESS_STG="root@x.x.x.x" SSH_PATH="path/to/private/ssh/key" npm run deploy:stg
+// SSH_ADDRESS_STG="user@x.x.x.x" SSH_PATH="path/to/private/ssh/key" npm run deploy:stg
 
 import { execSync } from "child_process";
 import { copySync, existsSync } from "fs-extra";

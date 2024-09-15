@@ -17,6 +17,7 @@
     "react-helmet-async": "^2.0.5"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.14.0",
     "@loadable/component": "^5.16.4",
     "@reduxjs/toolkit": "^2.2.6",
     "@rsbuild/core": "1.0.0-alpha.5",
@@ -79,6 +80,8 @@
     "start:dev": "rsbuild dev --open",
     "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
-    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --",
+    "comment-script": "@TODO-ZM: use npx and remove lhci from devDependencies",
+    "generate:lh-report": "lhci autorun"
   }
 }

@@ -1,0 +1,32 @@
+on:
+  workflow_call:
+    inputs:
+      testBaseUrl:
+        required: true
+        type: string
+      serverBaseUrl:
+        required: true
+        type: string
+      stage:
+        required: true
+        type: string
+        description: "staging or production"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      LH_TEST_BASE_URL: ${{ inputs.testBaseUrl }}
+      LH_SERVER_BASE_URL: ${{ inputs.serverBaseUrl }}
+      LH_SERVER_TOKEN: ${{ inputs.stage == 'staging' && secrets.LH_SERVER_TOKEN_STG || secrets.LH_SERVER_TOKEN_PRD }}
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - run: npx lerna run generate:lh-report --scope "@dzcode.io/web"
