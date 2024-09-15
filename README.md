@@ -7,6 +7,7 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 **Apps:**
 
 - [`./web`](./web) ( [dzcode.io](https://dzcode.io) or [stage.dzcode.io](https://stage.dzcode.io) )
+  - lighthouse results are in: [lh.dzcode.io](https://lh.dzcode.io) and [lh-stage.dzcode.io](https://lh-stage.dzcode.io)
 - [`./api`](./api) ( [api.dzcode.io](https://api.dzcode.io) or [api-stage.dzcode.io](https://api-stage.dzcode.io) )
 
 **Packages**
