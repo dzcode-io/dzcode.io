@@ -7,14 +7,13 @@ on:
       node-version:
         required: true
         type: string
+      browser:
+        required: true
+        type: string
 
 jobs:
   download-artifact-lint:
     runs-on: ${{ inputs.os }}
-    strategy:
-      matrix:
-        browser: [chrome, firefox, edge]
-      fail-fast: false
 
     steps:
       - name: "Git"
@@ -35,5 +34,5 @@ jobs:
           start: npm run start:dev
           wait-on: "http://localhost:8080"
           wait-on-timeout: 10
-          browser: ${{ matrix.browser }}
+          browser: ${{ inputs.browser }}
           project: ./web
