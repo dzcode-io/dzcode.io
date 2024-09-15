@@ -99,4 +99,12 @@ jobs:
         with:
           pattern: lighthouse*
           merge-multiple: true
-      - run: npx lerna run lh:upload --scope "@dzcode.io/web"
+      # - run: npx lerna run lh:upload --scope "@dzcode.io/web"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse output (merged)
+          path: ./web/.lighthouseci/**
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 1
