@@ -11,7 +11,7 @@ let urls = ["", "/contribute", "/team", "/projects", "/faq"];
 const args = process.argv.slice(2);
 if (args.includes("--output-urls")) {
   console.log(`urls=${JSON.stringify(urls)}`);
-} else if (overwriteURL) {
+} else if (typeof overwriteURL !== "undefined") {
   urls = [overwriteURL];
 }
 
