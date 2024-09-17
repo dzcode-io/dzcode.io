@@ -6,92 +6,59 @@ on:
       - main
 
 jobs:
-  install-build-lint-test-coverage-misc:
-    runs-on: ${{ matrix.os }}
-
+  build:
+    uses: ./.github/workflows/ci.reusable.build.yml
     strategy:
       matrix:
-        node-version: [20.x]
-        os: [macos-latest, ubuntu-latest, windows-latest]
-      fail-fast: false
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        node-version: ["20"]
+    with:
+      node-version: ${{ matrix.node-version }}
+      os: ${{ matrix.os }}
 
-    steps:
-      - name: "Git"
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: "Nodejs"
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
+  test-coverage:
+    needs: build
+    uses: ./.github/workflows/ci.reusable.test-coverage.yml
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        node-version: ["20"]
+    with:
+      node-version: ${{ matrix.node-version }}
+      os: ${{ matrix.os }}
 
-      - name: "Install"
-        shell: bash
-        run: |
-          npm ci
+  lint:
+    needs: build
+    uses: ./.github/workflows/ci.reusable.lint.yml
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        node-version: ["20"]
+    with:
+      node-version: ${{ matrix.node-version }}
+      os: ${{ matrix.os }}
 
-      - name: "Build"
-        shell: bash
-        run: |
-          npm run build
+  misc:
+    needs: build
+    uses: ./.github/workflows/ci.reusable.misc.yml
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        node-version: ["20"]
+    with:
+      node-version: ${{ matrix.node-version }}
+      os: ${{ matrix.os }}
 
-      - name: "Lint"
-        shell: bash
-        run: |
-          npm run lint:alone
-
-      - name: "Test"
-        shell: bash
-        run: |
-          npm run test:alone  -- -- --coverage
-
-      - uses: codecov/codecov-action@v4
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          flags: api
-          name: codecov-api
-          directory: ./api
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
-      - uses: codecov/codecov-action@v4
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          flags: web
-          name: codecov-web
-          directory: ./web
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
-      - uses: codecov/codecov-action@v4
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          flags: data
-          name: codecov-data
-          directory: ./data
-          fail_ci_if_error: false # put it back to true once we have tests in ./data
-      - uses: codecov/codecov-action@v4
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          flags: models
-          name: codecov-models
-          directory: ./packages/models
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
-      - uses: codecov/codecov-action@v4
-        if: ${{ matrix.os == 'ubuntu-latest' }}
-        with:
-          flags: utils
-          name: codecov-utils
-          directory: ./packages/utils
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: "Misc"
-        shell: bash
-        run: |
-          npx lerna run bundle:alone --scope @dzcode.io/web
-          npx lerna run generate:sitemap --scope @dzcode.io/web
-          npx lerna run generate:htmls --scope @dzcode.io/web
-
-        env:
-          CI: true
+  test-e2e:
+    needs: build
+    uses: ./.github/workflows/ci.reusable.test-e2e.yml
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        node-version: ["20"]
+        # @TODO-ZM: add other browsers once we replace cypress with playwright
+        browser: ["chrome"]
+    with:
+      node-version: ${{ matrix.node-version }}
+      os: ${{ matrix.os }}
+      browser: ${{ matrix.browser }}

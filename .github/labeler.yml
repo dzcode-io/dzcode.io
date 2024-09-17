@@ -1,47 +1,31 @@
-# Add 'api' to any changes within 'api' folder or any subfolders
-api:
-  - api/**/*
-
-# Add 'data' to any changes within 'data' folder or any subfolders
-data:
-  - data/**/*
-
-# Add 'project' to any changes within 'data/models/projects' folder or any subfolders
-project:
-  - data/models/projects/**/*
-
-# Add 'article' to any changes within 'data/models/articles' folder or any subfolders
-article:
-  - data/models/articles/**/*
-
-# Add 'documentation' to any changes within 'data/models/documentation' folder or any subfolders
-documentation:
-  - data/models/documentation/**/*
-
-# Add 'web' to any changes within 'web' folder or any subfolders
 web:
-  - web/**/*
+  - changed-files:
+      - any-glob-to-any-file: web/**/*
 
-# Add 'mobile' to any changes within 'mobile' folder or any subfolders
-mobile:
-  - mobile/**/*
+api:
+  - changed-files:
+      - any-glob-to-any-file: api/**/*
 
-# Add 'models' to any changes within 'models' folder or any subfolders
+data:
+  - changed-files:
+      - any-glob-to-any-file: data/**/*
+
+project:
+  - changed-files:
+      - any-glob-to-any-file: data/models/projects/**/*
+
 models:
-  - packages/models/**/*
+  - changed-files:
+      - any-glob-to-any-file: packages/models/**/*
 
-# Add 'utils' to any changes within 'utils' folder or any subfolders
 utils:
-  - packages/utils/**/*
+  - changed-files:
+      - any-glob-to-any-file: packages/utils/**/*
 
-# Add 'tooling' to any changes within 'tooling' folder or any subfolders
 tooling:
-  - packages/tooling/**/*
+  - changed-files:
+      - any-glob-to-any-file: packages/tooling/**/*
 
-# Add 'ui' to any changes within 'ui' folder or any subfolders
-ui:
-  - packages/ui/**/*
-
-# Add 'ui-mobile' to any changes within 'ui-mobile' folder or any subfolders
-ui-mobile:
-  - packages/ui-mobile/**/*
+repo:
+  - changed-files:
+      - any-glob-to-any-file: .github/**/*

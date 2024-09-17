@@ -3,6 +3,7 @@ node_modules
 .vscode
 
 *.tsbuildinfo
+lerna-debug.log
 
 .idea/
 .env
@@ -26,9 +27,8 @@ build
 src/_e2e-test/downloads
 src/_e2e-test/videos
 src/_e2e-test/screenshots
-
-# Project
-*/cloudflare/public
+cloudflare/public
+**/cloudflare/public
 
 # mobile
 mobile/.expo

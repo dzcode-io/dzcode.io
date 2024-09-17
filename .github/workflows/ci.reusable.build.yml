@@ -1,0 +1,35 @@
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
+      node-version:
+        required: true
+        type: string
+
+jobs:
+  install-build-upload-artifact:
+    runs-on: ${{ inputs.os }}
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build output (${{ inputs.os }}, ${{ inputs.node-version }})
+          path: |
+            */dist/**
+            packages/*/dist/**
+            !**/node_modules/**
+
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 1

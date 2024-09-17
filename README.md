@@ -4,19 +4,17 @@
 
 The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source community.
 
-## Meta
+**Apps:**
 
-You can find more about each folder by clicking on the folder name
+- [`./web`](./web) ( [dzcode.io](https://dzcode.io) or [stage.dzcode.io](https://stage.dzcode.io) )
+- [`./api`](./api) ( [api.dzcode.io](https://api.dzcode.io) or [api-stage.dzcode.io](https://api-stage.dzcode.io) )
 
-| **Apps**                      | **Coverage**                                                                                                                   |                               **Production URL** |                                              **Staging URL** |                                     **Local URL** |
-| :---------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | -----------------------------------------------: | -----------------------------------------------------------: | ------------------------------------------------: |
-| [api](./api)                  | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=api)](https://codecov.io/gh/dzcode-io/dzcode.io)    | [api.dzcode.io/docs](https://api.dzcode.io/docs) | [api-stage.dzcode.io/docs](https://api-stage.dzcode.io/docs) | [localhost:7070/docs](http://localhost:7070/docs) |
-| [web](./web)                  | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=web)](https://codecov.io/gh/dzcode-io/dzcode.io)    |                   [dzcode.io](https://dzcode.io) |                   [stage.dzcode.io](https://stage.dzcode.io) |           [localhost:8080](http://localhost:8080) |
-| [data](./data)                | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=data)](https://codecov.io/gh/dzcode-io/dzcode.io)   |                                                  |                                                              |                                                   |
-| **Packages**                  |                                                                                                                                |                                                  |                                                              |                                                   |
-| [models](./packages/models)   | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=models)](https://codecov.io/gh/dzcode-io/dzcode.io) |                                                  |                                                              |                                                   |
-| [utils](./packages/utils)     | [![codecov](https://codecov.io/gh/dzcode-io/dzcode.io/graph/badge.svg?flag=utils)](https://codecov.io/gh/dzcode-io/dzcode.io)  |                                                  |                                                              |                                                   |
-| [tooling](./packages/tooling) |                                                                                                                                |                                                  |                                                              |                                                   |
+**Packages**
+
+- [`./data`](./data)
+- [`./packages/models`](./packages/models)
+- [`./packages/utils`](./packages/utils)
+- [`./packages/tooling`](./packages/tooling)
 
 ## Get Started
 

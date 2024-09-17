@@ -79,7 +79,7 @@
     "lint:ts-prune": "ts-node ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tspc --noEmit",
     "start": "node dist/app/index.js",
-    "start:dev": "ts-node ../packages/tooling/nodemon.ts @dzcode.io/api && nodemon dist/app/index.js",
+    "start:dev": "ts-node ../packages/tooling/nodemon.ts \"@dzcode.io/api\" && nodemon dist/app/index.js",
     "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
