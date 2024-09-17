@@ -2,11 +2,7 @@ name: "Hourly Job"
 
 on:
   schedule:
-    - cron: "0 * * * *"
-  # @TODO-ZM: remove this
-  push:
-    branches:
-      - "hourly-metrics"
+    - cron: "0 * * * *" # every hour
 
 jobs:
   build:
