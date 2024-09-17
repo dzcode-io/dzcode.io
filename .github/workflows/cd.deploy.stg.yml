@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - "stg-v*"
+    # @TODO-ZM: remove this
+    branches:
+      - "lighthouse-setup"
   workflow_dispatch:
 
 jobs:
@@ -50,3 +53,14 @@ jobs:
         run: npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
       - name: "Deploy"
         run: npm run deploy:stg
+
+  lighthouse:
+    needs: bundle-deploy
+    uses: ./.github/workflows/ci.reusable.lighthouse.yml
+    with:
+      serverBaseUrl: "https://lh-stage.dzcode.io"
+      testBaseUrl: "https://stage.dzcode.io"
+      stage: "staging"
+    secrets:
+      LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
+      LH_SERVER_TOKEN_PRD: ${{ secrets.LH_SERVER_TOKEN_PRD }}

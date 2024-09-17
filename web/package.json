@@ -79,6 +79,8 @@
     "start:dev": "rsbuild dev --open",
     "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
-    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --",
+    "lh:collect": "npx --yes @lhci/cli collect",
+    "lh:upload": "npx --yes @lhci/cli upload"
   }
 }

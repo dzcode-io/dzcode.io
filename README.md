@@ -7,6 +7,7 @@ The code for [dzcode.io](https://dzcode.io), a website for Algerian open-source 
 **Apps:**
 
 - [`./web`](./web) ( [dzcode.io](https://dzcode.io) or [stage.dzcode.io](https://stage.dzcode.io) )
+  - lighthouse results are in: [lh.dzcode.io](https://lh.dzcode.io) and [lh-stage.dzcode.io](https://lh-stage.dzcode.io)
 - [`./api`](./api) ( [api.dzcode.io](https://api.dzcode.io) or [api-stage.dzcode.io](https://api-stage.dzcode.io) )
 
 **Packages**
@@ -112,4 +113,4 @@ Follow [these steps](https://github.com/dzcode-io/dzcode.io/blob/main/data/model
 
 ## License
 
-Copyright (c) 2021 DzCode i/o (twitter: [@dzcode_io](https://twitter.com/dzcode_io)) Licensed under the MIT license.
+Licensed under the MIT license (twitter: [@dzcode_io](https://twitter.com/dzcode_io)).

@@ -1,5 +1,5 @@
 // can be ran locally from ./api:
-// SSH_ADDRESS_STG="root@x.x.x.x" SSH_PATH="path/to/private/ssh/key" npm run deploy:stg
+// SSH_ADDRESS_STG="user@x.x.x.x" SSH_PATH="path/to/private/ssh/key" npm run deploy:stg
 
 import { execSync } from "child_process";
 import { copySync, existsSync } from "fs-extra";
@@ -29,6 +29,7 @@ const fromToRecords = dependencies
 fromToRecords.push(
   { from: "./oracle-cloud/docker-compose.yml", to: "./oracle-cloud/build/docker-compose.yml" },
   { from: "./oracle-cloud/Dockerfile", to: "./oracle-cloud/build/Dockerfile" },
+  { from: "./oracle-cloud/nginx.conf", to: "./oracle-cloud/build/nginx.conf" },
   { from: join(workspaceRoot, "package.json"), to: "./oracle-cloud/build/package.json" },
   { from: join(workspaceRoot, "package-lock.json"), to: "./oracle-cloud/build/package-lock.json" },
 );
