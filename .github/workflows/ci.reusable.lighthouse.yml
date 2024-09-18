@@ -69,7 +69,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: lighthouse output (${{ hashFiles('web/.lighthouseci/**') }})
+          name: lighthouse-${{inputs.stage}} output (${{ hashFiles('web/.lighthouseci/**') }})
           path: ./web/.lighthouseci/**
           if-no-files-found: error
           include-hidden-files: true
@@ -81,6 +81,12 @@ jobs:
     env:
       LH_SERVER_BASE_URL: ${{ inputs.serverBaseUrl }}
       LH_SERVER_TOKEN: ${{ inputs.stage == 'staging' && secrets.LH_SERVER_TOKEN_STG || secrets.LH_SERVER_TOKEN_PRD }}
+      # LHCI_BUILD_CONTEXT__COMMIT_TIME is set in "Get current time" step
+      LHCI_BUILD_CONTEXT__AVATAR_URL: "https://avatars.githubusercontent.com/u/63493121?s=200&v=4"
+      LHCI_BUILD_CONTEXT__AUTHOR: "dzcode-io"
+      LHCI_BUILD_CONTEXT__CURRENT_BRANCH: "main"
+      LHCI_BUILD_CONTEXT__COMMIT_MESSAGE: "Automated Lighthouse CI"
+      LHCI_BUILD_CONTEXT__CURRENT_HASH: "run-${{ github.run_id }}-${{ github.run_number }}"
     steps:
       - name: "Git"
         uses: actions/checkout@v4
@@ -97,7 +103,9 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          pattern: lighthouse*
+          pattern: lighthouse-${{inputs.stage}}*
           merge-multiple: true
           path: ./web/.lighthouseci
+      - name: "Get current time"
+        run: echo "LHCI_BUILD_CONTEXT__COMMIT_TIME=$(date '+%Y-%m-%d %H:%M:%S %z')" >> $GITHUB_ENV
       - run: npx lerna run lh:upload --scope "@dzcode.io/web"

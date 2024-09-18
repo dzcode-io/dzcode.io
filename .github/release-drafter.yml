@@ -20,9 +20,7 @@ template: |
   To test on `stage` environment go to:
 
   - [stage.dzcode.io](https://stage.dzcode.io)
-  - [Android](https://play.google.com/store/apps/details?id=io.dzcode.mobile)
-  - [iOS](https://testflight.apple.com/join/XDcfIqdJ)
-  - [Expo](https://expo.dev/@zakman.dev/dzcode?release-channel=stage)
+
 autolabeler:
   - label: "breaking-change"
     body:

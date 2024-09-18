@@ -1,0 +1,34 @@
+name: "Hourly Job"
+
+on:
+  schedule:
+    - cron: "0 * * * *" # every hour
+
+jobs:
+  build:
+    uses: ./.github/workflows/ci.reusable.build.yml
+    with:
+      node-version: "20"
+      os: "ubuntu-latest"
+
+  lighthouse-stg:
+    needs: build
+    uses: ./.github/workflows/ci.reusable.lighthouse.yml
+    with:
+      serverBaseUrl: "https://lh-stage.dzcode.io"
+      testBaseUrl: "https://stage.dzcode.io"
+      stage: "staging"
+    secrets:
+      LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
+      LH_SERVER_TOKEN_PRD: ${{ secrets.LH_SERVER_TOKEN_PRD }}
+
+  lighthouse-prd:
+    needs: build
+    uses: ./.github/workflows/ci.reusable.lighthouse.yml
+    with:
+      serverBaseUrl: "https://lh.dzcode.io"
+      testBaseUrl: "https://dzcode.io"
+      stage: "production"
+    secrets:
+      LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
+      LH_SERVER_TOKEN_PRD: ${{ secrets.LH_SERVER_TOKEN_PRD }}
