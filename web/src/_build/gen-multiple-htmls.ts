@@ -24,13 +24,14 @@ const SKIP_ROOT_HTML = process.env.SKIP_ROOT_HTML === "true";
 console.log(`generating ${allPages.length} html files ...`);
 
 allPages.forEach((pageInfo) => {
-  const pathName = pageInfo.uri;
-  const outputHtmlDir = join(distFolder, pathName);
-  const outputHtmlPath = join(outputHtmlDir, "index.html");
-  if (SKIP_ROOT_HTML && outputHtmlPath === indexHtmlPath) {
-    console.log(`skipping root html: ${outputHtmlPath}`);
+  let pathName = pageInfo.uri.replace(/\/$/, "");
+  pathName = `${pathName || "index"}.html`;
+  if (SKIP_ROOT_HTML && pathName === "index.html") {
+    console.log(`skipping root html`);
     return;
   }
+  const outputHtmlPath = join(distFolder, pathName);
+  const outputHtmlParentDir = join(outputHtmlPath, "..");
 
   let newHtml = indexHtml;
   newHtml = newHtml.replace(
@@ -58,7 +59,7 @@ allPages.forEach((pageInfo) => {
   newHtml = newHtml.replace(/{{ogImage}}/g, pageInfo.ogImage);
   newHtml = newHtml.replace(/{{sentryOrigin}}/g, `https://${SENTRY_ORIGIN}`);
 
-  mkdirSync(outputHtmlDir, { recursive: true });
+  mkdirSync(outputHtmlParentDir, { recursive: true });
   writeFileSync(outputHtmlPath, newHtml);
 
   console.log(outputHtmlPath, "✅");
