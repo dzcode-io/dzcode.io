@@ -27,7 +27,7 @@ jobs:
     uses: ./.github/workflows/ci.reusable.lighthouse.yml
     with:
       serverBaseUrl: "https://lh.dzcode.io"
-      testBaseUrl: "https://dzcode.io"
+      testBaseUrl: "https://www.dzcode.io"
       stage: "production"
     secrets:
       LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
