@@ -1,6 +1,6 @@
 // for dev, run:
 // npm run clean && npm run bundle && npm run generate:robots-txt
-// npm run rsbuild preview
+// npm run bundle:preview
 
 import { join } from "path";
 import { writeFileSync } from "fs";

@@ -64,6 +64,7 @@
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
     "bundle": "npm run build && npm run bundle:alone",
     "bundle:alone": "cross-env NODE_ENV=production rsbuild build",
+    "bundle:preview": "rsbuild preview",
     "bundle:doctor": "RSDOCTOR=true rsbuild build",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage bundle node_modules/.cache && rimraf ./cloudflare/public",

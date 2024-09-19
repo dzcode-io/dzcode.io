@@ -48,6 +48,14 @@ const staticURLs: PageInfoWithLocalKeys[] = [
       "https://images.unsplash.com/photo-1526663089957-f2aa2776f572?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80&auto=format&fit=crop&w=1200&h=627&q=80",
     keywords: "faq, open-source, algeria, dzcode",
   },
+  {
+    uri: "/404",
+    title: "notfound-title",
+    description: "notfound-description",
+    ogImage:
+      "https://images.unsplash.com/photo-1510133768164-a8f7e4d4e3dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80&auto=format&fit=crop&w=1200&h=627&q=80",
+    keywords: "faq, open-source, algeria, dzcode",
+  },
 ];
 
 export const staticPages: PageInfo[] = staticURLs.reduce<PageInfo[]>(
