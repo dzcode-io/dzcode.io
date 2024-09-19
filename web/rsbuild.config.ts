@@ -2,6 +2,7 @@ import { environments } from "@dzcode.io/utils/dist/config/environment";
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { readFileSync } from "fs";
+import { RsdoctorRspackPlugin } from "@rsdoctor/rspack-plugin";
 
 let stage = process.env.STAGE;
 
@@ -21,6 +22,11 @@ try {
 
 export default defineConfig({
   plugins: [pluginReact()],
+  tools: {
+    rspack(_, { appendPlugins }) {
+      if (process.env.RSDOCTOR) appendPlugins(new RsdoctorRspackPlugin({}));
+    },
+  },
   source: {
     alias: {
       src: "./src",
