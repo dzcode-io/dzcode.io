@@ -20,7 +20,7 @@ import Container from "typedi";
 
 import { ErrorMiddleware } from "./middlewares/error";
 import { LoggerMiddleware } from "./middlewares/logger";
-import { RobotsMiddleware } from "./middlewares/robots";
+import { RobotsController } from "./middlewares/robots";
 import { SecurityMiddleware } from "./middlewares/security";
 
 // Use typedi container
@@ -43,8 +43,9 @@ const routingControllersOptions: RoutingControllersOptions = {
     MilestoneController,
     ProjectController,
     ContributorController,
+    RobotsController,
   ],
-  middlewares: [SecurityMiddleware, ErrorMiddleware, LoggerMiddleware, RobotsMiddleware],
+  middlewares: [SecurityMiddleware, ErrorMiddleware, LoggerMiddleware],
   defaultErrorHandler: false,
   cors: Container.get(SecurityMiddleware).cors(),
 };
