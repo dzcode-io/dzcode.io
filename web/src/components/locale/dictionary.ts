@@ -236,8 +236,8 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     ar: "مشاريع مفتوحة المصدر",
   },
   "projects-card-cta-button": {
-    en: "Go to code",
-    ar: "إلى الكود",
+    en: "Details",
+    ar: "تفاصيل",
   },
   "notfound-title": {
     en: "A broken link? | DzCode i/o",

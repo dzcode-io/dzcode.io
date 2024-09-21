@@ -17,6 +17,7 @@ export class ProjectRepository {
     SELECT
         p.id as id,
         p.name as name,
+        p.slug as slug,
         sum(rs.repo_contributor_count) as contributor_count,
         sum(rs.repo_score) as activity_count,
         100 * sum(rs.repo_contributor_count) + max(rs.repo_score) - sum(rs.repo_score) / sum(rs.repo_contributor_count)  as score,

@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { Link } from "src/components/link";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
 import { TryAgain } from "src/components/try-again";
 import { fetchProjectsListAction } from "src/redux/actions/projects";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
 import { getRepositoryName } from "src/utils/repository";
+import { getProjectURL } from "src/utils/project";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {
@@ -48,6 +50,12 @@ export default function Page(): JSX.Element {
                   {project.repositories.map((repository, repositoryIndex) => (
                     <span key={repositoryIndex}>{getRepositoryName(repository)}</span>
                   ))}
+                  <span className="flex-1" />
+                  <div className="card-actions justify-end mt-4 gap-4">
+                    <Link href={getProjectURL(project)} className="link">
+                      <Locale projects-card-cta-button />
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
