@@ -1,3 +1,4 @@
+import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
@@ -28,6 +29,7 @@ export interface GetProjectResponse extends GeneralResponse {
         score: number;
       }
     >;
+    contributions: Array<Pick<ContributionEntity, "id" | "title" | "type">>;
     contributor_count: number;
     activity_count: number;
     stars: number;

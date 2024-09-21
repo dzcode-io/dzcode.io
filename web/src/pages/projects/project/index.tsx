@@ -12,6 +12,8 @@ import { getProjectURL } from "src/utils/project";
 import { Link } from "src/components/link";
 import { getRepositoryURL } from "src/utils/repository";
 import { getContributorURL } from "src/utils/contributor";
+import { getContributionURL } from "src/utils/contribution";
+import { Markdown } from "src/components/markdown";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {
@@ -147,6 +149,7 @@ export default function Page(): JSX.Element {
                 </div>
               </div>
             </div>
+            {/* @TODO-ZM: responsive design for mobile screen */}
             <h2 className="text-lg font-bold">Repositories</h2>
             <div className="flex flex-row gap-4 flex-wrap">
               {project.repositories.map((repository, repositoryIndex) => (
@@ -182,6 +185,7 @@ export default function Page(): JSX.Element {
                 </div>
               ))}
             </div>
+            {/* @TODO-ZM: responsive design for mobile screen */}
             <h2 className="text-lg font-bold">Contributors</h2>
             <div className="flex flex-row gap-4 flex-wrap">
               {project.contributors.map((contributor, contributorIndex) => (
@@ -196,6 +200,19 @@ export default function Page(): JSX.Element {
                     className="rounded-full w-20 h-20"
                   />
                   <span className="card-title gap-0 flex-1">{contributor.name}</span>
+                </Link>
+              ))}
+            </div>
+            {/* @TODO-ZM: responsive design for mobile screen */}
+            <h2 className="text-lg font-bold">You can help</h2>
+            <div className="flex flex-row gap-4 flex-wrap">
+              {project.contributions.map((contribution, contributionIndex) => (
+                <Link
+                  key={contributionIndex}
+                  href={getContributionURL(contribution)}
+                  className="card card-compact bg-base-200 rounded-lg p-4"
+                >
+                  <Markdown content={contribution.title} />
                 </Link>
               ))}
             </div>

@@ -102,6 +102,33 @@ export class ProjectController {
             avatarUrl: "https://avatars.githubusercontent.com/u/34008130?v=4",
           },
         ],
+        contributions: [
+          {
+            id: 127,
+            title: "Improve SEO",
+            type: "ISSUE",
+          },
+          {
+            id: 3900,
+            title: "fix: Cloudflare 404 redirect",
+            type: "PULL_REQUEST",
+          },
+          {
+            id: 120,
+            title: "publish `/packages` to npm registry",
+            type: "ISSUE",
+          },
+          {
+            id: 117,
+            title: "feat: using `detox` for e2e tests in `/mobile`",
+            type: "PULL_REQUEST",
+          },
+          {
+            id: 119,
+            title: "using detox for e2e tests in `/mobile`",
+            type: "ISSUE",
+          },
+        ],
       },
     };
   }
