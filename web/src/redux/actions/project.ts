@@ -4,7 +4,7 @@ import { projectPageSlice } from "src/redux/slices/project-page";
 import { AppState } from "src/redux/store";
 import { fetchV2 } from "src/utils/fetch";
 
-export const fetchProjectListAction =
+export const fetchProjectAction =
   (projectSlugWithId?: string): ThunkAction<void, AppState, unknown, Action> =>
   async (dispatch) => {
     const id = projectSlugWithId?.split("-").pop();

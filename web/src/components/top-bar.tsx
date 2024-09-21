@@ -22,7 +22,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
   const { pathname } = useLocation();
   const languageLessPathname = useMemo(() => stripLanguageCodeFromHRef(pathname), [pathname]);
   const activeIndex = useMemo(() => {
-    return links.findIndex(({ href }) => languageLessPathname === href);
+    return links.findIndex(({ href }) => languageLessPathname.startsWith(href));
   }, [languageLessPathname, links]);
 
   const selectedLanguageCode = useAppSelector((state) => state.settings.languageCode);

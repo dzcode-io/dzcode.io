@@ -2,10 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Loading } from "src/components/loading";
-import { Locale, useLocale } from "src/components/locale";
+import { useLocale } from "src/components/locale";
 import { TryAgain } from "src/components/try-again";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
-import { fetchProjectListAction } from "src/redux/actions/project";
+import { fetchProjectAction } from "src/redux/actions/project";
 import { useParams } from "react-router-dom";
 import { Redirect } from "src/components/redirect";
 import { getProjectURL } from "src/utils/project";
@@ -18,7 +18,7 @@ export default function Page(): JSX.Element {
   const { projectSlugWithId } = useParams<{ projectSlugWithId: string }>();
 
   useEffect(() => {
-    dispatch(fetchProjectListAction(projectSlugWithId));
+    dispatch(fetchProjectAction(projectSlugWithId));
   }, [dispatch, projectSlugWithId]);
 
   if (project === "404") {
@@ -26,7 +26,7 @@ export default function Page(): JSX.Element {
   }
 
   return (
-    <main className="flex flex-col self-center">
+    <main className="flex flex-col self-center w-full max-w-7xl">
       {project !== "ERROR" && project !== null ? (
         <Helmet>
           <title>
@@ -37,9 +37,16 @@ export default function Page(): JSX.Element {
           <link rel="canonical" href={getProjectURL(project)} />
         </Helmet>
       ) : null}
-      <h1 className="text-xl font-bold m-2 mt-8 self-center">
-        <Locale projects-header-title />
-      </h1>
+      <div className="breadcrumbs">
+        <ul>
+          <li>
+            <a className="link" href="/projects">
+              Projects
+            </a>
+          </li>
+          {project !== "ERROR" && project !== null ? <li>{project.name}</li> : null}
+        </ul>
+      </div>
 
       <div className="flex flex-col self-center">
         {project === "ERROR" ? (
@@ -47,7 +54,7 @@ export default function Page(): JSX.Element {
             error={localize("global-generic-error")}
             action={localize("global-try-again")}
             onClick={() => {
-              dispatch(fetchProjectListAction(projectSlugWithId));
+              dispatch(fetchProjectAction(projectSlugWithId));
             }}
           />
         ) : project === null ? (
