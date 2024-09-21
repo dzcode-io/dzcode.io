@@ -9,6 +9,9 @@ import { fetchProjectAction } from "src/redux/actions/project";
 import { useParams } from "react-router-dom";
 import { Redirect } from "src/components/redirect";
 import { getProjectURL } from "src/utils/project";
+import { Link } from "src/components/link";
+import { getRepositoryURL } from "src/utils/repository";
+import { getContributorURL } from "src/utils/contributor";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {
@@ -52,15 +55,15 @@ export default function Page(): JSX.Element {
       <div className="breadcrumbs p-4">
         <ul>
           <li>
-            <a className="link" href="/projects">
+            <Link className="link" href="/projects">
               Projects
-            </a>
+            </Link>
           </li>
           {project !== "ERROR" && project !== null ? <li>{project.name}</li> : null}
         </ul>
       </div>
 
-      <div className="flex flex-col self-center">
+      <div className="flex flex-col self-center w-full max-w-4xl">
         {project === "ERROR" ? (
           <TryAgain
             error={localize("global-generic-error")}
@@ -73,7 +76,7 @@ export default function Page(): JSX.Element {
           <Loading />
         ) : (
           <div className="flex flex-col gap-4 justify-between p-4">
-            <h1 className="text-xl font-bold m-2 mt-8 self-center">{project.name}</h1>
+            <h1 className="text-xl font-bold mb-4 self-center">{project.name}</h1>
             <div className="stats shadow bg-base-200 stats-vertical md:stats-horizontal">
               <div className="stat">
                 <div className="stat-figure text-primary">
@@ -144,8 +147,58 @@ export default function Page(): JSX.Element {
                 </div>
               </div>
             </div>
-            <br className="mt-4" />
-            {/* <pre className="text-wrap">{JSON.stringify(project, null, 2)}</pre> */}
+            <h2 className="text-lg font-bold">Repositories</h2>
+            <div className="flex flex-row gap-4 flex-wrap">
+              {project.repositories.map((repository, repositoryIndex) => (
+                <div
+                  key={repositoryIndex}
+                  className="card card-compact bg-base-200 flex-1 rounded-lg"
+                >
+                  <div className="flex flex-row pl-4 gap-4">
+                    <span className="card-title gap-0 flex-1">
+                      {repository.owner}/<strong>{repository.name}</strong>
+                    </span>
+                    <Link
+                      target="_blank"
+                      href={getRepositoryURL(repository)}
+                      className="link btn btn-ghost rounded-lg rounded-tl-none rounded-bl-none"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <h2 className="text-lg font-bold">Contributors</h2>
+            <div className="flex flex-row gap-4 flex-wrap">
+              {project.contributors.map((contributor, contributorIndex) => (
+                <Link
+                  key={contributorIndex}
+                  className="card bg-base-200 rounded-lg p-4 items-center flex flex-col gap-4"
+                  href={getContributorURL(contributor)}
+                >
+                  <img
+                    src={contributor.avatarUrl}
+                    alt={contributor.name}
+                    className="rounded-full w-20 h-20"
+                  />
+                  <span className="card-title gap-0 flex-1">{contributor.name}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         )}
       </div>
