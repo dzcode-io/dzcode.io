@@ -12,3 +12,18 @@ export interface GetProjectsResponse extends GeneralResponse {
     }
   >;
 }
+
+export interface GetProjectResponse extends GeneralResponse {
+  project: Omit<ProjectEntity, "runId"> & {
+    repositories: Array<
+      RepositoryEntity & {
+        contributor_count: number;
+        activity_count: number;
+        score: number;
+      }
+    >;
+    contributor_count: number;
+    activity_count: number;
+    score: number;
+  };
+}

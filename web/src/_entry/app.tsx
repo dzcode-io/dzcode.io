@@ -25,6 +25,10 @@ let routes: Array<
     path: "/projects",
   },
   {
+    pageName: "projects/project",
+    path: "/projects/:projectSlugWithId",
+  },
+  {
     pageName: "faq",
     path: "/faq",
   },
