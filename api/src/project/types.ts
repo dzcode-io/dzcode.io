@@ -1,3 +1,4 @@
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { GeneralResponse } from "src/app/types";
@@ -19,11 +20,16 @@ export interface GetProjectResponse extends GeneralResponse {
       Omit<RepositoryEntity, "runId"> & {
         contributor_count: number;
         activity_count: number;
+        stars: number;
+      }
+    >;
+    contributors: Array<
+      Omit<ContributorEntity, "runId"> & {
         score: number;
       }
     >;
     contributor_count: number;
     activity_count: number;
-    score: number;
+    stars: number;
   };
 }
