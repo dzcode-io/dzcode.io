@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "src/redux/store";
 import { fetchProjectListAction } from "src/redux/actions/project";
 import { useParams } from "react-router-dom";
 import { Redirect } from "src/components/redirect";
+import { getProjectURL } from "src/utils/project";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {
@@ -26,11 +27,16 @@ export default function Page(): JSX.Element {
 
   return (
     <main className="flex flex-col self-center">
-      <Helmet>
-        <title>{localize("projects-title")}</title>
-        <meta name="description" content={localize("projects-description")} />
-        {/* @TODO-ZM: add canonical url on all pages actually */}
-      </Helmet>
+      {project !== "ERROR" && project !== null ? (
+        <Helmet>
+          <title>
+            {localize("project-title-pre")} {project.name} {localize("project-title-post")}
+          </title>
+          <meta name="description" content={localize("projects-description")} />
+          {/* @TODO-ZM: add canonical url on all pages */}
+          <link rel="canonical" href={getProjectURL(project)} />
+        </Helmet>
+      ) : null}
       <h1 className="text-xl font-bold m-2 mt-8 self-center">
         <Locale projects-header-title />
       </h1>

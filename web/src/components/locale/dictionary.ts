@@ -239,6 +239,14 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Details",
     ar: "تفاصيل",
   },
+  "project-title-pre": {
+    en: "See the details of",
+    ar: "انظر إلى تفاصيل مشروع",
+  },
+  "project-title-post": {
+    en: "project | DzCode i/o",
+    ar: " | DzCode i / o",
+  },
   "notfound-title": {
     en: "A broken link? | DzCode i/o",
     ar: "عنوان url معطل؟ | DzCode i / o",
