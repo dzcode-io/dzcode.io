@@ -7,6 +7,9 @@
     "name": "Zakaria Mansouri",
     "url": "https://www.zakiii.com"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
     "@dzcode.io/api": "*",
     "@dzcode.io/data": "*",
@@ -16,9 +19,6 @@
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5"
   },
-  "browserslist": [
-    "defaults"
-  ],
   "devDependencies": {
     "@loadable/component": "^5.16.4",
     "@reduxjs/toolkit": "^2.2.6",
@@ -64,8 +64,8 @@
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
     "bundle": "npm run build && npm run bundle:alone",
     "bundle:alone": "cross-env NODE_ENV=production rsbuild build",
-    "bundle:preview": "rsbuild preview",
     "bundle:doctor": "RSDOCTOR=true rsbuild build",
+    "bundle:preview": "rsbuild preview",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "clean:alone": "rimraf dist coverage bundle node_modules/.cache && rimraf ./cloudflare/public",
     "deploy": "npm run generate:htmls && npm run generate:robots-txt && npm run generate:sitemap && rimraf ./cloudflare/public && cpy \"./bundle/**/*\" ./cloudflare/public && cd ./cloudflare && npm install && npm run deploy:prd ",
@@ -76,6 +76,8 @@
     "generate:robots-txt": "cross-env TS_NODE_SKIP_PROJECT=true ts-node --compilerOptions \"{\\\"baseUrl\\\": \\\".\\\"}\" src/_build/gen-robots-txt.ts",
     "generate:sentry-release": "ts-node ../packages/tooling/sentry-release.ts web bundle",
     "generate:sitemap": "cross-env TS_NODE_SKIP_PROJECT=true ts-node --compilerOptions \"{\\\"baseUrl\\\": \\\".\\\"}\" src/_build/sitemap.ts",
+    "lh:collect": "npx --yes @lhci/cli collect",
+    "lh:upload": "npx --yes @lhci/cli upload",
     "lint": "npm run build && npm run lint:alone",
     "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check . && npm run lint:tsc && npm run lint:ts-prune",
     "lint:eslint": "eslint --config ../packages/tooling/eslint.config.mjs",
@@ -87,8 +89,6 @@
     "start:dev": "rsbuild dev --open",
     "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
-    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --",
-    "lh:collect": "npx --yes @lhci/cli collect",
-    "lh:upload": "npx --yes @lhci/cli upload"
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }

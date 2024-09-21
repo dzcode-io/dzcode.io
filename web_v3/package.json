@@ -10,8 +10,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.0.0-beta.1",
     "@astrojs/check": "^0.9.3",
+    "@astrojs/react": "^3.6.2",
+    "@astrojs/tailwind": "^5.1.1",
+    "@types/react": "^18.3.8",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^5.0.0-beta.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.12",
     "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "daisyui": "^4.12.10"
   }
 }
