@@ -6,6 +6,7 @@ import { join } from "path";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { allPages } from "./pages";
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
+import { SENTRY_ORIGIN } from "../../src/utils/sentry-origin";
 
 let stage = process.env.STAGE as Environment;
 if (!environments.includes(stage)) {
@@ -55,6 +56,7 @@ allPages.forEach((pageInfo) => {
   newHtml = newHtml.replace(/{{title}}/g, pageInfo.title);
   newHtml = newHtml.replace(/{{description}}/g, pageInfo.description);
   newHtml = newHtml.replace(/{{ogImage}}/g, pageInfo.ogImage);
+  newHtml = newHtml.replace(/{{sentryOrigin}}/g, `https://${SENTRY_ORIGIN}`);
 
   mkdirSync(outputHtmlDir, { recursive: true });
   writeFileSync(outputHtmlPath, newHtml);

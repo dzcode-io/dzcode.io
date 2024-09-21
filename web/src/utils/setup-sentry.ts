@@ -8,12 +8,13 @@ import {
 } from "react-router-dom";
 
 import { getEnv } from "./environment";
+import { SENTRY_ORIGIN } from "./sentry-origin";
 
 const env = getEnv();
 
 if (env !== "development") {
   Sentry.init({
-    dsn: "https://b42ee25f06c4416dac83de4ab8772e26@o953637.ingest.sentry.io/5902610",
+    dsn: `https://b42ee25f06c4416dac83de4ab8772e26@${SENTRY_ORIGIN}/5902610`,
     integrations: [
       Sentry.reactRouterV6BrowserTracingIntegration({
         useEffect,

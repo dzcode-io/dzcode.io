@@ -22,9 +22,9 @@ export function Footer({ sections }: FooterProps): JSX.Element {
       <div className="footer m-auto max-w-7xl p-10">
         {sections.map(({ localeKey, links }, sectionIndex) => (
           <nav key={`section-${sectionIndex}`}>
-            <h6 className="footer-title">
+            <span className="footer-title">
               <Locale localeKey={localeKey} />
-            </h6>
+            </span>
             {links.map(({ localeKey, href }, linkIndex) => (
               <Link key={`link-${linkIndex}`} className="link-hover link" href={href}>
                 <Locale localeKey={localeKey} />
