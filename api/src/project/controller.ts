@@ -3,11 +3,15 @@ import { Service } from "typedi";
 
 import { ProjectRepository } from "./repository";
 import { GetProjectResponse, GetProjectsResponse } from "./types";
+import { RepositoryRepository } from "src/repository/repository";
 
 @Service()
 @Controller("/Projects")
 export class ProjectController {
-  constructor(private readonly projectRepository: ProjectRepository) {}
+  constructor(
+    private readonly projectRepository: ProjectRepository,
+    private readonly repositoryRepository: RepositoryRepository,
+  ) {}
 
   @Get("/")
   public async getProjects(): Promise<GetProjectsResponse> {
@@ -21,7 +25,10 @@ export class ProjectController {
   @Get("/:id")
   public async getProject(@Param("id") id: number): Promise<GetProjectResponse> {
     // @TODO-ZM: Implement this
-    const project = await this.projectRepository.findWithStats(id);
+    const [project, repositories] = await Promise.all([
+      await this.projectRepository.findWithStats(id),
+      await this.repositoryRepository.findForProject(id),
+    ]);
 
     return {
       debug: {
@@ -29,35 +36,7 @@ export class ProjectController {
       },
       project: {
         ...project,
-        repositories: [
-          {
-            id: 1,
-            owner: "owner1",
-            name: "repo1",
-            contributor_count: 1,
-            activity_count: 1,
-            stars: 1,
-            provider: "github",
-          },
-          {
-            id: 2,
-            owner: "owner2",
-            name: "repo2",
-            contributor_count: 1,
-            activity_count: 1,
-            stars: 1,
-            provider: "github",
-          },
-          {
-            id: 3,
-            owner: "owner3",
-            name: "repo3",
-            contributor_count: 1,
-            activity_count: 1,
-            stars: 1,
-            provider: "github",
-          },
-        ],
+        repositories,
         contributors: [
           {
             score: 1747,

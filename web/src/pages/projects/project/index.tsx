@@ -153,10 +153,7 @@ export default function Page(): JSX.Element {
             <h2 className="text-lg font-bold">Repositories</h2>
             <div className="flex flex-row gap-4 flex-wrap">
               {project.repositories.map((repository, repositoryIndex) => (
-                <div
-                  key={repositoryIndex}
-                  className="card card-compact bg-base-200 flex-1 rounded-lg"
-                >
+                <div key={repositoryIndex} className="card card-compact bg-base-200 rounded-lg">
                   <div className="flex flex-row pl-4 gap-4">
                     <span className="card-title gap-0 flex-1">
                       {repository.owner}/<strong>{repository.name}</strong>
