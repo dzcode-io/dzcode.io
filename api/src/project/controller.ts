@@ -36,9 +36,6 @@ export class ProjectController {
     ]);
 
     return {
-      debug: {
-        project,
-      },
       project: {
         ...project,
         repositories,
