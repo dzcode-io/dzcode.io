@@ -21,6 +21,7 @@ services:
       - /home/ubuntu/app-data/api/sqlite_db:/usr/src/repo/api/sqlite_db
   lhserver:
     image: patrickhulce/lhci-server
+    restart: always
     ports:
       - "9001:9001"
     volumes:
