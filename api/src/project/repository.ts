@@ -48,13 +48,14 @@ export class ProjectRepository {
         p.slug as slug,
         sum(rs.repo_contributor_count) as contributor_count,
         sum(rs.repo_score) as activity_count,
-        100 * sum(rs.repo_contributor_count) + max(rs.repo_score) - sum(rs.repo_score) / sum(rs.repo_contributor_count)  as score,
+        100 * sum(rs.repo_contributor_count) + 100 * sum(rs.stars) + max(rs.repo_score) - sum(rs.repo_score) / sum(rs.repo_contributor_count)  as score,
         json_group_array(json_object('id', rs.id, 'owner', rs.owner, 'name', rs.name)) as repositories
     FROM
         (SELECT
             *,
             sum(crr.score) as repo_score,
-            count(*) as repo_contributor_count
+            count(*) as repo_contributor_count,
+            sum(r.stars) as stars
         FROM
             ${contributorRepositoryRelationTable} crr
         JOIN
