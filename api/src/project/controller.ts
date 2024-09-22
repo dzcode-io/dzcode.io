@@ -5,6 +5,7 @@ import { ProjectRepository } from "./repository";
 import { GetProjectResponse, GetProjectsResponse } from "./types";
 import { RepositoryRepository } from "src/repository/repository";
 import { ContributorRepository } from "src/contributor/repository";
+import { ContributionRepository } from "src/contribution/repository";
 
 @Service()
 @Controller("/Projects")
@@ -13,6 +14,7 @@ export class ProjectController {
     private readonly projectRepository: ProjectRepository,
     private readonly repositoryRepository: RepositoryRepository,
     private readonly contributorRepository: ContributorRepository,
+    private readonly contributionRepository: ContributionRepository,
   ) {}
 
   @Get("/")
@@ -26,10 +28,11 @@ export class ProjectController {
 
   @Get("/:id")
   public async getProject(@Param("id") id: number): Promise<GetProjectResponse> {
-    const [project, repositories, contributors] = await Promise.all([
+    const [project, repositories, contributors, contributions] = await Promise.all([
       await this.projectRepository.findWithStats(id),
       await this.repositoryRepository.findForProject(id),
       await this.contributorRepository.findForProject(id),
+      await this.contributionRepository.findForProject(id),
     ]);
 
     return {
@@ -40,33 +43,7 @@ export class ProjectController {
         ...project,
         repositories,
         contributors,
-        contributions: [
-          {
-            id: 127,
-            title: "Improve SEO",
-            type: "ISSUE",
-          },
-          {
-            id: 3900,
-            title: "fix: Cloudflare 404 redirect",
-            type: "PULL_REQUEST",
-          },
-          {
-            id: 120,
-            title: "publish `/packages` to npm registry",
-            type: "ISSUE",
-          },
-          {
-            id: 117,
-            title: "feat: using `detox` for e2e tests in `/mobile`",
-            type: "PULL_REQUEST",
-          },
-          {
-            id: 119,
-            title: "using detox for e2e tests in `/mobile`",
-            type: "ISSUE",
-          },
-        ],
+        contributions,
       },
     };
   }
