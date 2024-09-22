@@ -8,8 +8,8 @@ export interface GetProjectsResponse extends GeneralResponse {
   projects: Array<
     Pick<ProjectEntity, "id" | "name" | "slug"> & {
       repositories: Array<Pick<RepositoryEntity, "id" | "owner" | "name">>;
-      contributor_count: number;
-      activity_count: number;
+      contributorCount: number;
+      activityCount: number;
       score: number;
     }
   >;
@@ -19,8 +19,8 @@ export interface GetProjectResponse extends GeneralResponse {
   project: Omit<ProjectEntity, "runId"> & {
     repositories: Array<
       Omit<RepositoryEntity, "runId"> & {
-        contributor_count: number;
-        activity_count: number;
+        contributorCount: number;
+        activityCount: number;
         stars: number;
       }
     >;
@@ -30,8 +30,9 @@ export interface GetProjectResponse extends GeneralResponse {
       }
     >;
     contributions: Array<Pick<ContributionEntity, "id" | "title" | "type">>;
-    contributor_count: number;
-    activity_count: number;
+    contributorCount: number;
+    repositoryCount: number;
+    activityCount: number;
     stars: number;
   };
 }

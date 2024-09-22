@@ -13,6 +13,17 @@ CREATE TABLE `contributions` (
 	FOREIGN KEY (`contributor_id`) REFERENCES `contributors`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
+CREATE TABLE `contributor_repository_relation` (
+	`contributor_id` integer NOT NULL,
+	`repository_id` integer NOT NULL,
+	`record_imported_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+	`run_id` text DEFAULT 'initial-run-id' NOT NULL,
+	`score` integer NOT NULL,
+	PRIMARY KEY(`contributor_id`, `repository_id`),
+	FOREIGN KEY (`contributor_id`) REFERENCES `contributors`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`repository_id`) REFERENCES `repositories`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
 CREATE TABLE `contributors` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`record_imported_at` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -39,6 +50,7 @@ CREATE TABLE `repositories` (
 	`name` text NOT NULL,
 	`run_id` text DEFAULT 'initial-run-id' NOT NULL,
 	`project_id` integer NOT NULL,
+	`stars` integer NOT NULL,
 	FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint

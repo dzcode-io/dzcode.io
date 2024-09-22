@@ -102,6 +102,7 @@ export interface GetRateLimitResponse extends GeneralResponse {
 export interface GetRepositoryResponse {
   name: string;
   owner: GithubUser;
+  stargazers_count: number;
 }
 
 interface GithubIssue {

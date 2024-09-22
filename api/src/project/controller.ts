@@ -21,13 +21,14 @@ export class ProjectController {
   @Get("/:id")
   public async getProject(@Param("id") id: number): Promise<GetProjectResponse> {
     // @TODO-ZM: Implement this
-    // const project = await this.projectRepository.findById();
+    const project = await this.projectRepository.findWithStats(id);
 
     return {
+      debug: {
+        project,
+      },
       project: {
-        id,
-        name: "project1",
-        slug: "project1",
+        ...project,
         repositories: [
           {
             id: 1,
@@ -57,9 +58,6 @@ export class ProjectController {
             provider: "github",
           },
         ],
-        contributor_count: 1,
-        activity_count: 1,
-        stars: 1,
         contributors: [
           {
             score: 1747,

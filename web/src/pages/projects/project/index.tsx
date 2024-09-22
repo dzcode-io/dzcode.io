@@ -99,7 +99,7 @@ export default function Page(): JSX.Element {
                 </div>
                 <div className="stat-title">Total Stars</div>
                 <div className="stat-value text-primary">{project.stars}</div>
-                <div className="stat-desc">from {project.repositories.length} repositories</div>
+                <div className="stat-desc">from {project.repositoryCount} repositories</div>
               </div>
 
               <div className="stat">
@@ -120,8 +120,8 @@ export default function Page(): JSX.Element {
                   </svg>
                 </div>
                 <div className="stat-title">Total Activities</div>
-                <div className="stat-value text-secondary">{project.activity_count}</div>
-                <div className="stat-desc">from {project.contributor_count} contributors</div>
+                <div className="stat-value text-secondary">{project.activityCount}</div>
+                <div className="stat-desc">from {project.contributorCount} contributors</div>
               </div>
 
               <div className="stat">
@@ -140,12 +140,12 @@ export default function Page(): JSX.Element {
                     ))}
                   </div>
                 </div>
-                <div className="stat-value">{project.contributors.length}</div>
+                <div className="stat-value">{project.contributorCount}</div>
                 <div className="stat-title">Contributors</div>
                 <div className="stat-desc">
                   {remainingContributorsCount > 0
                     ? `showing top ${topMax}`
-                    : `from ${project.repositories.length} repositories`}
+                    : `from ${project.repositoryCount} repositories`}
                 </div>
               </div>
             </div>

@@ -12,6 +12,34 @@ import { ProjectRow, projectsTable } from "./table";
 export class ProjectRepository {
   constructor(private readonly sqliteService: SQLiteService) {}
 
+  public async findWithStats(projectId: number) {
+    const statement = sql`
+    SELECT
+        p.id as id,
+        p.name as name,
+        p.slug as slug,
+        count(DISTINCT r.id) as repository_count,
+        sum(crr.score) as activity_count,
+        count(DISTINCT crr.contributor_id) as contributor_count,
+        -- @TODO-ZM: this is wrong, but works for now, please group by repository id
+        sum(DISTINCT r.stars) as stars
+    FROM
+        ${repositoriesTable} r
+    JOIN
+        ${contributorRepositoryRelationTable} crr ON r.id = crr.repository_id
+    JOIN
+        ${projectsTable} p ON r.project_id = p.id
+    WHERE
+        project_id = ${projectId}
+    GROUP BY
+        r.project_id
+    `;
+    const raw = this.sqliteService.db.get(statement);
+    const unStringifiedRaw = unStringifyDeep(raw);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
+  }
+
   public async findForList() {
     const statement = sql`
     SELECT

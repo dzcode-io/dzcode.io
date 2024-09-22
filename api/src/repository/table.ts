@@ -17,6 +17,7 @@ export const repositoriesTable = sqliteTable(
     projectId: integer("project_id")
       .notNull()
       .references(() => projectsTable.id),
+    stars: integer("stars").notNull(),
   },
   (table) => {
     return {
