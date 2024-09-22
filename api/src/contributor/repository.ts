@@ -17,6 +17,38 @@ import {
 export class ContributorRepository {
   constructor(private readonly sqliteService: SQLiteService) {}
 
+  public async findForProject(projectId: number) {
+    const statement = sql`
+    SELECT
+        cr.id as id,
+        cr.name as name,
+        cr.username as username,
+        cr.avatar_url as avatar_url
+    FROM
+        (SELECT
+            crr.contributor_id as id,
+            sum (crr.score) as score
+        FROM
+            ${contributorRepositoryRelationTable} crr
+        INNER JOIN
+            ${repositoriesTable} r ON crr.repository_id = r.id
+        WHERE
+            r.project_id = ${projectId}
+        GROUP BY
+            crr.contributor_id
+        ORDER BY
+            score DESC) as c
+    INNER JOIN
+        ${contributorsTable} cr ON c.id = cr.id
+    `;
+
+    const raw = this.sqliteService.db.all(statement);
+    const unStringifiedRaw = unStringifyDeep(raw);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+
+    return camelCased;
+  }
+
   public async findForList() {
     const statement = sql`
     SELECT

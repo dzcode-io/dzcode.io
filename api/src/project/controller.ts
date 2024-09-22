@@ -4,6 +4,7 @@ import { Service } from "typedi";
 import { ProjectRepository } from "./repository";
 import { GetProjectResponse, GetProjectsResponse } from "./types";
 import { RepositoryRepository } from "src/repository/repository";
+import { ContributorRepository } from "src/contributor/repository";
 
 @Service()
 @Controller("/Projects")
@@ -11,6 +12,7 @@ export class ProjectController {
   constructor(
     private readonly projectRepository: ProjectRepository,
     private readonly repositoryRepository: RepositoryRepository,
+    private readonly contributorRepository: ContributorRepository,
   ) {}
 
   @Get("/")
@@ -24,10 +26,10 @@ export class ProjectController {
 
   @Get("/:id")
   public async getProject(@Param("id") id: number): Promise<GetProjectResponse> {
-    // @TODO-ZM: Implement this
-    const [project, repositories] = await Promise.all([
+    const [project, repositories, contributors] = await Promise.all([
       await this.projectRepository.findWithStats(id),
       await this.repositoryRepository.findForProject(id),
+      await this.contributorRepository.findForProject(id),
     ]);
 
     return {
@@ -37,48 +39,7 @@ export class ProjectController {
       project: {
         ...project,
         repositories,
-        contributors: [
-          {
-            score: 1747,
-            id: 280,
-            name: "Zakaria Mansouri",
-            username: "ZibanPirate",
-            url: "https://github.com/ZibanPirate",
-            avatarUrl: "https://avatars.githubusercontent.com/u/20110076?v=4",
-          },
-          {
-            score: 1064,
-            id: 306,
-            name: "omdxp",
-            username: "omdxp",
-            url: "https://github.com/omdxp",
-            avatarUrl: "https://avatars.githubusercontent.com/u/48713070?v=4",
-          },
-          {
-            score: 373,
-            id: 301,
-            name: "adelpro",
-            username: "adelpro",
-            url: "https://github.com/adelpro",
-            avatarUrl: "https://avatars.githubusercontent.com/u/47066151?v=4",
-          },
-          {
-            score: 288,
-            id: 361,
-            name: "linuxscout",
-            username: "linuxscout",
-            url: "https://github.com/linuxscout",
-            avatarUrl: "https://avatars.githubusercontent.com/u/450792?v=4",
-          },
-          {
-            score: 156,
-            id: 328,
-            name: "Toumi abderrahmane",
-            username: "abderrahmaneMustapha",
-            url: "https://github.com/abderrahmaneMustapha",
-            avatarUrl: "https://avatars.githubusercontent.com/u/34008130?v=4",
-          },
-        ],
+        contributors,
         contributions: [
           {
             id: 127,
