@@ -149,11 +149,13 @@ export default function Page(): JSX.Element {
                 </div>
               </div>
             </div>
-            {/* @TODO-ZM: responsive design for mobile screen */}
             <h2 className="text-lg font-bold">Repositories</h2>
             <div className="flex flex-row gap-4 flex-wrap">
               {project.repositories.map((repository, repositoryIndex) => (
-                <div key={repositoryIndex} className="card card-compact bg-base-200 rounded-lg">
+                <div
+                  key={repositoryIndex}
+                  className="card card-compact bg-base-200 w-full md:w-auto rounded-lg"
+                >
                   <div className="flex flex-row pl-4 gap-4">
                     <span className="card-title gap-0 flex-1">
                       {repository.owner}/<strong>{repository.name}</strong>
@@ -182,32 +184,30 @@ export default function Page(): JSX.Element {
                 </div>
               ))}
             </div>
-            {/* @TODO-ZM: responsive design for mobile screen */}
             <h2 className="text-lg font-bold">Contributors</h2>
-            <div className="flex flex-row gap-4 flex-wrap">
+            <div className="flex flex-row gap-4 flex-wrap justify-j">
               {project.contributors.map((contributor, contributorIndex) => (
                 <Link
                   key={contributorIndex}
-                  className="card bg-base-200 rounded-lg p-4 items-center flex flex-col gap-4"
+                  className="card bg-base-200 sm:max-w-40 w-full rounded-lg sm:p-4 items-center flex flex-row sm:flex-col gap-4"
                   href={getContributorURL(contributor)}
                 >
                   <img
                     src={contributor.avatarUrl}
                     alt={contributor.name}
-                    className="rounded-full w-20 h-20"
+                    className="rounded-none sm:rounded-full size-16 sm:size-20"
                   />
                   <span className="card-title gap-0 flex-1">{contributor.name}</span>
                 </Link>
               ))}
             </div>
-            {/* @TODO-ZM: responsive design for mobile screen */}
             <h2 className="text-lg font-bold">You can help</h2>
             <div className="flex flex-row gap-4 flex-wrap">
               {project.contributions.map((contribution, contributionIndex) => (
                 <Link
                   key={contributionIndex}
                   href={getContributionURL(contribution)}
-                  className="card card-compact bg-base-200 rounded-lg p-4"
+                  className="card card-compact bg-base-200 rounded-lg p-4 w-full md:w-auto"
                 >
                   <Markdown content={contribution.title} />
                 </Link>
