@@ -11,6 +11,7 @@ export interface GetProjectsResponse extends GeneralResponse {
       contributorCount: number;
       activityCount: number;
       score: number;
+      stars: number;
     }
   >;
 }
