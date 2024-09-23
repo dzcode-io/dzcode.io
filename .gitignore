@@ -27,8 +27,10 @@ build
 src/_e2e-test/downloads
 src/_e2e-test/videos
 src/_e2e-test/screenshots
-cloudflare/public
-**/cloudflare/public
+cloudflare/public/*
+**/cloudflare/public/*
+!cloudflare/public/functions
+!**/cloudflare/public/functions
 **.lighthouseci
 
 # mobile
