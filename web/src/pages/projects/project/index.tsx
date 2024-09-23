@@ -201,18 +201,22 @@ export default function Page(): JSX.Element {
                 </Link>
               ))}
             </div>
-            <h2 className="text-lg font-bold">You can help</h2>
-            <div className="flex flex-row gap-4 flex-wrap">
-              {project.contributions.map((contribution, contributionIndex) => (
-                <Link
-                  key={contributionIndex}
-                  href={getContributionURL(contribution)}
-                  className="card card-compact bg-base-200 rounded-lg p-4 w-full md:w-auto"
-                >
-                  <Markdown content={contribution.title} />
-                </Link>
-              ))}
-            </div>
+            {project.contributions.length > 0 ? (
+              <>
+                <h2 className="text-lg font-bold">You can help</h2>
+                <div className="flex flex-row gap-4 flex-wrap">
+                  {project.contributions.map((contribution, contributionIndex) => (
+                    <Link
+                      key={contributionIndex}
+                      href={getContributionURL(contribution)}
+                      className="card card-compact bg-base-200 rounded-lg p-4 w-full md:w-auto"
+                    >
+                      <Markdown content={contribution.title} />
+                    </Link>
+                  ))}
+                </div>
+              </>
+            ) : null}
           </div>
         )}
       </div>
