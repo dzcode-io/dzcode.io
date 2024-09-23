@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "deploy:prd": "wrangler pages deploy --project-name dzcode-dot-io --directory=./public --branch main",
-    "deploy:stg": "wrangler pages deploy --project-name stage-dot-dzcode-dot-io --directory=./public --branch main"
+    "deploy:stg": "wrangler pages deploy --project-name stage-dot-dzcode-dot-io --directory=./public --branch main",
+    "dev": "npm i && cd public && wrangler pages dev . --port 8080"
   },
   "devDependencies": {
-    "wrangler": "^3.78.2"
+    "wrangler": "^3.78.7"
   }
 }

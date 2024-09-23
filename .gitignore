@@ -32,6 +32,7 @@ cloudflare/public/*
 !cloudflare/public/functions
 !**/cloudflare/public/functions
 **.lighthouseci
+.wrangler
 
 # mobile
 mobile/.expo
