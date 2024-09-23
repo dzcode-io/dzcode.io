@@ -12,7 +12,24 @@ import { ProjectRow, projectsTable } from "./table";
 export class ProjectRepository {
   constructor(private readonly sqliteService: SQLiteService) {}
 
+  public async findName(projectId: number) {
+    // @TODO-ZM: handle 404
+    const statement = sql`
+    SELECT
+        name
+    FROM
+        ${projectsTable}
+    WHERE
+        id = ${projectId}
+    `;
+    const raw = this.sqliteService.db.get(statement);
+    const unStringifiedRaw = unStringifyDeep(raw);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
+  }
+
   public async findWithStats(projectId: number) {
+    // @TODO-ZM: handle 404
     const statement = sql`
     SELECT
         p.id as id,

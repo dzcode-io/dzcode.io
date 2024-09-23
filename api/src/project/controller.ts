@@ -2,7 +2,7 @@ import { Controller, Get, Param } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ProjectRepository } from "./repository";
-import { GetProjectResponse, GetProjectsResponse } from "./types";
+import { GetProjectNameResponse, GetProjectResponse, GetProjectsResponse } from "./types";
 import { RepositoryRepository } from "src/repository/repository";
 import { ContributorRepository } from "src/contributor/repository";
 import { ContributionRepository } from "src/contribution/repository";
@@ -43,5 +43,12 @@ export class ProjectController {
         contributions,
       },
     };
+  }
+
+  @Get("/:id/name")
+  public async getProjectName(@Param("id") id: number): Promise<GetProjectNameResponse> {
+    const project = await this.projectRepository.findName(id);
+
+    return { project };
   }
 }

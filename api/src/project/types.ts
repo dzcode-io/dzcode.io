@@ -37,3 +37,7 @@ export interface GetProjectResponse extends GeneralResponse {
     stars: number;
   };
 }
+
+export interface GetProjectNameResponse extends GeneralResponse {
+  project: Pick<ProjectEntity, "name">;
+}
