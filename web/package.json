@@ -67,7 +67,7 @@
     "bundle:doctor": "RSDOCTOR=true rsbuild build",
     "bundle:preview": "rsbuild preview",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
-    "clean:alone": "del dist coverage bundle node_modules/.cache && del './cloudflare/public/!(functions)'",
+    "clean:alone": "del dist coverage bundle node_modules/.cache && del ./cloudflare/public",
     "deploy": "npm run generate:htmls && npm run generate:robots-txt && npm run generate:sitemap && del ./cloudflare/public && cpy \"./bundle/**/*\" ./cloudflare/public && cd ./cloudflare && npm install && npm run deploy:prd ",
     "deploy:stg": "npm run generate:htmls && npm run generate:robots-txt && npm run generate:sitemap && del ./cloudflare/public && cpy \"./bundle/**/*\" ./cloudflare/public && cd ./cloudflare && npm install && npm run deploy:stg",
     "e2e:dev": "npx wait-on http://localhost:8080/ && npx cypress open",

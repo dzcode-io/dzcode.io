@@ -5,7 +5,7 @@
   "scripts": {
     "deploy:prd": "wrangler pages deploy --project-name dzcode-dot-io --directory=./public --branch main",
     "deploy:stg": "wrangler pages deploy --project-name stage-dot-dzcode-dot-io --directory=./public --branch main",
-    "dev": "npm i && cd public && wrangler pages dev . --port 8080"
+    "dev": "npm i && wrangler pages dev . --port 8080"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240919.0",

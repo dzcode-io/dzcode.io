@@ -1,6 +1,6 @@
 declare const data: string;
 // @ts-expect-error cloudflare converts this to a string using esbuild
-import data from "../../index.html";
+import data from "../../public/index.html";
 
 export const onRequest: PagesFunction = (context) => {
   const pathName = new URL(context.request.url).pathname;
