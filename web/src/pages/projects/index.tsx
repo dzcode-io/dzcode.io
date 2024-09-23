@@ -46,12 +46,12 @@ export default function Page(): JSX.Element {
               <Link
                 href={getProjectURL(project)}
                 dir="ltr"
-                className="bg-base-200 w-96 flex-auto flex flex-col rounded-lg border-base-200 border-2 overflow-hidden"
+                className="bg-base-300 w-96 flex-auto flex flex-col rounded-lg border-base-200 border-2 overflow-hidden"
                 key={projectIndex}
               >
                 <h2 className="card-title p-4">{project.name}</h2>
                 <div className="flex-1" />
-                <div className="flex flex-row gap-4 justify-around bg-base-100 text-gray-500 p-2">
+                <div className="flex flex-row gap-4 justify-around bg-base-200 text-gray-500 p-2">
                   <div className="flex flex-row gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
