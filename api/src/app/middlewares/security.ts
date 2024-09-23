@@ -24,8 +24,8 @@ export class SecurityMiddleware implements ExpressMiddlewareInterface {
     if (this.env !== "development")
       this.router.use(
         rateLimit({
-          windowMs: 15 * 60 * 1000, // 15 minutes
-          max: 100, // limit each IP to 100 requests per windowMs
+          windowMs: 1 * 60 * 1000, // 1 minute
+          max: 1000, // limit each IP to 1000 requests per windowMs
         }),
       );
   }
