@@ -31,6 +31,7 @@ cloudflare/public/*
 **/cloudflare/public/*
 **.lighthouseci
 .wrangler
+**/cloudflare/wrangler.toml
 
 # mobile
 mobile/.expo
