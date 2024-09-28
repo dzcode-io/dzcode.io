@@ -30,9 +30,9 @@
     "semver": "^7.3.5",
     "syncpack": "^13.0.0",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2",
     "ts-patch": "^3.2.1",
     "ts-prune": "^0.10.3",
+    "tsx": "^4.19.1",
     "typescript": "5.5.3",
     "typescript-eslint": "^8.5.0",
     "typescript-transform-paths": "^3.5.0"
@@ -84,6 +84,7 @@
     "packages/*",
     "api",
     "data",
-    "web"
+    "web",
+    "web/cloudflare"
   ]
 }
