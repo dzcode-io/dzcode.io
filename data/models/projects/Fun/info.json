@@ -1,0 +1,10 @@
+{
+  "name": "Fun",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "omdxp",
+      "name": "fun"
+    }
+  ]
+}
