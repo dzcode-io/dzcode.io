@@ -13,7 +13,6 @@ export class ProjectRepository {
   constructor(private readonly sqliteService: SQLiteService) {}
 
   public async findName(projectId: number) {
-    // @TODO-ZM: handle 404
     const statement = sql`
     SELECT
         name
@@ -23,6 +22,8 @@ export class ProjectRepository {
         id = ${projectId}
     `;
     const raw = this.sqliteService.db.get(statement);
+    if (!raw) return null;
+
     const unStringifiedRaw = unStringifyDeep(raw);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;

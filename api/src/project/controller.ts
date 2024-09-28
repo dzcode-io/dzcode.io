@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from "routing-controllers";
+import { Controller, Get, NotFoundError, Param } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ProjectRepository } from "./repository";
@@ -48,6 +48,8 @@ export class ProjectController {
   @Get("/:id/name")
   public async getProjectName(@Param("id") id: number): Promise<GetProjectNameResponse> {
     const project = await this.projectRepository.findName(id);
+
+    if (!project) throw new NotFoundError("Project not found");
 
     return { project };
   }
