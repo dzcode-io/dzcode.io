@@ -1,10 +1,10 @@
 import { allLanguages } from "@dzcode.io/models/dist/language";
 import { plainLocalize } from "../../components/locale/utils";
-import { dictionary } from "../../components/locale/dictionary";
+import { dictionary, AllDictionaryKeys } from "../../components/locale/dictionary";
 
 import { PageInfo, PageInfoWithLocalKeys } from ".";
 
-const localize = (key: string, language: string) =>
+const localize = (key: AllDictionaryKeys, language: string) =>
   plainLocalize(dictionary, language, key, "NO-TRANSLATION");
 
 const staticURLs: PageInfoWithLocalKeys[] = [

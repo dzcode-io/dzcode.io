@@ -16,7 +16,7 @@
     "deploy:prd": "wrangler pages deploy --project-name dzcode-dot-io --directory=./public --branch main",
     "deploy:stg": "wrangler pages deploy --project-name stage-dot-dzcode-dot-io --directory=./public --branch main",
     "dev": "npm run build && wrangler pages dev . --port 8080",
-    "generate:htmls": "cd .. && npm run bundle && npm run pre-deploy",
+    "dev:prepare": "npm run build && cd .. && npm run bundle && npm run pre-deploy",
     "lint:eslint": "eslint --config ../../packages/tooling/eslint.config.mjs",
     "lint:prettier": "prettier  --config ../../packages/tooling/.prettierrc --ignore-path ../../packages/tooling/.prettierignore --log-level warn"
   }
