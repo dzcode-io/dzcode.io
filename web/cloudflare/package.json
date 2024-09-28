@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "@dzcode.io/utils": "*",
+    "@dzcode.io/models": "*",
     "@dzcode.io/web": "*"
   },
   "devDependencies": {

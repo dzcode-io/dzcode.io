@@ -6,7 +6,7 @@ import { join } from "path";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { allPages } from "./pages";
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
-import { SENTRY_ORIGIN } from "../utils/sentry-origin";
+import { SENTRY_ORIGIN } from "../../src/utils/sentry-origin";
 
 let stage = process.env.STAGE as Environment;
 if (!environments.includes(stage)) {
