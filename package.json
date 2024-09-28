@@ -73,6 +73,7 @@
     "lint:staged": "lerna exec --since HEAD --concurrency 1 --stream -- lint-staged && lint-staged",
     "patch-package": "patch-package --patch-dir packages/tooling/patches",
     "postinstall": "npm run patch-package && (husky install && husky set .husky/pre-commit \"npm run lint:staged\") || exit 0",
+    "pre-deploy": "lerna run pre-deploy --parallel",
     "prepare": "ts-patch install -s",
     "start:dev": "lerna run start:dev --parallel",
     "test": "npm run build && npm run test:alone",
