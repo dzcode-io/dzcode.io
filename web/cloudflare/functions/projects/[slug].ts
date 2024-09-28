@@ -1,6 +1,7 @@
-declare const htmlTemplate: string;
-// @ts-expect-error cloudflare converts this to a string using esbuild
+declare const htmlTemplate: string; // @ts-expect-error cloudflare converts this to a string using esbuild
 import htmlTemplate from "../../public/template.html";
+declare const notFoundEn: string; // @ts-expect-error cloudflare converts this to a string using esbuild
+import notFoundEn from "../../public/404.html";
 
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
@@ -24,11 +25,14 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
   const pathName = new URL(context.request.url).pathname;
 
-  const slug = pathName.split("/").pop();
-  const projectId = slug?.split("-").pop();
+  const projectIdRegex = /projects\/(.*)-(.\d)+/;
+  const projectId = pathName?.match(projectIdRegex)?.[2];
 
-  // @TODO-ZM: render 404 page
-  if (!projectId) return new Response("Not found", { status: 404 });
+  if (!projectId)
+    return new Response(notFoundEn, {
+      headers: { "content-type": "text/html; charset=utf-8" },
+      status: 404,
+    });
 
   // @TODO-ZM: get language from request url
   const language = "en";
@@ -45,9 +49,5 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     .replace(/{{template-title}}/g, pageTitle)
     .replace(/{{template-description}}/g, localize("projects-description"));
 
-  return new Response(newData, {
-    headers: {
-      "content-type": "text/html; charset=utf-8",
-    },
-  });
+  return new Response(newData, { headers: { "content-type": "text/html; charset=utf-8" } });
 };
