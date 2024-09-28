@@ -25,7 +25,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
   const pathName = new URL(context.request.url).pathname;
 
-  const projectIdRegex = /projects\/(.*)-(.\d)+/;
+  const projectIdRegex = /projects\/(.*)-(.\d+)/;
   const projectId = pathName?.match(projectIdRegex)?.[2];
 
   if (!projectId)
