@@ -41,6 +41,14 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
   // @TODO-ZM: use fetchV2
   const projectResponse = await fetch(`${apiUrl}/Projects/${projectId}/name`);
+
+  if (!projectResponse.ok) {
+    return new Response(notFoundEn, {
+      headers: { "content-type": "text/html; charset=utf-8" },
+      status: 404,
+    });
+  }
+
   const projectData = await projectResponse.json();
   // @ts-expect-error @TODO-ZM: import @dzcode.io/api
   const pageTitle = `${localize("project-title-pre")} ${projectData.project.name} ${localize("project-title-post")}`;
