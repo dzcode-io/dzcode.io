@@ -1,8 +1,9 @@
 {
-  "name": "dzcode-dot-io",
+  "name": "@dzcode.io/cloudflare",
   "version": "0.0.0",
   "dependencies": {
-    "@dzcode.io/utils": "*"
+    "@dzcode.io/utils": "*",
+    "@dzcode.io/web": "*"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240919.0",
@@ -11,9 +12,10 @@
   },
   "private": true,
   "scripts": {
+    "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "deploy:prd": "wrangler pages deploy --project-name dzcode-dot-io --directory=./public --branch main",
     "deploy:stg": "wrangler pages deploy --project-name stage-dot-dzcode-dot-io --directory=./public --branch main",
-    "dev": "wrangler pages dev . --port 8080",
+    "dev": "npm run build && wrangler pages dev . --port 8080",
     "generate:htmls": "cd .. && npm run bundle && npm run pre-deploy",
     "lint:eslint": "eslint --config ../../packages/tooling/eslint.config.mjs",
     "lint:prettier": "prettier  --config ../../packages/tooling/.prettierrc --ignore-path ../../packages/tooling/.prettierignore --log-level warn"

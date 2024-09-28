@@ -4,6 +4,8 @@ import htmlTemplate from "../../public/template.html";
 
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
+import { plainLocalize } from "@dzcode.io/web/dist/components/locale/utils";
+import { dictionary } from "@dzcode.io/web/dist/components/locale/dictionary";
 
 // @TODO-ZM: pass envs during deployment
 export interface Env {
@@ -28,15 +30,17 @@ export const onRequest: PagesFunction<Env> = async (context) => {
   // @TODO-ZM: render 404 page
   if (!projectId) return new Response("Not found", { status: 404 });
 
+  // @TODO-ZM: get language from request url
+  const language = "en";
+  const localize = (key: string) => plainLocalize(dictionary, language, key, "NO-TRANSLATION");
+
   // @TODO-ZM: use fetchV2
-  console.log("zako", `${apiUrl}/Projects/${projectId}/name`);
   const projectResponse = await fetch(`${apiUrl}/Projects/${projectId}/name`);
   const projectData = await projectResponse.json();
-  // @ts-expect-error @TODO-ZM: import @dzcode.oi/api
-  // @TODO-ZM: localize
-  const pageTitle = `See the details of ${projectData.project.name} project | DzCode i/o`;
+  // @ts-expect-error @TODO-ZM: import @dzcode.io/api
+  const pageTitle = `${localize("project-title-pre")} ${projectData.project.name} ${localize("project-title-post")}`;
 
-  const newData = htmlTemplate.replace(/{{template-title}}/, pageTitle);
+  const newData = htmlTemplate.replace(/{{template-title}}/g, pageTitle);
 
   return new Response(newData, {
     headers: {

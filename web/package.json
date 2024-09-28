@@ -62,6 +62,7 @@
   },
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
+    "build:alone": "tspc",
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
     "bundle": "npm run build && npm run bundle:alone",
     "bundle:alone": "cross-env NODE_ENV=production rsbuild build",
