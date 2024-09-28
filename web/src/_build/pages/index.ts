@@ -2,6 +2,7 @@ import { LanguageEntity } from "@dzcode.io/models/dist/language";
 
 import { AllDictionaryKeys } from "../../components/locale/dictionary";
 import { staticPages } from "./static-pages";
+import { templatePages } from "./template-pages";
 
 export interface PageInfo {
   uri: string;
@@ -18,4 +19,6 @@ export type PageInfoWithLocalKeys = Omit<PageInfo, "lang" | "title" | "descripti
 };
 // ts-prune-ignore-next
 export { staticPages } from "./static-pages";
-export const allPages = [...staticPages];
+export { templatePages } from "./template-pages";
+
+export const allPages = [...staticPages, ...templatePages];
