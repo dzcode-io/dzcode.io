@@ -247,6 +247,50 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "project | DzCode i/o",
     ar: " | DzCode i / o",
   },
+  "project-breadcrumbs-1": {
+    en: "Projects",
+    ar: "مشاريع",
+  },
+  "project-total-stars": {
+    en: "Total Stars",
+    ar: "إجمالي النجوم",
+  },
+  "project-from-n-repositories-pre": {
+    en: "From",
+    ar: "من",
+  },
+  "project-from-n-repositories-post": {
+    en: "repositories",
+    ar: "مستودعات",
+  },
+  "project-total-activities": {
+    en: "Total Activities",
+    ar: "إجمالي الأنشطة",
+  },
+  "project-from-n-contributors-pre": {
+    en: "From",
+    ar: "من",
+  },
+  "project-from-n-contributors-post": {
+    en: "contributors",
+    ar: "مساهمين",
+  },
+  "project-contributors": {
+    en: "Contributors",
+    ar: "مساهمين",
+  },
+  "project-show-top-n": {
+    en: "Show top",
+    ar: "عرض أعلى",
+  },
+  "project-repositories": {
+    en: "Repositories",
+    ar: "مستودعات",
+  },
+  "project-you-can-help": {
+    en: "You can help",
+    ar: "يمكنك المساعدة",
+  },
   "notfound-title": {
     en: "A broken link? | DzCode i/o",
     ar: "عنوان url معطل؟ | DzCode i / o",

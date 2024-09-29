@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Loading } from "src/components/loading";
-import { useLocale } from "src/components/locale";
+import { Locale, useLocale } from "src/components/locale";
 import { TryAgain } from "src/components/try-again";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
 import { fetchProjectAction } from "src/redux/actions/project";
@@ -58,7 +58,7 @@ export default function Page(): JSX.Element {
         <ul>
           <li>
             <Link className="link" href="/projects">
-              Projects
+              <Locale project-breadcrumbs-1 />
             </Link>
           </li>
           {project !== "ERROR" && project !== null ? <li>{project.name}</li> : null}
@@ -97,9 +97,14 @@ export default function Page(): JSX.Element {
                     />
                   </svg>
                 </div>
-                <div className="stat-title">Total Stars</div>
+                <div className="stat-title">
+                  <Locale project-total-stars />
+                </div>
                 <div className="stat-value text-primary">{project.stars}</div>
-                <div className="stat-desc">from {project.repositoryCount} repositories</div>
+                <div className="stat-desc">
+                  <Locale project-from-n-repositories-pre /> {project.repositoryCount}{" "}
+                  <Locale project-from-n-repositories-post />
+                </div>
               </div>
 
               <div className="stat">
@@ -119,9 +124,14 @@ export default function Page(): JSX.Element {
                     />
                   </svg>
                 </div>
-                <div className="stat-title">Total Activities</div>
+                <div className="stat-title">
+                  <Locale project-total-activities />
+                </div>
                 <div className="stat-value text-secondary">{project.activityCount}</div>
-                <div className="stat-desc">from {project.contributorCount} contributors</div>
+                <div className="stat-desc">
+                  <Locale project-from-n-contributors-pre /> {project.contributorCount}{" "}
+                  <Locale project-from-n-contributors-post />
+                </div>
               </div>
 
               <div className="stat">
@@ -141,29 +151,33 @@ export default function Page(): JSX.Element {
                   </div>
                 </div>
                 <div className="stat-value">{project.contributorCount}</div>
-                <div className="stat-title">Contributors</div>
+                <div className="stat-title">
+                  <Locale project-contributors />
+                </div>
                 <div className="stat-desc">
                   {remainingContributorsCount > 0
-                    ? `showing top ${topMax}`
-                    : `from ${project.repositoryCount} repositories`}
+                    ? `${localize("project-show-top-n")} ${topMax}`
+                    : `${localize("project-from-n-repositories-pre")} ${project.repositoryCount} ${localize("project-from-n-repositories-post")}`}
                 </div>
               </div>
             </div>
-            <h2 className="text-lg font-bold">Repositories</h2>
+            <h2 className="text-lg font-bold">
+              <Locale project-repositories />
+            </h2>
             <div className="flex flex-row gap-4 flex-wrap">
               {project.repositories.map((repository, repositoryIndex) => (
                 <div
                   key={repositoryIndex}
-                  className="card card-compact bg-base-200 w-full md:w-auto rounded-lg"
+                  className="card card-compact bg-base-200 w-full md:w-auto rounded-lg overflow-hidden"
                 >
-                  <div className="flex flex-row pl-4 gap-4">
+                  <div className="flex flex-row ps-4 gap-4">
                     <span className="card-title gap-0 flex-1">
                       {repository.owner}/<strong>{repository.name}</strong>
                     </span>
                     <Link
                       target="_blank"
                       href={getRepositoryURL(repository)}
-                      className="link btn btn-ghost rounded-lg rounded-tl-none rounded-bl-none"
+                      className="link btn btn-ghost rounded-none"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -184,7 +198,9 @@ export default function Page(): JSX.Element {
                 </div>
               ))}
             </div>
-            <h2 className="text-lg font-bold">Contributors</h2>
+            <h2 className="text-lg font-bold">
+              <Locale project-contributors />
+            </h2>
             <div className="flex flex-row gap-4 flex-wrap justify-j">
               {project.contributors.map((contributor, contributorIndex) => (
                 <Link
@@ -203,7 +219,9 @@ export default function Page(): JSX.Element {
             </div>
             {project.contributions.length > 0 ? (
               <>
-                <h2 className="text-lg font-bold">You can help</h2>
+                <h2 className="text-lg font-bold">
+                  <Locale project-you-can-help />
+                </h2>
                 <div className="flex flex-row gap-4 flex-wrap">
                   {project.contributions.map((contribution, contributionIndex) => (
                     <Link
