@@ -2,7 +2,12 @@ import { Controller, Get, NotFoundError, Param } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ProjectRepository } from "./repository";
-import { GetProjectNameResponse, GetProjectResponse, GetProjectsResponse } from "./types";
+import {
+  GetProjectNameResponse,
+  GetProjectResponse,
+  GetProjectsForSitemapResponse,
+  GetProjectsResponse,
+} from "./types";
 import { RepositoryRepository } from "src/repository/repository";
 import { ContributorRepository } from "src/contributor/repository";
 import { ContributionRepository } from "src/contribution/repository";
@@ -20,6 +25,15 @@ export class ProjectController {
   @Get("/")
   public async getProjects(): Promise<GetProjectsResponse> {
     const projects = await this.projectRepository.findForList();
+
+    return {
+      projects,
+    };
+  }
+
+  @Get("/for-sitemap")
+  public async getProjectsForSitemap(): Promise<GetProjectsForSitemapResponse> {
+    const projects = await this.projectRepository.findForSitemap();
 
     return {
       projects,

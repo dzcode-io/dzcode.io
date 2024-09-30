@@ -93,6 +93,37 @@ export class ProjectRepository {
     return camelCased;
   }
 
+  public async findForSitemap() {
+    const statement = sql`
+    SELECT
+        p.id as id,
+        p.slug as slug,
+        100 * sum(rs.repo_contributor_count) + 100 * sum(rs.stars) + max(rs.repo_score) - sum(rs.repo_score) / sum(rs.repo_contributor_count)  as score
+    FROM
+        (SELECT
+            *,
+            sum(crr.score) as repo_score,
+            count(*) as repo_contributor_count,
+            sum(r.stars) as stars
+        FROM
+            ${contributorRepositoryRelationTable} crr
+        JOIN
+            ${repositoriesTable} r ON crr.repository_id = r.id
+        GROUP BY
+            r.id) as rs
+    JOIN
+        ${projectsTable} p ON rs.project_id = p.id
+    GROUP BY
+        p.id
+    ORDER BY
+        score DESC
+    `;
+    const raw = this.sqliteService.db.all(statement);
+    const unStringifiedRaw = unStringifyDeep(raw);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
+  }
+
   public async upsert(project: ProjectRow) {
     return await this.sqliteService.db
       .insert(projectsTable)
