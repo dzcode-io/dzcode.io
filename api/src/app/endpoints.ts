@@ -2,6 +2,7 @@ import { GetContributionsResponse } from "src/contribution/types";
 import { GetContributorsResponse } from "src/contributor/types";
 import { GetMilestonesResponse } from "src/milestone/types";
 import {
+  GetProjectNameResponse,
   GetProjectResponse,
   GetProjectsForSitemapResponse,
   GetProjectsResponse,
@@ -16,11 +17,13 @@ export interface Endpoints {
   "api:projects/for-sitemap": {
     response: GetProjectsForSitemapResponse;
   };
+  "api:projects/:id/name": {
+    response: GetProjectNameResponse;
+    params: { id: string };
+  };
   "api:Projects/:id": {
     response: GetProjectResponse;
-    params: {
-      id: string;
-    };
+    params: { id: string };
   };
   "api:Contributions": {
     response: GetContributionsResponse;

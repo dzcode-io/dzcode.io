@@ -10,6 +10,8 @@ import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { plainLocalize } from "@dzcode.io/web/dist/components/locale/utils";
 import { dictionary, AllDictionaryKeys } from "@dzcode.io/web/dist/components/locale/dictionary";
 import { LanguageEntity } from "@dzcode.io/models/dist/language";
+import { fetchV2Factory } from "@dzcode.io/utils/dist/fetch/factory";
+import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
 
 export interface Env {
   STAGE: Environment;
@@ -21,9 +23,6 @@ export const handleProjectRequest: PagesFunction<Env> = async (context) => {
     console.log(`⚠️  No STAGE provided, falling back to "development"`);
     stage = "development";
   }
-  const fullstackConfig = fsConfig(stage);
-
-  const apiUrl = fullstackConfig.api.url;
 
   const pathName = new URL(context.request.url).pathname;
 
@@ -44,24 +43,26 @@ export const handleProjectRequest: PagesFunction<Env> = async (context) => {
   const localize = (key: AllDictionaryKeys) =>
     plainLocalize(dictionary, language, key, "NO-TRANSLATION");
 
-  // @TODO-ZM: use fetchV2
-  const projectResponse = await fetch(`${apiUrl}/Projects/${projectId}/name`);
+  const fullstackConfig = fsConfig(stage);
+  const fetchV2 = fetchV2Factory<Endpoints>(fullstackConfig);
 
-  if (!projectResponse.ok) {
+  try {
+    const { project } = await fetchV2("api:projects/:id/name", { params: { id: projectId } });
+    const pageTitle = `${localize("project-title-pre")} ${project.name} ${localize("project-title-post")}`;
+
+    const newData = htmlTemplate
+      .replace(/{{template-title}}/g, pageTitle)
+      .replace(/{{template-description}}/g, localize("projects-description"))
+      .replace(/{{template-lang}}/g, language);
+
+    return new Response(newData, { headers: { "content-type": "text/html; charset=utf-8" } });
+  } catch (error) {
+    // @TODO-ZM: log error to sentry
+    console.error(error);
+
     return new Response(notFound, {
       headers: { "content-type": "text/html; charset=utf-8" },
       status: 404,
     });
   }
-
-  const projectData = await projectResponse.json();
-  // @ts-expect-error @TODO-ZM: import @dzcode.io/api
-  const pageTitle = `${localize("project-title-pre")} ${projectData.project.name} ${localize("project-title-post")}`;
-
-  const newData = htmlTemplate
-    .replace(/{{template-title}}/g, pageTitle)
-    .replace(/{{template-description}}/g, localize("projects-description"))
-    .replace(/{{template-lang}}/g, language);
-
-  return new Response(newData, { headers: { "content-type": "text/html; charset=utf-8" } });
 };

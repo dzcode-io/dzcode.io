@@ -30,7 +30,6 @@ export class ProjectRepository {
   }
 
   public async findWithStats(projectId: number) {
-    // @TODO-ZM: handle 404
     const statement = sql`
     SELECT
         p.id as id,
@@ -53,6 +52,8 @@ export class ProjectRepository {
         r.project_id
     `;
     const raw = this.sqliteService.db.get(statement);
+    if (!raw) return null;
+
     const unStringifiedRaw = unStringifyDeep(raw);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;

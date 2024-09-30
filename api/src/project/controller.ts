@@ -49,6 +49,8 @@ export class ProjectController {
       await this.contributionRepository.findForProject(id),
     ]);
 
+    if (!project) throw new NotFoundError("Project not found");
+
     return {
       project: {
         ...project,
