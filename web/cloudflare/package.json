@@ -4,7 +4,8 @@
   "dependencies": {
     "@dzcode.io/utils": "*",
     "@dzcode.io/models": "*",
-    "@dzcode.io/web": "*"
+    "@dzcode.io/web": "*",
+    "@dzcode.io/api": "*"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240919.0",

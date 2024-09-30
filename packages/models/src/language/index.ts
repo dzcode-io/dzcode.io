@@ -1,6 +1,6 @@
 export const allLanguages = [
-  { code: "en", shortLabel: "EN", label: "English", direction: "ltr" },
-  { code: "ar", shortLabel: "ع", label: "العربية", direction: "rtl" },
+  { code: "en", shortLabel: "EN", label: "English", direction: "ltr", baseUrl: "" },
+  { code: "ar", shortLabel: "ع", label: "العربية", direction: "rtl", baseUrl: "/ar" },
 ] as const;
 
 export interface LanguageEntity {
