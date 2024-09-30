@@ -17,8 +17,7 @@ export type PageInfoWithLocalKeys = Omit<PageInfo, "lang" | "title" | "descripti
   title: AllDictionaryKeys;
   description: AllDictionaryKeys;
 };
-// ts-prune-ignore-next
+
 export { staticPages } from "./static-pages";
-export { templatePages } from "./template-pages";
 
 export const allPages = [...staticPages, ...templatePages];

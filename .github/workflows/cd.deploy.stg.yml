@@ -4,9 +4,6 @@ on:
   push:
     tags:
       - "stg-v*"
-    branches:
-      # @TODO-ZM: Remove this
-      - project-detail
   workflow_dispatch:
 
 jobs:

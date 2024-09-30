@@ -41,7 +41,6 @@ export default function Page(): JSX.Element {
     return <Redirect href="/projects" />;
   }
 
-  // @TODO-ZM: localize
   return (
     <main className="flex flex-col self-center w-full max-w-7xl">
       {project !== "ERROR" && project !== null ? (
