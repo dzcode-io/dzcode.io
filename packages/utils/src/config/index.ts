@@ -3,6 +3,8 @@ import { Environment } from "./environment";
 const apiPort = 7070;
 const frontendPort = 8080;
 
+export type FullstackConfig = ReturnType<typeof fsConfig>;
+
 export const fsConfig = (env: Environment, extra?: Record<string, unknown>) => {
   const hostname = extra?.hostname || "localhost";
   const e = ["development", "staging", "production"].indexOf(env);
