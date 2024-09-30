@@ -7,18 +7,19 @@
     "name": "Zakaria Mansouri",
     "url": "https://www.zakiii.com"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
     "@dzcode.io/api": "*",
     "@dzcode.io/data": "*",
     "@dzcode.io/models": "*",
+    "@dzcode.io/utils": "*",
     "@sentry/react": "^8.27.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5"
   },
-  "browserslist": [
-    "defaults"
-  ],
   "devDependencies": {
     "@loadable/component": "^5.16.4",
     "@reduxjs/toolkit": "^2.2.6",
@@ -61,21 +62,24 @@
   },
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
+    "build:alone": "tspc",
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
     "bundle": "npm run build && npm run bundle:alone",
     "bundle:alone": "cross-env NODE_ENV=production rsbuild build",
-    "bundle:preview": "rsbuild preview",
     "bundle:doctor": "RSDOCTOR=true rsbuild build",
+    "bundle:preview": "rsbuild preview",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
-    "clean:alone": "rimraf dist coverage bundle node_modules/.cache && rimraf ./cloudflare/public",
-    "deploy": "npm run generate:htmls && npm run generate:robots-txt && npm run generate:sitemap && rimraf ./cloudflare/public && cpy \"./bundle/**/*\" ./cloudflare/public && cd ./cloudflare && npm install && npm run deploy:prd ",
-    "deploy:stg": "npm run generate:htmls && npm run generate:robots-txt && npm run generate:sitemap && rimraf ./cloudflare/public && cpy \"./bundle/**/*\" ./cloudflare/public && cd ./cloudflare && npm install && npm run deploy:stg",
+    "clean:alone": "del dist coverage bundle node_modules/.cache && del ./cloudflare/public",
+    "deploy": "cd ./cloudflare && npm install && npm run deploy:prd ",
+    "deploy:stg": "cd ./cloudflare && npm install && npm run deploy:stg",
     "e2e:dev": "npx wait-on http://localhost:8080/ && npx cypress open",
     "generate:bundle-info": "ts-node ../packages/tooling/bundle-info.ts",
-    "generate:htmls": "cross-env TS_NODE_SKIP_PROJECT=true ts-node --compilerOptions \"{\\\"baseUrl\\\": \\\".\\\"}\" src/_build/gen-multiple-htmls.ts",
-    "generate:robots-txt": "cross-env TS_NODE_SKIP_PROJECT=true ts-node --compilerOptions \"{\\\"baseUrl\\\": \\\".\\\"}\" src/_build/gen-robots-txt.ts",
+    "generate:htmls": "npx tsx src/_build/gen-multiple-htmls.ts",
+    "generate:robots-txt": "npx tsx src/_build/gen-robots-txt.ts",
     "generate:sentry-release": "ts-node ../packages/tooling/sentry-release.ts web bundle",
-    "generate:sitemap": "cross-env TS_NODE_SKIP_PROJECT=true ts-node --compilerOptions \"{\\\"baseUrl\\\": \\\".\\\"}\" src/_build/sitemap.ts",
+    "generate:sitemap": "npx tsx src/_build/sitemap.ts",
+    "lh:collect": "npx --yes @lhci/cli collect",
+    "lh:upload": "npx --yes @lhci/cli upload",
     "lint": "npm run build && npm run lint:alone",
     "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check . && npm run lint:tsc && npm run lint:ts-prune",
     "lint:eslint": "eslint --config ../packages/tooling/eslint.config.mjs",
@@ -84,11 +88,10 @@
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --log-level warn",
     "lint:ts-prune": "ts-node ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",
+    "pre-deploy": "npm run generate:htmls && npm run generate:robots-txt && npm run generate:sitemap && del ./cloudflare/public && cpy \"./bundle/**/*\" ./cloudflare/public",
     "start:dev": "rsbuild dev --open",
     "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
-    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --",
-    "lh:collect": "npx --yes @lhci/cli collect",
-    "lh:upload": "npx --yes @lhci/cli upload"
+    "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"
   }
 }

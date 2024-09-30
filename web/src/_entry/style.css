@@ -4,6 +4,7 @@
 
 .absolute-center-child {
   position: relative;
+  align-self: center;
 
   > * {
     position: absolute;

@@ -85,6 +85,7 @@ export class DigestCron {
               owner: repoInfo.owner.login,
               runId,
               projectId,
+              stars: repoInfo.stargazers_count,
             });
             addedRepositoryCount++;
 

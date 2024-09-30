@@ -18,7 +18,6 @@ import { ProjectController } from "src/project/controller";
 import { SQLiteService } from "src/sqlite/service";
 import Container from "typedi";
 
-import { ErrorMiddleware } from "./middlewares/error";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { RobotsController } from "./middlewares/robots";
 import { SecurityMiddleware } from "./middlewares/security";
@@ -45,8 +44,7 @@ const routingControllersOptions: RoutingControllersOptions = {
     ContributorController,
     RobotsController,
   ],
-  middlewares: [SecurityMiddleware, ErrorMiddleware, LoggerMiddleware],
-  defaultErrorHandler: false,
+  middlewares: [SecurityMiddleware, LoggerMiddleware],
   cors: Container.get(SecurityMiddleware).cors(),
 };
 const app: Application = createExpressServer(routingControllersOptions);

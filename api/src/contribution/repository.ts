@@ -14,6 +14,29 @@ import { ContributionRow, contributionsTable } from "./table";
 export class ContributionRepository {
   constructor(private readonly sqliteService: SQLiteService) {}
 
+  public async findForProject(projectId: number) {
+    const statement = sql`
+    SELECT
+        c.id as id,
+        c.title as title,
+        c.type as type
+    FROM
+        ${contributionsTable} c
+    INNER JOIN
+        ${repositoriesTable} r ON c.repository_id = r.id
+    WHERE
+        r.project_id = ${projectId}
+    ORDER BY
+        c.updated_at DESC
+    `;
+
+    const raw = this.sqliteService.db.all(statement);
+    const unStringifiedRaw = unStringifyDeep(raw);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+
+    return camelCased;
+  }
+
   public async upsert(contribution: ContributionRow) {
     return await this.sqliteService.db
       .insert(contributionsTable)

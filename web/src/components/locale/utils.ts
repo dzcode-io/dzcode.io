@@ -1,9 +1,9 @@
 import type { BaseDictionary } from "./types";
 
-export function plainLocalize(
-  dictionary: BaseDictionary,
+export function plainLocalize<T extends BaseDictionary>(
+  dictionary: T,
   languageCode: string,
-  key: string,
+  key: keyof T,
   fallbackText: string,
 ) {
   return dictionary[key]?.[languageCode] || fallbackText;

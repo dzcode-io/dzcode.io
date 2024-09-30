@@ -1,12 +1,26 @@
 {
-  "name": "dzcode-dot-io",
+  "name": "@dzcode.io/cloudflare",
   "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "deploy:prd": "wrangler pages deploy --project-name dzcode-dot-io --directory=./public --branch main",
-    "deploy:stg": "wrangler pages deploy --project-name stage-dot-dzcode-dot-io --directory=./public --branch main"
+  "dependencies": {
+    "@dzcode.io/utils": "*",
+    "@dzcode.io/models": "*",
+    "@dzcode.io/web": "*",
+    "@dzcode.io/api": "*"
   },
   "devDependencies": {
-    "wrangler": "^3.78.2"
+    "@cloudflare/workers-types": "^4.20240919.0",
+    "typescript": "^5.6.2",
+    "wrangler": "^3.78.7"
+  },
+  "private": true,
+  "scripts": {
+    "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
+    "generate:config": "npx tsx scripts/generate-config.ts",
+    "deploy:prd": "npm run generate:config -- production && wrangler pages deploy --branch main",
+    "deploy:stg": "npm run generate:config -- staging && wrangler pages deploy --branch main",
+    "dev": "npm run build && wrangler pages dev . --port 8080",
+    "dev:prepare": "npm run build && cd .. && npm run bundle && npm run pre-deploy",
+    "lint:eslint": "eslint --config ../../packages/tooling/eslint.config.mjs",
+    "lint:prettier": "prettier  --config ../../packages/tooling/.prettierrc --ignore-path ../../packages/tooling/.prettierignore --log-level warn"
   }
 }

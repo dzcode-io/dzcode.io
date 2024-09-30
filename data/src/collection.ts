@@ -47,7 +47,7 @@ export const getCollection = <T = Record<string, unknown>>(
       language,
     );
     return {
-      slug,
+      slug: slug.toLowerCase(),
       ...(entry === 404 ? { error: { code: 404 } } : entry),
     };
   });

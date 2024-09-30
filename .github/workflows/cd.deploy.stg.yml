@@ -48,6 +48,8 @@ jobs:
         run: npx lerna run bundle:alone --scope @dzcode.io/web
       - name: "Sentry Release"
         run: npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
+      - name: "Pre-deploy"
+        run: npm run pre-deploy
       - name: "Deploy"
         run: npm run deploy:stg
 

@@ -25,7 +25,7 @@
     "build:alone:watch": "tsc --watch --preserveWatchOutput",
     "build:watch": "npm run build & npx lerna run build:alone:watch --scope=@dzcode.io/utils --include-dependencies --parallel",
     "clean": "lerna run clean:alone --scope=@dzcode.io/utils --include-dependencies --stream",
-    "clean:alone": "rimraf dist coverage",
+    "clean:alone": "del dist coverage",
     "lint": "npm run build && npm run lint:alone",
     "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check .",
     "lint:eslint": "eslint --config ../tooling/eslint.config.mjs",

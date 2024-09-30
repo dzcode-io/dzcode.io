@@ -1,10 +1,10 @@
 import { allLanguages } from "@dzcode.io/models/dist/language";
 import { plainLocalize } from "../../components/locale/utils";
-import { dictionary } from "../../components/locale/dictionary";
+import { dictionary, AllDictionaryKeys } from "../../components/locale/dictionary";
 
 import { PageInfo, PageInfoWithLocalKeys } from ".";
 
-const localize = (key: string, language: string) =>
+const localize = (key: AllDictionaryKeys, language: string) =>
   plainLocalize(dictionary, language, key, "NO-TRANSLATION");
 
 const staticURLs: PageInfoWithLocalKeys[] = [
@@ -14,7 +14,7 @@ const staticURLs: PageInfoWithLocalKeys[] = [
     description: "landing-description",
     ogImage:
       "https://images.unsplash.com/photo-1527285341945-715b98b98ea2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&h=627&q=80",
-    keywords: "",
+    keywords: "open-source, algeria, dzcode",
   },
   {
     uri: "/contribute",

@@ -8,12 +8,14 @@ import { contributorsPageSlice } from "./slices/contributors-page";
 import { landingPageSlice } from "./slices/landing-page";
 import { projectsPageSlice } from "./slices/projects-page";
 import { settingsSlice } from "./slices/settings";
+import { projectPageSlice } from "./slices/project-page";
 
 const makeAppStore = () => {
   return configureStore({
     reducer: {
       settings: settingsSlice.reducer,
       projectsPage: projectsPageSlice.reducer,
+      projectPage: projectPageSlice.reducer,
       contributorsPage: contributorsPageSlice.reducer,
       contributionsPage: contributionsPageSlice.reducer,
       landingPage: landingPageSlice.reducer,

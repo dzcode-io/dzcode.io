@@ -25,16 +25,22 @@ let routes: Array<
     path: "/projects",
   },
   {
+    pageName: "projects/project",
+    path: "/projects/:projectSlugWithId",
+  },
+  {
     pageName: "faq",
     path: "/faq",
   },
   {
     pageName: "contribute",
-    path: "/contribute",
+    // @TODO-ZM: change this back once we have contribution page
+    path: "/contribute/:slug?",
   },
   {
     pageName: "team",
-    path: "/team",
+    // @TODO-ZM: change this back once we have contributor page
+    path: "/team/:slug?",
   },
   {
     pageName: "not-found",
