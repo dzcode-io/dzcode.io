@@ -116,7 +116,10 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
             alt="DzCode i/o SVG Logo wide"
           />
         </Link>
-        <div role="tablist" className="tabs tabs-lifted tab-border-none tabs-lg overflow-x-auto">
+        <div
+          role="tablist"
+          className="tabs tabs-lifted tab-border-none pr-2 pl-2 tabs-lg overflow-x-auto"
+        >
           {links.map(({ localeKey, href }, index) => (
             <Link
               href={href}
