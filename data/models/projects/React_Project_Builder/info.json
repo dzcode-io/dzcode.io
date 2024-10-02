@@ -1,10 +1,20 @@
 {
-  "name": "React Project Builder",
+  "name": "React and React Native Project Builder",
   "repositories": [
     {
       "provider": "github",
       "owner": "AmineVolk",
       "name": "react-project-builder"
+    },
+    {
+      "provider": "github",
+      "owner": "Omar-Belghaouti",
+      "name": "react-help-create"
+    },
+    {
+      "provider": "github",
+      "owner": "Omar-Belghaouti",
+      "name": "react-native-help-create"
     }
   ]
 }
