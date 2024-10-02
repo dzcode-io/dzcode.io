@@ -2,10 +2,10 @@
   "name": "@dzcode.io/cloudflare",
   "version": "0.0.0",
   "dependencies": {
-    "@dzcode.io/utils": "*",
+    "@dzcode.io/api": "*",
     "@dzcode.io/models": "*",
-    "@dzcode.io/web": "*",
-    "@dzcode.io/api": "*"
+    "@dzcode.io/utils": "*",
+    "@dzcode.io/web": "*"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240919.0",
@@ -15,11 +15,11 @@
   "private": true,
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
-    "generate:config": "npx tsx scripts/generate-config.ts",
     "deploy:prd": "npm run generate:config -- production && wrangler pages deploy --branch main",
     "deploy:stg": "npm run generate:config -- staging && wrangler pages deploy --branch main",
     "dev": "npm run build && wrangler pages dev . --port 8080",
     "dev:prepare": "npm run build && cd .. && npm run bundle && npm run pre-deploy",
+    "generate:config": "npx tsx scripts/generate-config.ts",
     "lint:eslint": "eslint --config ../../packages/tooling/eslint.config.mjs",
     "lint:prettier": "prettier  --config ../../packages/tooling/.prettierrc --ignore-path ../../packages/tooling/.prettierignore --log-level warn"
   }

@@ -42,7 +42,7 @@
     "lint:fix": "npm run build && npm run lint:fix:alone",
     "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier --write .",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --log-level warn",
-    "lint:ts-prune": "ts-node ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
+    "lint:ts-prune": "tsx ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",
     "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",

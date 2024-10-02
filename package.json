@@ -78,8 +78,8 @@
     "start:dev": "lerna run start:dev --parallel",
     "test": "npm run build && npm run test:alone",
     "test:alone": "lerna run test:alone --stream",
-    "version:apply": "ts-node packages/tooling/version-apply.ts",
-    "version:push": "ts-node packages/tooling/version-push.ts"
+    "version:apply": "tsx packages/tooling/version-apply.ts",
+    "version:push": "tsx packages/tooling/version-push.ts"
   },
   "workspaces": [
     "packages/*",
