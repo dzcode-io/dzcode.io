@@ -19,6 +19,7 @@ coverage
 api/oracle-cloud/build
 api/fetch_cache
 api/sqlite_db
+api/postgres_db
 api/nodemon.json
 
 # web
