@@ -23,9 +23,9 @@
   "devDependencies": {
     "@loadable/component": "^5.16.4",
     "@reduxjs/toolkit": "^2.2.6",
-    "@rsbuild/core": "1.0.0-alpha.5",
-    "@rsbuild/plugin-react": "1.0.0-alpha.5",
-    "@rsdoctor/rspack-plugin": "^0.4.2",
+    "@rsbuild/core": "1.0.9",
+    "@rsbuild/plugin-react": "1.0.3",
+    "@rsdoctor/rspack-plugin": "^0.4.5",
     "@types/loadable__component": "^5.13.9",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
