@@ -54,7 +54,8 @@ jobs:
     uses: ./.github/workflows/ci.reusable.test-e2e.yml
     strategy:
       matrix:
-        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        # @TODO-ZM: add back windows once we replace cypress with playwright
+        os: ["ubuntu-latest", "macos-latest"]
         node-version: ["20"]
         # @TODO-ZM: add other browsers once we replace cypress with playwright
         browser: ["chrome"]
