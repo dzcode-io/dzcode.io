@@ -5,6 +5,11 @@
       "provider": "github",
       "owner": "bychis",
       "name": "godaddy-reseller"
+    },
+    {
+      "provider": "github",
+      "owner": "Omar-Belghaouti",
+      "name": "godaddy-reseller-api-client"
     }
   ]
 }
