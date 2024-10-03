@@ -1,12 +1,12 @@
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text, unique } from "drizzle-orm/sqlite-core";
+import { integer, pgTable, text, unique } from "drizzle-orm/pg-core";
 import { projectsTable } from "src/project/table";
 
-export const repositoriesTable = sqliteTable(
+export const repositoriesTable = pgTable(
   "repositories",
   {
-    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+    id: text("id").notNull().primaryKey(),
     recordImportedAt: text("record_imported_at")
       .notNull()
       .default(sql`CURRENT_TIMESTAMP`),
@@ -14,7 +14,7 @@ export const repositoriesTable = sqliteTable(
     owner: text("owner").notNull(),
     name: text("name").notNull(),
     runId: text("run_id").notNull().default("initial-run-id"),
-    projectId: integer("project_id")
+    projectId: text("project_id")
       .notNull()
       .references(() => projectsTable.id),
     stars: integer("stars").notNull(),

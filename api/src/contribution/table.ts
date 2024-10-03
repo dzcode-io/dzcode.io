@@ -1,11 +1,11 @@
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, pgTable, text } from "drizzle-orm/pg-core";
 import { contributorsTable } from "src/contributor/table";
 import { repositoriesTable } from "src/repository/table";
 
-export const contributionsTable = sqliteTable("contributions", {
-  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+export const contributionsTable = pgTable("contributions", {
+  id: text("id").notNull().primaryKey(),
   recordImportedAt: text("record_imported_at")
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
@@ -15,10 +15,10 @@ export const contributionsTable = sqliteTable("contributions", {
   type: text("type").notNull().$type<ContributionEntity["type"]>(),
   runId: text("run_id").notNull(),
   activityCount: integer("activity_count").notNull(),
-  repositoryId: integer("repository_id")
+  repositoryId: text("repository_id")
     .notNull()
     .references(() => repositoriesTable.id),
-  contributorId: integer("contributor_id")
+  contributorId: text("contributor_id")
     .notNull()
     .references(() => contributorsTable.id),
 });
