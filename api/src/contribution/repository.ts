@@ -22,7 +22,7 @@ export class ContributionRepository {
     FROM
       ${contributionsTable}
     INNER JOIN
-      ${repositoriesTable}  ON ${contributionsTable.repositoryId} = ${repositoriesTable.id}
+      ${repositoriesTable} ON ${contributionsTable.repositoryId} = ${repositoriesTable.id}
     WHERE
       ${repositoriesTable.projectId} = ${projectId}
     ORDER BY
