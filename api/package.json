@@ -64,7 +64,7 @@
     "clean": "lerna run clean:alone --scope=@dzcode.io/api --include-dependencies --stream",
     "clean:alone": "del dist coverage fetch_cache oracle-cloud/build",
     "db:generate-migration": "drizzle-kit generate",
-    "db:server": "docker compose up",
+    "db:server": "docker compose down && docker compose up",
     "deploy": "del ./oracle-cloud/build && tsx oracle-cloud/deploy.ts production",
     "deploy:stg": "del ./oracle-cloud/build && tsx oracle-cloud/deploy.ts staging",
     "generate:bundle-info": "tsx ../packages/tooling/bundle-info.ts",
@@ -79,7 +79,7 @@
     "lint:tsc": "tspc --noEmit",
     "start": "node dist/app/index.js",
     "start:dev": "tsx ../packages/tooling/nodemon.ts \"@dzcode.io/api\" && npm-run-all --parallel start:nodemon db:server",
-    "start:nodemon": "nodemon dist/app/index.js",
+    "start:nodemon": "wait-port localhost:5432 && nodemon dist/app/index.js",
     "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../packages/tooling/jest.config.ts --rootDir .",
     "test:watch": "npm-run-all build --parallel build:watch \"test:alone --watch {@}\" --"

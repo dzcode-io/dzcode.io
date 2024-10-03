@@ -5,40 +5,39 @@ import { unStringifyDeep } from "src/_utils/unstringify-deep";
 import { contributorsTable } from "src/contributor/table";
 import { projectsTable } from "src/project/table";
 import { repositoriesTable } from "src/repository/table";
-import { SQLiteService } from "src/sqlite/service";
+import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
 import { ContributionRow, contributionsTable } from "./table";
 
 @Service()
 export class ContributionRepository {
-  constructor(private readonly sqliteService: SQLiteService) {}
+  constructor(private readonly postgresService: PostgresService) {}
 
-  public async findForProject(projectId: number) {
+  public async findForProject(projectId: string) {
     const statement = sql`
     SELECT
-        c.id as id,
-        c.title as title,
-        c.type as type
+      ${contributionsTable.id},
+      ${contributionsTable.title}
     FROM
-        ${contributionsTable} c
+      ${contributionsTable}
     INNER JOIN
-        ${repositoriesTable} r ON c.repository_id = r.id
+      ${repositoriesTable}  ON ${contributionsTable.repositoryId} = ${repositoriesTable.id}
     WHERE
-        r.project_id = ${projectId}
+      ${repositoriesTable.projectId} = ${projectId}
     ORDER BY
-        c.updated_at DESC
+      ${contributionsTable.updatedAt} DESC
     `;
 
-    const raw = this.sqliteService.db.all(statement);
-    const unStringifiedRaw = unStringifyDeep(raw);
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
     const camelCased = camelCaseObject(unStringifiedRaw);
-
     return camelCased;
   }
 
   public async upsert(contribution: ContributionRow) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .insert(contributionsTable)
       .values(contribution)
       .onConflictDoUpdate({
@@ -49,7 +48,7 @@ export class ContributionRepository {
   }
 
   public async deleteAllButWithRunId(runId: string) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .delete(contributionsTable)
       .where(ne(contributionsTable.runId, runId));
   }

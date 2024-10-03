@@ -41,12 +41,12 @@ export class ProjectController {
   }
 
   @Get("/:id")
-  public async getProject(@Param("id") id: number): Promise<GetProjectResponse> {
+  public async getProject(@Param("id") id: string): Promise<GetProjectResponse> {
     const [project, repositories, contributors, contributions] = await Promise.all([
-      await this.projectRepository.findWithStats(id),
-      await this.repositoryRepository.findForProject(id),
-      await this.contributorRepository.findForProject(id),
-      await this.contributionRepository.findForProject(id),
+      this.projectRepository.findWithStats(id),
+      this.repositoryRepository.findForProject(id),
+      this.contributorRepository.findForProject(id),
+      this.contributionRepository.findForProject(id),
     ]);
 
     if (!project) throw new NotFoundError("Project not found");

@@ -36,7 +36,8 @@
     "tsx": "^4.19.1",
     "typescript": "5.5.3",
     "typescript-eslint": "^8.5.0",
-    "typescript-transform-paths": "^3.5.0"
+    "typescript-transform-paths": "^3.5.0",
+    "wait-port": "^1.1.0"
   },
   "engines": {
     "node": ">=20",

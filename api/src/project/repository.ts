@@ -29,32 +29,44 @@ export class ProjectRepository {
     return camelCased;
   }
 
-  public async findWithStats(projectId: number) {
+  public async findWithStats(projectId: string) {
     const statement = sql`
     SELECT
-        p.id as id,
-        p.name as name,
-        p.slug as slug,
-        count(DISTINCT r.id) as repository_count,
-        sum(crr.score) as activity_count,
-        count(DISTINCT crr.contributor_id) as contributor_count,
-        -- @TODO-ZM: this is wrong, but works for now, please group by repository id
-        sum(DISTINCT r.stars) as stars
+      id,
+      name,
+      sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
+      sum(repo_with_stats.stars)::int as total_repo_stars,
+      sum(repo_with_stats.score)::int as total_repo_score,
+      count(*) as repo_count,
+      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
     FROM
-        ${repositoriesTable} r
+      (
+        SELECT
+          repository_id,
+          project_id,
+          sum(score) as score,
+          count(*) as contributor_count,
+          stars
+        FROM
+          ${contributorRepositoryRelationTable}
+        JOIN
+          ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
+        WHERE
+          ${repositoriesTable.projectId} = ${projectId}
+        GROUP BY
+          ${contributorRepositoryRelationTable.repositoryId}, ${repositoriesTable.projectId}, ${repositoriesTable.stars}
+      ) as repo_with_stats
     JOIN
-        ${contributorRepositoryRelationTable} crr ON r.id = crr.repository_id
-    JOIN
-        ${projectsTable} p ON r.project_id = p.id
-    WHERE
-        project_id = ${projectId}
+      ${projectsTable} ON ${projectsTable.id} = repo_with_stats.project_id
     GROUP BY
-        r.project_id
+      ${projectsTable.id}
+    ORDER BY
+      ranking DESC
     `;
-    const raw = this.sqliteService.db.get(statement);
-    if (!raw) return null;
 
-    const unStringifiedRaw = unStringifyDeep(raw);
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries[0]);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }

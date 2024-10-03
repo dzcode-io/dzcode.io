@@ -36,9 +36,7 @@ CREATE TABLE IF NOT EXISTS "projects" (
 	"id" text PRIMARY KEY NOT NULL,
 	"record_imported_at" text DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	"name" text NOT NULL,
-	"slug" text NOT NULL,
-	"run_id" text DEFAULT 'initial-run-id' NOT NULL,
-	CONSTRAINT "projects_slug_unique" UNIQUE("slug")
+	"run_id" text DEFAULT 'initial-run-id' NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "repositories" (

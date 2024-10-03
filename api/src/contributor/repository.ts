@@ -3,7 +3,7 @@ import { camelCaseObject } from "src/_utils/case";
 import { unStringifyDeep } from "src/_utils/unstringify-deep";
 import { projectsTable } from "src/project/table";
 import { repositoriesTable } from "src/repository/table";
-import { SQLiteService } from "src/sqlite/service";
+import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
 import {
@@ -15,37 +15,33 @@ import {
 
 @Service()
 export class ContributorRepository {
-  constructor(private readonly sqliteService: SQLiteService) {}
+  constructor(private readonly postgresService: PostgresService) {}
 
-  public async findForProject(projectId: number) {
+  public async findForProject(projectId: string) {
     const statement = sql`
     SELECT
-        cr.id as id,
-        cr.name as name,
-        cr.username as username,
-        cr.avatar_url as avatar_url
+      ${contributorsTable.id},
+      ${contributorsTable.name},
+      ${contributorsTable.avatarUrl},
+      sum(${contributorRepositoryRelationTable.score}) as ranking
     FROM
-        (SELECT
-            crr.contributor_id as id,
-            sum (crr.score) as score
-        FROM
-            ${contributorRepositoryRelationTable} crr
-        INNER JOIN
-            ${repositoriesTable} r ON crr.repository_id = r.id
-        WHERE
-            r.project_id = ${projectId}
-        GROUP BY
-            crr.contributor_id
-        ORDER BY
-            score DESC) as c
-    INNER JOIN
-        ${contributorsTable} cr ON c.id = cr.id
+      ${contributorRepositoryRelationTable}
+    JOIN
+      ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
+    JOIN
+      ${contributorsTable} ON ${contributorRepositoryRelationTable.contributorId} = ${contributorsTable.id}
+    WHERE
+      ${repositoriesTable.projectId} = ${projectId}
+    GROUP BY
+      ${contributorsTable.id}
+    ORDER BY
+      ranking DESC
     `;
 
-    const raw = this.sqliteService.db.all(statement);
-    const unStringifiedRaw = unStringifyDeep(raw);
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
     const camelCased = camelCaseObject(unStringifiedRaw);
-
     return camelCased;
   }
 
@@ -126,7 +122,7 @@ export class ContributorRepository {
   }
 
   public async upsert(contributor: ContributorRow) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .insert(contributorsTable)
       .values(contributor)
       .onConflictDoUpdate({
@@ -139,7 +135,7 @@ export class ContributorRepository {
   public async upsertRelationWithRepository(
     contributorRelationWithRepository: ContributorRepositoryRelationRow,
   ) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .insert(contributorRepositoryRelationTable)
       .values(contributorRelationWithRepository)
       .onConflictDoUpdate({
@@ -156,13 +152,13 @@ export class ContributorRepository {
   }
 
   public async deleteAllRelationWithRepositoryButWithRunId(runId: string) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .delete(contributorRepositoryRelationTable)
       .where(ne(contributorRepositoryRelationTable.runId, runId));
   }
 
   public async deleteAllButWithRunId(runId: string) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .delete(contributorsTable)
       .where(ne(contributorsTable.runId, runId));
   }

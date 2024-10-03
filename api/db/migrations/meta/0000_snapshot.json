@@ -1,5 +1,5 @@
 {
-  "id": "09cef8e3-1a79-48fb-b36f-3273afd27a03",
+  "id": "3685bc1c-7589-45e6-bc50-a8a76537f753",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -272,12 +272,6 @@
           "primaryKey": false,
           "notNull": true
         },
-        "slug": {
-          "name": "slug",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
         "run_id": {
           "name": "run_id",
           "type": "text",
@@ -289,15 +283,7 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "projects_slug_unique": {
-          "name": "projects_slug_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "slug"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "public.repositories": {
       "name": "repositories",
