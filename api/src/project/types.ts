@@ -5,17 +5,18 @@ import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { GeneralResponse } from "src/app/types";
 
 export interface GetProjectsForSitemapResponse extends GeneralResponse {
+  // @ts-expect-error hola
   projects: Array<Pick<ProjectEntity, "id" | "slug">>;
 }
 
 export interface GetProjectsResponse extends GeneralResponse {
   projects: Array<
-    Pick<ProjectEntity, "id" | "name" | "slug"> & {
+    Pick<ProjectEntity, "id" | "name"> & {
       repositories: Array<Pick<RepositoryEntity, "id" | "owner" | "name">>;
-      contributorCount: number;
-      activityCount: number;
-      score: number;
-      stars: number;
+      totalRepoContributorCount: number;
+      totalRepoScore: number;
+      totalRepoStars: number;
+      ranking: number;
     }
   >;
 }
