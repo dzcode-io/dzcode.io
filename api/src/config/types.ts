@@ -19,7 +19,8 @@ export class EnvRecord {
   FETCH_CACHE_PATH = "./fetch_cache";
 
   @IsString()
-  SQLITE_DB_PATH = "./sqlite_db";
+  // TODO-ZM: localhost to postgres for non-development environments
+  POSTGRES_URI = "postgres://postgres@localhost:5432/db";
 
   @IsString()
   @IsOptional()

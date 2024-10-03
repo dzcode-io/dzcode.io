@@ -15,7 +15,7 @@ import { GithubController } from "src/github/controller";
 import { LoggerService } from "src/logger/service";
 import { MilestoneController } from "src/milestone/controller";
 import { ProjectController } from "src/project/controller";
-import { SQLiteService } from "src/sqlite/service";
+import { PostgresService } from "src/postgres/service";
 import Container from "typedi";
 
 import { LoggerMiddleware } from "./middlewares/logger";
@@ -26,7 +26,7 @@ import { SecurityMiddleware } from "./middlewares/security";
 useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
 
 // Initialize Database
-Container.get(SQLiteService);
+Container.get(PostgresService);
 
 const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
