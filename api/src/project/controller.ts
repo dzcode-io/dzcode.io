@@ -62,7 +62,7 @@ export class ProjectController {
   }
 
   @Get("/:id/name")
-  public async getProjectName(@Param("id") id: number): Promise<GetProjectNameResponse> {
+  public async getProjectName(@Param("id") id: string): Promise<GetProjectNameResponse> {
     const project = await this.projectRepository.findName(id);
 
     if (!project) throw new NotFoundError("Project not found");

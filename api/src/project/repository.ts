@@ -12,19 +12,23 @@ import { ProjectRow, projectsTable } from "./table";
 export class ProjectRepository {
   constructor(private readonly postgresService: PostgresService) {}
 
-  public async findName(projectId: number) {
+  public async findName(projectId: string) {
     const statement = sql`
     SELECT
-        name
+        ${projectsTable.id}
     FROM
         ${projectsTable}
     WHERE
-        id = ${projectId}
+        ${projectsTable.id} = ${projectId}
     `;
-    const raw = this.sqliteService.db.get(statement);
-    if (!raw) return null;
 
-    const unStringifiedRaw = unStringifyDeep(raw);
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const entry = entries[0];
+
+    if (!entry) return null;
+
+    const unStringifiedRaw = unStringifyDeep(entry);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }
@@ -66,7 +70,8 @@ export class ProjectRepository {
 
     const raw = await this.postgresService.db.execute(statement);
     const entries = Array.from(raw);
-    const unStringifiedRaw = unStringifyDeep(entries[0]);
+    const entry = entries[0];
+    const unStringifiedRaw = unStringifyDeep(entry);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }
@@ -113,30 +118,34 @@ export class ProjectRepository {
   public async findForSitemap() {
     const statement = sql`
     SELECT
-        p.id as id,
-        p.slug as slug,
-        100 * sum(rs.repo_contributor_count) + 100 * sum(rs.stars) + max(rs.repo_score) - sum(rs.repo_score) / sum(rs.repo_contributor_count)  as score
+      id,
+      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
     FROM
-        (SELECT
-            *,
-            sum(crr.score) as repo_score,
-            count(*) as repo_contributor_count,
-            sum(r.stars) as stars
+      (
+        SELECT
+          repository_id,
+          project_id,
+          sum(score) as score,
+          count(*) as contributor_count,
+          stars
         FROM
-            ${contributorRepositoryRelationTable} crr
+          ${contributorRepositoryRelationTable}
         JOIN
-            ${repositoriesTable} r ON crr.repository_id = r.id
+          ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
         GROUP BY
-            r.id) as rs
+          ${contributorRepositoryRelationTable.repositoryId}, ${repositoriesTable.projectId}, ${repositoriesTable.stars}
+      ) as repo_with_stats
     JOIN
-        ${projectsTable} p ON rs.project_id = p.id
+      ${projectsTable} ON ${projectsTable.id} = repo_with_stats.project_id
     GROUP BY
-        p.id
+      ${projectsTable.id}
     ORDER BY
-        score DESC
+      ranking DESC
     `;
-    const raw = this.sqliteService.db.all(statement);
-    const unStringifiedRaw = unStringifyDeep(raw);
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }
