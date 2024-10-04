@@ -18,7 +18,7 @@ services:
     volumes:
       - /home/ubuntu/app-data/api/fetch_cache:/usr/src/repo/api/fetch_cache
       - /home/ubuntu/app-data/api/sqlite_db:/usr/src/repo/api/sqlite_db
-  postgress:
+  postgres:
     image: postgres
     ports:
       - "5432:5432"
