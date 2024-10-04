@@ -11,7 +11,6 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
   api:
     build: "."
-    # restart: always
     ports:
       - "7070:7070"
     env_file:
@@ -19,6 +18,16 @@ services:
     volumes:
       - /home/ubuntu/app-data/api/fetch_cache:/usr/src/repo/api/fetch_cache
       - /home/ubuntu/app-data/api/sqlite_db:/usr/src/repo/api/sqlite_db
+  postgress:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/ubuntu/app-data/api/postgres_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: db
+
   lhserver:
     image: patrickhulce/lhci-server
     restart: always
