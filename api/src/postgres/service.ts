@@ -8,7 +8,15 @@ import { Service } from "typedi";
 
 @Service()
 export class PostgresService {
-  public db;
+  private isReady = false;
+  private drizzleDB: ReturnType<typeof drizzle>;
+
+  public get db() {
+    if (!this.isReady) {
+      throw new Error("Database is not ready yet");
+    }
+    return this.drizzleDB;
+  }
 
   constructor(
     private readonly configService: ConfigService,
@@ -18,8 +26,17 @@ export class PostgresService {
     const { POSTGRES_URI } = this.configService.env();
 
     const queryClient = postgres(POSTGRES_URI);
-    this.db = drizzle(queryClient);
-    migrate(this.db, { migrationsFolder: join(__dirname, "../../db/migrations") });
+    this.drizzleDB = drizzle(queryClient);
+    this.loggerService.info({ message: "Database migration started" });
+  }
+
+  public async migrate() {
+    if (this.isReady) throw new Error("Database is already ready");
+
+    this.loggerService.info({ message: "Database migration started" });
+    await migrate(this.drizzleDB, { migrationsFolder: join(__dirname, "../../db/migrations") });
     this.loggerService.info({ message: "Database migration complete" });
+
+    this.isReady = true;
   }
 }
