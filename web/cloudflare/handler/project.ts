@@ -31,8 +31,8 @@ export const handleProjectRequest: PagesFunction<Env> = async (context) => {
     "en") as LanguageEntity["code"];
   const notFound = language === "ar" ? notFoundAr : notFoundEn;
 
-  const projectIdRegex = /projects\/(.*)-(.\d+)/;
-  const projectId = pathName?.match(projectIdRegex)?.[2];
+  const projectIdRegex = /projects\/(.*)/;
+  const projectId = pathName?.match(projectIdRegex)?.[1];
 
   if (!projectId)
     return new Response(notFound, {

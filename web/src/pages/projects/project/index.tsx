@@ -20,7 +20,7 @@ export default function Page(): JSX.Element {
   const { localize } = useLocale();
   const { project } = useAppSelector((state) => state.projectPage);
   const dispatch = useAppDispatch();
-  const { projectSlugWithId } = useParams<{ projectSlugWithId: string }>();
+  const { projectId } = useParams<{ projectId: string }>();
   const topMax = 3;
   const { topContributors, remainingContributorsCount } = useMemo(() => {
     if (project === null || project === "ERROR" || project === "404")
@@ -34,8 +34,8 @@ export default function Page(): JSX.Element {
   }, [project]);
 
   useEffect(() => {
-    dispatch(fetchProjectAction(projectSlugWithId));
-  }, [dispatch, projectSlugWithId]);
+    dispatch(fetchProjectAction(projectId));
+  }, [dispatch, projectId]);
 
   if (project === "404") {
     return <Redirect href="/projects" />;
@@ -70,7 +70,7 @@ export default function Page(): JSX.Element {
             error={localize("global-generic-error")}
             action={localize("global-try-again")}
             onClick={() => {
-              dispatch(fetchProjectAction(projectSlugWithId));
+              dispatch(fetchProjectAction(projectId));
             }}
           />
         ) : project === null ? (
