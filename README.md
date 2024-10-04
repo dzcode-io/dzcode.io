@@ -25,6 +25,7 @@ Make sure you have:
 
 - [Git](https://git-scm.com/)
 - [Nodejs](https://nodejs.org/) version 20 or higher (we recommend using [volta](https://docs.volta.sh/guide/getting-started) over plain install or [nvm](https://github.com/nvm-sh/nvm))
+- [Docker](https://www.docker.com/) installed and running.
 
 ### Run it locally
 
