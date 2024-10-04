@@ -15,7 +15,8 @@ export class ProjectRepository {
   public async findName(projectId: string) {
     const statement = sql`
     SELECT
-        ${projectsTable.id}
+        ${projectsTable.id},
+        ${projectsTable.name}
     FROM
         ${projectsTable}
     WHERE
