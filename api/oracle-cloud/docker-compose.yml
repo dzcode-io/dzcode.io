@@ -27,11 +27,3 @@ services:
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
       POSTGRES_DB: db
-
-  lhserver:
-    image: patrickhulce/lhci-server
-    restart: always
-    ports:
-      - "9001:9001"
-    volumes:
-      - /home/ubuntu/app-data/web/lh_data:/data

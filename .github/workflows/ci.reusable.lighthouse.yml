@@ -108,4 +108,5 @@ jobs:
           path: ./web/.lighthouseci
       - name: "Get current time"
         run: echo "LHCI_BUILD_CONTEXT__COMMIT_TIME=$(date '+%Y-%m-%d %H:%M:%S %z')" >> $GITHUB_ENV
-      - run: npx lerna run lh:upload --scope "@dzcode.io/web"
+      # @TODO-ZM: upload to grafana instead of lhci-server
+      # - run: npx lerna run lh:upload --scope "@dzcode.io/web"
