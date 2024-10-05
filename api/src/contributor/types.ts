@@ -5,6 +5,9 @@ export interface GetContributorsResponse extends GeneralResponse {
   contributors: Array<
     Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {
       ranking: number;
+
+      totalContributionScore: number;
+      totalRepositoryCount: number;
     }
   >;
 }

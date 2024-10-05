@@ -50,7 +50,9 @@ export class ContributorRepository {
       ${contributorsTable.id},
       ${contributorsTable.name},
       ${contributorsTable.avatarUrl},
-      sum(${contributorRepositoryRelationTable.score}) as ranking
+      sum(${contributorRepositoryRelationTable.score}) as total_contribution_score,
+      count(DISTINCT ${contributorRepositoryRelationTable.repositoryId}) as total_repository_count,
+      (sum(${contributorRepositoryRelationTable.score}) * count(DISTINCT ${contributorRepositoryRelationTable.repositoryId})) as ranking
     FROM
       ${contributorRepositoryRelationTable}
     JOIN
