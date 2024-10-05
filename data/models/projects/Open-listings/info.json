@@ -4,7 +4,12 @@
     {
       "provider": "github",
       "owner": "bacloud23",
-      "name": "open-listings"
+      "name": "open-listings-rep"
+    },
+    {
+      "provider": "github",
+      "owner": "bacloud23",
+      "name": "open-listings-front"
     }
   ]
 }

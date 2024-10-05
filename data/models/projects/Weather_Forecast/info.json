@@ -5,6 +5,11 @@
       "provider": "github",
       "owner": "jidmaa",
       "name": "weather-forecast"
+    },
+    {
+      "provider": "github",
+      "owner": "khalilpreview",
+      "name": "madinateo"
     }
   ]
 }

@@ -12,7 +12,7 @@ on:
         type: string
 
 jobs:
-  lint:
+  e2e:
     runs-on: ${{ inputs.os }}
 
     steps:

@@ -32,7 +32,7 @@ export default defineConfig({
       src: "./src",
     },
     define: {
-      "window.bundleInfo": bundleInfo,
+      "window.bundleInfo": JSON.stringify(bundleInfo),
     },
   },
   html: {

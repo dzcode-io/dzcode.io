@@ -5,6 +5,36 @@
       "provider": "github",
       "owner": "mohsenuss91",
       "name": "AlgerianAdministrativeDivision"
+    },
+    {
+      "provider": "github",
+      "owner": "elaborate-code",
+      "name": "laravel-algerian-provinces"
+    },
+    {
+      "provider": "github",
+      "owner": "dzcode-io",
+      "name": "leblad"
+    },
+    {
+      "provider": "github",
+      "owner": "abderrahmaneMustapha",
+      "name": "leblad-py"
+    },
+    {
+      "provider": "github",
+      "owner": "omdxp",
+      "name": "leblad"
+    },
+    {
+      "provider": "github",
+      "owner": "omdxp",
+      "name": "leblad-rs"
+    },
+    {
+      "provider": "github",
+      "owner": "dfourcfive",
+      "name": "dzair_data_usage"
     }
   ]
 }

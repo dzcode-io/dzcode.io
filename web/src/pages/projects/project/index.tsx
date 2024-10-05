@@ -171,7 +171,9 @@ export default function Page(): JSX.Element {
                 >
                   <div className="flex flex-row ps-4 gap-4">
                     <span className="card-title gap-0 flex-1">
-                      {repository.owner}/<strong>{repository.name}</strong>
+                      <span className="items-start">
+                        {repository.owner}/<strong className="break-all">{repository.name}</strong>
+                      </span>
                     </span>
                     <Link
                       target="_blank"
@@ -204,7 +206,7 @@ export default function Page(): JSX.Element {
               {project.contributors.map((contributor, contributorIndex) => (
                 <Link
                   key={contributorIndex}
-                  className="card bg-base-200 sm:max-w-40 w-full rounded-lg sm:p-4 items-center flex flex-row sm:flex-col gap-4"
+                  className="card bg-base-200 sm:max-w-40 w-full rounded-lg sm:p-4 items-center flex flex-row sm:flex-col gap-4 overflow-hidden"
                   href={getContributorURL(contributor)}
                 >
                   <img
@@ -212,7 +214,7 @@ export default function Page(): JSX.Element {
                     alt={contributor.name}
                     className="rounded-none sm:rounded-full size-16 sm:size-20"
                   />
-                  <span className="card-title gap-0 flex-1">{contributor.name}</span>
+                  <span className="card-title gap-0 flex-1 break-all">{contributor.name}</span>
                 </Link>
               ))}
             </div>
