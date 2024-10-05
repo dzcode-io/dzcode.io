@@ -26,7 +26,7 @@ let routes: Array<
   },
   {
     pageName: "projects/project",
-    path: "/projects/:projectSlugWithId",
+    path: "/projects/:projectId",
   },
   {
     pageName: "faq",

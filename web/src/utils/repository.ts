@@ -1,9 +1,5 @@
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 
-export function getRepositoryName(repository: Pick<RepositoryEntity, "owner" | "name">): string {
-  return `${repository.owner}/${repository.name}`;
-}
-
 export const getRepositoryURL = ({
   provider,
   owner,

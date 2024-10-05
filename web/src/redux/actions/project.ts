@@ -5,9 +5,8 @@ import { AppState } from "src/redux/store";
 import { fetchV2 } from "src/utils/fetch";
 
 export const fetchProjectAction =
-  (projectSlugWithId?: string): ThunkAction<void, AppState, unknown, Action> =>
+  (id?: string): ThunkAction<void, AppState, unknown, Action> =>
   async (dispatch) => {
-    const id = projectSlugWithId?.split("-").pop();
     if (!id) {
       dispatch(projectPageSlice.actions.set({ project: "404" }));
       return;

@@ -1,4 +1,5 @@
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
+import { Expose } from "class-transformer";
 import { IsOptional, IsString, Matches } from "class-validator";
 import { readFileSync } from "fs-extra";
 
@@ -18,8 +19,12 @@ export class EnvRecord {
   @IsString()
   FETCH_CACHE_PATH = "./fetch_cache";
 
-  @IsString()
-  SQLITE_DB_PATH = "./sqlite_db";
+  @Expose()
+  get POSTGRES_URI() {
+    return this.NODE_ENV === "development"
+      ? "postgres://postgres@localhost:5432/db"
+      : "postgres://postgres@postgres:5432/db";
+  }
 
   @IsString()
   @IsOptional()

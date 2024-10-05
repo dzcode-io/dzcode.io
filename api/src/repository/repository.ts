@@ -1,45 +1,55 @@
 import { ne, sql } from "drizzle-orm";
-import { SQLiteService } from "src/sqlite/service";
+import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
 import { repositoriesTable, RepositoryRow } from "./table";
 import { unStringifyDeep } from "src/_utils/unstringify-deep";
 import { camelCaseObject } from "src/_utils/case";
+import { contributorRepositoryRelationTable } from "src/contributor/table";
 
 @Service()
 export class RepositoryRepository {
-  constructor(private readonly sqliteService: SQLiteService) {}
-  public async findForProject(projectId: number) {
+  constructor(private readonly postgresService: PostgresService) {}
+  public async findForProject(projectId: string) {
     const statement = sql`
     SELECT
-        r.id as id,
-        r.owner as owner,
-        r.name as name,
-        r.provider as provider
+      id,
+      owner,
+      name,
+      provider,
+      ROUND( 100 * sum(score) + 100 * stars + max(score) - sum(score) / count(*) )::int as ranking
     FROM
-        ${repositoriesTable} r
+      ${contributorRepositoryRelationTable}
+    JOIN
+      ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
     WHERE
-        r.project_id = ${projectId}
+      ${repositoriesTable.projectId} = ${projectId}
+    GROUP BY
+      ${repositoriesTable.id}, ${repositoriesTable.stars}
+    ORDER BY
+      ranking DESC
     `;
-    const raw = this.sqliteService.db.all(statement);
-    const unStringifiedRaw = unStringifyDeep(raw);
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }
 
   public async upsert(repository: RepositoryRow) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .insert(repositoriesTable)
       .values(repository)
       .onConflictDoUpdate({
-        target: [repositoriesTable.provider, repositoriesTable.owner, repositoriesTable.name],
+        target: [repositoriesTable.id],
         set: repository,
       })
       .returning({ id: repositoriesTable.id });
   }
 
   public async deleteAllButWithRunId(runId: string) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .delete(repositoriesTable)
       .where(ne(repositoriesTable.runId, runId));
   }

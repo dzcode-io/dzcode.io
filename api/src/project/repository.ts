@@ -3,58 +3,76 @@ import { camelCaseObject } from "src/_utils/case";
 import { unStringifyDeep } from "src/_utils/unstringify-deep";
 import { contributorRepositoryRelationTable } from "src/contributor/table";
 import { repositoriesTable } from "src/repository/table";
-import { SQLiteService } from "src/sqlite/service";
+import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
 import { ProjectRow, projectsTable } from "./table";
 
 @Service()
 export class ProjectRepository {
-  constructor(private readonly sqliteService: SQLiteService) {}
+  constructor(private readonly postgresService: PostgresService) {}
 
-  public async findName(projectId: number) {
+  public async findName(projectId: string) {
     const statement = sql`
     SELECT
-        name
+        ${projectsTable.id},
+        ${projectsTable.name}
     FROM
         ${projectsTable}
     WHERE
-        id = ${projectId}
+        ${projectsTable.id} = ${projectId}
     `;
-    const raw = this.sqliteService.db.get(statement);
-    if (!raw) return null;
 
-    const unStringifiedRaw = unStringifyDeep(raw);
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const entry = entries[0];
+
+    if (!entry) return null;
+
+    const unStringifiedRaw = unStringifyDeep(entry);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }
 
-  public async findWithStats(projectId: number) {
+  public async findWithStats(projectId: string) {
     const statement = sql`
     SELECT
-        p.id as id,
-        p.name as name,
-        p.slug as slug,
-        count(DISTINCT r.id) as repository_count,
-        sum(crr.score) as activity_count,
-        count(DISTINCT crr.contributor_id) as contributor_count,
-        -- @TODO-ZM: this is wrong, but works for now, please group by repository id
-        sum(DISTINCT r.stars) as stars
+      id,
+      name,
+      sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
+      sum(repo_with_stats.stars)::int as total_repo_stars,
+      sum(repo_with_stats.score)::int as total_repo_score,
+      count(*) as repo_count,
+      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
     FROM
-        ${repositoriesTable} r
+      (
+        SELECT
+          repository_id,
+          project_id,
+          sum(score) as score,
+          count(*) as contributor_count,
+          stars
+        FROM
+          ${contributorRepositoryRelationTable}
+        JOIN
+          ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
+        WHERE
+          ${repositoriesTable.projectId} = ${projectId}
+        GROUP BY
+          ${contributorRepositoryRelationTable.repositoryId}, ${repositoriesTable.projectId}, ${repositoriesTable.stars}
+      ) as repo_with_stats
     JOIN
-        ${contributorRepositoryRelationTable} crr ON r.id = crr.repository_id
-    JOIN
-        ${projectsTable} p ON r.project_id = p.id
-    WHERE
-        project_id = ${projectId}
+      ${projectsTable} ON ${projectsTable.id} = repo_with_stats.project_id
     GROUP BY
-        r.project_id
+      ${projectsTable.id}
+    ORDER BY
+      ranking DESC
     `;
-    const raw = this.sqliteService.db.get(statement);
-    if (!raw) return null;
 
-    const unStringifiedRaw = unStringifyDeep(raw);
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const entry = entries[0];
+    const unStringifiedRaw = unStringifyDeep(entry);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }
@@ -62,34 +80,38 @@ export class ProjectRepository {
   public async findForList() {
     const statement = sql`
     SELECT
-        p.id as id,
-        p.name as name,
-        p.slug as slug,
-        sum(rs.repo_contributor_count) as contributor_count,
-        sum(rs.stars) as stars,
-        sum(rs.repo_score) as activity_count,
-        100 * sum(rs.repo_contributor_count) + 100 * sum(rs.stars) + max(rs.repo_score) - sum(rs.repo_score) / sum(rs.repo_contributor_count)  as score
+      id,
+      name,
+      sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
+      sum(repo_with_stats.stars)::int as total_repo_stars,
+      sum(repo_with_stats.score)::int as total_repo_score,
+      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
     FROM
-        (SELECT
-            *,
-            sum(crr.score) as repo_score,
-            count(*) as repo_contributor_count,
-            sum(r.stars) as stars
+      (
+        SELECT
+          repository_id,
+          project_id,
+          sum(score) as score,
+          count(*) as contributor_count,
+          stars
         FROM
-            ${contributorRepositoryRelationTable} crr
+          ${contributorRepositoryRelationTable}
         JOIN
-            ${repositoriesTable} r ON crr.repository_id = r.id
+          ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
         GROUP BY
-            r.id) as rs
+          ${contributorRepositoryRelationTable.repositoryId}, ${repositoriesTable.projectId}, ${repositoriesTable.stars}
+      ) as repo_with_stats
     JOIN
-        ${projectsTable} p ON rs.project_id = p.id
+      ${projectsTable} ON ${projectsTable.id} = repo_with_stats.project_id
     GROUP BY
-        p.id
+      ${projectsTable.id}
     ORDER BY
-        score DESC
+      ranking DESC
     `;
-    const raw = this.sqliteService.db.all(statement);
-    const unStringifiedRaw = unStringifyDeep(raw);
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }
@@ -97,50 +119,56 @@ export class ProjectRepository {
   public async findForSitemap() {
     const statement = sql`
     SELECT
-        p.id as id,
-        p.slug as slug,
-        100 * sum(rs.repo_contributor_count) + 100 * sum(rs.stars) + max(rs.repo_score) - sum(rs.repo_score) / sum(rs.repo_contributor_count)  as score
+      id,
+      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
     FROM
-        (SELECT
-            *,
-            sum(crr.score) as repo_score,
-            count(*) as repo_contributor_count,
-            sum(r.stars) as stars
+      (
+        SELECT
+          repository_id,
+          project_id,
+          sum(score) as score,
+          count(*) as contributor_count,
+          stars
         FROM
-            ${contributorRepositoryRelationTable} crr
+          ${contributorRepositoryRelationTable}
         JOIN
-            ${repositoriesTable} r ON crr.repository_id = r.id
+          ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
         GROUP BY
-            r.id) as rs
+          ${contributorRepositoryRelationTable.repositoryId}, ${repositoriesTable.projectId}, ${repositoriesTable.stars}
+      ) as repo_with_stats
     JOIN
-        ${projectsTable} p ON rs.project_id = p.id
+      ${projectsTable} ON ${projectsTable.id} = repo_with_stats.project_id
     GROUP BY
-        p.id
+      ${projectsTable.id}
     ORDER BY
-        score DESC
+      ranking DESC
     `;
-    const raw = this.sqliteService.db.all(statement);
-    const unStringifiedRaw = unStringifyDeep(raw);
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
     const camelCased = camelCaseObject(unStringifiedRaw);
     return camelCased;
   }
 
   public async upsert(project: ProjectRow) {
-    return await this.sqliteService.db
+    return await this.postgresService.db
       .insert(projectsTable)
       .values(project)
       .onConflictDoUpdate({
-        target: projectsTable.slug,
+        target: projectsTable.id,
         set: project,
       })
       .returning({ id: projectsTable.id });
   }
 
-  public async deleteById(id: number) {
-    return await this.sqliteService.db.delete(projectsTable).where(eq(projectsTable.id, id));
+  public async deleteById(id: string) {
+    return await this.postgresService.db.delete(projectsTable).where(eq(projectsTable.id, id));
   }
 
   public async deleteAllButWithRunId(runId: string) {
-    return await this.sqliteService.db.delete(projectsTable).where(ne(projectsTable.runId, runId));
+    return await this.postgresService.db
+      .delete(projectsTable)
+      .where(ne(projectsTable.runId, runId));
   }
 }

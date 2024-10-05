@@ -1,10 +1,10 @@
 import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { sql } from "drizzle-orm";
-import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, primaryKey, pgTable, text } from "drizzle-orm/pg-core";
 import { repositoriesTable } from "src/repository/table";
 
-export const contributorsTable = sqliteTable("contributors", {
-  id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
+export const contributorsTable = pgTable("contributors", {
+  id: text("id").notNull().primaryKey(),
   recordImportedAt: text("record_imported_at")
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
@@ -19,13 +19,13 @@ contributorsTable.$inferSelect satisfies ContributorEntity;
 
 export type ContributorRow = typeof contributorsTable.$inferInsert;
 
-export const contributorRepositoryRelationTable = sqliteTable(
+export const contributorRepositoryRelationTable = pgTable(
   "contributor_repository_relation",
   {
-    contributorId: integer("contributor_id")
+    contributorId: text("contributor_id")
       .notNull()
       .references(() => contributorsTable.id),
-    repositoryId: integer("repository_id")
+    repositoryId: text("repository_id")
       .notNull()
       .references(() => repositoriesTable.id),
     recordImportedAt: text("record_imported_at")

@@ -5,17 +5,16 @@ import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { GeneralResponse } from "src/app/types";
 
 export interface GetProjectsForSitemapResponse extends GeneralResponse {
-  projects: Array<Pick<ProjectEntity, "id" | "slug">>;
+  projects: Array<Pick<ProjectEntity, "id">>;
 }
 
 export interface GetProjectsResponse extends GeneralResponse {
   projects: Array<
-    Pick<ProjectEntity, "id" | "name" | "slug"> & {
-      repositories: Array<Pick<RepositoryEntity, "id" | "owner" | "name">>;
-      contributorCount: number;
-      activityCount: number;
-      score: number;
-      stars: number;
+    Pick<ProjectEntity, "id" | "name"> & {
+      totalRepoContributorCount: number;
+      totalRepoScore: number;
+      totalRepoStars: number;
+      ranking: number;
     }
   >;
 }
@@ -35,10 +34,11 @@ export interface GetProjectResponse extends GeneralResponse {
       }
     >;
     contributions: Array<Pick<ContributionEntity, "id" | "title" | "type">>;
-    contributorCount: number;
-    repositoryCount: number;
-    activityCount: number;
-    stars: number;
+
+    totalRepoContributorCount: number;
+    repoCount: number;
+    totalRepoScore: number;
+    totalRepoStars: number;
   };
 }
 

@@ -67,7 +67,11 @@ export class DigestCron {
     const projectsFromDataFolder = await this.dataService.listProjects();
 
     for (const project of projectsFromDataFolder) {
-      const [{ id: projectId }] = await this.projectsRepository.upsert({ ...project, runId });
+      const [{ id: projectId }] = await this.projectsRepository.upsert({
+        ...project,
+        runId,
+        id: project.slug,
+      });
 
       let addedRepositoryCount = 0;
       try {
@@ -79,13 +83,15 @@ export class DigestCron {
               repo: repository.name,
             });
 
+            const provider = "github";
             const [{ id: repositoryId }] = await this.repositoriesRepository.upsert({
-              provider: "github",
+              provider,
               name: repoInfo.name,
               owner: repoInfo.owner.login,
               runId,
               projectId,
               stars: repoInfo.stargazers_count,
+              id: `${provider}-${repoInfo.id}`,
             });
             addedRepositoryCount++;
 
@@ -105,6 +111,7 @@ export class DigestCron {
                 url: githubUser.html_url,
                 avatarUrl: githubUser.avatar_url,
                 runId,
+                id: `${provider}-${githubUser.login}`,
               });
 
               await this.contributorsRepository.upsertRelationWithRepository({
@@ -124,6 +131,7 @@ export class DigestCron {
                 url: type === "PULL_REQUEST" ? issue.pull_request.html_url : issue.html_url,
                 repositoryId,
                 contributorId,
+                id: `${provider}-${issue.id}`,
               });
             }
 
@@ -143,6 +151,7 @@ export class DigestCron {
                 url: repoContributor.html_url,
                 avatarUrl: repoContributor.avatar_url,
                 runId,
+                id: `${provider}-${repoContributor.login}`,
               });
 
               await this.contributorsRepository.upsertRelationWithRepository({

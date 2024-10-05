@@ -15,7 +15,7 @@ import { GithubController } from "src/github/controller";
 import { LoggerService } from "src/logger/service";
 import { MilestoneController } from "src/milestone/controller";
 import { ProjectController } from "src/project/controller";
-import { SQLiteService } from "src/sqlite/service";
+import { PostgresService } from "src/postgres/service";
 import Container from "typedi";
 
 import { LoggerMiddleware } from "./middlewares/logger";
@@ -25,36 +25,39 @@ import { SecurityMiddleware } from "./middlewares/security";
 // Use typedi container
 useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
 
-// Initialize Database
-Container.get(SQLiteService);
+(async () => {
+  // Initialize Database
+  const postgresService = Container.get(PostgresService);
+  await postgresService.migrate();
 
-const { NODE_ENV, PORT } = Container.get(ConfigService).env();
+  const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
-// Add crons to DI container
-const CronServices = [DigestCron];
-CronServices.forEach((service) => Container.get(service));
+  // Add crons to DI container
+  const CronServices = [DigestCron];
+  CronServices.forEach((service) => Container.get(service));
 
-// Create the app:
-const routingControllersOptions: RoutingControllersOptions = {
-  controllers: [
-    ContributionController,
-    GithubController,
-    MilestoneController,
-    ProjectController,
-    ContributorController,
-    RobotsController,
-  ],
-  middlewares: [SecurityMiddleware, LoggerMiddleware],
-  cors: Container.get(SecurityMiddleware).cors(),
-};
-const app: Application = createExpressServer(routingControllersOptions);
+  // Create the app:
+  const routingControllersOptions: RoutingControllersOptions = {
+    controllers: [
+      ContributionController,
+      GithubController,
+      MilestoneController,
+      ProjectController,
+      ContributorController,
+      RobotsController,
+    ],
+    middlewares: [SecurityMiddleware, LoggerMiddleware],
+    cors: Container.get(SecurityMiddleware).cors(),
+  };
+  const app: Application = createExpressServer(routingControllersOptions);
 
-const logger = Container.get(LoggerService);
+  const logger = Container.get(LoggerService);
 
-Sentry.setupExpressErrorHandler(app);
+  Sentry.setupExpressErrorHandler(app);
 
-// Start it
-app.listen(PORT, () => {
-  const commonConfig = fsConfig(NODE_ENV);
-  logger.info({ message: `API Server up on: ${commonConfig.api.url}/` });
-});
+  // Start it
+  app.listen(PORT, () => {
+    const commonConfig = fsConfig(NODE_ENV);
+    logger.info({ message: `API Server up on: ${commonConfig.api.url}/` });
+  });
+})();

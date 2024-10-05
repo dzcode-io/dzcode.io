@@ -1,14 +1,4 @@
-import { getRepositoryName, getRepositoryURL } from "./repository";
-
-describe("getRepositoryName", () => {
-  it("should return the repository name", () => {
-    const repository = {
-      owner: "dzcode.io",
-      name: "dzcode.io",
-    } as const;
-    expect(getRepositoryName(repository)).toBe("dzcode.io/dzcode.io");
-  });
-});
+import { getRepositoryURL } from "./repository";
 
 describe("getRepositoryURL", () => {
   it("should return the repository URL", () => {

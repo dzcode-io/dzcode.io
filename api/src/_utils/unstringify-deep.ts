@@ -24,8 +24,9 @@ export function unStringifyDeep(obj: any): any {
         } else {
           result[key] = value;
         }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
-        console.error(error);
+        // Do nothing
       }
     }
   }
