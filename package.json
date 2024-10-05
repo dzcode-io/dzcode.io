@@ -10,6 +10,7 @@
     "@types/semver": "^7.3.9",
     "cross-env": "^7.0.3",
     "del-cli": "^5.1.0",
+    "delay-cli": "^2.0.0",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.35.2",
