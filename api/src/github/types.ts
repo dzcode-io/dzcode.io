@@ -2,13 +2,13 @@ import { GeneralResponse } from "src/app/types";
 
 interface GithubUser {
   login: string;
-  name: string;
+  name: string | null;
   html_url: string;
   avatar_url: string;
   type: "User" | "_other";
 }
 
-interface GithubRepositoryContributor extends GithubUser {
+interface GithubRepositoryContributor extends Omit<GithubUser, "name"> {
   contributions: number;
 }
 

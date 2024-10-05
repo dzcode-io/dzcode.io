@@ -46,7 +46,7 @@ export default function Page(): JSX.Element {
             {contributorsList.map((contributor, contributorIndex) => (
               <Link
                 key={contributorIndex}
-                className="card bg-base-300 sm:max-w-60 w-full rounded-lg flex flex-row border-base-200 border-2 overflow-hidden"
+                className="card bg-base-300 w-full sm:max-w-52 rounded-lg flex flex-row border-base-200 border-2 overflow-hidden"
                 href={getContributorURL(contributor)}
               >
                 <img

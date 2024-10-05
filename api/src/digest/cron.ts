@@ -145,13 +145,16 @@ export class DigestCron {
             );
 
             for (const repoContributor of repoContributorsFiltered) {
-              const [{ id: contributorId }] = await this.contributorsRepository.upsert({
-                name: repoContributor.name || repoContributor.login,
+              const contributor = await this.githubService.getUser({
                 username: repoContributor.login,
-                url: repoContributor.html_url,
-                avatarUrl: repoContributor.avatar_url,
+              });
+              const [{ id: contributorId }] = await this.contributorsRepository.upsert({
+                name: contributor.name || contributor.login,
+                username: contributor.login,
+                url: contributor.html_url,
+                avatarUrl: contributor.avatar_url,
                 runId,
-                id: `${provider}-${repoContributor.login}`,
+                id: `${provider}-${contributor.login}`,
               });
 
               await this.contributorsRepository.upsertRelationWithRepository({
