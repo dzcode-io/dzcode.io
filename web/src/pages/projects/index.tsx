@@ -41,12 +41,12 @@ export default function Page(): JSX.Element {
         ) : projectsList === null ? (
           <Loading />
         ) : (
-          <div className="flex flex-row flex-wrap gap-4 justify-between p-4 max-w-7xl">
+          <div className="flex flex-row flex-wrap gap-4 justify-center p-4 max-w-7xl">
             {projectsList.map((project, projectIndex) => (
               <Link
                 href={getProjectURL(project)}
                 dir="ltr"
-                className="bg-base-300 w-96 flex-auto flex flex-col rounded-lg border-base-200 border-2 overflow-hidden"
+                className="bg-base-300 w-full max-w-xs sm:max-w-sm flex flex-col rounded-lg border-base-200 border-2 overflow-hidden"
                 key={projectIndex}
               >
                 <h2 className="card-title p-4">{project.name}</h2>
