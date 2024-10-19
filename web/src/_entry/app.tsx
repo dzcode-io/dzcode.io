@@ -39,8 +39,11 @@ let routes: Array<
   },
   {
     pageName: "team",
-    // @TODO-ZM: change this back once we have contributor page
-    path: "/team/:slug?",
+    path: "/team",
+  },
+  {
+    pageName: "team/contributor",
+    path: "/team/:slug",
   },
   {
     pageName: "not-found",
