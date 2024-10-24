@@ -43,7 +43,7 @@ let routes: Array<
   },
   {
     pageName: "team/contributor",
-    path: "/team/:slug",
+    path: "/team/:contributorId",
   },
   {
     pageName: "not-found",
