@@ -1,4 +1,5 @@
 import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { GeneralResponse } from "src/app/types";
 
 export interface GetContributorsResponse extends GeneralResponse {
@@ -16,5 +17,13 @@ export interface GetContributorResponse extends GeneralResponse {
     ranking: number;
     totalContributionScore: number;
     totalRepositoryCount: number;
+    projects: Array<
+      Pick<ProjectEntity, "id" | "name"> & {
+        totalRepoContributorCount: number;
+        totalRepoScore: number;
+        totalRepoStars: number;
+        ranking: number;
+      }
+    >;
   };
 }

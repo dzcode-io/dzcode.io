@@ -247,7 +247,10 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "repositories",
     ar: "مستودعات",
   },
-
+  "contributor-contributed-to-projects": {
+    en: "Contributed to projects",
+    ar: "ساهم في المشاريع",
+  },
   "projects-title": {
     en: "Browse a growing list of Algerian open-source projects | DzCode i/o",
     ar: "تصفح قائمة المشاريع الجزائرية مفتوحة المصدر | DzCode i / o",

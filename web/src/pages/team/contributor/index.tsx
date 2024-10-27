@@ -9,6 +9,7 @@ import { TryAgain } from "src/components/try-again";
 import { fetchContributorAction } from "src/redux/actions/contributor";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
 import { getContributorURL } from "src/utils/contributor";
+import { getProjectURL } from "src/utils/project";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {
@@ -81,6 +82,24 @@ export default function Page(): JSX.Element {
                 </div>
               </div>
             </div>
+            {contributor.projects.length > 0 ? (
+              <>
+                <h2 className="text-lg font-bold">
+                  <Locale contributor-contributed-to-projects />
+                </h2>
+                <div className="flex flex-row gap-4 flex-wrap">
+                  {contributor.projects.map((project, projectIndex) => (
+                    <Link
+                      key={projectIndex}
+                      href={getProjectURL(project)}
+                      className="card card-compact bg-base-200 rounded-lg p-4 w-full md:w-auto"
+                    >
+                      {project.name}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            ) : null}
           </div>
         )}
       </div>
