@@ -4,6 +4,7 @@ import { Service } from "typedi";
 import { ContributorRepository } from "./repository";
 import { GetContributorResponse, GetContributorsResponse } from "./types";
 import { ProjectRepository } from "src/project/repository";
+import { ContributionRepository } from "src/contribution/repository";
 
 @Service()
 @Controller("/Contributors")
@@ -11,6 +12,7 @@ export class ContributorController {
   constructor(
     private readonly contributorRepository: ContributorRepository,
     private readonly projectRepository: ProjectRepository,
+    private readonly contributionRepository: ContributionRepository,
   ) {}
 
   @Get("/")
@@ -24,9 +26,10 @@ export class ContributorController {
 
   @Get("/:id")
   public async getContributor(@Param("id") id: string): Promise<GetContributorResponse> {
-    const [contributor, projects] = await Promise.all([
+    const [contributor, projects, contributions] = await Promise.all([
       this.contributorRepository.findWithStats(id),
       this.projectRepository.findForContributor(id),
+      this.contributionRepository.findForContributor(id),
     ]);
 
     if (!contributor) throw new NotFoundError("Contributor not found");
@@ -35,8 +38,7 @@ export class ContributorController {
       contributor: {
         ...contributor,
         projects,
-        // @TODO-ZM: Add contributions
-        // contributions,
+        contributions,
       },
     };
   }
