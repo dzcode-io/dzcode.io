@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { Link } from "src/components/link";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
+import { Markdown } from "src/components/markdown";
 import { Redirect } from "src/components/redirect";
 import { TryAgain } from "src/components/try-again";
 import { fetchContributorAction } from "src/redux/actions/contributor";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
+import { getContributionURL } from "src/utils/contribution";
 import { getContributorURL } from "src/utils/contributor";
 import { getProjectURL } from "src/utils/project";
 
@@ -95,6 +97,24 @@ export default function Page(): JSX.Element {
                       className="card card-compact bg-base-200 rounded-lg p-4 w-full md:w-auto"
                     >
                       {project.name}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            ) : null}
+            {contributor.contributions.length > 0 ? (
+              <>
+                <h2 className="text-lg font-bold">
+                  <Locale contributor-needs-help />
+                </h2>
+                <div className="flex flex-row gap-4 flex-wrap">
+                  {contributor.contributions.map((contribution, contributionIndex) => (
+                    <Link
+                      key={contributionIndex}
+                      href={getContributionURL(contribution)}
+                      className="card card-compact bg-base-200 rounded-lg p-4 w-full md:w-auto"
+                    >
+                      <Markdown content={contribution.title} />
                     </Link>
                   ))}
                 </div>
