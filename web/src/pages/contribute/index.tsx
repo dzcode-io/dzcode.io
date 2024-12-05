@@ -43,11 +43,11 @@ export default function Page(): JSX.Element {
         ) : contributionsList === null ? (
           <Loading />
         ) : (
-          <div className="flex flex-row flex-wrap gap-4 justify-between p-4 max-w-7xl">
+          <div className="flex flex-row flex-wrap gap-4 justify-center p-4 max-w-7xl">
             {contributionsList.map((contribution, contributionIndex) => (
               <div
                 dir="ltr"
-                className="card card-compact bg-base-300 w-96 flex-auto"
+                className="card card-compact bg-base-300 flex-auto w-full max-w-xs sm:max-w-sm"
                 key={contributionIndex}
               >
                 <div className="card-body markdown">
