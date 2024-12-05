@@ -10,6 +10,11 @@
       "provider": "github",
       "owner": "khalilpreview",
       "name": "madinateo"
+    },
+    {
+      "provider": "github",
+      "owner": "bacloud22",
+      "name": "WeatherVenue"
     }
   ]
 }
