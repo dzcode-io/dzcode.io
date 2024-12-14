@@ -1,0 +1,10 @@
+{
+  "name": "Courier DZ",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "PiteurStudio",
+      "name": "CourierDZ"
+    }
+  ]
+}
