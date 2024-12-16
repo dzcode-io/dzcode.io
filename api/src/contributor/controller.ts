@@ -2,7 +2,11 @@ import { Controller, Get, NotFoundError, Param } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ContributorRepository } from "./repository";
-import { GetContributorResponse, GetContributorsResponse } from "./types";
+import {
+  GetContributorNameResponse,
+  GetContributorResponse,
+  GetContributorsResponse,
+} from "./types";
 import { ProjectRepository } from "src/project/repository";
 import { ContributionRepository } from "src/contribution/repository";
 
@@ -40,6 +44,17 @@ export class ContributorController {
         projects,
         contributions,
       },
+    };
+  }
+
+  @Get("/:id/name")
+  public async getContributorName(@Param("id") id: string): Promise<GetContributorNameResponse> {
+    const contributor = await this.contributorRepository.findName(id);
+
+    if (!contributor) throw new NotFoundError("Contributor not found");
+
+    return {
+      contributor,
     };
   }
 }

@@ -1,5 +1,9 @@
 import { GetContributionsResponse } from "src/contribution/types";
-import { GetContributorResponse, GetContributorsResponse } from "src/contributor/types";
+import {
+  GetContributorNameResponse,
+  GetContributorResponse,
+  GetContributorsResponse,
+} from "src/contributor/types";
 import { GetMilestonesResponse } from "src/milestone/types";
 import {
   GetProjectNameResponse,
@@ -33,6 +37,10 @@ export interface Endpoints {
   };
   "api:Contributors/:id": {
     response: GetContributorResponse;
+    params: { id: string };
+  };
+  "api:contributors/:id/name": {
+    response: GetContributorNameResponse;
     params: { id: string };
   };
   "api:MileStones/dzcode": {

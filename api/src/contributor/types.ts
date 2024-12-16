@@ -29,3 +29,7 @@ export interface GetContributorResponse extends GeneralResponse {
     contributions: Array<Pick<ContributionEntity, "id" | "title" | "type">>;
   };
 }
+
+export interface GetContributorNameResponse extends GeneralResponse {
+  contributor: Pick<ContributorEntity, "name">;
+}

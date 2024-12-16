@@ -16,6 +16,28 @@ import {
 export class ContributorRepository {
   constructor(private readonly postgresService: PostgresService) {}
 
+  public async findName(contributorId: string) {
+    const statement = sql`
+    SELECT
+      ${contributorsTable.id},
+      ${contributorsTable.name}
+    FROM
+      ${contributorsTable}
+    WHERE
+      ${contributorsTable.id} = ${contributorId}
+    `;
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const entry = entries[0];
+
+    if (!entry) return null;
+
+    const unStringifiedRaw = unStringifyDeep(entry);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
+  }
+
   public async findForProject(projectId: string) {
     const statement = sql`
     SELECT
