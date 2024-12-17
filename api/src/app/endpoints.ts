@@ -2,6 +2,7 @@ import { GetContributionsResponse } from "src/contribution/types";
 import {
   GetContributorNameResponse,
   GetContributorResponse,
+  GetContributorsForSitemapResponse,
   GetContributorsResponse,
 } from "src/contributor/types";
 import { GetMilestonesResponse } from "src/milestone/types";
@@ -34,6 +35,9 @@ export interface Endpoints {
   };
   "api:Contributors": {
     response: GetContributorsResponse;
+  };
+  "api:contributors/for-sitemap": {
+    response: GetContributorsForSitemapResponse;
   };
   "api:Contributors/:id": {
     response: GetContributorResponse;

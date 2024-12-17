@@ -94,6 +94,21 @@ export class ContributorRepository {
     return camelCased;
   }
 
+  public async findForSitemap() {
+    const statement = sql`
+    SELECT
+      ${contributorsTable.id}
+    FROM
+      ${contributorsTable}
+    `;
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
+  }
+
   public async upsert(contributor: ContributorRow) {
     return await this.postgresService.db
       .insert(contributorsTable)
