@@ -16,6 +16,28 @@ import {
 export class ContributorRepository {
   constructor(private readonly postgresService: PostgresService) {}
 
+  public async findName(contributorId: string) {
+    const statement = sql`
+    SELECT
+      ${contributorsTable.id},
+      ${contributorsTable.name}
+    FROM
+      ${contributorsTable}
+    WHERE
+      ${contributorsTable.id} = ${contributorId}
+    `;
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const entry = entries[0];
+
+    if (!entry) return null;
+
+    const unStringifiedRaw = unStringifyDeep(entry);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
+  }
+
   public async findForProject(projectId: string) {
     const statement = sql`
     SELECT
@@ -50,7 +72,9 @@ export class ContributorRepository {
       ${contributorsTable.id},
       ${contributorsTable.name},
       ${contributorsTable.avatarUrl},
-      sum(${contributorRepositoryRelationTable.score}) as ranking
+      sum(${contributorRepositoryRelationTable.score}) as total_contribution_score,
+      count(DISTINCT ${contributorRepositoryRelationTable.repositoryId}) as total_repository_count,
+      (sum(${contributorRepositoryRelationTable.score}) * count(DISTINCT ${contributorRepositoryRelationTable.repositoryId})) as ranking
     FROM
       ${contributorRepositoryRelationTable}
     JOIN
@@ -110,5 +134,36 @@ export class ContributorRepository {
     return await this.postgresService.db
       .delete(contributorsTable)
       .where(ne(contributorsTable.runId, runId));
+  }
+
+  public async findWithStats(contributorId: string) {
+    const statement = sql`
+    SELECT
+      ${contributorsTable.id},
+      ${contributorsTable.name},
+      ${contributorsTable.avatarUrl},
+      ${contributorsTable.username},
+      ${contributorsTable.url},
+      sum(${contributorRepositoryRelationTable.score}) as total_contribution_score,
+      count(DISTINCT ${contributorRepositoryRelationTable.repositoryId}) as total_repository_count,
+      (sum(${contributorRepositoryRelationTable.score}) * count(DISTINCT ${contributorRepositoryRelationTable.repositoryId})) as ranking
+    FROM
+      ${contributorRepositoryRelationTable}
+    JOIN
+      ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
+    JOIN
+      ${contributorsTable} ON ${contributorRepositoryRelationTable.contributorId} = ${contributorsTable.id}
+    WHERE
+      ${contributorsTable.id} = ${contributorId}
+    GROUP BY
+      ${contributorsTable.id}
+    `;
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const entry = entries[0];
+    const unStringifiedRaw = unStringifyDeep(entry);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
   }
 }

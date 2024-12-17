@@ -116,6 +116,47 @@ export class ProjectRepository {
     return camelCased;
   }
 
+  public async findForContributor(id: string) {
+    const statement = sql`
+    SELECT
+      id,
+      name,
+      sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
+      sum(repo_with_stats.stars)::int as total_repo_stars,
+      sum(repo_with_stats.score)::int as total_repo_score,
+      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
+    FROM
+      (
+        SELECT
+          repository_id,
+          project_id,
+          sum(score) as score,
+          count(*) as contributor_count,
+          stars
+        FROM
+          ${contributorRepositoryRelationTable}
+        JOIN
+          ${repositoriesTable} ON ${contributorRepositoryRelationTable.repositoryId} = ${repositoriesTable.id}
+        WHERE
+          ${contributorRepositoryRelationTable.contributorId} = ${id}
+        GROUP BY
+          ${contributorRepositoryRelationTable.repositoryId}, ${repositoriesTable.projectId}, ${repositoriesTable.stars}
+      ) as repo_with_stats
+    JOIN
+      ${projectsTable} ON ${projectsTable.id} = repo_with_stats.project_id
+    GROUP BY
+      ${projectsTable.id}
+    ORDER BY
+      ranking DESC
+    `;
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
+  }
+
   public async findForSitemap() {
     const statement = sql`
     SELECT

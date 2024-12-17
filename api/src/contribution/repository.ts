@@ -36,6 +36,28 @@ export class ContributionRepository {
     return camelCased;
   }
 
+  public async findForContributor(contributorId: string) {
+    const statement = sql`
+    SELECT
+      ${contributionsTable.id},
+      ${contributionsTable.title}
+    FROM
+      ${contributionsTable}
+    INNER JOIN
+      ${contributorsTable} ON ${contributionsTable.contributorId} = ${contributorsTable.id}
+    WHERE
+      ${contributorsTable.id} = ${contributorId}
+    ORDER BY
+      ${contributionsTable.updatedAt} DESC
+    `;
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
+    const camelCased = camelCaseObject(unStringifiedRaw);
+    return camelCased;
+  }
+
   public async upsert(contribution: ContributionRow) {
     return await this.postgresService.db
       .insert(contributionsTable)

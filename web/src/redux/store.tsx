@@ -9,6 +9,7 @@ import { landingPageSlice } from "./slices/landing-page";
 import { projectsPageSlice } from "./slices/projects-page";
 import { settingsSlice } from "./slices/settings";
 import { projectPageSlice } from "./slices/project-page";
+import { contributorPageSlice } from "./slices/contributor-page";
 
 const makeAppStore = () => {
   return configureStore({
@@ -17,6 +18,7 @@ const makeAppStore = () => {
       projectsPage: projectsPageSlice.reducer,
       projectPage: projectPageSlice.reducer,
       contributorsPage: contributorsPageSlice.reducer,
+      contributorPage: contributorPageSlice.reducer,
       contributionsPage: contributionsPageSlice.reducer,
       landingPage: landingPageSlice.reducer,
     },
