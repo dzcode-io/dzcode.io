@@ -1,6 +1,10 @@
-import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
-import { Expose } from "class-transformer";
+import {
+  Environment,
+  environments,
+} from "@dzcode.io/utils/dist/config/environment";
 import { IsOptional, IsString, Matches } from "class-validator";
+
+import { Expose } from "class-transformer";
 import { readFileSync } from "fs-extra";
 
 let bundleInfo = { version: require("../../package.json").version }; // eslint-disable-line @typescript-eslint/no-require-imports
@@ -32,4 +36,13 @@ export class EnvRecord {
 
   @IsOptional()
   BUNDLE_INFO: { version: string } = bundleInfo;
+
+  @Expose()
+  get MEILISEARCH_URL() {
+    return this.NODE_ENV === "development"
+      ? "http://localhost:7700/"
+      : "http://meilisearch:7700/";
+  }
+
+  MEILISEARCH_MASTER_KEY = "default";
 }

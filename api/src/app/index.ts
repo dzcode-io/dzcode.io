@@ -3,24 +3,30 @@
 import "reflect-metadata";
 import "src/_utils/setup-sentry";
 
-import { fsConfig } from "@dzcode.io/utils/dist/config";
 import * as Sentry from "@sentry/node";
+
+import {
+  RoutingControllersOptions,
+  createExpressServer,
+  useContainer,
+} from "routing-controllers";
+
 import { Application } from "express";
-import { createExpressServer, RoutingControllersOptions, useContainer } from "routing-controllers";
 import { ConfigService } from "src/config/service";
+import Container from "typedi";
 import { ContributionController } from "src/contribution/controller";
 import { ContributorController } from "src/contributor/controller";
 import { DigestCron } from "src/digest/cron";
 import { GithubController } from "src/github/controller";
+import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "src/logger/service";
 import { MilestoneController } from "src/milestone/controller";
-import { ProjectController } from "src/project/controller";
 import { PostgresService } from "src/postgres/service";
-import Container from "typedi";
-
-import { LoggerMiddleware } from "./middlewares/logger";
+import { ProjectController } from "src/project/controller";
 import { RobotsController } from "./middlewares/robots";
+import { SearchController } from "src/search/controller";
 import { SecurityMiddleware } from "./middlewares/security";
+import { fsConfig } from "@dzcode.io/utils/dist/config";
 
 // Use typedi container
 useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
@@ -45,6 +51,7 @@ useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
       ProjectController,
       ContributorController,
       RobotsController,
+      SearchController,
     ],
     middlewares: [SecurityMiddleware, LoggerMiddleware],
     cors: Container.get(SecurityMiddleware).cors(),
