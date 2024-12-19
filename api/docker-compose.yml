@@ -18,3 +18,4 @@ services:
       - ./meilisearch_db:/data.ms
     environment:
       MEILI_NO_ANALYTICS: true
+      MEILI_MASTER_KEY: "default"

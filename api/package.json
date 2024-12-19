@@ -25,6 +25,7 @@
     "helmet": "^7.1.0",
     "lodash": "^4.17.21",
     "make-fetch-happen": "^13.0.1",
+    "meilisearch": "^0.46.0",
     "morgan": "^1.10.0",
     "postgres": "^3.4.4",
     "reflect-metadata": "^0.2.2",
