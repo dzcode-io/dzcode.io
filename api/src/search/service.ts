@@ -1,8 +1,7 @@
-import { SearchItem, SearchType } from "./types";
-
 import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
 import { MeiliSearch } from "meilisearch";
+import { SearchItem } from "./types";
 import { Service } from "typedi";
 
 @Service()
@@ -21,11 +20,8 @@ export class SearchService {
     });
   }
 
-  public search = async (
-    index: SearchType,
-    query: string,
-  ): Promise<SearchItem[]> => {
-    this.logger.info({ message: `Searching ${index} for ${query}` });
+  public search = async (query: string): Promise<SearchItem[]> => {
+    this.logger.info({ message: `Searching for ${query}` });
     return [];
   };
 }
