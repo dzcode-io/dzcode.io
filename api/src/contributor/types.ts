@@ -3,6 +3,10 @@ import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { GeneralResponse } from "src/app/types";
 
+export interface GetContributorsForSitemapResponse extends GeneralResponse {
+  contributors: Array<Pick<ContributorEntity, "id">>;
+}
+
 export interface GetContributorsResponse extends GeneralResponse {
   contributors: Array<
     Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {

@@ -160,7 +160,7 @@ export class ProjectRepository {
   public async findForSitemap() {
     const statement = sql`
     SELECT
-      id,
+      ${projectsTable.id},
       ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
     FROM
       (

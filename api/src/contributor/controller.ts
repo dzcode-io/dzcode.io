@@ -5,6 +5,7 @@ import { ContributorRepository } from "./repository";
 import {
   GetContributorNameResponse,
   GetContributorResponse,
+  GetContributorsForSitemapResponse,
   GetContributorsResponse,
 } from "./types";
 import { ProjectRepository } from "src/project/repository";
@@ -22,6 +23,15 @@ export class ContributorController {
   @Get("/")
   public async getContributors(): Promise<GetContributorsResponse> {
     const contributors = await this.contributorRepository.findForList();
+
+    return {
+      contributors,
+    };
+  }
+
+  @Get("/for-sitemap")
+  public async getContributorsForSitemap(): Promise<GetContributorsForSitemapResponse> {
+    const contributors = await this.contributorRepository.findForSitemap();
 
     return {
       contributors,
