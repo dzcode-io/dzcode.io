@@ -9,9 +9,6 @@ oracle-cloud/build
 bundle
 .bundle-info.json
 
-# mobile
-.expo
-
 ./.*
 .editorconfig
 .gitignore
