@@ -24,7 +24,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Environment:**
 
-- OS: [e.g. iOS]
+- OS: [e.g. Windows]
 - Browser : [e.g. IE]
 - Version [e.g. 9]
 

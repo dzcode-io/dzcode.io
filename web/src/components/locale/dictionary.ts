@@ -26,10 +26,6 @@ export const dictionary = {
   "footer-category-link-text-projects": { en: "Projects", ar: "مشاريع" },
   "footer-category-link-text-articles": { en: "Articles", ar: "مقالات" },
   "footer-category-link-text-faq": { en: "FAQ", ar: "اسئلة / اجوبة" },
-  "footer-category-title-mobile": { en: "Mobile", ar: "تطبيق جوال" },
-  "footer-category-link-text-android": { en: "Android", ar: "أندرويد" },
-  "footer-category-link-text-ios": { en: "iOS", ar: "ايفون" },
-  "footer-category-link-text-expo": { en: "Expo", ar: "اكسبو" },
   "footer-category-title-social-media": {
     en: "Social Media",
     ar: "وسائل التواصل الاجتماعي",
@@ -186,14 +182,6 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "landing-cta-button-2": {
     en: "Make a Contribution",
     ar: "قدم مساهمة",
-  },
-  "landing-mobile-title": {
-    en: "Try the mobile app from AppStore or PlayStore",
-    ar: "جرب تطبيق الهاتف المحمول من AppStore أو PlayStore",
-  },
-  "landing-mobile-subtitle": {
-    en: "Meet the DzCode i/o mobile app and stay up-to-date with the state of Algerian open-source software on iOS and Android.",
-    ar: "تعرف على تطبيق DzCode i / o للجوال وابق على اطلاع دائم بأحدث البرامج مفتوحة المصدر الجزائرية على iOS و Android.",
   },
   "landing-milestones-title": {
     en: "Project roadmap",

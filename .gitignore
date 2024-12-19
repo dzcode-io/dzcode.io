@@ -33,8 +33,5 @@ cloudflare/public/*
 .wrangler
 **/cloudflare/wrangler.toml
 
-# mobile
-mobile/.expo
-
 # data
 data/nodemon.json
