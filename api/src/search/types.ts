@@ -10,4 +10,4 @@ export interface SearchItem {
   type: SearchType;
 }
 
-export type SearchType = "project" | "contribution" | "contributor";
+type SearchType = "project" | "contribution" | "contributor";
