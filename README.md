@@ -61,7 +61,7 @@ npm run dev:api
 npm run dev:all
 ```
 
-- For api server go to <http://localhost:7070/docs>
+- For api server go to <http://localhost:7070>
 - For web server go to <http://localhost:8080>
 
 **Note**
@@ -70,6 +70,7 @@ In [`./api`](./api), keep in mind that you have limited calls to Github Api (60 
 
 ```.env
 GITHUB_TOKEN=Paste_You_Token_Here
+NODE_ENV=development
 ```
 
 ### Run e2e locally
