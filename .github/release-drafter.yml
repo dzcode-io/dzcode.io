@@ -1,7 +1,9 @@
-name-template: "stg-v$RESOLVED_VERSION"
-tag-template: "stg-v$RESOLVED_VERSION"
-tag-prefix: "stg-v"
-include-pre-releases: true
+# This file is to draft a pre-release (eg: v6.1.2) each time a PR is merged
+# used by: .github/workflows/draft-new-release.yml
+
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+tag-prefix: "v"
 prerelease: true
 change-template: "- $TITLE (#$NUMBER)"
 version-resolver:
@@ -11,15 +13,14 @@ version-resolver:
   minor:
     labels:
       - "feature"
+      - "enhancement"
   default: patch
 template: |
-  deploying `main` branch to stage:
+  [www.dzcode.io](https://www.dzcode.io)
+
+  Join us on [discord](https://discord.gg/TGbPsSMJC2)
 
   $CHANGES
-
-  To test on `stage` environment go to:
-
-  - [stage.dzcode.io](https://stage.dzcode.io)
 
 autolabeler:
   - label: "breaking-change"
