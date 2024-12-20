@@ -31,7 +31,7 @@ export const dictionary = {
     ar: "وسائل التواصل الاجتماعي",
   },
   "footer-category-link-text-github": { en: "Github", ar: "جيتهاب" },
-  "footer-category-link-text-slack": { en: "Slack", ar: "سلاك" },
+  "footer-category-link-text-discord": { en: "Discord", ar: "ديسكورد" },
   "footer-category-link-text-facebook": { en: "Facebook", ar: "فيسبوك" },
   "footer-category-link-text-instagram": { en: "Instagram", ar: "انستغرام" },
   "footer-category-link-text-youTube": { en: "YouTube", ar: "يوتيوب" },
@@ -98,8 +98,8 @@ export const dictionary = {
     ar: "كيف أنضم إلى DzCode i / o؟",
   },
   "faq-topic-2-answer-1": {
-    en: `We're most active in slack, we recommend you [join us there](https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ).`,
-    ar: `نحن أكثر نشاطًا في Slack ، نوصيك [بالانضمام إلينا هناك](https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ)`,
+    en: `We're most active in Discord, we recommend you [join us there](https://discord.gg/TGbPsSMJC2).`,
+    ar: `نحن أكثر نشاطًا في Discord ، نوصيك بـ [الانضمام إلينا هناك](https://discord.gg/TGbPsSMJC2).`,
   },
   "faq-topic-2-question-2": {
     en: "I want to code, where should I start?",

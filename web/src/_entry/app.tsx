@@ -81,8 +81,8 @@ const footerSections: FooterProps["sections"] = [
         href: "https://www.github.com/dzcode-io",
       },
       {
-        localeKey: "footer-category-link-text-slack",
-        href: "https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ",
+        localeKey: "footer-category-link-text-discord",
+        href: "https://discord.gg/TGbPsSMJC2",
       },
       {
         localeKey: "footer-category-link-text-facebook",
