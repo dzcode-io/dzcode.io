@@ -27,3 +27,12 @@ services:
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
       POSTGRES_DB: db
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    ports:
+      - "7700:7700"
+    volumes:
+      - /home/ubuntu/app-data/api/meilisearch_db:/data.ms
+    environment:
+      MEILI_NO_ANALYTICS: true
+      MEILI_MASTER_KEY: "default"
