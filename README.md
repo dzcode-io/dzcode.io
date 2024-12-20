@@ -63,6 +63,7 @@ npm run dev:all
 
 - For api server go to <http://localhost:7070>
 - For web server go to <http://localhost:8080>
+- For search server go to <http://localhost:7700>
 
 **Note**
 

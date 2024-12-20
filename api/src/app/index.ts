@@ -25,6 +25,7 @@ import { PostgresService } from "src/postgres/service";
 import { ProjectController } from "src/project/controller";
 import { RobotsController } from "./middlewares/robots";
 import { SearchController } from "src/search/controller";
+import { SearchService } from "src/search/service";
 import { SecurityMiddleware } from "./middlewares/security";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 
@@ -37,6 +38,10 @@ useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
   await postgresService.migrate();
 
   const { NODE_ENV, PORT } = Container.get(ConfigService).env();
+
+  // Initialize Search Service
+  const searchService = Container.get(SearchService);
+  await searchService.ensureIndexes();
 
   // Add crons to DI container
   const CronServices = [DigestCron];
