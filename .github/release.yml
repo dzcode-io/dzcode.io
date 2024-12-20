@@ -1,5 +1,5 @@
-# This file is used by Github when clicking on "Generate Release Notes" in the "Releases" tab.
-# We try to align it's content with .github/release-drafter.yml
+# This file is used by GitHub when clicking on "Generate Release Notes" in the "Releases" tab.
+# We try to align its content with .github/release-drafter.yml.
 # Used in case of manual release creation.
 
 changelog:
