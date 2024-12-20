@@ -1,7 +1,8 @@
+import { SearchItem, SearchType } from "./types";
+
 import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
 import { MeiliSearch } from "meilisearch";
-import { SearchItem } from "./types";
 import { Service } from "typedi";
 
 @Service()
@@ -61,5 +62,25 @@ export class SearchService {
   public search = async (query: string): Promise<SearchItem[]> => {
     this.logger.info({ message: `Searching for ${query}` });
     return [];
+  };
+
+  public index = async (
+    index: SearchType,
+    data: SearchItem[],
+  ): Promise<void> => {
+    this.logger.info({ message: `Indexing ${data.length} items in ${index}` });
+    this.meilisearch
+      .index(index)
+      .addDocuments(data)
+      .then(() => {
+        this.logger.info({
+          message: `Indexed ${data.length} items in ${index}`,
+        });
+      })
+      .catch((error) => {
+        this.logger.error({
+          message: `failed to index ${data.length} items in ${index}: ${error.message}`,
+        });
+      });
   };
 }
