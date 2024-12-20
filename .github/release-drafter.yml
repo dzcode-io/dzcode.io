@@ -1,10 +1,9 @@
-# This file is to draft a pre-release (eg: v6.1.2) each time a PR is merged
+# This file is to draft a release (eg: v6.1.2) each time a PR is merged
 # used by: .github/workflows/draft-new-release.yml
 
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 tag-prefix: "v"
-prerelease: true
 change-template: "- $TITLE (#$NUMBER)"
 version-resolver:
   major:
