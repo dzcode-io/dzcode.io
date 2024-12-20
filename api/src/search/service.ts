@@ -23,8 +23,6 @@ export class SearchService {
     this.logger.info({
       message: `MeiliSearch client initialized with url ${MEILISEARCH_URL}`,
     });
-
-    this.ensureIndexes();
   }
 
   public search = async (query: string): Promise<SearchItem[]> => {
@@ -36,35 +34,23 @@ export class SearchService {
     index: SearchType,
     data: SearchItem[],
   ): Promise<void> => {
-    try {
-      this.logger.info({
-        message: `Indexing ${data.length} items in ${index}`,
-      });
-      await this.meilisearch.index(index).addDocuments(data);
-      this.logger.info({
-        message: `Indexed ${data.length} items in ${index}`,
-      });
-    } catch {
-      this.logger.error({
-        message: `failed to index ${data.length} items in ${index}`,
-      });
-    }
+    this.logger.info({
+      message: `Indexing ${data.length} items in ${index}`,
+    });
+    await this.meilisearch.index(index).addDocuments(data);
+    this.logger.info({
+      message: `Indexed ${data.length} items in ${index}`,
+    });
   };
 
-  private ensureIndexes = async (): Promise<void> => {
-    try {
-      await this.meilisearch.createIndex("project");
-      this.logger.info({ message: "project index created" });
+  public ensureIndexes = async (): Promise<void> => {
+    await this.meilisearch.createIndex("project");
+    this.logger.info({ message: "project index created" });
 
-      await this.meilisearch.createIndex("contribution");
-      this.logger.info({ message: "contribution index created" });
+    await this.meilisearch.createIndex("contribution");
+    this.logger.info({ message: "contribution index created" });
 
-      await this.meilisearch.createIndex("contributor");
-      this.logger.info({ message: "contributor index created" });
-    } catch {
-      this.logger.error({
-        message: `failed to create indexes`,
-      });
-    }
+    await this.meilisearch.createIndex("contributor");
+    this.logger.info({ message: "contributor index created" });
   };
 }

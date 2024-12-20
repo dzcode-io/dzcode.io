@@ -40,7 +40,8 @@ useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
   const { NODE_ENV, PORT } = Container.get(ConfigService).env();
 
   // Initialize Search Service
-  Container.get(SearchService);
+  const searchService = Container.get(SearchService);
+  await searchService.ensureIndexes();
 
   // Add crons to DI container
   const CronServices = [DigestCron];
