@@ -15,7 +15,7 @@ services:
     ports:
       - "7700:7700"
     volumes:
-      - ./meilisearch_db:/data.ms
+      - ./meilisearch_db:/meili_data
     environment:
       MEILI_NO_ANALYTICS: true
       MEILI_MASTER_KEY: "default"
