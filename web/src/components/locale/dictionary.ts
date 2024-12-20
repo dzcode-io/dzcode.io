@@ -10,12 +10,12 @@ export type DictionaryKeys<G extends DictionaryGroups> = AllDictionaryKeys &
 // @TODO-ZM: use a de-deduplication tool for repeated text
 
 export const dictionary = {
-  "navbar-section-contribute": { en: "Contribute", ar: "اساهم" },
-  "navbar-section-connect": { en: "Connect", ar: "اتواصل" },
-  "navbar-section-learn": { en: "Learn", ar: "اتعلم" },
+  "navbar-section-contribute": { en: "Contribute", ar: "أساهم" },
+  "navbar-section-connect": { en: "Connect", ar: "أتواصل" },
+  "navbar-section-learn": { en: "Learn", ar: "أتعلّم" },
   "navbar-section-projects": { en: "Projects", ar: "مشاريع" },
   "navbar-section-articles": { en: "Articles", ar: "مقالات" },
-  "navbar-section-faq": { en: "FAQ", ar: "اسئلة / اجوبة" },
+  "navbar-section-faq": { en: "FAQ", ar: "أسئلة / أجوبة" },
 
   "footer-category-title-helpful-links": {
     en: "Helpful Links",
@@ -25,7 +25,7 @@ export const dictionary = {
   "footer-category-link-text-learn": { en: "Learn", ar: "اتعلم" },
   "footer-category-link-text-projects": { en: "Projects", ar: "مشاريع" },
   "footer-category-link-text-articles": { en: "Articles", ar: "مقالات" },
-  "footer-category-link-text-faq": { en: "FAQ", ar: "اسئلة / اجوبة" },
+  "footer-category-link-text-faq": { en: "FAQ", ar: "أسئلة / أجوبة" },
   "footer-category-title-social-media": {
     en: "Social Media",
     ar: "وسائل التواصل الاجتماعي",
@@ -39,7 +39,7 @@ export const dictionary = {
   "footer-category-link-text-linkedIn": { en: "LinkedIn", ar: "لينكد إن" },
   "faq-title": {
     en: "Frequently Asked Questions | DzCode i/o",
-    ar: "اللاسئلة الاكثر طرحا | DzCode i / o",
+    ar: "الأسئلة الأكثر طرحًا | DzCode i / o",
   },
   "faq-description": {
     en: "Frequently asked questions about DzCode i/o",
@@ -47,7 +47,7 @@ export const dictionary = {
   },
   "faq-header-title": {
     en: "Frequently Asked Questions",
-    ar: "اللاسئلة الاكثر طرحا",
+    ar: "الأسئلة الأكثر طرحًا",
   },
   "faq-need-help": {
     en: "Still need help? send us an email at ",
@@ -55,7 +55,7 @@ export const dictionary = {
   },
   "faq-topic-1": {
     en: "General",
-    ar: "اسئلة عامة",
+    ar: "أسئلة عامة",
   },
   "faq-topic-1-question-1": {
     en: "What exactly is DzCode i/o ?",
