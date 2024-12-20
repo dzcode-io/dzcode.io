@@ -1,35 +1,28 @@
+# This file is used by GitHub when clicking on "Generate Release Notes" in the "Releases" tab.
+# We try to align its content with .github/release-drafter.yml.
+# Used in case of manual release creation.
+
 changelog:
   categories:
-    - title: Features 🎉
-      labels:
-        - feature
-
-    - title: Breaking Changes 🚨
+    - title: Breaking Changes
       labels:
         - breaking-change
 
-    - title: Enhancements 💅
+    - title: Features
       labels:
+        - feature
         - enhancement
 
-    - title: Bug fixes 🐞
+    - title: Bug fixes
       labels:
         - bug
         - bug-fix
         - bugfix
         - fix
 
-    - title: Projects 🚀
+    - title: Projects
       labels:
         - project
-
-    - title: Articles 📰
-      labels:
-        - article
-
-    - title: Documentation 📜
-      labels:
-        - documentation
 
     - title: Other Changes
       labels:

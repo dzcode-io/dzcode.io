@@ -24,6 +24,6 @@ So, you already master or have enough knowledge about a specific topic in IT? yo
 
 ## Have Other general suggestions?
 
-Feel free to reach out to [contact@dzcode.io](mailto:contact@dzcode.io) or create an issue in [dzcode.io repository](https://github.com/dzcode-io/dzcode.io), or chat with the community members on [Slack workspace](https://join.slack.com/t/dzcode/shared_invite/zt-ek9kscb7-m8z_~cBjX79l~uchuABPFQ).
+Feel free to reach out to [contact@dzcode.io](mailto:contact@dzcode.io) or create an issue in [dzcode.io repository](https://github.com/dzcode-io/dzcode.io), or chat with the community members on [Discord](https://discord.gg/TGbPsSMJC2).
 
 Have fun!
