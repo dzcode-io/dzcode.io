@@ -57,7 +57,12 @@ export class SearchService {
     });
   };
 
-  public ensureIndexes = async (): Promise<void> => {
+  public setupIndexes = async (): Promise<void> => {
+    await this.ensureIndexes();
+    await this.updateFilterableAttributes();
+  };
+
+  private ensureIndexes = async (): Promise<void> => {
     await this.meilisearch.createIndex("project", {
       primaryKey: "id",
     });
@@ -72,8 +77,6 @@ export class SearchService {
       primaryKey: "id",
     });
     this.logger.info({ message: "contributor index created" });
-
-    await this.updateFilterableAttributes();
   };
 
   private async updateFilterableAttributes(): Promise<void> {
