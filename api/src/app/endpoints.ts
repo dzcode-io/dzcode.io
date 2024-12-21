@@ -1,4 +1,4 @@
-import { GetContributionsResponse } from "src/contribution/types";
+import { GetContributionResponse, GetContributionsResponse } from "src/contribution/types";
 import {
   GetContributorNameResponse,
   GetContributorResponse,
@@ -32,6 +32,10 @@ export interface Endpoints {
   };
   "api:Contributions": {
     response: GetContributionsResponse;
+  };
+  "api:Contributions/:id": {
+    response: GetContributionResponse;
+    params: { id: string };
   };
   "api:Contributors": {
     response: GetContributorsResponse;
