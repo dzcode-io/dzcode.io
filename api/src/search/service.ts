@@ -1,4 +1,4 @@
-import { SearchItem, SearchType } from "./types";
+import { SearchResults, SearchType } from "./types";
 
 import { BaseSearchItem } from "@dzcode.io/models/dist/_base";
 import { ConfigService } from "src/config/service";
@@ -26,9 +26,11 @@ export class SearchService {
     });
   }
 
-  public search = async (query: string): Promise<SearchItem[]> => {
+  public search = async (query: string): Promise<SearchResults> => {
     this.logger.info({ message: `Searching for ${query}` });
-    return [];
+    return {
+      results: [],
+    };
   };
 
   public upsert = async <T extends BaseSearchItem>(
