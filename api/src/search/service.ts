@@ -32,25 +32,58 @@ export class SearchService {
 
   public upsert = async (
     index: SearchType,
-    data: SearchItem,
+    data: SearchItem[],
   ): Promise<void> => {
     this.logger.info({
-      message: `Upserting ${data.title} in ${index}`,
+      message: `Upserting ${data.length} items to ${index}`,
     });
-    await this.meilisearch.index(index).updateDocuments([data]);
+    await this.meilisearch.index(index).updateDocuments(data);
+    this.logger.info({ message: `Upserted ${data.length} items to ${index}` });
+  };
+
+  public deleteAllButWithRunId = async (
+    index: SearchType,
+    runId: string,
+  ): Promise<void> => {
     this.logger.info({
-      message: `Upserted ${data.title} in ${index}`,
+      message: `Deleting all ${index} but with runId ${runId}`,
+    });
+    await this.meilisearch.index(index).deleteDocuments({
+      filter: `NOT runId=${runId}`,
+    });
+    this.logger.info({
+      message: `Deleted all ${index} but with runId ${runId}`,
     });
   };
 
   public ensureIndexes = async (): Promise<void> => {
-    await this.meilisearch.createIndex("project");
+    await this.meilisearch.createIndex("project", {
+      primaryKey: "id",
+    });
     this.logger.info({ message: "project index created" });
 
-    await this.meilisearch.createIndex("contribution");
+    await this.meilisearch.createIndex("contribution", {
+      primaryKey: "id",
+    });
     this.logger.info({ message: "contribution index created" });
 
-    await this.meilisearch.createIndex("contributor");
+    await this.meilisearch.createIndex("contributor", {
+      primaryKey: "id",
+    });
     this.logger.info({ message: "contributor index created" });
+
+    await this.updateFilterableAttributes();
   };
+
+  private async updateFilterableAttributes(): Promise<void> {
+    await this.meilisearch
+      .index("project")
+      .updateFilterableAttributes(["runId"]);
+    await this.meilisearch
+      .index("contribution")
+      .updateFilterableAttributes(["runId"]);
+    await this.meilisearch
+      .index("contributor")
+      .updateFilterableAttributes(["runId"]);
+  }
 }

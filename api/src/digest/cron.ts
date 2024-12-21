@@ -8,6 +8,7 @@ import { GithubService } from "src/github/service";
 import { LoggerService } from "src/logger/service";
 import { ProjectRepository } from "src/project/repository";
 import { RepositoryRepository } from "src/repository/repository";
+import { SearchItem } from "src/search/types";
 import { SearchService } from "src/search/service";
 import { Service } from "typedi";
 
@@ -69,16 +70,22 @@ export class DigestCron {
 
     const projectsFromDataFolder = await this.dataService.listProjects();
 
+    const projectSearchItems: SearchItem[] = [];
+    const contributionSearchItems: SearchItem[] = [];
+    const contributorSearchItems: SearchItem[] = [];
+
     for (const project of projectsFromDataFolder) {
       const [{ id: projectId }] = await this.projectsRepository.upsert({
         ...project,
         runId,
         id: project.slug,
       });
-      this.searchService.upsert("project", {
-        id: project.slug.replace(/[.]/g, "-"), // MeiliSearch doesn't allow dots in ids
+      const sanitizedSlug = project.slug.replace(/[.]/g, "-"); // MeiliSearch doesn't allow dots in ids
+      projectSearchItems.push({
+        id: `${runId}--${sanitizedSlug}`,
         title: project.name,
         type: "project",
+        runId,
       });
 
       let addedRepositoryCount = 0;
@@ -125,10 +132,11 @@ export class DigestCron {
                   runId,
                   id: `${provider}-${githubUser.login}`,
                 });
-              this.searchService.upsert("contributor", {
-                id: `${provider}-${githubUser.login}`,
+              contributorSearchItems.push({
+                id: `${runId}--${provider}-${githubUser.login}`,
                 title: githubUser.name || githubUser.login,
                 type: "contributor",
+                runId,
               });
 
               await this.contributorsRepository.upsertRelationWithRepository({
@@ -153,10 +161,11 @@ export class DigestCron {
                 contributorId,
                 id: `${provider}-${issue.id}`,
               });
-              this.searchService.upsert("contribution", {
-                id: `${provider}-${issue.id}`,
+              contributionSearchItems.push({
+                id: `${runId}--${provider}-${issue.id}`,
                 title: issue.title,
                 type: "contribution",
+                runId,
               });
             }
 
@@ -213,6 +222,12 @@ export class DigestCron {
       await this.contributorsRepository.deleteAllButWithRunId(runId);
       await this.repositoriesRepository.deleteAllButWithRunId(runId);
       await this.projectsRepository.deleteAllButWithRunId(runId);
+      await this.searchService.upsert("project", projectSearchItems);
+      await this.searchService.upsert("contribution", contributionSearchItems);
+      await this.searchService.upsert("contributor", contributorSearchItems);
+      await this.searchService.deleteAllButWithRunId("project", runId);
+      await this.searchService.deleteAllButWithRunId("contribution", runId);
+      await this.searchService.deleteAllButWithRunId("contributor", runId);
     } catch (error) {
       captureException(error, { tags: { type: "CRON" } });
     }

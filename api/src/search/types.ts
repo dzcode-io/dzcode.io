@@ -8,6 +8,7 @@ export interface SearchItem {
   id: string;
   title: string;
   type: SearchType;
+  runId: string;
 }
 
 export type SearchType = "project" | "contribution" | "contributor";
