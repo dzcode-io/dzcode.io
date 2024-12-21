@@ -1,8 +1,8 @@
-import { Controller, Get } from "routing-controllers";
+import { Controller, Get, Param } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ContributionRepository } from "./repository";
-import { GetContributionsResponse } from "./types";
+import { GetContributionResponse, GetContributionsResponse } from "./types";
 
 @Service()
 @Controller("/Contributions")
@@ -15,6 +15,15 @@ export class ContributionController {
 
     return {
       contributions,
+    };
+  }
+
+  @Get("/:id")
+  public async getContribution(@Param("id") id: string): Promise<GetContributionResponse> {
+    const contribution = await this.contributionRepository.findByIdWithStats(id);
+
+    return {
+      contribution,
     };
   }
 }

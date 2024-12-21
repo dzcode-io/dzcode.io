@@ -148,4 +148,75 @@ export class ContributionRepository {
 
     return sortedUpdatedAt;
   }
+
+  public async findByIdWithStats(id: string) {
+    const statement = sql`
+    SELECT
+      p.id as id,
+      p.name as name,
+      json_agg(
+        json_build_object('id', r.id, 'name', r.name, 'owner', r.owner, 'contributions', r.contributions)
+      ) AS repositories
+    FROM
+      (SELECT
+        r.id as id,
+        r.owner as owner,
+        r.name as name,
+        r.project_id as project_id,
+        json_agg(
+          json_build_object(
+            'id',
+            c.id,
+            'title',
+            c.title,
+            'type',
+            c.type,
+            'url',
+            c.url,
+            'updated_at',
+            c.updated_at,
+            'activity_count',
+            c.activity_count,
+            'contributor',
+            json_build_object(
+              'id',
+              cr.id,
+              'name',
+              cr.name,
+              'username',
+              cr.username,
+              'avatar_url',
+              cr.avatar_url
+            )
+          )
+        ) AS contributions
+      FROM
+        ${contributionsTable} c
+      INNER JOIN
+        ${repositoriesTable} r ON c.repository_id = r.id
+      INNER JOIN
+        ${contributorsTable} cr ON c.contributor_id = cr.id
+      WHERE
+        c.id = ${id}
+      GROUP BY
+        r.id) AS r
+    INNER JOIN
+      ${projectsTable} p ON r.project_id = p.id
+    GROUP BY
+      p.id
+    `;
+
+    const raw = await this.postgresService.db.execute(statement);
+    const entries = Array.from(raw);
+    const unStringifiedRaw = unStringifyDeep(entries);
+
+    const reversed = reverseHierarchy(unStringifiedRaw, [
+      { from: "repositories", setParentAs: "project" },
+      { from: "contributions", setParentAs: "repository" },
+    ]);
+
+    const camelCased = camelCaseObject(reversed);
+
+    return camelCased[0];
+  }
 }
