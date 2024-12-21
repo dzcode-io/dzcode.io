@@ -43,6 +43,12 @@ export class SearchService {
     });
   };
 
+  public deleteAllDocuments = async (index: SearchType): Promise<void> => {
+    this.logger.info({ message: `Deleting all documents in ${index}` });
+    await this.meilisearch.index(index).deleteAllDocuments();
+    this.logger.info({ message: `Deleted all documents in ${index}` });
+  };
+
   public ensureIndexes = async (): Promise<void> => {
     await this.meilisearch.createIndex("project");
     this.logger.info({ message: "project index created" });
