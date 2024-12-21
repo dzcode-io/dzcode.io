@@ -80,6 +80,11 @@ export class DigestCron {
         runId,
         id: project.slug,
       });
+      searchProjectItems.push({
+        id: project.slug.replace(/[.]/g, "-"), // MeiliSearch doesn't allow dots in ids
+        title: project.name,
+        type: "project",
+      });
 
       let addedRepositoryCount = 0;
       try {
@@ -102,11 +107,6 @@ export class DigestCron {
                 stars: repoInfo.stargazers_count,
                 id: `${provider}-${repoInfo.id}`,
               });
-            searchProjectItems.push({
-              id: `${provider}-${repoInfo.id}`,
-              title: repoInfo.name,
-              type: "project",
-            });
             addedRepositoryCount++;
 
             const issues = await this.githubService.listRepositoryIssues({
