@@ -8,7 +8,6 @@ import { GithubService } from "src/github/service";
 import { LoggerService } from "src/logger/service";
 import { ProjectRepository } from "src/project/repository";
 import { RepositoryRepository } from "src/repository/repository";
-import { SearchItem } from "src/search/types";
 import { SearchService } from "src/search/service";
 import { Service } from "typedi";
 
@@ -70,17 +69,13 @@ export class DigestCron {
 
     const projectsFromDataFolder = await this.dataService.listProjects();
 
-    const searchProjectItems: SearchItem[] = [];
-    const searchContributorItems: SearchItem[] = [];
-    const searchContributionItems: SearchItem[] = [];
-
     for (const project of projectsFromDataFolder) {
       const [{ id: projectId }] = await this.projectsRepository.upsert({
         ...project,
         runId,
         id: project.slug,
       });
-      searchProjectItems.push({
+      this.searchService.upsert("project", {
         id: project.slug.replace(/[.]/g, "-"), // MeiliSearch doesn't allow dots in ids
         title: project.name,
         type: "project",
@@ -130,7 +125,7 @@ export class DigestCron {
                   runId,
                   id: `${provider}-${githubUser.login}`,
                 });
-              searchContributorItems.push({
+              this.searchService.upsert("contributor", {
                 id: `${provider}-${githubUser.login}`,
                 title: githubUser.name || githubUser.login,
                 type: "contributor",
@@ -158,7 +153,7 @@ export class DigestCron {
                 contributorId,
                 id: `${provider}-${issue.id}`,
               });
-              searchContributionItems.push({
+              this.searchService.upsert("contribution", {
                 id: `${provider}-${issue.id}`,
                 title: issue.title,
                 type: "contribution",
@@ -218,17 +213,6 @@ export class DigestCron {
       await this.contributorsRepository.deleteAllButWithRunId(runId);
       await this.repositoriesRepository.deleteAllButWithRunId(runId);
       await this.projectsRepository.deleteAllButWithRunId(runId);
-      await this.searchService.deleteAllDocuments("project");
-      await this.searchService.deleteAllDocuments("contribution");
-      await this.searchService.deleteAllDocuments("contributor");
-    } catch (error) {
-      captureException(error, { tags: { type: "CRON" } });
-    }
-
-    try {
-      await this.searchService.index("project", searchProjectItems);
-      await this.searchService.index("contribution", searchContributionItems);
-      await this.searchService.index("contributor", searchContributorItems);
     } catch (error) {
       captureException(error, { tags: { type: "CRON" } });
     }

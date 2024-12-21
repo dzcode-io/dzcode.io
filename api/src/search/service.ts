@@ -30,23 +30,17 @@ export class SearchService {
     return [];
   };
 
-  public index = async (
+  public upsert = async (
     index: SearchType,
-    data: SearchItem[],
+    data: SearchItem,
   ): Promise<void> => {
     this.logger.info({
-      message: `Indexing ${data.length} items in ${index}`,
+      message: `Upserting ${data.title} in ${index}`,
     });
-    await this.meilisearch.index(index).addDocuments(data);
+    await this.meilisearch.index(index).updateDocuments([data]);
     this.logger.info({
-      message: `Indexed ${data.length} items in ${index}`,
+      message: `Upserted ${data.title} in ${index}`,
     });
-  };
-
-  public deleteAllDocuments = async (index: SearchType): Promise<void> => {
-    this.logger.info({ message: `Deleting all documents in ${index}` });
-    await this.meilisearch.index(index).deleteAllDocuments();
-    this.logger.info({ message: `Deleted all documents in ${index}` });
   };
 
   public ensureIndexes = async (): Promise<void> => {
