@@ -7,7 +7,6 @@ export interface GetSearchResponse extends GeneralResponse {
 export interface SearchItem {
   id: string;
   title: string;
-  type: SearchType;
   runId: string;
 }
 

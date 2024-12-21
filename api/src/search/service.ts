@@ -1,5 +1,6 @@
 import { SearchItem, SearchType } from "./types";
 
+import { BaseSearchItem } from "@dzcode.io/models/dist/_base";
 import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
 import { MeiliSearch } from "meilisearch";
@@ -30,15 +31,15 @@ export class SearchService {
     return [];
   };
 
-  public upsert = async (
+  public upsert = async <T extends BaseSearchItem>(
     index: SearchType,
-    data: SearchItem[],
+    data: T,
   ): Promise<void> => {
     this.logger.info({
-      message: `Upserting ${data.length} items to ${index}`,
+      message: `Upserting "${data.id}" item to ${index}`,
     });
-    await this.meilisearch.index(index).updateDocuments(data);
-    this.logger.info({ message: `Upserted ${data.length} items to ${index}` });
+    await this.meilisearch.index(index).updateDocuments([data]);
+    this.logger.info({ message: `Upserted "${data.id}" item to ${index}` });
   };
 
   public deleteAllButWithRunId = async (

@@ -8,7 +8,6 @@ import { GithubService } from "src/github/service";
 import { LoggerService } from "src/logger/service";
 import { ProjectRepository } from "src/project/repository";
 import { RepositoryRepository } from "src/repository/repository";
-import { SearchItem } from "src/search/types";
 import { SearchService } from "src/search/service";
 import { Service } from "typedi";
 
@@ -70,23 +69,15 @@ export class DigestCron {
 
     const projectsFromDataFolder = await this.dataService.listProjects();
 
-    const projectSearchItems: SearchItem[] = [];
-    const contributionSearchItems: SearchItem[] = [];
-    const contributorSearchItems: SearchItem[] = [];
-
     for (const project of projectsFromDataFolder) {
-      const [{ id: projectId }] = await this.projectsRepository.upsert({
+      const projectEntity = {
         ...project,
         runId,
-        id: project.slug,
-      });
-      const sanitizedSlug = project.slug.replace(/[.]/g, "-"); // MeiliSearch doesn't allow dots in ids
-      projectSearchItems.push({
-        id: `${runId}--${sanitizedSlug}`,
-        title: project.name,
-        type: "project",
-        runId,
-      });
+        id: project.slug.replace(/[.]/g, "-"), // MeiliSearch doesn't allow dots in ids,
+      };
+      const [{ id: projectId }] =
+        await this.projectsRepository.upsert(projectEntity);
+      await this.searchService.upsert("project", projectEntity);
 
       let addedRepositoryCount = 0;
       try {
@@ -123,21 +114,18 @@ export class DigestCron {
 
               if (githubUser.type !== "User") continue;
 
-              const [{ id: contributorId }] =
-                await this.contributorsRepository.upsert({
-                  name: githubUser.name || githubUser.login,
-                  username: githubUser.login,
-                  url: githubUser.html_url,
-                  avatarUrl: githubUser.avatar_url,
-                  runId,
-                  id: `${provider}-${githubUser.login}`,
-                });
-              contributorSearchItems.push({
-                id: `${runId}--${provider}-${githubUser.login}`,
-                title: githubUser.name || githubUser.login,
-                type: "contributor",
+              const contributorEntity = {
+                name: githubUser.name || githubUser.login,
+                username: githubUser.login,
+                url: githubUser.html_url,
+                avatarUrl: githubUser.avatar_url,
                 runId,
-              });
+                id: `${provider}-${githubUser.login}`,
+              };
+
+              const [{ id: contributorId }] =
+                await this.contributorsRepository.upsert(contributorEntity);
+              await this.searchService.upsert("contributor", contributorEntity);
 
               await this.contributorsRepository.upsertRelationWithRepository({
                 contributorId,
@@ -147,7 +135,7 @@ export class DigestCron {
               });
 
               const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
-              await this.contributionsRepository.upsert({
+              const contributionEntity = {
                 title: issue.title,
                 type,
                 updatedAt: issue.updated_at,
@@ -160,13 +148,12 @@ export class DigestCron {
                 repositoryId,
                 contributorId,
                 id: `${provider}-${issue.id}`,
-              });
-              contributionSearchItems.push({
-                id: `${runId}--${provider}-${issue.id}`,
-                title: issue.title,
-                type: "contribution",
-                runId,
-              });
+              } as const;
+              await this.contributionsRepository.upsert(contributionEntity);
+              await this.searchService.upsert(
+                "contribution",
+                contributionEntity,
+              );
             }
 
             const repoContributors =
@@ -222,9 +209,6 @@ export class DigestCron {
       await this.contributorsRepository.deleteAllButWithRunId(runId);
       await this.repositoriesRepository.deleteAllButWithRunId(runId);
       await this.projectsRepository.deleteAllButWithRunId(runId);
-      await this.searchService.upsert("project", projectSearchItems);
-      await this.searchService.upsert("contribution", contributionSearchItems);
-      await this.searchService.upsert("contributor", contributorSearchItems);
       await this.searchService.deleteAllButWithRunId("project", runId);
       await this.searchService.deleteAllButWithRunId("contribution", runId);
       await this.searchService.deleteAllButWithRunId("contributor", runId);
