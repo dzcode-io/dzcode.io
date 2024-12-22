@@ -4,7 +4,7 @@
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 tag-prefix: "v"
-change-template: "- $TITLE (#$NUMBER)"
+change-template: "- $TITLE by @$AUTHOR in #$NUMBER"
 version-resolver:
   major:
     labels:
