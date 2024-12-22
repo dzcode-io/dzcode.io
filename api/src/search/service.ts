@@ -1,6 +1,6 @@
 import { SearchResults, SearchType } from "./types";
 
-import { BaseSearchItem } from "@dzcode.io/models/dist/_base";
+import { BaseEntity } from "@dzcode.io/models/dist/_base";
 import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
 import { MeiliSearch } from "meilisearch";
@@ -33,7 +33,7 @@ export class SearchService {
     };
   };
 
-  public upsert = async <T extends BaseSearchItem>(
+  public upsert = async <T extends BaseEntity>(
     index: SearchType,
     data: T,
   ): Promise<void> => {

@@ -1,12 +1,15 @@
 import { captureException, cron } from "@sentry/node";
 
 import { ContributionRepository } from "src/contribution/repository";
+import { ContributionRow } from "src/contribution/table";
 import { ContributorRepository } from "src/contributor/repository";
+import { ContributorRow } from "src/contributor/table";
 import { CronJob } from "cron";
 import { DataService } from "src/data/service";
 import { GithubService } from "src/github/service";
 import { LoggerService } from "src/logger/service";
 import { ProjectRepository } from "src/project/repository";
+import { ProjectRow } from "src/project/table";
 import { RepositoryRepository } from "src/repository/repository";
 import { SearchService } from "src/search/service";
 import { Service } from "typedi";
@@ -70,10 +73,10 @@ export class DigestCron {
     const projectsFromDataFolder = await this.dataService.listProjects();
 
     for (const project of projectsFromDataFolder) {
-      const projectEntity = {
-        ...project,
+      const projectEntity: ProjectRow = {
         runId,
-        id: project.slug.replace(/[.]/g, "-"), // MeiliSearch doesn't allow dots in ids,
+        id: project.slug.replace(/[.]/g, "-"), // NOTE-OB: MeiliSearch doesn't allow dots in ids
+        name: project.name,
       };
       const [{ id: projectId }] =
         await this.projectsRepository.upsert(projectEntity);
@@ -114,7 +117,7 @@ export class DigestCron {
 
               if (githubUser.type !== "User") continue;
 
-              const contributorEntity = {
+              const contributorEntity: ContributorRow = {
                 name: githubUser.name || githubUser.login,
                 username: githubUser.login,
                 url: githubUser.html_url,
@@ -135,7 +138,7 @@ export class DigestCron {
               });
 
               const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
-              const contributionEntity = {
+              const contributionEntity: ContributionRow = {
                 title: issue.title,
                 type,
                 updatedAt: issue.updated_at,
@@ -170,15 +173,17 @@ export class DigestCron {
               const contributor = await this.githubService.getUser({
                 username: repoContributor.login,
               });
+              const contributorEntity: ContributorRow = {
+                name: contributor.name || contributor.login,
+                username: contributor.login,
+                url: contributor.html_url,
+                avatarUrl: contributor.avatar_url,
+                runId,
+                id: `${provider}-${contributor.login}`,
+              };
               const [{ id: contributorId }] =
-                await this.contributorsRepository.upsert({
-                  name: contributor.name || contributor.login,
-                  username: contributor.login,
-                  url: contributor.html_url,
-                  avatarUrl: contributor.avatar_url,
-                  runId,
-                  id: `${provider}-${contributor.login}`,
-                });
+                await this.contributorsRepository.upsert(contributorEntity);
+              await this.searchService.upsert("contributor", contributorEntity);
 
               await this.contributorsRepository.upsertRelationWithRepository({
                 contributorId,
@@ -209,9 +214,11 @@ export class DigestCron {
       await this.contributorsRepository.deleteAllButWithRunId(runId);
       await this.repositoriesRepository.deleteAllButWithRunId(runId);
       await this.projectsRepository.deleteAllButWithRunId(runId);
-      await this.searchService.deleteAllButWithRunId("project", runId);
-      await this.searchService.deleteAllButWithRunId("contribution", runId);
-      await this.searchService.deleteAllButWithRunId("contributor", runId);
+      await Promise.all([
+        this.searchService.deleteAllButWithRunId("project", runId),
+        this.searchService.deleteAllButWithRunId("contribution", runId),
+        this.searchService.deleteAllButWithRunId("contributor", runId),
+      ]);
     } catch (error) {
       captureException(error, { tags: { type: "CRON" } });
     }
