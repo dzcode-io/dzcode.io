@@ -17,7 +17,7 @@
   "lint-staged": {
     "*.*": [
       "npm run lint:eslint --fix",
-      "npm run lint:prettier --write"
+      "npm run lint:prettier -- --write"
     ]
   },
   "main": "dist",
@@ -30,10 +30,10 @@
     "clean": "lerna run clean:alone --scope=@dzcode.io/models --include-dependencies --stream",
     "clean:alone": "del dist coverage",
     "lint": "npm run build && npm run lint:alone",
-    "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check .",
+    "lint:alone": "npm run lint:eslint . && npm run lint:prettier -- --check .",
     "lint:eslint": "eslint --config ../tooling/eslint.config.mjs",
     "lint:fix": "npm run build && npm run lint:fix:alone",
-    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier --write .",
+    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier -- --write .",
     "lint:prettier": "prettier  --config ../tooling/.prettierrc --ignore-path ../tooling/.prettierignore --log-level warn",
     "test": "npm run build && npm run test:alone",
     "test:alone": "jest --config ../tooling/jest.config.ts --rootDir .",

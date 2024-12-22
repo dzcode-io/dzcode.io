@@ -11,16 +11,16 @@
   "lint-staged": {
     "*.*": [
       "npm run lint:eslint --fix",
-      "npm run lint:prettier --write"
+      "npm run lint:prettier -- --write"
     ]
   },
   "private": true,
   "scripts": {
     "lint": "npm run lint:alone",
-    "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check .",
+    "lint:alone": "npm run lint:eslint . && npm run lint:prettier -- --check .",
     "lint:eslint": "eslint --config eslint.config.mjs",
     "lint:fix": "npm run lint:fix:alone",
-    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier --write .",
+    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier -- --write .",
     "lint:prettier": "prettier  --config .prettierrc --ignore-path .prettierignore --log-level warn"
   }
 }

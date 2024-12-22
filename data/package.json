@@ -21,7 +21,7 @@
   "lint-staged": {
     "*.*": [
       "npm run lint:eslint --fix",
-      "npm run lint:prettier --write"
+      "npm run lint:prettier -- --write"
     ]
   },
   "private": true,
@@ -37,10 +37,10 @@
     "clean": "lerna run clean:alone --scope=@dzcode.io/api --include-dependencies --stream",
     "clean:alone": "del dist coverage",
     "lint": "npm run build && npm run lint:alone",
-    "lint:alone": "npm run lint:eslint . && npm run lint:prettier --check . && npm run lint:tsc && npm run lint:ts-prune",
+    "lint:alone": "npm run lint:eslint . && npm run lint:prettier -- --check . && npm run lint:tsc && npm run lint:ts-prune",
     "lint:eslint": "eslint --config ../packages/tooling/eslint.config.mjs",
     "lint:fix": "npm run build && npm run lint:fix:alone",
-    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier --write .",
+    "lint:fix:alone": "npm run lint:eslint --fix . && npm run lint:prettier -- --write .",
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --log-level warn",
     "lint:ts-prune": "tsx ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",

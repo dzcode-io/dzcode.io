@@ -14,8 +14,7 @@ export class SearchService {
     private readonly logger: LoggerService,
   ) {
     this.logger.info({ message: "Initializing MeiliSearch client" });
-    const { MEILISEARCH_URL, MEILISEARCH_MASTER_KEY } =
-      this.configService.env();
+    const { MEILISEARCH_URL, MEILISEARCH_MASTER_KEY } = this.configService.env();
 
     this.meilisearch = new MeiliSearch({
       host: MEILISEARCH_URL,
@@ -33,10 +32,7 @@ export class SearchService {
     };
   };
 
-  public upsert = async <T extends BaseEntity>(
-    index: SearchType,
-    data: T,
-  ): Promise<void> => {
+  public upsert = async <T extends BaseEntity>(index: SearchType, data: T): Promise<void> => {
     this.logger.info({
       message: `Upserting "${data.id}" item to ${index}`,
     });
@@ -44,10 +40,7 @@ export class SearchService {
     this.logger.info({ message: `Upserted "${data.id}" item to ${index}` });
   };
 
-  public deleteAllButWithRunId = async (
-    index: SearchType,
-    runId: string,
-  ): Promise<void> => {
+  public deleteAllButWithRunId = async (index: SearchType, runId: string): Promise<void> => {
     this.logger.info({
       message: `Deleting all ${index} but with runId ${runId}`,
     });
@@ -83,14 +76,8 @@ export class SearchService {
   }
 
   private async updateFilterableAttributes(): Promise<void> {
-    await this.meilisearch
-      .index("project")
-      .updateFilterableAttributes(["runId"]);
-    await this.meilisearch
-      .index("contribution")
-      .updateFilterableAttributes(["runId"]);
-    await this.meilisearch
-      .index("contributor")
-      .updateFilterableAttributes(["runId"]);
+    await this.meilisearch.index("project").updateFilterableAttributes(["runId"]);
+    await this.meilisearch.index("contribution").updateFilterableAttributes(["runId"]);
+    await this.meilisearch.index("contributor").updateFilterableAttributes(["runId"]);
   }
 }
