@@ -151,7 +151,7 @@ export class DigestCron {
                 repositoryId,
                 contributorId,
                 id: `${provider}-${issue.id}`,
-              } as const;
+              };
               await this.contributionsRepository.upsert(contributionEntity);
               await this.searchService.upsert(
                 "contribution",
