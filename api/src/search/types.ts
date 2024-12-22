@@ -13,6 +13,7 @@ export class SearchRequest {
   @IsPositive()
   limit?: number = 5;
 }
+
 export interface SearchResponse extends GeneralResponse {
   searchResults: SearchResults;
 }

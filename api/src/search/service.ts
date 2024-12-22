@@ -29,9 +29,14 @@ export class SearchService {
     this.logger.info({ message: `Searching for "${q}" in all indexes` });
     const searchResults = await this.meilisearch.multiSearch({
       queries: [
-        { indexUid: "project", q, limit },
-        { indexUid: "contribution", q, limit },
-        { indexUid: "contributor", q, limit },
+        { indexUid: "project", q, limit, attributesToRetrieve: ["id", "name"] },
+        {
+          indexUid: "contribution",
+          q,
+          limit,
+          attributesToRetrieve: ["id", "title", "type", "activityCount"],
+        },
+        { indexUid: "contributor", q, limit, attributesToRetrieve: ["id", "name", "avatarUrl"] },
       ],
     });
     return searchResults as SearchResults;
