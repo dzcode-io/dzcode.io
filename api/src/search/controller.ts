@@ -1,6 +1,6 @@
-import { Controller, Get } from "routing-controllers";
+import { Controller, Post, Body, ContentType } from "routing-controllers";
 
-import { GetSearchResponse } from "./types";
+import { SearchRequest, SearchResponse } from "./types";
 import { SearchService } from "./service";
 import { Service } from "typedi";
 
@@ -9,9 +9,10 @@ import { Service } from "typedi";
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
-  @Get("/")
-  public async search(): Promise<GetSearchResponse> {
-    const searchResults = await this.searchService.search("test");
+  @Post("/")
+  @ContentType("application/json")
+  public async search(@Body({ required: true }) req: SearchRequest): Promise<SearchResponse> {
+    const searchResults = await this.searchService.search(req.query, req.limit);
     return {
       searchResults,
     };

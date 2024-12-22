@@ -25,11 +25,17 @@ export class SearchService {
     });
   }
 
-  public search = async (query: string): Promise<SearchResults> => {
-    this.logger.info({ message: `Searching for ${query}` });
-    return {
-      results: [],
-    };
+  public search = async (q: string, limit?: number): Promise<SearchResults> => {
+    this.logger.info({ message: `Searching for "${q}" in all indexes` });
+    const searchResults = await this.meilisearch.multiSearch({
+      queries: [
+        { indexUid: "project", q, limit },
+        { indexUid: "contribution", q, limit },
+        { indexUid: "contributor", q, limit },
+      ],
+    });
+    this.logger.info({ message: `Found ${searchResults.results.length} results` });
+    return searchResults as SearchResults;
   };
 
   public upsert = async <T extends BaseEntity>(index: SearchType, data: T): Promise<void> => {

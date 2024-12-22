@@ -3,8 +3,17 @@ import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { GeneralResponse } from "src/app/types";
 import { MultiSearchResponse } from "meilisearch";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
+import { IsNotEmpty, IsPositive, IsString } from "class-validator";
 
-export interface GetSearchResponse extends GeneralResponse {
+export class SearchRequest {
+  @IsString()
+  @IsNotEmpty()
+  query!: string;
+
+  @IsPositive()
+  limit?: number = 5;
+}
+export interface SearchResponse extends GeneralResponse {
   searchResults: SearchResults;
 }
 
