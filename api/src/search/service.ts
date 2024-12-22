@@ -65,21 +65,22 @@ export class SearchService {
   };
 
   private setupIndexes = async (): Promise<void> => {
-    await this.meilisearch.createIndex("project", {
-      primaryKey: "id",
-    });
-    this.logger.info({ message: "project index created" });
-
-    await this.meilisearch.createIndex("contribution", {
-      primaryKey: "id",
-    });
-    this.logger.info({ message: "contribution index created" });
-
-    await this.meilisearch.createIndex("contributor", {
-      primaryKey: "id",
-    });
-    this.logger.info({ message: "contributor index created" });
+    await this.upsertIndex("project");
+    await this.upsertIndex("contribution");
+    await this.upsertIndex("contributor");
   };
+
+  private async upsertIndex(index: SearchType): Promise<void> {
+    try {
+      await this.meilisearch.getIndex(index);
+      this.logger.info({ message: `${index} index already exists` });
+    } catch {
+      await this.meilisearch.createIndex(index, {
+        primaryKey: "id",
+      });
+      this.logger.info({ message: `${index} index created` });
+    }
+  }
 
   private async updateFilterableAttributes(): Promise<void> {
     await this.meilisearch

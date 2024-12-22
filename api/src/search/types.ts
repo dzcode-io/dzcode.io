@@ -8,8 +8,8 @@ export interface GetSearchResponse extends GeneralResponse {
   searchResults: SearchResults;
 }
 
-export type SearchResults = MultiSearchResponse<SearchItem>;
-
-type SearchItem = ProjectEntity | ContributionEntity | ContributorEntity;
+export type SearchResults = MultiSearchResponse<
+  ProjectEntity | ContributionEntity | ContributorEntity
+>;
 
 export type SearchType = "project" | "contribution" | "contributor";
