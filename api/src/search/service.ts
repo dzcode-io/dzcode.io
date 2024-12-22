@@ -34,7 +34,6 @@ export class SearchService {
         { indexUid: "contributor", q, limit },
       ],
     });
-    this.logger.info({ message: `Found ${searchResults.results.length} results` });
     return searchResults as SearchResults;
   };
 
