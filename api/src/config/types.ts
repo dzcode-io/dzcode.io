@@ -1,7 +1,4 @@
-import {
-  Environment,
-  environments,
-} from "@dzcode.io/utils/dist/config/environment";
+import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
 import { IsOptional, IsString, Matches } from "class-validator";
 
 import { Expose } from "class-transformer";
@@ -39,9 +36,7 @@ export class EnvRecord {
 
   @Expose()
   get MEILISEARCH_URL() {
-    return this.NODE_ENV === "development"
-      ? "http://localhost:7700/"
-      : "http://meilisearch:7700/";
+    return this.NODE_ENV === "development" ? "http://localhost:7700/" : "http://meilisearch:7700/";
   }
 
   MEILISEARCH_MASTER_KEY = "default";

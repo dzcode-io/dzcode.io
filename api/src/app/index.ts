@@ -4,13 +4,7 @@ import "reflect-metadata";
 import "src/_utils/setup-sentry";
 
 import * as Sentry from "@sentry/node";
-
-import {
-  RoutingControllersOptions,
-  createExpressServer,
-  useContainer,
-} from "routing-controllers";
-
+import { RoutingControllersOptions, createExpressServer, useContainer } from "routing-controllers";
 import { Application } from "express";
 import { ConfigService } from "src/config/service";
 import Container from "typedi";

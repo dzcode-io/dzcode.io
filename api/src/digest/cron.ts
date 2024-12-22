@@ -78,8 +78,7 @@ export class DigestCron {
         id: project.slug.replace(/[.]/g, "-"), // NOTE-OB: MeiliSearch doesn't allow dots in ids
         name: project.name,
       };
-      const [{ id: projectId }] =
-        await this.projectsRepository.upsert(projectEntity);
+      const [{ id: projectId }] = await this.projectsRepository.upsert(projectEntity);
       await this.searchService.upsert("project", projectEntity);
 
       let addedRepositoryCount = 0;
@@ -93,16 +92,15 @@ export class DigestCron {
             });
 
             const provider = "github";
-            const [{ id: repositoryId }] =
-              await this.repositoriesRepository.upsert({
-                provider,
-                name: repoInfo.name,
-                owner: repoInfo.owner.login,
-                runId,
-                projectId,
-                stars: repoInfo.stargazers_count,
-                id: `${provider}-${repoInfo.id}`,
-              });
+            const [{ id: repositoryId }] = await this.repositoriesRepository.upsert({
+              provider,
+              name: repoInfo.name,
+              owner: repoInfo.owner.login,
+              runId,
+              projectId,
+              stars: repoInfo.stargazers_count,
+              id: `${provider}-${repoInfo.id}`,
+            });
             addedRepositoryCount++;
 
             const issues = await this.githubService.listRepositoryIssues({
@@ -144,26 +142,19 @@ export class DigestCron {
                 updatedAt: issue.updated_at,
                 activityCount: issue.comments,
                 runId,
-                url:
-                  type === "PULL_REQUEST"
-                    ? issue.pull_request.html_url
-                    : issue.html_url,
+                url: type === "PULL_REQUEST" ? issue.pull_request.html_url : issue.html_url,
                 repositoryId,
                 contributorId,
                 id: `${provider}-${issue.id}`,
               };
               await this.contributionsRepository.upsert(contributionEntity);
-              await this.searchService.upsert(
-                "contribution",
-                contributionEntity,
-              );
+              await this.searchService.upsert("contribution", contributionEntity);
             }
 
-            const repoContributors =
-              await this.githubService.listRepositoryContributors({
-                owner: repository.owner,
-                repository: repository.name,
-              });
+            const repoContributors = await this.githubService.listRepositoryContributors({
+              owner: repository.owner,
+              repository: repository.name,
+            });
 
             const repoContributorsFiltered = repoContributors.filter(
               (contributor) => contributor.type === "User",
@@ -207,9 +198,7 @@ export class DigestCron {
     }
 
     try {
-      await this.contributorsRepository.deleteAllRelationWithRepositoryButWithRunId(
-        runId,
-      );
+      await this.contributorsRepository.deleteAllRelationWithRepositoryButWithRunId(runId);
       await this.contributionsRepository.deleteAllButWithRunId(runId);
       await this.contributorsRepository.deleteAllButWithRunId(runId);
       await this.repositoriesRepository.deleteAllButWithRunId(runId);
