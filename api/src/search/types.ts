@@ -11,7 +11,7 @@ export class SearchQuery {
   query!: string;
 
   @IsPositive()
-  limit?: number = 5;
+  limit: number = 5;
 }
 
 export interface SearchResponse extends GeneralResponse {

@@ -10,7 +10,7 @@ export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
   @Get("/")
-  public async search(@QueryParams({ required: true }) req: SearchQuery): Promise<SearchResponse> {
+  public async search(@QueryParams() req: SearchQuery): Promise<SearchResponse> {
     const searchResults = await this.searchService.search(req.query, req.limit);
     return {
       searchResults,
