@@ -8,7 +8,7 @@ export const contributorsTable = pgTable("contributors", {
   recordImportedAt: text("record_imported_at")
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  runId: text("run_id").notNull().default("initial-run-id"),
+  runId: text("run_id").notNull(),
   name: text("name").notNull(),
   username: text("username").notNull(),
   url: text("url").notNull().unique(),
