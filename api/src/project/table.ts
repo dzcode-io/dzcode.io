@@ -8,7 +8,7 @@ export const projectsTable = pgTable("projects", {
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
   name: text("name").notNull(),
-  runId: text("run_id").notNull().default("initial-run-id"),
+  runId: text("run_id").notNull(),
 });
 
 projectsTable.$inferSelect satisfies ProjectEntity;

@@ -1,5 +1,6 @@
-import { SearchItem, SearchType } from "./types";
+import { SearchResults, SearchType } from "./types";
 
+import { BaseEntity } from "@dzcode.io/models/dist/_base";
 import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
 import { MeiliSearch } from "meilisearch";
@@ -25,32 +26,71 @@ export class SearchService {
     });
   }
 
-  public search = async (query: string): Promise<SearchItem[]> => {
+  public search = async (query: string): Promise<SearchResults> => {
     this.logger.info({ message: `Searching for ${query}` });
-    return [];
+    return {
+      results: [],
+    };
   };
 
-  public index = async (
+  public upsert = async <T extends BaseEntity>(
     index: SearchType,
-    data: SearchItem[],
+    data: T,
   ): Promise<void> => {
     this.logger.info({
-      message: `Indexing ${data.length} items in ${index}`,
+      message: `Upserting "${data.id}" item to ${index}`,
     });
-    await this.meilisearch.index(index).addDocuments(data);
+    await this.meilisearch.index(index).updateDocuments([data]);
+    this.logger.info({ message: `Upserted "${data.id}" item to ${index}` });
+  };
+
+  public deleteAllButWithRunId = async (
+    index: SearchType,
+    runId: string,
+  ): Promise<void> => {
     this.logger.info({
-      message: `Indexed ${data.length} items in ${index}`,
+      message: `Deleting all ${index} but with runId ${runId}`,
+    });
+    await this.meilisearch.index(index).deleteDocuments({
+      filter: `NOT runId=${runId}`,
+    });
+    this.logger.info({
+      message: `Deleted all ${index} but with runId ${runId}`,
     });
   };
 
-  public ensureIndexes = async (): Promise<void> => {
-    await this.meilisearch.createIndex("project");
-    this.logger.info({ message: "project index created" });
-
-    await this.meilisearch.createIndex("contribution");
-    this.logger.info({ message: "contribution index created" });
-
-    await this.meilisearch.createIndex("contributor");
-    this.logger.info({ message: "contributor index created" });
+  public setupSearch = async (): Promise<void> => {
+    await this.setupIndexes();
+    await this.updateFilterableAttributes();
   };
+
+  private setupIndexes = async (): Promise<void> => {
+    await this.upsertIndex("project");
+    await this.upsertIndex("contribution");
+    await this.upsertIndex("contributor");
+  };
+
+  private async upsertIndex(index: SearchType): Promise<void> {
+    try {
+      await this.meilisearch.getIndex(index);
+      this.logger.info({ message: `${index} index already exists` });
+    } catch {
+      await this.meilisearch.createIndex(index, {
+        primaryKey: "id",
+      });
+      this.logger.info({ message: `${index} index created` });
+    }
+  }
+
+  private async updateFilterableAttributes(): Promise<void> {
+    await this.meilisearch
+      .index("project")
+      .updateFilterableAttributes(["runId"]);
+    await this.meilisearch
+      .index("contribution")
+      .updateFilterableAttributes(["runId"]);
+    await this.meilisearch
+      .index("contributor")
+      .updateFilterableAttributes(["runId"]);
+  }
 }
