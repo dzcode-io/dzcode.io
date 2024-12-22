@@ -5,7 +5,7 @@ import { MultiSearchResponse } from "meilisearch";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { IsNotEmpty, IsPositive, IsString } from "class-validator";
 
-export class SearchRequest {
+export class SearchQuery {
   @IsString()
   @IsNotEmpty()
   query!: string;
