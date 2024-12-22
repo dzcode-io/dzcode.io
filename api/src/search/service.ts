@@ -59,12 +59,12 @@ export class SearchService {
     });
   };
 
-  public setupIndexes = async (): Promise<void> => {
-    await this.ensureIndexes();
+  public setupSearch = async (): Promise<void> => {
+    await this.setupIndexes();
     await this.updateFilterableAttributes();
   };
 
-  private ensureIndexes = async (): Promise<void> => {
+  private setupIndexes = async (): Promise<void> => {
     await this.meilisearch.createIndex("project", {
       primaryKey: "id",
     });
