@@ -21,6 +21,8 @@ template: |
 
   $CHANGES
 
+  **Full Changelog**: https://github.com/dzcode-io/dzcode.io/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
 autolabeler:
   - label: "breaking-change"
     body:
