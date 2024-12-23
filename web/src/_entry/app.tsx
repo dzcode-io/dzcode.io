@@ -8,7 +8,8 @@ import { Languages } from "src/components/locale/languages";
 import { TopBar, TopBarProps } from "src/components/top-bar";
 import { StoreProvider } from "src/redux/store";
 import { getInitialLanguageCode } from "src/utils/website-language";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
+import { Search } from "src/components/search";
 
 let routes: Array<
   RouteProps & {
@@ -116,9 +117,24 @@ const topBarLinks: TopBarProps["links"] = [
 ];
 
 const App = () => {
+  const onKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === "/") {
+      event.preventDefault();
+      (document.getElementById("search-modal") as HTMLDialogElement).showModal();
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onKeyDown]);
+
   return (
     <>
       <div className="flex flex-col min-h-screen">
+        <Search />
         <TopBar version={window.bundleInfo.version} links={topBarLinks} />
         <Routes>
           {routes.map((route) => {

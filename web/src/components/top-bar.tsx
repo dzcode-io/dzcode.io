@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import logoWide from "src/assets/svg/logo-wide.svg";
@@ -39,6 +39,10 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
 
   const { localize } = useLocale();
 
+  const showModal = useCallback(() => {
+    (document.getElementById("search-modal") as HTMLDialogElement).showModal();
+  }, []);
+
   return (
     <div className="bg-neutral">
       <div className="m-auto flex max-w-7xl flex-row gap-4 p-4">
@@ -54,9 +58,13 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
         </Link>
         <div className="flex-1" />
         <label className="input input-bordered flex items-center gap-2">
-          <input type="text" className="grow" placeholder={localize("navbar-section-search")} />
-          <kbd className="kbd kbd-sm">⌘</kbd>
-          <kbd className="kbd kbd-sm">S</kbd>
+          <input
+            type="text"
+            className="grow"
+            placeholder={localize("navbar-section-search")}
+            onClick={showModal}
+          />
+          <kbd className="kbd kbd-sm">/</kbd>
         </label>
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button">
