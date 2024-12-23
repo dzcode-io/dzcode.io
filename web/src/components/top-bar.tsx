@@ -5,7 +5,7 @@ import logoWide from "src/assets/svg/logo-wide.svg";
 import logoWideExtended from "src/assets/svg/logo-wide-extended.svg";
 import { Image } from "src/components/image";
 import { Link } from "src/components/link";
-import { Locale } from "src/components/locale";
+import { Locale, useLocale } from "src/components/locale";
 import { DictionaryKeys } from "src/components/locale/dictionary";
 import { changeLanguage } from "src/redux/actions/settings";
 import { useAppSelector } from "src/redux/store";
@@ -37,6 +37,8 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
     return { selectedLanguage, languageOptions };
   }, [selectedLanguageCode]);
 
+  const { localize } = useLocale();
+
   return (
     <div className="bg-neutral">
       <div className="m-auto flex max-w-7xl flex-row gap-4 p-4">
@@ -51,6 +53,11 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
           {version}
         </Link>
         <div className="flex-1" />
+        <label className="input input-bordered flex items-center gap-2">
+          <input type="text" className="grow" placeholder={localize("navbar-section-search")} />
+          <kbd className="kbd kbd-sm">⌘</kbd>
+          <kbd className="kbd kbd-sm">S</kbd>
+        </label>
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button">
             {selectedLanguage.label}

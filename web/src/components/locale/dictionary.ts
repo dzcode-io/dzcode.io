@@ -16,6 +16,7 @@ export const dictionary = {
   "navbar-section-projects": { en: "Projects", ar: "مشاريع" },
   "navbar-section-articles": { en: "Articles", ar: "مقالات" },
   "navbar-section-faq": { en: "FAQ", ar: "أسئلة / أجوبة" },
+  "navbar-section-search": { en: "Search...", ar: "بحث..." },
 
   "footer-category-title-helpful-links": {
     en: "Helpful Links",
