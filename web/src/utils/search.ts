@@ -3,7 +3,7 @@ import { fetchV2 } from "./fetch";
 import { SearchResponse } from "@dzcode.io/api/dist/search/types";
 
 export const useSearch = (query: string, limit: number = 5) => {
-  const [results, setResults] = useState<SearchResponse>();
+  const [results, setResults] = useState<SearchResponse["searchResults"]["results"]>();
   const [isFetching, setIsFetching] = useState(false);
   const queryRef = useRef("");
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -17,7 +17,7 @@ export const useSearch = (query: string, limit: number = 5) => {
       ],
     });
 
-    setResults(searchResults);
+    setResults(searchResults.searchResults.results);
     setIsFetching(false);
   }, [limit]);
 
@@ -31,11 +31,7 @@ export const useSearch = (query: string, limit: number = 5) => {
       queryRef.current = query;
       if (queryRef.current.length) search();
       else {
-        setResults({
-          searchResults: {
-            results: [],
-          },
-        });
+        setResults([]);
         setIsFetching(false);
       }
     }, 300);

@@ -1,14 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Locale, useLocale } from "./locale";
 import { useSearch } from "src/utils/search";
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
-import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { useSearchModal } from "src/utils/search-modal";
 import { ContributionCard } from "./contribution-card";
 import { ContributorCard } from "./contributor-card";
 import { ProjectCard } from "./project-card";
+import { GetContributionsResponse } from "@dzcode.io/api/dist/contribution/types";
+import { GetContributorsResponse } from "@dzcode.io/api/dist/contributor/types";
+import { GetProjectsResponse } from "@dzcode.io/api/dist/project/types";
 
 export function Search(): JSX.Element {
   const { localize } = useLocale();
@@ -40,42 +39,37 @@ export function Search(): JSX.Element {
   }, []);
 
   const projectsList = useMemo(() => {
-    return (results?.searchResults.results || [])
-      .filter((result) => result.indexUid === "project")
-      .flatMap((projects) => projects.hits) as unknown as Array<
-      Pick<ProjectEntity, "id" | "name"> & {
-        totalRepoContributorCount: number;
-        totalRepoScore: number;
-        totalRepoStars: number;
-        ranking: number;
-      }
-    >;
-  }, [results?.searchResults.results]);
+    return (
+      (results || [])
+        .filter((result) => result.indexUid === "project")
+        // @TODO-OB: fix type casting
+        .flatMap((projects) => projects.hits) as unknown as Array<
+        GetProjectsResponse["projects"][number]
+      >
+    );
+  }, [results]);
 
   const contributorsList = useMemo(() => {
-    return (results?.searchResults.results || [])
-      .filter((result) => result.indexUid === "contributor")
-      .flatMap((contributors) => contributors.hits) as unknown as Array<
-      Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {
-        ranking: number;
-        totalContributionScore: number;
-        totalRepositoryCount: number;
-      }
-    >;
-  }, [results?.searchResults.results]);
+    return (
+      (results || [])
+        .filter((result) => result.indexUid === "contributor")
+        // @TODO-OB: fix type casting
+        .flatMap((contributors) => contributors.hits) as unknown as Array<
+        GetContributorsResponse["contributors"][number]
+      >
+    );
+  }, [results]);
 
   const contributionsList = useMemo(() => {
-    return (results?.searchResults.results || [])
-      .filter((result) => result.indexUid === "contribution")
-      .flatMap((contributions) => contributions.hits) as unknown as Array<
-      Pick<ContributionEntity, "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"> & {
-        repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
-          project: Pick<ProjectEntity, "id" | "name">;
-        };
-        contributor: Pick<ContributorEntity, "id" | "name" | "username" | "avatarUrl">;
-      }
-    >;
-  }, [results?.searchResults.results]);
+    return (
+      (results || [])
+        .filter((result) => result.indexUid === "contribution")
+        // @TODO-OB: fix type casting
+        .flatMap((contributions) => contributions.hits) as unknown as Array<
+        GetContributionsResponse["contributions"][number]
+      >
+    );
+  }, [results]);
 
   const searchTextOutput = useMemo(() => {
     if (isFetching) {
