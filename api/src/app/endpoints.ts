@@ -53,5 +53,6 @@ export interface Endpoints {
   };
   "api:Search": {
     response: SearchResponse;
+    query: [["query", string], ["limit", number]];
   };
 }
