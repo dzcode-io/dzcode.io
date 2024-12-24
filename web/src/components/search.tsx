@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Locale, useLocale } from "./locale";
 import { useSearch } from "src/utils/search";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
@@ -14,6 +14,20 @@ export function Search(): JSX.Element {
   const [query, setQuery] = useState("");
 
   const { results, isFetching } = useSearch(query);
+
+  const onKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.key === "/") {
+      event.preventDefault();
+      (document.getElementById("search-modal") as HTMLDialogElement)?.showModal();
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onKeyDown]);
 
   const hideModal = useCallback(() => {
     (document.getElementById("search-modal") as HTMLDialogElement).hidePopover();
