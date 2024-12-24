@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { Locale, useLocale } from "./locale";
-import ProjectCard from "src/pages/projects/project-card";
-import ContributorCard from "src/pages/team/contributor-card";
-import ContributionCard from "src/pages/contribute/contribute-card";
 import { useSearch } from "src/utils/search";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
+import ContributionCard from "./contribute-card";
+import ContributorCard from "./contributor-card";
+import ProjectCard from "./project-card";
 
 export function Search(): JSX.Element {
   const { localize } = useLocale();

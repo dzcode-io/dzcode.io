@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import ContributionCard from "src/components/contribute-card";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
 import { TryAgain } from "src/components/try-again";
 import { fetchContributionsListAction } from "src/redux/actions/contributions";
 import { useAppDispatch, useAppSelector } from "src/redux/store";
-import ContributionCard from "./contribute-card";
 
 // ts-prune-ignore-next
 export default function Page(): JSX.Element {
