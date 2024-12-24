@@ -434,4 +434,16 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Algeria Codes",
     ar: "الجزائر تبرمج",
   },
+  "search-contributions": {
+    en: "Contributions",
+    ar: "مساهمات",
+  },
+  "search-contributors": {
+    en: "Contributors",
+    ar: "مساهمين",
+  },
+  "search-projects": {
+    en: "Projects",
+    ar: "مشاريع",
+  },
 } as const;

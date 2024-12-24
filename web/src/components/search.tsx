@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { useLocale } from "./locale";
+import { Locale, useLocale } from "./locale";
 import ProjectCard from "src/pages/projects/project-card";
 import ContributorCard from "src/pages/team/contributor-card";
 import ContributionCard from "src/pages/contribute/contribute-card";
@@ -66,7 +66,9 @@ export function Search(): JSX.Element {
         <div className="overflow-y-auto flex-grow">
           {contributionsList?.length > 0 && (
             <div className="mt-4">
-              <h3 className="text-lg font-bold">Contributions</h3>
+              <h3 className="text-lg font-bold">
+                <Locale search-contributions />
+              </h3>
               <div className="flex flex-row flex-wrap gap-4 justify-center p-4 max-w-7xl">
                 {contributionsList.map((contribution) => (
                   <ContributionCard contribution={contribution} key={contribution.id} compact />
@@ -76,7 +78,9 @@ export function Search(): JSX.Element {
           )}
           {contributorsList?.length > 0 && (
             <div className="mt-4">
-              <h3 className="text-lg font-bold">Contributors</h3>
+              <h3 className="text-lg font-bold">
+                <Locale search-contributors />
+              </h3>
               <div className="flex flex-row flex-wrap gap-4 justify-between p-4 max-w-7xl">
                 {contributorsList.map((contributor) => (
                   <ContributorCard
@@ -91,7 +95,9 @@ export function Search(): JSX.Element {
           )}
           {projectsList?.length > 0 && (
             <div className="mt-4">
-              <h3 className="text-lg font-bold">Projects</h3>
+              <h3 className="text-lg font-bold">
+                <Locale search-projects />
+              </h3>
               <div className="flex flex-row flex-wrap gap-4 justify-between p-4 max-w-7xl">
                 {projectsList.map((project) => (
                   <ProjectCard project={project} key={project.id} compact onClick={hideModal} />
