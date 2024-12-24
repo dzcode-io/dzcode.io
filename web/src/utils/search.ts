@@ -4,10 +4,12 @@ import { SearchResponse } from "@dzcode.io/api/dist/search/types";
 
 export const useSearch = (query: string, limit: number = 5) => {
   const [results, setResults] = useState<SearchResponse>();
+  const [isFetching, setIsFetching] = useState(false);
   const queryRef = useRef("");
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const search = useCallback(async () => {
+    setIsFetching(true);
     const searchResults = await fetchV2("api:Search", {
       query: [
         ["query", queryRef.current],
@@ -16,6 +18,7 @@ export const useSearch = (query: string, limit: number = 5) => {
     });
 
     setResults(searchResults);
+    setIsFetching(false);
   }, [limit]);
 
   useEffect(() => {
@@ -23,15 +26,18 @@ export const useSearch = (query: string, limit: number = 5) => {
       clearTimeout(timeoutRef.current);
     }
 
+    setIsFetching(true);
     timeoutRef.current = setTimeout(() => {
       queryRef.current = query;
       if (queryRef.current.length) search();
-      else
+      else {
         setResults({
           searchResults: {
             results: [],
           },
         });
+        setIsFetching(false);
+      }
     }, 300);
 
     return () => {
@@ -41,5 +47,5 @@ export const useSearch = (query: string, limit: number = 5) => {
     };
   }, [query, search]);
 
-  return results;
+  return { results, isFetching };
 };

@@ -13,7 +13,7 @@ export function Search(): JSX.Element {
   const { localize } = useLocale();
   const [query, setQuery] = useState("");
 
-  const results = useSearch(query);
+  const { results, isFetching } = useSearch(query);
 
   const hideModal = useCallback(() => {
     (document.getElementById("search-modal") as HTMLDialogElement).hidePopover();
@@ -61,6 +61,30 @@ export function Search(): JSX.Element {
     >;
   }, [results?.searchResults.results]);
 
+  const searchTextOutput = useMemo(() => {
+    if (isFetching) {
+      return "";
+    }
+    if (query === "") {
+      return localize("search-type-to-search");
+    }
+    if (
+      projectsList.length === 0 &&
+      contributorsList.length === 0 &&
+      contributionsList.length === 0
+    ) {
+      return localize("search-no-results-found");
+    }
+    return "";
+  }, [
+    isFetching,
+    query,
+    projectsList.length,
+    contributorsList.length,
+    contributionsList.length,
+    localize,
+  ]);
+
   return (
     <dialog id="search-modal" className="modal">
       <div className="modal-box w-11/12 max-w-5xl h-[80vh] flex flex-col">
@@ -71,20 +95,29 @@ export function Search(): JSX.Element {
             placeholder={localize("navbar-section-search")}
             onChange={onSearchInputChange}
           />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            fill="currentColor"
-            className="h-4 w-4 opacity-70"
-          >
-            <path
-              fillRule="evenodd"
-              d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-              clipRule="evenodd"
-            />
-          </svg>
+          {isFetching ? (
+            <span className="loading loading-dots loading-lg"></span>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          )}
         </label>
         <div className="overflow-y-auto flex-grow">
+          {searchTextOutput && (
+            <div className="flex justify-center items-center h-full">
+              <p>{searchTextOutput}</p>
+            </div>
+          )}
           {contributionsList?.length > 0 && (
             <div className="mt-4">
               <h3 className="text-lg font-bold">

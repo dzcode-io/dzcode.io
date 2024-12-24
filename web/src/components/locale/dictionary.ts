@@ -446,4 +446,12 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Projects",
     ar: "مشاريع",
   },
+  "search-type-to-search": {
+    en: "Type to search...",
+    ar: "اكتب للبحث...",
+  },
+  "search-no-results-found": {
+    en: "No results found",
+    ar: "لم يتم العثور على نتائج",
+  },
 } as const;
