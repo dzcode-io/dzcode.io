@@ -4,9 +4,10 @@ import ProjectCard from "src/pages/projects/project-card";
 import ContributorCard from "src/pages/team/contributor-card";
 import ContributionCard from "src/pages/contribute/contribute-card";
 import { useSearch } from "src/utils/search";
-import { Project } from "@dzcode.io/api/dist/project/types";
-import { Contribution } from "@dzcode.io/api/dist/contribution/types";
-import { Contributor } from "@dzcode.io/api/dist/contributor/types";
+import { ProjectEntity } from "@dzcode.io/models/dist/project";
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 
 export function Search(): JSX.Element {
   const { localize } = useLocale();
@@ -25,19 +26,39 @@ export function Search(): JSX.Element {
   const projectsList = useMemo(() => {
     return (results?.searchResults.results || [])
       .filter((result) => result.indexUid === "project")
-      .flatMap((projects) => projects.hits) as unknown as Array<Project>;
+      .flatMap((projects) => projects.hits) as unknown as Array<
+      Pick<ProjectEntity, "id" | "name"> & {
+        totalRepoContributorCount: number;
+        totalRepoScore: number;
+        totalRepoStars: number;
+        ranking: number;
+      }
+    >;
   }, [results?.searchResults.results]);
 
   const contributorsList = useMemo(() => {
     return (results?.searchResults.results || [])
       .filter((result) => result.indexUid === "contributor")
-      .flatMap((contributors) => contributors.hits) as unknown as Array<Contributor>;
+      .flatMap((contributors) => contributors.hits) as unknown as Array<
+      Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {
+        ranking: number;
+        totalContributionScore: number;
+        totalRepositoryCount: number;
+      }
+    >;
   }, [results?.searchResults.results]);
 
   const contributionsList = useMemo(() => {
     return (results?.searchResults.results || [])
       .filter((result) => result.indexUid === "contribution")
-      .flatMap((contributions) => contributions.hits) as unknown as Array<Contribution>;
+      .flatMap((contributions) => contributions.hits) as unknown as Array<
+      Pick<ContributionEntity, "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"> & {
+        repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
+          project: Pick<ProjectEntity, "id" | "name">;
+        };
+        contributor: Pick<ContributorEntity, "id" | "name" | "username" | "avatarUrl">;
+      }
+    >;
   }, [results?.searchResults.results]);
 
   return (
