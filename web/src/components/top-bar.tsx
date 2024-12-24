@@ -2,7 +2,7 @@ import React from "react";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import logoWide from "src/assets/svg/logo-wide.svg";
-import logoWideExtended from "src/assets/svg/logo-wide-extended.svg";
+import logoSquareExtended from "src/assets/svg/logo-square.svg";
 import { Image } from "src/components/image";
 import { Link } from "src/components/link";
 import { Locale, useLocale } from "src/components/locale";
@@ -44,19 +44,15 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
 
   return (
     <div className="bg-neutral">
-      <div className="m-auto flex max-w-7xl flex-row gap-4 p-4">
+      <div className="m-auto flex max-w-7xl flex-row gap-4 p-4 items-center">
         <Link href={"/"} className="flex lg:hidden">
-          <Image
-            className="-mt-6 h-9 w-auto self-center"
-            src={logoWideExtended}
-            alt="DzCode i/o SVG Logo wide"
-          />
+          <Image className="h-9" src={logoSquareExtended} alt="DzCode i/o SVG Logo wide" />
         </Link>
         <Link href={`https://github.com/dzcode-io/dzcode.io/releases/tag/${version}`}>
           {version}
         </Link>
         <div className="flex-1" />
-        <button className="btn btn-ghost btn-circle lg:hidden" onClick={showModal}>
+        <button className="btn btn-ghost btn-circle btn-sm lg:hidden" onClick={showModal}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -72,7 +68,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
             />
           </svg>
         </button>
-        <label className="input input-bordered hidden lg:flex items-center gap-2">
+        <label className="input input-bordered input-sm hidden lg:flex items-center gap-2">
           <input
             type="text"
             className="grow"
