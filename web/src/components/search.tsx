@@ -17,22 +17,19 @@ export function Search(): JSX.Element {
 
   const { hideModal, showModal } = useSearchModal();
 
-  const onKeyDown = useCallback(
-    (event: KeyboardEvent) => {
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "/") {
         event.preventDefault();
         showModal();
       }
-    },
-    [showModal],
-  );
+    };
 
-  useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [onKeyDown]);
+  }, [showModal]);
 
   const onSearchInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
