@@ -71,9 +71,11 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
         <label className="input input-bordered input-sm hidden lg:flex items-center gap-2">
           <input
             type="text"
-            className="grow"
+            className="grow cursor-pointer"
             placeholder={localize("navbar-section-search")}
             onClick={showModal}
+            readOnly
+            onFocus={(e) => e.target.blur()}
           />
           <kbd className="kbd kbd-sm">/</kbd>
         </label>
