@@ -16,6 +16,7 @@ export function ContributorCard({
     <Link
       className="card bg-base-300 w-full sm:max-w-52 rounded-lg flex flex-row border-base-200 border-2 overflow-hidden"
       href={getContributorURL(contributor)}
+      // TODO-OB: there's a bug here: when passing onClick to Link, the link no longer work as a SPA link, and instead causes a full reload of the page
       onClick={onClick}
     >
       <img

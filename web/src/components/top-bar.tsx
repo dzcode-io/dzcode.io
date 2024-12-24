@@ -2,7 +2,7 @@ import React from "react";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import logoWide from "src/assets/svg/logo-wide.svg";
-import logoSquareExtended from "src/assets/svg/logo-square.svg";
+import logoSquare from "src/assets/svg/logo-square.svg";
 import { Image } from "src/components/image";
 import { Link } from "src/components/link";
 import { Locale, useLocale } from "src/components/locale";
@@ -46,7 +46,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
     <div className="bg-neutral">
       <div className="m-auto flex max-w-7xl flex-row gap-4 p-4 items-center">
         <Link href={"/"} className="flex lg:hidden">
-          <Image className="h-9" src={logoSquareExtended} alt="DzCode i/o SVG Logo wide" />
+          <Image className="h-9" src={logoSquare} alt="DzCode i/o SVG Logo wide" />
         </Link>
         <Link href={`https://github.com/dzcode-io/dzcode.io/releases/tag/${version}`}>
           {version}
