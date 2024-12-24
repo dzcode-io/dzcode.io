@@ -2,16 +2,17 @@ import React from "react";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import logoWide from "src/assets/svg/logo-wide.svg";
-import logoWideExtended from "src/assets/svg/logo-wide-extended.svg";
+import logoSquare from "src/assets/svg/logo-square.svg";
 import { Image } from "src/components/image";
 import { Link } from "src/components/link";
-import { Locale } from "src/components/locale";
+import { Locale, useLocale } from "src/components/locale";
 import { DictionaryKeys } from "src/components/locale/dictionary";
 import { changeLanguage } from "src/redux/actions/settings";
 import { useAppSelector } from "src/redux/store";
 import { stripLanguageCodeFromHRef } from "src/utils/website-language";
 
 import { Language, Languages } from "./locale/languages";
+import { useSearchModal } from "src/utils/search-modal";
 
 export interface TopBarProps {
   version: string;
@@ -25,6 +26,8 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
     return links.findIndex(({ href }) => languageLessPathname.startsWith(href));
   }, [languageLessPathname, links]);
 
+  const { showModal } = useSearchModal();
+
   const selectedLanguageCode = useAppSelector((state) => state.settings.languageCode);
 
   const { selectedLanguage, languageOptions } = useMemo(() => {
@@ -37,20 +40,45 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
     return { selectedLanguage, languageOptions };
   }, [selectedLanguageCode]);
 
+  const { localize } = useLocale();
+
   return (
     <div className="bg-neutral">
-      <div className="m-auto flex max-w-7xl flex-row gap-4 p-4">
+      <div className="m-auto flex max-w-7xl flex-row gap-4 p-4 items-center">
         <Link href={"/"} className="flex lg:hidden">
-          <Image
-            className="-mt-6 h-9 w-auto self-center"
-            src={logoWideExtended}
-            alt="DzCode i/o SVG Logo wide"
-          />
+          <Image className="h-9" src={logoSquare} alt="DzCode i/o SVG Logo wide" />
         </Link>
         <Link href={`https://github.com/dzcode-io/dzcode.io/releases/tag/${version}`}>
           {version}
         </Link>
         <div className="flex-1" />
+        <button className="btn btn-ghost btn-circle btn-sm lg:hidden" onClick={showModal}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </button>
+        <label className="input input-bordered input-sm hidden lg:flex items-center gap-2">
+          <input
+            type="text"
+            className="grow cursor-pointer"
+            placeholder={localize("navbar-section-search")}
+            onClick={showModal}
+            readOnly
+            onFocus={(e) => e.target.blur()}
+          />
+          <kbd className="kbd kbd-sm">/</kbd>
+        </label>
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button">
             {selectedLanguage.label}

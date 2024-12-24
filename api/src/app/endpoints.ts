@@ -12,6 +12,7 @@ import {
   GetProjectsForSitemapResponse,
   GetProjectsResponse,
 } from "src/project/types";
+import { SearchResponse } from "src/search/types";
 
 // ts-prune-ignore-next
 export interface Endpoints {
@@ -49,5 +50,9 @@ export interface Endpoints {
   };
   "api:MileStones/dzcode": {
     response: GetMilestonesResponse;
+  };
+  "api:Search": {
+    response: SearchResponse;
+    query: [["query", string], ["limit", number]];
   };
 }

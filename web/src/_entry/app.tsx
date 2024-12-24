@@ -9,6 +9,7 @@ import { TopBar, TopBarProps } from "src/components/top-bar";
 import { StoreProvider } from "src/redux/store";
 import { getInitialLanguageCode } from "src/utils/website-language";
 import React from "react";
+import { Search } from "src/components/search";
 
 let routes: Array<
   RouteProps & {
@@ -119,6 +120,7 @@ const App = () => {
   return (
     <>
       <div className="flex flex-col min-h-screen">
+        <Search />
         <TopBar version={window.bundleInfo.version} links={topBarLinks} />
         <Routes>
           {routes.map((route) => {

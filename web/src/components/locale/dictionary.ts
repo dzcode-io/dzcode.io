@@ -16,6 +16,7 @@ export const dictionary = {
   "navbar-section-projects": { en: "Projects", ar: "مشاريع" },
   "navbar-section-articles": { en: "Articles", ar: "مقالات" },
   "navbar-section-faq": { en: "FAQ", ar: "أسئلة / أجوبة" },
+  "navbar-section-search": { en: "Search...", ar: "بحث..." },
 
   "footer-category-title-helpful-links": {
     en: "Helpful Links",
@@ -432,5 +433,25 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
   "global-algeria-codes": {
     en: "Algeria Codes",
     ar: "الجزائر تبرمج",
+  },
+  "search-contributions": {
+    en: "Contributions",
+    ar: "مساهمات",
+  },
+  "search-contributors": {
+    en: "Contributors",
+    ar: "مساهمين",
+  },
+  "search-projects": {
+    en: "Projects",
+    ar: "مشاريع",
+  },
+  "search-type-to-search": {
+    en: "Type to search...",
+    ar: "اكتب للبحث...",
+  },
+  "search-no-results-found": {
+    en: "No results found",
+    ar: "لم يتم العثور على نتائج",
   },
 } as const;

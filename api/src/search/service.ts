@@ -34,7 +34,7 @@ export class SearchService {
           indexUid: "contribution",
           q,
           limit,
-          attributesToRetrieve: ["id", "title", "type", "activityCount"],
+          attributesToRetrieve: ["id", "title", "type", "activityCount", "url"],
         },
         { indexUid: "contributor", q, limit, attributesToRetrieve: ["id", "name", "avatarUrl"] },
       ],
