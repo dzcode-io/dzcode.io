@@ -7,14 +7,14 @@ export interface GetContributorsForSitemapResponse extends GeneralResponse {
   contributors: Array<Pick<ContributorEntity, "id">>;
 }
 
+export type Contributor = Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {
+  ranking: number;
+  totalContributionScore: number;
+  totalRepositoryCount: number;
+};
+
 export interface GetContributorsResponse extends GeneralResponse {
-  contributors: Array<
-    Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {
-      ranking: number;
-      totalContributionScore: number;
-      totalRepositoryCount: number;
-    }
-  >;
+  contributors: Array<Contributor>;
 }
 
 export interface GetContributorResponse extends GeneralResponse {

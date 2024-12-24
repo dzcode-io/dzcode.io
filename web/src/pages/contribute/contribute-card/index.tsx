@@ -1,7 +1,4 @@
-import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
-import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
+import { Contribution } from "@dzcode.io/api/dist/contribution/types";
 import React from "react";
 import { Link } from "src/components/link";
 import { useLocale } from "src/components/locale";
@@ -11,17 +8,11 @@ import { getElapsedTime } from "src/utils/elapsed-time";
 export default function ContributionCard({
   key,
   contribution,
+  compact = false,
 }: {
   key: React.Key;
-  contribution: Pick<
-    ContributionEntity,
-    "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"
-  > & {
-    repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
-      project: Pick<ProjectEntity, "id" | "name">;
-    };
-    contributor: Pick<ContributorEntity, "id" | "name" | "username" | "avatarUrl">;
-  };
+  contribution: Contribution;
+  compact?: boolean;
 }) {
   const { localize } = useLocale();
 
@@ -37,12 +28,18 @@ export default function ContributionCard({
             <Markdown content={contribution.title} />
           </h2>
           <span className="flex-1" />
-          <span className="card-normal">{contribution.repository.project.name}</span>
-          <span className="card-normal">
-            {contribution.repository.owner}/{contribution.repository.name}
-          </span>
+          {!compact && (
+            <>
+              <span className="card-normal">{contribution.repository.project.name}</span>
+              <span className="card-normal">
+                {contribution.repository.owner}/{contribution.repository.name}
+              </span>
+            </>
+          )}
           <div className="card-actions justify-end mt-4 gap-4">
-            <img className="w-6 h-6 rounded-full" src={contribution.contributor.avatarUrl} />
+            {!compact && (
+              <img className="w-6 h-6 rounded-full" src={contribution.contributor.avatarUrl} />
+            )}
             <div className="flex-1" />
             {contribution.activityCount > 0 && (
               <div className="flex flex-row">
@@ -63,9 +60,11 @@ export default function ContributionCard({
                 <span className="">{contribution.activityCount}</span>
               </div>
             )}
-            <div className="flex flex-row">
-              {getElapsedTime(contribution.updatedAt, localize("elapsed-time-suffixes"))}
-            </div>
+            {!compact && (
+              <div className="flex flex-row">
+                {getElapsedTime(contribution.updatedAt, localize("elapsed-time-suffixes"))}
+              </div>
+            )}
             <Link href={contribution.url} className="link">
               {contribution.type === "ISSUE"
                 ? localize("contribute-read-issue")

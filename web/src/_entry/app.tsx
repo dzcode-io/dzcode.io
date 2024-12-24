@@ -120,7 +120,7 @@ const App = () => {
   const onKeyDown = useCallback((event: KeyboardEvent) => {
     if (event.key === "/") {
       event.preventDefault();
-      (document.getElementById("search-modal") as HTMLDialogElement).showModal();
+      (document.getElementById("search-modal") as HTMLDialogElement)?.showModal();
     }
   }, []);
 
