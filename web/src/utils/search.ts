@@ -3,7 +3,7 @@ import { fetchV2 } from "./fetch";
 import { SearchResponse } from "@dzcode.io/api/dist/search/types";
 
 export const useSearch = (query: string, limit: number = 5) => {
-  const [results, setResults] = useState<SearchResponse["searchResults"]["results"]>();
+  const [results, setResults] = useState<SearchResponse["searchResults"]["results"]>([]);
   const [isFetching, setIsFetching] = useState(false);
   const queryRef = useRef("");
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);

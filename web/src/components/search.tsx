@@ -40,7 +40,7 @@ export function Search(): JSX.Element {
 
   const projectsList = useMemo(() => {
     return (
-      (results || [])
+      results
         .filter((result) => result.indexUid === "project")
         // @TODO-OB: fix type casting
         .flatMap((projects) => projects.hits) as unknown as Array<
@@ -51,7 +51,7 @@ export function Search(): JSX.Element {
 
   const contributorsList = useMemo(() => {
     return (
-      (results || [])
+      results
         .filter((result) => result.indexUid === "contributor")
         // @TODO-OB: fix type casting
         .flatMap((contributors) => contributors.hits) as unknown as Array<
@@ -62,7 +62,7 @@ export function Search(): JSX.Element {
 
   const contributionsList = useMemo(() => {
     return (
-      (results || [])
+      results
         .filter((result) => result.indexUid === "contribution")
         // @TODO-OB: fix type casting
         .flatMap((contributions) => contributions.hits) as unknown as Array<
