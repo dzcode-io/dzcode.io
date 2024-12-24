@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
-import ProjectCard from "src/components/project-card";
+import { ProjectCard } from "src/components/project-card";
 import { TryAgain } from "src/components/try-again";
 import { fetchProjectsListAction } from "src/redux/actions/projects";
 import { useAppDispatch, useAppSelector } from "src/redux/store";

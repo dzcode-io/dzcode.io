@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import ContributorCard from "src/components/contributor-card";
+import { ContributorCard } from "src/components/contributor-card";
 import { Loading } from "src/components/loading";
 import { Locale, useLocale } from "src/components/locale";
 import { TryAgain } from "src/components/try-again";

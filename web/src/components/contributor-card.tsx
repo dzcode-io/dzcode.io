@@ -1,26 +1,19 @@
 import React from "react";
 import { Link } from "src/components/link";
 import { getContributorURL } from "src/utils/contributor";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { GetContributorsResponse } from "@dzcode.io/api/dist/contributor/types";
 
-export default function ContributorCard({
-  key,
+export function ContributorCard({
   contributor,
   compact = false,
   onClick,
 }: {
-  key: React.Key;
-  contributor: Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {
-    ranking: number;
-    totalContributionScore: number;
-    totalRepositoryCount: number;
-  };
+  contributor: GetContributorsResponse["contributors"][number];
   compact?: boolean;
   onClick?: () => void;
 }) {
   return (
     <Link
-      key={key}
       className="card bg-base-300 w-full sm:max-w-52 rounded-lg flex flex-row border-base-200 border-2 overflow-hidden"
       href={getContributorURL(contributor)}
       onClick={onClick}

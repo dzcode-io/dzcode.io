@@ -1,21 +1,14 @@
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
+import { GetProjectsResponse } from "@dzcode.io/api/dist/project/types";
 import React from "react";
 import { Link } from "src/components/link";
 import { getProjectURL } from "src/utils/project";
 
-export default function ProjectCard({
-  key,
+export function ProjectCard({
   project,
   compact = false,
   onClick,
 }: {
-  key: React.Key;
-  project: Pick<ProjectEntity, "id" | "name"> & {
-    totalRepoContributorCount: number;
-    totalRepoScore: number;
-    totalRepoStars: number;
-    ranking: number;
-  };
+  project: GetProjectsResponse["projects"][number];
   compact?: boolean;
   onClick?: () => void;
 }) {
@@ -24,7 +17,6 @@ export default function ProjectCard({
       href={getProjectURL(project)}
       dir="ltr"
       className="bg-base-300 w-full max-w-xs sm:max-w-sm flex flex-col rounded-lg border-base-200 border-2 overflow-hidden"
-      key={key}
       onClick={onClick}
     >
       <h2 className="card-title p-4">{project.name}</h2>

@@ -1,38 +1,21 @@
-import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
-import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
+import { GetContributionsResponse } from "@dzcode.io/api/dist/contribution/types";
 import React from "react";
 import { Link } from "src/components/link";
 import { useLocale } from "src/components/locale";
 import { Markdown } from "src/components/markdown";
 import { getElapsedTime } from "src/utils/elapsed-time";
 
-export default function ContributionCard({
-  key,
+export function ContributionCard({
   contribution,
   compact = false,
 }: {
-  key: React.Key;
-  contribution: Pick<
-    ContributionEntity,
-    "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"
-  > & {
-    repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
-      project: Pick<ProjectEntity, "id" | "name">;
-    };
-    contributor: Pick<ContributorEntity, "id" | "name" | "username" | "avatarUrl">;
-  };
+  contribution: GetContributionsResponse["contributions"][number];
   compact?: boolean;
 }) {
   const { localize } = useLocale();
 
   return (
-    <div
-      dir="ltr"
-      className="card card-compact bg-base-300 flex-auto w-full max-w-xs sm:max-w-sm"
-      key={key}
-    >
+    <div dir="ltr" className="card card-compact bg-base-300 flex-auto w-full max-w-xs sm:max-w-sm">
       <div className="card-body markdown">
         <div className="card-body">
           <h2 className="card-title">
