@@ -8,6 +8,7 @@ import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import ContributionCard from "./contribute-card";
 import ContributorCard from "./contributor-card";
 import ProjectCard from "./project-card";
+import { useSearchModal } from "src/utils/search-modal";
 
 export function Search(): JSX.Element {
   const { localize } = useLocale();
@@ -15,12 +16,17 @@ export function Search(): JSX.Element {
 
   const { results, isFetching } = useSearch(query);
 
-  const onKeyDown = useCallback((event: KeyboardEvent) => {
-    if (event.key === "/") {
-      event.preventDefault();
-      (document.getElementById("search-modal") as HTMLDialogElement)?.showModal();
-    }
-  }, []);
+  const { hideModal, showModal } = useSearchModal();
+
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "/") {
+        event.preventDefault();
+        showModal();
+      }
+    },
+    [showModal],
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
@@ -28,10 +34,6 @@ export function Search(): JSX.Element {
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [onKeyDown]);
-
-  const hideModal = useCallback(() => {
-    (document.getElementById("search-modal") as HTMLDialogElement).hidePopover();
-  }, []);
 
   const onSearchInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);

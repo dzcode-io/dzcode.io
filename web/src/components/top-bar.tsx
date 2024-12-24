@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import logoWide from "src/assets/svg/logo-wide.svg";
@@ -12,6 +12,7 @@ import { useAppSelector } from "src/redux/store";
 import { stripLanguageCodeFromHRef } from "src/utils/website-language";
 
 import { Language, Languages } from "./locale/languages";
+import { useSearchModal } from "src/utils/search-modal";
 
 export interface TopBarProps {
   version: string;
@@ -24,6 +25,8 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
   const activeIndex = useMemo(() => {
     return links.findIndex(({ href }) => languageLessPathname.startsWith(href));
   }, [languageLessPathname, links]);
+
+  const { showModal } = useSearchModal();
 
   const selectedLanguageCode = useAppSelector((state) => state.settings.languageCode);
 
@@ -38,10 +41,6 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
   }, [selectedLanguageCode]);
 
   const { localize } = useLocale();
-
-  const showModal = useCallback(() => {
-    (document.getElementById("search-modal") as HTMLDialogElement)?.showModal();
-  }, []);
 
   return (
     <div className="bg-neutral">
