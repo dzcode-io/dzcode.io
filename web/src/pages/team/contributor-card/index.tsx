@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "src/components/link";
 import { getContributorURL } from "src/utils/contributor";
-import { Contributor } from "@dzcode.io/api/dist/contributor/types";
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
 
 export default function ContributorCard({
   key,
@@ -10,7 +10,11 @@ export default function ContributorCard({
   onClick,
 }: {
   key: React.Key;
-  contributor: Contributor;
+  contributor: Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {
+    ranking: number;
+    totalContributionScore: number;
+    totalRepositoryCount: number;
+  };
   compact?: boolean;
   onClick?: () => void;
 }) {

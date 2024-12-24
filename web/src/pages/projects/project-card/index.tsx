@@ -1,4 +1,4 @@
-import { Project } from "@dzcode.io/api/dist/project/types";
+import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import React from "react";
 import { Link } from "src/components/link";
 import { getProjectURL } from "src/utils/project";
@@ -10,7 +10,12 @@ export default function ProjectCard({
   onClick,
 }: {
   key: React.Key;
-  project: Project;
+  project: Pick<ProjectEntity, "id" | "name"> & {
+    totalRepoContributorCount: number;
+    totalRepoScore: number;
+    totalRepoStars: number;
+    ranking: number;
+  };
   compact?: boolean;
   onClick?: () => void;
 }) {

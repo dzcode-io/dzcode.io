@@ -1,4 +1,7 @@
-import { Contribution } from "@dzcode.io/api/dist/contribution/types";
+import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { ProjectEntity } from "@dzcode.io/models/dist/project";
+import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import React from "react";
 import { Link } from "src/components/link";
 import { useLocale } from "src/components/locale";
@@ -11,7 +14,15 @@ export default function ContributionCard({
   compact = false,
 }: {
   key: React.Key;
-  contribution: Contribution;
+  contribution: Pick<
+    ContributionEntity,
+    "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"
+  > & {
+    repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
+      project: Pick<ProjectEntity, "id" | "name">;
+    };
+    contributor: Pick<ContributorEntity, "id" | "name" | "username" | "avatarUrl">;
+  };
   compact?: boolean;
 }) {
   const { localize } = useLocale();

@@ -8,15 +8,15 @@ export interface GetProjectsForSitemapResponse extends GeneralResponse {
   projects: Array<Pick<ProjectEntity, "id">>;
 }
 
-export type Project = Pick<ProjectEntity, "id" | "name"> & {
-  totalRepoContributorCount: number;
-  totalRepoScore: number;
-  totalRepoStars: number;
-  ranking: number;
-};
-
 export interface GetProjectsResponse extends GeneralResponse {
-  projects: Array<Project>;
+  projects: Array<
+    Pick<ProjectEntity, "id" | "name"> & {
+      totalRepoContributorCount: number;
+      totalRepoScore: number;
+      totalRepoStars: number;
+      ranking: number;
+    }
+  >;
 }
 
 export interface GetProjectResponse extends GeneralResponse {
