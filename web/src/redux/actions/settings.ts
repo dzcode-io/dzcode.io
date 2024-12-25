@@ -1,11 +1,7 @@
 import { captureException } from "@sentry/react";
 import { Language, Languages } from "src/components/locale/languages";
 
-export const changeLanguage = async (languageCode: Language["code"]): Promise<void> => {
-  // case 1: url has no language code, eg: /about / or root
-  // case 2: url has language code, eg: /en/about /ar/ or /ar
-  // case 3: url has language code, but not in the list of supported languages, eg: /es/about /es/ or /es
-
+export const changeLanguage = (languageCode: Language["code"]) => {
   let newPath = window.location.pathname;
   const language = Languages.find(({ code }) => code === languageCode);
   if (!language) {
@@ -25,7 +21,7 @@ export const changeLanguage = async (languageCode: Language["code"]): Promise<vo
 
   // remove code from url if it's the default language
   if (language.code === Languages[0].code) {
-    newPath = newPath.replace(`/${language.code}`, "");
+    newPath = newPath.replace(`/${language.code}`, "") || "/";
   }
 
   window.location.href = newPath;
