@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["name", "repositories"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the project"
+    },
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["provider", "owner", "name"],
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": ["github"],
+            "description": "The repository hosting provider"
+          },
+          "owner": {
+            "type": "string",
+            "description": "The owner/organization of the repository"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the repository"
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["by-algerian", "solve-algerian-problem"]
+      },
+      "minItems": 1,
+      "description": "Tags associated with the project"
+    }
+  }
+}
