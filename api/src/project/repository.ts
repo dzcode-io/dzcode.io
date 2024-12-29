@@ -6,7 +6,7 @@ import { repositoriesTable } from "src/repository/table";
 import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
-import { ProjectRow, projectsTable } from "./table";
+import { ProjectRow, projectsTable, ProjectTagRelationRow, projectTagRelationTable } from "./table";
 
 @Service()
 export class ProjectRepository {
@@ -203,8 +203,35 @@ export class ProjectRepository {
       .returning({ id: projectsTable.id });
   }
 
+  public async upsertRelationWithTag(projectRelationWithTags: ProjectTagRelationRow) {
+    return await this.postgresService.db
+      .insert(projectTagRelationTable)
+      .values(projectRelationWithTags)
+      .onConflictDoUpdate({
+        target: [projectTagRelationTable.projectId, projectTagRelationTable.tagId],
+        set: projectRelationWithTags,
+      })
+      .returning({
+        projectId: projectTagRelationTable.projectId,
+        tagId: projectTagRelationTable.tagId,
+      });
+  }
+
+  // todo: when deleting Entity, delete all relations with it (apply for project(tag), contributor(repository))
+  public async deleteRelationWithTagByProjectId(projectId: string) {
+    return await this.postgresService.db
+      .delete(projectTagRelationTable)
+      .where(eq(projectTagRelationTable.projectId, projectId));
+  }
+
   public async deleteById(id: string) {
     return await this.postgresService.db.delete(projectsTable).where(eq(projectsTable.id, id));
+  }
+
+  public async deleteAllRelationWithTagButWithRunId(runId: string) {
+    return await this.postgresService.db
+      .delete(projectTagRelationTable)
+      .where(ne(projectTagRelationTable.runId, runId));
   }
 
   public async deleteAllButWithRunId(runId: string) {
