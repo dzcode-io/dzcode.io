@@ -80,12 +80,14 @@ export class ProjectRepository {
   public async findForList() {
     const statement = sql`
     SELECT
-      id,
-      name,
+      p.id,
+      p.name,
       sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
       sum(repo_with_stats.stars)::int as total_repo_stars,
       sum(repo_with_stats.score)::int as total_repo_score,
-      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
+      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking,
+      COALESCE(array_agg(DISTINCT t.id) filter (where t.id is not null), '{}') as tags
+
     FROM
       (
         SELECT
@@ -102,9 +104,13 @@ export class ProjectRepository {
           ${contributorRepositoryRelationTable.repositoryId}, ${repositoriesTable.projectId}, ${repositoriesTable.stars}
       ) as repo_with_stats
     JOIN
-      ${projectsTable} ON ${projectsTable.id} = repo_with_stats.project_id
+      ${projectsTable} p ON p.id = repo_with_stats.project_id
+    LEFT JOIN
+      ${projectTagRelationTable} ptr ON p.id = ptr.project_id
+    LEFT JOIN
+      tags t ON ptr.tag_id = t.id
     GROUP BY
-      ${projectsTable.id}
+      p.id
     ORDER BY
       ranking DESC
     `;

@@ -77,6 +77,8 @@ export class DigestCron {
     // const projectsFromDataFolder = (await this.dataService.listProjects()).filter((p) =>
     //   ["dzcode.io website", "Mishkal", "System Monitor"].includes(p.name),
     // );
+    // or uncomment to skip the cron
+    // if (Math.random()) return;
 
     for (const project of projectsFromDataFolder) {
       const projectEntity: ProjectRow = {
