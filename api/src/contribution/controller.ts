@@ -6,6 +6,7 @@ import {
   GetContributionTitleResponse,
   GetContributionResponse,
   GetContributionsResponse,
+  GetContributionsForSitemapResponse,
 } from "./types";
 
 @Service()
@@ -16,6 +17,16 @@ export class ContributionController {
   @Get("/")
   public async getContributions(): Promise<GetContributionsResponse> {
     const contributions = await this.contributionRepository.findForList();
+
+    return {
+      contributions,
+    };
+  }
+
+  @Get("/for-sitemap")
+  public async getContributionsForSitemap(): Promise<GetContributionsForSitemapResponse> {
+    // @TODO-ZM: title is a markdown, we should render it to plain text
+    const contributions = await this.contributionRepository.findForSitemap();
 
     return {
       contributions,

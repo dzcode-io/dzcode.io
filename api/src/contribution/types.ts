@@ -30,3 +30,7 @@ export interface GetContributionResponse extends GeneralResponse {
 export interface GetContributionTitleResponse extends GeneralResponse {
   contribution: Pick<ContributionEntity, "title">;
 }
+
+export interface GetContributionsForSitemapResponse extends GeneralResponse {
+  contributions: Array<Pick<ContributionEntity, "id" | "title">>;
+}

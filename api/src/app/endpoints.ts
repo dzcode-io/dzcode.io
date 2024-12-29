@@ -1,5 +1,6 @@
 import {
   GetContributionResponse,
+  GetContributionsForSitemapResponse,
   GetContributionsResponse,
   GetContributionTitleResponse,
 } from "src/contribution/types";
@@ -45,6 +46,9 @@ export interface Endpoints {
   "api:contributions/:id/title": {
     response: GetContributionTitleResponse;
     params: { id: string };
+  };
+  "api:contributions/for-sitemap": {
+    response: GetContributionsForSitemapResponse;
   };
   "api:Contributors": {
     response: GetContributorsResponse;
