@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Godaddy Reseller",
   "repositories": [
     {
@@ -11,5 +12,6 @@
       "owner": "Omar-Belghaouti",
       "name": "godaddy-reseller-api-client"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

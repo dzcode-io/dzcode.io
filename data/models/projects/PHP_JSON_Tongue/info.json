@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "PHP JSON Tongue",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "elaborate-code",
       "name": "php-json-tongue"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

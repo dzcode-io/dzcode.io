@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Weather Forecast",
   "repositories": [
     {
@@ -16,5 +17,6 @@
       "owner": "bacloud22",
       "name": "WeatherVenue"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

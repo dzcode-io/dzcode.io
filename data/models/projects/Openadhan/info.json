@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Openadhan",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "adelpro",
       "name": "Openadhan"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Algeria Startup Jobs",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "algeriastartupjobs",
       "name": "algeriastartupjobs.com"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

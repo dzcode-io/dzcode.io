@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "MERN Auth Roles Boilerplate",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "adelpro",
       "name": "MERN-auth-roles-boilerplate"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

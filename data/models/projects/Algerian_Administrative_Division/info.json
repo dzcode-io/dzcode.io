@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Algerian Administrative Division",
   "repositories": [
     {
@@ -36,5 +37,6 @@
       "owner": "dfourcfive",
       "name": "dzair_data_usage"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

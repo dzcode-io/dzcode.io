@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "QuranIPFS",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "adelpro",
       "name": "Quranipfs"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

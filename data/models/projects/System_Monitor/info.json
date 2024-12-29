@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "System Monitor",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "ZibanPirate",
       "name": "sysmon"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

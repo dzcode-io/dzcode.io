@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "React glassmorphism components",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "jusinamine",
       "name": "react-glassmorphism-components"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

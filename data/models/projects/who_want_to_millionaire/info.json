@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Who wants to be a millionaire app mulilingual",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "brahaim360",
       "name": "who-want-to-be-millionere"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

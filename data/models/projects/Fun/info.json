@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Fun programming language",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "omdxp",
       "name": "fun"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

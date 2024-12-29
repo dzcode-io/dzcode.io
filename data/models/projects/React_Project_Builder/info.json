@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "React and React Native Project Builder",
   "repositories": [
     {
@@ -16,5 +17,6 @@
       "owner": "Omar-Belghaouti",
       "name": "react-native-help-create"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }
