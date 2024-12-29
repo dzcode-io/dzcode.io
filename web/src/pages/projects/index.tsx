@@ -67,18 +67,23 @@ export default function Page(): JSX.Element {
         ) : projectsList === null ? (
           <Loading />
         ) : (
-          projectsGroupedByTag.map((group, groupIndex) => (
-            <Fragment key={groupIndex}>
-              <h1 className="text-xl font-bold m-2 mt-8 self-center">
-                <Locale localeKey={`projects-tag-${group.tag}` as DictionaryKeys<"projects-tag">} />
-              </h1>
-              <div className="flex flex-row flex-wrap gap-4 justify-center p-4 max-w-7xl">
-                {group.projects.map((project, projectIndex) => (
-                  <ProjectCard project={project} key={projectIndex} />
-                ))}
-              </div>
-            </Fragment>
-          ))
+          projectsGroupedByTag.map(
+            (group, groupIndex) =>
+              group.projects.length > 0 && (
+                <Fragment key={groupIndex}>
+                  <h1 className="text-xl font-bold m-2 mt-8 self-center">
+                    <Locale
+                      localeKey={`projects-tag-${group.tag}` as DictionaryKeys<"projects-tag">}
+                    />
+                  </h1>
+                  <div className="flex flex-row flex-wrap gap-4 justify-center p-4 max-w-7xl">
+                    {group.projects.map((project, projectIndex) => (
+                      <ProjectCard project={project} key={projectIndex} />
+                    ))}
+                  </div>
+                </Fragment>
+              ),
+          )
         )}
       </div>
     </main>
