@@ -73,6 +73,7 @@ export class DigestCron {
     this.logger.info({ message: `Digest cron started, runId: ${runId}` });
 
     const projectsFromDataFolder = await this.dataService.listProjects();
+    // todo-ZM: make this configurable
     // uncomment during development
     // const projectsFromDataFolder = (await this.dataService.listProjects()).filter((p) =>
     //   ["dzcode.io website", "Mishkal", "System Monitor"].includes(p.name),
