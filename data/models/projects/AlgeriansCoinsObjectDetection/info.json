@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Algerians Coins Object Detection",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "lablack576",
       "name": "algerians_coins_object_detection"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

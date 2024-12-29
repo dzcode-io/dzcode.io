@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Moadaly: Moyenne calculatrice",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "madjsmail",
       "name": "moadaly"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

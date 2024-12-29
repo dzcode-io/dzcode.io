@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Gold prices web",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "jusinamine",
       "name": "gold-prices-web"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

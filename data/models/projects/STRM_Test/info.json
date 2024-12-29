@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "STRM test",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "linuxscout",
       "name": "strm-tests"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

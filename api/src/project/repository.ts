@@ -6,7 +6,7 @@ import { repositoriesTable } from "src/repository/table";
 import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
-import { ProjectRow, projectsTable } from "./table";
+import { ProjectRow, projectsTable, ProjectTagRelationRow, projectTagRelationTable } from "./table";
 
 @Service()
 export class ProjectRepository {
@@ -80,12 +80,14 @@ export class ProjectRepository {
   public async findForList() {
     const statement = sql`
     SELECT
-      id,
-      name,
+      p.id,
+      p.name,
       sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
       sum(repo_with_stats.stars)::int as total_repo_stars,
       sum(repo_with_stats.score)::int as total_repo_score,
-      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking
+      ROUND( 100 * sum(repo_with_stats.contributor_count) + 100 * sum(repo_with_stats.stars) + max(repo_with_stats.score) - sum(repo_with_stats.score) / sum(repo_with_stats.contributor_count) )::int as ranking,
+      COALESCE(array_agg(DISTINCT t.id) filter (where t.id is not null), '{}') as tags
+
     FROM
       (
         SELECT
@@ -102,9 +104,13 @@ export class ProjectRepository {
           ${contributorRepositoryRelationTable.repositoryId}, ${repositoriesTable.projectId}, ${repositoriesTable.stars}
       ) as repo_with_stats
     JOIN
-      ${projectsTable} ON ${projectsTable.id} = repo_with_stats.project_id
+      ${projectsTable} p ON p.id = repo_with_stats.project_id
+    LEFT JOIN
+      ${projectTagRelationTable} ptr ON p.id = ptr.project_id
+    LEFT JOIN
+      tags t ON ptr.tag_id = t.id
     GROUP BY
-      ${projectsTable.id}
+      p.id
     ORDER BY
       ranking DESC
     `;
@@ -203,8 +209,35 @@ export class ProjectRepository {
       .returning({ id: projectsTable.id });
   }
 
+  public async upsertRelationWithTag(projectRelationWithTags: ProjectTagRelationRow) {
+    return await this.postgresService.db
+      .insert(projectTagRelationTable)
+      .values(projectRelationWithTags)
+      .onConflictDoUpdate({
+        target: [projectTagRelationTable.projectId, projectTagRelationTable.tagId],
+        set: projectRelationWithTags,
+      })
+      .returning({
+        projectId: projectTagRelationTable.projectId,
+        tagId: projectTagRelationTable.tagId,
+      });
+  }
+
+  // todo: when deleting Entity, delete all relations with it (apply for project(tag), contributor(repository))
+  public async deleteRelationWithTagByProjectId(projectId: string) {
+    return await this.postgresService.db
+      .delete(projectTagRelationTable)
+      .where(eq(projectTagRelationTable.projectId, projectId));
+  }
+
   public async deleteById(id: string) {
     return await this.postgresService.db.delete(projectsTable).where(eq(projectsTable.id, id));
+  }
+
+  public async deleteAllRelationWithTagButWithRunId(runId: string) {
+    return await this.postgresService.db
+      .delete(projectTagRelationTable)
+      .where(ne(projectTagRelationTable.runId, runId));
   }
 
   public async deleteAllButWithRunId(runId: string) {

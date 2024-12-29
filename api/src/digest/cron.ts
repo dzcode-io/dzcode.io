@@ -13,6 +13,7 @@ import { ProjectRow } from "src/project/table";
 import { RepositoryRepository } from "src/repository/repository";
 import { SearchService } from "src/search/service";
 import { Service } from "typedi";
+import { TagRepository } from "src/tag/repository";
 
 @Service()
 export class DigestCron {
@@ -28,6 +29,7 @@ export class DigestCron {
     private readonly contributionsRepository: ContributionRepository,
     private readonly contributorsRepository: ContributorRepository,
     private readonly searchService: SearchService,
+    private readonly tagsRepository: TagRepository,
   ) {
     const SentryCronJob = cron.instrumentCron(CronJob, "DigestCron");
     new SentryCronJob(
@@ -71,6 +73,13 @@ export class DigestCron {
     this.logger.info({ message: `Digest cron started, runId: ${runId}` });
 
     const projectsFromDataFolder = await this.dataService.listProjects();
+    // todo-ZM: make this configurable
+    // uncomment during development
+    // const projectsFromDataFolder = (await this.dataService.listProjects()).filter((p) =>
+    //   ["dzcode.io website", "Mishkal", "System Monitor"].includes(p.name),
+    // );
+    // or uncomment to skip the cron
+    // if (Math.random()) return;
 
     for (const project of projectsFromDataFolder) {
       const projectEntity: ProjectRow = {
@@ -79,6 +88,10 @@ export class DigestCron {
         name: project.name,
       };
       const [{ id: projectId }] = await this.projectsRepository.upsert(projectEntity);
+      for (const tagId of project.tags || []) {
+        await this.tagsRepository.upsert({ id: tagId, runId });
+        await this.projectsRepository.upsertRelationWithTag({ projectId, tagId, runId });
+      }
       await this.searchService.upsert("project", projectEntity);
 
       let addedRepositoryCount = 0;
@@ -193,16 +206,24 @@ export class DigestCron {
 
       if (addedRepositoryCount === 0) {
         captureException(new Error("Empty project"), { extra: { project } });
+        await this.projectsRepository.deleteRelationWithTagByProjectId(projectId);
         await this.projectsRepository.deleteById(projectId);
       }
     }
 
     try {
-      await this.contributorsRepository.deleteAllRelationWithRepositoryButWithRunId(runId);
       await this.contributionsRepository.deleteAllButWithRunId(runId);
+
+      await this.contributorsRepository.deleteAllRelationWithRepositoryButWithRunId(runId);
       await this.contributorsRepository.deleteAllButWithRunId(runId);
+
       await this.repositoriesRepository.deleteAllButWithRunId(runId);
+
+      await this.projectsRepository.deleteAllRelationWithTagButWithRunId(runId);
       await this.projectsRepository.deleteAllButWithRunId(runId);
+
+      await this.tagsRepository.deleteAllButWithRunId(runId);
+
       await Promise.all([
         this.searchService.deleteAllButWithRunId("project", runId),
         this.searchService.deleteAllButWithRunId("contribution", runId),

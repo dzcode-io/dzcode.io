@@ -31,7 +31,7 @@ export const contributorRepositoryRelationTable = pgTable(
     recordImportedAt: text("record_imported_at")
       .notNull()
       .default(sql`CURRENT_TIMESTAMP`),
-    runId: text("run_id").notNull().default("initial-run-id"),
+    runId: text("run_id").notNull(),
     score: integer("score").notNull(),
   },
   (table) => ({

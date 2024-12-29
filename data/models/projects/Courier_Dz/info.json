@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Courier DZ",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "PiteurStudio",
       "name": "CourierDZ"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

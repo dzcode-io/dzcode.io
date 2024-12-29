@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "List to Tree",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "ZibanPirate",
       "name": "l2t"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

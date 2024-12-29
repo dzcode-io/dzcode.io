@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Flutter Reaction Button",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "geekabdelouahed",
       "name": "flutter-reaction-button"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

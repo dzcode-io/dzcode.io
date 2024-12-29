@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Archy Package",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "yassine-youcefi",
       "name": "Archy"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

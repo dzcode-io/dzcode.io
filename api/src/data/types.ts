@@ -8,4 +8,5 @@ export type DataProjectEntity = {
     owner: string;
     name: string;
   }>;
+  tags?: string[];
 };

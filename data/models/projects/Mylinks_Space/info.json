@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Mylinks",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "bacloud23",
       "name": "mylinks"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

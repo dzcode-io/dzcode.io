@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "dzcode.io website",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "dzcode-io",
       "name": "dzcode.io"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "violence detection",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "jusinamine",
       "name": "violence_detection"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "ReactNative Voice Translator",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "ilies-space",
       "name": "voiceTranslator-reactNative"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }

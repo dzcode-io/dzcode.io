@@ -252,9 +252,17 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Browse a growing list of Algerian open-source projects and be up-to-date with the state of open-source software in Algeria, you can also add your project to the list!",
     ar: "تصفح قائمة متزايدة من المشاريع الجزائرية مفتوحة المصدر وكن على اطلاع دائم بأحدث البرامج مفتوحة المصدر في الجزائر ، كما يمكنك إضافة مشروعك إلى القائمة!",
   },
-  "projects-header-title": {
-    en: "Open Source Projects",
-    ar: "مشاريع مفتوحة المصدر",
+  "projects-tag-solve-algerian-problem": {
+    en: "Solves an Algerian Problem",
+    ar: "يحل مشكلة جزائرية",
+  },
+  "projects-tag-by-algerian": {
+    en: "By an Algerian developer",
+    ar: "من مطور جزائري",
+  },
+  "projects-tag-non-categorized": {
+    en: "Other",
+    ar: "أخرى",
   },
   "projects-card-cta-button": {
     en: "Details",

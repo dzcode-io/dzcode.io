@@ -13,7 +13,7 @@ export const repositoriesTable = pgTable(
     provider: text("provider").notNull().$type<RepositoryEntity["provider"]>(),
     owner: text("owner").notNull(),
     name: text("name").notNull(),
-    runId: text("run_id").notNull().default("initial-run-id"),
+    runId: text("run_id").notNull(),
     projectId: text("project_id")
       .notNull()
       .references(() => projectsTable.id),

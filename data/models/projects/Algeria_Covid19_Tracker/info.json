@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "dz-covid19.com",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "DGLcsGaming",
       "name": "dz-covid19.com"
     }
-  ]
+  ],
+  "tags": ["solve-algerian-problem"]
 }

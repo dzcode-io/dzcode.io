@@ -1,4 +1,5 @@
 {
+  "$schema": "../../schemas/project.json",
   "name": "Facial Mask Detection",
   "repositories": [
     {
@@ -6,5 +7,6 @@
       "owner": "Ghali-Benbernou",
       "name": "mask-detect"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }
