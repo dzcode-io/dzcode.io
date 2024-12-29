@@ -253,11 +253,11 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     ar: "تصفح قائمة متزايدة من المشاريع الجزائرية مفتوحة المصدر وكن على اطلاع دائم بأحدث البرامج مفتوحة المصدر في الجزائر ، كما يمكنك إضافة مشروعك إلى القائمة!",
   },
   "projects-tag-solve-algerian-problem": {
-    en: "Solves Algerian Problem",
+    en: "Solves an Algerian Problem",
     ar: "يحل مشكلة جزائرية",
   },
   "projects-tag-by-algerian": {
-    en: "From an Algerian developer",
+    en: "By an Algerian developer",
     ar: "من مطور جزائري",
   },
   "projects-tag-non-categorized": {
