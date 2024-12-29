@@ -1,8 +1,12 @@
-import { Controller, Get, Param } from "routing-controllers";
+import { Controller, Get, NotFoundError, Param } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ContributionRepository } from "./repository";
-import { GetContributionResponse, GetContributionsResponse } from "./types";
+import {
+  GetContributionTitleResponse,
+  GetContributionResponse,
+  GetContributionsResponse,
+} from "./types";
 
 @Service()
 @Controller("/Contributions")
@@ -25,5 +29,16 @@ export class ContributionController {
     return {
       contribution,
     };
+  }
+
+  @Get("/:id/title")
+  public async getContributionTitle(
+    @Param("id") id: string,
+  ): Promise<GetContributionTitleResponse> {
+    const contribution = await this.contributionRepository.findTitle(id);
+
+    if (!contribution) throw new NotFoundError("Contribution not found");
+
+    return { contribution };
   }
 }

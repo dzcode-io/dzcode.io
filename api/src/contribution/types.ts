@@ -26,3 +26,7 @@ export interface GetContributionResponse extends GeneralResponse {
     contributor: Pick<ContributorEntity, "id" | "name" | "username" | "avatarUrl">;
   };
 }
+
+export interface GetContributionTitleResponse extends GeneralResponse {
+  contribution: Pick<ContributionEntity, "title">;
+}
