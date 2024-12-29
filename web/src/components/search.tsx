@@ -132,7 +132,12 @@ export function Search(): JSX.Element {
               </h3>
               <div className="flex flex-row flex-wrap gap-4 justify-center p-4 max-w-7xl">
                 {contributionsList.map((contribution) => (
-                  <ContributionCard contribution={contribution} key={contribution.id} compact />
+                  <ContributionCard
+                    contribution={contribution}
+                    key={contribution.id}
+                    compact
+                    onClick={hideModal}
+                  />
                 ))}
               </div>
             </div>

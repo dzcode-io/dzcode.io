@@ -17,6 +17,7 @@ export function ProjectCard({
       href={getProjectURL(project)}
       dir="ltr"
       className="bg-base-300 w-full max-w-xs sm:max-w-sm flex flex-col rounded-lg border-base-200 border-2 overflow-hidden"
+      // TODO-OB: there's a bug here: when passing onClick to Link, the link no longer work as a SPA link, and instead causes a full reload of the page
       onClick={onClick}
     >
       <h2 className="card-title p-4">{project.name}</h2>
