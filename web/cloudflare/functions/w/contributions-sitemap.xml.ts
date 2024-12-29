@@ -6,6 +6,13 @@ import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { fetchV2Factory } from "@dzcode.io/utils/dist/fetch/factory";
 import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
 
+function xmlEscape(s: string) {
+  return s.replace(
+    /[<>&"']/g,
+    (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" })[c] as string,
+  );
+}
+
 export const onRequest: PagesFunction<Env> = async (context) => {
   let stage = context.env.STAGE;
   if (!environments.includes(stage)) {
@@ -22,7 +29,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     return [
       ...pV,
       ...allLanguages.map(({ baseUrl, code }) => ({
-        url: `${baseUrl}${getContributionURL(cV)}`,
+        url: xmlEscape(`${baseUrl}${getContributionURL(cV)}`),
         lang: code,
       })),
     ];
