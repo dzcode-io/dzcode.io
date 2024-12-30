@@ -15,6 +15,7 @@ export class ContributionRepository {
   constructor(private readonly postgresService: PostgresService) {}
 
   public async findTitle(contributionId: string) {
+    // todo-ZM: guard against SQL injections in all sql`` statements
     const statement = sql`
     SELECT
       ${contributionsTable.title}
