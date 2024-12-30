@@ -5,7 +5,7 @@ import { Service } from "typedi";
 import { GetMilestonesResponse } from "./types";
 
 @Service()
-@Controller("/Milestones")
+@Controller("/milestones")
 export class MilestoneController {
   constructor(private readonly githubService: GithubService) {}
 

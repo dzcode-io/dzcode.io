@@ -12,7 +12,7 @@ import { ProjectRepository } from "src/project/repository";
 import { ContributionRepository } from "src/contribution/repository";
 
 @Service()
-@Controller("/Contributors")
+@Controller("/contributors")
 export class ContributorController {
   constructor(
     private readonly contributorRepository: ContributorRepository,
