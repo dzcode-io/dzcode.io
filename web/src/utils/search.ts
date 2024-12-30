@@ -10,7 +10,7 @@ export const useSearch = (query: string, limit: number = 5) => {
 
   const search = useCallback(async () => {
     setIsFetching(true);
-    const searchResults = await fetchV2("api:Search", {
+    const searchResults = await fetchV2("api:search", {
       query: [
         ["query", queryRef.current],
         ["limit", limit],

@@ -21,8 +21,7 @@ import { SearchResponse } from "src/search/types";
 
 // ts-prune-ignore-next
 export interface Endpoints {
-  // @TODO-ZM: lower case the endpoints, curtesy of @Fcmam5
-  "api:Projects": {
+  "api:projects": {
     response: GetProjectsResponse;
   };
   "api:projects/for-sitemap": {
@@ -32,14 +31,14 @@ export interface Endpoints {
     response: GetProjectNameResponse;
     params: { id: string };
   };
-  "api:Projects/:id": {
+  "api:projects/:id": {
     response: GetProjectResponse;
     params: { id: string };
   };
-  "api:Contributions": {
+  "api:contributions": {
     response: GetContributionsResponse;
   };
-  "api:Contributions/:id": {
+  "api:contributions/:id": {
     response: GetContributionResponse;
     params: { id: string };
   };
@@ -50,13 +49,13 @@ export interface Endpoints {
   "api:contributions/for-sitemap": {
     response: GetContributionsForSitemapResponse;
   };
-  "api:Contributors": {
+  "api:contributors": {
     response: GetContributorsResponse;
   };
   "api:contributors/for-sitemap": {
     response: GetContributorsForSitemapResponse;
   };
-  "api:Contributors/:id": {
+  "api:contributors/:id": {
     response: GetContributorResponse;
     params: { id: string };
   };
@@ -64,10 +63,10 @@ export interface Endpoints {
     response: GetContributorNameResponse;
     params: { id: string };
   };
-  "api:MileStones/dzcode": {
+  "api:milestones/dzcode": {
     response: GetMilestonesResponse;
   };
-  "api:Search": {
+  "api:search": {
     response: SearchResponse;
     query: [["query", string], ["limit", number]];
   };

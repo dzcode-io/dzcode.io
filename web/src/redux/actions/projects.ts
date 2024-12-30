@@ -8,7 +8,7 @@ export const fetchProjectsListAction =
   (): ThunkAction<void, AppState, unknown, Action> => async (dispatch) => {
     try {
       dispatch(projectsPageSlice.actions.set({ projectsList: null }));
-      const { projects } = await fetchV2("api:Projects", {});
+      const { projects } = await fetchV2("api:projects", {});
       dispatch(projectsPageSlice.actions.set({ projectsList: projects }));
     } catch (error) {
       dispatch(projectsPageSlice.actions.set({ projectsList: "ERROR" }));
