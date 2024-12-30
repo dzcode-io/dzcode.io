@@ -25,7 +25,6 @@ export class ContributionController {
 
   @Get("/for-sitemap")
   public async getContributionsForSitemap(): Promise<GetContributionsForSitemapResponse> {
-    // @TODO-ZM: title is a markdown, we should render it to plain text
     const contributions = await this.contributionRepository.findForSitemap();
 
     return {
