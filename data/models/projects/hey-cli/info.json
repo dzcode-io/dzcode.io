@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/project.json",
+  "name": "hey cli",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "ZibanPirate",
+      "name": "hey-cli"
+    }
+  ],
+  "tags": ["by-algerian"]
+}
