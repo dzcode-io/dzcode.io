@@ -14,3 +14,23 @@ export interface GetContributionsResponse extends GeneralResponse {
     }
   >;
 }
+
+export interface GetContributionResponse extends GeneralResponse {
+  contribution: Pick<
+    ContributionEntity,
+    "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"
+  > & {
+    repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
+      project: Pick<ProjectEntity, "id" | "name">;
+    };
+    contributor: Pick<ContributorEntity, "id" | "name" | "username" | "avatarUrl">;
+  };
+}
+
+export interface GetContributionTitleResponse extends GeneralResponse {
+  contribution: Pick<ContributionEntity, "title">;
+}
+
+export interface GetContributionsForSitemapResponse extends GeneralResponse {
+  contributions: Array<Pick<ContributionEntity, "id" | "title">>;
+}

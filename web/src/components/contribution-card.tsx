@@ -3,19 +3,28 @@ import React from "react";
 import { Link } from "src/components/link";
 import { useLocale } from "src/components/locale";
 import { Markdown } from "src/components/markdown";
+import { getContributionURL } from "src/utils/contribution";
 import { getElapsedTime } from "src/utils/elapsed-time";
 
 export function ContributionCard({
   contribution,
   compact = false,
+  onClick,
 }: {
   contribution: GetContributionsResponse["contributions"][number];
   compact?: boolean;
+  onClick?: () => void;
 }) {
   const { localize } = useLocale();
 
   return (
-    <div dir="ltr" className="card card-compact bg-base-300 flex-auto w-full max-w-xs sm:max-w-sm">
+    <Link
+      className="card card-compact bg-base-300 flex-auto w-full max-w-xs sm:max-w-sm"
+      dir="ltr"
+      href={getContributionURL(contribution)}
+      // TODO-OB: there's a bug here: when passing onClick to Link, the link no longer work as a SPA link, and instead causes a full reload of the page
+      onClick={onClick}
+    >
       <div className="card-body markdown">
         <div className="card-body">
           <h2 className="card-title">
@@ -59,14 +68,9 @@ export function ContributionCard({
                 {getElapsedTime(contribution.updatedAt, localize("elapsed-time-suffixes"))}
               </div>
             )}
-            <Link href={contribution.url} className="link">
-              {contribution.type === "ISSUE"
-                ? localize("contribute-read-issue")
-                : localize("contribute-review-changes")}
-            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -365,6 +365,18 @@ Besides the open tasks on [/Contribute](/Contribute) page, you can also contribu
     en: "Review changes",
     ar: "مراجعة التغييرات",
   },
+  "contribution-title-pre": {
+    en: "Help with: ",
+    ar: "ساعد في: ",
+  },
+  "contribution-title-post": {
+    en: " | DzCode i/o",
+    ar: " | DzCode i / o",
+  },
+  "contribution-breadcrumbs-1": {
+    en: "Contributions",
+    ar: "المساهمات",
+  },
   "elapsed-time-suffixes": {
     en: "y|mo|d|h|min|Just now",
     ar: " عام| شهر| يوم| ساعة| دقيقة| الآن",

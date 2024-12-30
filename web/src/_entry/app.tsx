@@ -35,8 +35,11 @@ let routes: Array<
   },
   {
     pageName: "contribute",
-    // @TODO-ZM: change this back once we have contribution page
-    path: "/contribute/:slug?",
+    path: "/contribute",
+  },
+  {
+    pageName: "contribute/contribution",
+    path: "/contribute/*",
   },
   {
     pageName: "team",
