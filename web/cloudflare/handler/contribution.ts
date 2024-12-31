@@ -56,7 +56,8 @@ export const handleContributionRequest: PagesFunction<Env> = async (context) => 
     const newData = htmlTemplate
       .replace(/{{template-title}}/g, pageTitle)
       .replace(/{{template-description}}/g, localize("contribute-description"))
-      .replace(/{{template-lang}}/g, language);
+      .replace(/{{template-lang}}/g, language)
+      .replace(/{{template-canonical}}/g, `${fullstackConfig.web.url}${pathName}`);
 
     return new Response(newData, { headers: { "content-type": "text/html; charset=utf-8" } });
   } catch (error) {

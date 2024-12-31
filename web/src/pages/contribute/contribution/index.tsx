@@ -41,7 +41,6 @@ export default function Page(): JSX.Element {
             {localize("contribution-title-post")}
           </title>
           <meta name="description" content={localize("contribute-description")} />
-          {/* @TODO-ZM: add canonical url on all pages */}
           <link rel="canonical" href={getContributionURL(contribution)} />
         </Helmet>
       ) : null}

@@ -18,7 +18,6 @@ export default function Page(): JSX.Element {
     dispatch(fetchContributionsListAction());
   }, [dispatch]);
 
-  // @TODO-ZM: add filters and search
   return (
     <main className="flex flex-col self-center">
       <Helmet>
