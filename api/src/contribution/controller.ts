@@ -10,7 +10,7 @@ import {
 } from "./types";
 
 @Service()
-@Controller("/Contributions")
+@Controller("/contributions")
 export class ContributionController {
   constructor(private readonly contributionRepository: ContributionRepository) {}
 

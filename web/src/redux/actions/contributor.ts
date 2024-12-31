@@ -13,7 +13,7 @@ export const fetchContributorAction =
     }
     try {
       dispatch(contributorPageSlice.actions.set({ contributor: null }));
-      const { contributor } = await fetchV2("api:Contributors/:id", { params: { id } });
+      const { contributor } = await fetchV2("api:contributors/:id", { params: { id } });
       dispatch(contributorPageSlice.actions.set({ contributor }));
     } catch (error) {
       dispatch(contributorPageSlice.actions.set({ contributor: "ERROR" }));

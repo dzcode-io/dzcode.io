@@ -13,7 +13,7 @@ export const fetchProjectAction =
     }
     try {
       dispatch(projectPageSlice.actions.set({ project: null }));
-      const { project } = await fetchV2("api:Projects/:id", { params: { id } });
+      const { project } = await fetchV2("api:projects/:id", { params: { id } });
       dispatch(projectPageSlice.actions.set({ project }));
     } catch (error) {
       dispatch(projectPageSlice.actions.set({ project: "ERROR" }));

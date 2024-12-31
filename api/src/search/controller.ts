@@ -5,7 +5,7 @@ import { SearchService } from "./service";
 import { Service } from "typedi";
 
 @Service()
-@Controller("/Search")
+@Controller("/search")
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 

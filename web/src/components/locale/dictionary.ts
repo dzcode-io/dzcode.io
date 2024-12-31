@@ -107,8 +107,8 @@ export const dictionary = {
     ar: "أرغب في البرمجة ، من أين أبدأ؟",
   },
   "faq-topic-2-answer-2": {
-    en: `Go to [/Contribute](/Contribute) page, you will see a list of projects with available tasks for you to pick from whatever you like and start programming 🔥.`,
-    ar: `انتقل إلى صفحة [المساهمة](/Contribute) ، سترى قائمة بالمشاريع بالمهام المتاحة لتختار منها ما تريد وتبدأ البرمجة 🔥.`,
+    en: `Go to [/contribute](/contribute) page, you will see a list of projects with available tasks for you to pick from whatever you like and start programming 🔥.`,
+    ar: `انتقل إلى صفحة [المساهمة](/contribute) ، سترى قائمة بالمشاريع بالمهام المتاحة لتختار منها ما تريد وتبدأ البرمجة 🔥.`,
   },
   "faq-topic-2-question-3": {
     en: "I like the idea, what are the different ways I can contribute to DzCode i/o ?",
@@ -116,7 +116,7 @@ export const dictionary = {
   },
   "faq-topic-2-answer-3": {
     en: `
-Besides the open tasks on [/Contribute](/Contribute) page, you can also contribute to DzCode i/o by:
+Besides the open tasks on [/contribute](/contribute) page, you can also contribute to DzCode i/o by:
 
 - Adding your open-source projects to the dzcode.io website.
 `,

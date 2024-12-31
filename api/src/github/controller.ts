@@ -5,11 +5,11 @@ import { Service } from "typedi";
 import { GetRateLimitResponse } from "./types";
 
 @Service()
-@Controller("/Github")
+@Controller("/github")
 export class GithubController {
   constructor(private readonly githubService: GithubService) {}
 
-  @Get("/RateLimit")
+  @Get("/rate-limit")
   public async getRateLimitInfo(): Promise<GetRateLimitResponse> {
     const { limit, used, ratio } = await this.githubService.getRateLimit();
 

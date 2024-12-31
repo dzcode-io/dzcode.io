@@ -9,7 +9,7 @@ export const fetchMilestonesListAction =
     try {
       if (getState().landingPage.milestones === "ERROR")
         dispatch(landingPageSlice.actions.set({ milestones: null }));
-      const { milestones } = await fetchV2("api:MileStones/dzcode", {});
+      const { milestones } = await fetchV2("api:milestones/dzcode", {});
       dispatch(landingPageSlice.actions.set({ milestones }));
     } catch (error) {
       dispatch(landingPageSlice.actions.set({ milestones: "ERROR" }));
