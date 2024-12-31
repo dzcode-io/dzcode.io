@@ -58,7 +58,10 @@ allPages.forEach((pageInfo) => {
   newHtml = newHtml.replace(/{{keywords}}/g, pageInfo.keywords);
   newHtml = newHtml.replace(/{{title}}/g, pageInfo.title);
   newHtml = newHtml.replace(/{{description}}/g, pageInfo.description);
-  newHtml = newHtml.replace(/{{canonical}}/g, `${config.web.url}${pageInfo.uri}`);
+  newHtml = newHtml.replace(
+    /{{canonical}}/g,
+    pageInfo.canonicalUrl || `${config.web.url}${pageInfo.uri}`,
+  );
   newHtml = newHtml.replace(/{{ogImage}}/g, pageInfo.ogImage);
   newHtml = newHtml.replace(/{{sentryOrigin}}/g, `https://${SENTRY_ORIGIN}`);
 

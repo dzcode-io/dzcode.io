@@ -6,6 +6,7 @@ import { templatePages } from "./template-pages";
 
 export interface PageInfo {
   uri: string;
+  canonicalUrl?: string;
   title: string;
   description: string;
   ogImage: string;
