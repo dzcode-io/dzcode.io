@@ -49,7 +49,6 @@ export default function Page(): JSX.Element {
             {localize("project-title-pre")} {project.name} {localize("project-title-post")}
           </title>
           <meta name="description" content={localize("projects-description")} />
-          {/* @TODO-ZM: add canonical url on all pages */}
           <link rel="canonical" href={getProjectURL(project)} />
         </Helmet>
       ) : null}
