@@ -1,4 +1,4 @@
-import { Language } from "../language";
+import { LanguageCode } from "../language";
 
 export type Flatten<T> = T extends any[] ? T[number] : T; // eslint-disable-line @typescript-eslint/no-explicit-any
 
@@ -58,6 +58,6 @@ export type PartialWithOneRequiredKey<T, U = { [K in keyof T]: Pick<T, K> }> = P
  * type PostNoLang = StripLanguage<"ar" | "en", Post>;
  * // { title: string; author: string; }
  */
-export type StripLanguage<T extends Language, M extends Record<string, unknown>> = {
-  [K in keyof M as K extends `${infer F}_${T}` ? F : K]: M[K];
+export type StripLanguage<M extends Record<string, unknown>> = {
+  [K in keyof M as K extends `${infer F}_${LanguageCode}` ? F : K]: M[K];
 };

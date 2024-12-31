@@ -1,10 +1,10 @@
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 import { createSlice } from "@reduxjs/toolkit";
-import { Language } from "src/components/locale/languages";
 import { getInitialLanguageCode } from "src/utils/website-language";
 
 // ts-prune-ignore-next
 export interface SettingsState {
-  readonly languageCode: Language["code"];
+  readonly languageCode: LanguageCode;
 }
 
 const initialState: SettingsState = {

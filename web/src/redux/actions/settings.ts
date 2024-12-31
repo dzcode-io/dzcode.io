@@ -1,7 +1,8 @@
+import { Languages } from "@dzcode.io/models/dist/language";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 import { captureException } from "@sentry/react";
-import { Language, Languages } from "src/components/locale/languages";
 
-export const changeLanguage = (languageCode: Language["code"]) => {
+export const changeLanguage = (languageCode: LanguageCode) => {
   let newPath = window.location.pathname;
   const language = Languages.find(({ code }) => code === languageCode);
   if (!language) {

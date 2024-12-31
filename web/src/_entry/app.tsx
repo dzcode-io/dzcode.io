@@ -4,12 +4,12 @@ import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter, Route, RouteProps, Routes } from "react-router-dom";
 import { Footer, FooterProps } from "src/components/footer";
 import { Loadable } from "src/components/loadable";
-import { Languages } from "src/components/locale/languages";
 import { TopBar, TopBarProps } from "src/components/top-bar";
 import { StoreProvider } from "src/redux/store";
 import { getInitialLanguageCode } from "src/utils/website-language";
 import React from "react";
 import { Search } from "src/components/search";
+import { DefaultLanguage } from "@dzcode.io/models/dist/language";
 
 let routes: Array<
   RouteProps & {
@@ -56,7 +56,7 @@ let routes: Array<
 ];
 
 const initialLanguageCode = getInitialLanguageCode();
-if (initialLanguageCode !== Languages[0].code) {
+if (initialLanguageCode !== DefaultLanguage.code) {
   routes = routes.map((route) => {
     return {
       ...route,

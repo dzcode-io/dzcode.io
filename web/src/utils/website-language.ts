@@ -1,7 +1,8 @@
-import { Language, Languages } from "src/components/locale/languages";
+import { Languages } from "@dzcode.io/models/dist/language";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
-let initialLanguageCode: Language["code"] | null = null;
-export function getInitialLanguageCode(): Language["code"] {
+let initialLanguageCode: LanguageCode | null = null;
+export function getInitialLanguageCode(): LanguageCode {
   if (!initialLanguageCode) {
     const language =
       Languages.find(({ code }) => window.location.pathname.startsWith(`/${code}`)) || Languages[0];

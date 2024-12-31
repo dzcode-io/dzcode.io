@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundError, Param } from "routing-controllers";
+import { Controller, Get, NotFoundError, Param, QueryParams } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ContributionRepository } from "./repository";
@@ -8,6 +8,7 @@ import {
   GetContributionsResponse,
   GetContributionsForSitemapResponse,
 } from "./types";
+import { LanguageQuery } from "src/_utils/language";
 
 @Service()
 @Controller("/contributions")
@@ -15,8 +16,10 @@ export class ContributionController {
   constructor(private readonly contributionRepository: ContributionRepository) {}
 
   @Get("/")
-  public async getContributions(): Promise<GetContributionsResponse> {
-    const contributions = await this.contributionRepository.findForList();
+  public async getContributions(
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributionsResponse> {
+    const contributions = await this.contributionRepository.findForList(lang);
 
     return {
       contributions,
@@ -33,8 +36,11 @@ export class ContributionController {
   }
 
   @Get("/:id")
-  public async getContribution(@Param("id") id: string): Promise<GetContributionResponse> {
-    const contribution = await this.contributionRepository.findByIdWithStats(id);
+  public async getContribution(
+    @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributionResponse> {
+    const contribution = await this.contributionRepository.findByIdWithStats(id, lang);
 
     return {
       contribution,

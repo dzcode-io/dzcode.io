@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundError, Param } from "routing-controllers";
+import { Controller, Get, NotFoundError, Param, QueryParams } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ProjectRepository } from "./repository";
@@ -11,7 +11,7 @@ import {
 import { RepositoryRepository } from "src/repository/repository";
 import { ContributorRepository } from "src/contributor/repository";
 import { ContributionRepository } from "src/contribution/repository";
-import { Language } from "@dzcode.io/utils/dist/language";
+import { LanguageQuery } from "src/_utils/language";
 
 @Service()
 @Controller("/projects")
@@ -42,10 +42,10 @@ export class ProjectController {
   }
 
   @Get("/:id")
-  public async getProject(@Param("id") id: string): Promise<GetProjectResponse> {
-    // todo: lang query param
-    const lang: Language = "en";
-
+  public async getProject(
+    @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetProjectResponse> {
     const [project, repositories, contributors, contributions] = await Promise.all([
       this.projectRepository.findWithStats(id),
       this.repositoryRepository.findForProject(id),

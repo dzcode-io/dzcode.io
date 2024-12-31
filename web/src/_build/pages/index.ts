@@ -1,5 +1,4 @@
-import { LanguageEntity } from "@dzcode.io/models/dist/language";
-
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 import { AllDictionaryKeys } from "../../components/locale/dictionary";
 import { staticPages } from "./static-pages";
 import { templatePages } from "./template-pages";
@@ -11,7 +10,7 @@ export interface PageInfo {
   description: string;
   ogImage: string;
   keywords: string;
-  lang: LanguageEntity["code"];
+  lang: LanguageCode;
 }
 
 export type PageInfoWithLocalKeys = Omit<PageInfo, "lang" | "title" | "description"> & {

@@ -1,4 +1,5 @@
 import { FullstackConfig } from "../config";
+import { LanguageCode } from "../language";
 
 interface Endpoint {
   params?: Record<string, string>;
@@ -7,14 +8,15 @@ interface Endpoint {
 }
 
 export const fetchV2Factory =
-  <Es>(fullstackConfig: FullstackConfig) =>
+  <Es>(fullstackConfig: FullstackConfig, lang: LanguageCode) =>
   async <T extends Es, E extends keyof T, C extends T[E], D extends keyof C>(
     endpoint: E,
     config: Pick<C, Exclude<D, "response">>,
   ): Promise<C[D & "response"]> => {
     const { body, params, query } = config as Endpoint;
 
-    const queryString = query ? "?" + query.map(([key, value]) => `${key}=${value}`).join("&") : "";
+    const queryWithLang = [...(query || []), ["lang", lang]];
+    const queryString = "?" + queryWithLang.map(([key, value]) => `${key}=${value}`).join("&");
 
     const domain = (endpoint as string).slice(0, (endpoint as string).indexOf(":"));
     let url = (endpoint as string).slice(domain.length + 1);

@@ -11,17 +11,17 @@ import {
   ContributorRow,
   contributorsTable,
 } from "./table";
-import { Language } from "@dzcode.io/utils/dist/language";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 @Service()
 export class ContributorRepository {
   constructor(private readonly postgresService: PostgresService) {}
 
-  public async findName(contributorId: string, lang: Language) {
+  public async findName(contributorId: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       ${contributorsTable.id},
-      ${contributorsTable[`name_${lang}`]}
+      ${contributorsTable[`name_${lang}`]} as name
     FROM
       ${contributorsTable}
     WHERE
@@ -39,11 +39,11 @@ export class ContributorRepository {
     return camelCased;
   }
 
-  public async findForProject(projectId: string, lang: Language) {
+  public async findForProject(projectId: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       ${contributorsTable.id},
-      ${contributorsTable[`name_${lang}`]},
+      ${contributorsTable[`name_${lang}`]} as name,
       ${contributorsTable.avatarUrl},
       sum(${contributorRepositoryRelationTable.score}) as ranking
     FROM
@@ -67,11 +67,11 @@ export class ContributorRepository {
     return camelCased;
   }
 
-  public async findForList(lang: Language) {
+  public async findForList(lang: LanguageCode) {
     const statement = sql`
     SELECT
       ${contributorsTable.id},
-      ${contributorsTable[`name_${lang}`]},
+      ${contributorsTable[`name_${lang}`]} as name,
       ${contributorsTable.avatarUrl},
       sum(${contributorRepositoryRelationTable.score}) as total_contribution_score,
       count(DISTINCT ${contributorRepositoryRelationTable.repositoryId}) as total_repository_count,
@@ -152,11 +152,11 @@ export class ContributorRepository {
       .where(ne(contributorsTable.runId, runId));
   }
 
-  public async findWithStats(contributorId: string, lang: Language) {
+  public async findWithStats(contributorId: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       ${contributorsTable.id},
-      ${contributorsTable[`name_${lang}`]},
+      ${contributorsTable[`name_${lang}`]} as name,
       ${contributorsTable.avatarUrl},
       ${contributorsTable.username},
       ${contributorsTable.url},

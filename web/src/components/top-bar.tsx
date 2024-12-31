@@ -10,9 +10,8 @@ import { DictionaryKeys } from "src/components/locale/dictionary";
 import { changeLanguage } from "src/redux/actions/settings";
 import { useAppSelector } from "src/redux/store";
 import { stripLanguageCodeFromHRef } from "src/utils/website-language";
-
-import { Language, Languages } from "./locale/languages";
 import { useSearchModal } from "src/utils/search-modal";
+import { Language, Languages } from "@dzcode.io/models/dist/language";
 
 export interface TopBarProps {
   version: string;

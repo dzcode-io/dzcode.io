@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundError, Param } from "routing-controllers";
+import { Controller, Get, NotFoundError, Param, QueryParams } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ContributorRepository } from "./repository";
@@ -10,7 +10,7 @@ import {
 } from "./types";
 import { ProjectRepository } from "src/project/repository";
 import { ContributionRepository } from "src/contribution/repository";
-import { Language } from "@dzcode.io/utils/dist/language";
+import { LanguageQuery } from "src/_utils/language";
 
 @Service()
 @Controller("/contributors")
@@ -22,9 +22,9 @@ export class ContributorController {
   ) {}
 
   @Get("/")
-  public async getContributors(): Promise<GetContributorsResponse> {
-    // todo: lang query param
-    const lang: Language = "en";
+  public async getContributors(
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributorsResponse> {
     const contributors = await this.contributorRepository.findForList(lang);
 
     return {
@@ -42,10 +42,10 @@ export class ContributorController {
   }
 
   @Get("/:id")
-  public async getContributor(@Param("id") id: string): Promise<GetContributorResponse> {
-    // todo: lang query param
-    const lang: Language = "en";
-
+  public async getContributor(
+    @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributorResponse> {
     const [contributor, projects, contributions] = await Promise.all([
       this.contributorRepository.findWithStats(id, lang),
       this.projectRepository.findForContributor(id),
@@ -64,10 +64,10 @@ export class ContributorController {
   }
 
   @Get("/:id/name")
-  public async getContributorName(@Param("id") id: string): Promise<GetContributorNameResponse> {
-    // todo: lang query param
-    const lang: Language = "en";
-
+  public async getContributorName(
+    @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributorNameResponse> {
     const contributor = await this.contributorRepository.findName(id, lang);
 
     if (!contributor) throw new NotFoundError("Contributor not found");

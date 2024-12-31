@@ -9,6 +9,7 @@ import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
 import { ContributionRow, contributionsTable } from "./table";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 @Service()
 export class ContributionRepository {
@@ -113,7 +114,7 @@ export class ContributionRepository {
       .where(ne(contributionsTable.runId, runId));
   }
 
-  public async findForList() {
+  public async findForList(lang: LanguageCode) {
     const statement = sql`
     SELECT
       p.id as id,
@@ -146,7 +147,7 @@ export class ContributionRepository {
               'id',
               cr.id,
               'name',
-              cr.name,
+              cr.name_${sql.raw(lang)},
               'username',
               cr.username,
               'avatar_url',
@@ -187,7 +188,7 @@ export class ContributionRepository {
     return sortedUpdatedAt;
   }
 
-  public async findByIdWithStats(id: string) {
+  public async findByIdWithStats(id: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       p.id as id,
@@ -220,7 +221,7 @@ export class ContributionRepository {
               'id',
               cr.id,
               'name',
-              cr.name,
+              cr.name_${sql.raw(lang)},
               'username',
               cr.username,
               'avatar_url',

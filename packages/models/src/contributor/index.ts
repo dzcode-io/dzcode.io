@@ -1,6 +1,5 @@
 import { BaseEntity } from "src/_base";
 import { StripLanguage } from "@dzcode.io/utils/dist/ts";
-import { Language } from "@dzcode.io/utils/dist/language";
 
 export type ContributorEntity = BaseEntity & {
   name_ar: string;
@@ -10,4 +9,4 @@ export type ContributorEntity = BaseEntity & {
   avatarUrl: string;
 };
 
-export type ContributorNoLang = StripLanguage<Language, ContributorEntity>;
+export type ContributorNoLang = StripLanguage<ContributorEntity>;
