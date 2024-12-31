@@ -1,5 +1,5 @@
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { ContributorNoLang } from "@dzcode.io/models/dist/contributor";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { TagEntity } from "@dzcode.io/models/dist/tag";
@@ -31,7 +31,7 @@ export interface GetProjectResponse extends GeneralResponse {
       }
     >;
     contributors: Array<
-      Omit<ContributorEntity, "runId"> & {
+      Omit<ContributorNoLang, "runId"> & {
         score: number;
       }
     >;

@@ -1,15 +1,15 @@
 import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
-import { ContributorEntity } from "@dzcode.io/models/dist/contributor";
+import { ContributorNoLang } from "@dzcode.io/models/dist/contributor";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { GeneralResponse } from "src/app/types";
 
 export interface GetContributorsForSitemapResponse extends GeneralResponse {
-  contributors: Array<Pick<ContributorEntity, "id">>;
+  contributors: Array<Pick<ContributorNoLang, "id">>;
 }
 
 export interface GetContributorsResponse extends GeneralResponse {
   contributors: Array<
-    Pick<ContributorEntity, "id" | "name" | "avatarUrl"> & {
+    Pick<ContributorNoLang, "id" | "name" | "avatarUrl"> & {
       ranking: number;
       totalContributionScore: number;
       totalRepositoryCount: number;
@@ -18,7 +18,7 @@ export interface GetContributorsResponse extends GeneralResponse {
 }
 
 export interface GetContributorResponse extends GeneralResponse {
-  contributor: Omit<ContributorEntity, "runId"> & {
+  contributor: Omit<ContributorNoLang, "runId"> & {
     ranking: number;
     totalContributionScore: number;
     totalRepositoryCount: number;
@@ -35,5 +35,5 @@ export interface GetContributorResponse extends GeneralResponse {
 }
 
 export interface GetContributorNameResponse extends GeneralResponse {
-  contributor: Pick<ContributorEntity, "name">;
+  contributor: Pick<ContributorNoLang, "name">;
 }

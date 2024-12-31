@@ -128,8 +128,13 @@ export class DigestCron {
 
               if (githubUser.type !== "User") continue;
 
+              // todo: call AIService
+              const name_en = githubUser.name || githubUser.login;
+              const name_ar = `ar ${name_en}`;
+
               const contributorEntity: ContributorRow = {
-                name: githubUser.name || githubUser.login,
+                name_en,
+                name_ar,
                 username: githubUser.login,
                 url: githubUser.html_url,
                 avatarUrl: githubUser.avatar_url,
@@ -177,8 +182,14 @@ export class DigestCron {
               const contributor = await this.githubService.getUser({
                 username: repoContributor.login,
               });
+
+              // todo: call AIService
+              const name_en = contributor.name || contributor.login;
+              const name_ar = `ar ${name_en}`;
+
               const contributorEntity: ContributorRow = {
-                name: contributor.name || contributor.login,
+                name_en,
+                name_ar,
                 username: contributor.login,
                 url: contributor.html_url,
                 avatarUrl: contributor.avatar_url,

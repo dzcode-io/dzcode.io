@@ -11,6 +11,7 @@ import {
 import { RepositoryRepository } from "src/repository/repository";
 import { ContributorRepository } from "src/contributor/repository";
 import { ContributionRepository } from "src/contribution/repository";
+import { Language } from "@dzcode.io/utils/dist/language";
 
 @Service()
 @Controller("/projects")
@@ -42,10 +43,13 @@ export class ProjectController {
 
   @Get("/:id")
   public async getProject(@Param("id") id: string): Promise<GetProjectResponse> {
+    // todo: lang query param
+    const lang: Language = "en";
+
     const [project, repositories, contributors, contributions] = await Promise.all([
       this.projectRepository.findWithStats(id),
       this.repositoryRepository.findForProject(id),
-      this.contributorRepository.findForProject(id),
+      this.contributorRepository.findForProject(id, lang),
       this.contributionRepository.findForProject(id),
     ]);
 

@@ -11,16 +11,17 @@ import {
   ContributorRow,
   contributorsTable,
 } from "./table";
+import { Language } from "@dzcode.io/utils/dist/language";
 
 @Service()
 export class ContributorRepository {
   constructor(private readonly postgresService: PostgresService) {}
 
-  public async findName(contributorId: string) {
+  public async findName(contributorId: string, lang: Language) {
     const statement = sql`
     SELECT
       ${contributorsTable.id},
-      ${contributorsTable.name}
+      ${contributorsTable[`name_${lang}`]}
     FROM
       ${contributorsTable}
     WHERE
@@ -38,11 +39,11 @@ export class ContributorRepository {
     return camelCased;
   }
 
-  public async findForProject(projectId: string) {
+  public async findForProject(projectId: string, lang: Language) {
     const statement = sql`
     SELECT
       ${contributorsTable.id},
-      ${contributorsTable.name},
+      ${contributorsTable[`name_${lang}`]},
       ${contributorsTable.avatarUrl},
       sum(${contributorRepositoryRelationTable.score}) as ranking
     FROM
@@ -66,11 +67,11 @@ export class ContributorRepository {
     return camelCased;
   }
 
-  public async findForList() {
+  public async findForList(lang: Language) {
     const statement = sql`
     SELECT
       ${contributorsTable.id},
-      ${contributorsTable.name},
+      ${contributorsTable[`name_${lang}`]},
       ${contributorsTable.avatarUrl},
       sum(${contributorRepositoryRelationTable.score}) as total_contribution_score,
       count(DISTINCT ${contributorRepositoryRelationTable.repositoryId}) as total_repository_count,
@@ -151,11 +152,11 @@ export class ContributorRepository {
       .where(ne(contributorsTable.runId, runId));
   }
 
-  public async findWithStats(contributorId: string) {
+  public async findWithStats(contributorId: string, lang: Language) {
     const statement = sql`
     SELECT
       ${contributorsTable.id},
-      ${contributorsTable.name},
+      ${contributorsTable[`name_${lang}`]},
       ${contributorsTable.avatarUrl},
       ${contributorsTable.username},
       ${contributorsTable.url},

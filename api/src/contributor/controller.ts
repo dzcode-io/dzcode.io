@@ -10,6 +10,7 @@ import {
 } from "./types";
 import { ProjectRepository } from "src/project/repository";
 import { ContributionRepository } from "src/contribution/repository";
+import { Language } from "@dzcode.io/utils/dist/language";
 
 @Service()
 @Controller("/contributors")
@@ -22,7 +23,9 @@ export class ContributorController {
 
   @Get("/")
   public async getContributors(): Promise<GetContributorsResponse> {
-    const contributors = await this.contributorRepository.findForList();
+    // todo: lang query param
+    const lang: Language = "en";
+    const contributors = await this.contributorRepository.findForList(lang);
 
     return {
       contributors,
@@ -40,8 +43,11 @@ export class ContributorController {
 
   @Get("/:id")
   public async getContributor(@Param("id") id: string): Promise<GetContributorResponse> {
+    // todo: lang query param
+    const lang: Language = "en";
+
     const [contributor, projects, contributions] = await Promise.all([
-      this.contributorRepository.findWithStats(id),
+      this.contributorRepository.findWithStats(id, lang),
       this.projectRepository.findForContributor(id),
       this.contributionRepository.findForContributor(id),
     ]);
@@ -59,7 +65,10 @@ export class ContributorController {
 
   @Get("/:id/name")
   public async getContributorName(@Param("id") id: string): Promise<GetContributorNameResponse> {
-    const contributor = await this.contributorRepository.findName(id);
+    // todo: lang query param
+    const lang: Language = "en";
+
+    const contributor = await this.contributorRepository.findName(id, lang);
 
     if (!contributor) throw new NotFoundError("Contributor not found");
 
