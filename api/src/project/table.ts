@@ -7,8 +7,7 @@ export const projectsTable = pgTable("projects", {
   recordImportedAt: text("record_imported_at")
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  // todo: remove default value after migration
-  name_ar: text("name_ar").notNull().default(""),
+  name_ar: text("name_ar").notNull(),
   name_en: text("name_en").notNull(),
   runId: text("run_id").notNull(),
 });
