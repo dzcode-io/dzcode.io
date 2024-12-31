@@ -7,14 +7,10 @@ type DictionaryGroups = PyramidSplitString<AllDictionaryKeys, "-">[number];
 export type DictionaryKeys<G extends DictionaryGroups> = AllDictionaryKeys &
   (`${G}-${string}` | `${G}`);
 
-// @TODO-ZM: use a de-deduplication tool for repeated text
-
 export const dictionary = {
   "navbar-section-contribute": { en: "Contribute", ar: "أساهم" },
   "navbar-section-connect": { en: "Connect", ar: "أتواصل" },
-  "navbar-section-learn": { en: "Learn", ar: "أتعلّم" },
   "navbar-section-projects": { en: "Projects", ar: "مشاريع" },
-  "navbar-section-articles": { en: "Articles", ar: "مقالات" },
   "navbar-section-faq": { en: "FAQ", ar: "أسئلة / أجوبة" },
   "navbar-section-search": { en: "Search...", ar: "بحث..." },
 
@@ -23,9 +19,7 @@ export const dictionary = {
     ar: "روابط مفيدة",
   },
   "footer-category-link-text-home": { en: "Home", ar: "الصفحة الرئيسية" },
-  "footer-category-link-text-learn": { en: "Learn", ar: "اتعلم" },
   "footer-category-link-text-projects": { en: "Projects", ar: "مشاريع" },
-  "footer-category-link-text-articles": { en: "Articles", ar: "مقالات" },
   "footer-category-link-text-faq": { en: "FAQ", ar: "أسئلة / أجوبة" },
   "footer-category-title-social-media": {
     en: "Social Media",
@@ -50,10 +44,7 @@ export const dictionary = {
     en: "Frequently Asked Questions",
     ar: "الأسئلة الأكثر طرحًا",
   },
-  "faq-need-help": {
-    en: "Still need help? send us an email at ",
-    ar: "هل ما زلت بحاجة إلى المساعدة؟ أرسل إلينا بريدًا إلكترونيًا على ",
-  },
+
   "faq-topic-1": {
     en: "General",
     ar: "أسئلة عامة",
@@ -204,14 +195,6 @@ Besides the open tasks on [/contribute](/contribute) page, you can also contribu
     en: "Get to know our team 💻",
     ar: "تعرف على فريقنا 💻",
   },
-  "team-card-cta-button": {
-    en: "Contributions",
-    ar: "المساهمات",
-  },
-  "team-card-repositories": {
-    en: "Repositories",
-    ar: "مستودعات",
-  },
   "contributor-title-pre": {
     en: "See the profile page of",
     ar: "انظر إلى صفحة الملف الشخصي لـ",
@@ -263,10 +246,6 @@ Besides the open tasks on [/contribute](/contribute) page, you can also contribu
   "projects-tag-non-categorized": {
     en: "Other",
     ar: "أخرى",
-  },
-  "projects-card-cta-button": {
-    en: "Details",
-    ar: "تفاصيل",
   },
   "project-title-pre": {
     en: "See the details of",
@@ -328,11 +307,6 @@ Besides the open tasks on [/contribute](/contribute) page, you can also contribu
     en: "A broken link?",
     ar: "عنوان url معطل؟",
   },
-  "notfound-subtitle": {
-    // @TODO-ZM: link to /contibutors/github/NurElHuda later when we have contibutors page
-    en: `Finally someone saw the 404 page <a href="https://github.com/NurElHuda">Nour</a> built 😄`,
-    ar: `أخيرًا شاهد شخص ما صفحة 404 التي أنشأتها <a href="https://github.com/NurElHuda">نور</a> 😄`,
-  },
   "notfound-back-home": {
     en: "Go Back Home",
     ar: "ارجع إلى الصفحة الرئيسية",
@@ -344,18 +318,6 @@ Besides the open tasks on [/contribute](/contribute) page, you can also contribu
   "contribute-description": {
     en: "Browse and contribute to Algerian open-source projects",
     ar: "تصفح وساهم في مشاريع جزائرية مفتوحة المصدر",
-  },
-  "contribute-filter-projects": {
-    en: "Project",
-    ar: "المشروع",
-  },
-  "contribute-filter-languages": {
-    en: "Programming Language",
-    ar: "لغة البرمجة",
-  },
-  "contribute-filter-labels": {
-    en: "Label",
-    ar: "الوسم",
   },
   "contribute-read-issue": {
     en: "Learn more",
@@ -381,74 +343,13 @@ Besides the open tasks on [/contribute](/contribute) page, you can also contribu
     en: "y|mo|d|h|min|Just now",
     ar: " عام| شهر| يوم| ساعة| دقيقة| الآن",
   },
-  "articles-title": {
-    en: "Read and discuss articles written by algerian developers | DzCode i/o",
-    ar: "اقرأ وناقش المقالات التي كتبها المطورون الجزائريون | DzCode i / o",
-  },
-  "articles-description": {
-    en: "Browse, read or modify a growing list of articles written by Algerian developers, or Add your own article to the list!",
-    ar: "تصفح أو اقرأ أو عدل قائمة متزايدة من المقالات التي كتبها مطورون جزائريون ، أو أضف مقالك الخاص إلى القائمة!",
-  },
-  "articles-content-back": {
-    en: "Back to the list",
-    ar: "عد إلى القائمة",
-  },
-  "articles-content-authors": {
-    en: "This article is written by",
-    ar: "هذا المقال كتبه",
-  },
-  "articles-content-contributors": {
-    en: "With the help of",
-    ar: "بمساعدة",
-  },
-
-  "learn-title": {
-    en: "Learn about software development through open-source | DzCode i/o",
-    ar: "تعرف على البرمجة من خلال البرامج مفتوحة المصدر | DzCode i / o",
-  },
-  "learn-description": {
-    en: "Learn and share your knowledge with other Algerian developers!",
-    ar: "تعلم وشارك معرفتك مع مطورين جزائريين آخرين!",
-  },
-  "learn-content-back": {
-    en: "Back to the list",
-    ar: "عد إلى القائمة",
-  },
-  "learn-content-authors": {
-    en: "This article is written by",
-    ar: "هذا المقال كتبه",
-  },
-  "learn-content-contributors": {
-    en: "With the help of",
-    ar: "بمساعدة",
-  },
-  "ui-theme-DARK": { en: "Dark", ar: "داكن" },
-  "ui-theme-LIGHT": { en: "Light", ar: "فاتح" },
-  "ui-theme-AUTO": { en: "Auto", ar: "تلقائي" },
   "global-generic-error": {
     en: "Oops, something went wrong, please try again...",
     ar: "عفوًا ، حدث خطأ ما ، يرجى المحاولة مرة أخرى ...",
   },
-  "global-error-email-us": {
-    en: "Email us 📩",
-    ar: "راسلنا 📩",
-  },
   "global-try-again": {
     en: "Try Again",
     ar: "حاول مرة أخري",
-  },
-  // @TODO-ZM: add other languages
-  "global-programming-language-javascript": {
-    en: "Javascript",
-    ar: "جافا سكريبت",
-  },
-  "global-programming-language-typescript": {
-    en: "Typescript",
-    ar: "تايب سكريبت",
-  },
-  "global-contribution-label-bug": {
-    en: "Bug",
-    ar: "خطأ",
   },
   "global-algeria-codes": {
     en: "Algeria Codes",
