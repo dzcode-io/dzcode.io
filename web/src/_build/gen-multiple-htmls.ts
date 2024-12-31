@@ -7,6 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "fs";
 import { allPages } from "./pages";
 import { Environment, environments } from "@dzcode.io/utils/dist/config/environment";
 import { SENTRY_ORIGIN } from "../../src/utils/sentry-origin";
+import { fsConfig } from "@dzcode.io/utils/dist/config";
 
 let stage = process.env.STAGE as Environment;
 if (!environments.includes(stage)) {
@@ -14,6 +15,7 @@ if (!environments.includes(stage)) {
   stage = "development";
 }
 
+const config = fsConfig(stage);
 const distFolder = "./bundle";
 
 const indexHtmlPath = join(distFolder, "index.html");
@@ -56,6 +58,7 @@ allPages.forEach((pageInfo) => {
   newHtml = newHtml.replace(/{{keywords}}/g, pageInfo.keywords);
   newHtml = newHtml.replace(/{{title}}/g, pageInfo.title);
   newHtml = newHtml.replace(/{{description}}/g, pageInfo.description);
+  newHtml = newHtml.replace(/{{canonical}}/g, `${config.web.url}${pageInfo.uri}`);
   newHtml = newHtml.replace(/{{ogImage}}/g, pageInfo.ogImage);
   newHtml = newHtml.replace(/{{sentryOrigin}}/g, `https://${SENTRY_ORIGIN}`);
 
