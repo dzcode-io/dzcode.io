@@ -1,6 +1,6 @@
 import { ContributionNoLang } from "@dzcode.io/models/dist/contribution";
 import { ContributorNoLang } from "@dzcode.io/models/dist/contributor";
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
+import { ProjectNoLang } from "@dzcode.io/models/dist/project";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { GeneralResponse } from "src/app/types";
 
@@ -8,7 +8,7 @@ export interface GetContributionsResponse extends GeneralResponse {
   contributions: Array<
     Pick<ContributionNoLang, "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"> & {
       repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
-        project: Pick<ProjectEntity, "id" | "name">;
+        project: Pick<ProjectNoLang, "id" | "name">;
       };
       contributor: Pick<ContributorNoLang, "id" | "name" | "username" | "avatarUrl">;
     }
@@ -21,7 +21,7 @@ export interface GetContributionResponse extends GeneralResponse {
     "id" | "title" | "type" | "url" | "updatedAt" | "activityCount"
   > & {
     repository: Pick<RepositoryEntity, "id" | "owner" | "name"> & {
-      project: Pick<ProjectEntity, "id" | "name">;
+      project: Pick<ProjectNoLang, "id" | "name">;
     };
     contributor: Pick<ContributorNoLang, "id" | "name" | "username" | "avatarUrl">;
   };

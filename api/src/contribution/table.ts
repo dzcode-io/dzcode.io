@@ -9,8 +9,7 @@ export const contributionsTable = pgTable("contributions", {
   recordImportedAt: text("record_imported_at")
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  // todo: remove default value after migration
-  title_ar: text("title_ar").notNull().default(""),
+  title_ar: text("title_ar").notNull(),
   title_en: text("title_en").notNull(),
   updatedAt: text("updated_at").notNull(),
   url: text("url").notNull().unique(),

@@ -48,7 +48,7 @@ export class ContributorController {
   ): Promise<GetContributorResponse> {
     const [contributor, projects, contributions] = await Promise.all([
       this.contributorRepository.findWithStats(id, lang),
-      this.projectRepository.findForContributor(id),
+      this.projectRepository.findForContributor(id, lang),
       this.contributionRepository.findForContributor(id, lang),
     ]);
 

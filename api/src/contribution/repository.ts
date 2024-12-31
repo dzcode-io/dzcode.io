@@ -118,7 +118,7 @@ export class ContributionRepository {
     const statement = sql`
     SELECT
       p.id as id,
-      p.name as name,
+      p.name_${sql.raw(lang)} as name,
       json_agg(
         json_build_object('id', r.id, 'name', r.name, 'owner', r.owner, 'contributions', r.contributions)
       ) AS repositories
@@ -192,7 +192,7 @@ export class ContributionRepository {
     const statement = sql`
     SELECT
       p.id as id,
-      p.name as name,
+      p.name_${sql.raw(lang)} as name,
       json_agg(
         json_build_object('id', r.id, 'name', r.name, 'owner', r.owner, 'contributions', r.contributions)
       ) AS repositories

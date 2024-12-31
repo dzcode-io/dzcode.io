@@ -82,10 +82,15 @@ export class DigestCron {
     // if (Math.random()) return;
 
     for (const project of projectsFromDataFolder) {
+      // todo: call AIService
+      const name_en = project.name;
+      const name_ar = `ar ${name_en}`;
+
       const projectEntity: ProjectRow = {
         runId,
         id: project.slug.replace(/[.]/g, "-"), // NOTE-OB: MeiliSearch doesn't allow dots in ids
-        name: project.name,
+        name_en,
+        name_ar,
       };
       const [{ id: projectId }] = await this.projectsRepository.upsert(projectEntity);
       for (const tagId of project.tags || []) {

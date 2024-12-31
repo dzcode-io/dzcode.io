@@ -1,6 +1,6 @@
 import { ContributionNoLang } from "@dzcode.io/models/dist/contribution";
 import { ContributorNoLang } from "@dzcode.io/models/dist/contributor";
-import { ProjectEntity } from "@dzcode.io/models/dist/project";
+import { ProjectNoLang } from "@dzcode.io/models/dist/project";
 import { GeneralResponse } from "src/app/types";
 
 export interface GetContributorsForSitemapResponse extends GeneralResponse {
@@ -23,7 +23,7 @@ export interface GetContributorResponse extends GeneralResponse {
     totalContributionScore: number;
     totalRepositoryCount: number;
     projects: Array<
-      Pick<ProjectEntity, "id" | "name"> & {
+      Pick<ProjectNoLang, "id" | "name"> & {
         totalRepoContributorCount: number;
         totalRepoScore: number;
         totalRepoStars: number;
