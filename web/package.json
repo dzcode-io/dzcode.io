@@ -76,6 +76,7 @@
     "generate:robots-txt": "npx tsx src/_build/gen-robots-txt.ts",
     "generate:sentry-release": "tsx ../packages/tooling/sentry-release.ts web bundle",
     "generate:sitemap": "npx tsx src/_build/sitemap.ts",
+    "prune:dictionary": "npx tsx ../packages/tooling/prune-dictionary.ts",
     "lh:collect": "npx --yes @lhci/cli collect",
     "lh:upload": "npx --yes @lhci/cli upload",
     "lint": "npm run build && npm run lint:alone",
