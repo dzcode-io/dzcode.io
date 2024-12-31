@@ -154,8 +154,14 @@ export class DigestCron {
               });
 
               const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
+
+              // todo: call AIService
+              const title_en = issue.title;
+              const title_ar = `ar ${title_en}`;
+
               const contributionEntity: ContributionRow = {
-                title: issue.title,
+                title_en,
+                title_ar,
                 type,
                 updatedAt: issue.updated_at,
                 activityCount: issue.comments,

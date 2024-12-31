@@ -1,4 +1,4 @@
-import { ContributionEntity } from "@dzcode.io/models/dist/contribution";
+import { ContributionNoLang } from "@dzcode.io/models/dist/contribution";
 import { ContributorNoLang } from "@dzcode.io/models/dist/contributor";
 import { ProjectEntity } from "@dzcode.io/models/dist/project";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
@@ -35,7 +35,7 @@ export interface GetProjectResponse extends GeneralResponse {
         score: number;
       }
     >;
-    contributions: Array<Pick<ContributionEntity, "id" | "title" | "type">>;
+    contributions: Array<Pick<ContributionNoLang, "id" | "title" | "type">>;
 
     totalRepoContributorCount: number;
     repoCount: number;

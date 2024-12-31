@@ -27,8 +27,10 @@ export class ContributionController {
   }
 
   @Get("/for-sitemap")
-  public async getContributionsForSitemap(): Promise<GetContributionsForSitemapResponse> {
-    const contributions = await this.contributionRepository.findForSitemap();
+  public async getContributionsForSitemap(
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributionsForSitemapResponse> {
+    const contributions = await this.contributionRepository.findForSitemap(lang);
 
     return {
       contributions,
@@ -50,8 +52,9 @@ export class ContributionController {
   @Get("/:id/title")
   public async getContributionTitle(
     @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
   ): Promise<GetContributionTitleResponse> {
-    const contribution = await this.contributionRepository.findTitle(id);
+    const contribution = await this.contributionRepository.findTitle(id, lang);
 
     if (!contribution) throw new NotFoundError("Contribution not found");
 

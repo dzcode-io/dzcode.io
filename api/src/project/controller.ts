@@ -50,7 +50,7 @@ export class ProjectController {
       this.projectRepository.findWithStats(id),
       this.repositoryRepository.findForProject(id),
       this.contributorRepository.findForProject(id, lang),
-      this.contributionRepository.findForProject(id),
+      this.contributionRepository.findForProject(id, lang),
     ]);
 
     if (!project) throw new NotFoundError("Project not found");

@@ -49,7 +49,7 @@ export class ContributorController {
     const [contributor, projects, contributions] = await Promise.all([
       this.contributorRepository.findWithStats(id, lang),
       this.projectRepository.findForContributor(id),
-      this.contributionRepository.findForContributor(id),
+      this.contributionRepository.findForContributor(id, lang),
     ]);
 
     if (!contributor) throw new NotFoundError("Contributor not found");

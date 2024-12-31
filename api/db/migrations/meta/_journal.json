@@ -29,6 +29,13 @@
       "when": 1735672300337,
       "tag": "0003_flaky_johnny_blaze",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1735683882031,
+      "tag": "0004_powerful_grandmaster",
+      "breakpoints": true
     }
   ]
 }
