@@ -8,10 +8,9 @@ export interface Language {
   baseUrl: string;
 }
 
-// todo: renamed to LANGUAGES
-export const Languages: Language[] = [
+export const LANGUAGES: Language[] = [
   { code: "en", shortLabel: "EN", label: "English", direction: "ltr", baseUrl: "" },
   { code: "ar", shortLabel: "ع", label: "العربية", direction: "rtl", baseUrl: "/ar" },
 ];
 
-export const DefaultLanguage: Language = Languages[0];
+export const DEFAULT_LANGUAGE: Language = LANGUAGES[0];

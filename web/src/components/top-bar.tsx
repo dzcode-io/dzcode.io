@@ -11,7 +11,7 @@ import { changeLanguage } from "src/redux/actions/settings";
 import { useAppSelector } from "src/redux/store";
 import { stripLanguageCodeFromHRef } from "src/utils/website-language";
 import { useSearchModal } from "src/utils/search-modal";
-import { Language, Languages } from "@dzcode.io/models/dist/language";
+import { Language, LANGUAGES } from "@dzcode.io/models/dist/language";
 
 export interface TopBarProps {
   version: string;
@@ -32,7 +32,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
   const { selectedLanguage, languageOptions } = useMemo(() => {
     let selectedLanguage!: Language;
     const languageOptions: Array<Language> = [];
-    Languages.forEach((language) => {
+    LANGUAGES.forEach((language) => {
       if (language.code === selectedLanguageCode) selectedLanguage = language;
       else languageOptions.push(language);
     });

@@ -1,11 +1,12 @@
-import { Languages } from "@dzcode.io/models/dist/language";
+import { DEFAULT_LANGUAGE, LANGUAGES } from "@dzcode.io/models/dist/language";
 import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 let initialLanguageCode: LanguageCode | null = null;
 export function getInitialLanguageCode(): LanguageCode {
   if (!initialLanguageCode) {
     const language =
-      Languages.find(({ code }) => window.location.pathname.startsWith(`/${code}`)) || Languages[0];
+      LANGUAGES.find(({ code }) => window.location.pathname.startsWith(`/${code}`)) ||
+      DEFAULT_LANGUAGE;
     initialLanguageCode = language.code;
   }
   if (initialLanguageCode === "ar") {

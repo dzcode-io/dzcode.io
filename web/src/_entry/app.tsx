@@ -9,7 +9,7 @@ import { StoreProvider } from "src/redux/store";
 import { getInitialLanguageCode } from "src/utils/website-language";
 import React from "react";
 import { Search } from "src/components/search";
-import { DefaultLanguage } from "@dzcode.io/models/dist/language";
+import { DEFAULT_LANGUAGE } from "@dzcode.io/models/dist/language";
 
 let routes: Array<
   RouteProps & {
@@ -56,7 +56,7 @@ let routes: Array<
 ];
 
 const initialLanguageCode = getInitialLanguageCode();
-if (initialLanguageCode !== DefaultLanguage.code) {
+if (initialLanguageCode !== DEFAULT_LANGUAGE.code) {
   routes = routes.map((route) => {
     return {
       ...route,

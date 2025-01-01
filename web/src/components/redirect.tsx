@@ -1,4 +1,4 @@
-import { DefaultLanguage } from "@dzcode.io/models/dist/language";
+import { DEFAULT_LANGUAGE } from "@dzcode.io/models/dist/language";
 import React from "react";
 import type { PropsWithChildren } from "react";
 import type { NavigateProps } from "react-router-dom";
@@ -12,7 +12,7 @@ interface RedirectProps extends Omit<NavigateProps, "to"> {
 const initialLanguageCode = getInitialLanguageCode();
 
 export function Redirect({ href = "/", ...props }: PropsWithChildren<RedirectProps>): JSX.Element {
-  if (href.startsWith("/") && initialLanguageCode !== DefaultLanguage.code) {
+  if (href.startsWith("/") && initialLanguageCode !== DEFAULT_LANGUAGE.code) {
     href = `/${initialLanguageCode}${href}`;
   }
   return <Navigate {...props} to={href} />;
