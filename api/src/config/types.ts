@@ -42,5 +42,5 @@ export class EnvRecord {
   MEILISEARCH_MASTER_KEY = "default";
 
   @IsString()
-  OPENAI_KEY!: string;
+  OPENAI_KEY = "no-key";
 }
