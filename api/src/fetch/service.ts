@@ -1,4 +1,4 @@
-import { defaults } from "make-fetch-happen";
+import { defaults, FetchOptions } from "make-fetch-happen";
 import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
 import { Service } from "typedi";
@@ -18,6 +18,21 @@ export class FetchService {
     });
   }
 
+  public post = async <T>(
+    url: string,
+    { headers = {}, body }: FetchConfig = {},
+  ): Promise<Awaited<T>> => {
+    const response = await this.fetch<T>(url, {
+      headers: {
+        "Content-Type": "application/json",
+        ...headers,
+      },
+      method: "POST",
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    return response;
+  };
+
   public get = async <T>(
     url: string,
     { params = {}, headers = {} }: FetchConfig = {},
@@ -25,14 +40,14 @@ export class FetchService {
     const _url = new URL(url);
     Object.keys(params).forEach((key) => _url.searchParams.append(key, String(params[key])));
 
-    const response = await this.fetch<T>(_url.toString(), { headers });
+    const response = await this.fetch<T>(_url.toString(), { headers, method: "GET" });
     return response;
   };
 
   private makeFetchHappenInstance;
-  private async fetch<T>(url: string, { headers }: Omit<FetchConfig, "params"> = {}) {
+  private async fetch<T>(url: string, options: FetchOptions) {
     this.logger.info({ message: `Fetching ${url}` });
-    const response = await this.makeFetchHappenInstance(url, { headers });
+    const response = await this.makeFetchHappenInstance(url, options);
     const jsonResponse = (await response.json()) as T;
     return jsonResponse;
   }
