@@ -11,7 +11,7 @@ export class SearchController {
 
   @Get("/")
   public async search(@QueryParams() req: SearchQuery): Promise<SearchResponse> {
-    const searchResults = await this.searchService.search(req.query, req.limit);
+    const searchResults = await this.searchService.search(req.query, req.lang, req.limit);
     return {
       searchResults,
     };
