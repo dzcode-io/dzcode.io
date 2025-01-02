@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundError, Param } from "routing-controllers";
+import { Controller, Get, NotFoundError, Param, QueryParams } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ProjectRepository } from "./repository";
@@ -11,6 +11,7 @@ import {
 import { RepositoryRepository } from "src/repository/repository";
 import { ContributorRepository } from "src/contributor/repository";
 import { ContributionRepository } from "src/contribution/repository";
+import { LanguageQuery } from "src/_utils/language";
 
 @Service()
 @Controller("/projects")
@@ -23,8 +24,8 @@ export class ProjectController {
   ) {}
 
   @Get("/")
-  public async getProjects(): Promise<GetProjectsResponse> {
-    const projects = await this.projectRepository.findForList();
+  public async getProjects(@QueryParams() { lang }: LanguageQuery): Promise<GetProjectsResponse> {
+    const projects = await this.projectRepository.findForList(lang);
 
     return {
       projects,
@@ -41,12 +42,15 @@ export class ProjectController {
   }
 
   @Get("/:id")
-  public async getProject(@Param("id") id: string): Promise<GetProjectResponse> {
+  public async getProject(
+    @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetProjectResponse> {
     const [project, repositories, contributors, contributions] = await Promise.all([
-      this.projectRepository.findWithStats(id),
+      this.projectRepository.findWithStats(id, lang),
       this.repositoryRepository.findForProject(id),
-      this.contributorRepository.findForProject(id),
-      this.contributionRepository.findForProject(id),
+      this.contributorRepository.findForProject(id, lang),
+      this.contributionRepository.findForProject(id, lang),
     ]);
 
     if (!project) throw new NotFoundError("Project not found");
@@ -62,8 +66,11 @@ export class ProjectController {
   }
 
   @Get("/:id/name")
-  public async getProjectName(@Param("id") id: string): Promise<GetProjectNameResponse> {
-    const project = await this.projectRepository.findName(id);
+  public async getProjectName(
+    @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetProjectNameResponse> {
+    const project = await this.projectRepository.findName(id, lang);
 
     if (!project) throw new NotFoundError("Project not found");
 

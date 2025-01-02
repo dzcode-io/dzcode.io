@@ -1,6 +1,6 @@
 import { Env } from "handler/contribution";
 import { environments } from "@dzcode.io/utils/dist/config/environment";
-import { allLanguages, LanguageEntity } from "@dzcode.io/models/dist/language";
+import { Language, Languages } from "@dzcode.io/models/dist/language";
 import { getContributionURL } from "@dzcode.io/web/dist/utils/contribution";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { fetchV2Factory } from "@dzcode.io/utils/dist/fetch/factory";
@@ -20,21 +20,21 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     stage = "development";
   }
   const fullstackConfig = fsConfig(stage);
-  const fetchV2 = fetchV2Factory<Endpoints>(fullstackConfig);
+  const links: Array<{ url: string; lang: Language["code"] }> = [];
 
-  const { contributions } = await fetchV2("api:contributions/for-sitemap", {});
+  for (const lang of Languages) {
+    const fetchV2 = fetchV2Factory<Endpoints>(fullstackConfig, lang.code);
+    const { contributions } = await fetchV2("api:contributions/for-sitemap", {});
+
+    for (const contribution of contributions) {
+      links.push({
+        url: xmlEscape(`${lang.baseUrl}${getContributionURL(contribution)}`),
+        lang: lang.code,
+      });
+    }
+  }
 
   const hostname = "https://www.dzCode.io";
-  const links = contributions.reduce<{ url: string; lang: LanguageEntity["code"] }[]>((pV, cV) => {
-    return [
-      ...pV,
-      ...allLanguages.map(({ baseUrl, code }) => ({
-        url: xmlEscape(`${baseUrl}${getContributionURL(cV)}`),
-        lang: code,
-      })),
-    ];
-  }, []);
-
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"

@@ -1,0 +1,1 @@
+ALTER TABLE "projects" ALTER COLUMN "name_ar" DROP DEFAULT;

@@ -9,7 +9,8 @@ export const contributorsTable = pgTable("contributors", {
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
   runId: text("run_id").notNull(),
-  name: text("name").notNull(),
+  name_ar: text("name_ar").notNull(),
+  name_en: text("name_en").notNull(),
   username: text("username").notNull(),
   url: text("url").notNull().unique(),
   avatarUrl: text("avatar_url").notNull(),

@@ -1,8 +1,8 @@
-import { allLanguages } from "@dzcode.io/models/dist/language";
 import { createWriteStream } from "fs";
 import { join } from "path";
 import { SitemapStream } from "sitemap";
 import { staticPages } from "./pages";
+import { LANGUAGES } from "@dzcode.io/models/dist/language";
 
 const distFolder = "./bundle";
 
@@ -23,7 +23,7 @@ writeStream.on("error", (err) => {
 writeStream.on("ready", () => {
   sitemap.pipe(writeStream);
   urls.forEach((url) => {
-    const lang = allLanguages.find(({ code }) => `/${code}/` === url.substring(0, 4))?.code || "en";
+    const lang = LANGUAGES.find(({ code }) => `/${code}/` === url.substring(0, 4))?.code || "en";
     sitemap.write(
       {
         url,

@@ -7,16 +7,17 @@ import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
 import { ProjectRow, projectsTable, ProjectTagRelationRow, projectTagRelationTable } from "./table";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 @Service()
 export class ProjectRepository {
   constructor(private readonly postgresService: PostgresService) {}
 
-  public async findName(projectId: string) {
+  public async findName(projectId: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
         ${projectsTable.id},
-        ${projectsTable.name}
+        ${projectsTable[`name_${lang}`]} as name
     FROM
         ${projectsTable}
     WHERE
@@ -34,11 +35,11 @@ export class ProjectRepository {
     return camelCased;
   }
 
-  public async findWithStats(projectId: string) {
+  public async findWithStats(projectId: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       id,
-      name,
+      name_${sql.raw(lang)} as name,
       sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
       sum(repo_with_stats.stars)::int as total_repo_stars,
       sum(repo_with_stats.score)::int as total_repo_score,
@@ -77,11 +78,11 @@ export class ProjectRepository {
     return camelCased;
   }
 
-  public async findForList() {
+  public async findForList(lang: LanguageCode) {
     const statement = sql`
     SELECT
       p.id,
-      p.name,
+      p.name_${sql.raw(lang)} as name,
       sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
       sum(repo_with_stats.stars)::int as total_repo_stars,
       sum(repo_with_stats.score)::int as total_repo_score,
@@ -122,11 +123,11 @@ export class ProjectRepository {
     return camelCased;
   }
 
-  public async findForContributor(id: string) {
+  public async findForContributor(id: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       id,
-      name,
+      name_${sql.raw(lang)} as name,
       sum(repo_with_stats.contributor_count)::int as total_repo_contributor_count,
       sum(repo_with_stats.stars)::int as total_repo_stars,
       sum(repo_with_stats.score)::int as total_repo_score,

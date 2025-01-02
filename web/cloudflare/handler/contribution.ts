@@ -9,9 +9,9 @@ import { Environment, environments } from "@dzcode.io/utils/dist/config/environm
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { plainLocalize } from "@dzcode.io/web/dist/components/locale/utils";
 import { dictionary, AllDictionaryKeys } from "@dzcode.io/web/dist/components/locale/dictionary";
-import { LanguageEntity } from "@dzcode.io/models/dist/language";
 import { fetchV2Factory } from "@dzcode.io/utils/dist/fetch/factory";
 import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 export interface Env {
   STAGE: Environment;
@@ -27,8 +27,7 @@ export const handleContributionRequest: PagesFunction<Env> = async (context) => 
   const pathName = new URL(context.request.url).pathname;
 
   const languageRegex = /^\/(ar|en)\//i;
-  const language = (pathName?.match(languageRegex)?.[1]?.toLowerCase() ||
-    "en") as LanguageEntity["code"];
+  const language = (pathName?.match(languageRegex)?.[1]?.toLowerCase() || "en") as LanguageCode;
   const notFound = language === "ar" ? notFoundAr : notFoundEn;
 
   const contributionIdRegex = /contribute\/(.*)-(.*)-(.*)/;
@@ -45,7 +44,7 @@ export const handleContributionRequest: PagesFunction<Env> = async (context) => 
     plainLocalize(dictionary, language, key, "NO-TRANSLATION");
 
   const fullstackConfig = fsConfig(stage);
-  const fetchV2 = fetchV2Factory<Endpoints>(fullstackConfig);
+  const fetchV2 = fetchV2Factory<Endpoints>(fullstackConfig, language);
 
   try {
     const { contribution } = await fetchV2("api:contributions/:id/title", {

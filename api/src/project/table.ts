@@ -7,7 +7,8 @@ export const projectsTable = pgTable("projects", {
   recordImportedAt: text("record_imported_at")
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  name: text("name").notNull(),
+  name_ar: text("name_ar").notNull(),
+  name_en: text("name_en").notNull(),
   runId: text("run_id").notNull(),
 });
 
