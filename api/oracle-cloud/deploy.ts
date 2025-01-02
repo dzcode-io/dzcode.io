@@ -52,6 +52,7 @@ const appPath = "~/app";
 const sshPrefix =
   "ssh -o StrictHostKeyChecking=no " + (sshKeyPath ? `-i ${sshKeyPath} ` : "") + sshServer + " ";
 
+// todo-ZM: let docker-compose handle deletion of old containers
 // Check for existing containers
 logs = execSync(sshPrefix + '"sudo docker ps -aq"');
 
