@@ -20,7 +20,6 @@ export function ContributionCard({
   return (
     <Link
       className="card card-compact bg-base-300 flex-auto w-full max-w-xs sm:max-w-sm"
-      dir="ltr"
       href={getContributionURL(contribution)}
       // TODO-OB: there's a bug here: when passing onClick to Link, the link no longer work as a SPA link, and instead causes a full reload of the page
       onClick={onClick}

@@ -15,6 +15,7 @@
     "@types/make-fetch-happen": "^10.0.4",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "class-validator-jsonschema": "^5.0.1",
     "cors": "^2.8.5",
     "cron": "^3.1.7",
     "dotenv": "^16.4.5",

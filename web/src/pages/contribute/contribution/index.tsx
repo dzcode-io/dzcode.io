@@ -68,10 +68,7 @@ export default function Page(): JSX.Element {
         ) : (
           <div className="flex flex-col gap-4 items-center p-4">
             {/* TODO-ZM: more tailored design for /contribute/:slug page instead of copy-pasting components from /contribute */}
-            <div
-              dir="ltr"
-              className="card card-compact bg-base-300 flex-auto w-full max-w-xs sm:max-w-sm"
-            >
+            <div className="card card-compact bg-base-300 flex-auto w-full max-w-xs sm:max-w-sm">
               <div className="card-body markdown">
                 <div className="card-body">
                   <h2 className="card-title">
