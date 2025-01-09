@@ -84,10 +84,12 @@ export class DigestCron {
     // or uncomment to skip the cron
     // if (Math.random()) return;
 
-    const projectTitleSystemPrompt = `user will give you an open-source project name, and you will translate it to Arabic.`;
+    const projectTitleSystemPrompt = `user will give you an open-source project name, and you will translate it to Arabic.
+it may contain non-translatable parts like acronyms, keep them as is.`;
     const contributorNameSystemPrompt = `user will give you an open-source contributor name, and you will translate it to Arabic.
 if the name contain both english and arabic only keep the parts related to the language.`;
-    const issueTitleSystemPrompt = `user will give you an open-source issue/PR title, and you will translate it to Arabic.`;
+    const issueTitleSystemPrompt = `user will give you an open-source issue/PR title, and you will translate it to Arabic.
+it may contain non-translatable parts like acronyms, keep them as is.`;
 
     for (const project of projectsFromDataFolder) {
       let name_en = project.name;
