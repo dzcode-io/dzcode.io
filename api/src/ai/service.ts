@@ -5,6 +5,8 @@ import { targetConstructorToSchema } from "class-validator-jsonschema";
 import { FetchService } from "src/fetch/service";
 import { ClassConstructor, plainToClass } from "class-transformer";
 import { validateSync } from "class-validator";
+import { AiPromptRepository } from "./repository";
+import { captureException } from "@sentry/node";
 
 type AIChat = { role: "user" | "system"; content: string };
 
@@ -18,6 +20,7 @@ export class AIService {
     private readonly configService: ConfigService,
     private readonly logger: LoggerService,
     private readonly fetchService: FetchService,
+    private readonly aiPromptRepository: AiPromptRepository,
   ) {}
 
   public query = async <T extends object>(
@@ -34,18 +37,22 @@ export class AIService {
       ...payload,
     ];
 
+    const cachedResponse = await this.aiPromptRepository.findPromptResponse(
+      payloadWithValidationPrompt,
+    );
+    if (cachedResponse) return JSON.parse(cachedResponse.response);
+
+    const body = { model: "gpt-4o", messages: payloadWithValidationPrompt };
+
+    this.logger.info({ message: "Cached response not found, querying AI..." });
+    // todo-zm: change to captureEvent
+    captureException("AI Query", { tags: { type: "CRON" }, extra: { body } });
+
     const { OPENAI_KEY } = this.configService.env();
 
-    // todo: cache response
     const res = await this.fetchService.post<OpenAIResponse>(
       "https://api.openai.com/v1/chat/completions",
-      {
-        headers: { Authorization: `Bearer ${OPENAI_KEY}` },
-        body: {
-          model: "gpt-4o",
-          messages: payloadWithValidationPrompt,
-        },
-      },
+      { headers: { Authorization: `Bearer ${OPENAI_KEY}` }, body },
     );
 
     const chatResponseUnchecked = JSON.parse(res.choices[0].message.content) as T;
@@ -60,6 +67,8 @@ export class AIService {
           "",
         )}`,
       );
+
+    await this.aiPromptRepository.insert(payloadWithValidationPrompt, output);
 
     return output;
   };

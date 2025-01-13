@@ -50,6 +50,13 @@
       "when": 1735688289807,
       "tag": "0006_amazing_stark_industries",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1735852741252,
+      "tag": "0007_rich_trauma",
+      "breakpoints": true
     }
   ]
 }
