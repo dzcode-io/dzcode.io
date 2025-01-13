@@ -14,6 +14,8 @@ import { RepositoryRepository } from "src/repository/repository";
 import { SearchService } from "src/search/service";
 import { Service } from "typedi";
 import { TagRepository } from "src/tag/repository";
+import { AIService } from "src/ai/service";
+import { AIResponseTranslateNameDto, AIResponseTranslateTitleDto } from "./dto";
 
 @Service()
 export class DigestCron {
@@ -29,7 +31,8 @@ export class DigestCron {
     private readonly contributionsRepository: ContributionRepository,
     private readonly contributorsRepository: ContributorRepository,
     private readonly searchService: SearchService,
-    private readonly tagsRepository: TagRepository,
+    private readonly tagRepository: TagRepository,
+    private readonly aiService: AIService,
   ) {
     const SentryCronJob = cron.instrumentCron(CronJob, "DigestCron");
     new SentryCronJob(
@@ -81,10 +84,29 @@ export class DigestCron {
     // or uncomment to skip the cron
     // if (Math.random()) return;
 
+    const projectTitleSystemPrompt = `user will give you an open-source project name, and you will translate it to Arabic.`;
+    const contributorNameSystemPrompt = `user will give you an open-source contributor name, and you will translate it to Arabic.
+if the name contain both english and arabic only keep the parts related to the language.`;
+    const issueTitleSystemPrompt = `user will give you an open-source issue/PR title, and you will translate it to Arabic.`;
+
     for (const project of projectsFromDataFolder) {
-      // todo: call AIService
-      const name_en = project.name;
-      const name_ar = `ar ${name_en}`;
+      let name_en = project.name;
+      let name_ar = name_en;
+
+      try {
+        const aiRes = await this.aiService.query(
+          [
+            { role: "system", content: projectTitleSystemPrompt },
+            { role: "user", content: name_en },
+          ],
+          AIResponseTranslateNameDto,
+        );
+
+        name_en = aiRes.name_en;
+        name_ar = aiRes.name_ar;
+      } catch (error) {
+        captureException(error, { tags: { type: "CRON" } });
+      }
 
       const projectEntity: ProjectRow = {
         runId,
@@ -94,7 +116,7 @@ export class DigestCron {
       };
       const [{ id: projectId }] = await this.projectsRepository.upsert(projectEntity);
       for (const tagId of project.tags || []) {
-        await this.tagsRepository.upsert({ id: tagId, runId });
+        await this.tagRepository.upsert({ id: tagId, runId });
         await this.projectsRepository.upsertRelationWithTag({ projectId, tagId, runId });
       }
       await this.searchService.upsert("project", projectEntity);
@@ -133,9 +155,22 @@ export class DigestCron {
 
               if (githubUser.type !== "User") continue;
 
-              // todo: call AIService
-              const name_en = githubUser.name || githubUser.login;
-              const name_ar = `ar ${name_en}`;
+              let name_en = githubUser.name || githubUser.login;
+              let name_ar = name_en;
+              try {
+                const aiRes = await this.aiService.query(
+                  [
+                    { role: "system", content: contributorNameSystemPrompt },
+                    { role: "user", content: name_en },
+                  ],
+                  AIResponseTranslateNameDto,
+                );
+
+                name_en = aiRes.name_en;
+                name_ar = aiRes.name_ar;
+              } catch (error) {
+                captureException(error, { tags: { type: "CRON" } });
+              }
 
               const contributorEntity: ContributorRow = {
                 name_en,
@@ -160,9 +195,22 @@ export class DigestCron {
 
               const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
 
-              // todo: call AIService
-              const title_en = issue.title;
-              const title_ar = `ar ${title_en}`;
+              let title_en = issue.title;
+              let title_ar = `ar ${title_en}`;
+              try {
+                const aiRes = await this.aiService.query(
+                  [
+                    { role: "system", content: issueTitleSystemPrompt },
+                    { role: "user", content: title_en },
+                  ],
+                  AIResponseTranslateTitleDto,
+                );
+
+                title_en = aiRes.title_en;
+                title_ar = aiRes.title_ar;
+              } catch (error) {
+                captureException(error, { tags: { type: "CRON" } });
+              }
 
               const contributionEntity: ContributionRow = {
                 title_en,
@@ -194,9 +242,22 @@ export class DigestCron {
                 username: repoContributor.login,
               });
 
-              // todo: call AIService
-              const name_en = contributor.name || contributor.login;
-              const name_ar = `ar ${name_en}`;
+              let name_en = contributor.name || contributor.login;
+              let name_ar = `ar ${name_en}`;
+              try {
+                const aiRes = await this.aiService.query(
+                  [
+                    { role: "system", content: contributorNameSystemPrompt },
+                    { role: "user", content: name_en },
+                  ],
+                  AIResponseTranslateNameDto,
+                );
+
+                name_en = aiRes.name_en;
+                name_ar = aiRes.name_ar;
+              } catch (error) {
+                captureException(error, { tags: { type: "CRON" } });
+              }
 
               const contributorEntity: ContributorRow = {
                 name_en,
@@ -244,7 +305,7 @@ export class DigestCron {
       await this.projectsRepository.deleteAllRelationWithTagButWithRunId(runId);
       await this.projectsRepository.deleteAllButWithRunId(runId);
 
-      await this.tagsRepository.deleteAllButWithRunId(runId);
+      await this.tagRepository.deleteAllButWithRunId(runId);
 
       await Promise.all([
         this.searchService.deleteAllButWithRunId("project", runId),
