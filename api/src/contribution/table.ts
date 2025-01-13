@@ -9,7 +9,8 @@ export const contributionsTable = pgTable("contributions", {
   recordImportedAt: text("record_imported_at")
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`),
-  title: text("title").notNull(),
+  title_ar: text("title_ar").notNull(),
+  title_en: text("title_en").notNull(),
   updatedAt: text("updated_at").notNull(),
   url: text("url").notNull().unique(),
   type: text("type").notNull().$type<ContributionEntity["type"]>(),

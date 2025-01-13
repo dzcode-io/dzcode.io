@@ -5,6 +5,7 @@ import { ConfigService } from "src/config/service";
 import { LoggerService } from "src/logger/service";
 import { MeiliSearch } from "meilisearch";
 import { Service } from "typedi";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 @Service()
 export class SearchService {
@@ -25,20 +26,41 @@ export class SearchService {
     });
   }
 
-  public search = async (q: string, limit?: number): Promise<SearchResults> => {
+  public search = async (q: string, lang: LanguageCode, limit?: number): Promise<SearchResults> => {
+    // TODO-ZM: only fetch Ids from search db, then query actually entities from their respective repositories
     this.logger.info({ message: `Searching for "${q}" in all indexes` });
     const searchResults = await this.meilisearch.multiSearch({
       queries: [
-        { indexUid: "project", q, limit, attributesToRetrieve: ["id", "name"] },
+        { indexUid: "project", q, limit, attributesToRetrieve: ["id", `name_${lang}`] },
         {
           indexUid: "contribution",
           q,
           limit,
-          attributesToRetrieve: ["id", "title", "type", "activityCount", "url"],
+          attributesToRetrieve: ["id", `title_${lang}`, "type", "activityCount", "url"],
         },
-        { indexUid: "contributor", q, limit, attributesToRetrieve: ["id", "name", "avatarUrl"] },
+        {
+          indexUid: "contributor",
+          q,
+          limit,
+          attributesToRetrieve: ["id", `name_${lang}`, "avatarUrl"],
+        },
       ],
     });
+
+    searchResults.results.forEach((result) => {
+      result.hits.forEach((hit) => {
+        if (hit[`name_${lang}`]) {
+          hit.name = hit[`name_${lang}`];
+          delete hit[`name_${lang}`];
+        }
+
+        if (hit[`title_${lang}`]) {
+          hit.title = hit[`title_${lang}`];
+          delete hit[`title_${lang}`];
+        }
+      });
+    });
+
     return searchResults as SearchResults;
   };
 

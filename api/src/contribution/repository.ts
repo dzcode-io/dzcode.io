@@ -9,16 +9,17 @@ import { PostgresService } from "src/postgres/service";
 import { Service } from "typedi";
 
 import { ContributionRow, contributionsTable } from "./table";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 @Service()
 export class ContributionRepository {
   constructor(private readonly postgresService: PostgresService) {}
 
-  public async findTitle(contributionId: string) {
+  public async findTitle(contributionId: string, lang: LanguageCode) {
     // todo-ZM: guard against SQL injections in all sql`` statements
     const statement = sql`
     SELECT
-      ${contributionsTable.title}
+      ${contributionsTable[`title_${lang}`]} as title
     FROM
       ${contributionsTable}
     WHERE
@@ -36,11 +37,11 @@ export class ContributionRepository {
     return camelCased;
   }
 
-  public async findForProject(projectId: string) {
+  public async findForProject(projectId: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       ${contributionsTable.id},
-      ${contributionsTable.title}
+      ${contributionsTable[`title_${lang}`]} as title
     FROM
       ${contributionsTable}
     INNER JOIN
@@ -58,11 +59,11 @@ export class ContributionRepository {
     return camelCased;
   }
 
-  public async findForContributor(contributorId: string) {
+  public async findForContributor(contributorId: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       ${contributionsTable.id},
-      ${contributionsTable.title}
+      ${contributionsTable[`title_${lang}`]} as title
     FROM
       ${contributionsTable}
     INNER JOIN
@@ -80,11 +81,11 @@ export class ContributionRepository {
     return camelCased;
   }
 
-  public async findForSitemap() {
+  public async findForSitemap(lang: LanguageCode) {
     const statement = sql`
     SELECT
       ${contributionsTable.id},
-      ${contributionsTable.title}
+      ${contributionsTable[`title_${lang}`]} as title
     FROM
       ${contributionsTable}
     `;
@@ -113,11 +114,11 @@ export class ContributionRepository {
       .where(ne(contributionsTable.runId, runId));
   }
 
-  public async findForList() {
+  public async findForList(lang: LanguageCode) {
     const statement = sql`
     SELECT
       p.id as id,
-      p.name as name,
+      p.name_${sql.raw(lang)} as name,
       json_agg(
         json_build_object('id', r.id, 'name', r.name, 'owner', r.owner, 'contributions', r.contributions)
       ) AS repositories
@@ -132,7 +133,7 @@ export class ContributionRepository {
             'id',
             c.id,
             'title',
-            c.title,
+            c.title_${sql.raw(lang)},
             'type',
             c.type,
             'url',
@@ -146,7 +147,7 @@ export class ContributionRepository {
               'id',
               cr.id,
               'name',
-              cr.name,
+              cr.name_${sql.raw(lang)},
               'username',
               cr.username,
               'avatar_url',
@@ -187,11 +188,11 @@ export class ContributionRepository {
     return sortedUpdatedAt;
   }
 
-  public async findByIdWithStats(id: string) {
+  public async findByIdWithStats(id: string, lang: LanguageCode) {
     const statement = sql`
     SELECT
       p.id as id,
-      p.name as name,
+      p.name_${sql.raw(lang)} as name,
       json_agg(
         json_build_object('id', r.id, 'name', r.name, 'owner', r.owner, 'contributions', r.contributions)
       ) AS repositories
@@ -206,7 +207,7 @@ export class ContributionRepository {
             'id',
             c.id,
             'title',
-            c.title,
+            c.title_${sql.raw(lang)},
             'type',
             c.type,
             'url',
@@ -220,7 +221,7 @@ export class ContributionRepository {
               'id',
               cr.id,
               'name',
-              cr.name,
+              cr.name_${sql.raw(lang)},
               'username',
               cr.username,
               'avatar_url',

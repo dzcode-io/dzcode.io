@@ -82,10 +82,15 @@ export class DigestCron {
     // if (Math.random()) return;
 
     for (const project of projectsFromDataFolder) {
+      // todo: call AIService
+      const name_en = project.name;
+      const name_ar = `ar ${name_en}`;
+
       const projectEntity: ProjectRow = {
         runId,
         id: project.slug.replace(/[.]/g, "-"), // NOTE-OB: MeiliSearch doesn't allow dots in ids
-        name: project.name,
+        name_en,
+        name_ar,
       };
       const [{ id: projectId }] = await this.projectsRepository.upsert(projectEntity);
       for (const tagId of project.tags || []) {
@@ -128,8 +133,13 @@ export class DigestCron {
 
               if (githubUser.type !== "User") continue;
 
+              // todo: call AIService
+              const name_en = githubUser.name || githubUser.login;
+              const name_ar = `ar ${name_en}`;
+
               const contributorEntity: ContributorRow = {
-                name: githubUser.name || githubUser.login,
+                name_en,
+                name_ar,
                 username: githubUser.login,
                 url: githubUser.html_url,
                 avatarUrl: githubUser.avatar_url,
@@ -149,8 +159,14 @@ export class DigestCron {
               });
 
               const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
+
+              // todo: call AIService
+              const title_en = issue.title;
+              const title_ar = `ar ${title_en}`;
+
               const contributionEntity: ContributionRow = {
-                title: issue.title,
+                title_en,
+                title_ar,
                 type,
                 updatedAt: issue.updated_at,
                 activityCount: issue.comments,
@@ -177,8 +193,14 @@ export class DigestCron {
               const contributor = await this.githubService.getUser({
                 username: repoContributor.login,
               });
+
+              // todo: call AIService
+              const name_en = contributor.name || contributor.login;
+              const name_ar = `ar ${name_en}`;
+
               const contributorEntity: ContributorRow = {
-                name: contributor.name || contributor.login,
+                name_en,
+                name_ar,
                 username: contributor.login,
                 url: contributor.html_url,
                 avatarUrl: contributor.avatar_url,

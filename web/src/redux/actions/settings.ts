@@ -1,16 +1,17 @@
+import { DEFAULT_LANGUAGE, LANGUAGES } from "@dzcode.io/models/dist/language";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 import { captureException } from "@sentry/react";
-import { Language, Languages } from "src/components/locale/languages";
 
-export const changeLanguage = (languageCode: Language["code"]) => {
+export const changeLanguage = (languageCode: LanguageCode) => {
   let newPath = window.location.pathname;
-  const language = Languages.find(({ code }) => code === languageCode);
+  const language = LANGUAGES.find(({ code }) => code === languageCode);
   if (!language) {
     console.error("Invalid language code", languageCode);
     captureException(`Invalid language code ${language}`, { tags: { type: "GENERIC" } });
     return;
   }
 
-  const urlLanguageRegEx = new RegExp(`^/(${Languages.map(({ code }) => code).join("|")})`);
+  const urlLanguageRegEx = new RegExp(`^/(${LANGUAGES.map(({ code }) => code).join("|")})`);
 
   const urlLanguageMatch = newPath.match(urlLanguageRegEx);
   if (urlLanguageMatch) {
@@ -20,7 +21,7 @@ export const changeLanguage = (languageCode: Language["code"]) => {
   }
 
   // remove code from url if it's the default language
-  if (language.code === Languages[0].code) {
+  if (language.code === DEFAULT_LANGUAGE.code) {
     newPath = newPath.replace(`/${language.code}`, "") || "/";
   }
 

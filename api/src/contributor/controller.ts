@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundError, Param } from "routing-controllers";
+import { Controller, Get, NotFoundError, Param, QueryParams } from "routing-controllers";
 import { Service } from "typedi";
 
 import { ContributorRepository } from "./repository";
@@ -10,6 +10,7 @@ import {
 } from "./types";
 import { ProjectRepository } from "src/project/repository";
 import { ContributionRepository } from "src/contribution/repository";
+import { LanguageQuery } from "src/_utils/language";
 
 @Service()
 @Controller("/contributors")
@@ -21,8 +22,10 @@ export class ContributorController {
   ) {}
 
   @Get("/")
-  public async getContributors(): Promise<GetContributorsResponse> {
-    const contributors = await this.contributorRepository.findForList();
+  public async getContributors(
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributorsResponse> {
+    const contributors = await this.contributorRepository.findForList(lang);
 
     return {
       contributors,
@@ -39,11 +42,14 @@ export class ContributorController {
   }
 
   @Get("/:id")
-  public async getContributor(@Param("id") id: string): Promise<GetContributorResponse> {
+  public async getContributor(
+    @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributorResponse> {
     const [contributor, projects, contributions] = await Promise.all([
-      this.contributorRepository.findWithStats(id),
-      this.projectRepository.findForContributor(id),
-      this.contributionRepository.findForContributor(id),
+      this.contributorRepository.findWithStats(id, lang),
+      this.projectRepository.findForContributor(id, lang),
+      this.contributionRepository.findForContributor(id, lang),
     ]);
 
     if (!contributor) throw new NotFoundError("Contributor not found");
@@ -58,8 +64,11 @@ export class ContributorController {
   }
 
   @Get("/:id/name")
-  public async getContributorName(@Param("id") id: string): Promise<GetContributorNameResponse> {
-    const contributor = await this.contributorRepository.findName(id);
+  public async getContributorName(
+    @Param("id") id: string,
+    @QueryParams() { lang }: LanguageQuery,
+  ): Promise<GetContributorNameResponse> {
+    const contributor = await this.contributorRepository.findName(id, lang);
 
     if (!contributor) throw new NotFoundError("Contributor not found");
 
