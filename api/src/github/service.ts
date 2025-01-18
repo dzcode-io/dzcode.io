@@ -8,8 +8,6 @@ import {
   GetRepositoryIssuesResponse,
   GetRepositoryResponse,
   GetUserInput,
-  GitHubListRepositoryMilestonesInput,
-  GithubMilestone,
   GitHubRateLimitApiResponse,
   GitHubUserApiResponse,
   ListRepositoryContributorsResponse,
@@ -86,20 +84,6 @@ export class GithubService {
       used,
       ratio: used / limit,
     };
-  };
-
-  public listRepositoryMilestones = async ({
-    owner,
-    repository,
-  }: GitHubListRepositoryMilestonesInput): Promise<GithubMilestone[]> => {
-    const milestones = await this.fetchService.get<GithubMilestone[]>(
-      `${this.apiURL}/repos/${owner}/${repository}/milestones`,
-      {
-        headers: this.githubToken ? { Authorization: `Token ${this.githubToken}` } : {},
-        params: { state: "all", per_page: 100 },
-      },
-    );
-    return milestones;
   };
 
   private githubToken = this.configService.env().GITHUB_TOKEN;

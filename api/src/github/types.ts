@@ -30,28 +30,6 @@ export interface GetRepositoryInput {
   owner: string;
   repo: string;
 }
-
-interface GitHubListRepositoryIssuesInput {
-  owner: string;
-  repository: string;
-}
-
-export type GitHubListRepositoryMilestonesInput = GitHubListRepositoryIssuesInput;
-
-export interface GithubMilestone {
-  html_url: string;
-  number: number;
-  title: string;
-  description: string;
-  state: "closed" | "open";
-  open_issues: number;
-  closed_issues: number;
-  created_at: string;
-  updated_at: string;
-  closed_at: string | null;
-  due_on: string | null;
-}
-
 export interface GitHubRateLimitApiResponse {
   resources: {
     core: {

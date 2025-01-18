@@ -10,7 +10,6 @@ import {
   GetContributorsForSitemapResponse,
   GetContributorsResponse,
 } from "src/contributor/types";
-import { GetMilestonesResponse } from "src/milestone/types";
 import {
   GetProjectNameResponse,
   GetProjectResponse,
@@ -62,9 +61,6 @@ export interface Endpoints {
   "api:contributors/:id/name": {
     response: GetContributorNameResponse;
     params: { id: string };
-  };
-  "api:milestones/dzcode": {
-    response: GetMilestonesResponse;
   };
   "api:search": {
     response: SearchResponse;
