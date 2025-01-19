@@ -14,7 +14,6 @@ import { DigestCron } from "src/digest/cron";
 import { GithubController } from "src/github/controller";
 import { LoggerMiddleware } from "./middlewares/logger";
 import { LoggerService } from "src/logger/service";
-import { MilestoneController } from "src/milestone/controller";
 import { PostgresService } from "src/postgres/service";
 import { ProjectController } from "src/project/controller";
 import { RobotsController } from "./middlewares/robots";
@@ -46,7 +45,6 @@ useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
     controllers: [
       ContributionController,
       GithubController,
-      MilestoneController,
       ProjectController,
       ContributorController,
       RobotsController,

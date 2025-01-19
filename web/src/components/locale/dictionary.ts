@@ -175,14 +175,6 @@ Besides the open tasks on [/contribute](/contribute) page, you can also contribu
     en: "Make a Contribution",
     ar: "قدم مساهمة",
   },
-  "landing-milestones-title": {
-    en: "Project roadmap",
-    ar: "خارطة طريق المشروع",
-  },
-  "landing-milestones-subtitle": {
-    en: "See how and when new features are released and share your ideas and feedback to help us better shape dzcode roadmap",
-    ar: "تعرف على كيفية ووقت إصدار الميزات الجديدة وشارك بأفكارك وملاحظاتك لمساعدتنا في تشكيل خارطة طريق dzcode بشكل أفضل",
-  },
   "team-title": {
     en: "Meet the team! | DzCode i/o",
     ar: "تعرّف على الفريق! | DzCode i / o",

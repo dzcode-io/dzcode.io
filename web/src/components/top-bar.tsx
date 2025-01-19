@@ -152,7 +152,7 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
               href={href}
               key={index}
               role="tab"
-              className={`tab ${activeIndex === index ? "tab-active" : ""}`}
+              className={`whitespace-nowrap tab ${activeIndex === index ? "tab-active" : ""}`}
               data-testid={`top-bar-to:${href}`}
             >
               <Locale {...{ localeKey }} />
