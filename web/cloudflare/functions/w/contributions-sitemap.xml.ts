@@ -1,10 +1,11 @@
 import { Env } from "handler/contribution";
 import { environments } from "@dzcode.io/utils/dist/config/environment";
-import { Language, Languages } from "@dzcode.io/models/dist/language";
+import { LANGUAGES } from "@dzcode.io/models/dist/language";
 import { getContributionURL } from "@dzcode.io/web/dist/utils/contribution";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { fetchV2Factory } from "@dzcode.io/utils/dist/fetch/factory";
 import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 function xmlEscape(s: string) {
   return s.replace(
@@ -20,9 +21,9 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     stage = "development";
   }
   const fullstackConfig = fsConfig(stage);
-  const links: Array<{ url: string; lang: Language["code"] }> = [];
+  const links: Array<{ url: string; lang: LanguageCode }> = [];
 
-  for (const lang of Languages) {
+  for (const lang of LANGUAGES) {
     const fetchV2 = fetchV2Factory<Endpoints>(fullstackConfig, lang.code);
     const { contributions } = await fetchV2("api:contributions/for-sitemap", {});
 
