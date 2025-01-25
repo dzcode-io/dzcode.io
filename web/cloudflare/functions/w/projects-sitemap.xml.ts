@@ -1,10 +1,11 @@
 import { Env } from "handler/project";
 import { environments } from "@dzcode.io/utils/dist/config/environment";
-import { Language, Languages } from "@dzcode.io/models/dist/language";
 import { getProjectURL } from "@dzcode.io/web/dist/utils/project";
 import { fsConfig } from "@dzcode.io/utils/dist/config";
 import { fetchV2Factory } from "@dzcode.io/utils/dist/fetch/factory";
 import { Endpoints } from "@dzcode.io/api/dist/app/endpoints";
+import { LANGUAGES } from "@dzcode.io/models/dist/language";
+import { LanguageCode } from "@dzcode.io/utils/dist/language";
 
 export const onRequest: PagesFunction<Env> = async (context) => {
   let stage = context.env.STAGE;
@@ -13,8 +14,8 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     stage = "development";
   }
   const fullstackConfig = fsConfig(stage);
-  const links: Array<{ url: string; lang: Language["code"] }> = [];
-  for (const lang of Languages) {
+  const links: Array<{ url: string; lang: LanguageCode }> = [];
+  for (const lang of LANGUAGES) {
     const fetchV2 = fetchV2Factory<Endpoints>(fullstackConfig, lang.code);
     const { projects } = await fetchV2("api:projects/for-sitemap", {});
     for (const project of projects) {
