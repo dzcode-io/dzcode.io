@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/project.json",
+  "name": "Satim PHP Client",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "PiteurStudio",
+      "name": "satim-php"
+    }
+  ],
+  "tags": ["solve-algerian-problem"]
+}
