@@ -36,6 +36,11 @@
       "provider": "github",
       "owner": "dfourcfive",
       "name": "dzair_data_usage"
+    },
+    {
+      "provider": "github",
+      "owner": "kossa",
+      "name": "algerian-cities"
     }
   ],
   "tags": ["solve-algerian-problem"]
