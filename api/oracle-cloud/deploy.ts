@@ -52,25 +52,6 @@ const appPath = "~/app";
 const sshPrefix =
   "ssh -o StrictHostKeyChecking=no " + (sshKeyPath ? `-i ${sshKeyPath} ` : "") + sshServer + " ";
 
-// todo-ZM: let docker-compose handle deletion of old containers
-// Check for existing containers
-logs = execSync(sshPrefix + '"sudo docker ps -aq"');
-
-if (String(logs)) {
-  // stop containers
-  console.log("⚠️  Stopping all containers ...");
-  logs = execSync(sshPrefix + '"sudo docker stop \\$(sudo docker ps -aq)"');
-  console.log(String(logs));
-
-  // delete containers
-  console.log("⚠️  Deleting all containers ...");
-  logs = execSync(sshPrefix + '"sudo docker rm \\$(sudo docker ps -aq)"');
-  console.log(String(logs));
-  console.log("✅ All containers stopped");
-} else {
-  console.log("⏩ No container found, skipping stopping containers.");
-}
-
 console.log("⚠️  Deleting old code ...");
 logs = execSync(sshPrefix + '"rm -f -r ' + appPath + '"');
 logs = execSync(sshPrefix + '"mkdir ' + appPath + '"');
