@@ -52,11 +52,12 @@ const appPath = "~/app";
 const sshPrefix =
   "ssh -o StrictHostKeyChecking=no " + (sshKeyPath ? `-i ${sshKeyPath} ` : "") + sshServer + " ";
 
-console.log("⚠️  Cleaning up old images ...");
-logs = execSync(sshPrefix + '"sudo docker image prune --force"');
-console.log(String(logs));
 console.log("⚠️  Cleaning up old containers ...");
 logs = execSync(sshPrefix + '"sudo docker container prune --force"');
+console.log(String(logs));
+
+console.log("⚠️  Cleaning up old images ...");
+logs = execSync(sshPrefix + '"sudo docker image prune --force"');
 console.log(String(logs));
 
 console.log("⚠️  Deleting old code ...");
