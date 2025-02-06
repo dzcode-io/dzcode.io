@@ -13,6 +13,11 @@ services:
     build: "."
     ports:
       - "7070:7070"
+    depends_on:
+      postgres:
+        condition: service_started
+      meilisearch:
+        condition: service_started
     env_file:
       - /home/ubuntu/app-env/api.env
     volumes:
@@ -28,7 +33,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
       POSTGRES_DB: db
   meilisearch:
-    image: getmeili/meilisearch:latest
+    image: getmeili/meilisearch:v1.11.3
     ports:
       - "7700:7700"
     volumes:
