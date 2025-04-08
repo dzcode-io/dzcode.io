@@ -12,7 +12,7 @@ import { useAppSelector } from "src/redux/store";
 import { stripLanguageCodeFromHRef } from "src/utils/website-language";
 import { useSearchModal } from "src/utils/search-modal";
 import { Language, LANGUAGES } from "@dzcode.io/models/dist/language";
-import { themeChange } from "theme-change";
+
 export interface TopBarProps {
   version: string;
   links: Array<{ localeKey: DictionaryKeys<"navbar-section">; href: string }>;
@@ -48,7 +48,6 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
   });
 
   useLayoutEffect(() => {
-    themeChange(true);
     const theme = localStorage.getItem("theme");
     if (theme) {
       document.documentElement.setAttribute("data-theme", theme);
