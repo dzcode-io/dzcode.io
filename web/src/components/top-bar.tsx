@@ -1,5 +1,5 @@
 import React from "react";
-import { useMemo } from "react";
+import { useMemo, useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import logoWide from "src/assets/svg/logo-wide.svg";
 import logoSquare from "src/assets/svg/logo-square.svg";
@@ -12,7 +12,7 @@ import { useAppSelector } from "src/redux/store";
 import { stripLanguageCodeFromHRef } from "src/utils/website-language";
 import { useSearchModal } from "src/utils/search-modal";
 import { Language, LANGUAGES } from "@dzcode.io/models/dist/language";
-
+import { themeChange } from "theme-change";
 export interface TopBarProps {
   version: string;
   links: Array<{ localeKey: DictionaryKeys<"navbar-section">; href: string }>;
@@ -40,6 +40,27 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
   }, [selectedLanguageCode]);
 
   const { localize } = useLocale();
+
+  const [isDark, setIsDark] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const isDark = savedTheme === "dark";
+    return savedTheme ? isDark : true; // default should be dark
+  });
+
+  useLayoutEffect(() => {
+    themeChange(true);
+    const theme = localStorage.getItem("theme");
+    if (theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+  }, []);
+
+  function toggleTheme() {
+    const newTheme = isDark ? "light" : "dark";
+    setIsDark(!isDark);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  }
 
   return (
     <div className="bg-neutral">
@@ -113,10 +134,12 @@ export function TopBar({ version, links }: TopBarProps): JSX.Element {
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
             <input
+              onClick={toggleTheme}
               id="theme-toggle"
               type="checkbox"
               value="dzcodeLight"
               className="theme-controller toggle"
+              checked={!isDark}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
