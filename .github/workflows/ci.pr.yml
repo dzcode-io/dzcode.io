@@ -2,6 +2,7 @@ name: "CI Check for PullRequest"
 
 on:
   pull_request:
+  pull_request_target:
 
 jobs:
   pr-labeler:
