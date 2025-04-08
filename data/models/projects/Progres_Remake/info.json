@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/project.json",
+  "name": "Progres Webetu Remake",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "AliAkrem",
+      "name": "progres"
+    }
+  ],
+  "tags": ["solve-algerian-problem"]
+}
