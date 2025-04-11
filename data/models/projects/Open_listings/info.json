@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/project.json",
+  "name": "Open-listings",
+  "repositories": [
+    {
+      "provider": "bitbucket",
+      "owner": "open-listings",
+      "name": "open-listings-dz"
+    }
+  ],
+  "tags": ["solve-algerian-problem"]
+}
