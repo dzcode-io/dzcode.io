@@ -16,7 +16,7 @@
         "properties": {
           "provider": {
             "type": "string",
-            "enum": ["github"],
+            "enum": ["github", "gitlab", "bitbucket"],
             "description": "The repository hosting provider"
           },
           "owner": {
