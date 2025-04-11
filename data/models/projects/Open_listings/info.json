@@ -1,0 +1,10 @@
+{
+    "name": "Open-listings",
+    "repositories": [
+      {
+        "provider": "bitbucket",
+        "owner": "open-listings",
+        "repository": "open-listings-dz"
+      }
+    ]
+  }
