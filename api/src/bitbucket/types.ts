@@ -3,7 +3,7 @@ export interface BitbucketUser {
   username?: string;
   display_name: string;
   nickname?: string;
-  links: { avatar: { href: "https://bitbucket.org/account/open-listings/avatar/" } };
+  links: { avatar: { href: string } };
   type: "user" | "team";
 }
 
