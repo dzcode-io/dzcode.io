@@ -1,5 +1,3 @@
-// import { GeneralResponse } from "src/app/types";
-
 export interface BitbucketUser {
   uuid: string;
   username?: string;
