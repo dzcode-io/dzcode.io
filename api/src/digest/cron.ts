@@ -234,7 +234,7 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
                 url: repoContribution.url,
                 repositoryId,
                 contributorId,
-                id: `${provider}-${repoContribution.id}`,
+                id: repoContribution.id,
               };
               await this.contributionsRepository.upsert(contributionEntity);
               await this.searchService.upsert("contribution", contributionEntity);
