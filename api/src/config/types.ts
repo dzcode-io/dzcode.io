@@ -43,4 +43,8 @@ export class EnvRecord {
 
   @IsString()
   OPENAI_KEY = "no-key";
+
+  @IsString()
+  @IsOptional()
+  BITBUCKET_TOKEN?: string;
 }
