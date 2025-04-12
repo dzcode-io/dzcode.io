@@ -10,6 +10,8 @@ export const getRepositoryURL = ({
       return `https://www.github.com/${owner}/${name}`;
     case "gitlab":
       return `https://www.gitlab.com/${owner}/${name}`;
+    case "bitbucket":
+      return `https://bitbucket.org/${owner}/${name}`;
     default:
       return "";
   }
