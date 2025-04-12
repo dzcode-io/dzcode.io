@@ -50,7 +50,10 @@ const sshServer = isProduction ? process.env.SSH_ADDRESS_PRD : process.env.SSH_A
 const sshKeyPath = process.env.SSH_PATH;
 const appPath = "~/app";
 const sshPrefix =
-  "ssh -o StrictHostKeyChecking=no " + (sshKeyPath ? `-i ${sshKeyPath} ` : "") + sshServer + " ";
+  "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -o ServerAliveCountMax=60 " +
+  (sshKeyPath ? `-i ${sshKeyPath} ` : "") +
+  sshServer +
+  " ";
 
 console.log("⚠️  Cleaning up old containers ...");
 logs = execSync(sshPrefix + '"sudo docker container prune --force"');
