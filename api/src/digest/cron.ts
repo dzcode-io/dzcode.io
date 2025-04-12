@@ -16,7 +16,29 @@ import { Service } from "typedi";
 import { TagRepository } from "src/tag/repository";
 import { AIService } from "src/ai/service";
 import { AIResponseTranslateNameDto, AIResponseTranslateTitleDto } from "./dto";
+import { DataProjectEntity } from "src/data/types";
+import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
+import { BitbucketService } from "src/bitbucket/service";
 
+type RepoInfo = Pick<RepositoryEntity, "id" | "name" | "owner" | "provider" | "stars">;
+interface RepoContributor {
+  id: string;
+  name: string;
+  username: string;
+  url: string;
+  avatarUrl: string;
+  contributions: number;
+}
+
+interface RepoContribution {
+  user: RepoContributor;
+  type: "PULL_REQUEST" | "ISSUE";
+  title: string;
+  updatedAt: string;
+  activityCount: number;
+  url: string;
+  id: string;
+}
 @Service()
 export class DigestCron {
   private readonly schedule = "15 * * * *";
@@ -33,6 +55,7 @@ export class DigestCron {
     private readonly searchService: SearchService,
     private readonly tagRepository: TagRepository,
     private readonly aiService: AIService,
+    private readonly bitbucketService: BitbucketService,
   ) {
     const SentryCronJob = cron.instrumentCron(CronJob, "DigestCron");
     new SentryCronJob(
@@ -79,7 +102,7 @@ export class DigestCron {
     // todo-ZM: make this configurable
     // uncomment during development
     // const projectsFromDataFolder = (await this.dataService.listProjects()).filter((p) =>
-    //   ["dzcode.io website", "Mishkal", "System Monitor"].includes(p.name),
+    //   ["Open-listings", "dzcode.io website", "Mishkal", "System Monitor"].includes(p.name),
     // );
     // or uncomment to skip the cron
     // if (Math.random()) return;
@@ -128,36 +151,22 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
         const repositoriesFromDataFolder = project.repositories;
         for (const repository of repositoriesFromDataFolder) {
           try {
-            const repoInfo = await this.githubService.getRepository({
-              owner: repository.owner,
-              repo: repository.name,
-            });
+            const provider = repository.provider;
+            const repoInfo = await this.getRepoInfo(repository);
 
-            const provider = "github";
             const [{ id: repositoryId }] = await this.repositoriesRepository.upsert({
+              ...repoInfo,
               provider,
-              name: repoInfo.name,
-              owner: repoInfo.owner.login,
               runId,
               projectId,
-              stars: repoInfo.stargazers_count,
               id: `${provider}-${repoInfo.id}`,
             });
             addedRepositoryCount++;
 
-            const issues = await this.githubService.listRepositoryIssues({
-              owner: repository.owner,
-              repo: repository.name,
-            });
+            const repoContributions = await this.getRepoContributions(repository);
 
-            for (const issue of issues) {
-              const githubUser = await this.githubService.getUser({
-                username: issue.user.login,
-              });
-
-              if (githubUser.type !== "User") continue;
-
-              let name_en = githubUser.name || githubUser.login;
+            for (const repoContribution of repoContributions) {
+              let name_en = repoContribution.user.name;
               let name_ar = name_en;
               try {
                 const aiRes = await this.aiService.query(
@@ -177,17 +186,18 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
               const contributorEntity: ContributorRow = {
                 name_en,
                 name_ar,
-                username: githubUser.login,
-                url: githubUser.html_url,
-                avatarUrl: githubUser.avatar_url,
+                username: repoContribution.user.username,
+                url: repoContribution.user.url,
+                avatarUrl: repoContribution.user.avatarUrl,
                 runId,
-                id: `${provider}-${githubUser.login}`,
+                id: `${provider}-${repoContribution.user.username}`,
               };
 
               const [{ id: contributorId }] =
                 await this.contributorsRepository.upsert(contributorEntity);
               await this.searchService.upsert("contributor", contributorEntity);
 
+              // todo-zm: insert instead, and allow duplicates, and update the score calculation
               await this.contributorsRepository.upsertRelationWithRepository({
                 contributorId,
                 repositoryId,
@@ -195,9 +205,9 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
                 score: 1,
               });
 
-              const type = issue.pull_request ? "PULL_REQUEST" : "ISSUE";
+              const type = repoContribution.type;
 
-              let title_en = issue.title;
+              let title_en = repoContribution.title;
               let title_ar = `ar ${title_en}`;
               try {
                 const aiRes = await this.aiService.query(
@@ -218,33 +228,22 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
                 title_en,
                 title_ar,
                 type,
-                updatedAt: issue.updated_at,
-                activityCount: issue.comments,
+                updatedAt: repoContribution.updatedAt,
+                activityCount: repoContribution.activityCount,
                 runId,
-                url: type === "PULL_REQUEST" ? issue.pull_request.html_url : issue.html_url,
+                url: repoContribution.url,
                 repositoryId,
                 contributorId,
-                id: `${provider}-${issue.id}`,
+                id: `${provider}-${repoContribution.id}`,
               };
               await this.contributionsRepository.upsert(contributionEntity);
               await this.searchService.upsert("contribution", contributionEntity);
             }
 
-            const repoContributors = await this.githubService.listRepositoryContributors({
-              owner: repository.owner,
-              repository: repository.name,
-            });
+            const repoContributors = await this.getRepoContributors(repository);
 
-            const repoContributorsFiltered = repoContributors.filter(
-              (contributor) => contributor.type === "User",
-            );
-
-            for (const repoContributor of repoContributorsFiltered) {
-              const contributor = await this.githubService.getUser({
-                username: repoContributor.login,
-              });
-
-              let name_en = contributor.name || contributor.login;
+            for (const repoContributor of repoContributors) {
+              let name_en = repoContributor.name;
               let name_ar = `ar ${name_en}`;
               try {
                 const aiRes = await this.aiService.query(
@@ -264,16 +263,17 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
               const contributorEntity: ContributorRow = {
                 name_en,
                 name_ar,
-                username: contributor.login,
-                url: contributor.html_url,
-                avatarUrl: contributor.avatar_url,
+                username: repoContributor.username,
+                url: repoContributor.url,
+                avatarUrl: repoContributor.avatarUrl,
                 runId,
-                id: `${provider}-${contributor.login}`,
+                id: `${provider}-${repoContributor.id}`,
               };
               const [{ id: contributorId }] =
                 await this.contributorsRepository.upsert(contributorEntity);
               await this.searchService.upsert("contributor", contributorEntity);
 
+              // todo-zm: insert instead, and allow duplicates, and update the score calculation
               await this.contributorsRepository.upsertRelationWithRepository({
                 contributorId,
                 repositoryId,
@@ -319,5 +319,144 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
     }
 
     this.logger.info({ message: `Digest cron finished, runId: ${runId}` });
+  }
+
+  private async getRepoInfo(
+    reposotory: DataProjectEntity["repositories"][number],
+  ): Promise<RepoInfo> {
+    switch (reposotory.provider) {
+      case "github": {
+        const repoInfo = await this.githubService.getRepository({
+          owner: reposotory.owner,
+          repo: reposotory.name,
+        });
+        return {
+          id: `${repoInfo.id}`,
+          name: repoInfo.name,
+          owner: repoInfo.owner.login,
+          provider: reposotory.provider,
+          stars: repoInfo.stargazers_count,
+        };
+      }
+
+      case "bitbucket": {
+        const repoInfo = await this.bitbucketService.getRepository({
+          owner: reposotory.owner,
+          repo: reposotory.name,
+        });
+        return {
+          id: `${repoInfo.owner.username}-${repoInfo.slug}`,
+          name: repoInfo.name,
+          owner: reposotory.owner,
+          provider: reposotory.provider,
+          stars: 0, // Bitbucket API doesn't provide stars count
+        };
+      }
+
+      default:
+        throw new Error(`Unsupported provider: ${reposotory.provider}`);
+    }
+  }
+
+  private async getRepoContributors(
+    reposotory: DataProjectEntity["repositories"][number],
+  ): Promise<RepoContributor[]> {
+    switch (reposotory.provider) {
+      case "github": {
+        const repoContributors = await this.githubService.listRepositoryContributors({
+          owner: reposotory.owner,
+          repository: reposotory.name,
+        });
+        const r = await Promise.all(
+          repoContributors
+            .filter(({ type }) => type === "User")
+            .map(async (contributor) => {
+              const userInfo = await this.githubService.getUser({ username: contributor.login });
+              return {
+                id: contributor.login,
+                name: userInfo.name,
+                avatarUrl: contributor.avatar_url,
+                url: contributor.html_url,
+                username: contributor.login,
+                contributions: contributor.contributions,
+              };
+            }),
+        );
+
+        return r;
+      }
+
+      case "bitbucket": {
+        const repoContributors = await this.bitbucketService.listRepositoryContributors({
+          owner: reposotory.owner,
+          repo: reposotory.name,
+        });
+
+        return repoContributors
+          .filter(({ type }) => ["user"].includes(type))
+          .map((contributor) => ({
+            id: contributor.uuid,
+            name: contributor.display_name,
+            avatarUrl: contributor.links.avatar.href,
+            url: "#", // Bitbucket API doesn't provide user URL
+            username: contributor.username || contributor.display_name.replace(/ /g, "-"),
+            contributions: contributor.contributions,
+          }));
+      }
+
+      default:
+        throw new Error(`Unsupported provider: ${reposotory.provider}`);
+    }
+  }
+
+  private async getRepoContributions(
+    reposotory: DataProjectEntity["repositories"][number],
+  ): Promise<RepoContribution[]> {
+    switch (reposotory.provider) {
+      case "github": {
+        const repoContributions = await this.githubService.listRepositoryIssues({
+          owner: reposotory.owner,
+          repo: reposotory.name,
+        });
+        return (
+          await Promise.all(
+            repoContributions.map(async (contribution) => {
+              const githubUser = await this.githubService.getUser({
+                username: contribution.user.login,
+              });
+
+              if (githubUser.type !== "User") return null;
+
+              return {
+                user: {
+                  id: githubUser.login,
+                  name: githubUser.name,
+                  avatarUrl: githubUser.avatar_url,
+                  url: githubUser.html_url,
+                  username: githubUser.login,
+                  contributions: 1,
+                },
+                type: contribution.pull_request ? "PULL_REQUEST" : "ISSUE",
+                title: contribution.title,
+                updatedAt: contribution.updated_at,
+                activityCount: contribution.comments,
+                url: contribution.pull_request
+                  ? contribution.pull_request.html_url
+                  : contribution.html_url,
+                id: `${reposotory.provider}-${contribution.id}`,
+              };
+            }),
+          )
+        ).filter(Boolean) as RepoContribution[];
+      }
+
+      case "bitbucket": {
+        // todo-ZM: fetch PRs and issues from Bitbucket
+        return [];
+      }
+
+      default:
+        throw new Error(`Unsupported provider: ${reposotory.provider}`);
+    }
   }
 }

@@ -2,7 +2,7 @@ import { GeneralResponse } from "src/app/types";
 
 interface GithubUser {
   login: string;
-  name: string | null;
+  name: string;
   html_url: string;
   avatar_url: string;
   type: "User" | "_other";
