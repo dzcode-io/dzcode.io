@@ -50,3 +50,7 @@ established in the code.
   functions.
 
 Guidelines are following the [.editorconfig](https://github.com/dzcode-io/dzcode.io/blob/main/.editorconfig) file.
+
+## Design Decisions
+
+- Added [bitbucket](../api/src/bitbucket/service.ts) service to support projects hosted in `bitbucket.org`, first one being [Open-listings](../data/models/projects/Open_listings/info.json)
