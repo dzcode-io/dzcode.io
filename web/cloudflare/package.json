@@ -14,7 +14,6 @@
   },
   "private": true,
   "scripts": {
-    "ts:check": "tsc --noEmit",
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "deploy:prd": "npm run generate:config -- production && wrangler pages deploy --branch main",
     "deploy:stg": "npm run generate:config -- staging && wrangler pages deploy --branch main",
@@ -22,6 +21,7 @@
     "dev:prepare": "npm run build && cd .. && npm run bundle && npm run pre-deploy",
     "generate:config": "npx tsx scripts/generate-config.ts",
     "lint:eslint": "eslint --config ../../packages/tooling/eslint.config.mjs",
-    "lint:prettier": "prettier  --config ../../packages/tooling/.prettierrc --ignore-path ../../packages/tooling/.prettierignore --log-level warn"
+    "lint:prettier": "prettier  --config ../../packages/tooling/.prettierrc --ignore-path ../../packages/tooling/.prettierignore --log-level warn",
+    "ts:check": "tsc --noEmit"
   }
 }

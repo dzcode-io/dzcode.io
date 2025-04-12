@@ -12,7 +12,7 @@ export const contributorsTable = pgTable("contributors", {
   name_ar: text("name_ar").notNull(),
   name_en: text("name_en").notNull(),
   username: text("username").notNull(),
-  url: text("url").notNull().unique(),
+  url: text("url").notNull(),
   avatarUrl: text("avatar_url").notNull(),
 });
 

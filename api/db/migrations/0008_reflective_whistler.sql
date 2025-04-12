@@ -1,0 +1,1 @@
+ALTER TABLE "contributors" DROP CONSTRAINT "contributors_url_unique";
