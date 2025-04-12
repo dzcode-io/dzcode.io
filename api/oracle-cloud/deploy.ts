@@ -65,7 +65,9 @@ console.log(String(logs));
 
 console.log("⚠️  Deleting old code ...");
 logs = execSync(sshPrefix + '"rm -f -r ' + appPath + '"');
+console.log(String(logs));
 logs = execSync(sshPrefix + '"mkdir ' + appPath + '"');
+console.log(String(logs));
 
 console.log("⤴️  Uploading new code ...");
 logs = execSync(
@@ -76,7 +78,14 @@ logs = execSync(
     ":" +
     appPath,
 );
-console.log("✅ New code uploaded.");
+console.log(String(logs));
+
+// note-zm: we must take down the containers before starting them up, our weak VPS can not handle
+// the load of running containers and building new ones at the same time
+// todo-zm: build images in CI and push to private Github registry, so our VPS will only pull the images
+console.log("⚙️  Taking down running containers ...");
+logs = execSync(sshPrefix + '"cd ' + appPath + ' && docker compose down --remove-orphans"');
+console.log(String(logs));
 
 console.log("\n⚙️  Starting up the app");
 logs = execSync(
