@@ -79,6 +79,8 @@ logs = execSync(
 console.log("✅ New code uploaded.");
 
 console.log("\n⚙️  Starting up the app");
-logs = execSync(sshPrefix + '"cd ' + appPath + ' && docker compose up -d --build"');
+logs = execSync(
+  sshPrefix + '"cd ' + appPath + ' && docker compose up -d --build --remove-orphans"',
+);
 console.log(String(logs));
 console.log("✅ Deployment successful.");
