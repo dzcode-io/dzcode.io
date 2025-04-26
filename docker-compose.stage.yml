@@ -1,0 +1,14 @@
+services:
+  web:
+    image: ghcr.io/dzcode-io/stage-dot-dzcode-dot-io-server:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=stage.dzcode.io
+      - LETSENCRYPT_HOST=stage.dzcode.io
+    networks:
+      - main-infra-network
+
+networks:
+  main-infra-network:
+    external: true
