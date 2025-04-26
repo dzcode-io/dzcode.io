@@ -8,6 +8,7 @@
     "url": "https://zak-man.com"
   },
   "dependencies": {
+    "@dzcode.io/utils": "*",
     "express": "^5.1.0"
   },
   "devDependencies": {

@@ -6,6 +6,7 @@ services:
     environment:
       - VIRTUAL_HOST=stage.dzcode.io
       - LETSENCRYPT_HOST=stage.dzcode.io
+      - STAGE=staging
     networks:
       - main-infra-network
 

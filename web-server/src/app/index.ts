@@ -1,6 +1,6 @@
 import express from "express";
-import { log } from "src/_utils/log";
 import path from "path";
+import { generateProjectsSitemap } from "src/handler/projects-sitemap";
 
 const app = express();
 const port = process.env.PORT || 6060;
@@ -16,8 +16,10 @@ app.get("/w/contributors-sitemap.xml", (req, res) => {
   res.status(200).send("OK");
 });
 
-app.get("/w/projects-sitemap.xml", (req, res) => {
-  res.status(200).send("OK");
+app.get("/w/projects-sitemap.xml", async (req, res) => {
+  const xml = await generateProjectsSitemap();
+  res.setHeader("Content-Type", "application/xml; charset=utf-8");
+  res.status(200).send(xml);
 });
 
 app.get(/^\/(?:([a-z]{2})\/)?projects\/(.*)$/, (req, res) => {
@@ -58,9 +60,9 @@ app.use((req, res) => {
 
 app
   .listen(port, () => {
-    log(`Server running at http://localhost:${staticPath}`);
+    console.log(`Server running at http://localhost:${port}`);
   })
   .on("error", (err) => {
-    log(`Failed to start server: ${err.message}`);
+    console.log(`Failed to start server: ${err.message}`);
     process.exit(1);
   });
