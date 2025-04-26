@@ -3,9 +3,9 @@
   "description": "www.dzcode.io code",
   "version": "6.1.0",
   "author": {
-    "email": "contact@zakiii.com",
+    "email": "zakman.dev@gmail.com",
     "name": "Zakaria Mansouri",
-    "url": "https://www.zakiii.com"
+    "url": "https://zak-man.com"
   },
   "browserslist": [
     "defaults"
@@ -45,7 +45,7 @@
   },
   "engines": {
     "node": ">=20",
-    "npm run": ">=1.4.2"
+    "npm": ">=1.4.2"
   },
   "license": "MIT",
   "lint-staged": {

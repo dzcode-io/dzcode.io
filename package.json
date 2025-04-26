@@ -89,6 +89,7 @@
     "api",
     "data",
     "web",
-    "web/cloudflare"
+    "web/cloudflare",
+    "web-server"
   ]
 }
