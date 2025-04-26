@@ -77,7 +77,7 @@
     "patch-package": "patch-package --patch-dir packages/tooling/patches",
     "postinstall": "npm run patch-package && (husky install && husky set .husky/pre-commit \"npm run lint:staged\") || exit 0",
     "pre-deploy": "lerna run pre-deploy --parallel --stream",
-    "prepare": "ts-patch install -s",
+    "prepare": "ts-patch install -s || exit 0",
     "start:dev": "lerna run start:dev --parallel --stream",
     "test": "npm run build && npm run test:alone",
     "test:alone": "lerna run test:alone --stream",

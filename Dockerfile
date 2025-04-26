@@ -1,8 +1,15 @@
-# --platform linux/amd64,linux/arm64
-FROM --platform=linux/amd64 nginx:latest
+FROM --platform=linux/amd64 node:22
 
-# Copy the custom Nginx configuration
-COPY ./custom.conf /etc/nginx/conf.d/default.conf
+WORKDIR /usr/src/repo
 
-# Copy the static website files
-COPY ./web/bundle /usr/share/nginx/html
+COPY ./package.json ./package.json
+COPY ./web/bundle ./web/bundle
+
+COPY ./web-server/package.json ./web-server/package.json
+COPY ./web-server/dist ./web-server/dist
+
+RUN npm install --install-strategy=nested --omit=dev --workspace=@dzcode.io/web-server
+
+ENV PORT=80
+WORKDIR /usr/src/repo/web-server
+CMD [ "npm", "run", "start" ]
