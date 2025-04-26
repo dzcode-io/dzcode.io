@@ -19,6 +19,7 @@ import { AIResponseTranslateNameDto, AIResponseTranslateTitleDto } from "./dto";
 import { DataProjectEntity } from "src/data/types";
 import { RepositoryEntity } from "@dzcode.io/models/dist/repository";
 import { BitbucketService } from "src/bitbucket/service";
+import { ConfigService } from "src/config/service";
 
 type RepoInfo = Pick<RepositoryEntity, "id" | "name" | "owner" | "provider" | "stars">;
 interface RepoContributor {
@@ -56,6 +57,7 @@ export class DigestCron {
     private readonly tagRepository: TagRepository,
     private readonly aiService: AIService,
     private readonly bitbucketService: BitbucketService,
+    private readonly configService: ConfigService,
   ) {
     const SentryCronJob = cron.instrumentCron(CronJob, "DigestCron");
     new SentryCronJob(
@@ -98,14 +100,14 @@ export class DigestCron {
     const runId = Math.random().toString(36).slice(2);
     this.logger.info({ message: `Digest cron started, runId: ${runId}` });
 
-    const projectsFromDataFolder = await this.dataService.listProjects();
-    // todo-ZM: make this configurable
-    // uncomment during development
-    // const projectsFromDataFolder = (await this.dataService.listProjects()).filter((p) =>
-    //   ["Open-listings", "dzcode.io website", "Mishkal", "System Monitor"].includes(p.name),
-    // );
-    // or uncomment to skip the cron
-    // if (Math.random()) return;
+    let projectsFromDataFolder = await this.dataService.listProjects();
+
+    if (this.configService.env().NODE_ENV === "development") {
+      this.logger.info({ message: `Running in development mode, filtering projects` });
+      projectsFromDataFolder = projectsFromDataFolder.filter((p) =>
+        ["Open-listings", "dzcode.io website", "Mishkal", "System Monitor"].includes(p.name),
+      );
+    }
 
     const projectTitleSystemPrompt = `user will give you an open-source project name, and you will translate it to Arabic.
 it may contain non-translatable parts like acronyms, keep them as is.`;

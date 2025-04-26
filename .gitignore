@@ -34,5 +34,8 @@ cloudflare/public/*
 .wrangler
 **/cloudflare/wrangler.toml
 
+# web server
+web-server/nodemon.json
+
 # data
 data/nodemon.json
