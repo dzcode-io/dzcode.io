@@ -13,7 +13,7 @@ jobs:
       node-version: "20"
       os: "ubuntu-latest"
 
-  deploy-api:
+  docker-build-push-api:
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -49,18 +49,18 @@ jobs:
 
       - name: Build docker image
         run: |
-          docker buildx build -f api.Dockerfile . -t ghcr.io/api-dot-stage-dot-dzcode-dot-io-server:latest:latest
+          docker buildx build -f api.Dockerfile . -t ghcr.io/dzcode-io/api-dot-stage-dot-dzcode-dot-io-server:latest:latest
         env:
           DOCKER_BUILDKIT: 1
 
       - name: Push docker image
         run: |
           echo $CR_PAT | docker login ghcr.io -u dzcode-io --password-stdin
-          docker push ghcr.io/api-dot-stage-dot-dzcode-dot-io-server:latest:latest
+          docker push ghcr.io/dzcode-io/api-dot-stage-dot-dzcode-dot-io-server:latest:latest
         env:
           CR_PAT: ${{ secrets.CR_PAT }}
 
-  deploy-web-server:
+  docker-build-push-web-server:
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -113,12 +113,24 @@ jobs:
         env:
           CR_PAT: ${{ secrets.CR_PAT }}
 
-      # - name: install zcluster
-      #   run: |
-      #     curl -fsSL https://infra.zak-man.com/install.sh | sh
-      #     echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
+  deploy-to-zcluster:
+    needs: [docker-build-push-api, docker-build-push-web-server]
+    runs-on: ubuntu-latest
+    env:
+      CI: true
 
-      # - name: Deploy to zcluster
-      #   run: zcluster deploy -p stage-dzcode ./docker-compose.stage.yml
-      #   env:
-      #     ADMIN_AUTH_TOKEN: ${{ secrets.ADMIN_AUTH_TOKEN }}
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+
+      - name: install zcluster
+        run: |
+          curl -fsSL https://infra.zak-man.com/install.sh | sh
+          echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
+
+      - name: Deploy to zcluster
+        run: zcluster deploy -p stage-dzcode ./docker-compose.stage.yml
+        env:
+          ADMIN_AUTH_TOKEN: ${{ secrets.ADMIN_AUTH_TOKEN }}
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          GITHUB_TOKEN: ${{ secrets.API_GITHUB_TOKEN }}
