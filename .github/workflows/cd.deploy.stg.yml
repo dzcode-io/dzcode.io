@@ -102,9 +102,9 @@ jobs:
           CR_PAT: ${{ secrets.CR_PAT }}
 
       - name: install zcluster
-        run: curl -fsSL https://infra.zak-man.com/install.sh | sh
-      - name: Add zcluster to PATH
-        run: echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
+        run: |
+          curl -fsSL https://infra.zak-man.com/install.sh | sh
+          echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
 
       - name: Deploy to zcluster
         run: zcluster deploy -p stage-dzcode ./docker-compose.yml
