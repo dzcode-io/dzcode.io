@@ -1,6 +1,8 @@
 import express from "express";
 import path from "path";
-import { generateProjectsSitemap } from "src/handler/projects-sitemap";
+import { generateContributionsSitemap } from "src/handler/sitemap/contributions";
+import { generateContributorsSitemap } from "src/handler/sitemap/contributors";
+import { generateProjectsSitemap } from "src/handler/sitemap/projects";
 
 const app = express();
 const port = process.env.PORT || 6060;
@@ -8,12 +10,16 @@ const port = process.env.PORT || 6060;
 const staticPath = path.join(__dirname, "../../../web/bundle");
 const indexPath = path.join(staticPath, "index.html");
 
-app.get("/w/contributions-sitemap.xml", (req, res) => {
-  res.status(200).send("OK");
+app.get("/w/contributions-sitemap.xml", async (req, res) => {
+  const xml = await generateContributionsSitemap();
+  res.setHeader("Content-Type", "application/xml; charset=utf-8");
+  res.status(200).send(xml);
 });
 
-app.get("/w/contributors-sitemap.xml", (req, res) => {
-  res.status(200).send("OK");
+app.get("/w/contributors-sitemap.xml", async (req, res) => {
+  const xml = await generateContributorsSitemap();
+  res.setHeader("Content-Type", "application/xml; charset=utf-8");
+  res.status(200).send(xml);
 });
 
 app.get("/w/projects-sitemap.xml", async (req, res) => {
