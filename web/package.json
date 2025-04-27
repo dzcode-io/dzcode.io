@@ -69,8 +69,6 @@
     "bundle:preview": "rsbuild preview",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "clean:alone": "del dist coverage bundle node_modules/.cache",
-    "deploy": "exit 1",
-    "deploy:stg": "exit 1",
     "e2e:dev": "npx wait-on http://localhost:8080/ && npx cypress open",
     "generate:bundle-info": "tsx ../packages/tooling/bundle-info.ts",
     "generate:htmls": "npx tsx src/_build/gen-multiple-htmls.ts",

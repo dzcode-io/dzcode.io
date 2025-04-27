@@ -13,7 +13,7 @@ jobs:
       node-version: "20"
       os: "ubuntu-latest"
 
-  bundle-deploy:
+  deploy-api:
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -40,24 +40,10 @@ jobs:
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
-      - name: "Bundle info"
+      - name: "Generate Bundle info"
         run: npm run generate:bundle-info $DEPLOY_VERSION stage
-      - name: "Bundle ./web"
-        run: npx lerna run bundle:alone --scope @dzcode.io/web
       - name: "Sentry Release"
-        run: npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
-      - name: "Pre-deploy"
-        run: npm run pre-deploy
+        # todo-zm: remove sentry entirely
+        run: cd ./api && npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
       - name: "Deploy"
-        run: npm run deploy:stg
-
-  lighthouse:
-    needs: bundle-deploy
-    uses: ./.github/workflows/ci.reusable.lighthouse.yml
-    with:
-      serverBaseUrl: "https://lh-stage.dzcode.io"
-      testBaseUrl: "https://stage.dzcode.io"
-      stage: "staging"
-    secrets:
-      LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
-      LH_SERVER_TOKEN_PRD: ${{ secrets.LH_SERVER_TOKEN_PRD }}
+        run: cd ./api && npm run deploy:stg
