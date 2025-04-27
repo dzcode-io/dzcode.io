@@ -107,6 +107,6 @@ jobs:
           echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
 
       - name: Deploy to zcluster
-        run: zcluster deploy -p stage-dzcode ./docker-compose.yml
+        run: zcluster deploy -p stage-dzcode ./docker-compose.stage.yml
         env:
           ADMIN_AUTH_TOKEN: ${{ secrets.ADMIN_AUTH_TOKEN }}
