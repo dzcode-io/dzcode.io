@@ -60,7 +60,7 @@ app.use((req, res) => {
 
 app
   .listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Web Server running at http://localhost:${port}`);
   })
   .on("error", (err) => {
     console.log(`Failed to start server: ${err.message}`);

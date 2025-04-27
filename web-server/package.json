@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "@dzcode.io/utils": "*",
+    "@dzcode.io/models": "*",
+    "@dzcode.io/api": "*",
+    "@dzcode.io/web": "*",
     "express": "^5.1.0"
   },
   "devDependencies": {
