@@ -90,7 +90,7 @@ jobs:
 
       - name: Build docker image
         run: |
-          docker build -f ./web-server.Dockerfile -t ghcr.io/dzcode-io/stage-dot-dzcode-dot-io-server:latest
+          docker buildx build -f web-server.Dockerfile . -t ghcr.io/dzcode-io/stage-dot-dzcode-dot-io-server:latest
         env:
           DOCKER_BUILDKIT: 1
 

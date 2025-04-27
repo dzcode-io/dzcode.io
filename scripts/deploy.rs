@@ -46,9 +46,11 @@ fn main() {
     cli_run::cli_run(
         "docker",
         vec![
+            "buildx",
             "build",
             "-f",
-            "./web-server.Dockerfile",
+            "web-server.Dockerfile",
+            ".",
             "-t",
             &format!("ghcr.io/dzcode-io/{}-dot-dzcode-dot-io-server:latest", env_str),
         ],
