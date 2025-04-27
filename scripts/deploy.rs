@@ -22,6 +22,10 @@ struct Args {
     /// Environment to deploy to
     #[arg(short, long, value_enum)]
     env: Env,
+
+    /// Clean build
+    #[arg(short, long, default_value_t = false)]
+    clean: bool,
 }
 
 fn main() {
@@ -32,17 +36,26 @@ fn main() {
     println!("Ensuring docker is running ...");
     cli_run::cli_run("docker", vec!["ps"]);
 
-    println!("Building ./web-server ...");
-    cli_run::cli_run("npm", vec!["run", "clean"]);
-    cli_run::cli_run("npm", vec!["run", "bundle", "--workspace=@dzcode.io/web"]);
-    cli_run::cli_run("npm", vec!["run", "pre-deploy", "--workspace=@dzcode.io/web"]);
-    cli_run::cli_run("npm", vec!["run", "build", "--workspace=@dzcode.io/web-server"]);
+    if args.clean {
+        println!("clean...");
+        cli_run::cli_run("npm", vec!["run", "clean"]);
+      }
 
-    println!("Writing ./web-server deps into Dockerfile...");
+    println!("Build...");
+    cli_run::cli_run("npm", vec!["run", "build"]);
+
+    println!("Preparing ./web-server ...");
+    cli_run::cli_run("npm", vec!["run", "bundle:alone", "--workspace=@dzcode.io/web"]);
+    cli_run::cli_run("npm", vec!["run", "pre-deploy", "--workspace=@dzcode.io/web"]);
     cli_run::cli_run("npm", vec!["run", "prepare-dockerfile", "--workspace=@dzcode.io/web-server"]);
 
-    println!("Building docker image ...");
+    println!("Preparing ./api ...");
+    cli_run::cli_run("npm", vec!["run", "prepare-dockerfile", "--workspace=@dzcode.io/api"]);
+
+
     let env_str = format!("{:?}", env).to_lowercase();
+
+    println!("Building ./web-server docker image ...");
     cli_run::cli_run(
         "docker",
         vec![
@@ -55,6 +68,21 @@ fn main() {
             &format!("ghcr.io/dzcode-io/{}-dot-dzcode-dot-io-server:latest", env_str),
         ],
     );
+
+    println!("Building ./api docker image ...");
+    cli_run::cli_run(
+        "docker",
+        vec![
+            "buildx",
+            "build",
+            "-f",
+            "api.Dockerfile",
+            ".",
+            "-t",
+            &format!("ghcr.io/dzcode-io/api-dot-{}-dot-dzcode-dot-io-server:latest", env_str),
+        ],
+    );
+
 
     println!("Logging in to GitHub Container Registry ...");
     let gh_token = std::env::var("DOCKER_REGISTRY_PASSWORD")
@@ -75,6 +103,10 @@ fn main() {
     cli_run::cli_run(
         "docker",
         vec!["push", &format!("ghcr.io/dzcode-io/{}-dot-dzcode-dot-io-server:latest", env_str)],
+    );
+    cli_run::cli_run(
+        "docker",
+        vec!["push", &format!("ghcr.io/dzcode-io/api-dot-{}-dot-dzcode-dot-io-server:latest", env_str)],
     );
 
     println!("Deploying to zcluster ...");

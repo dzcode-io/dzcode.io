@@ -2,16 +2,19 @@ import { execSync } from "child_process";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 
+const scope = process.argv[2];
+if (!scope) throw new Error("Please provide a scope");
+
 const workspaceRoot = join(__dirname, "../..");
-const dockerFilePath = join(workspaceRoot, "web-server.Dockerfile");
+const dockerFilePath = join(workspaceRoot, `${scope.replace("@dzcode.io/", "")}.Dockerfile`);
 
 console.log(`writing ${dockerFilePath} ...`);
 
 const stdout = execSync(
-  `lerna list --include-dependencies --json --all --loglevel silent --scope @dzcode.io/web-server`,
+  `lerna list --include-dependencies --json --all --loglevel silent --scope ${scope}`,
 );
 const dependencies = JSON.parse(stdout.toString()) as Array<{ name: string; location: string }>;
-const subPaths = ["dist", "bundle", "package.json"];
+const subPaths = ["dist", "bundle", "package.json", "db", "models"];
 const directoriesToCopy = dependencies
   .map<string>(({ location }) => location)
   .reduce<Array<string>>(

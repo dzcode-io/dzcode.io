@@ -80,7 +80,7 @@ jobs:
       - name: "Bundle ./web for deployment"
         run: |
           cd ./web
-          npm run bundle
+          npm run bundle:alone
           npm run pre-deploy
 
       - name: "Write ./web-server deps into Dockerfile..."
