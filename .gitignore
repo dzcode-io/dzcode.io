@@ -28,11 +28,7 @@ build
 src/_e2e-test/downloads
 src/_e2e-test/videos
 src/_e2e-test/screenshots
-cloudflare/public/*
-**/cloudflare/public/*
 **.lighthouseci
-.wrangler
-**/cloudflare/wrangler.toml
 
 # web server
 web-server/nodemon.json

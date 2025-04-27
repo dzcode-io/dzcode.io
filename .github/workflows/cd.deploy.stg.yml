@@ -20,8 +20,6 @@ jobs:
       CI: true
       STAGE: staging
       SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('stg-0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
