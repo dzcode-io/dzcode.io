@@ -5,6 +5,13 @@ export interface SiteMapLink {
   lang: LanguageCode;
 }
 
+function xmlEscape(s: string) {
+  return s.replace(
+    /[<>&"']/g,
+    (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" })[c] as string,
+  );
+}
+
 export function generateXmlSitemap(
   links: Array<{ url: string; lang: LanguageCode }>,
   hostname: string,
@@ -16,13 +23,14 @@ export function generateXmlSitemap(
     xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
     xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     ${links
-      .map(
-        (link) => `
+      .map((link) => {
+        const escapedUrl = xmlEscape(link.url);
+        return `
     <url>
-        <loc>${hostname}${link.url}</loc>
-        <xhtml:link rel="alternate" hreflang="${link.lang}" href="${hostname}${link.url}" />
-    </url>`,
-      )
+        <loc>${hostname}${escapedUrl}</loc>
+        <xhtml:link rel="alternate" hreflang="${link.lang}" href="${hostname}${escapedUrl}" />
+    </url>`;
+      })
       .join("")}
 </urlset>`;
 
