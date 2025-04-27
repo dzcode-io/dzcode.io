@@ -49,14 +49,14 @@ jobs:
 
       - name: Build docker image
         run: |
-          docker buildx build -f api.Dockerfile . -t ghcr.io/dzcode-io/api-dot-stage-dot-dzcode-dot-io-server:latest:latest
+          docker buildx build -f api.Dockerfile . -t ghcr.io/dzcode-io/api-dot-stage-dot-dzcode-dot-io-server:latest
         env:
           DOCKER_BUILDKIT: 1
 
       - name: Push docker image
         run: |
           echo $CR_PAT | docker login ghcr.io -u dzcode-io --password-stdin
-          docker push ghcr.io/dzcode-io/api-dot-stage-dot-dzcode-dot-io-server:latest:latest
+          docker push ghcr.io/dzcode-io/api-dot-stage-dot-dzcode-dot-io-server:latest
         env:
           CR_PAT: ${{ secrets.CR_PAT }}
 
