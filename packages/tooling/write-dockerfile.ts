@@ -3,7 +3,7 @@ import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 
 const workspaceRoot = join(__dirname, "../..");
-const dockerFilePath = join(workspaceRoot, "Dockerfile");
+const dockerFilePath = join(workspaceRoot, "web-server.Dockerfile");
 
 console.log(`writing ${dockerFilePath} ...`);
 

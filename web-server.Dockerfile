@@ -7,12 +7,12 @@ COPY ./package.json ./package.json
 # AUTO_GEN
 COPY ./web-server/dist ./web-server/dist
 COPY ./web-server/package.json ./web-server/package.json
-COPY ./packages/utils/dist ./packages/utils/dist
-COPY ./packages/utils/package.json ./packages/utils/package.json
-COPY ./packages/models/dist ./packages/models/dist
-COPY ./packages/models/package.json ./packages/models/package.json
 COPY ./api/dist ./api/dist
 COPY ./api/package.json ./api/package.json
+COPY ./packages/models/dist ./packages/models/dist
+COPY ./packages/models/package.json ./packages/models/package.json
+COPY ./packages/utils/dist ./packages/utils/dist
+COPY ./packages/utils/package.json ./packages/utils/package.json
 COPY ./web/dist ./web/dist
 COPY ./web/bundle ./web/bundle
 COPY ./web/package.json ./web/package.json

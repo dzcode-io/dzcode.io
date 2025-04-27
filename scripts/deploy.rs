@@ -47,7 +47,7 @@ fn main() {
         "docker",
         vec![
             "build",
-            ".",
+            "./web-server.Dockerfile",
             "-t",
             &format!("ghcr.io/dzcode-io/{}-dot-dzcode-dot-io-server:latest", env_str),
         ],

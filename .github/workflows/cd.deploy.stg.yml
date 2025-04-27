@@ -47,3 +47,56 @@ jobs:
         run: cd ./api && npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
       - name: "Deploy"
         run: cd ./api && npm run deploy:stg
+
+  deploy-web-server:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      STAGE: staging
+      DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('stg-0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build output (ubuntu-latest, 20)
+
+      - name: "Generate Bundle info"
+        run: npm run generate:bundle-info $DEPLOY_VERSION stage
+
+      - name: "Sentry Release"
+        # todo-zm: remove sentry entirely
+        run: cd ./web && npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - name: "Bundle ./web for deployment"
+        run: |
+          cd ./web
+          npm run bundle
+          npm run pre-deploy
+
+      - name: "Write ./web-server deps into Dockerfile..."
+        run: |
+          cd ./web-server
+          npm run prepare-dockerfile
+
+      - name: Build docker image
+        run: |
+          docker build ./web-server.Dockerfile -t ghcr.io/dzcode-io/stage-dot-dzcode-dot-io-server:latest
+        env:
+          DOCKER_BUILDKIT: 1
+
+      - name: Push docker image
+        run: |
+          echo $CR_PAT | docker login ghcr.io -u dzcode-io --password-stdin
+          docker push ghcr.io/dzcode-io/stage-dot-dzcode-dot-io-server:latest
+        env:
+          CR_PAT: ${{ secrets.CR_PAT }}
