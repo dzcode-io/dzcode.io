@@ -32,11 +32,14 @@ fn main() {
     println!("Ensuring docker is running ...");
     cli_run::cli_run("docker", vec!["ps"]);
 
-    println!("Building ./web ...");
+    println!("Building ./web-server ...");
     cli_run::cli_run("npm", vec!["run", "clean"]);
     cli_run::cli_run("npm", vec!["run", "bundle", "--workspace=@dzcode.io/web"]);
     cli_run::cli_run("npm", vec!["run", "pre-deploy", "--workspace=@dzcode.io/web"]);
     cli_run::cli_run("npm", vec!["run", "build", "--workspace=@dzcode.io/web-server"]);
+
+    println!("Writing ./web-server deps into Dockerfile...");
+    cli_run::cli_run("npm", vec!["run", "prepare-dockerfile", "--workspace=@dzcode.io/web-server"]);
 
     println!("Building docker image ...");
     let env_str = format!("{:?}", env).to_lowercase();

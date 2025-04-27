@@ -49,6 +49,7 @@
     "lint:ts-prune": "tsx ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",
     "prepare-web": "lerna run bundle --scope=@dzcode.io/web --include-dependencies --stream && lerna run pre-deploy --scope=@dzcode.io/web --include-dependencies --stream",
+    "prepare-dockerfile": "tsx ../packages/tooling/write-dockerfile.ts",
     "start": "node dist/app/index.js",
     "start:dev": "npm run prepare-web && tsx ../packages/tooling/nodemon.ts \"@dzcode.io/web-server\" && npm run start:nodemon",
     "start:nodemon": "nodemon dist/app/index.js"
