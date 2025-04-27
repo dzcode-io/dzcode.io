@@ -1,4 +1,6 @@
 import express from "express";
+import { renderContributionPage } from "src/handler/contribution";
+import { renderContributorPage } from "src/handler/contributor";
 import { renderProjectPage } from "src/handler/project";
 import { generateContributionsSitemap } from "src/handler/sitemap/contributions";
 import { generateContributorsSitemap } from "src/handler/sitemap/contributors";
@@ -35,23 +37,17 @@ app.get(/^\/(?:([a-z]{2})\/)?projects\/(.*)$/, (req, res) => {
 });
 
 app.get(/^\/(?:([a-z]{2})\/)?contribute\/(.*)$/, (req, res) => {
-  const lang = req.params[0] || "en";
-  const contributionId = req.params[1];
+  const lang = validateLangOrDefault(req.params[0]);
+  const contributionId = req.params[1].split("-").slice(-2).join("-");
 
-  res.json({
-    lang,
-    contributionId,
-  });
+  renderContributionPage(res, lang, contributionId);
 });
 
 app.get(/^\/(?:([a-z]{2})\/)?team\/(.*)$/, (req, res) => {
-  const lang = req.params[0] || "en";
+  const lang = validateLangOrDefault(req.params[0]);
   const contributorId = req.params[1];
 
-  res.json({
-    lang,
-    teamId: contributorId,
-  });
+  renderContributorPage(res, lang, contributorId);
 });
 
 app.use(express.static(staticPath));
