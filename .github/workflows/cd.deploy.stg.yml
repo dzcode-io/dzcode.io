@@ -19,7 +19,6 @@ jobs:
     env:
       CI: true
       STAGE: staging
-      SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
       DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('stg-0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
@@ -35,18 +34,31 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build output (ubuntu-latest, 20)
-      - name: "SSH"
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+
       - name: "Generate Bundle info"
         run: npm run generate:bundle-info $DEPLOY_VERSION stage
+
       - name: "Sentry Release"
         # todo-zm: remove sentry entirely
         run: cd ./api && npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
-      - name: "Deploy"
-        run: cd ./api && npm run deploy:stg
+
+      - name: "Write ./api deps into Dockerfile..."
+        run: |
+          cd ./api
+          npm run prepare-dockerfile
+
+      - name: Build docker image
+        run: |
+          docker buildx build -f api.Dockerfile . -t ghcr.io/api-dot-stage-dot-dzcode-dot-io-server:latest:latest
+        env:
+          DOCKER_BUILDKIT: 1
+
+      - name: Push docker image
+        run: |
+          echo $CR_PAT | docker login ghcr.io -u dzcode-io --password-stdin
+          docker push ghcr.io/api-dot-stage-dot-dzcode-dot-io-server:latest:latest
+        env:
+          CR_PAT: ${{ secrets.CR_PAT }}
 
   deploy-web-server:
     needs: build
@@ -101,12 +113,12 @@ jobs:
         env:
           CR_PAT: ${{ secrets.CR_PAT }}
 
-      - name: install zcluster
-        run: |
-          curl -fsSL https://infra.zak-man.com/install.sh | sh
-          echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
+      # - name: install zcluster
+      #   run: |
+      #     curl -fsSL https://infra.zak-man.com/install.sh | sh
+      #     echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
 
-      - name: Deploy to zcluster
-        run: zcluster deploy -p stage-dzcode ./docker-compose.stage.yml
-        env:
-          ADMIN_AUTH_TOKEN: ${{ secrets.ADMIN_AUTH_TOKEN }}
+      # - name: Deploy to zcluster
+      #   run: zcluster deploy -p stage-dzcode ./docker-compose.stage.yml
+      #   env:
+      #     ADMIN_AUTH_TOKEN: ${{ secrets.ADMIN_AUTH_TOKEN }}
