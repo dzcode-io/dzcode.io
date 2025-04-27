@@ -27,7 +27,7 @@ const newContent = directoriesToCopy
     return `COPY ${relativePath} ${relativePath}`;
   })
   .join("\n");
-// replace everything between # AUTO_GEN and # AUTO_GEN_END with newContent
+
 const newDockerfileContent = dockerfileContent.replace(
   /# AUTO_GEN[\s\S]*?# AUTO_GEN_END/,
   `# AUTO_GEN
