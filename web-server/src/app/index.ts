@@ -1,14 +1,13 @@
 import express from "express";
-import path from "path";
+import { renderProjectPage } from "src/handler/project";
 import { generateContributionsSitemap } from "src/handler/sitemap/contributions";
 import { generateContributorsSitemap } from "src/handler/sitemap/contributors";
 import { generateProjectsSitemap } from "src/handler/sitemap/projects";
+import { validateLangOrDefault } from "src/utils/languages";
+import { indexPath, staticPath } from "src/utils/paths";
 
 const app = express();
 const port = process.env.PORT || 6060;
-
-const staticPath = path.join(__dirname, "../../../web/bundle");
-const indexPath = path.join(staticPath, "index.html");
 
 app.get("/w/contributions-sitemap.xml", async (req, res) => {
   const xml = await generateContributionsSitemap();
@@ -29,13 +28,10 @@ app.get("/w/projects-sitemap.xml", async (req, res) => {
 });
 
 app.get(/^\/(?:([a-z]{2})\/)?projects\/(.*)$/, (req, res) => {
-  const lang = req.params[0] || "en";
+  const lang = validateLangOrDefault(req.params[0]);
   const projectId = req.params[1];
 
-  res.json({
-    lang,
-    projectId,
-  });
+  renderProjectPage(res, lang, projectId);
 });
 
 app.get(/^\/(?:([a-z]{2})\/)?contribute\/(.*)$/, (req, res) => {
