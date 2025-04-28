@@ -17,8 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      STAGE: production
-      SSH_ADDRESS_PRD: ${{ secrets.SSH_ADDRESS_PRD }}
+      PRODUCTION: production
       DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
@@ -34,29 +33,103 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build output (ubuntu-latest, 20)
-      - name: "SSH"
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
-      - name: "Bundle info"
-        run: npm run generate:bundle-info $DEPLOY_VERSION production
-      - name: "Bundle ./web"
-        run: npx lerna run bundle:alone --scope @dzcode.io/web
-      - name: "Sentry Release"
-        run: npm run generate:sentry-release $DEPLOY_VERSION production ${{ secrets.SENTRY_AUTH_TOKEN }}
-      - name: "Pre-deploy"
-        run: npm run pre-deploy
-      - name: "Deploy"
-        run: npm run deploy
 
-  lighthouse:
-    needs: bundle-deploy
-    uses: ./.github/workflows/ci.reusable.lighthouse.yml
-    with:
-      serverBaseUrl: "https://lh.dzcode.io"
-      testBaseUrl: "https://www.dzcode.io"
-      stage: "production"
-    secrets:
-      LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
-      LH_SERVER_TOKEN_PRD: ${{ secrets.LH_SERVER_TOKEN_PRD }}
+      - name: "Generate Bundle info"
+        run: npm run generate:bundle-info $DEPLOY_VERSION production
+
+      - name: "Sentry Release"
+        # todo-zm: remove sentry entirely
+        run: cd ./api && npm run generate:sentry-release $DEPLOY_VERSION production ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - name: "Write ./api deps into Dockerfile..."
+        run: |
+          cd ./api
+          npm run prepare-dockerfile
+
+      - name: Build docker image
+        run: |
+          docker buildx build -f api.Dockerfile . -t ghcr.io/dzcode-io/api-dot-production-dot-dzcode-dot-io-server:latest
+        env:
+          DOCKER_BUILDKIT: 1
+
+      - name: Push docker image
+        run: |
+          echo $CR_PAT | docker login ghcr.io -u dzcode-io --password-stdin
+          docker push ghcr.io/dzcode-io/api-dot-production-dot-dzcode-dot-io-server:latest
+        env:
+          CR_PAT: ${{ secrets.CR_PAT }}
+
+  docker-build-push-web-server:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      PRODUCTION: production
+      DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build output (ubuntu-latest, 20)
+
+      - name: "Generate Bundle info"
+        run: npm run generate:bundle-info $DEPLOY_VERSION production
+
+      - name: "Sentry Release"
+        # todo-zm: remove sentry entirely
+        run: cd ./web && npm run generate:sentry-release $DEPLOY_VERSION production ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - name: "Bundle ./web for deployment"
+        run: |
+          cd ./web
+          npm run bundle:alone
+          npm run pre-deploy
+
+      - name: "Write ./web-server deps into Dockerfile..."
+        run: |
+          cd ./web-server
+          npm run prepare-dockerfile
+
+      - name: Build docker image
+        run: |
+          docker buildx build -f web-server.Dockerfile . -t ghcr.io/dzcode-io/production-dot-dzcode-dot-io-server:latest
+        env:
+          DOCKER_BUILDKIT: 1
+
+      - name: Push docker image
+        run: |
+          echo $CR_PAT | docker login ghcr.io -u dzcode-io --password-stdin
+          docker push ghcr.io/dzcode-io/production-dot-dzcode-dot-io-server:latest
+        env:
+          CR_PAT: ${{ secrets.CR_PAT }}
+
+  deploy-to-zcluster:
+    needs: [docker-build-push-api, docker-build-push-web-server]
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+
+      - name: install zcluster
+        run: |
+          curl -fsSL https://infra.zak-man.com/install.sh | sh
+          echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
+
+      - name: Deploy to zcluster
+        run: zcluster deploy -p production-dzcode ./docker-compose.production.yml
+        env:
+          ADMIN_AUTH_TOKEN: ${{ secrets.ADMIN_AUTH_TOKEN }}
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+          GITHUB_TOKEN: ${{ secrets.API_GITHUB_TOKEN }}
