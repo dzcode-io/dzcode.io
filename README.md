@@ -7,7 +7,7 @@ The code for [dzcode.io](https://dzcode.io), a website for the Algerian open-sou
 **Apps:**
 
 - [`./web`](./web) ([dzcode.io](https://dzcode.io) or [stage.dzcode.io](https://stage.dzcode.io))
-- [`./api`](./api) ([api.dzcode.io](https://api.dzcode.io) or [api-stage.dzcode.io](https://api-stage.dzcode.io))
+- [`./api`](./api) ([api.dzcode.io](https://api.dzcode.io) or [api.stage.dzcode.io](https://api.stage.dzcode.io))
 
 **Packages:**
 
