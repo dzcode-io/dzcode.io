@@ -13,10 +13,10 @@ use clap::Parser;
 #[derive(Clone, Debug, clap::ValueEnum)]
 enum Env {
     Stage,
-    Prod,
+    Production,
 }
 
-/// Deploy dzcode to stage or prod
+/// Deploy dzcode to stage or production
 #[derive(Parser, Debug)]
 struct Args {
     /// Environment to deploy to
