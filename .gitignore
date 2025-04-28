@@ -16,7 +16,6 @@ coverage
 .bundle-info.json
 
 # api
-api/oracle-cloud/build
 api/fetch_cache
 api/postgres_db
 api/meilisearch_db
