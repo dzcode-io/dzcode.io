@@ -3,9 +3,9 @@
   "description": "www.dzcode.io code",
   "version": "6.1.0",
   "author": {
-    "email": "contact@zakiii.com",
+    "email": "zakman.dev@gmail.com",
     "name": "Zakaria Mansouri",
-    "url": "https://www.zakiii.com"
+    "url": "https://zak-man.com"
   },
   "browserslist": [
     "defaults"
@@ -45,7 +45,7 @@
   },
   "engines": {
     "node": ">=20",
-    "npm run": ">=1.4.2"
+    "npm": ">=1.4.2"
   },
   "license": "MIT",
   "lint-staged": {
@@ -62,14 +62,13 @@
   "scripts": {
     "build": "lerna run build:alone --scope=@dzcode.io/web --include-dependencies --stream",
     "build:alone": "tspc",
+    "build:alone:watch": "tspc --watch --preserveWatchOutput",
     "build:watch": "lerna run build:alone:watch --scope=@dzcode.io/web --include-dependencies --parallel",
     "bundle": "npm run build && npm run bundle:alone",
     "bundle:alone": "cross-env NODE_ENV=production rsbuild build",
     "bundle:preview": "rsbuild preview",
     "clean": "lerna run clean:alone --scope=@dzcode.io/web --include-dependencies --stream",
-    "clean:alone": "del dist coverage bundle node_modules/.cache && del ./cloudflare/public",
-    "deploy": "cd ./cloudflare && npm install && npm run deploy:prd ",
-    "deploy:stg": "cd ./cloudflare && npm install && npm run deploy:stg",
+    "clean:alone": "del dist coverage bundle node_modules/.cache",
     "e2e:dev": "npx wait-on http://localhost:8080/ && npx cypress open",
     "generate:bundle-info": "tsx ../packages/tooling/bundle-info.ts",
     "generate:htmls": "npx tsx src/_build/gen-multiple-htmls.ts",
@@ -86,7 +85,7 @@
     "lint:prettier": "prettier  --config ../packages/tooling/.prettierrc --ignore-path ../packages/tooling/.prettierignore --log-level warn",
     "lint:ts-prune": "tsx ../packages/tooling/setup-ts-prune.ts && ts-prune --error",
     "lint:tsc": "tsc --noEmit",
-    "pre-deploy": "npm run generate:htmls && npm run generate:robots-txt && npm run generate:sitemap && del ./cloudflare/public && cpy \"./bundle/**/*\" ./cloudflare/public",
+    "pre-deploy": "npm run generate:htmls && npm run generate:robots-txt && npm run generate:sitemap",
     "prune:dictionary": "npx tsx ../packages/tooling/prune-dictionary.ts",
     "start:dev": "rsbuild dev --open",
     "test": "npm run build && npm run test:alone",

@@ -13,15 +13,13 @@ jobs:
       node-version: "20"
       os: "ubuntu-latest"
 
-  bundle-deploy:
+  deploy-api:
     needs: build
     runs-on: ubuntu-latest
     env:
       CI: true
       STAGE: staging
       SSH_ADDRESS_STG: ${{ secrets.SSH_ADDRESS_STG }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('stg-0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
@@ -42,24 +40,73 @@ jobs:
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
-      - name: "Bundle info"
+      - name: "Generate Bundle info"
         run: npm run generate:bundle-info $DEPLOY_VERSION stage
-      - name: "Bundle ./web"
-        run: npx lerna run bundle:alone --scope @dzcode.io/web
       - name: "Sentry Release"
-        run: npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
-      - name: "Pre-deploy"
-        run: npm run pre-deploy
+        # todo-zm: remove sentry entirely
+        run: cd ./api && npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
       - name: "Deploy"
-        run: npm run deploy:stg
+        run: cd ./api && npm run deploy:stg
 
-  lighthouse:
-    needs: bundle-deploy
-    uses: ./.github/workflows/ci.reusable.lighthouse.yml
-    with:
-      serverBaseUrl: "https://lh-stage.dzcode.io"
-      testBaseUrl: "https://stage.dzcode.io"
-      stage: "staging"
-    secrets:
-      LH_SERVER_TOKEN_STG: ${{ secrets.LH_SERVER_TOKEN_STG }}
-      LH_SERVER_TOKEN_PRD: ${{ secrets.LH_SERVER_TOKEN_PRD }}
+  deploy-web-server:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      STAGE: staging
+      DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('stg-0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
+
+    steps:
+      - name: "Git"
+        uses: actions/checkout@v4
+      - name: "Nodejs"
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build output (ubuntu-latest, 20)
+
+      - name: "Generate Bundle info"
+        run: npm run generate:bundle-info $DEPLOY_VERSION stage
+
+      - name: "Sentry Release"
+        # todo-zm: remove sentry entirely
+        run: cd ./web && npm run generate:sentry-release $DEPLOY_VERSION stage ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - name: "Bundle ./web for deployment"
+        run: |
+          cd ./web
+          npm run bundle
+          npm run pre-deploy
+
+      - name: "Write ./web-server deps into Dockerfile..."
+        run: |
+          cd ./web-server
+          npm run prepare-dockerfile
+
+      - name: Build docker image
+        run: |
+          docker buildx build -f web-server.Dockerfile . -t ghcr.io/dzcode-io/stage-dot-dzcode-dot-io-server:latest
+        env:
+          DOCKER_BUILDKIT: 1
+
+      - name: Push docker image
+        run: |
+          echo $CR_PAT | docker login ghcr.io -u dzcode-io --password-stdin
+          docker push ghcr.io/dzcode-io/stage-dot-dzcode-dot-io-server:latest
+        env:
+          CR_PAT: ${{ secrets.CR_PAT }}
+
+      - name: install zcluster
+        run: |
+          curl -fsSL https://infra.zak-man.com/install.sh | sh
+          echo "/home/runner/.zcluster/bin" >> $GITHUB_PATH
+
+      - name: Deploy to zcluster
+        run: zcluster deploy -p stage-dzcode ./docker-compose.stage.yml
+        env:
+          ADMIN_AUTH_TOKEN: ${{ secrets.ADMIN_AUTH_TOKEN }}

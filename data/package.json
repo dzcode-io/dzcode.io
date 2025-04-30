@@ -3,9 +3,9 @@
   "description": "data.dzcode.io code",
   "version": "6.1.0",
   "author": {
-    "email": "contact@zakiii.com",
+    "email": "zakman.dev@gmail.com",
     "name": "Zakaria Mansouri",
-    "url": "https://www.zakiii.com"
+    "url": "https://zak-man.com"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",

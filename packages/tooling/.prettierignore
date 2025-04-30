@@ -30,3 +30,4 @@ nodemon.json
 *.patch
 *.sql
 *.conf
+*.Dockerfile

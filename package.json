@@ -59,7 +59,6 @@
     "build:watch": "lerna run build:alone:watch --parallel",
     "clean": "lerna run clean:alone --stream",
     "deploy": "lerna run deploy --parallel --stream",
-    "deploy:stg": "lerna run deploy:stg --parallel --stream",
     "dev": "echo \"Please run one of these commands:\\n\\nnpm run dev:web\\nnpm run dev:api\\nnpm run dev:all\n\"",
     "dev:all": "npm-run-all \"build --include-dependencies {@}\" --parallel \"build:watch --include-dependencies {@}\" \"start:dev {@}\" --",
     "dev:api": "npm run dev:all --scope=@dzcode.io/api",
@@ -68,7 +67,6 @@
     "e2e:dev": "lerna run e2e:dev --parallel",
     "e2e:web": "BROWSER=none npm run e2e:all --scope=@dzcode.io/{web,api}",
     "generate:bundle-info": "lerna run generate:bundle-info --parallel --stream --",
-    "generate:sentry-release": "lerna run generate:sentry-release --concurrency 1 --stream --",
     "lint": "npm run build && npm run lint:alone",
     "lint:alone": "lerna run lint:alone --parallel --stream",
     "lint:fix": "npm run build && npm run lint:fix:alone",
@@ -76,8 +74,7 @@
     "lint:staged": "lerna exec --since HEAD --concurrency 1 --stream -- lint-staged && lint-staged",
     "patch-package": "patch-package --patch-dir packages/tooling/patches",
     "postinstall": "npm run patch-package && (husky install && husky set .husky/pre-commit \"npm run lint:staged\") || exit 0",
-    "pre-deploy": "lerna run pre-deploy --parallel --stream",
-    "prepare": "ts-patch install -s",
+    "prepare": "ts-patch install -s || exit 0",
     "start:dev": "lerna run start:dev --parallel --stream",
     "test": "npm run build && npm run test:alone",
     "test:alone": "lerna run test:alone --stream",
@@ -89,6 +86,6 @@
     "api",
     "data",
     "web",
-    "web/cloudflare"
+    "web-server"
   ]
 }
