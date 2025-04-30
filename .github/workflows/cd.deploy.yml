@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      PRODUCTION: production
+      STAGE: production
       DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      PRODUCTION: production
+      STAGE: production
       DEPLOY_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || format('0.0.0-{0}-{1}-{2}', github.ref_name, github.run_number, github.run_attempt) }}
 
     steps:
