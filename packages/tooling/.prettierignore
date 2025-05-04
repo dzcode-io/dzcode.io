@@ -3,7 +3,6 @@ coverage
 dist
 
 # api
-oracle-cloud/build
 db
 
 # web

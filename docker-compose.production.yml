@@ -1,0 +1,67 @@
+name: dzcode-production
+
+services:
+  web:
+    image: ghcr.io/dzcode-io/production-dot-dzcode-dot-io-server:latest
+    pull_policy: always
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=www.dzcode.io,dzcode.io
+      - LETSENCRYPT_HOST=www.dzcode.io,dzcode.io
+      - STAGE=production
+    networks:
+      - main-infra-network
+
+  api:
+    image: ghcr.io/dzcode-io/api-dot-production-dot-dzcode-dot-io-server:latest
+    pull_policy: always
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_started
+      meilisearch:
+        condition: service_started
+    environment:
+      - VIRTUAL_HOST=api.dzcode.io
+      - LETSENCRYPT_HOST=api.dzcode.io
+      - NODE_ENV=production
+      - OPENAI_KEY={{OPENAI_KEY}}
+      - GITHUB_TOKEN={{GITHUB_TOKEN}}
+    volumes:
+      - fetch_cache:/usr/src/repo/api/fetch_cache
+      - sqlite_db:/usr/src/repo/api/sqlite_db
+    networks:
+      - main-infra-network
+      - internal-network
+
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: db
+    networks:
+      - internal-network
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.11.3 # database schema is different between versions
+    volumes:
+      - meilisearch_db:/meili_data
+    environment:
+      MEILI_NO_ANALYTICS: true
+      MEILI_MASTER_KEY: "default" # we only access it through `./api`
+    networks:
+      - internal-network
+
+networks:
+  main-infra-network:
+    external: true
+  internal-network:
+    internal: true
+
+volumes:
+  postgres_db:
+  meilisearch_db:
+  fetch_cache:
+  sqlite_db:

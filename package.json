@@ -58,7 +58,6 @@
     "build": "lerna run build:alone --stream",
     "build:watch": "lerna run build:alone:watch --parallel",
     "clean": "lerna run clean:alone --stream",
-    "deploy": "lerna run deploy --parallel --stream",
     "dev": "echo \"Please run one of these commands:\\n\\nnpm run dev:web\\nnpm run dev:api\\nnpm run dev:all\n\"",
     "dev:all": "npm-run-all \"build --include-dependencies {@}\" --parallel \"build:watch --include-dependencies {@}\" \"start:dev {@}\" --",
     "dev:api": "npm run dev:all --scope=@dzcode.io/api",

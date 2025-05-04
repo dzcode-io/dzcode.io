@@ -3,6 +3,7 @@ FROM --platform=linux/amd64 node:22
 WORKDIR /usr/src/repo
 
 COPY ./package.json ./package.json
+COPY ./package-lock.json ./package-lock.json
 
 # AUTO_GEN
 COPY ./api/dist ./api/dist
@@ -18,7 +19,7 @@ COPY ./packages/utils/dist ./packages/utils/dist
 COPY ./packages/utils/package.json ./packages/utils/package.json
 # AUTO_GEN_END
 
-RUN npm install --omit=dev --workspace=@dzcode.io/api
+RUN npm install --omit=dev --workspace=@dzcode.io/api --frozen-lockfile
 
 ENV PORT=80
 WORKDIR /usr/src/repo/api
