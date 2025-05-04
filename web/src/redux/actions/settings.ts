@@ -1,13 +1,13 @@
 import { DEFAULT_LANGUAGE, LANGUAGES } from "@dzcode.io/models/dist/language";
 import { LanguageCode } from "@dzcode.io/utils/dist/language";
-import { captureException } from "@sentry/react";
+import { faro } from "@grafana/faro-react";
 
 export const changeLanguage = (languageCode: LanguageCode) => {
   let newPath = window.location.pathname;
   const language = LANGUAGES.find(({ code }) => code === languageCode);
   if (!language) {
-    console.error("Invalid language code", languageCode);
-    captureException(`Invalid language code ${language}`, { tags: { type: "GENERIC" } });
+    const error = new Error(`Invalid language code ${languageCode}`);
+    faro.api.pushError(error);
     return;
   }
 
