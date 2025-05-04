@@ -1,7 +1,7 @@
 import "./style.css";
 
 import { HelmetProvider } from "react-helmet-async";
-import { BrowserRouter, Route, RouteProps, Routes } from "react-router-dom";
+import { BrowserRouter, Route, RouteProps } from "react-router-dom";
 import { Footer, FooterProps } from "src/components/footer";
 import { Loadable } from "src/components/loadable";
 import { TopBar, TopBarProps } from "src/components/top-bar";
@@ -10,6 +10,7 @@ import { getInitialLanguageCode } from "src/utils/website-language";
 import React from "react";
 import { Search } from "src/components/search";
 import { DEFAULT_LANGUAGE } from "@dzcode.io/models/dist/language";
+import { Routes } from "src/components/instrumented-routes";
 
 let routes: Array<
   RouteProps & {
