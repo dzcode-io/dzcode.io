@@ -2,6 +2,7 @@ import { environments } from "@dzcode.io/utils/dist/config/environment";
 import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { readFileSync } from "fs";
+import FaroSourceMapUploaderPlugin from "@grafana/faro-webpack-plugin";
 
 let stage = process.env.STAGE;
 
@@ -21,6 +22,20 @@ try {
 
 export default defineConfig({
   plugins: [pluginReact()],
+  tools: {
+    webpack: {
+      plugins: [
+        new FaroSourceMapUploaderPlugin({
+          appName: "dzcode",
+          endpoint: "https://faro-api-prod-eu-west-2.grafana.net/faro/api/v1",
+          appId: "2897",
+          stackId: "1236993",
+          apiKey: process.env.GRAFANA_SOURCEMAP_TOKEN!,
+          gzipContents: true,
+        }),
+      ],
+    },
+  },
   source: {
     alias: {
       src: "./src",

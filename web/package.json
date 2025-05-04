@@ -15,12 +15,14 @@
     "@dzcode.io/data": "*",
     "@dzcode.io/models": "*",
     "@dzcode.io/utils": "*",
-    "@sentry/react": "^8.27.0",
+    "@grafana/faro-react": "^1.17.2",
+    "@grafana/faro-web-tracing": "^1.17.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5"
   },
   "devDependencies": {
+    "@grafana/faro-webpack-plugin": "^0.5.1",
     "@loadable/component": "^5.16.4",
     "@reduxjs/toolkit": "^2.2.6",
     "@rsbuild/core": "1.0.9",
@@ -73,7 +75,6 @@
     "generate:bundle-info": "tsx ../packages/tooling/bundle-info.ts",
     "generate:htmls": "npx tsx src/_build/gen-multiple-htmls.ts",
     "generate:robots-txt": "npx tsx src/_build/gen-robots-txt.ts",
-    "generate:sentry-release": "tsx ../packages/tooling/sentry-release.ts web bundle",
     "generate:sitemap": "npx tsx src/_build/sitemap.ts",
     "lh:collect": "npx --yes @lhci/cli collect",
     "lh:upload": "npx --yes @lhci/cli upload",
