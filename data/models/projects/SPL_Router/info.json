@@ -1,0 +1,10 @@
+{
+  "name": "SPL-Router",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "Mouhamedtec",
+      "repository": "SPL-Router"
+    }
+  ]
+}
