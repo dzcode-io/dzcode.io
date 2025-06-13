@@ -1,5 +1,4 @@
-// Sentry initialization should be imported first!
-import "src/utils/setup-sentry";
+import "src/utils/setup-faro";
 
 import React from "react";
 import { StrictMode } from "react";
