@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/project.json",
+  "name": "Khadra Project",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "TonyXdZ",
+      "name": "khadra"
+    }
+  ],
+  "tags": ["solve-algerian-problem"]
+}
