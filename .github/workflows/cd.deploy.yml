@@ -12,7 +12,7 @@ jobs:
       node-version: "20"
       os: "ubuntu-latest"
 
-  bundle-deploy:
+  docker-build-push-api:
     needs: build
     runs-on: ubuntu-latest
     env:
