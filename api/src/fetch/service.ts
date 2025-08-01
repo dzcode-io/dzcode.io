@@ -48,6 +48,10 @@ export class FetchService {
   private async fetch<T>(url: string, options: FetchOptions) {
     this.logger.info({ message: `Fetching ${url}` });
     const response = await this.makeFetchHappenInstance(url, options);
+    if (!response.ok) {
+      this.logger.error({ message: `Failed to fetch ${url}`, meta: { status: response.status } });
+      throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+    }
     const jsonResponse = (await response.json()) as T;
     return jsonResponse;
   }
