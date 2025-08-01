@@ -4,7 +4,8 @@
     {
       "provider": "github",
       "owner": "Mouhamedtec",
-      "repository": "SPL-Router"
+      "name": "SPL-Router"
     }
-  ]
+  ],
+  "tags": ["by-algerian"]
 }
