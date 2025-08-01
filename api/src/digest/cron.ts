@@ -142,11 +142,6 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
         name_ar,
       };
       const [{ id: projectId }] = await this.projectsRepository.upsert(projectEntity);
-      for (const tagId of project.tags || []) {
-        await this.tagRepository.upsert({ id: tagId, runId });
-        await this.projectsRepository.upsertRelationWithTag({ projectId, tagId, runId });
-      }
-      await this.searchService.upsert("project", projectEntity);
 
       let addedRepositoryCount = 0;
       try {
@@ -294,8 +289,19 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
       if (addedRepositoryCount === 0) {
         captureException(new Error("Empty project"), { extra: { project } });
         await this.projectsRepository.deleteRelationWithTagByProjectId(projectId);
-        await this.projectsRepository.deleteById(projectId);
+        await this.projectsRepository.upsert({ ...projectEntity, runId: "garbage-collected" });
+        continue;
       }
+
+      for (const tagId of project.tags || []) {
+        await this.tagRepository.upsert({ id: tagId, runId });
+        await this.projectsRepository.upsertRelationWithTag({
+          projectId,
+          tagId,
+          runId,
+        });
+      }
+      await this.searchService.upsert("project", projectEntity);
     }
 
     try {
@@ -373,7 +379,9 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
           repoContributors
             .filter(({ type }) => type === "User")
             .map(async (contributor) => {
-              const userInfo = await this.githubService.getUser({ username: contributor.login });
+              const userInfo = await this.githubService.getUser({
+                username: contributor.login,
+              });
               return {
                 id: contributor.login,
                 name: userInfo.name,
