@@ -58,6 +58,8 @@ npm run dev:all
 
 Please check the README.md files inside `./api` and `./web` for more info.
 
+<!--todo-zm: move this to CONTRIBUTING.md-->
+
 ## Contributing
 
 To get started, see [the contributing guidelines](https://github.com/dzcode-io/dzcode.io/blob/main/.github/CONTRIBUTING.md).
@@ -69,8 +71,6 @@ If you use VSCode, please make sure to have a `.vscode/settings.json` file with 
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "prettier.configPath": "packages/tooling/.prettierrc",
-  "prettier.prettierPath": "./node_modules/prettier/index.cjs",
   "eslint.options": { "overrideConfigFile": "packages/tooling/eslint.config.mjs" },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",

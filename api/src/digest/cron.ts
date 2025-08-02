@@ -379,9 +379,7 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
           repoContributors
             .filter(({ type }) => type === "User")
             .map(async (contributor) => {
-              const userInfo = await this.githubService.getUser({
-                username: contributor.login,
-              });
+              const userInfo = await this.githubService.getUser({ username: contributor.login });
               return {
                 id: contributor.login,
                 name: userInfo.name,
