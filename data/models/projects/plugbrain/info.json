@@ -1,0 +1,11 @@
+{
+  "name": "PlugBrain",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "msbelaid",
+      "name": "plugbrain"
+    }
+  ],
+  "tags": ["by-algerian"]
+}
