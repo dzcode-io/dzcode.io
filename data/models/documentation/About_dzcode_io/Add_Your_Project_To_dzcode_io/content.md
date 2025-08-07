@@ -15,7 +15,7 @@ To add new project, named for example: "**My Awesome Project**", simply do the f
        {
          "provider": "github",
          "owner": "your-github-username",
-         "repository": "your-awesome-project"
+         "name": "your-awesome-project"
        }
      ]
    }
