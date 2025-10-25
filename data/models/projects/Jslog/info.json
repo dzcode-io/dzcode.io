@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/project.json",
+  "name": "jslog",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "omdxp",
+      "name": "jslog"
+    }
+  ],
+  "tags": ["by-algerian"]
+}
