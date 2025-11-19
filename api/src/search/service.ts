@@ -12,23 +12,21 @@ export class SearchService {
   private readonly meilisearch: MeiliSearch;
   constructor(
     private readonly configService: ConfigService,
-    private readonly logger: LoggerService,
+    private readonly loggerService: LoggerService,
   ) {
-    this.logger.info({ message: "Initializing MeiliSearch client" });
+    this.loggerService.logger.info("Initializing MeiliSearch client");
     const { MEILISEARCH_URL, MEILISEARCH_MASTER_KEY } = this.configService.env();
 
     this.meilisearch = new MeiliSearch({
       host: MEILISEARCH_URL,
       apiKey: MEILISEARCH_MASTER_KEY,
     });
-    this.logger.info({
-      message: `MeiliSearch client initialized with url ${MEILISEARCH_URL}`,
-    });
+    this.loggerService.logger.info("MeiliSearch client initialized", "url", MEILISEARCH_URL);
   }
 
   public search = async (q: string, lang: LanguageCode, limit?: number): Promise<SearchResults> => {
     // TODO-ZM: only fetch Ids from search db, then query actually entities from their respective repositories
-    this.logger.info({ message: `Searching for "${q}" in all indexes` });
+    this.loggerService.logger.info("Searching in all indexes", "query", q);
     const searchResults = await this.meilisearch.multiSearch({
       queries: [
         { indexUid: "project", q, limit, attributesToRetrieve: ["id", `name_${lang}`] },
@@ -65,23 +63,23 @@ export class SearchService {
   };
 
   public upsert = async <T extends BaseEntity>(index: SearchType, data: T): Promise<void> => {
-    this.logger.info({
-      message: `Upserting "${data.id}" item to ${index}`,
-    });
+    this.loggerService.logger.info("Upserting item to index", "id", data.id, "index", index);
     await this.meilisearch.index(index).updateDocuments([data]);
-    this.logger.info({ message: `Upserted "${data.id}" item to ${index}` });
+    this.loggerService.logger.info("Item upserted to index", "id", data.id, "index", index);
   };
 
   public deleteAllButWithRunId = async (index: SearchType, runId: string): Promise<void> => {
-    this.logger.info({
-      message: `Deleting all ${index} but with runId ${runId}`,
-    });
+    this.loggerService.logger.info(
+      "Deleting all items except runId",
+      "index",
+      index,
+      "runId",
+      runId,
+    );
     await this.meilisearch.index(index).deleteDocuments({
       filter: `NOT runId=${runId}`,
     });
-    this.logger.info({
-      message: `Deleted all ${index} but with runId ${runId}`,
-    });
+    this.loggerService.logger.info("Items deleted except runId", "index", index, "runId", runId);
   };
 
   public setupSearch = async (): Promise<void> => {
@@ -98,12 +96,12 @@ export class SearchService {
   private async upsertIndex(index: SearchType): Promise<void> {
     try {
       await this.meilisearch.getIndex(index);
-      this.logger.info({ message: `${index} index already exists` });
+      this.loggerService.logger.info("Index already exists", "index", index);
     } catch {
       await this.meilisearch.createIndex(index, {
         primaryKey: "id",
       });
-      this.logger.info({ message: `${index} index created` });
+      this.loggerService.logger.info("Index created", "index", index);
     }
   }
 

@@ -10,6 +10,7 @@
     "@dzcode.io/data": "*",
     "@dzcode.io/models": "*",
     "@dzcode.io/utils": "*",
+    "@omdxp/jslog": "^1.7.1",
     "@sentry/node": "^8.28.0",
     "@sentry/profiling-node": "^8.28.0",
     "@types/make-fetch-happen": "^10.0.4",
@@ -31,8 +32,7 @@
     "postgres": "^3.4.4",
     "reflect-metadata": "^0.2.2",
     "routing-controllers": "^0.10.4",
-    "typedi": "^0.10.0",
-    "winston": "^3.3.3"
+    "typedi": "^0.10.0"
   },
   "devDependencies": {
     "@dzcode.io/tooling": "*",

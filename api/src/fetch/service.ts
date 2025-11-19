@@ -9,7 +9,7 @@ import { FetchConfig } from "./types";
 export class FetchService {
   constructor(
     private readonly configService: ConfigService,
-    private readonly logger: LoggerService,
+    private readonly loggerService: LoggerService,
   ) {
     const { FETCH_CACHE_PATH } = this.configService.env();
 
@@ -46,10 +46,10 @@ export class FetchService {
 
   private makeFetchHappenInstance;
   private async fetch<T>(url: string, options: FetchOptions) {
-    this.logger.info({ message: `Fetching ${url}` });
+    this.loggerService.logger.info("Fetching URL", "url", url);
     const response = await this.makeFetchHappenInstance(url, options);
     if (!response.ok) {
-      this.logger.error({ message: `Failed to fetch ${url}`, meta: { status: response.status } });
+      this.loggerService.logger.error("Failed to fetch URL", "url", url, "status", response.status);
       throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
     }
     const jsonResponse = (await response.json()) as T;

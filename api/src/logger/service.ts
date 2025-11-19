@@ -1,45 +1,66 @@
 import { Service } from "typedi";
-import winston from "winston";
+import {
+  Logger,
+  New,
+  MultiHandler,
+  PrettyHandler,
+  ColorHandler,
+  JSONHandler,
+  FileHandler,
+  Level,
+} from "@omdxp/jslog";
+import * as path from "path";
+import * as fs from "fs";
 
 @Service()
 export class LoggerService {
+  private _logger: Logger;
+  private fileHandler?: FileHandler;
+
   constructor() {
-    this.logger = winston.createLogger({
-      level: "info",
-      format: winston.format.json(),
-      transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
+    const isDev = process.env.NODE_ENV === "development";
+    const logDir = path.join(process.cwd(), "logs");
+
+    if (!fs.existsSync(logDir)) {
+      fs.mkdirSync(logDir, { recursive: true });
+    }
+
+    if (isDev) {
+      const devHandler = new PrettyHandler({
+        handler: new ColorHandler({
+          level: Level.DEBUG,
+          addSource: true,
         }),
-      ],
-    });
+        indent: 2,
+        compactArrays: true,
+      });
+      this._logger = New(devHandler);
+    } else {
+      this.fileHandler = new FileHandler({
+        filepath: path.join(logDir, "api.log"),
+        maxSize: 50 * 1024 * 1024,
+        maxFiles: 10,
+        format: "json",
+        level: Level.INFO,
+        addSource: false,
+      });
+
+      const productionHandler = new MultiHandler([
+        new JSONHandler({ level: Level.INFO }),
+        this.fileHandler,
+      ]);
+
+      this._logger = New(productionHandler);
+    }
   }
 
-  public log(level: LogLevel, logInfo: LogObject) {
-    this.logger.log(level, logInfo.message, logInfo.meta);
+  public get logger(): Logger {
+    return this._logger;
   }
 
-  public info(logInfo: LogObject) {
-    this.log("info", logInfo);
+  public close(): void {
+    if (this.fileHandler) {
+      this.fileHandler.close();
+    }
   }
-
-  public error(logInfo: LogObject) {
-    this.log("error", logInfo);
-  }
-
-  public debug(logInfo: LogObject) {
-    this.log("debug", logInfo);
-  }
-
-  public warn(logInfo: LogObject) {
-    this.log("warn", logInfo);
-  }
-
-  private logger;
 }
-
-export type LogLevel = "info" | "error" | "debug" | "warn";
-type LogObject = {
-  message: string;
-  meta?: unknown;
-};

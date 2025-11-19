@@ -20,6 +20,7 @@ api/fetch_cache
 api/postgres_db
 api/meilisearch_db
 api/nodemon.json
+api/logs
 
 # web
 bundle

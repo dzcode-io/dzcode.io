@@ -55,13 +55,23 @@ useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
   };
   const app: Application = createExpressServer(routingControllersOptions);
 
-  const logger = Container.get(LoggerService);
+  const loggerService = Container.get(LoggerService);
 
   Sentry.setupExpressErrorHandler(app);
+
+  // Graceful shutdown handler for logger file streams
+  const shutdown = (signal: string) => {
+    loggerService.logger.info("Received signal, closing logger streams", "signal", signal);
+    loggerService.close();
+    process.exit(0);
+  };
+
+  process.on("SIGTERM", () => shutdown("SIGTERM"));
+  process.on("SIGINT", () => shutdown("SIGINT"));
 
   // Start it
   app.listen(PORT, () => {
     const commonConfig = fsConfig(NODE_ENV);
-    logger.info({ message: `API Server up on: ${commonConfig.api.url}/` });
+    loggerService.logger.info("API Server started", "url", commonConfig.api.url);
   });
 })();

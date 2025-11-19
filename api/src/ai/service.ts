@@ -18,7 +18,7 @@ type OpenAIResponse = {
 export class AIService {
   constructor(
     private readonly configService: ConfigService,
-    private readonly logger: LoggerService,
+    private readonly loggerService: LoggerService,
     private readonly fetchService: FetchService,
     private readonly aiPromptRepository: AiPromptRepository,
   ) {}
@@ -44,7 +44,7 @@ export class AIService {
 
     const body = { model: "gpt-4o", messages: payloadWithValidationPrompt };
 
-    this.logger.info({ message: "Cached response not found, querying AI..." });
+    this.loggerService.logger.info("Cached response not found, querying AI...");
     // todo-zm: change to captureEvent
     captureException("AI Query", { tags: { type: "CRON" }, extra: { body } });
 
