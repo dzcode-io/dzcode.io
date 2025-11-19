@@ -22,20 +22,20 @@ export class PostgresService {
     private readonly configService: ConfigService,
     private readonly loggerService: LoggerService,
   ) {
-    this.loggerService.info({ message: "Initializing Postgres database" });
+    this.loggerService.logger.info("Initializing Postgres database");
     const { POSTGRES_URI } = this.configService.env();
 
     const queryClient = postgres(POSTGRES_URI);
     this.drizzleDB = drizzle(queryClient);
-    this.loggerService.info({ message: "Database migration started" });
+    this.loggerService.logger.info("Database migration started");
   }
 
   public async migrate() {
     if (this.isReady) throw new Error("Database is already ready");
 
-    this.loggerService.info({ message: "Database migration started" });
+    this.loggerService.logger.info("Database migration started");
     await migrate(this.drizzleDB, { migrationsFolder: join(__dirname, "../../db/migrations") });
-    this.loggerService.info({ message: "Database migration complete" });
+    this.loggerService.logger.info("Database migration complete");
 
     this.isReady = true;
   }

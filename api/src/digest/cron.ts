@@ -46,7 +46,7 @@ export class DigestCron {
   private isRunning = false;
 
   constructor(
-    private readonly logger: LoggerService,
+    private readonly loggerService: LoggerService,
     private readonly dataService: DataService,
     private readonly githubService: GithubService,
     private readonly projectsRepository: ProjectRepository,
@@ -64,7 +64,7 @@ export class DigestCron {
       this.schedule,
       async () => {
         if (this.isRunning) {
-          logger.warn({ message: "Digest cron already running" });
+          loggerService.logger.warn("Digest cron already running");
           return;
         }
 
@@ -75,10 +75,7 @@ export class DigestCron {
           this.isRunning = false;
           console.error(error);
           captureException(error, { tags: { type: "CRON" } });
-          logger.error({
-            message: `Digest cron failed: ${error}`,
-            meta: { error },
-          });
+          loggerService.logger.error("Digest cron failed", "error", error);
         }
         this.isRunning = false;
       },
@@ -90,7 +87,7 @@ export class DigestCron {
       undefined,
       true,
     );
-    logger.info({ message: "Digest cron initialized" });
+    loggerService.logger.info("Digest cron initialized");
   }
 
   /**
@@ -98,12 +95,12 @@ export class DigestCron {
    */
   private async run() {
     const runId = Math.random().toString(36).slice(2);
-    this.logger.info({ message: `Digest cron started, runId: ${runId}` });
+    this.loggerService.logger.info("Digest cron started", "runId", runId);
 
     let projectsFromDataFolder = await this.dataService.listProjects();
 
     if (this.configService.env().NODE_ENV === "development") {
-      this.logger.info({ message: `Running in development mode, filtering projects` });
+      this.loggerService.logger.info("Running in development mode, filtering projects");
       projectsFromDataFolder = projectsFromDataFolder.filter((p) =>
         ["Open-listings", "dzcode.io website", "Mishkal", "System Monitor"].includes(p.name),
       );
@@ -326,7 +323,7 @@ it may contain non-translatable parts like acronyms, keep them as is.`;
       captureException(error, { tags: { type: "CRON" } });
     }
 
-    this.logger.info({ message: `Digest cron finished, runId: ${runId}` });
+    this.loggerService.logger.info("Digest cron finished", "runId", runId);
   }
 
   private async getRepoInfo(
