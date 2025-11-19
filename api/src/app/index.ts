@@ -60,17 +60,31 @@ useContainer(Container); // eslint-disable-line react-hooks/rules-of-hooks
   Sentry.setupExpressErrorHandler(app);
 
   // Graceful shutdown handler for logger file streams
+  let server: ReturnType<Application["listen"]> | undefined;
   const shutdown = (signal: string) => {
     loggerService.logger.info("Received signal, closing logger streams", "signal", signal);
-    loggerService.close();
-    process.exit(0);
+    if (server) {
+      server.close(() => {
+        loggerService.close();
+        process.exit(0);
+      });
+      // Force shutdown after timeout
+      setTimeout(() => {
+        loggerService.logger.error("Forced shutdown after timeout");
+        loggerService.close();
+        process.exit(1);
+      }, 10000);
+    } else {
+      loggerService.close();
+      process.exit(0);
+    }
   };
 
   process.on("SIGTERM", () => shutdown("SIGTERM"));
   process.on("SIGINT", () => shutdown("SIGINT"));
 
   // Start it
-  app.listen(PORT, () => {
+  server = app.listen(PORT, () => {
     const commonConfig = fsConfig(NODE_ENV);
     loggerService.logger.info("API Server started", "url", commonConfig.api.url);
   });
