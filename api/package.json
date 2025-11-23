@@ -10,7 +10,7 @@
     "@dzcode.io/data": "*",
     "@dzcode.io/models": "*",
     "@dzcode.io/utils": "*",
-    "@omdxp/jslog": "^1.7.2",
+    "@omdxp/jslog": "^1.8.0",
     "@sentry/node": "^8.28.0",
     "@sentry/profiling-node": "^8.28.0",
     "@types/make-fetch-happen": "^10.0.4",
