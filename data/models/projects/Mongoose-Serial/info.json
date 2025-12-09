@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schemas/project.json",
+  "name": "Mongoose Serial",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "khalilmansouri",
+      "name": "mongoose-serial"
+    }
+  ],
+  "tags": ["by-algerian"]
+}
