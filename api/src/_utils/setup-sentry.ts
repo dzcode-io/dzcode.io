@@ -11,7 +11,7 @@ if (NODE_ENV !== "development") {
     tracesSampleRate: NODE_ENV === "production" ? 0.1 : 1.0,
     profilesSampleRate: 1.0, // relative to tracesSampleRate
     environment: NODE_ENV,
-    debug: NODE_ENV !== "production",
+    debug: false,
     release: `api@${BUNDLE_INFO.version}`,
   });
 }
