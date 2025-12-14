@@ -1,5 +1,5 @@
+import { faro } from "@grafana/faro-react";
 import { Action, ThunkAction } from "@reduxjs/toolkit";
-import { captureException } from "@sentry/react";
 import { contributionPageSlice } from "src/redux/slices/contribution-page";
 import { AppState } from "src/redux/store";
 import { fetchV2 } from "src/utils/fetch";
@@ -17,6 +17,6 @@ export const fetchContributionAction =
       dispatch(contributionPageSlice.actions.set({ contribution }));
     } catch (error) {
       dispatch(contributionPageSlice.actions.set({ contribution: "ERROR" }));
-      captureException(error, { tags: { type: "WEB_FETCH" } });
+      faro.api.pushError(error as Error, { type: "WEB_FETCH" });
     }
   };

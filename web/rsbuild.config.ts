@@ -52,5 +52,9 @@ export default defineConfig({
       svg: `w/${bundleInfo.version}/svg`,
       wasm: `w/${bundleInfo.version}/wasm`,
     },
+    sourceMap: {
+      js: "source-map",
+      css: true,
+    },
   },
 });
