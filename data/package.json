@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "fs-extra": "^11.2.0",
-    "glob": "^11.0.0"
+    "glob": "^12.0.0"
   },
   "devDependencies": {
     "@dzcode.io/tooling": "*",
