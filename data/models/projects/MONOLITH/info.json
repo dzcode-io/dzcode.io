@@ -1,0 +1,10 @@
+{
+  "name": "MONOLITH",
+  "repositories": [
+    {
+      "provider": "github",
+      "owner": "mrunix00",
+      "name": "MONOLITH"
+    }
+  ]
+}
